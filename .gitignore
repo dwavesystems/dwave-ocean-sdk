@@ -64,3 +64,8 @@ dist
 # Sphinx
 ######################
 _build
+
+# Sublime
+######################
+*.sublime-workspace
+*.sublime-project
