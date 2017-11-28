@@ -10,6 +10,10 @@ Welcome to D-Wave Systems Documentation's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+   projects
+   glossary
+   keyword_args
+
 
 
 Indices and tables
