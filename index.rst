@@ -3,12 +3,15 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to D-Wave Systems Documentation's documentation!
-========================================================
+D-Wave Open Source Documentation
+===========================================
+
+Welcome to the documentation for the open-source projects of `D-Wave Systems <https://www.dwavesys.com>`_\ ,
+the leader in the development and delivery of quantum computing systems and software, and the world’s
+only commercial supplier of quantum computers.
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
 
    projects
    glossary

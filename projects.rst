@@ -1,14 +1,20 @@
-Open Source Projects
+Projects
 ====================
 
-Alphabetical
+Below are links to documentation for all D-Wave open-source repositories located
+at `D-Wave Systems Inc. on GitHub <https://github.com/dwavesystems>`_\ .
+
+All
 ------------
 
-* `dimod`_ (`docs <http://dimod.readthedocs.io/en/latest/>`_)
-* `dwave_embedding_utilities`_ (`docs <http://d-wave-embedding-utilities.readthedocs.io/en/latest/>`_)
-* `dwave_micro_client`_ (`docs <https://dwavesystems.github.io/dwave_micro_client/>`_)
-* `dwave_neal`_ (`docs <http://dwave-neal.readthedocs.io/en/latest/>`_)
-* `dwave_networkx`_ (`docs <http://dwave-networkx.readthedocs.io/en/latest/index.html>`_)
+All documentation in alphabetical order:
+
+* `dimod: <http://dimod.readthedocs.io/en/latest/>`_ Shared API for QUBO/Ising samplers
+* `dwave_embedding_utilities: <http://d-wave-embedding-utilities.readthedocs.io/en/latest/>`_ Utilities for mapping between source and target models
+* `dwave_micro_client:  <https://dwavesystems.github.io/dwave_micro_client/>`_ Minimal REST interface to D-Wave Solvers
+* `dwave_neal: <http://dwave-neal.readthedocs.io/en/latest/>`_ C++ simulated annealing sampler for Ising graphs with a dimod Python wrapper
+* `dwave_networkx: <http://dwave-networkx.readthedocs.io/en/latest/index.html>`_ D-Wave NetworkX
+
 * `dwave_sapi_dimod`_
 * `qbsolv`_
 
@@ -19,3 +25,25 @@ Alphabetical
 .. _dwave_networkx: https://github.com/dwavesystems/dwave_networkx
 .. _dwave_micro_client: https://github.com/dwavesystems/dwave_micro_client
 .. _dwave_embedding_utilities: https://github.com/dwavesystems/dwave_embedding_utilities
+
+Demonstrations
+-----------------
+
+Documentation for our demonstrations:
+
+* structural-imbalance-demo (sorry, we're still working on this)
+* beartooth-demo (sorry, we're still working on this)
+
+D-Wave Tools
+--------------
+
+* `dimod: <http://dimod.readthedocs.io/en/latest/>`_ Shared API for QUBO/Ising samplers
+8 `dwave_embedding_utilities: <http://d-wave-embedding-utilities.readthedocs.io/en/latest/>`_ Utilities for mapping between source and target models
+* `dwave_micro_client <https://dwavesystems.github.io/dwave_micro_client/>`_ Minimal REST interface to D-Wave Solvers
+* `dwave_neal: <http://dwave-neal.readthedocs.io/en/latest/>`_ C++ simulated annealing sampler for Ising graphs with a dimod Python wrapper
+* `dwave_networkx: <http://dwave-networkx.readthedocs.io/en/latest/index.html>`_ D-Wave NetworkX
+
+General Tools
+--------------------
+
+* dw_sa_chi: Simulated annealing solvers (sorry, we're still working on this) 
