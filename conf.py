@@ -142,6 +142,13 @@ latex_documents = [
      u'D-Wave Systems Inc', 'manual'),
 ]
 
+latex_preamble = r"""
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsbsy}
+\usepackage{braket}
+\newcommand{\vc}[1]{\pmb{#1}}
+"""
 
 # -- Options for manual page output ---------------------------------------
 

@@ -1,7 +1,4 @@
-.. D-Wave Systems Documentation documentation master file, created by
-   sphinx-quickstart on Tue Sep 26 11:50:39 2017.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+.. _index:
 
 D-Wave Open Source Documentation
 ===========================================
@@ -11,13 +8,31 @@ the leader in the development and delivery of quantum computing systems and soft
 only commercial supplier of quantum computers.
 
 .. toctree::
-   :maxdepth: 2
+   :hidden:
 
    projects
-   glossary
    keyword_args
+   glossary
 
+:ref:`projects`
+================
 
+Learn about :ref:`all <projects-All>` our projects/repositories, our
+:ref:`demonstrations <projects-Demonstrations>`, :ref:`D-Wave utilities <projects-D-wave_Tools>`
+that help solve a given problem on the D-Wave system, and :ref:`generic
+utilities <projects-General_Tools>` for solving hard problems.
+
+:ref:`keywords`
+=================
+
+See the :ref:`keyword arguments <keywords>` specified for use by existing
+projects that your code should only use compatibly.
+
+:ref:`glossary`
+=================
+
+Understand the :ref:`terminology <glossary>` and context of the D-Wave open
+source code.
 
 Indices and tables
 ==================
