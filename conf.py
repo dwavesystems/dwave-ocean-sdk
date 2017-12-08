@@ -149,7 +149,7 @@ latex_preamble = r"""
 \usepackage{braket}
 \newcommand{\vc}[1]{\pmb{#1}}
 """
-
+#
 # -- Options for manual page output ---------------------------------------
 
 # One entry per manual page. List of tuples
