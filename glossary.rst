@@ -6,15 +6,15 @@ Glossary
 .. glossary::
 
       Chimera
-         The D-Wave QPU is a lattice of interconnected qubits. While some qubits
+         The D-Wave :term:`QPU` is a lattice of interconnected qubits. While some qubits
          connect to others via couplers, the D-Wave QPU is not fully connected.
          Instead, the qubits interconnect in an architecture known as Chimera.
 
       Embedding
       Minor embedding
          The nodes and edges on the graph that represents an objective function
-         translate to the qubits and couplers in Chimera. Each logical qubit, in
-         the graph of the objective function, may be represented by one or more
+         translate to the qubits and couplers in :term:`Chimera`. Each logical qubit, in
+         the graph of the :term:`objective function`, may be represented by one or more
          physical qubits. The process of mapping the logical qubits to physical
          qubits is known as minor embedding.
 
@@ -40,7 +40,7 @@ Glossary
          a qubit :math:`q_i`, and :math:`h_i` and :math:`J_{i,j}` are the qubit
          biases and coupling strengths.
 
-      Ising model
+      Ising 
          Traditionally used in statistical mechanics. Variables are "spin up"
          (:math:`\uparrow`) and "spin down" (:math:`\downarrow`), states that
          correspond to :math:`+1` and :math:`-1` values. Relationships between
@@ -65,6 +65,9 @@ Glossary
       Objective function
          A mathematical expression of the energy of a system as a function of
          binary variables representing the qubits.
+
+      QPU
+         Quantum processing unit
 
       QUBO
          Quadratic unconstrained binary optimization.
@@ -107,5 +110,5 @@ Glossary
          Solver API used by clients to communicate with a :term:`solver`.
 
       Solver
-         A resource that runs a problem. Some solvers interface to the QPU;
+         A resource that runs a problem. Some solvers interface to the :term:`QPU`;
          others leverage CPU and GPU resources.
