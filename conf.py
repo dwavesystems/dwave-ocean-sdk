@@ -103,6 +103,10 @@ html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 #
 # html_theme_options = {}
 
+# Joel December 11, 2017: added for mathjax operator \vc
+# Add any paths that contain custom themes here, relative to this directory.
+html_theme_path = ["."]
+
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
@@ -142,7 +146,14 @@ latex_documents = [
      u'D-Wave Systems Inc', 'manual'),
 ]
 
-
+latex_preamble = r"""
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsbsy}
+\usepackage{braket}
+\newcommand{\vc}[1]{\pmb{#1}}
+"""
+#
 # -- Options for manual page output ---------------------------------------
 
 # One entry per manual page. List of tuples
