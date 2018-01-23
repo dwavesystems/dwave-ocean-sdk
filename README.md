@@ -1,4 +1,5 @@
 dwavesystems/docs
+
 This repo is the source of the D-Wave open-source tools documentation located at http://dw-docs.readthedocs.io/en/latest/
 
 Making a simple change
