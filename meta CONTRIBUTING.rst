@@ -56,6 +56,8 @@ and they will merge your code in.
 If you're already familiar with git, but rebasing is still scary, try this `think like a git guide
 <http://think-like-a-git.net/>`_.
 
+In the main dwavesystems fork, we keep only the master branch. This branch reflects the bleeding edge developments of the project. Stable releases are tracked using tags. These tagged snapshots are deployed to PyPI after successfully passing the test cases during continuous integration.
+
 Readme file
 ***********
 
