@@ -58,8 +58,9 @@ Coding Conventions
 * Functions should do one thing.
 * Early pull requests and code reviews.
 * Early architecting/design. Code reviews can happen before any code has been written.
-* Use a consistent character width with an upper bound of 120.
+* Use a consistent character width of 120.
 * Use 4 spaces instead of tabs.
+* End all files with a newline.
 
 Documentation and Comments
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
