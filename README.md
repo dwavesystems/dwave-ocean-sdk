@@ -32,12 +32,7 @@ as if you were browsing it on http://dw-docs.readthedocs.io. To use the SimpleHT
 2. Run python -m SimpleHTTPServer. After the server starts up, connect to your docs through your loopback IP address (http://127.0.0.1:8000).
 
 
-Sending feedback
-============================
-We love getting feedback. You can use:
 
-- Email --- Send an email to docs@dwavesys.com for documentation bugs, ideas, thoughts, and suggestions. Be aware that this email address is not a support email address, however. If you need support, contact D-Wave support at dwsupport@dwavesys.com.
-- Pull request --- Submit a PR to this repo using either of the two methods described above.
 
 
 
