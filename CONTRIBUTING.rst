@@ -1,3 +1,4 @@
+=================
 How to Contribute
 =================
 
@@ -7,13 +8,13 @@ projects based on the code conventions and best practices used at D-Wave.
 This document is intended to be a living document, and is not complete. Feedback is welcome.
 
 Testing
--------
+=======
 
 A feature or bugfix is complete only when the code has been unit-tested. Part of the pull-request process is to test
 your branch against `master`, and so the more tests you provide, the easier the pull-request process.
 
 Submitting Changes
-------------------
+==================
 
 When contributing to a D-Wave project, fork the repository using the `Github fork
 <https://guides.github.com/activities/forking/>`_ button and work in a feature branch in your own repository. In your
@@ -50,7 +51,7 @@ Stable releases are tracked using tags. These tagged snapshots are deployed to P
 cases during continuous integration.
 
 Coding Conventions
-------------------
+==================
 
 * Variable naming should follow the well-known conventions of a language. Avoid uninformative or needlessly terse
   variable names.
@@ -63,7 +64,7 @@ Coding Conventions
 * End all files with a newline.
 
 Documentation and Comments
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------
 
 * Do a good job of commenting. Read this `Coding Horror article
   <https://blog.codinghorror.com/code-tells-you-how-comments-tell-you-why/>`_.
@@ -100,21 +101,21 @@ Documentation and Comments
         raise RuntimeError('z cannot be greater than 255, or this universe will collapse.')
 
 Python
-~~~~~~
+------
 
 pep8
-****
+~~~~
 
 As a baseline, follow the `pep8 <https://www.python.org/dev/peps/pep-0008/>`_ style guide for python.
 
 Python 2/3
-**********
+~~~~~~~~~~
 
 All code should be both Python 2 and 3 compatible.
 
 
 Documentation
-*************
+~~~~~~~~~~~~~
 
 * Google docstrings convention (`definition <https://google.github.io/styleguide/pyguide.html>`_, `example
   <https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_google.html>`_) on all public-facing functions. The
@@ -131,10 +132,10 @@ Documentation
   tool (i.e. reStructuredText) The sphinx theme should be `readthedocs <https://docs.readthedocs.io/en/latest/>`_.
 
 C++
-~~~
+---
 
 .clang-format
-*************
+~~~~~~~~~~~~~
 
 * When starting a new C++ project, copy the .clang-format file included here.
 * Our style is based on Google (as opposed to LLVM, Chromium, Mozilla, or Webkit) with minor differences.
@@ -163,7 +164,7 @@ C++
     }
 
 Additional Style
-****************
+~~~~~~~~~~~~~~~~
 
 Favor the use of the optional braces for single-line control statements, which enhance consistency and extensibility.
 
@@ -186,7 +187,7 @@ as opposed to
 This could potentially be enforced by :code:`clang-tidy`.
 
 Versioning Scheme
-~~~~~~~~~~~~~~~~~
+-----------------
 
 Our code follows `Semantic Versioning <http://semver.org/>`_ conventions: major.minor.patch.
 
@@ -194,7 +195,7 @@ A change that breaks backwards compatibility must increment the major version. A
 backwards compatibility.
 
 Readme File
-~~~~~~~~~~~
+-----------
 
 If you are creating a repository, don't forget to include a :code:`README.rst` containing
 a reasonable description of your project.

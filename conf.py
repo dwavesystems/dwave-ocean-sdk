@@ -55,7 +55,7 @@ source_parsers = {'.md': 'recommonmark.parser.CommonMarkParser'}
 master_doc = 'index'
 
 # General information about the project.
-project = u'docs'
+project = u'Ocean Documentation'
 copyright = u'2017, D-Wave Systems Inc'
 author = u'D-Wave Systems Inc'
 
@@ -110,7 +110,17 @@ html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-#html_static_path = ['_static']
+html_static_path = ['_static']
+
+# Joel April 2018: table widths bug in Read The Docs
+# html_context = {
+#     'css_files': [
+#         '_static/theme_overrides.css',  # override wide tables in RTD theme
+#         ],
+#      }
+def setup(app):
+   #app.add_javascript("custom.js")
+   app.add_stylesheet("theme_overrides.css")
 
 # -- Options for HTMLHelp output ------------------------------------------
 

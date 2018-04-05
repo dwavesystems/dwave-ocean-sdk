@@ -1,5 +1,6 @@
 .. _glossary:
 
+========
 Glossary
 ========
 
@@ -11,7 +12,7 @@ Glossary
          Instead, the qubits interconnect in an architecture known as Chimera.
 
       Embedding
-      Minor embedding
+      Minor-embedding
          The nodes and edges on the graph that represents an objective function
          translate to the qubits and couplers in :term:`Chimera`. Each logical qubit, in
          the graph of the :term:`objective function`, may be represented by one or more
@@ -105,6 +106,10 @@ Glossary
             \begin{equation}
           		\text{E}_{qubo}(a_i, b_{i,j}; q_i) = \sum_{i} a_i q_i + \sum_{i<j} b_{i,j} q_i q_j.
             \end{equation}
+
+      Sampler
+         Samplers are processes that sample from low energy states of a problem's objective
+         function, which is a mathematical expression of the energy of a system.
 
       SAPI
          Solver API used by clients to communicate with a :term:`solver`.

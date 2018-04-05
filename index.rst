@@ -1,38 +1,43 @@
 .. _index:
 
-D-Wave Open Source Documentation
-===========================================
+===================================
+D-Wave Ocean Software Documentation
+===================================
 
-Welcome to the documentation for the open-source projects of `D-Wave Systems <https://www.dwavesys.com>`_\ ,
-leader in the development and delivery of quantum computing systems and software, and the world’s
-only commercial supplier of quantum computers.
+Ocean software is a suite of tools `D-Wave Systems <https://www.dwavesys.com>`_ provides
+on the `D-Wave GitHub repository <https://github.com/dwavesystems>`_ for solving hard
+problems with quantum computers.
 
 .. toctree::
    :hidden:
 
+   getting_started
    projects
    keyword_args
    glossary
+   CONTRIBUTING
+   dwave
+
+:ref:`gs`
+=========
+
+See how Ocean tools work together to solve hard problems on a D-Wave quantum computer.
 
 :ref:`projects`
 ================
 
-Learn about :ref:`all <projects-All>` our projects/repositories, our
-:ref:`demonstrations <projects-Demonstrations>`, :ref:`D-Wave utilities <projects-D-wave_Tools>`
-that help solve a given problem on the D-Wave system, and :ref:`generic
-utilities <projects-General_Tools>` we offer for solving hard problems.
+Read Ocean tool documents.
 
 :ref:`keywords`
 =================
 
-Ensure that your code uses the :ref:`keyword arguments <keywords>` specified by existing
-projects in a compatible way.
+Ensure your code's keyword arguments are compatible with existing
+code.
 
 :ref:`glossary`
 =================
 
-Understand the :ref:`terminology <glossary>` and context of the D-Wave open
-source code.
+Understand the terminology.
 
 Indices and tables
 ==================
