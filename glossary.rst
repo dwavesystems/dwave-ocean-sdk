@@ -40,7 +40,7 @@ Glossary
          a qubit :math:`q_i`, and :math:`h_i` and :math:`J_{i,j}` are the qubit
          biases and coupling strengths.
 
-      Ising 
+      Ising
          Traditionally used in statistical mechanics. Variables are "spin up"
          (:math:`\uparrow`) and "spin down" (:math:`\downarrow`), states that
          correspond to :math:`+1` and :math:`-1` values. Relationships between
@@ -51,7 +51,7 @@ Glossary
 	          :nowrap:
 
 	          \begin{equation}
-	               \text{E}_{ising}(\vc{s}) = \sum_{i=1}^N h_i s_i + \sum_{i=1}^N \sum_{j=i+1}^N J_{i,j} s_i s_j
+	               \text{E}_{ising}(\pmb{s}) = \sum_{i=1}^N h_i s_i + \sum_{i=1}^N \sum_{j=i+1}^N J_{i,j} s_i s_j
 	          \end{equation}
 
          where the linear coefficients corresponding to qubit biases
