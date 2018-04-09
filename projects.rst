@@ -1,64 +1,59 @@
 .. _projects:
 
-Projects
-====================
+=====
+Tools
+=====
 
-Below are links to documentation for all D-Wave open-source repositories located
-at `D-Wave Systems Inc. on GitHub <https://github.com/dwavesystems>`_\ .
+D-Wave Ocean tools are documented on *Read the Docs*. Click on a link below for the
+documentation for each tool (or the link in parentheses for the tool repository located
+at `D-Wave on GitHub <https://github.com/dwavesystems>`_\ ).
 
-.. _projects-All:
+.. list-table:: Ocean Software
+   :widths: 10 120
+   :header-rows: 1
 
-All
-------------
+   * - Tool
+     - Description
+   * - `homebase <http://homebase.readthedocs.io/en/latest/>`_ (`repo <https://github.com/dwavesystems/homebase>`_)
+     - API for getting platform independent paths to user data and configuration folders, with
+       support for virtualenv.
+   * - `dimod <http://dimod.readthedocs.io/en/latest/>`_ (`repo <https://github.com/dwavesystems/dimod>`_)
+     - Shared API for binary quadratic :term:`sampler`\ s.
 
-Links to *Read the Docs* pages for all our projects:
+       dimod provides a binary quadratic model (BQM) class that contains :term:`Ising` and quadratic unconstrained binary optimization (:term:`QUBO`) models used by samplers such as the D-Wave system. It also provides utilities for constructing new samplers and composed samplers.
+   * - `dwave-cloud-client <http://dwave-cloud-client.readthedocs.io/en/latest/>`_ (`repo <https://github.com/dwavesystems/dwave-cloud-client>`_)
+     - Minimal implementation of the REST interface used to communicate with D-Wave :term:`Sampler` API (SAPI) servers.
+   * - `dwave_networkx <http://dwave-networkx.readthedocs.io/en/latest/index.html>`_ (`repo <https://github.com/dwavesystems/dwave_networkx>`_\ )
+     - Extension of NetworkX—a Python language package for exploration and analysis
+       of networks and network algorithms—for users of D-Wave Systems.
 
-* `dimod: <http://dimod.readthedocs.io/en/latest/>`_ Shared API for :term:`QUBO` and :term:`Ising` samplers (`repo <https://github.com/dwavesystems/dimod>`_)
-* `dwave_embedding_utilities: <http://d-wave-embedding-utilities.readthedocs.io/en/latest/>`_ Utilities for mapping between source and target models (`repo <https://github.com/dwavesystems/dwave_embedding_utilities>`_)
-* *dwave_micro_client*\ : Minimal REST interface to D-Wave :term:`solver`\ s (`repo <https://github.com/dwavesystems/dwave_micro_client>`_)
-* `dwave_neal: <http://dwave-neal.readthedocs.io/en/latest/>`_ C++ simulated annealing sampler for :term:`Ising` graphs with a dimod Python wrapper (`repo <https://github.com/dwavesystems/dwave_neal>`_)
-* `dwave_networkx: <http://dwave-networkx.readthedocs.io/en/latest/index.html>`_ D-Wave NetworkX (`repo <https://github.com/dwavesystems/dwave_networkx>`_)
+       dwave_networkx provides tools for working with :term:`Chimera` graphs and implementations of
+       graph-theory algorithms on the D-Wave system and other binary quadratic model
+       :term:`sampler`\ s.
+   * - `dwave-system <http://dwave-system.readthedocs.io/en/latest/>`_ (`repo <https://github.com/dwavesystems/dwave-system>`_)
+     - Basic API for easily incorporating the D-Wave system as a :term:`sampler` in the
+       D-Wave Ocean software stack.
 
-* *dwave_sapi_dimod*\ : dimod wrapper for D-Wave's :term:`SAPI` Client Library (`repo <https://github.com/dwavesystems/dwave_sapi_dimod>`_)
-* *qbsolv*\ : A decomposing solver that finds a minimum value of a large :term:`QUBO` (`repo <https://github.com/dwavesystems/qbsolv>`_)
+       It includes DWaveSampler, a dimod sampler that accepts and passes system
+       parameters such as system identification and authentication down the stack.
+       It also includes several useful composites—layers of pre- and post-processing—that
+       can be used with DWaveSampler to handle :term:`minor-embedding`, optimize chain strength, etc.
+   * - `penaltymodel <http://penaltymodel.readthedocs.io/en/latest/>`_ (`repo <https://github.com/dwavesystems/penaltymodel>`_)
+     - An approach to solve a constraint satisfaction problem (CSP) using an
+       :term:`Ising` model or a :term:`QUBO`, is to map each individual constraint
+       in the CSP to a ‘small’ Ising model or QUBO.
+   * - `penaltymodel_cache <http://penaltymodel-cache.readthedocs.io/en/latest/>`_ (`repo <https://github.com/dwavesystems/penaltymodel_cache>`_)
+     - A local cache for penalty models. Serves as a factory and cache for penaltymodel.
+   * - `penaltymodel_maxgap <http://penaltymodel-maxgap.readthedocs.io/en/latest/>`_ (`repo <https://github.com/dwavesystems/penaltymodel_maxgap>`_)
+     - Generates penalty models using smt solvers. Serves as a factory and cache for penaltymodel.
+   * - `minorminer <http://minorminer.readthedocs.io/en/latest/>`_ (`repo <https://github.com/dwavesystems/minorminer>`_)
+     - A tool for finding graph :term:`minor-embedding`\ s, developed to embed :term:`Ising` problems onto quantum annealers (QA).
 
-.. _dimod: https://github.com/dwavesystems/dimod
-.. _qbsolv: https://github.com/dwavesystems/qbsolv
-.. _dwave_neal: https://github.com/dwavesystems/dwave_neal
-.. _dwave_sapi_dimod: https://github.com/dwavesystems/dwave_sapi_dimod
-.. _dwave_networkx: https://github.com/dwavesystems/dwave_networkx
-.. _dwave_micro_client: https://github.com/dwavesystems/dwave_micro_client
-.. _dwave_embedding_utilities: https://github.com/dwavesystems/dwave_embedding_utilities
+       While it can be used to find minors in arbitrary graphs, it is particularly geared towards the state of
+       the art in QA: problem graphs of a few to a few hundred variables, and hardware graphs of a few thousand qubits.
+   * - qbsolv (`repo <https://github.com/dwavesystems/qbsolv>`_)
+     - A decomposing solver, finds a minimum value of a large quadratic unconstrained binary
+       optimization (:term:`QUBO`) problem by splitting it into pieces solved either via a
+       D-Wave system or a classical tabu solver.
 
-
-.. _projects-Demonstrations:
-
-Demonstrations
------------------
-
-Links to *Read the Docs* pages for our demonstrations:
-
-* *structural-imbalance-demo* (`repo <https://github.com/dwavesystems/structural-imbalance-demo>`_)
-* *beartooth-demo* (`repo <https://github.com/dwavesystems/beartooth-demo>`_)
-
-.. _projects-D-wave_Tools:
-
-D-Wave Tools
---------------
-
-Links to *Read the Docs* pages for our D-Wave utilities that help solve a given problem on the D-Wave system:
-
-* `dimod: <http://dimod.readthedocs.io/en/latest/>`_ Shared API for :term:`QUBO` and :term:`Ising` samplers (`repo <https://github.com/dwavesystems/dimod>`_)
-* `dwave_embedding_utilities: <http://d-wave-embedding-utilities.readthedocs.io/en/latest/>`_ Utilities for mapping between source and target models (`repo <https://github.com/dwavesystems/dwave_embedding_utilities>`_)
-* *dwave_micro_client*\ : Minimal REST interface to D-Wave :term:`solver`\ s (`repo <https://github.com/dwavesystems/dwave_micro_client>`_)
-* `dwave_neal: <http://dwave-neal.readthedocs.io/en/latest/>`_ C++ simulated annealing sampler for Ising graphs with a dimod Python wrapper (`repo <https://github.com/dwavesystems/dwave_neal>`_)
-* `dwave_networkx: <http://dwave-networkx.readthedocs.io/en/latest/index.html>`_ D-Wave NetworkX (`repo <https://github.com/dwavesystems/dwave_networkx>`_)
-
-.. _projects-General_Tools:
-
-General Tools
---------------------
-
-Links to *Read the Docs* pages for generic utilities we offer for solving hard problems:
-
-* *dw_sa_chi*\ : Simulated annealing :term:`solver`\ s (`repo <https://github.com/dwavesystems/dw_sa_chi>`_)
+Note: a few more still need plus some updates

@@ -1,7 +1,8 @@
 .. _keywords:
 
+===========================
 Specified Keyword Arguments
-=============================
+===========================
 
 The following keyword arguments have been specified for use by one or more
 projects.
@@ -12,7 +13,7 @@ projects.
 .. _keyword-num_samples:
 
 num_samples
--------------
+===========
 
 Number of samples to draw. A positive integer.
 
@@ -23,7 +24,7 @@ Number of samples to draw. A positive integer.
 .. _keyword-embedding:
 
 embedding
-------------
+=========
 
 A mapping from a source graph to a target graph. Each node in
 source graph is mapped to one or more nodes in the target graph.
