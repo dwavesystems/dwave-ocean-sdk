@@ -22,7 +22,7 @@ To run the code in this example, the following is required.
 Representing a NOT Gate as a BQM
 ================================
 
-In the terminology of :ref:'stack', Ocean tools move the original problem through the
+In the terminology of :ref:`oceanstack`\ , Ocean tools move the original problem through the
 following layers:
 
 * Application is a logic operation; the problem space is Boolean variables.
@@ -35,7 +35,7 @@ following layers:
 NOT as a Penalty Function
 -------------------------
 
-Ocean has tools to produce :term:`penalty functions` but this example uses a known
+Ocean has tools to produce a :term:`penalty function` but this example uses a known
 formulation of NOT as penalty function:
 
 .. math::

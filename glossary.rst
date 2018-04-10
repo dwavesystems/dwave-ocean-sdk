@@ -72,7 +72,7 @@ Glossary
       Penalty function
          An algorithm for solving constrained optimization problems. In the context
          of Ocean tools, penalty functions are typically employed to increase the energy
-         level of a problem’s :term:`objective` function by penalizing non-valid configurations.
+         level of a problem’s :term:`objective function` by penalizing non-valid configurations.
          See `Penalty method on Wikipedia <https://en.wikipedia.org/wiki/Penalty_method>`_
 
       QPU
