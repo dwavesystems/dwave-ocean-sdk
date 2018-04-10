@@ -14,9 +14,6 @@ at `D-Wave on GitHub <https://github.com/dwavesystems>`_\ ).
 
    * - Tool
      - Description
-   * - `homebase <http://homebase.readthedocs.io/en/latest/>`_ (`repo <https://github.com/dwavesystems/homebase>`_)
-     - API for getting platform independent paths to user data and configuration folders, with
-       support for virtualenv.
    * - `dimod <http://dimod.readthedocs.io/en/latest/>`_ (`repo <https://github.com/dwavesystems/dimod>`_)
      - Shared API for binary quadratic :term:`sampler`\ s.
 
@@ -38,6 +35,9 @@ at `D-Wave on GitHub <https://github.com/dwavesystems>`_\ ).
        parameters such as system identification and authentication down the stack.
        It also includes several useful composites—layers of pre- and post-processing—that
        can be used with DWaveSampler to handle :term:`minor-embedding`, optimize chain strength, etc.
+   * - `homebase <http://homebase.readthedocs.io/en/latest/>`_ (`repo <https://github.com/dwavesystems/homebase>`_)
+     - API for getting platform independent paths to user data and configuration folders, with
+       support for virtualenv.
    * - `penaltymodel <http://penaltymodel.readthedocs.io/en/latest/>`_ (`repo <https://github.com/dwavesystems/penaltymodel>`_)
      - An approach to solve a constraint satisfaction problem (CSP) using an
        :term:`Ising` model or a :term:`QUBO`, is to map each individual constraint
@@ -55,5 +55,3 @@ at `D-Wave on GitHub <https://github.com/dwavesystems>`_\ ).
      - A decomposing solver, finds a minimum value of a large quadratic unconstrained binary
        optimization (:term:`QUBO`) problem by splitting it into pieces solved either via a
        D-Wave system or a classical tabu solver.
-
-Note: a few more still need plus some updates

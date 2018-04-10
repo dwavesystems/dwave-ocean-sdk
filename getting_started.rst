@@ -6,13 +6,19 @@ Getting Started
 
 New to `D-Wave Systems <https://www.dwavesys.com>`_ Ocean or want an overview of
 the software? This section describes how the Ocean tools fit together
-to solve hard problems and gives examples of use them to solve such problems
+to solve hard problems and gives examples of using them to solve such problems
 on a D-Wave quantum computer.
 
 Overview
 ========
 
-TODO
+How the Ocean tools fit together to solve problems and how to use a D-Wave system.
+
+.. toctree::
+   :maxdepth: 1
+
+   overview/stack
+   overview/dwavesys
 
 Examples
 ========

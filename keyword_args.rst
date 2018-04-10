@@ -28,7 +28,7 @@ embedding
 
 A mapping from a source graph to a target graph. Each node in
 source graph is mapped to one or more nodes in the target graph.
-Also referred to as a "\ :term:`minor embedding`\ ".
+Also referred to as a "\ :term:`minor-embedding`\ ".
 
 **Type:** dict[hashable, iterable]
 

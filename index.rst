@@ -10,6 +10,7 @@ problems with quantum computers.
 
 .. toctree::
    :hidden:
+   :maxdepth: 2
 
    getting_started
    projects
