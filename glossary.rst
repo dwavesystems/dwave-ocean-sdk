@@ -11,7 +11,9 @@ Glossary
          connect to others via couplers, the D-Wave QPU is not fully connected.
          Instead, the qubits interconnect in an architecture known as Chimera.
 
+      Embed
       Embedding
+      Minor-embed
       Minor-embedding
          The nodes and edges on the graph that represents an objective function
          translate to the qubits and couplers in :term:`Chimera`. Each logical qubit, in
@@ -66,6 +68,12 @@ Glossary
       Objective function
          A mathematical expression of the energy of a system as a function of
          binary variables representing the qubits.
+
+      Penalty function
+         An algorithm for solving constrained optimization problems. In the context
+         of Ocean tools, penalty functions are typically employed to increase the energy
+         level of a problem’s :term:`objective` function by penalizing non-valid configurations.
+         See `Penalty method on Wikipedia <https://en.wikipedia.org/wiki/Penalty_method>`_
 
       QPU
          Quantum processing unit

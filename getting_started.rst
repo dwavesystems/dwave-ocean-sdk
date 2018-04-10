@@ -23,7 +23,13 @@ How the Ocean tools fit together to solve problems and how to use a D-Wave syste
 Examples
 ========
 
-TODO
+The quickest way to see how Ocean tools are used, is to look at an end-to-end example.
+
+.. toctree::
+   :maxdepth: 1
+
+   examples/or
+   .. examples/cfd  TODO
 
 .. _projects-Demonstrations:
 
