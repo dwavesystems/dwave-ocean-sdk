@@ -1,4 +1,4 @@
-.. _and:
+.. _not:
 
 ================
 Boolean NOT Gate
@@ -22,7 +22,7 @@ To run the code in this example, the following is required.
 Representing a NOT Gate as a BQM
 ================================
 
-In the terminology of :ref:'stack', Ocean tools move the original problem through the
+In the terminology of :ref:`oceanstack`\ , Ocean tools move the original problem through the
 following layers:
 
 * Application is a logic operation; the problem space is Boolean variables.
@@ -35,7 +35,7 @@ following layers:
 NOT as a Penalty Function
 -------------------------
 
-Ocean has tools to produce :term:`penalty functions` but this example uses a known
+Ocean has tools to produce a :term:`penalty function` but this example uses a known
 formulation of NOT as penalty function:
 
 .. math::
@@ -106,7 +106,7 @@ QUBO formulation:
     E(a_i, b_{i,j}; x_i) = -x_1 -x_2  + 2x_1x_2
 
 where :math:`z=x_2` is the AND gate's output, :math:`x=x_1` the input, linear
-coefficients are :math:`a_1=a_2=-1`. and quadratic coefficient is :math:`b_{1,2}=2`.
+coefficients are :math:`a_1=a_2=-1`, and quadratic coefficient is :math:`b_{1,2}=2`.
 The coefficients matrix is,
 
 .. math::
@@ -129,8 +129,8 @@ qubits of a Chimera unit cell.
 The figure below shows a minor embedding of the NOT gate into a unit cell of
 a D-Wave 2000Q QPU, in this case, the topmost left cell of the Chimera graph.
 
-.. figure:: ../_static/Problem_CFD_Embedding_ChimeraNOT.png
-   :name: Problem_CFD_Embedding_ChimeraNOT
+.. figure:: ../_static/Embedding_Chimera_NOT.png
+   :name: Embedding_Chimera_NOT
    :alt: image
    :align: center
    :scale: 90 %

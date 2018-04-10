@@ -25,10 +25,14 @@ Examples
 
 The quickest way to see how Ocean tools are used, is to look at an end-to-end example.
 
+The :ref:`not` example is the simplest: follow the example code to learn how to quickly
+submit a problem to a D-Wave system.
+
 .. toctree::
    :maxdepth: 1
 
-   examples/or
+   examples/not
+   examples/and
    .. examples/cfd  TODO
 
 .. _projects-Demonstrations:
