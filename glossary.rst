@@ -11,6 +11,14 @@ Glossary
          connect to others via couplers, the D-Wave QPU is not fully connected.
          Instead, the qubits interconnect in an architecture known as Chimera.
 
+      Composite
+          A :term:`sampler` can be composed. The
+          `composite pattern <https://en.wikipedia.org/wiki/Composite_pattern>`_
+          allows layers of pre- and post-processing to be applied to binary quadratic
+          programs without needing to change the underlying sampler implementation.
+          We refer to these layers as "composites". A composed sampler includes at least one
+          sampler and possibly many composites.
+
       Embed
       Embedding
       Minor-embed
@@ -72,7 +80,7 @@ Glossary
       Penalty function
          An algorithm for solving constrained optimization problems. In the context
          of Ocean tools, penalty functions are typically employed to increase the energy
-         level of a problem’s :term:`objective` function by penalizing non-valid configurations.
+         level of a problem’s :term:`objective function` by penalizing non-valid configurations.
          See `Penalty method on Wikipedia <https://en.wikipedia.org/wiki/Penalty_method>`_
 
       QPU
@@ -117,7 +125,10 @@ Glossary
 
       Sampler
          Samplers are processes that sample from low energy states of a problem's objective
-         function, which is a mathematical expression of the energy of a system.
+         function, which is a mathematical expression of the energy of a system. A binary
+         quadratic model (BQM) sampler samples from low energy states in models such as those
+         defined by an :term:`Ising` equation or a :term:`QUBO` problem and returns an iterable
+         of samples, in order of increasing energy.
 
       SAPI
          Solver API used by clients to communicate with a :term:`solver`.

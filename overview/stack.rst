@@ -1,4 +1,4 @@
-.. _stack:
+.. _oceanstack:
 
 ====================
 Ocean Software Stack
@@ -49,5 +49,5 @@ Problem-to-Solution Tool Chain
 ------------------------------
 
 A problem can be posed in a variety of formulations; the D-Wave system solves Ising problems.
-The Ocean tools assist you in converting the problem from its original form to a 
+The Ocean tools assist you in converting the problem from its original form to a
 form native to the D-Wave system and sending the compatible problem for solving.
