@@ -103,9 +103,9 @@ that represent a single variable. For example, chain qubit 0 and qubit 5 to repr
 
   Embedding a :math:`K_3` graph into Chimera by using a chain.
 
-The strength of the coupler between :math:`q_0` and :math:`q_5`, which represents
+The strength of the coupler between :math:`q_0` and :math:`q_4`, which represents
 variable :math:`z`, must be set to correlate the qubits strongly, so that in most
-solutions, :math:`q_0 = q_5 = z`.
+solutions, :math:`q_0 = q_4 = z`.
 
 Example Code
 ============
@@ -134,10 +134,11 @@ The example configures a D-Wave :term:`solver` you have access to as a
      token = ABC-123456789123456789123456789
 
 This example uses manual :term:`minor-embedding` for clearer understanding
-(typically you automate the process). Rather than hoping the target qubits are
-active on the selected solver, this example verifies that. If not all the target
-qubits are active, select alternative qubits from the same or another
-:term:`Chimera` unit cell.
+(typically, as shown in the :ref:`max_cut` example, you automate the process).
+Rather than hoping the target qubits are
+active on the selected solver, as done in the :ref:`not` example, this example
+verifies that. If not all the target qubits are active, select alternative qubits
+from the same or another :term:`Chimera` unit cell.
 
 .. code-block:: python
 
@@ -150,7 +151,9 @@ For the solver selected by default in this example's D-Wave Cloud Client
 configuration file, all the qubits in the first Chimera unit cell (qubits 0 to
 7) are active.
 
-This example uses the Virtual Graph feature to minor-embed the AND gate.
+This example uses the Virtual Graph feature to minor-embed the AND gate. The code does
+this by using Ocean's `dwave-system <https://github.com/dwavesystems/dwave-system>`_
+VirtualGraphComposite :term:`composite` on the DWaveSampler() :term:`sampler`\ .
 
 .. code-block:: python
 

@@ -26,13 +26,17 @@ Examples
 The quickest way to see how Ocean tools are used, is to look at an end-to-end example.
 
 The :ref:`not` example is the simplest: follow the example code to learn how to quickly
-submit a problem to a D-Wave system.
+submit a problem to a D-Wave system. The :ref:`and` example is a step more advanced,
+adding a simple chain in the :term:`minor-embedding` of the problem and a :term:`composite` layer
+to the :term:`sampler`\ . Example :ref:`max_cut` uses algorithmic :term:`minor-embedding`
+and some graphic functionality.
 
 .. toctree::
    :maxdepth: 1
 
    examples/not
    examples/and
+   examples/max_cut
    .. examples/cfd  TODO
 
 .. _projects-Demonstrations:

@@ -154,8 +154,10 @@ is, when qubit 0 has value 0, qubit 4 should have value 1, and vice versa.
       be used. Active qubits can be seen through the sampler's properties but for the purpose of
       this simple example, you can choose pairs (1, 5) or (7, 11) for example.
 
+      See the :ref:`max_cut` example for more advanced :ref:`minor-embedding`\ .
+
 .. note:: The arguments of the DWaveSampler() function below must be replaced with
-      the requirements section above.
+      your configuration's arguments, as noted in the requirements section above.
 
 .. code-block:: python
 
