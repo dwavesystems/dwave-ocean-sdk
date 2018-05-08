@@ -42,10 +42,9 @@ at `D-Wave on GitHub <https://github.com/dwavesystems>`_\ ).
      - An approach to solve a constraint satisfaction problem (CSP) using an
        :term:`Ising` model or a :term:`QUBO`, is to map each individual constraint
        in the CSP to a ‘small’ Ising model or QUBO.
-   * - `penaltymodel_cache <http://penaltymodel-cache.readthedocs.io/en/latest/>`_ (`repo <https://github.com/dwavesystems/penaltymodel_cache>`_)
-     - A local cache for penalty models. Serves as a factory and cache for penaltymodel.
-   * - `penaltymodel_maxgap <http://penaltymodel-maxgap.readthedocs.io/en/latest/>`_ (`repo <https://github.com/dwavesystems/penaltymodel_maxgap>`_)
-     - Generates penalty models using smt solvers. Serves as a factory and cache for penaltymodel.
+
+       Includes a local cache for penalty models and a factory that generates penalty models
+       using SMT solvers.
    * - `minorminer <http://minorminer.readthedocs.io/en/latest/>`_ (`repo <https://github.com/dwavesystems/minorminer>`_)
      - A tool for finding graph :term:`minor-embedding`\ s, developed to embed :term:`Ising` problems onto quantum annealers (QA).
 
