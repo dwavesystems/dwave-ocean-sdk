@@ -1,4 +1,4 @@
-.. _and:
+.. _not:
 
 ================
 Boolean NOT Gate
@@ -106,7 +106,7 @@ QUBO formulation:
     E(a_i, b_{i,j}; x_i) = -x_1 -x_2  + 2x_1x_2
 
 where :math:`z=x_2` is the AND gate's output, :math:`x=x_1` the input, linear
-coefficients are :math:`a_1=a_2=-1`. and quadratic coefficient is :math:`b_{1,2}=2`.
+coefficients are :math:`a_1=a_2=-1`, and quadratic coefficient is :math:`b_{1,2}=2`.
 The coefficients matrix is,
 
 .. math::
@@ -129,8 +129,8 @@ qubits of a Chimera unit cell.
 The figure below shows a minor embedding of the NOT gate into a unit cell of
 a D-Wave 2000Q QPU, in this case, the topmost left cell of the Chimera graph.
 
-.. figure:: ../_static/Problem_CFD_Embedding_ChimeraNOT.png
-   :name: Problem_CFD_Embedding_ChimeraNOT
+.. figure:: ../_static/Embedding_Chimera_NOT.png
+   :name: Embedding_Chimera_NOT
    :alt: image
    :align: center
    :scale: 90 %
@@ -154,8 +154,10 @@ is, when qubit 0 has value 0, qubit 4 should have value 1, and vice versa.
       be used. Active qubits can be seen through the sampler's properties but for the purpose of
       this simple example, you can choose pairs (1, 5) or (7, 11) for example.
 
+      See the :ref:`max_cut` example for more advanced :ref:`minor-embedding`\ .
+
 .. note:: The arguments of the DWaveSampler() function below must be replaced with
-      the requirements section above.
+      your configuration's arguments, as noted in the requirements section above.
 
 .. code-block:: python
 
