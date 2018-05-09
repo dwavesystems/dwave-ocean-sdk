@@ -18,6 +18,9 @@ at `D-Wave on GitHub <https://github.com/dwavesystems>`_\ ).
      - Shared API for binary quadratic :term:`sampler`\ s.
 
        dimod provides a binary quadratic model (BQM) class that contains :term:`Ising` and quadratic unconstrained binary optimization (:term:`QUBO`) models used by samplers such as the D-Wave system. It also provides utilities for constructing new samplers and composed samplers.
+   * - `dwavebinarycsp <http://dwavebinarycsp.readthedocs.io/en/latest/>`_ (`repo <https://github.com/dwavesystems/dwavebinarycsp>`_)
+     - Library to construct a binary quadratic model from a constraint
+       satisfaction problem with small constraints over binary variables.
    * - `dwave-cloud-client <http://dwave-cloud-client.readthedocs.io/en/latest/>`_ (`repo <https://github.com/dwavesystems/dwave-cloud-client>`_)
      - Minimal implementation of the REST interface used to communicate with D-Wave :term:`Sampler` API (SAPI) servers.
    * - `dwave_networkx <http://dwave-networkx.readthedocs.io/en/latest/index.html>`_ (`repo <https://github.com/dwavesystems/dwave_networkx>`_\ )
