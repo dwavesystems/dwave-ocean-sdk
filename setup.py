@@ -8,29 +8,25 @@ _PY2 = sys.version_info.major == 2
 # add __version__, __author__, __authoremail__, __description__ to this namespace
 # equivalent to:
 if _PY2:
-    execfile("./dwave_sdk/package_info.py")
+    execfile("./dwaveoceansdk/package_info.py")
 else:
-    exec(open("./dwave_sdk/package_info.py").read())
+    exec(open("./dwaveoceansdk/package_info.py").read())
 
-install_requires = ['dimod',
-                    'dwave_micro_client',
-                    'dwave_networkx',
-                    'dwave_micro_client_dimod']
-tests_require = []
-extras_require = {}
+install_requires = ['dwavebinarycsp>=0.0.2,<0.1.0',
+                    'dwave-networkx>=0.6.1,<0.7.0',
+                    'dwave-system>=0.3.0,<0.4.0',
+                    'dwave-qbsolv>=0.2.7,<0.3.0']
 
-packages = ['dwave_sdk']
+packages = ['dwaveoceansdk']
 
 setup(
-    name='dwave_sdk',
+    name='dwave-ocean-sdk',
     version=__version__,
     author=__author__,
     author_email=__authoremail__,
     description=__description__,
-    url='https://github.com/dwavesystems/dwave_sdk',
+    url='https://github.com/dwavesystems/dwave-ocean-sdk',
     license='Apache 2.0',
     packages=packages,
-    install_requires=install_requires,
-    extras_require=extras_require,
-    tests_require=tests_require
+    install_requires=install_requires
 )

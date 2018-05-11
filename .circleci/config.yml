@@ -1,0 +1,184 @@
+version: 2
+jobs:
+  test-3.6: &full-test-template
+    docker:
+      - image: circleci/python:3.6-jessie
+
+    working_directory: ~/repo
+
+    steps:
+
+      - checkout
+
+      - run:
+          name: create virtualenv
+          command: |
+            python -m virtualenv env
+
+      - run: &install-dependencies-template
+          name: install dependencies
+          command: |
+            . env/bin/activate
+            python --version
+            pip install .
+        
+      - run: &run-tests-template
+          name: run unittests
+          command: |
+            . env/bin/activate
+            python --version
+            python -m unittest discover
+
+  test-3.5:
+    <<: *full-test-template
+    docker:
+      - image: circleci/python:3.5-jessie
+
+  test-3.4:
+    <<: *full-test-template
+    docker:
+      - image: circleci/python:3.4-jessie
+
+  test-2.7:
+    <<: *full-test-template
+    docker:
+      - image: circleci/python:2.7-jessie
+
+  test-osx:
+    macos:
+      xcode: "9.0"
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      - run: 
+          name: install pyenv
+          command: |
+            brew install pyenv
+
+      - run:
+          name: install python 2.7.14 and 3.6.5 with pyenv
+          command: |
+            pyenv install 2.7.14 -s
+            pyenv install 3.6.5 -s
+
+      - run:
+          name: create virtualenv for 2.7.14
+          command: |
+            eval "$(pyenv init -)"
+            pyenv local 2.7.14
+            python -m pip install virtualenv
+            python -m virtualenv env
+
+      - run: *install-dependencies-template
+
+      - run: *run-tests-template
+
+      - run:
+          name: clear virtual environment
+          command: |
+            rm -rf env
+
+      - run:
+          name: create virtualenv for 3.6.5
+          command: |
+            eval "$(pyenv init -)"
+            pyenv local 3.6.5
+            python -m pip install virtualenv
+            python -m virtualenv env
+
+      - run: *install-dependencies-template
+
+      - run: *run-tests-template
+
+  deploy:
+    docker:
+      - image: circleci/python:3.6-jessie
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      - run:
+          name: create virtualenv
+          command: |
+            python -m virtualenv env
+
+      - run:
+          name: install twine
+          command: |
+            . env/bin/activate
+            pip install twine
+
+      - run:
+          name: verify version matches tag
+          command: |
+            . env/bin/activate
+            pip install .
+            echo $CIRCLE_TAG
+            [[ "$(pip show dwave-ocean-sdk 2>/dev/null | grep Version)" == "Version: $CIRCLE_TAG" ]]
+
+      - run:
+          name: init .pypirc
+          command: |
+            echo -e "[pypi]" >> ~/.pypirc
+            echo -e "username = dwtools-ci" >> ~/.pypirc
+            echo -e "password = $PYPI_PASSWORD" >> ~/.pypirc
+
+      - run:
+          name: build sdist and bdist
+          command: |
+            . env/bin/activate
+            python setup.py sdist
+            python setup.py bdist_wheel
+
+      - run:
+          name: upload
+          command: |
+            . env/bin/activate
+            twine upload dist/*
+
+workflows:
+  version: 2
+  test:
+    jobs:
+      - test-3.6
+      - test-2.7
+      - test-3.5
+      - test-3.4
+      - test-osx:
+          requires:
+            - test-3.6
+            - test-2.7
+            - test-3.5
+            - test-3.4
+  deploy:
+    jobs:
+      - deploy:
+          filters:
+            tags:
+              only: /^[0-9]+(\.[0-9]+)*(\.dev([0-9]+)?)?$/
+            branches:
+              ignore: /.*/
+  nightly:
+    triggers:
+      - schedule:
+          cron: "0 0 * * *"
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - test-3.6
+      - test-2.7
+      - test-3.5
+      - test-3.4
+      - test-osx:
+          requires:
+            - test-3.6
+            - test-2.7
+            - test-3.5
+            - test-3.4
