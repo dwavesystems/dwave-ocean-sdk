@@ -207,10 +207,16 @@ epub_copyright = copyright
 epub_exclude_files = ['search.html']
 
 
-# Example configuration for intersphinx: refer to the Python standard library.
-intersphinx_mapping = {'https://docs.python.org/': None,
-                       'http://networkx.readthedocs.io/en/latest/': None}
+# Joel May 16: WARNING: failed to reach any of the inventories with the following issues:
+# WARNING: intersphinx inventory 'http://networkx.readthedocs.io/en/latest/objects.inv' not
+# fetchable due to <class 'requests.exceptions.HTTPError'>: ('intersphinx inventory %r not
+# fetchable due to %s: %s', 'http://networkx.readthedocs.io/en/latest/objects.inv', <class
+# 'requests.exceptions.HTTPError'>, HTTPError(...))
 
+# Example configuration for intersphinx: refer to the Python standard library.
+#intersphinx_mapping = {'https://docs.python.org/': None,
+#                       'http://networkx.readthedocs.io/en/latest/': None}
+intersphinx_mapping = {'https://docs.python.org/': None}
 
 # sort documentation they way the appear in the source file
 autodoc_member_order = 'bysource'

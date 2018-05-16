@@ -14,10 +14,10 @@ It adds to the examples of :ref:`not` and :ref:`and` the following more advanced
 A maximum cut is a subset of a graph's vertices such that the number of edges
 between this subset and the remaining vertices is as large as possible.
 
-.. figure:: ../../_static/MaxCut.png
+.. figure:: ../_static/MaxCut.png
    :name: Cover
    :align: center
-   :scale: 20 %
+   :scale: 70 %
 
    Maximum cut for a Chimera unit cell: the blue line around the subset of nodes
    {4, 5, 6, 7} cuts 16 edges; adding or removing a node decreases
@@ -97,9 +97,9 @@ example code visualizes the graph used in the previous example code.
     >>> plt.ion()
     >>> dnx.draw_chimera(G, with_labels=True)
 
-.. figure:: ../../_static/draw_chimera_2_1_4.png
+.. figure:: ../_static/draw_chimera_2_1_4.png
    :name: draw_chimera
    :align: center
-   :scale: 20 %
+   :scale: 80 %
 
    Visualization of two adjacent Chimera unit cells.
