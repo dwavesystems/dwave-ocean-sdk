@@ -14,7 +14,6 @@ problems with quantum computers.
 
    getting_started
    projects
-   keyword_args
    glossary
    CONTRIBUTING
    dwave
@@ -28,12 +27,6 @@ See how Ocean tools work together to solve hard problems on a D-Wave quantum com
 ================
 
 Read Ocean tool documents.
-
-:ref:`keywords`
-=================
-
-Ensure your code's keyword arguments are compatible with existing
-code.
 
 :ref:`glossary`
 =================
