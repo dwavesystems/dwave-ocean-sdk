@@ -23,7 +23,7 @@ How the Ocean tools fit together to solve problems and how to use a D-Wave syste
 Examples
 ========
 
-The quickest way to see how Ocean tools are used, is to look at an end-to-end example.
+The quickest way to see how Ocean tools are used is to look at an end-to-end example.
 
 The :ref:`not` example is the simplest: follow the example code to learn how to quickly
 submit a problem to a D-Wave system. The :ref:`and` example is a step more advanced,
@@ -50,4 +50,9 @@ Demonstrations
   a minimum-sized set of components that, if faulty, explains an observation of incorrect outputs given a
   set of inputs.
 
-* factoring
+* `factoring-demo <https://github.com/dwavesystems/factoring-demo>`_
+
+  Demonstrates the use of the D-Wave system to factor numbers in an entirely new way,
+  by turning a multiplication circuit into a constraint satisfaction problem that
+  allows the quantum computer to compute inputs from a predefined output. Essentially,
+  this means running the multiplication circuit in reverse.
