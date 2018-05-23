@@ -1,8 +1,8 @@
 .. _multi_gate:
 
-=============================================================
-Multiple-Gate Circuit: Various Embeddings and Chain Strengths
-=============================================================
+=====================
+Multiple-Gate Circuit
+=====================
 
 This example solves a logic circuit problem to demonstrate using Ocean tools
 to solve a problem on a D-Wave system.
@@ -22,7 +22,7 @@ To run the code in this example, the following is required.
 * Installation of Ocean tools
   `dwavebinarycsp <http://dwavebinarycsp.readthedocs.io/en/latest/>`_ and
   `dwave-system <https://github.com/dwavesystems/dwave-system>`_\ . For graphics,
-  you will also need `pyplot FIX THE LINK HERE <https://networkx.github.io/>`_\ .
+  you will also need `Matplotlib <https://matplotlib.org>`_\ .
 
 Circuit with Multiple Logic Gates
 =================================
@@ -130,8 +130,8 @@ logic gates to penalty models by defining constraints:
 .. note:: `dwavebinarycsp` works best for constraints of up to 4 variables; it may not
       function as expected for constraints of over 8 variables.
 
-Example Code
-============
+Minor-Embedding
+===============
 
 This example converts the constraint satisfactions problems above to binary quadratic
 models and checks the number of valid and invalid samples returned from a D-Wave system
@@ -143,11 +143,15 @@ models and checks the number of valid and invalid samples returned from a D-Wave
     from dwave.system.samplers import DWaveSampler
     from dwave.system.composites import EmbeddingComposite
 
+    # Convert the binary constraint satisfaction problem to a binary quadratic model
     bqm = dwavebinarycsp.stitch(csp)
 
+    # Set up a solver using the local system’s default D-Wave Cloud Client configuration file
+    # and sample 100 times
     sampler = EmbeddingComposite(DWaveSampler())
     response = sampler.sample(bqm, num_reads=100)
 
+    # Check how many solutions meet the constraints (are valid)
     valid, invalid, data = 0, 0, []
     for datum in response.data():
     sample, energy, num = datum
@@ -161,11 +165,25 @@ models and checks the number of valid and invalid samples returned from a D-Wave
             data.append((sample, energy, '0'))
     print(valid, invalid)
 
-Results
-=======
+.. toctree::
+   :maxdepth: 1
+   :hidden:
 
-Algorithmic minor-embedding is heuristic---the results vary significantly based on
-the minor-embedding found as shown in the following table:
+   multi_gate_results
+
+The first approach, which consolidates the circuit as a single constraint, yields a
+binary quadratic model with 7 variables: 4 inputs, 1, output, and 2 ancillary variables.
+The second approach, which creates a constraint satisfaction problem from multiple
+small constraints, yields a binary quadratic model with 11 variables: 4 inputs, 1 output, and
+6 intermediate outputs of the logic gates.
+
+You can see the binary quadratic models here: :ref:`multi_gate_results`.
+
+Algorithmic minor-embedding is heuristic---solution results vary significantly based on
+the minor-embedding found.
+
+For the single constraint approach, 4 runs with their different minor-embeddings
+yield significantly varied results, as shown in the following table:
 
 .. list-table:: Single Constraint
    :widths: 10 20
@@ -182,16 +200,19 @@ the minor-embedding found as shown in the following table:
    * - 4
      - (316, 684)
 
+You can see the minor-embeddings found here: :ref:`multi_gate_results`; below
+those embeddings are visualized graphically.
+
 .. figure:: ../_static/SingleCSPembeddings.png
    :name: SingleCSPembeddings
    :alt: image
    :align: center
-   :scale: 70 %
+   :scale: 50 %
 
 For the second approach, which creates a constraint satisfaction problem based on multiple
-small constraints, the minor-embedding needs to bring together a larger number of
-variables, and consequently results are weaker. However, results can be greatly improved in
-this case by increasing the chain strength.
+small constraints, a larger number of variables (11 versus 7) need to be minor-embedded, resulting
+in worse performance. However, performance can be greatly improved in this case by increasing
+the chain strength (to 2 instead of the default of 1).
 
 .. list-table:: Multiple Constraint
    :widths: 10 20 20
@@ -201,20 +222,23 @@ this case by increasing the chain strength.
      - Chain Strength
      - (valid, invalid)
    * - 1
-     - 2
+     - 1
      - (7, 993)
    * - 2
-     - 2
+     - 1
      - (417, 583)
    * - 3
-     - 3
+     - 2
      - (941, 59)
    * - 4
-     - 3
+     - 2
      - (923, 77)
+
+You can see the minor-embeddings used here: :ref:`multi_gate_results`; below
+those embeddings are visualized graphically.
 
 .. figure:: ../_static/MultiCSPembeddings.png
    :name: MultiCSPembeddings
    :alt: image
    :align: center
-   :scale: 70 %
+   :scale: 50 %
