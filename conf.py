@@ -151,18 +151,22 @@ latex_elements = {
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
-latex_documents = [
-    (master_doc, 'docs.tex', u'docs Documentation',
-     u'D-Wave Systems Inc', 'manual'),
-]
 
 latex_preamble = r"""
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{amsbsy}
 \usepackage{braket}
+\usepackage{circuitikz}
+
 \newcommand{\vc}[1]{\pmb{#1}}
 """
+
+latex_documents = [
+    (master_doc, 'docs.tex', u'docs Documentation',
+     u'D-Wave Systems Inc', 'manual'),
+]
+
 #
 # -- Options for manual page output ---------------------------------------
 

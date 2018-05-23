@@ -51,6 +51,7 @@ conversion to binary quadratic models.
    :maxdepth: 1
 
    examples/map_coloring
+   examples/multi_gate
 
 .. _projects-Demonstrations:
 
