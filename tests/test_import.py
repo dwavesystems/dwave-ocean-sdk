@@ -7,3 +7,4 @@ import dwave.system
 import penaltymodel
 import minorminer
 import dwave_qbsolv
+import neal
