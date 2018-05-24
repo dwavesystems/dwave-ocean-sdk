@@ -45,12 +45,14 @@ Intermediate-Level Examples
 ---------------------------
 
 The :ref:`map_coloring` example uses algorithmic generation of penalty models and
-conversion to binary quadratic models.
+conversion to binary quadratic models. Example :ref:`multi_gate` compares
+solutions for various minor-embeddings and chains strengths. 
 
 .. toctree::
    :maxdepth: 1
 
    examples/map_coloring
+   examples/multi_gate
 
 .. _projects-Demonstrations:
 
