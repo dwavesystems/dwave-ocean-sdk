@@ -23,6 +23,8 @@ at `D-Wave on GitHub <https://github.com/dwavesystems>`_\ ).
        satisfaction problem with small constraints over binary variables.
    * - `dwave-cloud-client <http://dwave-cloud-client.readthedocs.io/en/latest/>`_ (`repo <https://github.com/dwavesystems/dwave-cloud-client>`_)
      - Minimal implementation of the REST interface used to communicate with D-Wave :term:`Sampler` API (SAPI) servers.
+   * - `dwave_neal <http://dwave-neal.readthedocs.io/en/latest/>`_ (`repo <https://github.com/dwavesystems/dwave-neal>`_\ )
+     - An implementation of a simulated annealing sampler.
    * - `dwave_networkx <http://dwave-networkx.readthedocs.io/en/latest/index.html>`_ (`repo <https://github.com/dwavesystems/dwave_networkx>`_\ )
      - Extension of NetworkX—a Python language package for exploration and analysis
        of networks and network algorithms—for users of D-Wave Systems.
@@ -30,6 +32,8 @@ at `D-Wave on GitHub <https://github.com/dwavesystems>`_\ ).
        dwave_networkx provides tools for working with :term:`Chimera` graphs and implementations of
        graph-theory algorithms on the D-Wave system and other binary quadratic model
        :term:`sampler`\ s.
+   * - dwave-ocean-sdk (`repo <https://github.com/dwavesystems/dwave-ocean-sdk>`_)
+     - Installer for D-Wave's Ocean Tools.
    * - `dwave-system <http://dwave-system.readthedocs.io/en/latest/>`_ (`repo <https://github.com/dwavesystems/dwave-system>`_)
      - Basic API for easily incorporating the D-Wave system as a :term:`sampler` in the
        D-Wave Ocean software stack.
