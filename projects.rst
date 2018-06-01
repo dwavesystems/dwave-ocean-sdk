@@ -32,6 +32,8 @@ at `D-Wave on GitHub <https://github.com/dwavesystems>`_\ ).
        dwave_networkx provides tools for working with :term:`Chimera` graphs and implementations of
        graph-theory algorithms on the D-Wave system and other binary quadratic model
        :term:`sampler`\ s.
+   * - dwave-ocean-sdk (`repo <https://github.com/dwavesystems/dwave-ocean-sdk>`_)
+     - Installer for D-Wave's Ocean Tools.
    * - `dwave-system <http://dwave-system.readthedocs.io/en/latest/>`_ (`repo <https://github.com/dwavesystems/dwave-system>`_)
      - Basic API for easily incorporating the D-Wave system as a :term:`sampler` in the
        D-Wave Ocean software stack.
