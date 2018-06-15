@@ -55,9 +55,9 @@ See :ref:`map_coloring` for a description of the following code.
     # Add constraint that each pair of nodes with a shared edge not both select one color
     for neighbor in neighbors:
         v, u = neighbor
-	      for i in range(colors):
+        for i in range(colors):
             variables = [v+str(i), u+str(i)]
-		        csp.add_constraint(not_both_1, variables)
+            csp.add_constraint(not_both_1, variables)
 
     # Convert the binary constraint satisfaction problem to a binary quadratic model
     bqm = dwavebinarycsp.stitch(csp)

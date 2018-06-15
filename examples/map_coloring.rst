@@ -190,9 +190,9 @@ where `csp` is the
     # Add constraint that each pair of nodes with a shared edge not both select one color
     for neighbor in neighbors:
         v, u = neighbor
-	      for i in range(colors):
+        for i in range(colors):
             variables = [v+str(i), u+str(i)]
-		        csp.add_constraint(not_both_1, variables)
+            csp.add_constraint(not_both_1, variables)
 
 Convert the CSP into a binary quadratic model so it can be solved on the D-Wave
 system.
