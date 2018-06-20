@@ -78,7 +78,7 @@ Example Requirements
 To run the code in this example, the following is required.
 
 * The requisite information for problem submission through SAPI, as described in
-  :ref:`dwavesysk`\ , in a configuration file for connection to a D-Wave system,
+  :ref:`dwavesys`\ , in a configuration file for connection to a D-Wave system,
   as described in
   `dwave-cloud-client <http://dwave-cloud-client.readthedocs.io/en/latest/>`_\ .
 * Installation of Ocean tools
@@ -322,4 +322,4 @@ You can see, for example, that sample :code:`Sample(sample={'a': 1, 'c': 0, 'b':
 which occurred 3 times, has a higher energy by 2 than the ground energy. It is expected that
 this solution violates a single constraint, and you can see that it violates constraint
 :code:`Constraint.from_configurations(frozenset([(1, 0, 0), (0, 1, 0), (0, 0, 0), (1, 1, 1)]),
-('a', 'not1', 'and3'), Vartype.BINARY, name='AND')` on AND gate 3.  
+('a', 'not1', 'and3'), Vartype.BINARY, name='AND')` on AND gate 3.
