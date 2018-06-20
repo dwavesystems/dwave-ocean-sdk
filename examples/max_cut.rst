@@ -29,7 +29,7 @@ Example Requirements
 To run the code in this example, the following is required.
 
 * The requisite information for problem submission through SAPI, as described in
-  :ref:`dwavesysk`\ , in a configuration file for connection to a D-Wave system,
+  :ref:`dwavesys`\ , in a configuration file for connection to a D-Wave system,
   as described in
   `dwave-cloud-client <http://dwave-cloud-client.readthedocs.io/en/latest/>`_\ .
 * Installation of Ocean tools `dwave-system <https://github.com/dwavesystems/dwave-system>`_ and

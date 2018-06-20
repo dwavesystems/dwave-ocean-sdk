@@ -16,7 +16,7 @@ Example Requirements
 
 To run the code in this example, the following is required.
 
-* The requisite information for problem submission through SAPI, as described in :ref:`dwavesysk`
+* The requisite information for problem submission through SAPI, as described in :ref:`dwavesys`
 * Installation of Ocean tools `dwave-system <https://github.com/dwavesystems/dwave-system>`_ and `dimod <https://github.com/dwavesystems/dimod>`_\ .
 
 Representing a NOT Gate as a BQM
@@ -154,7 +154,7 @@ is, when qubit 0 has value 0, qubit 4 should have value 1, and vice versa.
       be used. Active qubits can be seen through the sampler's properties but for the purpose of
       this simple example, you can choose pairs (1, 5) or (7, 11) for example.
 
-      See the :ref:`max_cut` example for more advanced :ref:`minor-embedding`\ .
+      See the :ref:`max_cut` example for more advanced minor-embedding.
 
 .. note:: The arguments of the DWaveSampler() function below must be replaced with
       your configuration's arguments, as noted in the requirements section above.

@@ -5,20 +5,32 @@ Getting Started
 ===============
 
 New to `D-Wave Systems <https://www.dwavesys.com>`_ Ocean or want an overview of
-the software? This section describes how the Ocean tools fit together
-to solve hard problems and gives examples of using them to solve such problems
+the software? This section describes how to install Ocean tool, how they fit together
+to solve hard problems, and gives examples of using them to solve such problems
 on a D-Wave quantum computer.
 
-Overview
-========
+Initial Set Up
+==============
 
-How the Ocean tools fit together to solve problems and how to use a D-Wave system.
+How to install the tools and configure your system.
 
 .. toctree::
    :maxdepth: 1
 
-   overview/stack
+   overview/install
    overview/dwavesys
+   overview/cpu
+
+Overview of the Ocean Tools Suite
+=================================
+
+:ref:`stack` describes how the Ocean tools fit together to solve problems.
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   overview/stack
 
 Examples
 ========
@@ -46,7 +58,7 @@ Intermediate-Level Examples
 
 The :ref:`map_coloring` example uses algorithmic generation of penalty models and
 conversion to binary quadratic models. Example :ref:`multi_gate` compares
-solutions for various minor-embeddings and chains strengths. 
+solutions for various minor-embeddings and chains strengths.
 
 .. toctree::
    :maxdepth: 1
