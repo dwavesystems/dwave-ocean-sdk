@@ -73,6 +73,9 @@ Intermediate-Level Examples
 Demonstrations
 ==============
 
+Copy (clone) open-source code to run demos of solving known problems on a D-Wave
+system. 
+
 * `Circuit Fault Diagnosis <https://github.com/dwavesystems/circuit-fault-diagnosis-demo>`_
 
   Demonstrates the use of the D-Wave system to solve circuit fault diagnosis, the problem of identifying

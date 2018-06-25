@@ -121,5 +121,5 @@ that solves problems on the D-Wave system.
    >>> response.data_vectors['energy']       # doctest: +SKIP
    array([-1.5])
 
-The examples under :ref:`getting_started` demonstrate solving problems on the
+The examples under :ref:`gs` demonstrate solving problems on the
 D-Wave system, starting from very simple and gradually increasing the complexity.
