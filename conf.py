@@ -56,7 +56,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'Ocean Documentation'
-copyright = u'2017, D-Wave Systems Inc'
+copyright = u'D-Wave Systems Inc'
 author = u'D-Wave Systems Inc'
 
 # The version info for the project you're documenting, acts as replacement for
