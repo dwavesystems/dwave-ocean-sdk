@@ -1,8 +1,8 @@
 .. _dwavesys:
 
-=======================
-Using the D-Wave System
-=======================
+=====================
+Using a D-Wave System
+=====================
 
 You access D-Wave :term:`solver` resources through the D-Wave Sampler API (SAPI).
 
@@ -122,4 +122,4 @@ that solves problems on the D-Wave system.
    array([-1.5])
 
 The examples under :ref:`getting_started` demonstrate solving problems on the
-D-Wave system, starting from very simple and gradually increasing the complexity. 
+D-Wave system, starting from very simple and gradually increasing the complexity.

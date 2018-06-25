@@ -21,12 +21,12 @@ problems with quantum computers.
 :ref:`gs`
 =========
 
-See how Ocean tools work together to solve hard problems on a D-Wave quantum computer.
+See how to install and use Ocean tools.
 
 :ref:`projects`
 ================
 
-Read Ocean tool documents.
+Access a particular tool's documentation and repository.
 
 :ref:`glossary`
 =================
