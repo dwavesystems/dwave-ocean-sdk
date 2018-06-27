@@ -39,12 +39,12 @@ system and classical algorithms you can run on your computer, which find the
 low-energy states that constitute solutions to the problem.
 
 The following sections give an intuitive explanation of these two steps (the
-third may benefit some problems) of this problem-solving procedure.
+third may benefit some problems) of this problem-solving procedure; see the :ref:`gs`
+examples and system documentation for further description.
 
-1. :ref:`formulating`: express your problem (how does a protein fold? how do we optimize
-   traffic flow in Beijing) as a BQM.
-2. :ref:`submitting`: find solutions by sampling low-energy states of the BQM.
-3. :ref:`improving`: use performance enhancing features to improve solutions.
+1. :ref:`formulating` your problem as a BQM.
+2. :ref:`submitting` low-energy states of the BQM to find solutions.
+3. :ref:`improving` solutions with advanced features.
 
 .. figure:: ../_static/SolutionOverview.png
    :name: SolutionOverview
@@ -61,34 +61,35 @@ third may benefit some problems) of this problem-solving procedure.
 Formulate a Problem
 ===================
 
-There are different ways and considerations to expressing your problem mathematically
-for solution by a D-Wave system or locally on your CPU/GPU; that is, mapping from
-your problem space (chains of amino acids and 3D structures of folded proteins or the
-streets and cars in Beijing) to a representative objective function. Here we provide
-an intuitive explanation; see the :ref:`gs` examples and system documentation for
-further description.
+There are different ways of mapping between any problem space (chains of amino acids
+forming 3D structures of folded proteins, traffic in the streets of Beijing, circuits
+of binary gates) and a BQM to be solved by sampling with a D-Wave system or locally on
+your CPU/GPU. Here we provide an intuitive example.
 
-Consider the problem of determining outputs of a Boolean logic circuit. The circuit
-might be expressed in terms of input and output Voltages through equations at the level
-of electronic components (resistors, transistors, etc), through logic symbolism,
-as an aggregated truth table, and many other ways. But when using a :term:`sampler`
-such as a D-Wave system, we express it in a binary formulation that has low energy
-values for valid circuit configurations.
+Consider the problem of determining outputs of a Boolean logic circuit. In problem space
+the circuit might be described with input and output Voltages, equations of
+its electronic components (resistors, transistors, etc), logic symbols,
+multiple or an aggregated truth table, and so on. You can mathematically
+formulate a BQM---in different ways too, for example a BQM for each gate or one BQM for
+all the circuit's gates---or use Ocean's formulations of binary gates directly in your
+code.
 
-For example, any NOT gates (symbolically represented as :math:`z \Leftrightarrow \neg x`)
-in the circuit might be represented by a binary equation
+For example, as shown in :ref:`not`, a NOT gate represented symbolically as
+:math:`x_2 \Leftrightarrow \neg x_1` in problem space might be formulated
+mathematically as the following QUBO:
 
 .. math::
 
-    E(x, z) = 2xz-x-z+1,
+    E(a_i, b_{i,j}; x_i) = -x_1 -x_2  + 2x_1x_2
 
-which has low energy for valid states and high energy for invalid states:
+The following table shows that this QUBO has low energy for valid states of the NOT
+gate and high energy for invalid states.
 
-.. table:: Energy for a Boolean NOT Operation.
+.. table:: Energy for a Boolean NOT Operation Formulated as a QUBO.
    :name: BooleanNOTAsPenalty
 
    ===========  ============  ===============  ============
-   **x**        **z**         **Energy**       **Valid?**
+   :math:`x_1`  :math:`x_2`   **Energy**       **Valid?**
    ===========  ============  ===============  ============
    :math:`0`    :math:`1`     :math:`0`        Yes
    :math:`1`    :math:`0`     :math:`0`        Yes
@@ -96,28 +97,23 @@ which has low energy for valid states and high energy for invalid states:
    :math:`1`    :math:`1`     :math:`1`        No
    ===========  ============  ===============  ============
 
-If we similarly represent all the circuit's gates and aggregate, overall the resulting
-equation has lower energy for valid states, meaning that solutions of the equation
-the sampler finds (low-energy configurations of the objective function) represent
-solutions to the logic circuit.
+If you formulate your problem as an Ising or QUBO model, Ocean lets you instantiate
+a BQM from that; for example, :code:`bqm = dimod.BinaryQuadraticModel.from_qubo()`.
 
-You can choose to mathematically formulate the problem, as above or by first logically
-aggregating all the circuit's gates into a single logical equation. Alternatively,
-you can abstract away the mathematical representation altogether: Ocean tools provide
-functionality for representing binary gates directly in your code.
+For some problems you might be able to skip the mathematical formulation and directly
+use formulations that Ocean provides. For example, the
+`dwavebinarycsp <http://dwavebinarycsp.readthedocs.io/en/latest/>`_ tool enables the
+following formulation of an AND gate as a BQM:
 
-The examples under :ref:`gs` show some ways of formulating a problem.
+.. code-block:: python
 
+    >>> import dwavebinarycsp
+    >>> import dwavebinarycsp.factories.constraint.gates as gates
+    >>> csp = dwavebinarycsp.ConstraintSatisfactionProblem(dwavebinarycsp.BINARY)
+    >>> csp.add_constraint(gates.and_gate(['x1', 'x2', 'y1']))  # add an AND gate
+    >>> bqm = dwavebinarycsp.stitch(csp)
 
-
-For example, the NOT gate above
-
-If you state your problem mathematically, as a :term:`Ising` or
-:term:`QUBO` formulation, you would typically use the class's methods for instantiating
-a BQM. For example, the NOT gate formulation above is a QUBO (see :ref:`not`):
-, so
-:code:`bqm = dimod.BinaryQuadraticModel.from_qubo()`
-
+Once you have a BQM that represents your problem, you sample it.
 
 .. _submitting:
 
