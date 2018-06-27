@@ -4,7 +4,7 @@
 Solving Problems on a D-Wave System
 ===================================
 
-This section explains the basics of how D-Wave's quantum processing unit (QPU)
+This section explains some of the basics of how D-Wave's quantum processing unit (QPU)
 solves problems, what you need to do to use it for your problem, and how Ocean tools
 can help.
 
@@ -14,38 +14,52 @@ How a D-Wave System Solves Problems
 For quantum computing, as for classical, the first step in solving a problem is to
 express it in a mathematical formulation compatible with the underlying physical hardware.
 A D-Wave QPU is a chip with interconnected qubits; for example, a D-Wave 2000Q has up
-to 2048 qubits connected in a :term:`Chimera` topology. Whatever
-equation represents the problem you wish to solve, you submit it to the D-Wave system by
-programming two fundamental controls:
+to 2048 qubits connected in a :term:`Chimera` topology. Programming it consists mostly
+of setting two types of values:
 
-* Qubit coupling strength: controls the degree to which two variables tend to agree.
-* Qubit bias weight: controls the degree to which a variable tends to a particular outcome.
+* Qubit coupling strength: controls the degree to which two qubits tend to the same state.
+* Qubit bias weight: controls the degree to which a qubit tends to a particular state.
 
-In fact, the equation (called an *objective function*) expresses the
-energy of the system as a function of binary variables representing the qubits.
-If you express your problem as an objective function such that desired outcomes have
-low energy values and undesired outcomes have high energy values, the D-Wave
-system solves your problem by finding low energy configurations of the objective
-function.
+Given sets of coupling strengths and bias weights for its qubits, the system finds
+low-energy states. If you formulate your problem such that desired outcomes have
+low energy values and undesired outcomes have high energy values, the low-energy states
+the D-Wave system finds are solutions to your problem. This formulation
+is called an *objective function* for the system. More specifically, you formulate
+an objective function where variables are "spin up"
+(:math:`\uparrow`) and "spin down" (:math:`\downarrow`) states and relationships
+between the spins, represented by couplings, are correlations or anti-correlations.
+This is the :term:`Ising` model traditionally used in statistical mechanics or its
+computer-science equivalent, the :term:`QUBO`, where variables are binary 0 and 1.
 
-.. toctree::
-   :maxdepth: 1
-   :hidden:
+Ocean software can abstract away much of that. At its heart is a binary quadratic
+model (BQM) class for handling the desired objective function. It helps
+formulate objective functions for some common types of optimization problems.
+It also provides an API to binary quadratic :term:`sampler`\ s, such as the D-Wave
+system and classical algorithms you can run on your computer, which find the
+low-energy states that constitute solutions to the problem.
 
-   technical_description
-
-You can see a more technical description under :ref:`technical_description` or simply
-use Ocean tools to abstract away those details of the solution steps:
+The following sections give an intuitive explanation of these two steps (the
+third may benefit some problems) of this problem-solving procedure.
 
 1. :ref:`formulating`: express your problem (how does a protein fold? how do we optimize
-   traffic flow in Beijing) in suitable mathematical equations.
-2. :ref:`submitting`: give programming instructions to a D-Wave system.
+   traffic flow in Beijing) as a BQM.
+2. :ref:`submitting`: find solutions by sampling low-energy states of the BQM.
 3. :ref:`improving`: use performance enhancing features to improve solutions.
+
+.. figure:: ../_static/SolutionOverview.png
+   :name: SolutionOverview
+   :alt: image
+   :align: center
+   :scale: 100 %
+
+   Solution steps: (1) formulate a problem that you know in "problem space" (a circuit
+   of Boolean gates, a graph, a network, etc) as a BQM, mathematically or using
+   Ocean functionality and (2) sample the BQM for probable solutions.
 
 .. _formulating:
 
-Formulating a Problem
-=====================
+Formulate a Problem
+===================
 
 There are different ways and considerations to expressing your problem mathematically
 for solution by a D-Wave system or locally on your CPU/GPU; that is, mapping from
@@ -70,7 +84,7 @@ in the circuit might be represented by a binary equation
 
 which has low energy for valid states and high energy for invalid states:
 
-.. table:: Energy for a Boolean NOT Operation as a Penalty.
+.. table:: Energy for a Boolean NOT Operation.
    :name: BooleanNOTAsPenalty
 
    ===========  ============  ===============  ============
@@ -92,14 +106,25 @@ aggregating all the circuit's gates into a single logical equation. Alternativel
 you can abstract away the mathematical representation altogether: Ocean tools provide
 functionality for representing binary gates directly in your code.
 
-The examples under :ref:`gs` show some ways of formulating a problem. 
+The examples under :ref:`gs` show some ways of formulating a problem.
+
+
+
+For example, the NOT gate above
+
+If you state your problem mathematically, as a :term:`Ising` or
+:term:`QUBO` formulation, you would typically use the class's methods for instantiating
+a BQM. For example, the NOT gate formulation above is a QUBO (see :ref:`not`):
+, so
+:code:`bqm = dimod.BinaryQuadraticModel.from_qubo()`
+
 
 .. _submitting:
 
-Submitting a Problem
-====================
+Sample
+======
 
 .. _improving:
 
-Improving the Solutions
-=======================
+Improve the Solutions
+=====================
