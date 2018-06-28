@@ -120,6 +120,77 @@ Once you have a BQM that represents your problem, you sample it.
 Sample
 ======
 
+To solve your problem, now represented as a binary quadratic model, you submit it
+to a sampler. If you use a classical solver running locally on your CPU, a single sample
+might provide the lowest energy state of the system and thus the optimal solution.
+When you use a probabilistic sampler like the D-Wave system, you typically program
+for multiple reads.
+
+If you plan to use the D-Wave system to sample, follow the configuration described
+under :ref:`dwavesys`.
+
+For example, the BQM of an AND gate created above may look like this:
+
+.. code-block:: python
+
+    >>> bqm     # doctest: +SKIP
+    BinaryQuadraticModel({'x1': 0.0, 'x2': 0.0, 'y1': 6.0}, {('x2', 'x1'): 2.0, ('y1', 'x1'): -4.0, ('y1', 'x2'): -4.0}, -1.5, Vartype.BINARY)
+
+where the members of the two dicts are linear and quadratic biases, respectively,
+the third term is a constant energy offset associated with the model, and the fourth
+shows the variable types in this model are binary.
+
+Ocean's `dimod <http://dimod.readthedocs.io/en/latest/>`_ tool provides an exact solver
+that calculates the energy of all possible samples. Such a sampler can solve a small
+three-variable problem like the AND gate.
+
+.. code-block:: python
+
+    >>> from dimod.reference.samplers import ExactSolver
+    >>> sampler = ExactSolver()
+    >>> response = sampler.sample(bqm)    # doctest: +SKIP
+    >>> for sample, energy in response.data():     # doctest: +SKIP
+    ...    print(sample, energy)
+    ...
+    {'x1': 0, 'x2': 0, 'y1': 0} -1.5
+    {'x1': 1, 'x2': 0, 'y1': 0} -1.5
+    {'x1': 0, 'x2': 1, 'y1': 0} -1.5
+    {'x1': 1, 'x2': 1, 'y1': 1} -1.5
+    {'x1': 1, 'x2': 1, 'y1': 0} 0.5
+    {'x1': 0, 'x2': 1, 'y1': 1} 0.5
+    {'x1': 1, 'x2': 0, 'y1': 1} 0.5
+    {'x1': 0, 'x2': 0, 'y1': 1} 4.5
+
+Note that the first four samples are the valid configurations of the AND gate and have
+lower energy than the second four, which represent invalid configurations.
+
+Ocean's `dwave-system <http://dwave-system.readthedocs.io/en/latest/>`_ tool provides
+a DWaveSampler() that enables incorporation of the D-Wave system as a sampler. The
+D-Wave system is a structured sampler: it only solves problems that map to a specific
+graph, the :term:`Chimera` graph. The tool's EmbeddingComposite() handles the mapping,
+termed :term:`minor-embedding`, from the problem's variables (x1, x2, y1) to particular 
+qubits.
+
+Because of the sampler's probabilistic nature, you typically request multiple samples
+for a problem; this example sets `num_reads` to 1000.
+
+.. code-block:: python
+
+    >>> from dwave.system.samplers import DWaveSampler
+    >>> from dwave.system.composites import EmbeddingComposite
+    >>> response = sampler.sample(bqm, num_reads=1000)   # doctest: +SKIP
+    >>> for sample, energy, num_occurrences in response.data():     # doctest: +SKIP
+    ...    print(sample, "Energy: ", energy, "Occurrences: ", num_occurrences)
+    ...
+    {'x1': 1, 'x2': 0, 'y1': 0} Energy:  -1.5 Occurrences:  138
+    {'x1': 1, 'x2': 1, 'y1': 1} Energy:  -1.5 Occurrences:  133
+    {'x1': 0, 'x2': 0, 'y1': 0} Energy:  -1.5 Occurrences:  540
+    {'x1': 0, 'x2': 1, 'y1': 0} Energy:  -1.5 Occurrences:  109
+    {'x1': 0, 'x2': 0, 'y1': 0} Energy:  -1.5 Occurrences:  1
+    {'x1': 0, 'x2': 1, 'y1': 0} Energy:  -1.5 Occurrences:  1
+    {'x1': 1, 'x2': 0, 'y1': 1} Energy:  0.5 Occurrences:  78
+
+
 .. _improving:
 
 Improve the Solutions
