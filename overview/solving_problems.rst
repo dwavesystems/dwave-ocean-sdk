@@ -50,7 +50,7 @@ examples and system documentation for further description.
    :name: SolutionOverview
    :alt: image
    :align: center
-   :scale: 100 %
+   :scale: 90 %
 
    Solution steps: (1) formulate a problem that you know in "problem space" (a circuit
    of Boolean gates, a graph, a network, etc) as a BQM, mathematically or using
@@ -168,7 +168,7 @@ Ocean's `dwave-system <http://dwave-system.readthedocs.io/en/latest/>`_ tool pro
 a DWaveSampler() that enables incorporation of the D-Wave system as a sampler. The
 D-Wave system is a structured sampler: it only solves problems that map to a specific
 graph, the :term:`Chimera` graph. The tool's EmbeddingComposite() handles the mapping,
-termed :term:`minor-embedding`, from the problem's variables (x1, x2, y1) to particular 
+termed :term:`minor-embedding`, from the problem's variables (x1, x2, y1) to particular
 qubits.
 
 Because of the sampler's probabilistic nature, you typically request multiple samples
@@ -182,16 +182,31 @@ for a problem; this example sets `num_reads` to 1000.
     >>> for sample, energy, num_occurrences in response.data():     # doctest: +SKIP
     ...    print(sample, "Energy: ", energy, "Occurrences: ", num_occurrences)
     ...
-    {'x1': 1, 'x2': 0, 'y1': 0} Energy:  -1.5 Occurrences:  138
-    {'x1': 1, 'x2': 1, 'y1': 1} Energy:  -1.5 Occurrences:  133
-    {'x1': 0, 'x2': 0, 'y1': 0} Energy:  -1.5 Occurrences:  540
-    {'x1': 0, 'x2': 1, 'y1': 0} Energy:  -1.5 Occurrences:  109
-    {'x1': 0, 'x2': 0, 'y1': 0} Energy:  -1.5 Occurrences:  1
-    {'x1': 0, 'x2': 1, 'y1': 0} Energy:  -1.5 Occurrences:  1
-    {'x1': 1, 'x2': 0, 'y1': 1} Energy:  0.5 Occurrences:  78
+    {'x1': 0, 'x2': 1, 'y1': 0} Energy:  -1.5 Occurrences:  92
+    {'x1': 1, 'x2': 1, 'y1': 1} Energy:  -1.5 Occurrences:  256
+    {'x1': 0, 'x2': 0, 'y1': 0} Energy:  -1.5 Occurrences:  264
+    {'x1': 1, 'x2': 0, 'y1': 0} Energy:  -1.5 Occurrences:  173
+    {'x1': 1, 'x2': 0, 'y1': 1} Energy:  0.5 Occurrences:  215
 
+Note that the first four samples are the valid configurations of the AND gate and have
+lower energy than invalid configuration :math:`x1=1, x2=0, y1=1`.
 
 .. _improving:
 
 Improve the Solutions
 =====================
+
+More complex problems than the ones shown above can benefit from some of the D-Wave system's
+advanced features and Ocean software's advanced tools.
+
+The mapping from problem variables to qubits, :term:`minor-embedding`, can significantly
+affect performance. Ocean tools perform this mapping heuristically so simply rerunning
+a problem might improve results. Advanced users may customize the mapping by directly
+using the `minorminer <http://minorminer.readthedocs.io/en/latest/>`_ tool or setting
+a minor-embedding themselves (or some combination).
+
+D-Wave systems offer features such as spin-reversal (gauge) transforms and anneal offsets,
+which reduce the impact of possible analog and systematic errors due to inherent qubit
+biases, and others.
+
+See the system documentation for more information.
