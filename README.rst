@@ -9,7 +9,7 @@
 dwave-ocean-sdk
 ===============
 
-Installer for D'Wave's Ocean Tools.
+Installer for D-Wave's Ocean Tools.
 
 
 Installation
