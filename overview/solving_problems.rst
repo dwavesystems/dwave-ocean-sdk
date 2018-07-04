@@ -92,7 +92,7 @@ mathematically as the following QUBO:
 
 .. math::
 
-    E(a_i, b_{i,j}; x_i) = -x_1 -x_2  + 2x_1x_2
+    E(x) = -x_1 -x_2  + 2x_1x_2
 
 The following table shows that this QUBO has low energy for valid states of the NOT
 gate and high energy for invalid states.
