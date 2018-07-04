@@ -105,7 +105,7 @@ QUBO formulation:
 
     E(a_i, b_{i,j}; x_i) = -x_1 -x_2  + 2x_1x_2
 
-where :math:`z=x_2` is the AND gate's output, :math:`x=x_1` the input, linear
+where :math:`z=x_2` is the NOT gate's output, :math:`x=x_1` the input, linear
 coefficients are :math:`a_1=a_2=-1`, and quadratic coefficient is :math:`b_{1,2}=2`.
 The coefficients matrix is,
 
