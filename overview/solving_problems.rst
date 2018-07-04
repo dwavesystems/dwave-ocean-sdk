@@ -11,28 +11,40 @@ can help.
 How a D-Wave System Solves Problems
 ===================================
 
-For quantum computing, as for classical, the first step in solving a problem is to
-express it in a mathematical formulation compatible with the underlying physical hardware.
-A D-Wave QPU is a chip with interconnected qubits; for example, a D-Wave 2000Q has up
-to 2048 qubits connected in a :term:`Chimera` topology. Programming it consists mostly
-of setting two types of values:
+For quantum computing, as for classical, solving a problem requires that it
+be expressed it in a formulation compatible with the underlying physical hardware.
 
-* Qubit coupling strength: controls the degree to which two qubits tend to the same state.
-* Qubit bias weight: controls the degree to which a qubit tends to a particular state.
+When you want to calculate the area of a $1 coin on your laptop, for example, you may
+enter the equation :math:`A=\pi r^2` into software that converts it to binary operations
+suited for the underlying adders, registers, and memory chips that manipulate bits.
+A D-Wave QPU is a chip with interconnected qubits; for example, a D-Wave 2000Q has up to
+2048 qubits connected in a :term:`Chimera` topology. Programming it consists mostly of
+setting two inputs:
 
-Given sets of coupling strengths and bias weights for its qubits, the system finds
-low-energy states. If you formulate your problem such that desired outcomes have
-low energy values and undesired outcomes have high energy values, the low-energy states
-the D-Wave system finds are solutions to your problem. This formulation
-is called an *objective function* for the system. More specifically, you formulate
-an objective function where variables are "spin up"
-(:math:`\uparrow`) and "spin down" (:math:`\downarrow`) states and relationships
-between the spins, represented by couplings, are correlations or anti-correlations.
-This is the :term:`Ising` model traditionally used in statistical mechanics or its
-computer-science equivalent, the :term:`QUBO`, where variables are binary 0 and 1.
+* Qubit bias weights: control the degree to which a qubit tends to a particular state.
+* Qubit coupling strengths: control the degree to which two qubits tend to the same state.
 
-Ocean software can abstract away much of that. At its heart is a binary quadratic
-model (BQM) class for handling the desired objective function. It helps
+Once you express your problem in a formulation\ [#]_ such that desired outcomes have
+low energy values and undesired outcomes high energy values, the D-Wave system solves
+your problem by finding the low-energy states.
+
+This formulation, called an *objective function* for the system, is the :term:`Ising`
+model traditionally used in statistical mechanics or its computer-science equivalent,
+the :term:`QUBO`, where variables are binary 0 and 1.
+
+.. [#]
+    Given :math:`N` variables :math:`\pmb{s}=[s_1,...,s_N]` corresponding
+    to physical Ising spins :math:`s_i \in \{-1,+1\}`, configurations of an Ising model
+    have energy,
+
+    .. math::
+
+        E(\pmb{s}|\pmb{h},\pmb{J})  = \left\{ \sum_{i=1}^N h_i s_i + \sum_{i<j}^N J_{i,j} s_i s_j  \right\}
+
+    where :math:`h_i` are biases and :math:`J_{i,j}` couplings between spins.
+
+Ocean software can abstract away much of the mathematics and programming. At its heart
+is a binary quadratic model (BQM) class for handling the desired objective function. It helps
 formulate objective functions for some common types of optimization problems.
 It also provides an API to binary quadratic :term:`sampler`\ s, such as the D-Wave
 system and classical algorithms you can run on your computer, which find the
@@ -42,9 +54,9 @@ The following sections give an intuitive explanation of these two steps (the
 third may benefit some problems) of this problem-solving procedure; see the :ref:`gs`
 examples and system documentation for further description.
 
-1. :ref:`formulating` your problem as a BQM.
+1. :ref:`formulating` as a BQM.
 2. :ref:`submitting` low-energy states of the BQM to find solutions.
-3. :ref:`improving` solutions with advanced features.
+3. :ref:`improving`, if needed, using advanced features.
 
 .. figure:: ../_static/SolutionOverview.png
    :name: SolutionOverview
@@ -54,7 +66,7 @@ examples and system documentation for further description.
 
    Solution steps: (1) formulate a problem that you know in "problem space" (a circuit
    of Boolean gates, a graph, a network, etc) as a BQM, mathematically or using
-   Ocean functionality and (2) sample the BQM for probable solutions.
+   Ocean functionality and (2) sample the BQM for solutions.
 
 .. _formulating:
 
@@ -67,14 +79,14 @@ of binary gates) and a BQM to be solved by sampling with a D-Wave system or loca
 your CPU/GPU. Here we provide an intuitive example.
 
 Consider the problem of determining outputs of a Boolean logic circuit. In problem space
-the circuit might be described with input and output Voltages, equations of
+the circuit might be described with input and output voltages, equations of
 its electronic components (resistors, transistors, etc), logic symbols,
 multiple or an aggregated truth table, and so on. You can mathematically
 formulate a BQM---in different ways too, for example a BQM for each gate or one BQM for
 all the circuit's gates---or use Ocean's formulations of binary gates directly in your
 code.
 
-For example, as shown in :ref:`not`, a NOT gate represented symbolically as
+For example, as shown in the :ref:`not` example, a NOT gate represented symbolically as
 :math:`x_2 \Leftrightarrow \neg x_1` in problem space might be formulated
 mathematically as the following QUBO:
 
@@ -100,8 +112,7 @@ gate and high energy for invalid states.
 If you formulate your problem as an Ising or QUBO model, Ocean lets you instantiate
 a BQM from that; for example, :code:`bqm = dimod.BinaryQuadraticModel.from_qubo()`.
 
-For some problems you might be able to skip the mathematical formulation and directly
-use formulations that Ocean provides. For example, the
+For some problems you can skip the mathematical formulation; for example, Ocean's
 `dwavebinarycsp <http://dwavebinarycsp.readthedocs.io/en/latest/>`_ tool enables the
 following formulation of an AND gate as a BQM:
 
@@ -129,7 +140,7 @@ for multiple reads.
 If you plan to use the D-Wave system to sample, follow the configuration described
 under :ref:`dwavesys`.
 
-For example, the BQM of an AND gate created above may look like this:
+For example, the BQM of the AND gate created above may look like this:
 
 .. code-block:: python
 
@@ -140,7 +151,7 @@ where the members of the two dicts are linear and quadratic biases, respectively
 the third term is a constant energy offset associated with the model, and the fourth
 shows the variable types in this model are binary.
 
-Ocean's `dimod <http://dimod.readthedocs.io/en/latest/>`_ tool provides an exact solver
+Ocean's `dimod <http://dimod.readthedocs.io/en/latest/>`_ tool provides a reference solver
 that calculates the energy of all possible samples. Such a sampler can solve a small
 three-variable problem like the AND gate.
 
@@ -164,12 +175,11 @@ three-variable problem like the AND gate.
 Note that the first four samples are the valid configurations of the AND gate and have
 lower energy than the second four, which represent invalid configurations.
 
-Ocean's `dwave-system <http://dwave-system.readthedocs.io/en/latest/>`_ tool provides
-a DWaveSampler() that enables incorporation of the D-Wave system as a sampler. The
-D-Wave system is a structured sampler: it only solves problems that map to a specific
-graph, the :term:`Chimera` graph. The tool's EmbeddingComposite() handles the mapping,
-termed :term:`minor-embedding`, from the problem's variables (x1, x2, y1) to particular
-qubits.
+Ocean's `dwave-system <http://dwave-system.readthedocs.io/en/latest/>`_ tool enables
+you to use a D-Wave system as a sampler. In addition to *DWaveSampler()*, the tool
+provides a *EmbeddingComposite()* composite that maps unstructured problems to the graph
+structure of the selected sampler, a process known as :term:`minor-embedding`; in our case,
+the problem's variables (x1, x2, y1) to particular qubits on a QPU.
 
 Because of the sampler's probabilistic nature, you typically request multiple samples
 for a problem; this example sets `num_reads` to 1000.
@@ -178,6 +188,7 @@ for a problem; this example sets `num_reads` to 1000.
 
     >>> from dwave.system.samplers import DWaveSampler
     >>> from dwave.system.composites import EmbeddingComposite
+    >>> sampler = EmbeddingComposite(DWaveSampler())
     >>> response = sampler.sample(bqm, num_reads=1000)   # doctest: +SKIP
     >>> for sample, energy, num_occurrences in response.data():     # doctest: +SKIP
     ...    print(sample, "Energy: ", energy, "Occurrences: ", num_occurrences)
@@ -208,5 +219,31 @@ a minor-embedding themselves (or some combination).
 D-Wave systems offer features such as spin-reversal (gauge) transforms and anneal offsets,
 which reduce the impact of possible analog and systematic errors due to inherent qubit
 biases, and others.
+
+You can see the parameters and properties a sampler supports. For example, Ocean's
+`dwave-system <http://dwave-system.readthedocs.io/en/latest/>`_ lets you use the
+D-Wave's *virtual graphs* feature to simplify minor-embedding. The following example
+maps a problem's variables x, y to qubits 1, 5 and variable z to two qubits 0 and 4,
+and checks some features supported on the D-Wave system used as a sampler.
+
+.. code-block:: python
+
+    >>> from dwave.system.samplers import DWaveSampler
+    >>> from dwave.system.composites import VirtualGraphComposite
+    >>> DWaveSampler().properties['extended_j_range']
+    [-2.0, 1.0]
+    >>> embedding = {'x': {1}, 'y': {5}, 'z': {0, 4}}
+    >>> sampler = VirtualGraphComposite(DWaveSampler(), embedding)
+    >>> sampler.parameters
+    {u'anneal_offsets': ['parameters'],
+     u'anneal_schedule': ['parameters'],
+     u'annealing_time': ['parameters'],
+     u'answer_mode': ['parameters'],
+     'apply_flux_bias_offsets': [],
+     u'auto_scale': ['parameters'],
+    >>>  # Snipped above response for brevity
+
+Note that the composed sampler (VirtualGraphComposite in the example) inherits properties
+from the child sampler (DWaveSampler).
 
 See the system documentation for more information.
