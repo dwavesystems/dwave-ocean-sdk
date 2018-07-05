@@ -156,8 +156,10 @@ is, when qubit 0 has value 0, qubit 4 should have value 1, and vice versa.
 
       See the :ref:`max_cut` example for more advanced minor-embedding.
 
-.. note:: The arguments of the DWaveSampler() function below must be replaced with
-      your configuration's arguments, as noted in the requirements section above.
+.. note:: In the code below, replace sampler parameters in the third line with the values for
+      your sampler. If you configured a default solver, as described in :ref:`dwavesys`, you
+      should be able to set the sampler as :code:`sampler = DWaveSampler()`. You can
+      see this information by running :code:`dwave config inspect` in your terminal.
 
 .. code-block:: python
 
@@ -166,26 +168,8 @@ is, when qubit 0 has value 0, qubit 4 should have value 1, and vice versa.
    >>> sampler = DWaveSampler(endpoint='https://URL_to_my_D-Wave_system/', token='ABC-123456789012345678901234567890', solver='My_D-Wave_Solver')
    >>> Q = {(0, 0): -1, (0, 4): 0, (4, 0): 2, (4, 4): -1}
    >>> response = sampler.sample_qubo(Q, num_reads=20)
-   >>> for sample in response.samples():   # doctest: +SKIP
-   ...    print(sample)
+   >>> for sample, energy, num_occurrences in response.data():   # doctest: +SKIP
+   ...    print(sample, "Energy: ", energy, "Occurrences: ", num_occurrences)
    ...
-   {0: 1, 4: 0}
-   {0: 0, 4: 1}
-   {0: 0, 4: 1}
-   {0: 0, 4: 1}
-   {0: 0, 4: 1}
-   {0: 1, 4: 0}
-   {0: 1, 4: 0}
-   {0: 1, 4: 0}
-   {0: 1, 4: 0}
-   {0: 1, 4: 0}
-   {0: 1, 4: 0}
-   {0: 0, 4: 1}
-   {0: 0, 4: 1}
-   {0: 0, 4: 1}
-   {0: 1, 4: 0}
-   {0: 1, 4: 0}
-   {0: 0, 4: 1}
-   {0: 1, 4: 0}
-   {0: 0, 4: 1}
-   {0: 0, 4: 1}
+   {0: 0, 4: 1} Energy:  -1.0 Occurrences:  14
+   {0: 1, 4: 0} Energy:  -1.0 Occurrences:  6
