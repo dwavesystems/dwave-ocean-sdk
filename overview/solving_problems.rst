@@ -62,7 +62,7 @@ examples and system documentation for further description.
    :name: SolutionOverview
    :alt: image
    :align: center
-   :scale: 90 %
+   :scale: 80 %
 
    Solution steps: (1) formulate a problem that you know in "problem space" (a circuit
    of Boolean gates, a graph, a network, etc) as a BQM, mathematically or using
@@ -98,7 +98,7 @@ The following table shows that this QUBO has low energy for valid states of the 
 gate and high energy for invalid states.
 
 .. table:: Energy for a Boolean NOT Operation Formulated as a QUBO.
-   :name: BooleanNOTAsPenalty
+   :name: BooleanNOTasQUBO
 
    ===========  ============  ===============  ============
    :math:`x_1`  :math:`x_2`   **Energy**       **Valid?**
@@ -124,21 +124,21 @@ following formulation of an AND gate as a BQM:
     >>> csp.add_constraint(gates.and_gate(['x1', 'x2', 'y1']))  # add an AND gate
     >>> bqm = dwavebinarycsp.stitch(csp)
 
-Once you have a BQM that represents your problem, you sample it.
+Once you have a BQM that represents your problem, you sample it for solutions.
 
 .. _submitting:
 
 Sample
 ======
 
-To solve your problem, now represented as a binary quadratic model, you submit it
-to a sampler. If you use a classical solver running locally on your CPU, a single sample
+To solve your problem, now represented as a binary quadratic model, you sample it.
+If you use a classical solver running locally on your CPU, a single sample
 might provide the lowest energy state of the system and thus the optimal solution.
 When you use a probabilistic sampler like the D-Wave system, you typically program
 for multiple reads.
 
-If you plan to use the D-Wave system to sample, follow the configuration described
-under :ref:`dwavesys`.
+If you plan to use the D-Wave system to sample, the :ref:`dwavesys` section
+describes how you configure access to a D-Wave solver.
 
 For example, the BQM of the AND gate created above may look like this:
 
@@ -178,8 +178,8 @@ lower energy than the second four, which represent invalid configurations.
 Ocean's `dwave-system <http://dwave-system.readthedocs.io/en/latest/>`_ tool enables
 you to use a D-Wave system as a sampler. In addition to *DWaveSampler()*, the tool
 provides a *EmbeddingComposite()* composite that maps unstructured problems to the graph
-structure of the selected sampler, a process known as :term:`minor-embedding`; in our case,
-the problem's variables (x1, x2, y1) to particular qubits on a QPU.
+structure of the selected sampler, in our case, the problem's variables x1, x2, and y1
+to particular qubits on a QPU (this process is known as :term:`minor-embedding`).
 
 Because of the sampler's probabilistic nature, you typically request multiple samples
 for a problem; this example sets `num_reads` to 1000.
@@ -243,7 +243,7 @@ and checks some features supported on the D-Wave system used as a sampler.
      u'auto_scale': ['parameters'],
     >>>  # Snipped above response for brevity
 
-Note that the composed sampler (VirtualGraphComposite in the example) inherits properties
-from the child sampler (DWaveSampler).
+Note that the composed sampler (:code:`VirtualGraphComposite()`` in the last example)
+inherits properties from the child sampler (:code:`DWaveSampler()` in that example).
 
 See the system documentation for more information.
