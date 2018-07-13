@@ -11,9 +11,9 @@ Examples
 ========
 
 Among several samplers provided in the `dimod <http://dimod.readthedocs.io/en/latest/>`_
-tool for testing your code locally, is an exact sampler that calculates the energy of all
+tool for testing your code locally, is the :code:`ExactSolver()` that calculates the energy of all
 possible samples for a given problem. This example solves a two-variable Ising model
-classically on your local machine by explicitly specifying the dimod.ExactSolver().
+classically on your local machine.
 
 .. code-block:: python
 

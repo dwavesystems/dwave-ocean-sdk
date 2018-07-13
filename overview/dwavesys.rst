@@ -4,13 +4,14 @@
 Using a D-Wave System
 =====================
 
-You access D-Wave :term:`solver` resources through the D-Wave Sampler API (SAPI).
+To use a D-Wave system as your :term:`solver` (the compute resource for solving problems),
+you access it through the D-Wave Sampler API (SAPI).
 
 Interacting with SAPI
 ---------------------
 
 SAPI is an application layer built to provide resource discovery, permissions, and scheduling for
-quantum annealing resources at D-Wave Systems. The requisite information for problem
+quantum annealing resources at D-Wave. The requisite information for problem
 submission through SAPI includes:
 
 1. API endpoint URL
@@ -29,18 +30,24 @@ submission through SAPI includes:
 
 You can find all the above information when you log in to your D-Wave account.
 
-Setting a D-Wave System as Your Default Solver
-----------------------------------------------
+You save your SAPI configuration (URL, API token, etc) in a
+`D-Wave Cloud Client configuration file <http://dwave-cloud-client.readthedocs.io/en/latest/#module-dwave.cloud.config>`_
+that Ocean tools use unless overridden explicitly or with environment variables.
+Your configuration file can include one or more solvers.
 
-If you installed `dwave-ocean-sdk <https://github.com/dwavesystems/dwave-ocean-sdk>`_\ ,
-the simplest way to configure a default solver is to use the
+
+Configuring a D-Wave System as a Solver
+---------------------------------------
+
+The simplest way to configure a solver is to use the
 `dwave-cloud-client <http://dwave-cloud-client.readthedocs.io/en/latest/>`_ interactive CLI,
-which is installed as part of the SDK or D-Wave Cloud Client tool installation.
+which is installed as part of
+the `dwave-ocean-sdk <https://github.com/dwavesystems/dwave-ocean-sdk>`_ (or D-Wave Cloud
+Client tool installation).
 
-For example, to use the interactive CLI to create a `D-Wave Cloud Client configuration file <http://dwave-cloud-client.readthedocs.io/en/latest/#module-dwave.cloud.config>`_ that
-sets a D-Wave system as your default solver, running the :code:`dwave config create`
-interactive command in the virtual environment you created as part of :ref:`install` does
-something similar to the following:
+1. In the virtual environment you created as part of :ref:`install`, run the
+   :code:`dwave config create` command (the output shown below
+   includes the interactive prompts and placeholder replies).
 
 .. code-block:: bash
 
@@ -55,6 +62,9 @@ something similar to the following:
     Proxy URL (can be left blank):
     Configuration saved.
 
+2. Enter the SAPI information (API URL and token) found when you log in to your D-Wave account. You can
+   accept the command's defaults and in the future update the file if needed.
+
 Alternatively, you can create and edit a `D-Wave Cloud Client configuration file <http://dwave-cloud-client.readthedocs.io/en/latest/#module-dwave.cloud.config>`_
 manually or set the solver, API token, and URL directly in your code or as local environment
 variables. For more information, see the examples in this document or `D-Wave Cloud Client <http://dwave-cloud-client.readthedocs.io/en/latest/>`_\ .
@@ -65,8 +75,9 @@ Verifying Your Solver Configuration
 You can test that your solver is configured correctly and that you have access to a
 D-Wave solver with the same `dwave-cloud-client <http://dwave-cloud-client.readthedocs.io/en/latest/>`_
 interactive CLI installed as part of the SDK or D-Wave Cloud Client tool installation.
-Running the :code:`dwave config create` interactive command in the virtual environment you
-created as part of :ref:`install` does something similar to the following:
+
+1. In your virtual environment, run the :code:`dwave ping` command (the output shown
+   below is illustrative only).
 
 .. code-block:: bash
 
@@ -86,9 +97,8 @@ created as part of :ref:`install` does something similar to the following:
      * qpu_anneal_time_per_sample = 20 us
      # Snipped for brevity
 
-Similarly, you can use the interactive CLI to try submitting a random problem to your
-configured solver. Running the :code:`dwave sample --random-problem` command does
-something similar to the following:
+2. **Optionally**, run the :code:`dwave sample --random-problem` command to submit a random
+   problem to your configured solver (the output shown below is illustrative only).
 
 .. code-block:: bash
 
@@ -102,15 +112,78 @@ something similar to the following:
     Occurrences: [1]
     Energies: [-2882.197791239335]
 
+Querying Available Solvers
+--------------------------
+
+The `dwave-cloud-client <http://dwave-cloud-client.readthedocs.io/en/latest/>`_
+interactive CLI can also show you the available solvers, their parameters, and
+properties.
+
+1. Run the :code:`dwave solvers` command (the output shown below is illustrative only).
+
+.. code-block:: bash
+
+    dwave solvers
+    Solver: My_DWAVE_2000Q
+       Parameters:
+          anneal_offsets: A list of anneal offsets for each working qubit (NaN if u...
+          anneal_schedule: A piecewise linear annealing schedule specified by a list...
+          annealing_time: A positive integer that sets the duration (in microsecond...
+
+          <Output snipped for brevity>
+
+       Properties:
+          anneal_offset_ranges: [[-0.18627387668142237, 0.09542224439071689], [-0.1836548...
+          anneal_offset_step: 0.00426679499507194
+          anneal_offset_step_phi0: 0.0002716837027763096
+          annealing_time_range: [1, 150000]
+          chip_id: W7-1_C16_4724854-02-G4_C5R9-device-cal-data-18-05-27-14:27
+          couplers: [[0, 4], [1, 4], [2, 4], [3, 4], [0, 5], [1, 5], [2, 5], ...
+
+          <Output snipped for brevity>
+
+Alternatively, from within your code or a Python interpreter you can query solvers available for
+a SAPI URL and API token using `dwave-cloud-client <http://dwave-cloud-client.readthedocs.io/en/latest/>`_
+:code:`Client.get_solvers()` function. For example, the code below queries available
+solvers for your default SAPI URL and a specified token.
+
+.. code-block:: python
+
+   >>> from dwave.cloud import Client
+   >>> client = Client.from_config(token='ABC-123456789123456789123456789')
+   >>> client.get_solvers()
+   {u'2000Q_ONLINE_SOLVER1': <dwave.cloud.solver.Solver at 0x7e84fd0>,
+    u'2000Q_ONLINE_SOLVER2': <dwave.cloud.solver.Solver at 0x7e84828>}
+
+Typically, once you have selected and configured a solver, your code queries its parameters and
+properties as attributes of the instantiated solver object. The code example below
+sets a D-Wave system as the sampler, using the default SAPI configuration as set above,
+and queries its parameters.
+
+.. code-block:: python
+
+   >>> from dwave.system.samplers import DWaveSampler
+   >>> sampler = DWaveSampler()
+   >>> sampler.parameters
+   {u'anneal_offsets': ['parameters'],
+   u'anneal_schedule': ['parameters'],
+   u'annealing_time': ['parameters'],
+   u'answer_mode': ['parameters'],
+   u'auto_scale': ['parameters'],
+   # Snipped above response for brevity
+
+Descriptions of D-Wave system parameters and properties are in the D-Wave system documentation.
+
 Submitting Problems to a D-Wave System
 --------------------------------------
 
-Once you have configured a default solver, it is used when you submit a problem
-without explicitly overriding it. For example, setting
-:code:`solver = EmbeddingComposite(DWaveSampler())` in the
-following code uses your default solver as the computation resource for the
-`dwave-system <http://dwave-system.readthedocs.io/en/latest/>`_  structured sampler
-that solves problems on the D-Wave system.
+Once you have configured a
+`D-Wave Cloud Client configuration file <http://dwave-cloud-client.readthedocs.io/en/latest/#module-dwave.cloud.config>`_
+your default solver configuration is used when you submit a problem without explicitly overriding it.
+For example, the following code uses a `dwave-system <http://dwave-system.readthedocs.io/en/latest/>`_
+structured sampler, :code:`EmbeddingComposite(DWaveSampler())`, as the sampler, which uses a
+D-Wave system for the compute resource. Because no parameters (e.g., SAPI endpoint URL) are set
+explicitly, the line :code:`solver = EmbeddingComposite(DWaveSampler())` uses your default solver.
 
 .. code-block:: python
 
