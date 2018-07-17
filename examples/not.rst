@@ -74,7 +74,7 @@ For this functioning gate, the value of :math:`P_{valid}` is
     2xz-x-z+1 = 2 \times 0 \times 1 - 0 - 1 + 1 = -1+1=0,
 
 not penalizing the valid configuration. In contrast, the state :math:`x,
-x_{fault}=0,0` of the first row is represented by the penalty function with
+z_{fault}=0,0` of the first row is represented by the penalty function with
 :math:`x=0` and :math:`z = 0 \ne \neg x`. For this malfunctioning gate, the
 value of :math:`P_{fault}` is
 
