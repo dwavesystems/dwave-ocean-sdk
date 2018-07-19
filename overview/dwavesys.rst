@@ -183,7 +183,7 @@ your default solver configuration is used when you submit a problem without expl
 For example, the following code uses a `dwave-system <http://dwave-system.readthedocs.io/en/latest/>`_
 structured sampler, :code:`EmbeddingComposite(DWaveSampler())`, as the sampler, which uses a
 D-Wave system for the compute resource. Because no parameters (e.g., SAPI endpoint URL) are set
-explicitly, the line :code:`solver = EmbeddingComposite(DWaveSampler())` uses your default solver.
+explicitly, the line :code:`sampler = EmbeddingComposite(DWaveSampler())` uses your default solver.
 
 .. code-block:: python
 
