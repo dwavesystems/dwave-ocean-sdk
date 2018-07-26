@@ -163,26 +163,10 @@ VirtualGraphComposite :term:`composite` on the DWaveSampler() :term:`sampler`\ .
     >>> sampler = VirtualGraphComposite(DWaveSampler(), embedding)
     >>> Q = {('x1', 'x2'): 1, ('x1', 'z'): -2, ('x2', 'z'): -2, ('z', 'z'): 3}
     >>> response = sampler.sample_qubo(Q, num_reads=20)
-    >>> for sample in response.samples():
-    ...     print(sample)
+    >>> for sample, energy, num_occurrences in response.data():
+    ...     print(sample, "Occurrences: ", num_occurrences)
     ...
-    {'x2': 0, 'x1': 1, 'z': 0}
-    {'x2': 0, 'x1': 0, 'z': 0}
-    {'x2': 0, 'x1': 0, 'z': 0}
-    {'x2': 1, 'x1': 1, 'z': 1}
-    {'x2': 1, 'x1': 0, 'z': 0}
-    {'x2': 1, 'x1': 0, 'z': 0}
-    {'x2': 1, 'x1': 0, 'z': 0}
-    {'x2': 0, 'x1': 1, 'z': 0}
-    {'x2': 0, 'x1': 0, 'z': 0}
-    {'x2': 0, 'x1': 1, 'z': 0}
-    {'x2': 0, 'x1': 0, 'z': 0}
-    {'x2': 1, 'x1': 1, 'z': 1}
-    {'x2': 1, 'x1': 0, 'z': 0}
-    {'x2': 1, 'x1': 0, 'z': 0}
-    {'x2': 0, 'x1': 0, 'z': 0}
-    {'x2': 1, 'x1': 0, 'z': 0}
-    {'x2': 1, 'x1': 1, 'z': 1}
-    {'x2': 0, 'x1': 0, 'z': 0}
-    {'x2': 0, 'x1': 1, 'z': 0}
-    {'x2': 0, 'x1': 0, 'z': 0}
+    {'x1': 1, 'x2': 0, 'z': 0} Occurrences:  6
+    {'x1': 0, 'x2': 1, 'z': 0} Occurrences:  1
+    {'x1': 1, 'x2': 1, 'z': 1} Occurrences:  4
+    {'x1': 0, 'x2': 0, 'z': 0} Occurrences:  9
