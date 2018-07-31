@@ -1,8 +1,8 @@
 version: 2
 jobs:
-  test-3.6: &full-test-template
+  test-3.7: &full-test-template
     docker:
-      - image: circleci/python:3.6-jessie
+      - image: circleci/python:3.7-stretch
 
     working_directory: ~/repo
 
@@ -29,6 +29,11 @@ jobs:
             python --version
             python -m unittest discover
 
+  test-3.6:
+    <<: *full-test-template
+    docker:
+      - image: circleci/python:3.6-jessie
+
   test-3.5:
     <<: *full-test-template
     docker:
@@ -44,13 +49,16 @@ jobs:
     docker:
       - image: circleci/python:2.7-jessie
 
-  test-osx:
+  test-osx-3.7: &osx-tests-template
     macos:
-      xcode: "9.0"
+      xcode: "9.4.1"
+    environment:
+      PYTHON: 3.7.0
+      # HOMEBREW_NO_AUTO_UPDATE: 1  # for 3.7 we need to update homebrew
 
     working_directory: ~/repo
 
-    steps:
+    steps: 
       - checkout
 
       - run: 
@@ -58,40 +66,55 @@ jobs:
           command: |
             brew install pyenv
 
-      - run:
-          name: install python 2.7.14 and 3.6.5 with pyenv
-          command: |
-            pyenv install 2.7.14 -s
-            pyenv install 3.6.5 -s
+      - restore_cache:
+          keys:
+            - pyenv-{{ .Environment.CIRCLE_JOB }}
 
       - run:
-          name: create virtualenv for 2.7.14
+          name: install python
+          command: |
+            pyenv install $PYTHON -s
+
+      - save_cache:
+          paths:
+            - ~/.pyenv
+          key: pyenv-{{ .Environment.CIRCLE_JOB }}
+
+      - run:
+          name: create virtualenv
           command: |
             eval "$(pyenv init -)"
-            pyenv local 2.7.14
+            pyenv local $PYTHON
             python -m pip install virtualenv
             python -m virtualenv env
 
       - run: *install-dependencies-template
-
+        
       - run: *run-tests-template
 
-      - run:
-          name: clear virtual environment
-          command: |
-            rm -rf env
+  test-osx-3.6:
+    <<: *osx-tests-template
+    environment:
+      PYTHON: 3.6.5
+      HOMEBREW_NO_AUTO_UPDATE: 1
 
-      - run:
-          name: create virtualenv for 3.6.5
-          command: |
-            eval "$(pyenv init -)"
-            pyenv local 3.6.5
-            python -m pip install virtualenv
-            python -m virtualenv env
+  test-osx-3.5:
+    <<: *osx-tests-template
+    environment:
+      PYTHON: 3.5.5
+      HOMEBREW_NO_AUTO_UPDATE: 1
 
-      - run: *install-dependencies-template
+  test-osx-3.4:
+    <<: *osx-tests-template
+    environment:
+      PYTHON: 3.4.8
+      HOMEBREW_NO_AUTO_UPDATE: 1
 
-      - run: *run-tests-template
+  test-osx-2.7:
+    <<: *osx-tests-template
+    environment:
+      PYTHON: 2.7.15
+      HOMEBREW_NO_AUTO_UPDATE: 1
 
   deploy:
     docker:
@@ -143,18 +166,20 @@ jobs:
 
 workflows:
   version: 2
+
   test:
     jobs:
+      - test-3.7
       - test-3.6
-      - test-2.7
       - test-3.5
       - test-3.4
-      - test-osx:
-          requires:
-            - test-3.6
-            - test-2.7
-            - test-3.5
-            - test-3.4
+      - test-2.7
+      - test-osx-3.7
+      - test-osx-3.6
+      - test-osx-3.5
+      - test-osx-3.4
+      - test-osx-2.7
+
   deploy:
     jobs:
       - deploy:
@@ -163,6 +188,7 @@ workflows:
               only: /^[0-9]+(\.[0-9]+)*(\.dev([0-9]+)?)?$/
             branches:
               ignore: /.*/
+
   nightly:
     triggers:
       - schedule:
@@ -172,13 +198,13 @@ workflows:
               only:
                 - master
     jobs:
+      - test-3.7
       - test-3.6
-      - test-2.7
       - test-3.5
       - test-3.4
-      - test-osx:
-          requires:
-            - test-3.6
-            - test-2.7
-            - test-3.5
-            - test-3.4
+      - test-2.7
+      - test-osx-3.7
+      - test-osx-3.6
+      - test-osx-3.5
+      - test-osx-3.4
+      - test-osx-2.7
