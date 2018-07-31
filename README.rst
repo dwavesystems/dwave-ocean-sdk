@@ -1,6 +1,9 @@
 .. image:: https://img.shields.io/pypi/v/dwave-ocean-sdk.svg
     :target: https://pypi.python.org/pypi/dwave-ocean-sdk
 
+.. image:: https://ci.appveyor.com/api/projects/status/c8ofdgyiy4w38lu3?svg=true
+    :target: https://ci.appveyor.com/project/dwave-adtt/dwave-ocean-sdk
+
 .. image:: https://circleci.com/gh/dwavesystems/dwave-ocean-sdk.svg?style=svg
     :target: https://circleci.com/gh/dwavesystems/dwave-ocean-sdk
 
