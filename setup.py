@@ -21,6 +21,20 @@ install_requires = ['dwavebinarycsp>=0.0.2,<0.1.0',
 
 packages = ['dwaveoceansdk']
 
+classifiers = [
+    'License :: OSI Approved :: Apache Software License',
+    'Operating System :: OS Independent',
+    'Programming Language :: Python :: 2',
+    'Programming Language :: Python :: 2.7',
+    'Programming Language :: Python :: 3',
+    'Programming Language :: Python :: 3.4',
+    'Programming Language :: Python :: 3.5',
+    'Programming Language :: Python :: 3.6',
+    'Programming Language :: Python :: 3.7'
+]
+
+python_requires = '>=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*'
+
 setup(
     name='dwave-ocean-sdk',
     version=__version__,
@@ -28,6 +42,9 @@ setup(
     author_email=__authoremail__,
     description=__description__,
     url='https://github.com/dwavesystems/dwave-ocean-sdk',
+    long_description=open('README.rst').read(),
+    classifiers=classifiers,
+    python_requires=python_requires,
     license='Apache 2.0',
     packages=packages,
     install_requires=install_requires
