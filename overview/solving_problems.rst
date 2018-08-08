@@ -4,58 +4,51 @@
 Solving Problems on a D-Wave System
 ===================================
 
-This section explains some of the basics of how D-Wave's quantum processing unit (QPU)
-solves problems, what you need to do to use it for your problem, and how Ocean tools
-can help.
+This section explains some of the basics of how you can use D-Wave quantum computers
+to solve problems and how Ocean tools can help.
 
 How a D-Wave System Solves Problems
 ===================================
 
 For quantum computing, as for classical, solving a problem requires that it
-be expressed it in a formulation compatible with the underlying physical hardware.
+be formulated in a way the computer and its software understand.
 
-When you want to calculate the area of a $1 coin on your laptop, for example, you may
-enter the equation :math:`A=\pi r^2` into software that converts it to binary operations
-suited for the underlying adders, registers, and memory chips that manipulate bits.
-A D-Wave QPU is a chip with interconnected qubits; for example, a D-Wave 2000Q has up to
-2048 qubits connected in a :term:`Chimera` topology. Programming it consists mostly of
-setting two inputs:
+For example, if you want your laptop to calculate the area of a $1 coin, you might
+express the problem as an equation, :math:`A=\pi r^2`, that you program as
+:code:`math.pi*13.245**2` in your Python CLI. For a laptop with Python software,
+this formulation---a particular string of alphanumeric symbols---causes the manipulation
+of bits in a CPU and memory chips that produces the correct result.
 
-* Qubit bias weights: control the degree to which a qubit tends to a particular state.
-* Qubit coupling strengths: control the degree to which two qubits tend to the same state.
+The D-Wave system uses a quantum processing unit (QPU) to solve a :term:`binary quadratic model` (BQM)\ [#]_\ :
+given :math:`N` variables :math:`x_1,...,x_N`, where each variable
+:math:`x_i` can have binary values :math:`0` or :math:`1`, the system finds assignments of
+values that minimize
 
-Once you express your problem in a formulation\ [#]_ such that desired outcomes have
-low energy values and undesired outcomes high energy values, the D-Wave system solves
-your problem by finding the low-energy states.
+.. math::
 
-This formulation, called an *objective function* for the system, is the :term:`Ising`
-model traditionally used in statistical mechanics or its computer-science equivalent,
-the :term:`QUBO`, where variables are binary 0 and 1.
+    \sum_i^N q_ix_i + \sum_{i<j}^N q_{i,j}x_i  x_j
 
-.. [#]
-    Given :math:`N` variables :math:`\pmb{s}=[s_1,...,s_N]` corresponding
-    to physical Ising spins :math:`s_i \in \{-1,+1\}`, configurations of an Ising model
-    have energy,
+where :math:`q_i` and :math:`q_{i,j}` are configurable (linear and quadratic) coefficients.
+To formulate a problem for the D-Wave system is to program :math:`q_i` and :math:`q_{i,j}` so
+that assignments of :math:`x_1,...,x_N` also represent solutions to the problem.
 
-    .. math::
+.. [#] The "native" forms of BQM programmed into a D-Wave system are the :term:`Ising` model
+       traditionally used in statistical mechanics and its computer-science equivalent,
+       shown here, the :term:`QUBO`.
 
-        E(\pmb{s}|\pmb{h},\pmb{J})  = \left\{ \sum_{i=1}^N h_i s_i + \sum_{i<j}^N J_{i,j} s_i s_j  \right\}
+Ocean software can abstract away much of the mathematics and programming for some types of problems.
+At its heart is a binary quadratic model (BQM) class that together with other Ocean tools helps
+formulate various optimization problems.
+It also provides an API to binary quadratic :term:`sampler`\ s (the component used to minimize a BQM
+and therefore solve the original problem), such as the D-Wave system and classical algorithms
+you can run on your computer.
 
-    where :math:`h_i` are biases and :math:`J_{i,j}` couplings between spins.
-
-Ocean software can abstract away much of the mathematics and programming. At its heart
-is a binary quadratic model (BQM) class for handling the desired objective function. It helps
-formulate objective functions for some common types of optimization problems.
-It also provides an API to binary quadratic :term:`sampler`\ s, such as the D-Wave
-system and classical algorithms you can run on your computer, which find the
-low-energy states that constitute solutions to the problem.
-
-The following sections give an intuitive explanation of these two steps (the
-third may benefit some problems) of this problem-solving procedure; see the :ref:`gs`
+The following sections describe this problem-solving procedure in
+two steps (plus a third that may benefit some problems); see the :ref:`gs`
 examples and system documentation for further description.
 
-1. :ref:`formulating` as a BQM.
-2. :ref:`submitting` low-energy states of the BQM to find solutions.
+1. :ref:`formulating`.
+2. :ref:`submitting`.
 3. :ref:`improving`, if needed, using advanced features.
 
 .. figure:: ../_static/SolutionOverview.png
@@ -64,81 +57,76 @@ examples and system documentation for further description.
    :align: center
    :scale: 80 %
 
-   Solution steps: (1) formulate a problem that you know in "problem space" (a circuit
-   of Boolean gates, a graph, a network, etc) as a BQM, mathematically or using
-   Ocean functionality and (2) sample the BQM for solutions.
+   Solution steps: (1) a problem known in "problem space" (a circuit
+   of Boolean gates, a graph, a network, etc) is formulated as a BQM, mathematically or using
+   Ocean functionality and (2) the BQM is sampled for solutions.
 
 .. _formulating:
 
-Formulate a Problem
-===================
+Formulate the Problem as a BQM
+==============================
 
-There are different ways of mapping between any problem space (chains of amino acids
+There are different ways of mapping between a problem---chains of amino acids
 forming 3D structures of folded proteins, traffic in the streets of Beijing, circuits
-of binary gates) and a BQM to be solved by sampling with a D-Wave system or locally on
-your CPU/GPU. Here we provide an intuitive example.
+of binary gates---and a BQM to be solved (by sampling) with a D-Wave system or locally on
+your CPU/GPU.
 
-Consider the problem of determining outputs of a Boolean logic circuit. In problem space
-the circuit might be described with input and output voltages, equations of
-its electronic components (resistors, transistors, etc), logic symbols,
-multiple or an aggregated truth table, and so on. You can mathematically
-formulate a BQM---in different ways too, for example a BQM for each gate or one BQM for
-all the circuit's gates---or use Ocean's formulations of binary gates directly in your
-code.
+For example, consider the problem of determining outputs of a Boolean logic circuit. In its original
+context (in "problem space"), the circuit might be described with input and output voltages,
+equations of its component resistors, transistors, etc, an equation of logic symbols,
+multiple or an aggregated truth table, and so on. You can choose to use Ocean software to formulate
+BQMs for binary gates directly in your code or mathematically formulate a BQM, and both
+can be done in different ways too; for example, a BQM for each gate or one BQM for
+all the circuit's gates.
 
-For example, as shown in the :ref:`not` example, a NOT gate represented symbolically as
-:math:`x_2 \Leftrightarrow \neg x_1` in problem space might be formulated
-mathematically as the following QUBO:
+The following are two example formulations.
 
-.. math::
+1. The :ref:`not` example, takes a NOT gate represented symbolically as
+   :math:`x_2 \Leftrightarrow \neg x_1` and formulates it mathematically as the following BQM:
 
-    E(x) = -x_1 -x_2  + 2x_1x_2
+   .. math::
 
-The following table shows that this QUBO has low energy for valid states of the NOT
-gate and high energy for invalid states.
+       -x_1 -x_2  + 2x_1x_2
 
-.. table:: Energy for a Boolean NOT Operation Formulated as a QUBO.
-   :name: BooleanNOTasQUBO
+   The table below shows that this BQM has lower values for valid states of the NOT
+   gate (e.g., :math:`x_1=0, x_2=1`) and higher for invalid states (e.g., :math:`x_1=0, x_2=0`).
 
-   ===========  ============  ===============  ============
-   :math:`x_1`  :math:`x_2`   **Energy**       **Valid?**
-   ===========  ============  ===============  ============
-   :math:`0`    :math:`1`     :math:`0`        Yes
-   :math:`1`    :math:`0`     :math:`0`        Yes
-   :math:`0`    :math:`0`     :math:`1`        No
-   :math:`1`    :math:`1`     :math:`1`        No
-   ===========  ============  ===============  ============
+   .. table:: Boolean NOT Operation Formulated as a BQM.
+      :name: BooleanNOTasQUBO
 
-If you formulate your problem as an Ising or QUBO model, Ocean lets you instantiate
-a BQM from that; for example, :code:`bqm = dimod.BinaryQuadraticModel.from_qubo()`.
+      ===========  ============  ===============  ============
+      :math:`x_1`  :math:`x_2`   **Valid?**       **BQM Value**
+      ===========  ============  ===============  ============
+      :math:`0`    :math:`1`     Yes              :math:`0`
+      :math:`1`    :math:`0`     Yes              :math:`0`
+      :math:`0`    :math:`0`     No               :math:`1`
+      :math:`1`    :math:`1`     No               :math:`1`
+      ===========  ============  ===============  ============
 
-For some problems you can skip the mathematical formulation; for example, Ocean's
-`dwavebinarycsp <http://dwavebinarycsp.readthedocs.io/en/latest/>`_ tool enables the
-following formulation of an AND gate as a BQM:
+2. Ocean's `dwavebinarycsp <http://dwavebinarycsp.readthedocs.io/en/latest/>`_ tool enables the
+   following formulation of an AND gate as a BQM:
 
-.. code-block:: python
+   .. code-block:: python
 
-    >>> import dwavebinarycsp
-    >>> import dwavebinarycsp.factories.constraint.gates as gates
-    >>> csp = dwavebinarycsp.ConstraintSatisfactionProblem(dwavebinarycsp.BINARY)
-    >>> csp.add_constraint(gates.and_gate(['x1', 'x2', 'y1']))  # add an AND gate
-    >>> bqm = dwavebinarycsp.stitch(csp)
+       >>> import dwavebinarycsp
+       >>> import dwavebinarycsp.factories.constraint.gates as gates
+       >>> csp = dwavebinarycsp.ConstraintSatisfactionProblem(dwavebinarycsp.BINARY)
+       >>> csp.add_constraint(gates.and_gate(['x1', 'x2', 'y1']))  # add an AND gate
+       >>> bqm = dwavebinarycsp.stitch(csp)
 
 Once you have a BQM that represents your problem, you sample it for solutions.
 
 .. _submitting:
 
-Sample
-======
+Solve the BQM with a Sampler
+============================
 
-To solve your problem, now represented as a binary quadratic model, you sample it.
-If you use a classical solver running locally on your CPU, a single sample
-might provide the lowest energy state of the system and thus the optimal solution.
-When you use a probabilistic sampler like the D-Wave system, you typically program
-for multiple reads.
+To solve your problem, now represented as a binary quadratic model, you submit it to
+a classical or quantum sampler. If you use a classical solver running locally on your CPU, a
+single sample might provide the optimal solution. When you use a probabilistic sampler
+like the D-Wave system, you typically program for multiple reads.
 
-If you plan to use the D-Wave system to sample, the :ref:`dwavesys` section
-describes how you configure access to a D-Wave solver.
+.. note:: To configure access to a D-Wave system, see the :ref:`dwavesys` section.
 
 For example, the BQM of the AND gate created above may look like this:
 
@@ -147,13 +135,13 @@ For example, the BQM of the AND gate created above may look like this:
     >>> bqm     # doctest: +SKIP
     BinaryQuadraticModel({'x1': 0.0, 'x2': 0.0, 'y1': 6.0}, {('x2', 'x1'): 2.0, ('y1', 'x1'): -4.0, ('y1', 'x2'): -4.0}, -1.5, Vartype.BINARY)
 
-where the members of the two dicts are linear and quadratic biases, respectively,
-the third term is a constant energy offset associated with the model, and the fourth
+The members of the two dicts are linear and quadratic coefficients, respectively,
+the third term is a constant offset associated with the model, and the fourth
 shows the variable types in this model are binary.
 
 Ocean's `dimod <http://dimod.readthedocs.io/en/latest/>`_ tool provides a reference solver
-that calculates the energy of all possible samples. Such a sampler can solve a small
-three-variable problem like the AND gate.
+that calculates the values of a BQM (its "energy") for all possible assignments of variables.
+Such a sampler can solve a small three-variable problem like the AND gate created above.
 
 .. code-block:: python
 
@@ -172,14 +160,15 @@ three-variable problem like the AND gate.
     {'x1': 1, 'x2': 0, 'y1': 1} 0.5
     {'x1': 0, 'x2': 0, 'y1': 1} 4.5
 
-Note that the first four samples are the valid configurations of the AND gate and have
-lower energy than the second four, which represent invalid configurations.
+Note that the first four samples are the valid states of the AND gate and have
+lower values than the second four, which represent invalid states.
 
 Ocean's `dwave-system <http://dwave-system.readthedocs.io/en/latest/>`_ tool enables
 you to use a D-Wave system as a sampler. In addition to *DWaveSampler()*, the tool
 provides a *EmbeddingComposite()* composite that maps unstructured problems to the graph
-structure of the selected sampler, in our case, the problem's variables x1, x2, and y1
-to particular qubits on a QPU (this process is known as :term:`minor-embedding`).
+structure of the selected sampler, a process known as :term:`minor-embedding`.
+In our case, the problem is defined on alphanumeric variables :math:`x1, x2, y1`,
+that must be mapped to the QPU's numerically indexed qubits.
 
 Because of the sampler's probabilistic nature, you typically request multiple samples
 for a problem; this example sets `num_reads` to 1000.
@@ -191,16 +180,16 @@ for a problem; this example sets `num_reads` to 1000.
     >>> sampler = EmbeddingComposite(DWaveSampler())
     >>> response = sampler.sample(bqm, num_reads=1000)   # doctest: +SKIP
     >>> for sample, energy, num_occurrences in response.data():     # doctest: +SKIP
-    ...    print(sample, "Energy: ", energy, "Occurrences: ", num_occurrences)
+    ...    print(sample, energy, "Occurrences: ", num_occurrences)
     ...
-    {'x1': 0, 'x2': 1, 'y1': 0} Energy:  -1.5 Occurrences:  92
-    {'x1': 1, 'x2': 1, 'y1': 1} Energy:  -1.5 Occurrences:  256
-    {'x1': 0, 'x2': 0, 'y1': 0} Energy:  -1.5 Occurrences:  264
-    {'x1': 1, 'x2': 0, 'y1': 0} Energy:  -1.5 Occurrences:  173
-    {'x1': 1, 'x2': 0, 'y1': 1} Energy:  0.5 Occurrences:  215
+    {'x1': 0, 'x2': 1, 'y1': 0} -1.5 Occurrences:  92
+    {'x1': 1, 'x2': 1, 'y1': 1} -1.5 Occurrences:  256
+    {'x1': 0, 'x2': 0, 'y1': 0} -1.5 Occurrences:  264
+    {'x1': 1, 'x2': 0, 'y1': 0} -1.5 Occurrences:  173
+    {'x1': 1, 'x2': 0, 'y1': 1} 0.5 Occurrences:  215
 
-Note that the first four samples are the valid configurations of the AND gate and have
-lower energy than invalid configuration :math:`x1=1, x2=0, y1=1`.
+Note that the first four samples are the valid states of the AND gate and have
+lower values than invalid state :math:`x1=1, x2=0, y1=1`.
 
 .. _improving:
 
@@ -217,8 +206,7 @@ using the `minorminer <http://minorminer.readthedocs.io/en/latest/>`_ tool or se
 a minor-embedding themselves (or some combination).
 
 D-Wave systems offer features such as spin-reversal (gauge) transforms and anneal offsets,
-which reduce the impact of possible analog and systematic errors due to inherent qubit
-biases, and others.
+which reduce the impact of possible analog and systematic errors.
 
 You can see the parameters and properties a sampler supports. For example, Ocean's
 `dwave-system <http://dwave-system.readthedocs.io/en/latest/>`_ lets you use the
