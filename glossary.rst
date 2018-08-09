@@ -6,6 +6,11 @@ Glossary
 
 .. glossary::
 
+      binary quadratic model
+      BQM
+         A collection of binary-valued variables  (variables that can be assigned two values, for example -1, 1) 
+         with associated linear and quadratic biases. Sometimes referred to in other tools as a problem.
+
       Chimera
          The D-Wave :term:`QPU` is a lattice of interconnected qubits. While some qubits
          connect to others via couplers, the D-Wave QPU is not fully connected.

@@ -17,7 +17,8 @@ Example Requirements
 To run the code in this example, the following is required.
 
 * The requisite information for problem submission through SAPI, as described in :ref:`dwavesys`
-* Installation of Ocean tools `dwave-system <https://github.com/dwavesystems/dwave-system>`_ and `dimod <https://github.com/dwavesystems/dimod>`_\ .
+* Ocean tools `dwave-system <https://github.com/dwavesystems/dwave-system>`_ and `dimod <https://github.com/dwavesystems/dimod>`_ (installed on their own or as part of
+  your `dwave-ocean-sdk <https://github.com/dwavesystems/dwave-ocean-sdk>`_ installation).
 
 Representing a NOT Gate as a BQM
 ================================
