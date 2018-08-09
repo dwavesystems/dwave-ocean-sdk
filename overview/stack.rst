@@ -4,8 +4,16 @@
 Ocean Software Stack
 ====================
 
-The Ocean software stack provides a chain of tools that implements the computations needed
-to transform an arbitrarily posed problem to a form solvable on a quantum solver.
+The Ocean software stack provides a chain of tools that implements the steps
+needed to solve your problem on a CPU/GPU or a D-Wave system.
+As described in the :ref:`solving_problems` section, these steps include formulating
+the problem in a way the quantum computer understands (as
+a :term:`binary quadratic model`) and solving the formulated problem by submitting it
+to a D-Wave system or classical :term:`sampler` (the component used to minimize a BQM
+and therefore solve the original problem).
+
+It's helpful to visualize the tool chain as layers of abstraction, each of which
+handles one part of the solution procedure.
 
 Abstraction Layers
 ==================
@@ -19,8 +27,8 @@ Abstraction Layers
 
   Ocean Software Stack
 
-As shown in the :ref:`fig_stack` graphic, it is helpful to think of the Ocean tools and the context
-in which they operate as being divided into in the following layers of functionality:
+The :ref:`fig_stack` graphic above divides Ocean software and its context
+into the following layers of functionality:
 
 * Compute Resources
 
@@ -28,28 +36,30 @@ in which they operate as being divided into in the following layers of functiona
   it can also be the CPU of your laptop computer.
 * Samplers
 
-  Abstraction layer of the :term:`sampler` functionality. Ocean tools implement several D-Wave samplers and
-  classical sampler. You can use the Ocean tools to customize a D-Wave sampler, create your own
-  sampler, or use existing (classical) samplers.
+  Abstraction layer of the :term:`sampler` functionality. Ocean tools implement several samplers
+  that use the D-Wave system and classical compute resources. You can use the Ocean tools to
+  customize a D-Wave sampler, create your own sampler, or use existing (classical) samplers to
+  your code as you develop it.
 * Sampler API
 
   Abstraction layer that represents the problem in a form that can access the selected sampler;
-  for example, a `dimod <http://dimod.readthedocs.io/en/latest/>`_ sampler method such
-  as Ising that provides an Ising problem for solution.
+  for example, a `dimod <http://dimod.readthedocs.io/en/latest/>`_binary quadratic
+  model (BQM) class representing your problem wrapped in a :term:`minor-embedding` composite
+  that handles the mapping between your problem's variables and the sampler's graph.
 * Methods
 
-  Tools that pose a problem in binary quadratic model (BQM) form; for example
+  Tools that help formulate a problem as binary quadratic models; for example
   `dwave_networkx <http://dwave-networkx.readthedocs.io/en/latest/index.html>`_ (`repo <https://github.com/dwavesystems/dwave_networkx>`_\ ) for graph-related problems.
 * Application
 
-  Original problem in its context ("problem space"); for example, factoring as a problem
-  of finding two integers that factor a third integer.
+  Original problem in its context ("problem space"); for example, circuit fault diagnosis
+  attempts to identify failed logic gates during chip manufacturing.
 
 Problem-to-Solution Tool Chain
 ==============================
 
 As described in the :ref:`solving_problems` section, problems can be posed in a variety of
-formulations; the D-Wave system solves Ising problems. Ocean tools assist you in converting
+formulations; the D-Wave system solves binary quadratic models. Ocean tools assist you in converting
 the problem from its original form to a form native to the D-Wave system and sending the
 compatible problem for solving.
 
@@ -72,6 +82,8 @@ each stage of the process to a layer of the Ocean stack.
    * CPU/GPU: for offline testing, small problems that can be solved exactly or heuristically in
      a reasonable amount of time.
    * QPU: hard problems or for learning how to use quantum resources to solve such problems.
+   * Hybrid of both QPU and CPU/GPU: large, complex problems that need to run classically
+     but may benefit from having some parts allocated to a quantum computer for solution.
 
 2. **Sampler**
 
