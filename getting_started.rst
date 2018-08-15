@@ -45,13 +45,14 @@ Beginner-Level Examples
    :maxdepth: 1
    :hidden:
 
+   examples/min_vertex
    examples/not
    examples/and
    examples/max_cut
 
-* :ref:`not` is a minimal example that solves a two-variable problem (:math:`y = \neg x`)
-  by assigning one qubit per variable and finding the minimum energy.
-* :ref:`and` adds the use of a simple chain in manually :term:`minor-embedding` a problem.
+* :ref:`min_vertex` is a minimal example that solves a graph problem.
+* :ref:`not` is a minimal example that solves a two-variable problem.
+* :ref:`and` adds information on :term:`minor-embedding` for a simple problem.
 * :ref:`max_cut` adds algorithmic :term:`minor-embedding` and some graphic functionality.
 
 Intermediate-Level Examples
@@ -74,7 +75,7 @@ Demonstrations
 ==============
 
 Copy (clone) open-source code to run demos of solving known problems on a D-Wave
-system. 
+system.
 
 * `Circuit Fault Diagnosis <https://github.com/dwavesystems/circuit-fault-diagnosis-demo>`_
 
