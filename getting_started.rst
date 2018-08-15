@@ -46,6 +46,7 @@ Beginner-Level Examples
    :hidden:
 
    examples/min_vertex
+   example/scheduling
    examples/not
    examples/and
    examples/max_cut
