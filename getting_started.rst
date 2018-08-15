@@ -45,6 +45,7 @@ Beginner-Level Examples
    :maxdepth: 1
    :hidden:
 
+   examples/scheduling
    examples/not
    examples/and
    examples/max_cut
@@ -74,7 +75,7 @@ Demonstrations
 ==============
 
 Copy (clone) open-source code to run demos of solving known problems on a D-Wave
-system. 
+system.
 
 * `Circuit Fault Diagnosis <https://github.com/dwavesystems/circuit-fault-diagnosis-demo>`_
 
