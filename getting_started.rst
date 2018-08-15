@@ -35,8 +35,7 @@ Learn how problems are formulated for solution on D-Wave systems using Ocean too
 Examples
 ========
 
-See how Ocean tools are used with these end-to-end examples that start from simple
-and gradually add functionality.
+See how Ocean tools are used with these end-to-end examples.
 
 Beginner-Level Examples
 -----------------------
@@ -46,12 +45,13 @@ Beginner-Level Examples
    :hidden:
 
    examples/min_vertex
-   example/scheduling
+   examples/scheduling
    examples/not
    examples/and
    examples/max_cut
 
-* :ref:`min_vertex` is a minimal example that solves a graph problem.
+* :ref:`min_vertex` solves a small graph problem.
+* :ref:`scheduling` solves a small constraint satisfaction problem.
 * :ref:`not` is a minimal example that solves a two-variable problem.
 * :ref:`and` adds information on :term:`minor-embedding` for a simple problem.
 * :ref:`max_cut` adds algorithmic :term:`minor-embedding` and some graphic functionality.
