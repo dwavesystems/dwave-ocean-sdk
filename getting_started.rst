@@ -52,7 +52,7 @@ Beginner-Level Examples
 
 * :ref:`min_vertex` solves a small graph problem.
 * :ref:`scheduling` solves a small constraint satisfaction problem.
-* :ref:`not` is a minimal example that solves a two-variable problem.
+* :ref:`not` mathematically formulates a BQM for a two-variable problem.
 * :ref:`and` adds information on :term:`minor-embedding` for a simple problem.
 * :ref:`max_cut` adds algorithmic :term:`minor-embedding` and some graphic functionality.
 
