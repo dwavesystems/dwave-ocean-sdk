@@ -4,7 +4,7 @@
 Boolean NOT Gate
 ================
 
-This example solves a simple problem of a Boolean NOT gate to demonstrate the formulation
+This example solves a simple problem of a Boolean NOT gate to demonstrate the mathematical formulation
 of a problem as a :term:`binary quadratic model` (BQM) and using Ocean tools to solve such problems
 on a D-Wave system.
 Other examples demonstrate the more
