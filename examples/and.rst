@@ -118,9 +118,7 @@ The coefficients matrix is,
 See the system documentation for more information about formulating problems as QUBOs.
 The line of code below sets the QUBO coefficients for this AND gate.
 
-.. code-block:: python
-
-   >>> Q = {('x1', 'x2'): 1, ('x1', 'z'): -2, ('x2', 'z'): -2, ('z', 'z'): 3}
+>>> Q = {('x1', 'x2'): 1, ('x1', 'z'): -2, ('x2', 'z'): -2, ('z', 'z'): 3}
 
 Solve the Problem by Sampling: Automated Minor-Embedding
 ========================================================
@@ -142,26 +140,22 @@ The next code sets up a D-Wave system as the sampler.
       :code:`sampler = DWaveSampler()`.
       You can see this information by running :code:`dwave config inspect` in your terminal.
 
-.. code-block:: python
-
-    >>> from dwave.system.samplers import DWaveSampler
-    >>> from dwave.system.composites import EmbeddingComposite
-    >>> sampler = DWaveSampler(endpoint='https://URL_to_my_D-Wave_system/', token='ABC-123456789012345678901234567890', solver='My_D-Wave_Solver')
-    >>> sampler_embedded = EmbeddingComposite(sampler)
+>>> from dwave.system.samplers import DWaveSampler
+>>> from dwave.system.composites import EmbeddingComposite
+>>> sampler = DWaveSampler(endpoint='https://URL_to_my_D-Wave_system/', token='ABC-123456789012345678901234567890', solver='My_D-Wave_Solver')
+>>> sampler_embedded = EmbeddingComposite(sampler)
 
 As before, we ask for 5000 samples.
 
-.. code-block:: python
-
-   >>> response = sampler_embedded.sample_qubo(Q, num_reads=5000)
-   >>> for sample, energy, num_occurrences in response.data():   # doctest: +SKIP
-   ...    print(sample, "Energy: ", energy, "Occurrences: ", num_occurrences)
-   ...
-   {'x1': 1, 'x2': 0, 'z': 0} Energy:  0.0 Occurrences:  1009
-   {'x1': 1, 'x2': 1, 'z': 1} Energy:  0.0 Occurrences:  1452
-   {'x1': 0, 'x2': 0, 'z': 0} Energy:  0.0 Occurrences:  1292
-   {'x1': 0, 'x2': 1, 'z': 0} Energy:  0.0 Occurrences:  1246
-   {'x1': 0, 'x2': 1, 'z': 0} Energy:  0.0 Occurrences:  1
+>>> response = sampler_embedded.sample_qubo(Q, num_reads=5000)
+>>> for sample, energy, num_occurrences in response.data():   # doctest: +SKIP
+...    print(sample, "Energy: ", energy, "Occurrences: ", num_occurrences)
+...
+{'x1': 1, 'x2': 0, 'z': 0} Energy:  0.0 Occurrences:  1009
+{'x1': 1, 'x2': 1, 'z': 1} Energy:  0.0 Occurrences:  1452
+{'x1': 0, 'x2': 0, 'z': 0} Energy:  0.0 Occurrences:  1292
+{'x1': 0, 'x2': 1, 'z': 0} Energy:  0.0 Occurrences:  1246
+{'x1': 0, 'x2': 1, 'z': 0} Energy:  0.0 Occurrences:  1
 
 All the returned samples from this execution represent valid value assignments for an
 AND gate, and minimize (are low-energy states of) the BQM.
@@ -183,9 +177,7 @@ For simplicity, we first return to the NOT gate. The :ref:`not`
 example found that a NOT gate can be represented by a BQM in QUBO form with the
 following coefficients:
 
-.. code-block:: python
-
-   >>> Q_not = {('x', 'x'): -1, ('x', 'z'): 2, ('z', 'x'): 0, ('z', 'z'): -1}
+>>> Q_not = {('x', 'x'): -1, ('x', 'z'): 2, ('z', 'x'): 0, ('z', 'z'): -1}
 
 Minor embedding maps the two problem variables x and z to the indexed qubits of the
 D-Wave QPU. Here we do this mapping ourselves.
@@ -193,10 +185,8 @@ D-Wave QPU. Here we do this mapping ourselves.
 The next line of code looks at properties of the sampler. We select the first node,
 which on a QPU is a qubit, and print its adjacent nodes, i.e., coupled qubits.
 
-.. code-block:: python
-
-   >>> print(sampler.adjacency[sampler.nodelist[0]])      # doctest: +SKIP
-   {128, 4, 5, 6, 7}
+>>> print(sampler.adjacency[sampler.nodelist[0]])      # doctest: +SKIP
+{128, 4, 5, 6, 7}
 
 For the D-Wave system the above code ran on, we see that the first available qubit
 is adjacent to qubit 4 and four others.
@@ -221,25 +211,21 @@ The following code uses the *FixedEmbeddingComposite* composite to manually mino
 the problem. Its last line prints a confirmation that indeed the two selected qubits are adjacent
 (coupled).
 
-.. code-block:: python
-
-   >>> from dwave.system.composites import FixedEmbeddingComposite
-   >>> sampler_embedded = FixedEmbeddingComposite(sampler, {'x': [0], 'z': [4]})
-   >>> print(sampler_embedded.adjacency)     # doctest: +SKIP
-   {'x': {'z'}, 'z': {'x'}}
+>>> from dwave.system.composites import FixedEmbeddingComposite
+>>> sampler_embedded = FixedEmbeddingComposite(sampler, {'x': [0], 'z': [4]})
+>>> print(sampler_embedded.adjacency)     # doctest: +SKIP
+{'x': {'z'}, 'z': {'x'}}
 
 As before, we ask for 5000 samples.
 
-.. code-block:: python
-
-   >>> response = sampler_embedded.sample_qubo(Q_not, num_reads=5000)
-   >>> for sample, energy, num_occurrences in response.data():   # doctest: +SKIP
-   ...    print(sample, "Energy: ", energy, "Occurrences: ", num_occurrences)
-   ...
-   {'x': 0, 'z': 1} Energy:  -1.0 Occurrences:  2520
-   {'x': 1, 'z': 0} Energy:  -1.0 Occurrences:  2474
-   {'x': 0, 'z': 0} Energy:  0.0 Occurrences:  4
-   {'x': 1, 'z': 1} Energy:  0.0 Occurrences:  2
+>>> response = sampler_embedded.sample_qubo(Q_not, num_reads=5000)
+>>> for sample, energy, num_occurrences in response.data():   # doctest: +SKIP
+...    print(sample, "Energy: ", energy, "Occurrences: ", num_occurrences)
+...
+{'x': 0, 'z': 1} Energy:  -1.0 Occurrences:  2520
+{'x': 1, 'z': 0} Energy:  -1.0 Occurrences:  2474
+{'x': 0, 'z': 0} Energy:  0.0 Occurrences:  4
+{'x': 1, 'z': 1} Energy:  0.0 Occurrences:  2
 
 From NOT to AND: an Important Difference
 ----------------------------------------
@@ -296,49 +282,43 @@ The code below uses Ocean's `dwave-system <https://github.com/dwavesystems/dwave
 confirmation that indeed all three variables are connected.
 (coupled).
 
-.. code-block:: python
-
-    >>> from dwave.system.composites import VirtualGraphComposite
-    >>> embedding = {'x1': {1}, 'x2': {5}, 'z': {0, 4}}
-    >>> sampler_embedded = VirtualGraphComposite(sampler, embedding)
-    >>> print(sampler_embedded.adjacency)
-    {'x1': {'z', 'x2'}, 'x2': {'x1', 'z'}, 'z': {'x1', 'x2'}}
+>>> from dwave.system.composites import VirtualGraphComposite
+>>> embedding = {'x1': {1}, 'x2': {5}, 'z': {0, 4}}
+>>> sampler_embedded = VirtualGraphComposite(sampler, embedding)
+>>> print(sampler_embedded.adjacency)
+{'x1': {'z', 'x2'}, 'x2': {'x1', 'z'}, 'z': {'x1', 'x2'}}
 
 We ask for 5000 samples.
 
-.. code-block:: python
-
-    >>> Q = {('x1', 'x2'): 1, ('x1', 'z'): -2, ('x2', 'z'): -2, ('z', 'z'): 3}
-    >>> response = sampler_embedded.sample_qubo(Q, num_reads=5000)
-    >>> for sample, energy, num_occurrences in response.data():    # doctest: +SKIP
-    ...     print(sample, "Occurrences: ", num_occurrences)
-    ...
-    {'x1': 1, 'x2': 0, 'z': 0} Energy:  0.0 Occurrences:  1220
-    {'x1': 0, 'x2': 1, 'z': 0} Energy:  0.0 Occurrences:  1239
-    {'x1': 1, 'x2': 1, 'z': 1} Energy:  0.0 Occurrences:  1103
-    {'x1': 0, 'x2': 0, 'z': 0} Energy:  0.0 Occurrences:  1437
-    {'x1': 0, 'x2': 1, 'z': 1} Energy:  1.0 Occurrences:  1
+>>> Q = {('x1', 'x2'): 1, ('x1', 'z'): -2, ('x2', 'z'): -2, ('z', 'z'): 3}
+>>> response = sampler_embedded.sample_qubo(Q, num_reads=5000)
+>>> for sample, energy, num_occurrences in response.data():    # doctest: +SKIP
+...     print(sample, "Occurrences: ", num_occurrences)
+...
+{'x1': 1, 'x2': 0, 'z': 0} Energy:  0.0 Occurrences:  1220
+{'x1': 0, 'x2': 1, 'z': 0} Energy:  0.0 Occurrences:  1239
+{'x1': 1, 'x2': 1, 'z': 1} Energy:  0.0 Occurrences:  1103
+{'x1': 0, 'x2': 0, 'z': 0} Energy:  0.0 Occurrences:  1437
+{'x1': 0, 'x2': 1, 'z': 1} Energy:  1.0 Occurrences:  1
 
 For comparison, the following code purposely weakens the chain strength (strength of the
 coupler between qubits 0 and 4, which represents variable :math:`z`). The first
 line prints the range of values available for the D-Wave system this code is executed
 on. By default, *VirtualGraphComposite()* used the maximum chain strength, which
 is 2. By setting it to a low value of 0.1, the two qubits are not strongly correlated
-and the result is that many returned samples represent invalid states for an AND gate. 
+and the result is that many returned samples represent invalid states for an AND gate.
 
-.. code-block:: python
-
-    >>> print(sampler.properties['extended_j_range'])
-    [-2.0, 1.0]
-    >>> sampler_embedded = VirtualGraphComposite(sampler, embedding, chain_strength=0.1)
-    >>> response = sampler_embedded.sample_qubo(Q, num_reads=5000)
-    >>> for sample, energy, num_occurrences in response.data():    # doctest: +SKIP
-    ...     print(sample, "Occurrences: ", num_occurrences)
-    ...
-    {'x1': 1, 'x2': 0, 'z': 0} Energy:  0.0 Occurrences:  2721
-    {'x1': 1, 'x2': 0, 'z': 0} Energy:  0.0 Occurrences:  149
-    {'x1': 0, 'x2': 1, 'z': 0} Energy:  0.0 Occurrences:  103
-    {'x1': 1, 'x2': 1, 'z': 1} Energy:  0.0 Occurrences:  130
-    {'x1': 0, 'x2': 0, 'z': 0} Energy:  0.0 Occurrences:  134
-    {'x1': 0, 'x2': 1, 'z': 1} Energy:  1.0 Occurrences:  1761
-    {'x1': 1, 'x2': 0, 'z': 1} Energy:  1.0 Occurrences:  2
+>>> print(sampler.properties['extended_j_range'])
+[-2.0, 1.0]
+>>> sampler_embedded = VirtualGraphComposite(sampler, embedding, chain_strength=0.1)
+>>> response = sampler_embedded.sample_qubo(Q, num_reads=5000)
+>>> for sample, energy, num_occurrences in response.data():    # doctest: +SKIP
+...     print(sample, "Occurrences: ", num_occurrences)
+...
+{'x1': 1, 'x2': 0, 'z': 0} Energy:  0.0 Occurrences:  2721
+{'x1': 1, 'x2': 0, 'z': 0} Energy:  0.0 Occurrences:  149
+{'x1': 0, 'x2': 1, 'z': 0} Energy:  0.0 Occurrences:  103
+{'x1': 1, 'x2': 1, 'z': 1} Energy:  0.0 Occurrences:  130
+{'x1': 0, 'x2': 0, 'z': 0} Energy:  0.0 Occurrences:  134
+{'x1': 0, 'x2': 1, 'z': 1} Energy:  1.0 Occurrences:  1761
+{'x1': 1, 'x2': 0, 'z': 1} Energy:  1.0 Occurrences:  2

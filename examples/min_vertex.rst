@@ -57,10 +57,8 @@ First, we run the code snippet below to create a star graph where node 0 is hub 
 It uses `NetworkX <https://networkx.github.io/documentation/stable/index.html>`_\ , which is
 part of your *dwave_networkx* or *dwave-ocean-sdk* installation.
 
-.. code-block:: python
-
-   >>> import networkx as nx
-   >>> s5 = nx.star_graph(4)
+>>> import networkx as nx
+>>> s5 = nx.star_graph(4)
 
 Solve the Problem by Sampling
 =============================
@@ -76,21 +74,17 @@ Here we select one of Ocean software's test samplers to solve classically on a C
 Ocean's `dimod <https://github.com/dwavesystems/dimod>`_ provides a sampler that
 simply returns the BQM's value for every possible assignment of variable values.
 
-.. code-block:: python
-
-    >>> from dimod.reference.samplers import ExactSolver
-    >>> sampler = ExactSolver()
+>>> from dimod.reference.samplers import ExactSolver
+>>> sampler = ExactSolver()
 
 The next code lines use Ocean's `dwave_networkx <http://dwave-networkx.readthedocs.io/en/latest/index.html>`_
 to produce a BQM for our :code:`s5` graph and solve it on our selected sampler. In other
 examples the BQM is explicitly created but the Ocean tool used here abstracts the
 BQM: given the problem graph it returns a solution to a BQM it creates internally.
 
-.. code-block:: python
-
-    >>> import dwave_networkx as dnx
-    >>> print(dnx.min_vertex_cover(s5, sampler))
-    [0]
+>>> import dwave_networkx as dnx
+>>> print(dnx.min_vertex_cover(s5, sampler))
+[0]
 
 Solving on a D-Wave System
 --------------------------
@@ -108,13 +102,11 @@ indexed qubits.
       :code:`sampler = EmbeddingComposite(DWaveSampler())`.
       You can see this information by running :code:`dwave config inspect` in your terminal.
 
-.. code-block:: python
-
-    >>> from dwave.system.samplers import DWaveSampler
-    >>> from dwave.system.composites import EmbeddingComposite
-    >>> sampler = EmbeddingComposite(DWaveSampler(endpoint='https://URL_to_my_D-Wave_system/', token='ABC-123456789012345678901234567890', solver='My_D-Wave_Solver'))
-    >>> print(dnx.min_vertex_cover(s5, sampler))
-    [0]
+>>> from dwave.system.samplers import DWaveSampler
+>>> from dwave.system.composites import EmbeddingComposite
+>>> sampler = EmbeddingComposite(DWaveSampler(endpoint='https://URL_to_my_D-Wave_system/', token='ABC-123456789012345678901234567890', solver='My_D-Wave_Solver'))
+>>> print(dnx.min_vertex_cover(s5, sampler))
+[0]
 
 
 Additional Problem Graphs
@@ -134,11 +126,9 @@ The code snippet below replaces the previous problem's graph and solves on a
 D-Wave system. Note that the solution found for this problem is not unique; for example,
 [0, 2, 4] is also a valid solution.
 
-.. code-block:: python
-
-    >>> w5 = nx.wheel_graph(5)
-    >>> print(dnx.min_vertex_cover(w5, sampler))
-    [0, 1, 3]
+>>> w5 = nx.wheel_graph(5)
+>>> print(dnx.min_vertex_cover(w5, sampler))
+[0, 1, 3]
 
 The figure below shows a ten-node (circular-ladder) graph.
 
@@ -153,13 +143,11 @@ The figure below shows a ten-node (circular-ladder) graph.
 The code snippet below replaces the problem graph and submits twice to the
 D-Wave system for solution, producing two of the possible valid solutions.
 
-.. code-block:: python
-
-    >>> c5 = nx.circular_ladder_graph(5)
-    >>> print(dnx.min_vertex_cover(c5, sampler))
-    [0, 2, 3, 6, 8, 9]
-    >>> print(dnx.min_vertex_cover(c5, sampler))
-    [1, 3, 4, 5, 7, 9]
+>>> c5 = nx.circular_ladder_graph(5)
+>>> print(dnx.min_vertex_cover(c5, sampler))
+[0, 2, 3, 6, 8, 9]
+>>> print(dnx.min_vertex_cover(c5, sampler))
+[1, 3, 4, 5, 7, 9]
 
 
 Summary

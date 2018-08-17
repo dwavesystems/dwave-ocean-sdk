@@ -193,27 +193,23 @@ The next code sets up a D-Wave system as the sampler.
       :code:`sampler = EmbeddingComposite(DWaveSampler())`.
       You can see this information by running :code:`dwave config inspect` in your terminal.
 
-.. code-block:: python
-
-    >>> from dwave.system.samplers import DWaveSampler
-    >>> from dwave.system.composites import EmbeddingComposite
-    >>> sampler = EmbeddingComposite(DWaveSampler(endpoint='https://URL_to_my_D-Wave_system/', token='ABC-123456789012345678901234567890', solver='My_D-Wave_Solver'))
+>>> from dwave.system.samplers import DWaveSampler
+>>> from dwave.system.composites import EmbeddingComposite
+>>> sampler = EmbeddingComposite(DWaveSampler(endpoint='https://URL_to_my_D-Wave_system/', token='ABC-123456789012345678901234567890', solver='My_D-Wave_Solver'))
 
 Because the sampled solution is probabilistic, returned solutions may differ between runs. Typically,
 when submitting a problem to the system, we ask for many samples, not just one. This way, we see multiple
 “best” answers and reduce the probability of settling on a suboptimal answer. Below, we
 ask for 5000 samples.
 
-.. code-block:: python
-
-   >>> Q = {('x', 'x'): -1, ('x', 'z'): 2, ('z', 'x'): 0, ('z', 'z'): -1}
-   >>> response = sampler.sample_qubo(Q, num_reads=5000)
-   >>> for sample, energy, num_occurrences in response.data():   # doctest: +SKIP
-   ...    print(sample, "Energy: ", energy, "Occurrences: ", num_occurrences)
-   ...
-   {'x': 0, 'z': 1} Energy:  -1.0 Occurrences:  2062
-   {'x': 1, 'z': 0} Energy:  -1.0 Occurrences:  2937
-   {'x': 1, 'z': 1} Energy:  0.0 Occurrences:  1
+>>> Q = {('x', 'x'): -1, ('x', 'z'): 2, ('z', 'x'): 0, ('z', 'z'): -1}
+>>> response = sampler.sample_qubo(Q, num_reads=5000)
+>>> for sample, energy, num_occurrences in response.data():   # doctest: +SKIP
+...    print(sample, "Energy: ", energy, "Occurrences: ", num_occurrences)
+...
+{'x': 0, 'z': 1} Energy:  -1.0 Occurrences:  2062
+{'x': 1, 'z': 0} Energy:  -1.0 Occurrences:  2937
+{'x': 1, 'z': 1} Energy:  0.0 Occurrences:  1
 
 Almost all the returned samples represent valid value assignments for a NOT gate,
 and minimize (are low-energy states of) the BQM.

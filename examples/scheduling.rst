@@ -92,7 +92,7 @@ all this example's constraints are met.
 
 .. code-block:: python
 
-   >>> def scheduling(time, location, length, mandatory):
+   def scheduling(time, location, length, mandatory):
        if time:                                 # Business hours
            return (location and mandatory)      # In office and mandatory participation
        else:                                    # Outside business hours
@@ -101,29 +101,25 @@ all this example's constraints are met.
 The next code lines create a constraint from this function and adds it to CSP instance,
 :code:`csp`, instantiated with binary variables.
 
-.. code-block:: python
-
-   >>> import dwavebinarycsp
-   >>> csp = dwavebinarycsp.ConstraintSatisfactionProblem(dwavebinarycsp.BINARY)
-   >>> csp.add_constraint(scheduling, ['time', 'location', 'length', 'mandatory'])
+>>> import dwavebinarycsp
+>>> csp = dwavebinarycsp.ConstraintSatisfactionProblem(dwavebinarycsp.BINARY)
+>>> csp.add_constraint(scheduling, ['time', 'location', 'length', 'mandatory'])
 
 This tool can also convert the binary CSP to a BQM. The following code does so and
 displays the BQM's linear and quadratic coefficients, :math:`q_i` and :math:`q_{i,j}` respectively in
 :math:`\sum_i^N q_ix_i + \sum_{i<j}^N q_{i,j}x_i  x_j`, which are the inputs for programming
 the quantum computer.
 
-.. code-block:: python
-
-   >>> bqm = dwavebinarycsp.stitch(csp)
-   >>> bqm.linear   # doctest: +SKIP
-   {'length': -2.0, 'location': 2.0, 'mandatory': 0.0, 'time': 2.0}
-   >>> bqm.quadratic          # doctest: +SKIP
-   {('location', 'length'): 2.0,
-    ('mandatory', 'length'): 0.0,
-    ('mandatory', 'location'): -2.0,
-    ('time', 'length'): 0.0,
-    ('time', 'location'): -4.0,
-    ('time', 'mandatory'): 0.0}
+>>> bqm = dwavebinarycsp.stitch(csp)
+>>> bqm.linear   # doctest: +SKIP
+{'length': -2.0, 'location': 2.0, 'mandatory': 0.0, 'time': 2.0}
+>>> bqm.quadratic          # doctest: +SKIP
+{('location', 'length'): 2.0,
+ ('mandatory', 'length'): 0.0,
+ ('mandatory', 'location'): -2.0,
+ ('time', 'length'): 0.0,
+ ('time', 'location'): -4.0,
+ ('time', 'mandatory'): 0.0}
 
 Solve the Problem by Sampling
 =============================
@@ -139,11 +135,9 @@ Here we select one of Ocean software's test samplers to solve classically on a C
 Ocean's `dimod <https://github.com/dwavesystems/dimod>`_ provides a sampler that
 simply returns the BQM's value (energy) for every possible assignment of variable values.
 
-.. code-block:: python
-
-    >>> from dimod.reference.samplers import ExactSolver
-    >>> sampler = ExactSolver()
-    >>> solution = sampler.sample(bqm)
+>>> from dimod.reference.samplers import ExactSolver
+>>> sampler = ExactSolver()
+>>> solution = sampler.sample(bqm)
 
 Valid solutions---assignments of variables that do not violate any constraint---should
 have the lowest value of the BQM, and *ExactSolver()* orders its assignments
@@ -151,29 +145,25 @@ of variables by ascending order, so the first solution has the lowest value (low
 energy state). The code below sets variable :code:`min_energy` to the BQM's
 lowest value, which is in the first record of the returned result.
 
-.. code-block:: python
-
-    >>> min_energy = next(solution.data(['energy']))[0]
-    >>> print(min_energy)
-    -2.0
+>>> min_energy = next(solution.data(['energy']))[0]
+>>> print(min_energy)
+-2.0
 
 The code below prints all those solutions (assignments of variables) for which the BQM has
 its minimum value.
 
-.. code-block:: python
-
-    >>> for sample, energy in solution.data(['sample', 'energy']):
-    ...     if energy == min_energy:
-    ...         time = 'business hours' if sample['time'] else 'evenings'
-    ...         location = 'office' if sample['location'] else 'home'
-    ...         length = 'short' if sample['length'] else 'long'
-    ...         mandatory = 'mandatory' if sample['mandatory'] else 'optional'
-    ...         print("During {} at {}, you can schedule a {} meeting that is {}".format(time, location, length, mandatory))
-    ...
-    During evenings at home, you can schedule a short meeting that is optional
-    During evenings at home, you can schedule a short meeting that is mandatory
-    During business hours at office, you can schedule a short meeting that is mandatory
-    During business hours at office, you can schedule a long meeting that is mandatory
+>>> for sample, energy in solution.data(['sample', 'energy']):
+...     if energy == min_energy:
+...         time = 'business hours' if sample['time'] else 'evenings'
+...         location = 'office' if sample['location'] else 'home'
+...         length = 'short' if sample['length'] else 'long'
+...         mandatory = 'mandatory' if sample['mandatory'] else 'optional'
+...         print("During {} at {}, you can schedule a {} meeting that is {}".format(time, location, length, mandatory))
+...
+During evenings at home, you can schedule a short meeting that is optional
+During evenings at home, you can schedule a short meeting that is mandatory
+During business hours at office, you can schedule a short meeting that is mandatory
+During business hours at office, you can schedule a long meeting that is mandatory
 
 Solving on a D-Wave System
 --------------------------
@@ -191,42 +181,36 @@ a D-Wave system as the sampler.
       :code:`sampler = EmbeddingComposite(DWaveSampler())`.
       You can see this information by running :code:`dwave config inspect` in your terminal.
 
-.. code-block:: python
-
-    >>> from dwave.system.samplers import DWaveSampler
-    >>> from dwave.system.composites import EmbeddingComposite
-    >>> sampler = EmbeddingComposite(DWaveSampler(endpoint='https://URL_to_my_D-Wave_system/', token='ABC-123456789012345678901234567890', solver='My_D-Wave_Solver'))
+>>> from dwave.system.samplers import DWaveSampler
+>>> from dwave.system.composites import EmbeddingComposite
+>>> sampler = EmbeddingComposite(DWaveSampler(endpoint='https://URL_to_my_D-Wave_system/', token='ABC-123456789012345678901234567890', solver='My_D-Wave_Solver'))
 
 Because the sampled solution is probabilistic, returned solutions may differ between runs. Typically,
 when submitting a problem to the system, we ask for many samples, not just one. This way, we see multiple
 “best” answers and reduce the probability of settling on a suboptimal answer. Below, we
 ask for 5000 samples.
 
-.. code-block:: python
-
-    >>> response = sampler.sample(bqm, num_reads=5000)
+>>> response = sampler.sample(bqm, num_reads=5000)
 
 The code below prints all those solutions (assignments of variables) for which the BQM has
 its minimum value and the number of times it was found.
 
-.. code-block:: python
-
-    >>> total = 0
-    ... for sample, energy, occurrences in response.data(['sample', 'energy', 'num_occurrences']):
-    ...     total = total + occurrences
-    ...     if energy == min_energy:
-    ...         time = 'business hours' if sample['time'] else 'evenings'
-    ...         location = 'office' if sample['location'] else 'home'
-    ...         length = 'short' if sample['length'] else 'long'
-    ...         mandatory = 'mandatory' if sample['mandatory'] else 'optional'
-    ...         print("{}: During {} at {}, you can schedule a {} meeting that is {}".format(occurrences, time, location, length, mandatory))
-    ... print("Total occurrences: ", total)
-    ...
-    1676: During business hours at office, you can schedule a long meeting that is mandatory
-    1229: During business hours at office, you can schedule a short meeting that is mandatory
-    1194: During evenings at home, you can schedule a short meeting that is optional
-    898: During evenings at home, you can schedule a short meeting that is mandatory
-    Total occurrences:  5000
+>>> total = 0
+... for sample, energy, occurrences in response.data(['sample', 'energy', 'num_occurrences']):
+...     total = total + occurrences
+...     if energy == min_energy:
+...         time = 'business hours' if sample['time'] else 'evenings'
+...         location = 'office' if sample['location'] else 'home'
+...         length = 'short' if sample['length'] else 'long'
+...         mandatory = 'mandatory' if sample['mandatory'] else 'optional'
+...         print("{}: During {} at {}, you can schedule a {} meeting that is {}".format(occurrences, time, location, length, mandatory))
+... print("Total occurrences: ", total)
+...
+1676: During business hours at office, you can schedule a long meeting that is mandatory
+1229: During business hours at office, you can schedule a short meeting that is mandatory
+1194: During evenings at home, you can schedule a short meeting that is optional
+898: During evenings at home, you can schedule a short meeting that is mandatory
+Total occurrences:  5000
 
 Summary
 =======
