@@ -4,11 +4,10 @@
 Boolean NOT Gate
 ================
 
-This example solves a simple problem of a Boolean NOT gate to demonstrate using Ocean tools
-to solve a problem on a D-Wave system.
-
-The purpose of this minimal example is to help a new user establish a connection
-to a D-Wave system with little configuration. Other examples demonstrate the more
+This example solves a simple problem of a Boolean NOT gate to demonstrate the mathematical formulation
+of a problem as a :term:`binary quadratic model` (BQM) and using Ocean tools to solve such problems
+on a D-Wave system.
+Other examples demonstrate the more
 advanced steps that are typically needed for solving actual problems.
 
 Example Requirements
@@ -17,160 +16,210 @@ Example Requirements
 To run the code in this example, the following is required.
 
 * The requisite information for problem submission through SAPI, as described in :ref:`dwavesys`
-* Ocean tools `dwave-system <https://github.com/dwavesystems/dwave-system>`_ and `dimod <https://github.com/dwavesystems/dimod>`_ (installed on their own or as part of
-  your `dwave-ocean-sdk <https://github.com/dwavesystems/dwave-ocean-sdk>`_ installation).
+* Ocean tools `dwave-system <https://github.com/dwavesystems/dwave-system>`_ and `dimod <https://github.com/dwavesystems/dimod>`_\ .
 
-Representing a NOT Gate as a BQM
-================================
+If you installed `dwave-ocean-sdk <https://github.com/dwavesystems/dwave-ocean-sdk>`_
+and ran :code:`dwave config create`, your installation should meet these requirements.
 
-In the terminology of :ref:`oceanstack`\ , Ocean tools move the original problem through the
-following layers:
+Solution Steps
+==============
 
-* Application is a logic operation; the problem space is Boolean variables.
-* The method used here is a :term:`penalty function`. This simple example uses a known penalty
-  function. Other examples use Ocean tools to produce penalty functions.
-* The sampler API is a :term:`QUBO` representation of the binary quadratic model (BQM).
-* The sampler is a D-Wave :term:`solver`.
-* The compute resource is a D-Wave system.
+Section :ref:`solving_problems` describes the process of solving problems on the quantum
+computer in two steps: (1) Formulate the problem as a :term:`binary quadratic model` (BQM)
+and (2) Solve the BQM with a D-wave system or classical :term:`sampler`. In this example,
+we mathematically formulate the BQM and use Ocean tools to solve it on a D-Wave system.
 
-NOT as a Penalty Function
--------------------------
+Formulate the NOT Gate as a BQM
+===============================
 
-Ocean has tools to produce a :term:`penalty function` but this example uses a known
-formulation of NOT as penalty function:
+We use a :term:`sampler` like the D-Wave systems to solve binary quadratic models (BQM)\ [#]_\:
+given :math:`M` variables :math:`x_1,...,x_N`, where each variable :math:`x_i` can
+have binary values :math:`0` or :math:`1`, the system tries to find assignments of values
+that minimize
 
 .. math::
 
-    z \Leftrightarrow \neg x: \qquad 2xz-x-z+1.
+    \sum_i^N q_ix_i + \sum_{i<j}^N q_{i,j}x_i  x_j,
+
+where :math:`q_i` and :math:`q_{i,j}` are configurable (linear and quadratic) coefficients.
+To formulate a problem for the D-Wave system is to program :math:`q_i` and :math:`q_{i,j}` so
+that assignments of :math:`x_1,...,x_N` also represent solutions to the problem.
+
+.. [#] The "native" forms of BQM programmed into a D-Wave system are the :term:`Ising` model
+       traditionally used in statistical mechanics and its computer-science equivalent,
+       shown here, the :term:`QUBO`.
+
+Ocean tools can automate the representation of logic gates as a BQM, as demonstrated
+in the :ref:`multi_gate` example.
+
+.. raw::  latex
+
+    \begin{figure}
+    \begin{centering}
+    \begin{circuitikz}
+
+    \node (in1) at (0, 0) {$x$};
+    \node(out1) at  (2, 0) {$z$} ;
+
+    \draw
+
+    (1, 0) node[not port] (mynot1) {}
+
+    (0.1, 0) -- (mynot1.in)
+    (mynot1.out) -- (1.9, 0);
+
+    \end{circuitikz}\\
+
+    \end{centering}
+
+    \caption{NOT gate}
+    \label{fig:notGate}
+    \end{figure}
+
+    A NOT gate is shown in Figure \ref{fig:notGate}.
+
+.. figure:: ../_static/NOT.png
+   :name: Cover
+   :align: center
+   :scale: 70 %
+
+   A NOT gate.
+
+Representing the Problem With a Penalty Function
+------------------------------------------------
+
+This example demonstrates a mathematical formulation of the BQM. We can represent a NOT gate,
+:math:`z \Leftrightarrow \neg x`, where :math:`x` is the
+gate's input and :math:`z` its output, using a :term:`penalty function`:
+
+.. math::
+
+    2xz-x-z+1.
+
+This penalty function represents the NOT gate in that for assignments of variables that
+match valid states of the gate, the function evaluates at a lower value than assignments
+that would be invalid for the gate. Therefore, when the D-Wave minimizes a BQM based on this
+penalty function, it finds those assignments of variables that match valid gate states.
 
 The table below shows that this function penalizes states
-that represent a malfunctioning gate while no penalty is applied to a functioning
-gate. In this table, column **x** is all possible states of the gate's input;
-column :math:`\mathbf{z_{valid}}` is the corresponding output values of a
-functioning gate while :math:`\mathbf{z_{fault}}` is the corresponding
-output values of a malfunctioning gate, which are simply
-:math:`z_{fault} = \neg z_{valid}`; column  :math:`\mathbf{P_{valid}}` is
-the value the penalty function adds to the energy of the :term:`objective function`
-when the gate is functioning (zero, a functioning gate must not be penalized)
-while column :math:`\mathbf{P_{fault}}` is the value the penalty function
-adds when the gate is malfunctioning (nonzero, the objective function must
-be penalized with a higher energy).
+that are not valid for the gate while no penalty is applied to assignments of
+variables that correctly represent a NOT gate. In this table, column **x** is all
+possible states of the gate's input; column :math:`\mathbf{z}` is the corresponding
+output values; column **Valid?** shows whether the variables represent a valid state
+for a NOT gate; column :math:`\mathbf{P}` shows the value of the penalty for all
+possible assignments of variables.
 
-.. table:: Boolean NOT Operation as a Penalty.
+.. table:: Boolean NOT Operation Represented by a Penalty Function.
    :name: BooleanNOTAsPenalty
 
-   ===========  ============================  =============================  ===========================  ===
-   **x**        :math:`\mathbf{z_{valid}}`    :math:`\mathbf{z_{fault}}`     :math:`\mathbf{P_{valid}}`   :math:`\mathbf{P_{fault}}`
-   ===========  ============================  =============================  ===========================  ===
-   :math:`0`    :math:`1`                     :math:`0`                      :math:`0`                    :math:`1`
-   :math:`1`    :math:`0`                     :math:`1`                      :math:`0`                    :math:`1`
-   ===========  ============================  =============================  ===========================  ===
+   ===========  ===================  ==========  ===================
+   **x**        :math:`\mathbf{z}`   **Valid?**  :math:`\mathbf{P}`
+   ===========  ===================  ==========  ===================
+   :math:`0`    :math:`1`            Yes         :math:`0`
+   :math:`1`    :math:`0`            Yes         :math:`0`
+   :math:`0`    :math:`0`            No          :math:`1`
+   :math:`1`    :math:`1`            No          :math:`1`
+   ===========  ===================  ==========  ===================
 
-For example, the state :math:`x, z_{valid}=0,1` of the first row is
-represented by the penalty function with :math:`x=0` and :math:`z = 1 = \neg x`.
-For this functioning gate, the value of :math:`P_{valid}` is
+For example, the state :math:`x, z=0,1` of the first row represents
+valid assignments, and the value of :math:`P` is
 
 .. math::
 
     2xz-x-z+1 = 2 \times 0 \times 1 - 0 - 1 + 1 = -1+1=0,
 
-not penalizing the valid configuration. In contrast, the state :math:`x,
-z_{fault}=0,0` of the first row is represented by the penalty function with
-:math:`x=0` and :math:`z = 0 \ne \neg x`. For this malfunctioning gate, the
-value of :math:`P_{fault}` is
+not penalizing the valid assignment of variables. In contrast, the state :math:`x,
+z=0,0` of the third row represents an invalid assignment, and the
+value of :math:`P` is
 
 .. math::
 
     2xz-x-z+1 = 2 \times 0 \times 0 -0 -0 +1 =1,
 
-adding an energy cost of :math:`1` to the incorrect configuration.
+adding a value of :math:`1` to the BQM being minimized. By penalizing both possible
+assignments of variables that represent invalid states of a NOT gate, the BQM based
+on this penalty function has minimal values (lowest energy states) for variable values
+that also represent a NOT gate.
 
-This example drops the freestanding constant, which as no effect on the relative energies.
-The penalty function used is,
+See the system documentation for more information about penalty functions in general,
+and penalty functions for representing Boolean operations.
 
-.. math::
-
-    2xz-x-z.
-
-NOT as a QUBO
--------------
+Formulating the Problem as a QUBO
+---------------------------------
 
 Sometimes penalty functions are of cubic or higher degree and must be
-reformulated as quadratic to be mapped onto the native (:term:`Ising`) binary
-quadratic model used by the D-Wave system.
-
-In this case, the penalty function is quadratic, and easily ordered in the familiar
-QUBO formulation:
+reformulated as quadratic to be mapped to a binary quadratic model. For this
+penalty function we just need to drop the freestanding constant: the function's
+values are simply shifted by :math:`-1` but still those representing valid states of
+the NOT gate are lower than those representing invalid states.
+The remaining terms of the penalty function,
 
 .. math::
 
-    E(a_i, b_{i,j}; x_i) = -x_1 -x_2  + 2x_1x_2
+    2xz-x-z,
+
+are easily reordered in standard :term:`QUBO` formulation:
+
+.. math::
+
+    -x_1 -x_2  + 2x_1x_2
 
 where :math:`z=x_2` is the NOT gate's output, :math:`x=x_1` the input, linear
-coefficients are :math:`a_1=a_2=-1`, and quadratic coefficient is :math:`b_{1,2}=2`.
-The coefficients matrix is,
+coefficients are :math:`q_1=q_2=-1`, and quadratic coefficient is :math:`q_{1,2}=2`.
+These are the coefficients used to program a D-Wave system.
+
+Often it is convenient to format the coefficients as an upper-triangular matrix:
 
 .. math::
 
      Q = \begin{bmatrix} -1 & 2 \\ 0 & -1 \end{bmatrix}
 
-Minor-Embedding the BQM
-=======================
+See the system documentation for more information about formulating problems as QUBOs.
 
-The D-Wave system minimizes the energy of an :term:`Ising` spin configuration whose pairwise
-interactions lie on the edges of a :math:`M,N,L` :term:`Chimera` graph. To solve a given
-Ising spin problem with arbitrary pairwise interaction structure, you
-:term:`minor-embed` its graph into a Chimera graph by using qubits to represent missing edges.
+Solve the Problem by Sampling
+=============================
 
-The penalty function for the NOT gate can be represented
-as a fully connected :math:`K_2` graph that can be can be minor embedded onto two
-qubits of a Chimera unit cell.
+We now solve on a D-Wave system using sampler *DWaveSampler()* from Ocean software's
+`dwave-system <https://github.com/dwavesystems/dwave-system>`_\ . We also use
+its *EmbeddingComposite()* composite to map our unstructured problem (variables
+such as :code:`time` etc.) to the sampler's graph structure (the QPU's numerically
+indexed qubits) in a process known as :term:`minor-embedding`.
 
+The next code sets up a D-Wave system as the sampler.
 
-The figure below shows a minor embedding of the NOT gate into a unit cell of
-a D-Wave 2000Q QPU, in this case, the topmost left cell of the Chimera graph.
+.. note:: In the code below, replace sampler parameters in the third line. If
+      you configured a default solver, as described in :ref:`dwavesys`, you
+      should be able to set the sampler without parameters as
+      :code:`sampler = EmbeddingComposite(DWaveSampler())`.
+      You can see this information by running :code:`dwave config inspect` in your terminal.
 
-.. figure:: ../_static/Embedding_Chimera_NOT.png
-   :name: Embedding_Chimera_NOT
-   :alt: image
-   :align: center
-   :scale: 90 %
+>>> from dwave.system.samplers import DWaveSampler
+>>> from dwave.system.composites import EmbeddingComposite
+>>> sampler = EmbeddingComposite(DWaveSampler(endpoint='https://URL_to_my_D-Wave_system/', token='ABC-123456789012345678901234567890', solver='My_D-Wave_Solver'))
 
-   A NOT gate minor embedded into the topmost left unit cell of a
-   D-Wave 2000Q QPU. Variables :math:`x_1,x_2` are minor
-   embedded as physical qubits :math:`q_0,q_4`, represented as a 0 and 4
-   inside a blue circle. Biases :math:`a_1,a_2=-1,-1` and coupling
-   strength :math:`b_{1,2}=2` are also shown.
+Because the sampled solution is probabilistic, returned solutions may differ between runs. Typically,
+when submitting a problem to the system, we ask for many samples, not just one. This way, we see multiple
+“best” answers and reduce the probability of settling on a suboptimal answer. Below, we
+ask for 5000 samples.
 
-Example Code
-============
+>>> Q = {('x', 'x'): -1, ('x', 'z'): 2, ('z', 'x'): 0, ('z', 'z'): -1}
+>>> response = sampler.sample_qubo(Q, num_reads=5000)
+>>> for sample, energy, num_occurrences in response.data():   # doctest: +SKIP
+...    print(sample, "Energy: ", energy, "Occurrences: ", num_occurrences)
+...
+{'x': 0, 'z': 1} Energy:  -1.0 Occurrences:  2062
+{'x': 1, 'z': 0} Energy:  -1.0 Occurrences:  2937
+{'x': 1, 'z': 1} Energy:  0.0 Occurrences:  1
 
-The example configures a D-Wave :term:`solver` you have access to as a :term:`sampler`
-and submits a :term:`QUBO` formulation of an OR gate to it for 20 samples. The results
-should mostly show opposite values for the two variables (:math:`z=\neg x`); that
-is, when qubit 0 has value 0, qubit 4 should have value 1, and vice versa.
+Almost all the returned samples represent valid value assignments for a NOT gate,
+and minimize (are low-energy states of) the BQM.
 
-.. note:: The embedding here presumes that qubits 0 and 4 are active on the target QPU.
-      It's possible one might be inactive, in which case any other pair of connected qubits may
-      be used. Active qubits can be seen through the sampler's properties but for the purpose of
-      this simple example, you can choose pairs (1, 5) or (7, 11) for example.
+Summary
+=======
 
-      See the :ref:`max_cut` example for more advanced minor-embedding.
+In the terminology of :ref:`oceanstack`\ , Ocean tools moved the original problem through the
+following layers:
 
-.. note:: In the code below, replace sampler parameters in the third line with the values for
-      your sampler. If you configured a default solver, as described in :ref:`dwavesys`, you
-      should be able to set the sampler as :code:`sampler = DWaveSampler()`. You can
-      see this information by running :code:`dwave config inspect` in your terminal.
-
-.. code-block:: python
-
-   >>> from dwave.system.samplers import DWaveSampler
-   >>> import dimod
-   >>> sampler = DWaveSampler(endpoint='https://URL_to_my_D-Wave_system/', token='ABC-123456789012345678901234567890', solver='My_D-Wave_Solver')
-   >>> Q = {(0, 0): -1, (0, 4): 0, (4, 0): 2, (4, 4): -1}
-   >>> response = sampler.sample_qubo(Q, num_reads=20)
-   >>> for sample, energy, num_occurrences in response.data():   # doctest: +SKIP
-   ...    print(sample, "Energy: ", energy, "Occurrences: ", num_occurrences)
-   ...
-   {0: 0, 4: 1} Energy:  -1.0 Occurrences:  14
-   {0: 1, 4: 0} Energy:  -1.0 Occurrences:  6
+* The sampler API is a :term:`QUBO` formulation of the problem.
+* The sampler is *DWaveSampler()*.
+* The compute resource is a D-Wave system.

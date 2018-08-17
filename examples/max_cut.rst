@@ -54,31 +54,27 @@ working :term:`Chimera` unit cell. It relies on the default embedding of the DWa
 :term:`minor-embed` the graph in the first :term:`Chimera` unit cell (qubits 0 to 7).
 See the example in :ref:`and` for fuller code on verifying that the target qubits are active.
 
-.. code-block:: python
-
-    >>> import dwave_networkx as dnx
-    >>> from dwave.system.samplers import DWaveSampler
-    >>> G = dnx.chimera_graph(1, 1, 4)
-    >>> sampler = DWaveSampler()
-    >>> dnx.maximum_cut(G, sampler) # doctest: +SKIP
-    {4, 5, 6, 7}
+>>> import dwave_networkx as dnx
+>>> from dwave.system.samplers import DWaveSampler
+>>> G = dnx.chimera_graph(1, 1, 4)
+>>> sampler = DWaveSampler()
+>>> dnx.maximum_cut(G, sampler) # doctest: +SKIP
+{4, 5, 6, 7}
 
 The second example code creates a graph that duplicates the structure of two adjacent
 :term:`Chimera` unit cells. It uses the `dwave-system <https://github.com/dwavesystems/dwave-system>`_
 algorithm for :term:`minor-embedding` into at least two :term:`Chimera` unit cells.
 Two runs produced complementary results.
 
-.. code-block:: python
-
-    >>> import dwave_networkx as dnx
-    >>> from dwave.system.samplers import DWaveSampler
-    >>> from dwave.system.composites import EmbeddingComposite
-    >>> G = dnx.chimera_graph(2, 1, 4)
-    >>> sampler = EmbeddingComposite(DWaveSampler())
-    >>> dnx.maximum_cut(G, sampler) # doctest: +SKIP
-    {4, 5, 6, 7, 8, 9, 10, 11}
-    >>> dnx.maximum_cut(G, sampler) # doctest: +SKIP
-    {0, 1, 2, 3, 12, 13, 14, 15}
+>>> import dwave_networkx as dnx
+>>> from dwave.system.samplers import DWaveSampler
+>>> from dwave.system.composites import EmbeddingComposite
+>>> G = dnx.chimera_graph(2, 1, 4)
+>>> sampler = EmbeddingComposite(DWaveSampler())
+>>> dnx.maximum_cut(G, sampler) # doctest: +SKIP
+{4, 5, 6, 7, 8, 9, 10, 11}
+>>> dnx.maximum_cut(G, sampler) # doctest: +SKIP
+{0, 1, 2, 3, 12, 13, 14, 15}
 
 Optional Example Code
 =====================
@@ -89,13 +85,11 @@ The Ocean `dwave_networkx <http://dwave-networkx.readthedocs.io/en/latest/index.
 tool includes some graphic functionality helpful for work on Chimera graphs. The following
 example code visualizes the graph used in the previous example code.
 
-.. code-block:: python
-
-    >>> import dwave_networkx as dnx
-    >>> import matplotlib.pyplot as plt
-    >>> G = dnx.chimera_graph(2, 1, 4)
-    >>> plt.ion()
-    >>> dnx.draw_chimera(G, with_labels=True)
+>>> import dwave_networkx as dnx
+>>> import matplotlib.pyplot as plt
+>>> G = dnx.chimera_graph(2, 1, 4)
+>>> plt.ion()
+>>> dnx.draw_chimera(G, with_labels=True)
 
 .. figure:: ../_static/draw_chimera_2_1_4.png
    :name: draw_chimera

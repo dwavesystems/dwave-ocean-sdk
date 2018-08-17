@@ -258,11 +258,9 @@ Results
 
 You can verify the solution by checking an arbitrary valid or invalid sample:
 
-.. code-block:: python
-
-    >>> print(next(response.samples()))
-    {'a': 1, 'c': 0, 'b': 0, 'not1': 1, 'd': 1, 'or4': 1, 'or2': 0, 'not6': 0,
-    'and5': 1, 'z': 1, 'and3': 1}
+>>> print(next(response.samples()))      # doctest: +SKIP
+{'a': 1, 'c': 0, 'b': 0, 'not1': 1, 'd': 1, 'or4': 1, 'or2': 0, 'not6': 0,
+'and5': 1, 'z': 1, 'and3': 1}
 
 For the lowest-energy sample of the last run, found above, the inputs are
 :math:`a, b, c, d = 1, 0, 0, 1` and the output is :math:`z=1`, which indeed matches
@@ -281,13 +279,11 @@ converted the constraint satisfaction problem to a binary quadratic model using 
 default minimum energy gap of 2. Therefore, each constraint violated by the solution increases
 the energy level of the binary quadratic model by at least 2 relative to ground energy.
 
-.. code-block:: python
-
-   >>> plt.ion()
-   >>> plt.scatter(range(len(data)), [x[1] for x in data], c=['y' if (x[2] == '1')
-   ...             else 'r' for x in data],marker='.')
-   >>> plt.xlabel('Sample')
-   >>> plt.ylabel('Energy')
+>>> plt.ion()
+>>> plt.scatter(range(len(data)), [x[1] for x in data], c=['y' if (x[2] == '1')
+...             else 'r' for x in data],marker='.')
+>>> plt.xlabel('Sample')
+>>> plt.ylabel('Energy')
 
 
 .. figure:: ../_static/MultiGateCircuit_Results.png
@@ -303,19 +299,17 @@ the energy level of the binary quadratic model by at least 2 relative to ground 
 You can see in the graph that valid solutions have energy -9.5 and invalid solutions
 energies of -7.5, -5.5, and -3.5.
 
-.. code-block:: python
-
-   >>> for datum in response.data():
-   ...    print(datum)
-   ...
-   Sample(sample={'a': 1, 'c': 0, 'b': 0, 'not1': 1, 'd': 1, 'or4': 1, 'or2': 0, 'not6': 0, 'and5': 1, 'z': 1, 'and3': 1}, energy=-9.5, num_occurrences=76)
-   Sample(sample={'a': 1, 'c': 0, 'b': 1, 'not1': 0, 'd': 0, 'or4': 1, 'or2': 1, 'not6': 0, 'and5': 0, 'z': 0, 'and3': 0}, energy=-9.5, num_occurrences=4)
-   Sample(sample={'a': 0, 'c': 0, 'b': 0, 'not1': 1, 'd': 1, 'or4': 1, 'or2': 0, 'not6': 0, 'and5': 0, 'z': 0, 'and3': 0}, energy=-9.5, num_occurrences=44)
-   # Snipped this section for brevity
-   Sample(sample={'a': 1, 'c': 0, 'b': 1, 'not1': 0, 'd': 1, 'or4': 1, 'or2': 1, 'not6': 0, 'and5': 1, 'z': 1, 'and3': 1}, energy=-7.5, num_occurrences=3)
-   Sample(sample={'a': 1, 'c': 0, 'b': 1, 'not1': 0, 'd': 1, 'or4': 1, 'or2': 0, 'not6': 0, 'and5': 1, 'z': 1, 'and3': 1}, energy=-5.5, num_occurrences=1)
-   Sample(sample={'a': 1, 'c': 0, 'b': 1, 'not1': 0, 'd': 1, 'or4': 1, 'or2': 0, 'not6': 1, 'and5': 0, 'z': 1, 'and3': 0}, energy=-5.5, num_occurrences=1)
-   Sample(sample={'a': 0, 'c': 1, 'b': 1, 'not1': 0, 'd': 1, 'or4': 1, 'or2': 0, 'not6': 0, 'and5': 0, 'z': 0, 'and3': 0}, energy=-3.5, num_occurrences=1)
+>>> for datum in response.data():  # doctest: +SKIP
+...    print(datum)
+...
+Sample(sample={'a': 1, 'c': 0, 'b': 0, 'not1': 1, 'd': 1, 'or4': 1, 'or2': 0, 'not6': 0, 'and5': 1, 'z': 1, 'and3': 1}, energy=-9.5, num_occurrences=76)
+Sample(sample={'a': 1, 'c': 0, 'b': 1, 'not1': 0, 'd': 0, 'or4': 1, 'or2': 1, 'not6': 0, 'and5': 0, 'z': 0, 'and3': 0}, energy=-9.5, num_occurrences=4)
+Sample(sample={'a': 0, 'c': 0, 'b': 0, 'not1': 1, 'd': 1, 'or4': 1, 'or2': 0, 'not6': 0, 'and5': 0, 'z': 0, 'and3': 0}, energy=-9.5, num_occurrences=44)
+# Snipped this section for brevity
+Sample(sample={'a': 1, 'c': 0, 'b': 1, 'not1': 0, 'd': 1, 'or4': 1, 'or2': 1, 'not6': 0, 'and5': 1, 'z': 1, 'and3': 1}, energy=-7.5, num_occurrences=3)
+Sample(sample={'a': 1, 'c': 0, 'b': 1, 'not1': 0, 'd': 1, 'or4': 1, 'or2': 0, 'not6': 0, 'and5': 1, 'z': 1, 'and3': 1}, energy=-5.5, num_occurrences=1)
+Sample(sample={'a': 1, 'c': 0, 'b': 1, 'not1': 0, 'd': 1, 'or4': 1, 'or2': 0, 'not6': 1, 'and5': 0, 'z': 1, 'and3': 0}, energy=-5.5, num_occurrences=1)
+Sample(sample={'a': 0, 'c': 1, 'b': 1, 'not1': 0, 'd': 1, 'or4': 1, 'or2': 0, 'not6': 0, 'and5': 0, 'z': 0, 'and3': 0}, energy=-3.5, num_occurrences=1)
 
 You can see, for example, that sample :code:`Sample(sample={'a': 1, 'c': 0, 'b': 1, 'not1': 0, 'd': 1,
 'or4': 1, 'or2': 1, 'not6': 0, 'and5': 1, 'z': 1, 'and3': 1}, energy=-7.5, num_occurrences=3)`,

@@ -35,8 +35,7 @@ Learn how problems are formulated for solution on D-Wave systems using Ocean too
 Examples
 ========
 
-See how Ocean tools are used with these end-to-end examples that start from simple
-and gradually add functionality.
+See how Ocean tools are used with these end-to-end examples.
 
 Beginner-Level Examples
 -----------------------
@@ -45,14 +44,15 @@ Beginner-Level Examples
    :maxdepth: 1
    :hidden:
 
+   examples/min_vertex
+   examples/scheduling
    examples/not
    examples/and
-   examples/max_cut
 
-* :ref:`not` is a minimal example that solves a two-variable problem (:math:`y = \neg x`)
-  by assigning one qubit per variable and finding the minimum energy.
-* :ref:`and` adds the use of a simple chain in manually :term:`minor-embedding` a problem.
-* :ref:`max_cut` adds algorithmic :term:`minor-embedding` and some graphic functionality.
+* :ref:`min_vertex` solves a small graph problem.
+* :ref:`scheduling` solves a small constraint satisfaction problem.
+* :ref:`not` mathematically formulates a BQM for a two-variable problem.
+* :ref:`and` demonstrates programming the QPU more directly (:term:`minor-embedding`).
 
 Intermediate-Level Examples
 ---------------------------
@@ -74,7 +74,7 @@ Demonstrations
 ==============
 
 Copy (clone) open-source code to run demos of solving known problems on a D-Wave
-system. 
+system.
 
 * `Circuit Fault Diagnosis <https://github.com/dwavesystems/circuit-fault-diagnosis-demo>`_
 
