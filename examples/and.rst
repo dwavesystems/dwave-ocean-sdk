@@ -4,15 +4,11 @@
 Boolean AND Gate
 ================
 
-This example solves a simple problem of a Boolean AND gate to demonstrate
-some programming at a level of abstraction closer to the underlying hardware
-in solving problems on a D-Wave system. These include:
+This example solves a simple problem of a Boolean AND gate on a D-Wave system to demonstrate
+programming the underlying hardware more directly; in particular, :term:`Minor-embedding`
+a *chain*.
 
-* :term:`Minor-embedding` that includes a *chain*.
-* Cloud client interface to the system.
-
-Other examples demonstrate the more
-advanced steps that are typically needed for solving actual problems.
+Other examples demonstrate more advanced steps that are typically needed for solving actual problems.
 
 Example Requirements
 ====================
@@ -38,8 +34,8 @@ Formulate the AND Gate as a BQM
 
 Ocean tools can automate the representation of logic gates as a BQM, as demonstrated
 in the :ref:`multi_gate` example. The :ref:`not` example presents a mathematical
-formulation of a BQM for a Boolean gate in detail. Here we repeat those steps in short
-form while adding details of the underlying physical processes.
+formulation of a BQM for a Boolean gate in detail. Here we briefly repeat the steps of mathematically
+formulating a BQM while adding details on the underlying physical processes.
 
 A D-Wave quantum processing unit (QPU) is a chip with interconnected qubits; for example,
 a D-Wave 2000Q has up to 2048 qubits connected in a :term:`Chimera` topology. Programming it
@@ -218,7 +214,7 @@ unit cell (four horizontal qubits connected to four vertical qubits via couplers
 
    A NOT gate minor embedded into the topmost left unit cell of a
    D-Wave 2000Q QPU. Variables :math:`x_1,x_2` are minor
-   embedded as physical qubits 0 and 4 (blue circles). Biases :math:`q_1,q_2=-1,-1`
+   embedded as qubits 0 and 4 (blue circles). Biases :math:`q_1,q_2=-1,-1`
    and coupling strength :math:`q_{1,2}=2` are also shown.
 
 The following code uses the *FixedEmbeddingComposite* composite to manually minor-embed
@@ -228,7 +224,7 @@ the problem. Its last line prints a confirmation that indeed the two selected qu
 .. code-block:: python
 
    >>> from dwave.system.composites import FixedEmbeddingComposite
-   >>> sampler_embedded = FixedEmbeddingComposite(sampler(), {'x': [0], 'z': [4]})
+   >>> sampler_embedded = FixedEmbeddingComposite(sampler, {'x': [0], 'z': [4]})
    >>> print(sampler_embedded.adjacency)     # doctest: +SKIP
    {'x': {'z'}, 'z': {'x'}}
 
@@ -250,8 +246,8 @@ From NOT to AND: an Important Difference
 
 The BQM for a NOT gate, :math:`-x -z  + 2xz`, can be represented by a fully connected :math:`K_2` graph:
 its linear coefficients are weights of the two connected nodes with the single quadratic
-coefficient the weigth of its connecting edge. The BQM for an AND gate, :math:`3z + x_1x_2 - 2x_1z - 2x_2z`,
-needs a K3 graph.
+coefficient the weight of its connecting edge. The BQM for an AND gate, :math:`3z + x_1x_2 - 2x_1z - 2x_2z`,
+needs a :math:`K_3` graph.
 
 .. figure:: ../_static/Embedding_NOTvsAND.png
    :name: Embedding_NOTvsAND
@@ -259,9 +255,9 @@ needs a K3 graph.
    :align: center
    :scale: 50 %
 
-   NOT gate K2 complete graph (top) versus AND gate K3 complete graph (bottom.)
+   NOT gate :math:`K_2` complete graph (top) versus AND gate :math:`K_3` complete graph (bottom.)
 
-We saw above how to minor-embed a K2 graph on a D-Wave system. To minor-embed a fully connected
+We saw above how to minor-embed a :math:`K_2` graph on a D-Wave system. To minor-embed a fully connected
 :math:`K_3` graph requires *chaining* qubits.
 
 Minor-Embedding an AND Gate
@@ -277,10 +273,10 @@ say, qubits 0, 1, 4, and 5.
   :scale: 20 %
   :alt: Unit cell
 
-  Chimera unit cell.
+  Chimera unit cell illustrated in two layouts.
 
-To fit the 3-qubit loop into a 4-sided structure, create a chain of 2 physical qubits
-that represent a single variable. For example, chain qubit 0 and qubit 4 to represent variable :math:`z`.
+To fit the 3-qubit loop into a 4-sided structure, create a chain of 2 qubits
+to represent a single variable. For example, chain qubit 0 and qubit 4 to represent variable :math:`z`.
 
 .. figure:: ../_static/Embedding_Chimera_AND.png
   :name: Embedding_Chimera_AND
@@ -291,10 +287,12 @@ that represent a single variable. For example, chain qubit 0 and qubit 4 to repr
 
 The strength of the coupler between qubits 0 and 4, which represents
 variable :math:`z`, must be set to correlate the qubits strongly, so that in most
-solutions they have a single value for :math:`z`.
+solutions they have a single value for :math:`z`. (The last code under
+`Solve the Problem by Sampling: Automated Minor-Embedding`_ had two output lines with
+identical results. This was likely due to the qubits in a chain taking different values.)
 
-This section uses Ocean's `dwave-system <https://github.com/dwavesystems/dwave-system>`_
-*VirtualGraphComposite()* composite for the manual minor-embedding. Its last line prints a
+The code below uses Ocean's `dwave-system <https://github.com/dwavesystems/dwave-system>`_
+*VirtualGraphComposite()* composite for manual minor-embedding. Its last line prints a
 confirmation that indeed all three variables are connected.
 (coupled).
 
@@ -302,7 +300,7 @@ confirmation that indeed all three variables are connected.
 
     >>> from dwave.system.composites import VirtualGraphComposite
     >>> embedding = {'x1': {1}, 'x2': {5}, 'z': {0, 4}}
-    >>> sampler_embedded = VirtualGraphComposite(sampler(), embedding)
+    >>> sampler_embedded = VirtualGraphComposite(sampler, embedding)
     >>> print(sampler_embedded.adjacency)
     {'x1': {'z', 'x2'}, 'x2': {'x1', 'z'}, 'z': {'x1', 'x2'}}
 
@@ -320,3 +318,27 @@ We ask for 5000 samples.
     {'x1': 1, 'x2': 1, 'z': 1} Energy:  0.0 Occurrences:  1103
     {'x1': 0, 'x2': 0, 'z': 0} Energy:  0.0 Occurrences:  1437
     {'x1': 0, 'x2': 1, 'z': 1} Energy:  1.0 Occurrences:  1
+
+For comparison, the following code purposely weakens the chain strength (strength of the
+coupler between qubits 0 and 4, which represents variable :math:`z`). The first
+line prints the range of values available for the D-Wave system this code is executed
+on. By default, *VirtualGraphComposite()* used the maximum chain strength, which
+is 2. By setting it to a low value of 0.1, the two qubits are not strongly correlated
+and the result is that many returned samples represent invalid states for an AND gate. 
+
+.. code-block:: python
+
+    >>> print(sampler.properties['extended_j_range'])
+    [-2.0, 1.0]
+    >>> sampler_embedded = VirtualGraphComposite(sampler, embedding, chain_strength=0.1)
+    >>> response = sampler_embedded.sample_qubo(Q, num_reads=5000)
+    >>> for sample, energy, num_occurrences in response.data():    # doctest: +SKIP
+    ...     print(sample, "Occurrences: ", num_occurrences)
+    ...
+    {'x1': 1, 'x2': 0, 'z': 0} Energy:  0.0 Occurrences:  2721
+    {'x1': 1, 'x2': 0, 'z': 0} Energy:  0.0 Occurrences:  149
+    {'x1': 0, 'x2': 1, 'z': 0} Energy:  0.0 Occurrences:  103
+    {'x1': 1, 'x2': 1, 'z': 1} Energy:  0.0 Occurrences:  130
+    {'x1': 0, 'x2': 0, 'z': 0} Energy:  0.0 Occurrences:  134
+    {'x1': 0, 'x2': 1, 'z': 1} Energy:  1.0 Occurrences:  1761
+    {'x1': 1, 'x2': 0, 'z': 1} Energy:  1.0 Occurrences:  2
