@@ -5,34 +5,12 @@ Map Coloring
 ============
 
 This example solves a map-coloring problem to demonstrate using Ocean tools
-to solve a problem on a D-Wave system.
-
-It adds to the examples of :ref:`not`, :ref:`and`, and :ref:`max_cut` the following
-more advanced features:
-
-* Algorithmic generation of penalty models.
-* Algorithmic conversion to binary quadratic models.
-
-Example Requirements
-====================
-
-To run the code in this example, the following is required.
-
-* The requisite information for problem submission through SAPI, as described in
-  :ref:`dwavesys`\ , in a configuration file for connection to a D-Wave system,
-  as described in
-  `dwave-cloud-client <http://dwave-cloud-client.readthedocs.io/en/latest/>`_\ .
-* Installation of Ocean tools
-  `dwavebinarycsp <http://dwavebinarycsp.readthedocs.io/en/latest/>`_ and
-  `dwave-system <https://github.com/dwavesystems/dwave-system>`_\ . For graphics,
-  you will also need `NetworkX <https://networkx.github.io/>`_\ .
-
-Constraint Satisfaction Problems
-================================
+to solve a problem on a D-Wave system. It demonstrates using the D-Wave system
+to solve a more complex constraint satisfaction problem (CSP) than that solved in
+the example of :ref:`scheduling`.
 
 Constraint satisfaction problems require that all a problem's variables be assigned
 values, out of a finite domain, that result in the satisfying of all constraints.
-
 The map-coloring CSP, for example, is to assign a color to each region of a map such that
 any two regions sharing a border have different colors.
 
@@ -49,21 +27,42 @@ The constraints for the map-coloring problem can be expressed as follows:
 * Each region is assigned one color only, of :math:`C` possible colors.
 * The color assigned to one region cannot be assigned to adjacent regions.
 
-Binary Constraint Satisfaction Problems
-=======================================
+Example Requirements
+====================
 
-Solving such problems as the map-coloring CSP on a :term:`sampler` such as the
-D-Wave system necessitates that the
-mathematical formulation use binary variables because the solution is implemented physically
-with qubits, and so must translate to spins :math:`s_i\in\{-1,+1\}` or equivalent binary
-values :math:`x_i\in \{0,1\}`. This means that in formulating the problem
-by stating it mathematically, you might use unary encoding to represent the
-:math:`C` colors: each region is represented by :math:`C` variables, one for each
-possible color, which is set to value :math:`1` if selected, while the
-remaining :math:`C-1` variables are :math:`0`.
+To run the code in this example, the following is required.
 
-Workflow for a Four-Color Canadian Map
-======================================
+* The requisite information for problem submission through SAPI, as described in
+  :ref:`dwavesys`\ .
+* Ocean tools
+  `dwavebinarycsp <http://dwavebinarycsp.readthedocs.io/en/latest/>`_ and
+  `dwave-system <https://github.com/dwavesystems/dwave-system>`_\ . For graphics,
+  you will also need `NetworkX <https://networkx.github.io/>`_\ .
+
+If you installed `dwave-ocean-sdk <https://github.com/dwavesystems/dwave-ocean-sdk>`_
+and ran :code:`dwave config create`, your installation should meet these requirements.
+
+Solution Steps
+==============
+
+Following the standard solution process described in Section :ref:`solving_problems`,
+we (1) formulate the problem as a :term:`binary quadratic model` (BQM) by using unary
+encoding to represent the :math:`C` colors: each region is represented by :math:`C`
+variables, one for each possible color, which is set to value :math:`1` if selected, while the
+remaining :math:`C-1` variables are :math:`0`. (2) Solve the BQM with a D-Wave system
+as the sampler.
+
+The full workflow is as follows:
+
+#. Formulate the problem as a graph, with provinces represented as nodes and shared borders as edges,
+   using 4 binary variables (one per color) for each province.
+#. Create a binary constraint satisfaction problem and add all the needed constraints.
+#. Convert to a binary quadratic model.
+#. Sample.
+#. Plot a valid solution.
+
+Four-Color Canadian Map
+=======================
 
 This example finds a solution to the map-coloring problem for a map of Canada
 using four colors (the sample code can easily be modified to change the number of
@@ -106,18 +105,6 @@ colors or use different maps). Canada's 13 provinces are denoted by postal codes
      -
      -
 
-The workflow used here for solution is as follows:
-
-#. Formulate the problem as a graph, with provinces represented as nodes and shared borders as edges,
-   using 4 binary variables (one per color) for each province.
-#. Create a binary constraint satisfaction problem and add all the needed constraints.
-#. Convert to a binary quadratic model.
-#. Sample.
-#. Plot a valid solution, if such was found.
-
-Example Code
-============
-
 .. toctree::
    :maxdepth: 1
    :hidden:
@@ -130,12 +117,9 @@ Example Code
 The example uses the
 `D-Wave binary CSP tool <http://dwavebinarycsp.readthedocs.io/en/latest/>`_
 to set up constraints and convert the CSP to a binary quadratic model,
-configures a D-Wave :term:`solver` you have access to as a
-:term:`sampler`, and plots the result using `NetworkX <https://networkx.github.io/>`_\ .
-
-.. note:: As stated in the requirements section above, you should have set up
-     a configuration file for connection to a D-Wave system, as described in
-     `dwave-cloud-client <http://dwave-cloud-client.readthedocs.io/en/latest/>`_\ .
+`dwave-system <https://github.com/dwavesystems/dwave-system>`_ to set up a D-Wave
+system as the :term:`sampler`, and `NetworkX <https://networkx.github.io/>`_ to
+plot results.
 
 .. code-block:: python
 
@@ -201,19 +185,21 @@ system.
 
     bqm = dwavebinarycsp.stitch(csp)
 
-Set up a solver using the local system’s default D-Wave Cloud Client configuration file
-and sample.
+The next code sets up a D-Wave system as the sampler and requests 50 samples.
+
+.. note:: In the code below, replace sampler parameters as needed. If
+      you configured a default solver, as described in :ref:`dwavesys`, you
+      should be able to set the sampler without parameters as
+      :code:`sampler = EmbeddingComposite(DWaveSampler())`.
+      You can see this information by running :code:`dwave config inspect` in your terminal.
 
 .. code-block:: python
 
     # Sample 50 times
-    sampler = EmbeddingComposite(DWaveSampler())
+    sampler = EmbeddingComposite(DWaveSampler(endpoint='https://URL_to_my_D-Wave_system/', token='ABC-123456789012345678901234567890', solver='My_D-Wave_Solver'))
     response = sampler.sample(bqm, num_reads=50)
 
-Optional Example Code
-=====================
-
-.. note:: This example code requires `Matplotlib <https://matplotlib.org>`_\ .
+.. note:: The next code requires `Matplotlib <https://matplotlib.org>`_\ .
 
 Plot a valid solution.
 

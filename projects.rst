@@ -57,7 +57,8 @@ at `D-Wave on GitHub <https://github.com/dwavesystems>`_\ ).
 
        While it can be used to find minors in arbitrary graphs, it is particularly geared towards the state of
        the art in QA: problem graphs of a few to a few hundred variables, and hardware graphs of a few thousand qubits.
-   * - qbsolv (`repo <https://github.com/dwavesystems/qbsolv>`_)
-     - A decomposing solver, finds a minimum value of a large quadratic unconstrained binary
-       optimization (:term:`QUBO`) problem by splitting it into pieces solved either via a
-       D-Wave system or a classical tabu solver.
+   * - `qbsolv <https://qbsolv.readthedocs.io/en/latest/>`_ (`repo <https://github.com/dwavesystems/qbsolv>`_)
+     - A decomposing solver that finds a minimum value of a large quadratic unconstrained binary
+       optimization (:term:`QUBO`) problem by splitting it into pieces. The pieces are solved
+       using a classical solver running the tabu algorithm. qbsolv also enables configuring
+       a D-Wave system as the solver.
