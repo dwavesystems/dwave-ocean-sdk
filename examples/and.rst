@@ -5,7 +5,7 @@ Boolean AND Gate
 ================
 
 This example solves a simple problem of a Boolean AND gate on a D-Wave system to demonstrate
-programming the underlying hardware more directly; in particular, :term:`Minor-embedding`
+programming the underlying hardware more directly; in particular, :term:`minor-embedding`
 a *chain*.
 
 Other examples demonstrate more advanced steps that are typically needed for solving actual problems.

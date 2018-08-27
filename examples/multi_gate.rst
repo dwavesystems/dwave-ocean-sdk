@@ -5,10 +5,8 @@ Multiple-Gate Circuit
 =====================
 
 This example solves a logic circuit problem to demonstrate using Ocean tools
-to solve a problem on a D-Wave system.
-
-It builds on the :ref:`map_coloring` example, providing some considerations about
-the effect of minor-embedding on performance.
+to solve a problem on a D-Wave system. It builds on the discussion in the :ref:`and`
+example about the effect of :term:`minor-embedding` on performance.
 
 .. raw::  latex
 
@@ -77,21 +75,19 @@ Example Requirements
 
 To run the code in this example, the following is required.
 
-* The requisite information for problem submission through SAPI, as described in
-  :ref:`dwavesys`\ , in a configuration file for connection to a D-Wave system,
-  as described in
-  `dwave-cloud-client <http://dwave-cloud-client.readthedocs.io/en/latest/>`_\ .
-* Installation of Ocean tools
-  `dwavebinarycsp <http://dwavebinarycsp.readthedocs.io/en/latest/>`_ and
+* The requisite information for problem submission through SAPI, as described in :ref:`dwavesys`
+* Ocean tools `dwavebinarycsp <http://dwavebinarycsp.readthedocs.io/en/latest/>`_ and
   `dwave-system <https://github.com/dwavesystems/dwave-system>`_\ . For the
   optional graphics, you will also need `Matplotlib <https://matplotlib.org>`_\ .
 
+If you installed `dwave-ocean-sdk <https://github.com/dwavesystems/dwave-ocean-sdk>`_
+and ran :code:`dwave config create`, your installation should meet these requirements.
 
-Formulating the Problem
-=======================
+Formulating the Problem as a CSP
+================================
 
-This example follows two approaches to formulating the problem by converting the
-logic gates to penalty models by defining constraints:
+This example demonstrates two formulations of constraints from the problem's
+logic gates:
 
 #. Single comprehensive constraint::
 
@@ -129,40 +125,12 @@ logic gates to penalty models by defining constraints:
 .. note:: `dwavebinarycsp` works best for constraints of up to 4 variables; it may not
       function as expected for constraints of over 8 variables.
 
-Minor-Embedding
-===============
-
-This example converts the constraint satisfactions problems above to binary quadratic
-models and checks the number of valid and invalid samples returned from a D-Wave system
-(using a configuration file for connection to a D-Wave system, as described in
-`dwave-cloud-client <http://dwave-cloud-client.readthedocs.io/en/latest/>`_\ ).
+The next line of code converts the constraints into a BQM that we solve by sampling.
 
 .. code-block:: python
 
-    from dwave.system.samplers import DWaveSampler
-    from dwave.system.composites import EmbeddingComposite
-
     # Convert the binary constraint satisfaction problem to a binary quadratic model
     bqm = dwavebinarycsp.stitch(csp)
-
-    # Set up a solver using the local system’s default D-Wave Cloud Client configuration file
-    # and sample 100 times
-    sampler = EmbeddingComposite(DWaveSampler())
-    response = sampler.sample(bqm, num_reads=100)
-
-    # Check how many solutions meet the constraints (are valid)
-    valid, invalid, data = 0, 0, []
-    for datum in response.data():
-    sample, energy, num = datum
-    if (csp.check(sample)):
-        valid = valid+num
-        for i in range(num):
-            data.append((sample, energy, '1'))
-    else:
-        invalid = invalid+num
-        for i in range(num):
-            data.append((sample, energy, '0'))
-    print(valid, invalid)
 
 .. toctree::
    :maxdepth: 1
@@ -178,8 +146,48 @@ small constraints, yields a binary quadratic model with 11 variables: 4 inputs, 
 
 You can see the binary quadratic models here: :ref:`multi_gate_results`.
 
+Minor-Embedding and Sampling
+============================
+
 Algorithmic minor-embedding is heuristic---solution results vary significantly based on
 the minor-embedding found.
+
+The next code sets up a D-Wave system as the sampler.
+
+.. note:: In the code below, replace sampler parameters as needed. If
+      you configured a default solver, as described in :ref:`dwavesys`, you
+      should be able to set the sampler without parameters as
+      :code:`sampler = EmbeddingComposite(DWaveSampler())`.
+      You can see this information by running :code:`dwave config inspect` in your terminal.
+
+.. code-block:: python
+
+    from dwave.system.samplers import DWaveSampler
+    from dwave.system.composites import EmbeddingComposite
+
+    # Set up a D-Wave system as the sampler
+    sampler = EmbeddingComposite(DWaveSampler(endpoint='https://URL_to_my_D-Wave_system/', token='ABC-123456789012345678901234567890', solver='My_D-Wave_Solver'))
+
+Next, we ask for 1000 samples and separate those that satisfy the CSP from
+those that fail to do so.
+
+.. code-block:: python
+
+    response = sampler.sample(bqm, num_reads=1000)
+
+    # Check how many solutions meet the constraints (are valid)
+    valid, invalid, data = 0, 0, []
+    for datum in response.data():
+        sample, energy, num = datum
+        if (csp.check(sample)):
+            valid = valid+num
+            for i in range(num):
+                data.append((sample, energy, '1'))
+        else:
+            invalid = invalid+num
+            for i in range(num):
+                data.append((sample, energy, '0'))
+    print(valid, invalid)
 
 For the single constraint approach, 4 runs with their different minor-embeddings
 yield significantly varied results, as shown in the following table:
@@ -253,10 +261,11 @@ those embeddings are visualized graphically.
    code above, as described for the previous figure. Here, the top two panels are for
    runs with the default chain-strength of 1 and the bottom two for chain-strengths of 2.
 
-Results
-=======
+Looking at the Results
+======================
 
-You can verify the solution by checking an arbitrary valid or invalid sample:
+You can verify the solution to the circuit problem by checking an arbitrary valid
+or invalid sample:
 
 >>> print(next(response.samples()))      # doctest: +SKIP
 {'a': 1, 'c': 0, 'b': 0, 'not1': 1, 'd': 1, 'or4': 1, 'or2': 0, 'not6': 0,
@@ -264,7 +273,7 @@ You can verify the solution by checking an arbitrary valid or invalid sample:
 
 For the lowest-energy sample of the last run, found above, the inputs are
 :math:`a, b, c, d = 1, 0, 0, 1` and the output is :math:`z=1`, which indeed matches
-the analytical solution,
+the analytical solution for the circuit,
 
 .. math::
 
@@ -311,9 +320,17 @@ Sample(sample={'a': 1, 'c': 0, 'b': 1, 'not1': 0, 'd': 1, 'or4': 1, 'or2': 0, 'n
 Sample(sample={'a': 1, 'c': 0, 'b': 1, 'not1': 0, 'd': 1, 'or4': 1, 'or2': 0, 'not6': 1, 'and5': 0, 'z': 1, 'and3': 0}, energy=-5.5, num_occurrences=1)
 Sample(sample={'a': 0, 'c': 1, 'b': 1, 'not1': 0, 'd': 1, 'or4': 1, 'or2': 0, 'not6': 0, 'and5': 0, 'z': 0, 'and3': 0}, energy=-3.5, num_occurrences=1)
 
-You can see, for example, that sample :code:`Sample(sample={'a': 1, 'c': 0, 'b': 1, 'not1': 0, 'd': 1,
-'or4': 1, 'or2': 1, 'not6': 0, 'and5': 1, 'z': 1, 'and3': 1}, energy=-7.5, num_occurrences=3)`,
+You can see, for example, that sample
+
+.. code-block:: python
+
+    Sample(sample={'a': 1, 'c': 0, 'b': 1, 'not1': 0, 'd': 1, 'or4': 1, 'or2': 1, 'not6': 0, 'and5': 1, 'z': 1, 'and3': 1}, energy=-7.5, num_occurrences=3)
+
 which occurred 3 times, has a higher energy by 2 than the ground energy. It is expected that
 this solution violates a single constraint, and you can see that it violates constraint
-:code:`Constraint.from_configurations(frozenset([(1, 0, 0), (0, 1, 0), (0, 0, 0), (1, 1, 1)]),
-('a', 'not1', 'and3'), Vartype.BINARY, name='AND')` on AND gate 3.
+
+.. code-block:: python
+
+    Constraint.from_configurations(frozenset([(1, 0, 0), (0, 1, 0), (0, 0, 0), (1, 1, 1)]), ('a', 'not1', 'and3'), Vartype.BINARY, name='AND')
+
+on AND gate 3.
