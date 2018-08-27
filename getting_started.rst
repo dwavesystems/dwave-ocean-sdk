@@ -64,9 +64,8 @@ Intermediate-Level Examples
    examples/map_coloring
    examples/multi_gate
 
-* :ref:`map_coloring` example demonstrates algorithmic generation of penalty models and
-  conversion to binary quadratic models.
-* :ref:`multi_gate` compares solutions for various minor-embeddings and chains strengths.
+* :ref:`map_coloring` example solves a more complex constraint satisfaction problem.
+* :ref:`multi_gate` looks more deeply at :term:`minor-embedding`.
 
 .. _projects-Demonstrations:
 

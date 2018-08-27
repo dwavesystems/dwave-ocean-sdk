@@ -5,7 +5,7 @@ Boolean AND Gate
 ================
 
 This example solves a simple problem of a Boolean AND gate on a D-Wave system to demonstrate
-programming the underlying hardware more directly; in particular, :term:`Minor-embedding`
+programming the underlying hardware more directly; in particular, :term:`minor-embedding`
 a *chain*.
 
 Other examples demonstrate more advanced steps that are typically needed for solving actual problems.
@@ -87,7 +87,7 @@ using :term:`penalty function`:
 
 This penalty function represents the AND gate in that for assignments of variables that match
 valid states of the gate, the function evaluates at a lower value than assignments that would
-be invalid for the gate. Therefore, when the D-Wave minimizes a BQM based on this penalty function,
+be invalid for the gate. Therefore, when the D-Wave system minimizes a BQM based on this penalty function,
 it finds those assignments of variables that match valid gate states.
 
 You can verify that this penalty function represents the AND gate in the same way as was
