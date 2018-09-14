@@ -103,7 +103,7 @@ The following are two example formulations.
       :math:`1`    :math:`1`     No               :math:`1`
       ===========  ============  ===============  ============
 
-2. Ocean's `dwavebinarycsp <http://dwavebinarycsp.readthedocs.io/en/latest/>`_ tool enables the
+2. Ocean's :std:doc:`dwavebinarycsp <binarycsp:index>` tool enables the
    following formulation of an AND gate as a BQM:
 
    .. code-block:: python
@@ -139,7 +139,7 @@ The members of the two dicts are linear and quadratic coefficients, respectively
 the third term is a constant offset associated with the model, and the fourth
 shows the variable types in this model are binary.
 
-Ocean's `dimod <http://dimod.readthedocs.io/en/latest/>`_ tool provides a reference solver
+Ocean's :std:doc:`dimod <dimod:index>` tool provides a reference solver
 that calculates the values of a BQM (its "energy") for all possible assignments of variables.
 Such a sampler can solve a small three-variable problem like the AND gate created above.
 
@@ -163,7 +163,7 @@ Such a sampler can solve a small three-variable problem like the AND gate create
 Note that the first four samples are the valid states of the AND gate and have
 lower values than the second four, which represent invalid states.
 
-Ocean's `dwave-system <http://dwave-system.readthedocs.io/en/latest/>`_ tool enables
+Ocean's :std:doc:`dwave-system <system:index>` tool enables
 you to use a D-Wave system as a sampler. In addition to *DWaveSampler()*, the tool
 provides a *EmbeddingComposite()* composite that maps unstructured problems to the graph
 structure of the selected sampler, a process known as :term:`minor-embedding`.
@@ -202,14 +202,14 @@ advanced features and Ocean software's advanced tools.
 The mapping from problem variables to qubits, :term:`minor-embedding`, can significantly
 affect performance. Ocean tools perform this mapping heuristically so simply rerunning
 a problem might improve results. Advanced users may customize the mapping by directly
-using the `minorminer <http://minorminer.readthedocs.io/en/latest/>`_ tool or setting
+using the :std:doc:`minorminer <minorminer:index>` tool or setting
 a minor-embedding themselves (or some combination).
 
 D-Wave systems offer features such as spin-reversal (gauge) transforms and anneal offsets,
 which reduce the impact of possible analog and systematic errors.
 
 You can see the parameters and properties a sampler supports. For example, Ocean's
-`dwave-system <http://dwave-system.readthedocs.io/en/latest/>`_ lets you use the
+:std:doc:`dwave-system <system:index>` lets you use the
 D-Wave's *virtual graphs* feature to simplify minor-embedding. The following example
 maps a problem's variables x, y to qubits 1, 5 and variable z to two qubits 0 and 4,
 and checks some features supported on the D-Wave system used as a sampler.

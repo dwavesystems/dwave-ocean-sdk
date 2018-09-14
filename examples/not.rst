@@ -16,7 +16,7 @@ Example Requirements
 To run the code in this example, the following is required.
 
 * The requisite information for problem submission through SAPI, as described in :ref:`dwavesys`
-* Ocean tools `dwave-system <https://github.com/dwavesystems/dwave-system>`_ and `dimod <https://github.com/dwavesystems/dimod>`_\ .
+* Ocean tools :std:doc:`dwave-system <system:index>` and :std:doc:`dimod <dimod:index>`.
 
 If you installed `dwave-ocean-sdk <https://github.com/dwavesystems/dwave-ocean-sdk>`_
 and ran :code:`dwave config create`, your installation should meet these requirements.
@@ -180,7 +180,7 @@ Solve the Problem by Sampling
 =============================
 
 We now solve on a D-Wave system using sampler *DWaveSampler()* from Ocean software's
-`dwave-system <https://github.com/dwavesystems/dwave-system>`_\ . We also use
+:std:doc:`dwave-system <system:index>`. We also use
 its *EmbeddingComposite()* composite to map our unstructured problem (variables
 such as :code:`time` etc.) to the sampler's graph structure (the QPU's numerically
 indexed qubits) in a process known as :term:`minor-embedding`.

@@ -76,8 +76,8 @@ Example Requirements
 To run the code in this example, the following is required.
 
 * The requisite information for problem submission through SAPI, as described in :ref:`dwavesys`
-* Ocean tools `dwavebinarycsp <http://dwavebinarycsp.readthedocs.io/en/latest/>`_ and
-  `dwave-system <https://github.com/dwavesystems/dwave-system>`_\ . For the
+* Ocean tools :std:doc:`dwavebinarycsp <binarycsp:index>` and
+  :std:doc:`dwave-system <system:index>`. For the
   optional graphics, you will also need `Matplotlib <https://matplotlib.org>`_\ .
 
 If you installed `dwave-ocean-sdk <https://github.com/dwavesystems/dwave-ocean-sdk>`_

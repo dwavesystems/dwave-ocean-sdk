@@ -16,7 +16,7 @@ Example Requirements
 To run the code in this example, the following is required.
 
 * The requisite information for problem submission through SAPI, as described in :ref:`dwavesys`
-* Ocean tools `dwave-system <https://github.com/dwavesystems/dwave-system>`_ \ .
+* Ocean tools :std:doc:`dwave-system <system:index>`.
 
 If you installed `dwave-ocean-sdk <https://github.com/dwavesystems/dwave-ocean-sdk>`_
 and ran :code:`dwave config create`, your installation should meet these requirements.
@@ -127,7 +127,7 @@ For reference, we first solve with the same steps used in the :ref:`not` example
 before solving again while manually controlling additional parameters.
 
 Again we use sampler *DWaveSampler()* from Ocean software's
-`dwave-system <https://github.com/dwavesystems/dwave-system>`_ and
+:std:doc:`dwave-system <system:index>` and
 its *EmbeddingComposite()* composite to :term:`minor-embed` our unstructured problem (variables
 x1, x2, and z) on the sampler's graph structure (the QPU's numerically
 indexed qubits).
@@ -167,7 +167,7 @@ Solve the Problem by Sampling: Non-automated Minor-Embedding
 ============================================================
 
 This section looks more closely into :term:`minor-embedding`. Above and in the :ref:`not`
-example, `dwave-system <https://github.com/dwavesystems/dwave-system>`_
+example, :std:doc:`dwave-system <system:index>`
 *EmbeddingComposite()* composite abstracted the minor-embedding.
 
 Minor-Embedding a NOT Gate
@@ -277,7 +277,7 @@ solutions they have a single value for :math:`z`. (The last code under
 `Solve the Problem by Sampling: Automated Minor-Embedding`_ had two output lines with
 identical results. This was likely due to the qubits in a chain taking different values.)
 
-The code below uses Ocean's `dwave-system <https://github.com/dwavesystems/dwave-system>`_
+The code below uses Ocean's :std:doc:`dwave-system <system:index>`
 *VirtualGraphComposite()* composite for manual minor-embedding. Its last line prints a
 confirmation that indeed all three variables are connected.
 (coupled).

@@ -20,8 +20,8 @@ Example Requirements
 To run the code in this example, the following is required.
 
 * The requisite information for problem submission through SAPI, as described in :ref:`dwavesys`.
-* Ocean tools `dwave-system <https://github.com/dwavesystems/dwave-system>`_\ ,  `dimod <https://github.com/dwavesystems/dimod>`_\ , and
-  `dwave_networkx <http://dwave-networkx.readthedocs.io/en/latest/index.html>`_\ .
+* Ocean tools :std:doc:`dwave-system <system:index>`,  :std:doc:`dimod <dimod:index>`, and
+  :std:doc:`dwave_networkx <networkx:index>`.
 
 If you installed `dwave-ocean-sdk <https://github.com/dwavesystems/dwave-ocean-sdk>`_
 and ran :code:`dwave config create`, your installation should meet these requirements.
@@ -71,13 +71,13 @@ Solving Classically on a CPU
 
 Before using the D-Wave system, it can sometimes be helpful to test code locally.
 Here we select one of Ocean software's test samplers to solve classically on a CPU.
-Ocean's `dimod <https://github.com/dwavesystems/dimod>`_ provides a sampler that
+Ocean's :std:doc:`dimod <dimod:index>` provides a sampler that
 simply returns the BQM's value for every possible assignment of variable values.
 
 >>> from dimod.reference.samplers import ExactSolver
 >>> sampler = ExactSolver()
 
-The next code lines use Ocean's `dwave_networkx <http://dwave-networkx.readthedocs.io/en/latest/index.html>`_
+The next code lines use Ocean's :std:doc:`dwave_networkx <networkx:index>`
 to produce a BQM for our :code:`s5` graph and solve it on our selected sampler. In other
 examples the BQM is explicitly created but the Ocean tool used here abstracts the
 BQM: given the problem graph it returns a solution to a BQM it creates internally.
@@ -90,7 +90,7 @@ Solving on a D-Wave System
 --------------------------
 
 We now use a sampler from Ocean software's
-`dwave-system <https://github.com/dwavesystems/dwave-system>`_ to solve on a
+:std:doc:`dwave-system <system:index>` to solve on a
 D-Wave system. In addition to *DWaveSampler()*, we use *EmbeddingComposite()*, which maps
 unstructured problems to the graph structure of the selected sampler, a process known as
 :term:`minor-embedding`: our problem star graph must be mapped to the QPU's numerically
