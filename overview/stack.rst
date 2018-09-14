@@ -43,13 +43,14 @@ into the following layers of functionality:
 * Sampler API
 
   Abstraction layer that represents the problem in a form that can access the selected sampler;
-  for example, a `dimod <http://dimod.readthedocs.io/en/latest/>`_binary quadratic
+  for example, a :std:doc:`dimod <dimod:index>` binary quadratic
   model (BQM) class representing your problem wrapped in a :term:`minor-embedding` composite
   that handles the mapping between your problem's variables and the sampler's graph.
 * Methods
 
   Tools that help formulate a problem as binary quadratic models; for example
-  `dwave_networkx <http://dwave-networkx.readthedocs.io/en/latest/index.html>`_ (`repo <https://github.com/dwavesystems/dwave_networkx>`_\ ) for graph-related problems.
+  :std:doc:`dwave_networkx <networkx:index>`
+  (`repo <https://github.com/dwavesystems/dwave_networkx>`_\ ) for graph-related problems.
 * Application
 
   Original problem in its context ("problem space"); for example, circuit fault diagnosis
@@ -100,33 +101,33 @@ each stage of the process to a layer of the Ocean stack.
         - Usage
         - Notes
       * - Classical
-        - `dimod <http://dimod.readthedocs.io/en/latest/>`_ :code:`ExactSampler()`
+        - :std:doc:`dimod <dimod:index>` :code:`ExactSampler()`
         - Find all states for small (<20 variables) problems.
         - For code-development testing.
       * - Classical
-        - `dimod <http://dimod.readthedocs.io/en/latest/>`_ :code:`RandomSampler()`
+        - :std:doc:`dimod <dimod:index>` :code:`RandomSampler()`
         - Random sampler for testing.
         - For code-development testing.
       * - Classical
-        - `dimod <http://dimod.readthedocs.io/en/latest/>`_ :code:`SimulatedAnnealingSampler()`
+        - :std:doc:`dimod <dimod:index>` :code:`SimulatedAnnealingSampler()`
         - Simulated annealing sampler for testing.
         - For code-development testing.
       * - Classical
-        - `dwave_neal <http://dwave-neal.readthedocs.io/en/latest/>`_ :code:`SimulatedAnnealingSampler()`
+        - :std:doc:`dwave-neal <neal:index>` :code:`SimulatedAnnealingSampler()`
         - Simulated annealing sampler.
         -
       * - Quantum
-        - `dwave-system <http://dwave-system.readthedocs.io/en/latest/>`_ :code:`DWaveSampler()`
+        - :std:doc:`dwave-system <system:index>` :code:`DWaveSampler()`
         - Quick incorporation of the D-Wave system as a sampler.
         - Typically part of a composite that handles :term:`minor-embedding`.
       * - Quantum
-        - `dwave-cloud-client <http://dwave-cloud-client.readthedocs.io/en/latest/>`_ :code:`Solver()`
+        - :std:doc:`dwave-cloud-client <cloud-client:index>` :code:`Solver()`
         - D-Wave system as a sampler.\ [#]_
         - For low-level control of problem submission.
       * -
-        - `dimod <http://dimod.readthedocs.io/en/latest/>`_ custom
+        - :std:doc:`dimod <dimod:index>` custom
         - Write a custom sampler for special cases.
-        - See examples in `dimod <http://dimod.readthedocs.io/en/latest/>`_.
+        - See examples in :std:doc:`dimod <dimod:index>`.
 
 .. [#] This sampler is for low-level work on communicating with SAPI and is not
        a dimod sampler.
@@ -146,34 +147,34 @@ each stage of the process to a layer of the Ocean stack.
       * - Tool & Composite
         - Usage
         - Notes
-      * - `dwave-system <http://dwave-system.readthedocs.io/en/latest/>`_ :code:`EmbeddingComposite()`
+      * - :std:doc:`dwave-system <system:index>` :code:`EmbeddingComposite()`
         - Maps unstructured problems to a structured sampler.
         - Enables quick incorporation of the D-Wave system as a sampler by handling the :term:`minor-embedding`
           to the QPU's :term:`Chimera` topology of qubits.
-      * - `dwave-system <http://dwave-system.readthedocs.io/en/latest/>`_ :code:`FixedEmbeddingComposite()`
+      * - :std:doc:`dwave-system <system:index>` :code:`FixedEmbeddingComposite()`
         - Maps unstructured problems to a structured sampler.
         - Uses a pre-calculated minor-embedding for improved performance.
-      * - `dwave-system <http://dwave-system.readthedocs.io/en/latest/>`_ :code:`TilingComposite()`
+      * - :std:doc:`dwave-system <system:index>` :code:`TilingComposite()`
         - Tiles small problems multiple times to a Chimera-structured sampler.
         - Enables parallel sampling for small problems.
-      * - `dwave-system <http://dwave-system.readthedocs.io/en/latest/>`_ :code:`VirtualGraphComposite()`
+      * - :std:doc:`dwave-system <system:index>` :code:`VirtualGraphComposite()`
         - Uses the D-Wave virtual graph feature for improved minor-embedding.
         - Calibrates qubits in chains to compensate for the effects of biases and enables
           easy creation, optimization, use, and reuse of an embedding for a given working graph.
-      * - `dimod <http://dimod.readthedocs.io/en/latest/>`_ :code:`SpinReversalTransformComposite()`
+      * - :std:doc:`dimod <dimod:index>` :code:`SpinReversalTransformComposite()`
         - Applies spin reversal transform preprocessing.
         - Improves QPU results by reducing the impact of possible analog and systematic errors.
-      * - `dimod <http://dimod.readthedocs.io/en/latest/>`_ :code:`StructureComposite()`
+      * - :std:doc:`dimod <dimod:index>` :code:`StructureComposite()`
         - Creates a structured composed sampler from an unstructured sampler.
         - Maps from a problem graph (e.g., a square graph) to a sampler's graph.
 
    In addition to composites that provide pre- and post-processing, Ocean also provides
    stand-alone tools to handle complex or large problems. For example:
 
-   * `minorminer <http://minorminer.readthedocs.io/en/latest/>`_ for :term:`minor-embedding`
+   * :std:doc:`minorminer <minorminer:index>` for :term:`minor-embedding`
      might be used to improve solutions by fine tuning parameters or incorporating problem
      knowledge into the embedding.
-   * `qbsolv <https://github.com/dwavesystems/qbsolv>`_ splits problems too large
+   * :std:doc:`qbsolv <qbsolv:index>` splits problems too large
      for the QPU into pieces solved either via a D-Wave system or a classical tabu solver.
 
 4. **Formulate**
@@ -184,10 +185,10 @@ each stage of the process to a layer of the Ocean stack.
 
     Ocean provides tools for formulating the BQM:
 
-    * `dwavebinarycsp <http://dwavebinarycsp.readthedocs.io/en/latest/>`_ for constraint
+    * :std:doc:`dwavebinarycsp <binarycsp:index>` for constraint
       satisfaction problems with small constraints over binary variables. For example, many
       problems can be posed as satisfiability problems or with Boolean logic.
-    * `dwave_networkx <http://dwave-networkx.readthedocs.io/en/latest/index.html>`_ for
+    * :std:doc:`dwave_networkx <networkx:index>` for
       implementing graph-theory algorithms of the D-Wave system. Many problems can be
       posed in a form of graphs---this tool handles the construction of BQMs for several
       standard graph algorithms such as maximum cut, cover, and coloring.

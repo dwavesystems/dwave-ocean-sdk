@@ -220,7 +220,17 @@ epub_exclude_files = ['search.html']
 # Example configuration for intersphinx: refer to the Python standard library.
 #intersphinx_mapping = {'https://docs.python.org/': None,
 #                       'http://networkx.readthedocs.io/en/latest/': None}
-intersphinx_mapping = {'https://docs.python.org/': None}
+intersphinx_mapping = {'python': ('https://docs.python.org/', None),
+    'dimod': ('https://docs.ocean.dwavesys.com/projects/dimod/en/latest/', None),
+    'binarycsp': ('https://docs.ocean.dwavesys.com/projects/binarycsp/en/latest/', None),
+    'cloud-client': ('https://docs.ocean.dwavesys.com/projects/cloud-client/en/latest/', None),
+    'neal': ('https://docs.ocean.dwavesys.com/projects/neal/en/latest/', None),
+    'networkx': ('https://docs.ocean.dwavesys.com/projects/dwave-networkx/en/latest/', None),
+    'system': ('https://docs.ocean.dwavesys.com/projects/system/en/latest/', None),
+    'penaltymodel': ('https://docs.ocean.dwavesys.com/projects/penaltymodel/en/latest/', None),
+    'minorminer': ('https://docs.ocean.dwavesys.com/projects/minorminer/en/latest/', None),
+    'qbsolv': ('https://docs.ocean.dwavesys.com/projects/qbsolv/en/latest/', None),
+    'sysdocs_gettingstarted': ('https://docs.dwavesys.com/docs/latest/', None)}
 
 # sort documentation they way the appear in the source file
 autodoc_member_order = 'bysource'

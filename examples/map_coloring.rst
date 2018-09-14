@@ -35,8 +35,8 @@ To run the code in this example, the following is required.
 * The requisite information for problem submission through SAPI, as described in
   :ref:`dwavesys`\ .
 * Ocean tools
-  `dwavebinarycsp <http://dwavebinarycsp.readthedocs.io/en/latest/>`_ and
-  `dwave-system <https://github.com/dwavesystems/dwave-system>`_\ . For graphics,
+  :std:doc:`dwavebinarycsp <binarycsp:index>` and
+  :std:doc:`dwave-system <system:index>`. For graphics,
   you will also need `NetworkX <https://networkx.github.io/>`_\ .
 
 If you installed `dwave-ocean-sdk <https://github.com/dwavesystems/dwave-ocean-sdk>`_
@@ -115,9 +115,9 @@ colors or use different maps). Canada's 13 provinces are denoted by postal codes
     :ref:`map_coloring_full_code`.
 
 The example uses the
-`D-Wave binary CSP tool <http://dwavebinarycsp.readthedocs.io/en/latest/>`_
+:std:doc:`D-Wave binary CSP tool <binarycsp:index>`
 to set up constraints and convert the CSP to a binary quadratic model,
-`dwave-system <https://github.com/dwavesystems/dwave-system>`_ to set up a D-Wave
+:std:doc:`dwave-system <system:index>` to set up a D-Wave
 system as the :term:`sampler`, and `NetworkX <https://networkx.github.io/>`_ to
 plot results.
 
@@ -144,7 +144,7 @@ the shared border between British Columbia and Alberta).
 
 Create a binary constraint satisfaction problem based on two types of constraints,
 where `csp` is the
-`dwavebinarycsp <http://dwavebinarycsp.readthedocs.io/en/latest/>`_ CSP object:
+:std:doc:`dwavebinarycsp <binarycsp:index>` CSP object:
 
 * :code:`csp.add_constraint(one_color_configurations, variables)` represents the constraint
   that each node (province) select a single color, as represented by valid configurations
