@@ -26,9 +26,9 @@ Example Requirements
 To run the code in this example, the following is required.
 
 * The requisite information for problem submission through SAPI, as described in :ref:`dwavesys`.
-* Ocean tools `dwavebinarycsp <http://dwavebinarycsp.readthedocs.io/en/latest/>`_\ ,
-  `dwave-system <https://github.com/dwavesystems/dwave-system>`_\ ,
-  and `dimod <https://github.com/dwavesystems/dimod>`_\ .
+* Ocean tools :std:doc:`dwave-binarycsp <binarycsp:index>`,
+  :std:doc:`dwave-system <system:index>`,
+  and :std:doc:`dimod <dimod:index>`.
 
 If you installed `dwave-ocean-sdk <https://github.com/dwavesystems/dwave-ocean-sdk>`_
 and ran :code:`dwave config create`, your installation should meet these requirements.
@@ -85,7 +85,7 @@ find solutions that meet all the constraints.
    Non-business hours    Teleconference     Long            Optional            No (violates 4)
    ====================  =================  ==============  ==================  =================
 
-Ocean's `dwavebinarycsp <http://dwavebinarycsp.readthedocs.io/en/latest/>`_ enables the
+Ocean's :std:doc:`dwavebinarycsp <binarycsp:index>` enables the
 definition of constraints in different way, including by defining functions that evaluate
 True when the constraint is met. The code below defines a function that returns True when
 all this example's constraints are met.
@@ -132,7 +132,7 @@ Solving Classically on a CPU
 
 Before using the D-Wave system, it can sometimes be helpful to test code locally.
 Here we select one of Ocean software's test samplers to solve classically on a CPU.
-Ocean's `dimod <https://github.com/dwavesystems/dimod>`_ provides a sampler that
+Ocean's :std:doc:`dimod <dimod:index>` provides a sampler that
 simply returns the BQM's value (energy) for every possible assignment of variable values.
 
 >>> from dimod.reference.samplers import ExactSolver
@@ -169,7 +169,7 @@ Solving on a D-Wave System
 --------------------------
 
 We now solve on a D-Wave system using sampler *DWaveSampler()* from Ocean software's
-`dwave-system <https://github.com/dwavesystems/dwave-system>`_\ . We also use
+:std:doc:`dwave-system <system:index>`. We also use
 its *EmbeddingComposite()* composite to map our unstructured problem (variables
 such as :code:`time` etc.) to the sampler's graph structure (the QPU's numerically
 indexed qubits) in a process known as :term:`minor-embedding`. The next code sets up
