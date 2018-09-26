@@ -16,7 +16,8 @@ install_requires = ['dwavebinarycsp>=0.0.2,<0.1.0',
                     'dwave-networkx>=0.6.1,<0.7.0',
                     'dwave-system>=0.5.0,<0.6.0',
                     'dwave-qbsolv>=0.2.7,<0.3.0',
-                    'dwave-neal>=0.4.0,<0.5.0'
+                    'dwave-neal>=0.4.0,<0.5.0',
+                    'pyqubo>=0.0.5'
                     ]
 
 packages = ['dwaveoceansdk']
