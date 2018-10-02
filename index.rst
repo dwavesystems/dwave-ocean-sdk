@@ -8,16 +8,6 @@ Ocean software is a suite of tools `D-Wave Systems <https://www.dwavesys.com>`_ 
 on the `D-Wave GitHub repository <https://github.com/dwavesystems>`_ for solving hard
 problems with quantum computers.
 
-.. toctree::
-   :hidden:
-   :maxdepth: 2
-
-   getting_started
-   projects
-   glossary
-   CONTRIBUTING
-   dwave
-
 :ref:`gs`
 =========
 
@@ -32,6 +22,24 @@ Access a particular tool's documentation and repository.
 =================
 
 Understand the terminology.
+
+.. toctree::
+   :hidden:
+   :maxdepth: 2
+
+   getting_started
+   projects
+   glossary
+   CONTRIBUTING
+
+.. toctree::
+  :caption: D-Wave
+  :hidden:
+  :maxdepth: 1
+
+  dwave
+  leap
+  sysdocs
 
 Indices and tables
 ==================
