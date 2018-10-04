@@ -5,7 +5,7 @@ Using a D-Wave System
 =====================
 
 To use a D-Wave system as your :term:`solver` (the compute resource for solving problems),
-you access it through the D-Wave Sampler API (SAPI).
+you access it through the D-Wave Solver API (SAPI).
 
 Interacting with SAPI
 ---------------------
