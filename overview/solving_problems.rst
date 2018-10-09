@@ -231,7 +231,7 @@ and checks some features supported on the D-Wave system used as a sampler.
      u'auto_scale': ['parameters'],
     >>>  # Snipped above response for brevity
 
-Note that the composed sampler (:code:`VirtualGraphComposite()`` in the last example)
+Note that the composed sampler (:code:`VirtualGraphComposite()` in the last example)
 inherits properties from the child sampler (:code:`DWaveSampler()` in that example).
 
 See the system documentation for more information.
