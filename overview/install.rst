@@ -80,8 +80,8 @@ for the full suite of Ocean tools.
 
       pip install dwave-ocean-sdk
 
-* Alternatively, you can clone (copy) `dwave-ocean-sdk <https://github.com/dwavesystems/dwave-ocean-sdk>`_
-  to your virtual environment; for example:
+* Alternatively, you can clone `dwave-ocean-sdk <https://github.com/dwavesystems/dwave-ocean-sdk>`_ repo
+  and install the SDK to your virtual environment; for example:
 
   .. code-block:: bash
 
@@ -89,7 +89,7 @@ for the full suite of Ocean tools.
       cd dwave-ocean-sdk
       python setup.py install
 
-To install just a particular tool, follow the link to the GitHub repository for the tool,
+Note: To install a particular tool within the SDK only, follow the link to the GitHub repository for the tool,
 as listed under :ref:`projects`, and follow the installation instructions on the
 README file.
 
