@@ -38,4 +38,4 @@ Next Steps
 ----------
 
 For information on configuring solvers and using the Ocean tools, see
-the `Ocean Documentation <http://dw-docs.readthedocs.io/en/latest/index.html>`_\ .
+the `Ocean Documentation <https://docs.ocean.dwavesys.com/en/latest/>`_\ .
