@@ -4,6 +4,8 @@
 Using a Classical Solver
 ========================
 
+You might use a classical solver while developing your code or on a small version of
+your problem to verify your code. 
 To solve a problem classically on your local machine, you configure a classical solver,
 either one of those included in the Ocean tools or your own.
 

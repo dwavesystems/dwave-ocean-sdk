@@ -8,7 +8,7 @@ Ocean software is supported on the following operating systems:
 
 * Linux
 * Windows (tested on 64-bit Windows 8, 10)
-* Mac (tested on macOS 9)
+* Mac (tested on mac OS X 10.13)
 
 Ocean software requires a :ref:`Python environment<pythonEnvironment>`. Supported Python versions are:
 
