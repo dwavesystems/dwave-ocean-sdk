@@ -86,7 +86,7 @@ find solutions that meet all the constraints.
    ====================  =================  ==============  ==================  =================
 
 Ocean's :std:doc:`dwavebinarycsp <binarycsp:index>` enables the
-definition of constraints in different way, including by defining functions that evaluate
+definition of constraints in different ways, including by defining functions that evaluate
 True when the constraint is met. The code below defines a function that returns True when
 all this example's constraints are met.
 
@@ -105,7 +105,7 @@ The next code lines create a constraint from this function and adds it to CSP in
 >>> csp = dwavebinarycsp.ConstraintSatisfactionProblem(dwavebinarycsp.BINARY)
 >>> csp.add_constraint(scheduling, ['time', 'location', 'length', 'mandatory'])
 
-This tool can also convert the binary CSP to a BQM. The following code does so and
+This tool, :std:doc:`dwavebinarycsp <binarycsp:index>`, can also convert the binary CSP to a BQM. The following code does so and
 displays the BQM's linear and quadratic coefficients, :math:`q_i` and :math:`q_{i,j}` respectively in
 :math:`\sum_i^N q_ix_i + \sum_{i<j}^N q_{i,j}x_i  x_j`, which are the inputs for programming
 the quantum computer.
