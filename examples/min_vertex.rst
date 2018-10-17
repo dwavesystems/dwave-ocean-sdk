@@ -5,9 +5,9 @@ Vertex Cover
 ============
 
 This example solves a few small examples of a known graph problem, *minimum vertex cover*.
-A vertex cover is a set of vertices such that each edge of the graph is incident
-with at least one vertex in the set. A minimum vertex cover is the vertex cover of
-smallest size.
+A `vertex cover <https://en.wikipedia.org/wiki/Vertex_cover>`_ is a set of vertices 
+such that each edge of the graph is incident with at least one vertex in the set. 
+A minimum vertex cover is the vertex cover of smallest size.
 
 The purpose of this example is to help a new user to submit a problem to a
 D-Wave system using Ocean tools with little configuration or coding.
@@ -41,8 +41,8 @@ Formulate the Problem
 
 The real-world application for this example might be a network provider's routers interconnected
 by fiberoptic cables or traffic lights in a city's intersections. It is posed as a graph
-problem; here, the five-node star graph shown below. The solution to this small
-example is obvious (the minimum set of vertices that touch all edges is node 0), but the general
+problem; here, the five-node star graph shown below. Intuitively, the solution to this small
+example is obvious --- the minimum set of vertices that touch all edges is node 0, but the general
 problem of finding such a set is NP hard.
 
 .. figure:: ../_static/minVertexS5.png
@@ -54,7 +54,7 @@ problem of finding such a set is NP hard.
    A five-node star graph.
 
 First, we run the code snippet below to create a star graph where node 0 is hub to four other nodes.
-It uses `NetworkX <https://networkx.github.io/documentation/stable/index.html>`_\ , which is
+The code uses `NetworkX <https://networkx.github.io/documentation/stable/index.html>`_\ , which is
 part of your *dwave_networkx* or *dwave-ocean-sdk* installation.
 
 >>> import networkx as nx
@@ -64,7 +64,8 @@ Solve the Problem by Sampling
 =============================
 
 For small numbers of variables, even your computer's CPU can solve minimum vertex covers
-quickly. Here we solve both classically on your CPU and on the quantum computer.
+quickly. In this example, we demonstrate how to solve the problem both classically 
+on your CPU and on the quantum computer.
 
 Solving Classically on a CPU
 ----------------------------
@@ -122,13 +123,18 @@ The figure below shows another five-node (wheel) graph.
 
    A five-node wheel graph.
 
-The code snippet below replaces the previous problem's graph and solves on a
-D-Wave system. Note that the solution found for this problem is not unique; for example,
-[0, 2, 4] is also a valid solution.
+The code snippet below creates a new graph and solves on a
+D-Wave system. 
 
 >>> w5 = nx.wheel_graph(5)
 >>> print(dnx.min_vertex_cover(w5, sampler))
 [0, 1, 3]
+
+Note that the solution found for this problem is not unique; for example,
+[0, 2, 4] is also a valid solution.
+
+>>> print(dnx.min_vertex_cover(w5, sampler))
+[0, 2, 4]
 
 The figure below shows a ten-node (circular-ladder) graph.
 
