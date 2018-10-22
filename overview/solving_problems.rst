@@ -214,6 +214,11 @@ D-Wave's *virtual graphs* feature to simplify minor-embedding. The following exa
 maps a problem's variables x, y to qubits 1, 5 and variable z to two qubits 0 and 4,
 and checks some features supported on the D-Wave system used as a sampler.
 
+.. attention::
+   D-Wave's *virtual graphs* feature can require many seconds of D-Wave system time to calibrate
+   qubits to compensate for the effects of biases. If your account has limited
+   D-Wave system access, consider using *FixedEmbeddingComposite()* instead.
+
 .. code-block:: python
 
     >>> from dwave.system.samplers import DWaveSampler

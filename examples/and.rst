@@ -79,7 +79,7 @@ AND as a Penalty Function
 
 This example represents the AND operation, :math:`z \Leftrightarrow x_1 \wedge x_2`,
 where :math:`x_1, x_2` are the gate's inputs and :math:`z` its output,
-using :term:`penalty function`:
+using a :term:`penalty function`:
 
 .. math::
 
@@ -91,8 +91,10 @@ be invalid for the gate. Therefore, when the D-Wave system minimizes a BQM based
 it finds those assignments of variables that match valid gate states.
 
 You can verify that this penalty function represents the AND gate in the same way as was
-done in the :ref:`not` example. See the system documentation for more information about
-penalty functions in general, and penalty functions for representing Boolean operations.
+done in the :ref:`not` example. See the
+:std:doc:`D-Wave Problem-Solving Handbook <sysdocs_gettingstarted:doc_handbook>`
+for more information about penalty functions in general, and penalty functions for representing
+Boolean operations in particular.
 
 Formulating the Problem as a QUBO
 ---------------------------------
@@ -115,7 +117,12 @@ The coefficients matrix is,
                            & 0 & -2\\
                            &   & 3 \end{bmatrix}
 
-See the system documentation for more information about formulating problems as QUBOs.
+See the
+:std:doc:`Getting Started with the D-Wave System <sysdocs_gettingstarted:doc_getting_started>`
+and
+:std:doc:`D-Wave Problem-Solving Handbook <sysdocs_gettingstarted:doc_handbook>`
+books for more information about formulating problems as QUBOs.
+
 The line of code below sets the QUBO coefficients for this AND gate.
 
 >>> Q = {('x1', 'x2'): 1, ('x1', 'z'): -2, ('x2', 'z'): -2, ('z', 'z'): 3}
@@ -148,8 +155,8 @@ The next code sets up a D-Wave system as the sampler.
 As before, we ask for 5000 samples.
 
 >>> response = sampler_embedded.sample_qubo(Q, num_reads=5000)
->>> for sample, energy, num_occurrences in response.data():   # doctest: +SKIP
-...    print(sample, "Energy: ", energy, "Occurrences: ", num_occurrences)
+>>> for datum in response.data(['sample', 'energy', 'num_occurrences']):   # doctest: +SKIP
+...    print(datum.sample, "Energy: ", datum.energy, "Occurrences: ", datum.num_occurrences)
 ...
 {'x1': 1, 'x2': 0, 'z': 0} Energy:  0.0 Occurrences:  1009
 {'x1': 1, 'x2': 1, 'z': 1} Energy:  0.0 Occurrences:  1452
@@ -219,8 +226,8 @@ the problem. Its last line prints a confirmation that indeed the two selected qu
 As before, we ask for 5000 samples.
 
 >>> response = sampler_embedded.sample_qubo(Q_not, num_reads=5000)
->>> for sample, energy, num_occurrences in response.data():   # doctest: +SKIP
-...    print(sample, "Energy: ", energy, "Occurrences: ", num_occurrences)
+>>> for datum in response.data(['sample', 'energy', 'num_occurrences']):   # doctest: +SKIP
+...    print(datum.sample, "Energy: ", datum.energy, "Occurrences: ", datum.num_occurrences)
 ...
 {'x': 0, 'z': 1} Energy:  -1.0 Occurrences:  2520
 {'x': 1, 'z': 0} Energy:  -1.0 Occurrences:  2474
@@ -230,10 +237,10 @@ As before, we ask for 5000 samples.
 From NOT to AND: an Important Difference
 ----------------------------------------
 
-The BQM for a NOT gate, :math:`-x -z  + 2xz`, can be represented by a fully connected :math:`K_2` graph:
-its linear coefficients are weights of the two connected nodes with the single quadratic
-coefficient the weight of its connecting edge. The BQM for an AND gate, :math:`3z + x_1x_2 - 2x_1z - 2x_2z`,
-needs a :math:`K_3` graph.
+* The BQM for a NOT gate, :math:`-x -z  + 2xz`, can be represented by a fully connected
+  :math:`K_2` graph: its linear coefficients are weights of the two connected nodes with
+  the single quadratic coefficient the weight of its connecting edge.
+* The BQM for an AND gate, :math:`3z + x_1x_2 - 2x_1z - 2x_2z`, needs a :math:`K_3` graph.
 
 .. figure:: ../_static/Embedding_NOTvsAND.png
    :name: Embedding_NOTvsAND
@@ -273,52 +280,55 @@ to represent a single variable. For example, chain qubit 0 and qubit 4 to repres
 
 The strength of the coupler between qubits 0 and 4, which represents
 variable :math:`z`, must be set to correlate the qubits strongly, so that in most
-solutions they have a single value for :math:`z`. (The last code under
-`Solve the Problem by Sampling: Automated Minor-Embedding`_ had two output lines with
-identical results. This was likely due to the qubits in a chain taking different values.)
+solutions they have a single value for :math:`z`. (Remember the output in the
+`Solve the Problem by Sampling: Automated Minor-Embedding`_ section with its identical
+two last lines? This was likely due to the qubits in a chain taking different values.)
 
 The code below uses Ocean's :std:doc:`dwave-system <system:index>`
-*VirtualGraphComposite()* composite for manual minor-embedding. Its last line prints a
+*FixedEmbeddingComposite()* composite for manual minor-embedding. Its last line prints a
 confirmation that indeed all three variables are connected.
 (coupled).
 
->>> from dwave.system.composites import VirtualGraphComposite
+>>> from dwave.system.composites import FixedEmbeddingComposite
 >>> embedding = {'x1': {1}, 'x2': {5}, 'z': {0, 4}}
->>> sampler_embedded = VirtualGraphComposite(sampler, embedding)
->>> print(sampler_embedded.adjacency)
-{'x1': {'z', 'x2'}, 'x2': {'x1', 'z'}, 'z': {'x1', 'x2'}}
+>>> sampler_embedded = FixedEmbeddingComposite(sampler, embedding)
+>>> print(sampler_embedded.adjacency)     # doctest: +SKIP
+{'x1': {'x2', 'z'}, 'x2': {'x1', 'z'}, 'z': {'x1', 'x2'}}
 
 We ask for 5000 samples.
 
 >>> Q = {('x1', 'x2'): 1, ('x1', 'z'): -2, ('x2', 'z'): -2, ('z', 'z'): 3}
 >>> response = sampler_embedded.sample_qubo(Q, num_reads=5000)
->>> for sample, energy, num_occurrences in response.data():    # doctest: +SKIP
-...     print(sample, "Occurrences: ", num_occurrences)
+>>> for datum in response.data(['sample', 'energy', 'num_occurrences']):   # doctest: +SKIP
+...    print(datum.sample, "Energy: ", datum.energy, "Occurrences: ", datum.num_occurrences)
 ...
-{'x1': 1, 'x2': 0, 'z': 0} Energy:  0.0 Occurrences:  1220
-{'x1': 0, 'x2': 1, 'z': 0} Energy:  0.0 Occurrences:  1239
-{'x1': 1, 'x2': 1, 'z': 1} Energy:  0.0 Occurrences:  1103
-{'x1': 0, 'x2': 0, 'z': 0} Energy:  0.0 Occurrences:  1437
-{'x1': 0, 'x2': 1, 'z': 1} Energy:  1.0 Occurrences:  1
+{'z': 0, 'x1': 1, 'x2': 0} Energy:  0.0 Occurrences:  1088
+{'z': 0, 'x1': 0, 'x2': 1} Energy:  0.0 Occurrences:  1806
+{'z': 1, 'x1': 1, 'x2': 1} Energy:  0.0 Occurrences:  1126
+{'z': 0, 'x1': 0, 'x2': 0} Energy:  0.0 Occurrences:  977
+{'z': 1, 'x1': 0, 'x2': 1} Energy:  1.0 Occurrences:  2
+{'z': 1, 'x1': 0, 'x2': 1} Energy:  1.0 Occurrences:  1
 
 For comparison, the following code purposely weakens the chain strength (strength of the
 coupler between qubits 0 and 4, which represents variable :math:`z`). The first
 line prints the range of values available for the D-Wave system this code is executed
-on. By default, *VirtualGraphComposite()* used the maximum chain strength, which
-is 2. By setting it to a low value of 0.1, the two qubits are not strongly correlated
+on. By default, *FixedEmbeddingComposite()* used the maximum chain strength, which
+is 2. By setting it to a low value of 0.25, the two qubits are not strongly correlated
 and the result is that many returned samples represent invalid states for an AND gate.
 
 >>> print(sampler.properties['extended_j_range'])
 [-2.0, 1.0]
->>> sampler_embedded = VirtualGraphComposite(sampler, embedding, chain_strength=0.1)
->>> response = sampler_embedded.sample_qubo(Q, num_reads=5000)
->>> for sample, energy, num_occurrences in response.data():    # doctest: +SKIP
-...     print(sample, "Occurrences: ", num_occurrences)
+>>> sampler_embedded = FixedEmbeddingComposite(sampler, embedding)
+>>> response = sampler_embedded.sample_qubo(Q, num_reads=5000, chain_strength=0.25)
+>>> for datum in response.data(['sample', 'energy', 'num_occurrences']):   # doctest: +SKIP
+...    print(datum.sample, "Energy: ", datum.energy, "Occurrences: ", datum.num_occurrences)
 ...
-{'x1': 1, 'x2': 0, 'z': 0} Energy:  0.0 Occurrences:  2721
-{'x1': 1, 'x2': 0, 'z': 0} Energy:  0.0 Occurrences:  149
-{'x1': 0, 'x2': 1, 'z': 0} Energy:  0.0 Occurrences:  103
-{'x1': 1, 'x2': 1, 'z': 1} Energy:  0.0 Occurrences:  130
-{'x1': 0, 'x2': 0, 'z': 0} Energy:  0.0 Occurrences:  134
-{'x1': 0, 'x2': 1, 'z': 1} Energy:  1.0 Occurrences:  1761
-{'x1': 1, 'x2': 0, 'z': 1} Energy:  1.0 Occurrences:  2
+{'z': 0, 'x1': 1, 'x2': 0} Energy:  0.0 Occurrences:  690
+{'z': 0, 'x1': 0, 'x2': 1} Energy:  0.0 Occurrences:  936
+{'z': 1, 'x1': 1, 'x2': 1} Energy:  0.0 Occurrences:  573
+{'z': 0, 'x1': 0, 'x2': 0} Energy:  0.0 Occurrences:  984
+{'z': 1, 'x1': 1, 'x2': 1} Energy:  0.0 Occurrences:  1
+{'z': 1, 'x1': 1, 'x2': 0} Energy:  1.0 Occurrences:  525
+{'z': 1, 'x1': 0, 'x2': 1} Energy:  1.0 Occurrences:  1289
+{'z': 1, 'x1': 1, 'x2': 0} Energy:  1.0 Occurrences:  1
+{'z': 0, 'x1': 1, 'x2': 1} Energy:  1.0 Occurrences:  1
