@@ -177,16 +177,15 @@ those that fail to do so.
 
     # Check how many solutions meet the constraints (are valid)
     valid, invalid, data = 0, 0, []
-    for datum in response.data():
-        sample, energy, num = datum
-        if (csp.check(sample)):
-            valid = valid+num
-            for i in range(num):
-                data.append((sample, energy, '1'))
+    for datum in response.data(['sample', 'energy', 'num_occurrences']):
+        if (csp.check(datum.sample)):
+            valid = valid+datum.num_occurrences
+            for i in range(datum.num_occurrences):
+                data.append((datum.sample, datum.energy, '1'))
         else:
-            invalid = invalid+num
-            for i in range(num):
-                data.append((sample, energy, '0'))
+            invalid = invalid+datum.num_occurrences
+            for i in range(datum.num_occurrences):
+                data.append((datum.sample, datum.energy, '0'))
     print(valid, invalid)
 
 For the single constraint approach, 4 runs with their different minor-embeddings
@@ -308,25 +307,25 @@ the energy level of the binary quadratic model by at least 2 relative to ground 
 You can see in the graph that valid solutions have energy -9.5 and invalid solutions
 energies of -7.5, -5.5, and -3.5.
 
->>> for datum in response.data():  # doctest: +SKIP
+>>> for datum in response.data(['sample', 'energy', 'num_occurrences', 'chain_break_fraction']):  # doctest: +SKIP
 ...    print(datum)
 ...
-Sample(sample={'a': 1, 'c': 0, 'b': 0, 'not1': 1, 'd': 1, 'or4': 1, 'or2': 0, 'not6': 0, 'and5': 1, 'z': 1, 'and3': 1}, energy=-9.5, num_occurrences=76)
-Sample(sample={'a': 1, 'c': 0, 'b': 1, 'not1': 0, 'd': 0, 'or4': 1, 'or2': 1, 'not6': 0, 'and5': 0, 'z': 0, 'and3': 0}, energy=-9.5, num_occurrences=4)
-Sample(sample={'a': 0, 'c': 0, 'b': 0, 'not1': 1, 'd': 1, 'or4': 1, 'or2': 0, 'not6': 0, 'and5': 0, 'z': 0, 'and3': 0}, energy=-9.5, num_occurrences=44)
+Sample(sample={'a': 1, 'c': 0, 'b': 1, 'not1': 0, 'd': 1, 'or4': 1, 'or2': 1, 'not6': 0, 'and5': 0, 'z': 0, 'and3': 0}, energy=-9.5, num_occurrences=13, chain_break_fraction=0.0)
+Sample(sample={'a': 1, 'c': 1, 'b': 1, 'not1': 0, 'd': 0, 'or4': 1, 'or2': 1, 'not6': 0, 'and5': 0, 'z': 0, 'and3': 0}, energy=-9.5, num_occurrences=14, chain_break_fraction=0.0)
 # Snipped this section for brevity
-Sample(sample={'a': 1, 'c': 0, 'b': 1, 'not1': 0, 'd': 1, 'or4': 1, 'or2': 1, 'not6': 0, 'and5': 1, 'z': 1, 'and3': 1}, energy=-7.5, num_occurrences=3)
-Sample(sample={'a': 1, 'c': 0, 'b': 1, 'not1': 0, 'd': 1, 'or4': 1, 'or2': 0, 'not6': 0, 'and5': 1, 'z': 1, 'and3': 1}, energy=-5.5, num_occurrences=1)
-Sample(sample={'a': 1, 'c': 0, 'b': 1, 'not1': 0, 'd': 1, 'or4': 1, 'or2': 0, 'not6': 1, 'and5': 0, 'z': 1, 'and3': 0}, energy=-5.5, num_occurrences=1)
-Sample(sample={'a': 0, 'c': 1, 'b': 1, 'not1': 0, 'd': 1, 'or4': 1, 'or2': 0, 'not6': 0, 'and5': 0, 'z': 0, 'and3': 0}, energy=-3.5, num_occurrences=1)
+Sample(sample={'a': 1, 'c': 0, 'b': 0, 'not1': 1, 'd': 1, 'or4': 1, 'or2': 0, 'not6': 1, 'and5': 1, 'z': 1, 'and3': 1}, energy=-7.5, num_occurrences=3, chain_break_fraction=0.09090909090909091)
+Sample(sample={'a': 1, 'c': 1, 'b': 0, 'not1': 1, 'd': 1, 'or4': 1, 'or2': 1, 'not6': 1, 'and5': 1, 'z': 1, 'and3': 1}, energy=-7.5, num_occurrences=1, chain_break_fraction=0.18181818181818182)
+Sample(sample={'a': 1, 'c': 1, 'b': 1, 'not1': 1, 'd': 0, 'or4': 1, 'or2': 1, 'not6': 1, 'and5': 1, 'z': 1, 'and3': 1}, energy=-5.5, num_occurrences=4, chain_break_fraction=0.18181818181818182)
+# Snipped this section for brevity
+Sample(sample={'a': 1, 'c': 1, 'b': 1, 'not1': 1, 'd': 0, 'or4': 1, 'or2': 1, 'not6': 1, 'and5': 0, 'z': 1, 'and3': 1}, energy=-3.5, num_occurrences=1, chain_break_fraction=0.2727272727272727)
 
 You can see, for example, that sample
 
 .. code-block:: python
 
-    Sample(sample={'a': 1, 'c': 0, 'b': 1, 'not1': 0, 'd': 1, 'or4': 1, 'or2': 1, 'not6': 0, 'and5': 1, 'z': 1, 'and3': 1}, energy=-7.5, num_occurrences=3)
+    Sample(sample={'a': 1, 'c': 1, 'b': 0, 'not1': 1, 'd': 1, 'or4': 1, 'or2': 1, 'not6': 1, 'and5': 1, 'z': 1, 'and3': 1}, energy=-7.5, num_occurrences=1, chain_break_fraction=0.18181818181818182)
 
-which occurred 3 times, has a higher energy by 2 than the ground energy. It is expected that
+has a higher energy by 2 than the ground energy. It is expected that
 this solution violates a single constraint, and you can see that it violates constraint
 
 .. code-block:: python
@@ -334,3 +333,7 @@ this solution violates a single constraint, and you can see that it violates con
     Constraint.from_configurations(frozenset([(1, 0, 0), (0, 1, 0), (0, 0, 0), (1, 1, 1)]), ('a', 'not1', 'and3'), Vartype.BINARY, name='AND')
 
 on AND gate 3.
+
+Note also that for samples with higher energy there tends to be an increasing fraction of
+broken chains: zero for the valid solutions but rising to almost 30% for solutions that have
+three broken constraints.

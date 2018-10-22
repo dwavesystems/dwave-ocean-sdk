@@ -148,8 +148,8 @@ Such a sampler can solve a small three-variable problem like the AND gate create
     >>> from dimod.reference.samplers import ExactSolver
     >>> sampler = ExactSolver()
     >>> response = sampler.sample(bqm)    # doctest: +SKIP
-    >>> for sample, energy in response.data():     # doctest: +SKIP
-    ...    print(sample, energy)
+    >>> for datum in response.data(['sample', 'energy']):     # doctest: +SKIP
+    ...    print(datum.sample, datum.energy)
     ...
     {'x1': 0, 'x2': 0, 'y1': 0} -1.5
     {'x1': 1, 'x2': 0, 'y1': 0} -1.5
@@ -179,8 +179,8 @@ for a problem; this example sets `num_reads` to 1000.
     >>> from dwave.system.composites import EmbeddingComposite
     >>> sampler = EmbeddingComposite(DWaveSampler())
     >>> response = sampler.sample(bqm, num_reads=1000)   # doctest: +SKIP
-    >>> for sample, energy, num_occurrences in response.data():     # doctest: +SKIP
-    ...    print(sample, energy, "Occurrences: ", num_occurrences)
+    >>> for datum in response.data(['sample', 'energy', 'num_occurrences']):     # doctest: +SKIP
+    ...    print(datum.sample, datum.energy, "Occurrences: ", datum.num_occurrences)
     ...
     {'x1': 0, 'x2': 1, 'y1': 0} -1.5 Occurrences:  92
     {'x1': 1, 'x2': 1, 'y1': 1} -1.5 Occurrences:  256

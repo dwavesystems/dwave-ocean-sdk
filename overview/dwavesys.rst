@@ -51,7 +51,7 @@ Client tool installation).
 
 .. code-block:: bash
 
-    dwave config create
+    $ dwave config create
     Configuration file not found; the default location is: C:\\Users\\jane\\AppData\\Local\\dwavesystem\\dwave\\dwave.conf
     Confirm configuration file path (editable):
     Profile (create new): prod
@@ -84,7 +84,7 @@ interactive CLI installed as part of the SDK or D-Wave Cloud Client tool install
 
 .. code-block:: bash
 
-    dwave ping
+    $ dwave ping
     Using endpoint: https://my.dwavesys.url/
     Using solver: My_DWAVE_2000Q
 
@@ -105,7 +105,7 @@ interactive CLI installed as part of the SDK or D-Wave Cloud Client tool install
 
 .. code-block:: bash
 
-    dwave sample --random-problem
+    $ dwave sample --random-problem
     Using endpoint: https://my.dwavesys.url/
     Using solver: My_DWAVE_2000Q
     Using qubit biases: {0: -1.0345257941434953, 1: -0.5795618633919246, 2: 0.9721956399428491, 3: 1....
@@ -126,7 +126,7 @@ properties.
 
 .. code-block:: bash
 
-    dwave solvers
+    $ dwave solvers
     Solver: My_DWAVE_2000Q
        Parameters:
           anneal_offsets: A list of anneal offsets for each working qubit (NaN if u...
