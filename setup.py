@@ -12,12 +12,21 @@ if _PY2:
 else:
     exec(open("./dwaveoceansdk/package_info.py").read())
 
-install_requires = ['dwavebinarycsp>=0.0.2,<0.1.0',
-                    'dwave-networkx>=0.6.1,<0.7.0',
-                    'dwave-system>=0.5.0,<0.6.0',
-                    'dwave-qbsolv>=0.2.7,<0.3.0',
-                    'dwave-neal>=0.4.0,<0.5.0'
-                    ]
+install_requires = [
+    'dwave-networkx>=0.6.1,<0.7.0',
+    'dwave-system>=0.5.0,<0.6.0',
+    'dwave-qbsolv>=0.2.7,<0.3.0',
+    'dwave-neal>=0.4.0,<0.5.0'
+]
+
+extras_require = {
+    ':(platform_machine == "x86_64" or platform_machine == "amd64") and python_version != "3.4"': [
+        'dwavebinarycsp[mip]>=0.0.2,<0.1.0'
+    ],
+    ':platform_machine != "x86_64" and platform_machine != "amd64" or python_version == "3.4"': [
+        'dwavebinarycsp[maxgap]>=0.0.2,<0.1.0'
+    ]
+}
 
 packages = ['dwaveoceansdk']
 
@@ -47,5 +56,6 @@ setup(
     python_requires=python_requires,
     license='Apache 2.0',
     packages=packages,
-    install_requires=install_requires
+    install_requires=install_requires,
+    extras_require=extras_require
 )
