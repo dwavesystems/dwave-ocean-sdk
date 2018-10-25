@@ -21,10 +21,10 @@ install_requires = [
 
 extras_require = {
     ':(platform_machine == "x86_64" or platform_machine == "amd64") and python_version != "3.4"': [
-        'dwavebinarycsp[mip]>=0.0.2,<0.1.0'
+        'dwavebinarycsp[mip]>=0.0.7,<0.1.0'
     ],
     ':platform_machine != "x86_64" and platform_machine != "amd64" or python_version == "3.4"': [
-        'dwavebinarycsp[maxgap]>=0.0.2,<0.1.0'
+        'dwavebinarycsp[maxgap]>=0.0.7,<0.1.0'
     ]
 }
 
