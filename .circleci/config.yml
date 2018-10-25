@@ -188,7 +188,7 @@ jobs:
       - run:
           name: install and run hub-detect
           command: |
-            bash <(curl -s https://blackducksoftware.github.io/hub-detect/hub-detect.sh) --blackduck.url=$BLACKDUCK_URL --blackduck.api.token=$BLACKDUCK_TOKEN
+            bash <(curl -s https://blackducksoftware.github.io/hub-detect/hub-detect.sh) --blackduck.url=$BLACKDUCK_URL --blackduck.api.token=$BLACKDUCK_TOKEN --detect.code.location.name=dwave-ocean-sdk-circleci
 
 
 
