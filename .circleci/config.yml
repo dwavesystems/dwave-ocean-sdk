@@ -164,6 +164,34 @@ jobs:
             . env/bin/activate
             twine upload dist/*
 
+  black-duck:
+    docker:
+      - image: circleci/openjdk:8-jdk-browsers
+    environment:
+      PYTHON: 3.7.0      
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      - run:
+          name: install pip
+          command: |
+            sudo apt-get install python-pip python-dev build-essential
+
+      - run:
+          name: install package
+          command: |
+            pip install .
+
+      - run:
+          name: install and run hub-detect
+          command: |
+            bash <(curl -s https://blackducksoftware.github.io/hub-detect/hub-detect.sh) --blackduck.url=$BLACKDUCK_URL --blackduck.api.token=$BLACKDUCK_TOKEN
+
+
+
 workflows:
   version: 2
 
@@ -208,3 +236,4 @@ workflows:
       - test-osx-3.5
       - test-osx-3.4
       - test-osx-2.7
+      - black-duck
