@@ -1,5 +1,3 @@
-dwavesystems/docs
-
 This repo is the source of the [D-Wave Ocean](https://github.com/dwavesystems/docs) software documentation located at https://docs.ocean.dwavesys.com/en/latest
 
 Updating content
