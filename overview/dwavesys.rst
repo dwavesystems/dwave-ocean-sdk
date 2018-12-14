@@ -28,7 +28,9 @@ submission through SAPI includes:
 
    Name of the D-Wave resource to be used to solve your submitted problems.
 
-You can find all the above information when you log in to your D-Wave account.
+You can find all the above information when you log in to your D-Wave account. For
+Leap users, select the Dashboard tab; for on-premises (Qubist) users, select the
+Solver API tab and the API Tokens menu item under your user name.
 
 You save your SAPI configuration (URL, API token, etc) in a
 :std:doc:`D-Wave Cloud Client configuration file <cloud-client:index>`
@@ -62,7 +64,7 @@ Client tool installation).
     Proxy URL (can be left blank):
     Configuration saved.
 
-2. Enter the SAPI information (API URL and token) found when you log in to your D-Wave account. You can
+2. Enter the SAPI information (API URL and token) found as described above. You can
    accept the command's defaults and in the future update the file if needed.
 
 Alternatively, you can create and edit a
@@ -176,7 +178,7 @@ and queries its parameters.
    u'auto_scale': ['parameters'],
    # Snipped above response for brevity
 
-Descriptions of D-Wave system parameters and properties are in the D-Wave system documentation.
+Descriptions of D-Wave system parameters and properties are in the :ref:`sysdocs`.
 
 Submitting Problems to a D-Wave System
 --------------------------------------

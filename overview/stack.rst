@@ -177,7 +177,7 @@ each stage of the process to a layer of the Ocean stack.
    * :std:doc:`qbsolv <qbsolv:index>` splits problems too large
      for the QPU into pieces solved either via a D-Wave system or a classical tabu solver.
 
-4. **Formulate**
+4. **Map to a Supported Format**
 
     Typically, you formulate your problem as a binary quadratic model (BQM), which you solve
     by submitting to the sampler (with its pre- and post-processing composite layers) you
@@ -193,11 +193,79 @@ each stage of the process to a layer of the Ocean stack.
       posed in a form of graphs---this tool handles the construction of BQMs for several
       standard graph algorithms such as maximum cut, cover, and coloring.
 
-    See the system documentation for more information on techniques for formulating problems
+    You might formulate a BQM mathematically; see :ref:`not` for a mathematical formulation
+    for a two-variable problem.
+
+    See the :ref:`sysdocs` for more information on techniques for formulating problems
     as BQMs.
 
+5. **Formulate**
+
+   The first step in solving a problem is to express it in a mathematical formulation.
+   For example, the :ref:`map_coloring` problem is to assign a color to each region of a map
+   such that any two regions sharing a border have different colors. To begin solving
+   this problem on any computer, classical or quantum, it must be concretely defined;
+   an intuitive approach, for the map problem, is to think of the regions as variables
+   representing the possible set of colors, the values of which must be selected from
+   some numerical scheme, such as natural numbers.
+
+   The selection function must express the problem’s constraints:
+
+   * Each region is assigned one color only, of C possible colors.
+   * The color assigned to one region cannot be assigned to adjacent regions.
+
+   Now solving the problem means finding a permissible value for each of the variables.
+
+   When formulating a problem for the D-Wave system, bear in mind a few considerations:
+
+   * Mathematical formulations must use binary variables because the solution is implemented
+     physically with qubits, and so must translate to spins :math:`s_i \in {−1, +1}` or
+     equivalent binary values :math:`x_i \in {0, 1}`.
+   * Relationships between variables must be reducible to quadratic (e.g., a QUBO)
+     because the problem’s parameters are represented by qubits’ weights and couplers’
+     strengths on a QPU.
+   * Formulations should be sparing in its number of variables because a QPU has a
+     limited number of qubits and couplers.
+   * Alternative formulations may have different implications for performance.
+
+   Ocean demo applications, which formulate known problems, include:
+
+   * `Structural Imbalance <https://github.com/dwavesystems/structural-imbalance-demo>`_\ .
+   * `Circuit-Fault Diagnosis <https://github.com/dwavesystems/circuit-fault-diagnosis-demo>`_\ .
 
 
-`**************************`
-**PAGE UNDER CONSTRUCTION**
-`**************************`
+Top-Down Approach
+-----------------
+Another approach to envisioning how you can map your problem-solving process to Ocean
+software is to start from the top---your (possibly abstractly defined) problem---and
+work your way down the Ocean stack.
+
+.. list-table:: Ocean Software
+   :widths: 10 120
+   :header-rows: 1
+
+   * - Step
+     - Description
+   * - State the Problem
+     - Define your problem concretely/mathematically; for example, as a constraint satisfaction
+       problem or a graph problem.
+   * - Formulate as a BQM
+     - Reformulate an integer problem to use binary variables, for example, or convert a
+       nonquadratic (high-order) polynomial to a QUBO.
+
+       Ocean's :std:doc:`dwavebinarycsp <binarycsp:index>` and :std:doc:`dwave_networkx <networkx:index>`
+       can be helpful for some problems.
+   * - Decompose
+     - Allocate large problems to classical and quantum resources.
+
+       Ocean's :std:doc:`dwave-hybrid <hybrid:index>` provides a framework and building
+       blocks to help you create hybrid workflows.
+   * - Embed
+     - Consider whether your problem has repeated elements, such as logic gates, when
+       deciding what tool to use to :term:`minor-embed` your BQM on the QPU. You might
+       start with fully automated embedding (using :code:`EmbeddingComposite()` for example)
+       and then seek performance improvements through :std:doc:`minorminer <minorminer:index>`.
+   * - Configure the QPU
+     - Use spin-reversal transforms to reduce errors, for example, or examine the annealing
+       with reverse anneal. See the :ref:`sysdocs` for more information of features
+       that improve performance.
