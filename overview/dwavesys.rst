@@ -16,7 +16,8 @@ submission through SAPI includes:
 
 1. API endpoint URL
 
-   A URL to the remote D-Wave system.
+   A URL to the remote D-Wave system. By default, https://cloud.dwavesys.com/sapi is used to
+   connect to resources provided by D-Wave's Leap Quantum Application Environment.
 
 2. API Token
 
@@ -26,7 +27,7 @@ submission through SAPI includes:
 
 3. Solver
 
-   Name of the D-Wave resource to be used to solve your submitted problems.
+   A D-Wave resource to be used to solve your submitted problems.
 
 You can find all the above information when you log in to your D-Wave account. For
 Leap users, select the Dashboard tab; for on-premises (Qubist) users, select the
@@ -60,12 +61,15 @@ Client tool installation).
     API endpoint URL (editable): https://my.dwavesys.url/
     Authentication token (editable): ABC-1234567890abcdef1234567890abcdef
     Client class (qpu or sw): qpu
-    Solver (can be left blank): My_DWAVE_2000Q
+    Solver (can be left blank): {"qpu": true, "vfyc": true}
     Proxy URL (can be left blank):
     Configuration saved.
 
-2. Enter the SAPI information (API URL and token) found as described above. You can
+2. Enter the SAPI information (e.g. your API token) found as described above. You can
    accept the command's defaults and in the future update the file if needed.
+
+   To get started, Leap users can create a minimum configuration by entering only an API
+   token; on-premises users should also set the URL to the on-premises system.
 
 Alternatively, you can create and edit a
 :std:doc:`D-Wave Cloud Client configuration file <cloud-client:index>`
@@ -149,17 +153,17 @@ properties.
 
 Alternatively, from within your code or a Python interpreter you can query solvers available for
 a SAPI URL and API token using
-:std:doc:`dwave-cloud-client <cloud-client:index>`
-:code:`Client.get_solvers()` function. For example, the code below queries available
-solvers for your default SAPI URL and a specified token.
+:std:doc:`dwave-cloud-client <cloud-client:index>` :meth:`~dwave.cloud.client.Client.get_solvers`
+function. For example, the code below queries available solvers for your default SAPI URL and a
+specified token.
 
 .. code-block:: python
 
    >>> from dwave.cloud import Client
    >>> client = Client.from_config(token='ABC-123456789123456789123456789')
    >>> client.get_solvers()
-   {u'2000Q_ONLINE_SOLVER1': <dwave.cloud.solver.Solver at 0x7e84fd0>,
-    u'2000Q_ONLINE_SOLVER2': <dwave.cloud.solver.Solver at 0x7e84828>}
+   [Solver(id='2000Q_ONLINE_SOLVER1'),
+    Solver(id='2000Q_ONLINE_SOLVER2')]
 
 Typically, once you have selected and configured a solver, your code queries its parameters and
 properties as attributes of the instantiated solver object. The code example below
