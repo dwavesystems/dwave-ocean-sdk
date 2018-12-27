@@ -15,7 +15,9 @@
 # ================================================================================================
 from __future__ import absolute_import
 
+import os
 import sys
+
 from setuptools import setup
 
 _PY2 = sys.version_info.major == 2
@@ -26,6 +28,8 @@ if _PY2:
     execfile("./dwaveoceansdk/package_info.py")
 else:
     exec(open("./dwaveoceansdk/package_info.py").read())
+
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 install_requires = [
     'dwave-networkx>=0.6.1,<0.7.0',
@@ -43,7 +47,11 @@ extras_require = {
     ]
 }
 
-packages = ['dwaveoceansdk']
+packages = ['dwaveoceansdk',
+            'dwave',
+            'dwave.samplers',
+            'dwave.composites',
+            ]
 
 classifiers = [
     'License :: OSI Approved :: Apache Software License',
