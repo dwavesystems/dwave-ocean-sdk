@@ -13,6 +13,22 @@
 #    limitations under the License.
 #
 # ================================================================================================
+"""
+A unified namespace for :class:`dimod.Composite`s.
+
+This namespace is populated by entry points. To contribute a composite, you
+must identify it in your setup.py file like so.
+
+.. code-block:: python
+
+    entry_points = {'dwave.composites': ['YourComposite = import.path.to.composite:YourComposite']}
+
+    setup(
+        entry_points=entry_points,
+        ...
+    )
+
+"""
 from pkg_resources import iter_entry_points
 
 # add the composites to the module from entrypoints, name conflicts override
