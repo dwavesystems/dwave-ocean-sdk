@@ -29,10 +29,12 @@ else:
 
 install_requires = [
     'dwave-networkx>=0.6.1,<0.7.0',
-    'dwave-system>=0.5.0,<0.6.0',
+    'dwave-system>=0.6.0,<0.7.0',
     'dwave-qbsolv>=0.2.7,<0.3.0',
     'dwave-neal>=0.4.0,<0.5.0',
+    'dwave-tabu>=0.1.3,<0.2.0',
     'dimod>=0.7.0,<0.8.0',
+    'numpy<1.16.0',     # only while we support py34
 ]
 
 extras_require = {
