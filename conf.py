@@ -231,6 +231,7 @@ intersphinx_mapping = {'python': ('https://docs.python.org/', None),
     'minorminer': ('https://docs.ocean.dwavesys.com/projects/minorminer/en/latest/', None),
     'hybrid': ('https://docs.ocean.dwavesys.com/projects/hybrid/en/latest/', None),
     'qbsolv': ('https://docs.ocean.dwavesys.com/projects/qbsolv/en/latest/', None),
+    'tabu': ('https://docs.ocean.dwavesys.com/projects/tabu/en/latest/', None),
     'sysdocs_gettingstarted': ('https://docs.dwavesys.com/docs/latest/', None)}
 
 # sort documentation they way the appear in the source file

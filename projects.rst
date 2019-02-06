@@ -42,6 +42,9 @@ at `D-Wave on GitHub <https://github.com/dwavesystems>`_\ ).
        parameters such as system identification and authentication down the stack.
        It also includes several useful composites—layers of pre- and post-processing—that
        can be used with DWaveSampler to handle :term:`minor-embedding`, optimize chain strength, etc.
+   * - :std:doc:`dwave-tabu <tabu:index>` (`repo <https://github.com/dwavesystems/dwave-tabu>`_)
+     - An implementation of the MST2 multistart tabu search algorithm for quadratic unconstrained binary
+       optimization (QUBO) problems with a dimod Python wrapper.
    * - :std:doc:`penaltymodel <penaltymodel:index>` (`repo <https://github.com/dwavesystems/penaltymodel>`_)
      - An approach to solve a constraint satisfaction problem (CSP) using an
        :term:`Ising` model or a :term:`QUBO`, is to map each individual constraint
