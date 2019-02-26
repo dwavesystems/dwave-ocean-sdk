@@ -23,7 +23,7 @@ at `D-Wave on GitHub <https://github.com/dwavesystems>`_\ ).
        satisfaction problem with small constraints over binary variables.
    * - :std:doc:`dwave-cloud-client <cloud-client:index>` (`repo <https://github.com/dwavesystems/dwave-cloud-client>`_)
      - Minimal implementation of the REST interface used to communicate with D-Wave :term:`Sampler` API (SAPI) servers.
-   * - :std:doc:`dwave_neal <neal:index>` (`repo <https://github.com/dwavesystems/dwave-neal>`_\ )
+   * - :std:doc:`dwave-neal <neal:index>` (`repo <https://github.com/dwavesystems/dwave-neal>`_\ )
      - An implementation of a simulated annealing sampler.
    * - :std:doc:`dwave_networkx <networkx:index>` (`repo <https://github.com/dwavesystems/dwave_networkx>`_\ )
      - Extension of NetworkX—a Python language package for exploration and analysis

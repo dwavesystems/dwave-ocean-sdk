@@ -67,6 +67,17 @@ Intermediate-Level Examples
 * :ref:`map_coloring` example solves a more complex constraint satisfaction problem.
 * :ref:`multi_gate` looks more deeply at :term:`minor-embedding`.
 
+Advanced-Level Examples
+-----------------------
+
+.. toctree::
+   :maxdepth: 1
+   :hidden:
+
+   examples/topology_samplers
+
+* :ref:`topology_samplers` running your code on software with different :term:`QPU`-inspired topologies.
+
 .. _projects-Demonstrations:
 
 Demonstrations

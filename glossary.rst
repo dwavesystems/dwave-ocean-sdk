@@ -11,10 +11,25 @@ Glossary
          A collection of binary-valued variables  (variables that can be assigned two values, for example -1, 1) 
          with associated linear and quadratic biases. Sometimes referred to in other tools as a problem.
 
+      Chain length
+         The number of qubits in a :term:`Chain`.
+
+      Chain
+         One or more nodes or qubits in a target graph that represent a single variable in
+         the source graph. See :term:`embedding`.
+
       Chimera
          The D-Wave :term:`QPU` is a lattice of interconnected qubits. While some qubits
          connect to others via couplers, the D-Wave QPU is not fully connected.
          Instead, the qubits interconnect in an architecture known as Chimera.
+
+      Complete graph
+      Fully connected
+          See `complete graph`_. on wikipedia. A fully connected or complete
+          :term:`binary quadratic model` is one that has interactions between
+          all of its variables.
+
+          .. _complete graph: https://en.wikipedia.org/wiki/Complete_graph
 
       Composite
           A :term:`sampler` can be composed. The
@@ -55,6 +70,12 @@ Glossary
          where :math:`{\hat\sigma_{x,z}^{(i)}}` are Pauli matrices operating on
          a qubit :math:`q_i`, and :math:`h_i` and :math:`J_{i,j}` are the qubit
          biases and coupling strengths.
+
+      Hardware graph
+         See `hardware graph`_. The hardware graph is the physical lattice of
+         interconnected qubits. See also :term:`working graph`.
+
+         .. _hardware graph: https://docs.dwavesys.com/docs/latest/c_gs_4.html
 
       Ising
          Traditionally used in statistical mechanics. Variables are "spin up"
@@ -141,3 +162,11 @@ Glossary
       Solver
          A resource that runs a problem. Some solvers interface to the :term:`QPU`;
          others leverage CPU and GPU resources.
+
+      Subgraph
+         See subgraph_ on wikipedia.
+
+         .. _subgraph: https://en.wikipedia.org/wiki/Glossary_of_graph_theory_terms#subgraph
+
+      Working graph
+         In a D-Wave QPU, the set of qubits and couplers that are available for computation is known as the working graph. The yield of a working graph is typically less than 100% of qubits and couplers that are fabricated and physically present in the QPU. See :term:`hardware graph`.
