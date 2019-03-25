@@ -23,13 +23,15 @@ at `D-Wave on GitHub <https://github.com/dwavesystems>`_\ ).
        satisfaction problem with small constraints over binary variables.
    * - :std:doc:`dwave-cloud-client <cloud-client:index>` (`repo <https://github.com/dwavesystems/dwave-cloud-client>`_)
      - Minimal implementation of the REST interface used to communicate with D-Wave :term:`Sampler` API (SAPI) servers.
+   * - :std:doc:`dwave-hybrid <hybrid:index>` (`repo <https://github.com/dwavesystems/dwave-hybrid>`_\ )
+     - A general, minimal Python framework for building hybrid asynchronous decomposition samplers for quadratic unconstrained binary optimization (QUBO) problems.
    * - :std:doc:`dwave-neal <neal:index>` (`repo <https://github.com/dwavesystems/dwave-neal>`_\ )
      - An implementation of a simulated annealing sampler.
-   * - :std:doc:`dwave_networkx <networkx:index>` (`repo <https://github.com/dwavesystems/dwave_networkx>`_\ )
+   * - :std:doc:`dwave-networkx <networkx:index>` (`repo <https://github.com/dwavesystems/dwave_networkx>`_\ )
      - Extension of NetworkX—a Python language package for exploration and analysis
        of networks and network algorithms—for users of D-Wave Systems.
 
-       dwave_networkx provides tools for working with :term:`Chimera` graphs and implementations of
+       dwave-networkx provides tools for working with :term:`Chimera` graphs and implementations of
        graph-theory algorithms on the D-Wave system and other binary quadratic model
        :term:`sampler`\ s.
    * - dwave-ocean-sdk (`repo <https://github.com/dwavesystems/dwave-ocean-sdk>`_)
