@@ -66,6 +66,23 @@ class TestSmokeIndividually(unittest.TestCase):
 
         resp = qbsolv.QBSolv().sample_ising(h, J)
 
+    def test_hybrid(self):
+        import dimod
+        import hybrid
+
+        bqm = dimod.BinaryQuadraticModel({}, {'ab': 1, 'bc': -1, 'ca': 1}, 0, dimod.SPIN)
+
+        workflow = hybrid.Loop(hybrid.Race(
+            hybrid.InterruptableTabuSampler(),
+            hybrid.EnergyImpactDecomposer(size=2)
+            | hybrid.SimulatedAnnealingSubproblemSampler()
+            | hybrid.SplatComposer()
+        ) | hybrid.ArgMin(), convergence=3)
+
+        result = workflow.run(hybrid.State.from_problem(bqm)).result()
+
+        self.assertEqual(result.samples.first.energy, -3.0)
+
     def test_neal(self):
         import neal
 
