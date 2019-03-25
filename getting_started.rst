@@ -63,9 +63,11 @@ Intermediate-Level Examples
 
    examples/map_coloring
    examples/multi_gate
+   examples/hybrid1
 
 * :ref:`map_coloring` example solves a more complex constraint satisfaction problem.
 * :ref:`multi_gate` looks more deeply at :term:`minor-embedding`.
+* :ref:`hybrid1` illustrates solving a large problem using both classical and quantum resources.
 
 Advanced-Level Examples
 -----------------------
