@@ -27,6 +27,7 @@ if _PY2:
 else:
     exec(open("./dwaveoceansdk/package_info.py").read())
 
+
 install_requires = [
     'dwave-networkx>=0.7.0,<0.8.0',
     'dwave-system>=0.7.0,<0.8.0',
@@ -36,6 +37,7 @@ install_requires = [
     'dwave-tabu>=0.1.3,<0.2.0',
     'dimod>=0.8.0,<0.9.0',
     'numpy<1.16.0',     # only while we support py34
+    'pyqubo>=0.3.0',
 ]
 
 extras_require = {
@@ -46,6 +48,7 @@ extras_require = {
         'dwavebinarycsp[maxgap]>=0.0.9,<0.1.0'
     ]
 }
+
 
 packages = ['dwaveoceansdk']
 
