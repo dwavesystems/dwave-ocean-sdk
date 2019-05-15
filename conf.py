@@ -120,7 +120,10 @@ html_static_path = ['_static']
 #      }
 def setup(app):
    #app.add_javascript("custom.js")
-   app.add_stylesheet("theme_overrides.css")
+   app.add_stylesheet('theme_overrides.css')
+   app.add_stylesheet('cookie_notice.css')
+   app.add_javascript('cookie_notice.js')
+
 
 # -- Options for HTMLHelp output ------------------------------------------
 
