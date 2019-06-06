@@ -109,3 +109,27 @@ system.
   a signed social network. This demo calculates and shows structural imbalance for
   social networks of militant organization based on data from the Stanford Militants
   Mapping Project.
+
+.. _additional_tutorials:
+
+Additional Tutorials
+====================
+
+* `Getting Started with the D-Wave System <https://docs.dwavesys.com/docs/latest/doc_getting_started.html>`_
+
+  This guide in the
+  `System Documentation <https://docs.dwavesys.com/docs/latest/index.html>`_
+  introduces the D-Wave quantum computer, provides some key background information on
+  how the system works, and explains how to construct a simple problem that the system
+  can solve.
+
+* `D-Wave Problem-Solving Handbook <https://docs.dwavesys.com/docs/latest/doc_handbook.html>`_
+
+  This guide for more advanced users has an opening chapter of illustrative examples
+  that explain the main steps of solving problems on the D-Wave system through two
+  “toy” problems.
+
+* `Leap <https://cloud.dwavesys.com/leap/>`_
+
+  Leap includes Jupyter Notebooks that provide additional tutorial examples and a
+  framework to help you develop your own code.

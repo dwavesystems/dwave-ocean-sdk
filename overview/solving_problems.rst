@@ -239,4 +239,6 @@ and checks some features supported on the D-Wave system used as a sampler.
 Note that the composed sampler (:code:`VirtualGraphComposite()` in the last example)
 inherits properties from the child sampler (:code:`DWaveSampler()` in that example).
 
-See the :ref:`sysdocs` for more information.
+See the resources under :ref:`additional_tutorials` and the
+`System Documentation <https://docs.dwavesys.com/docs/latest/index.html>`_ 
+for more information.
