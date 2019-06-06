@@ -44,11 +44,13 @@ Beginner-Level Examples
    :maxdepth: 1
    :hidden:
 
+   examples/map_kerberos
    examples/min_vertex
    examples/scheduling
    examples/not
    examples/and
 
+* :ref:`map_kerberos` demonstrates out-of-the-box solving of an arbitrary-sized problem.
 * :ref:`min_vertex` solves a small graph problem.
 * :ref:`scheduling` solves a small constraint satisfaction problem.
 * :ref:`not` mathematically formulates a BQM for a two-variable problem.
