@@ -68,7 +68,7 @@ was found here on `write-only blog of Gregg Lind <https://writeonly.wordpress.co
 
     # Snipped here for brevity
 
-You can see in the first non-comment line that the state or Alaska ("AK") has Hawaii
+You can see in the first non-comment line that the state of Alaska ("AK") has Hawaii
 ("HI") as an adjacency and that Alabama ("AL") shares borders with four states.
 
 >>> import networkx as nx
