@@ -44,11 +44,13 @@ Beginner-Level Examples
    :maxdepth: 1
    :hidden:
 
+   examples/map_kerberos
    examples/min_vertex
    examples/scheduling
    examples/not
    examples/and
 
+* :ref:`map_kerberos` demonstrates out-of-the-box solving of an arbitrary-sized problem.
 * :ref:`min_vertex` solves a small graph problem.
 * :ref:`scheduling` solves a small constraint satisfaction problem.
 * :ref:`not` mathematically formulates a BQM for a two-variable problem.
@@ -107,3 +109,27 @@ system.
   a signed social network. This demo calculates and shows structural imbalance for
   social networks of militant organization based on data from the Stanford Militants
   Mapping Project.
+
+.. _additional_tutorials:
+
+Additional Tutorials
+====================
+
+* :std:doc:`Getting Started with the D-Wave System <sysdocs_gettingstarted:doc_getting_started>`
+
+  This guide in the
+  :std:doc:`System Documentation <sysdocs_gettingstarted:index>`
+  introduces the D-Wave quantum computer, provides some key background information on
+  how the system works, and explains how to construct a simple problem that the system
+  can solve.
+
+* :std:doc:`D-Wave Problem-Solving Handbook <sysdocs_gettingstarted:doc_handbook>`
+
+  This guide for more advanced users has an opening chapter of illustrative examples
+  that explain the main steps of solving problems on the D-Wave system through two
+  “toy” problems.
+
+* `Leap <https://cloud.dwavesys.com/leap/>`_
+
+  Leap includes Jupyter Notebooks that provide additional tutorial examples and a
+  framework to help you develop your own code.
