@@ -92,7 +92,7 @@ the classical and quantum workflows.)
 
 >>> import dwave_networkx as dnx
 >>> from hybrid.reference.kerberos import KerberosSampler
->>> coloring = dnx.min_vertex_coloring(G, KerberosSampler(), max_iter=10, convergence=3)
+>>> coloring = dnx.min_vertex_coloring(G, sampler=KerberosSampler(), chromatic_ub=4, max_iter=10, convergence=3)
 >>> set(coloring.values())
 {0, 1, 2, 3}
 
