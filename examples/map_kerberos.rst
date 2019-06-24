@@ -78,8 +78,9 @@ Graph G now represents states as vertices and each state's neighbors as shared e
 Ocean's :std:doc:`dwave_networkx <system:index>` can return a
 `minimum vertex coloring <https://en.wikipedia.org/wiki/Graph_coloring>`_ for a graph,
 which assigns a color to the vertices of a graph in a way that no adjacent vertices
-have the same color. Given a graph representing a map and a :term:`sampler`, the
-`min_vertex_coloring` function tries to solve the map coloring problem.
+have the same color, using the minimum number of colors. Given a graph representing a
+map and a :term:`sampler`, the `min_vertex_coloring` function tries to solve the
+map coloring problem.
 
 :std:doc:`dwave-hybrid <hybrid:index>` Kerberos is classical-quantum hybrid asynchronous decomposition sampler, which can decompose large problems into smaller pieces that
 it can run both classically (on your local machine) and on the D-Wave system.
