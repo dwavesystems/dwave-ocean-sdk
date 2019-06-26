@@ -178,6 +178,7 @@ jobs:
       - run:
           name: install pip
           command: |
+            sudo apt-get update
             sudo apt-get install python-pip python-dev build-essential
 
       - run:
