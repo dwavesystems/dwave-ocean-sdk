@@ -1,0 +1,3 @@
+[submodule "dimod"]
+	path = dimod
+	url = https://github.com/dwavesystems/dimod.git
