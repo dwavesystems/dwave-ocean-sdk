@@ -28,7 +28,7 @@ Understand the terminology.
    :maxdepth: 2
 
    getting_started
-   projects
+   dimod/shortindex
    glossary
    CONTRIBUTING
 
