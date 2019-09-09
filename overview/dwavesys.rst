@@ -16,8 +16,8 @@ submission through SAPI includes:
 
 1. API endpoint URL
 
-   A URL to the remote D-Wave system. By default, https://cloud.dwavesys.com/sapi is used to
-   connect to resources provided by D-Wave's Leap Quantum Application Environment.
+   A URL to the remote D-Wave system. By default, ``https://cloud.dwavesys.com/sapi``
+   is used to connect to resources provided by D-Wave's Leap Quantum Application Environment.
 
 2. API Token
 
