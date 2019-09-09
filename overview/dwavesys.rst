@@ -56,7 +56,7 @@ Client tool installation).
 
     $ dwave config create
     Configuration file not found; the default location is: /home/jane/.config/dwave/dwave.conf
-    Confirm configuration file path [/home/radomir/.config/dwave/dwave.conf]:
+    Confirm configuration file path [/home/jane/.config/dwave/dwave.conf]:
     Profile (create new) [prod]:
     API endpoint URL [skip]:
     Authentication token [skip]: ABC-1234567890abcdef1234567890abcdef
