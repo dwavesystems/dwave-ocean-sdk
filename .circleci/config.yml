@@ -10,6 +10,12 @@ jobs:
 
       - checkout
 
+      - run: &pull-submodules-template
+          name: pull submodules
+          command: |
+            git submodule update --init
+
+
       - run:
           name: create virtualenv
           command: |
@@ -60,6 +66,8 @@ jobs:
 
     steps: 
       - checkout
+
+      - run: *pull-submodules-template
 
       - run: 
           name: install pyenv
@@ -125,6 +133,8 @@ jobs:
     steps:
       - checkout
 
+      - run: *pull-submodules-template
+
       - run:
           name: create virtualenv
           command: |
@@ -161,6 +171,8 @@ jobs:
 
     steps:
       - checkout
+
+      - run: *pull-submodules-template
 
       - run:
           name: create virtualenv
@@ -211,6 +223,8 @@ jobs:
 
     steps:
       - checkout
+
+      - run: *pull-submodules-template
 
       - run:
           name: install pip
