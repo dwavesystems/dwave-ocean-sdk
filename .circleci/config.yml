@@ -10,6 +10,12 @@ jobs:
 
       - checkout
 
+      - run: &pull-submodules-template
+          name: pull submodules
+          command: |
+            git submodule update --init
+
+
       - run:
           name: create virtualenv
           command: |
@@ -60,6 +66,8 @@ jobs:
 
     steps: 
       - checkout
+
+      - run: *pull-submodules-template
 
       - run: 
           name: install pyenv
@@ -116,6 +124,45 @@ jobs:
       PYTHON: 2.7.15
       HOMEBREW_NO_AUTO_UPDATE: 1
 
+  test-doctest:
+    docker:
+      - image: circleci/python:3.7-stretch # as of march 2019 RTD uses 3.7
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      - run: *pull-submodules-template
+
+      - run:
+          name: create virtualenv
+          command: |
+            python -m virtualenv env
+
+      - run: *install-dependencies-template
+
+      - run:
+          name: install docs requirements
+          command: |
+            . env/bin/activate
+            pip install -r docs/requirements.txt
+
+      - run:
+          name: build the docs
+          command: |
+            . env/bin/activate
+            make -C docs/ html
+
+      - store_artifacts:
+          path: ./docs/_build/html
+
+      - run:
+          name: doctest
+          command: |
+            . env/bin/activate
+            make -C docs/ doctest
+
   deploy:
     docker:
       - image: circleci/python:3.6-jessie
@@ -124,6 +171,8 @@ jobs:
 
     steps:
       - checkout
+
+      - run: *pull-submodules-template
 
       - run:
           name: create virtualenv
@@ -175,6 +224,8 @@ jobs:
     steps:
       - checkout
 
+      - run: *pull-submodules-template
+
       - run:
           name: install pip
           command: |
@@ -208,6 +259,7 @@ workflows:
       - test-osx-3.5
       - test-osx-3.4
       - test-osx-2.7
+      - test-doctest
 
   deploy:
     jobs:

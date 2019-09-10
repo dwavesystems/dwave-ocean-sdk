@@ -1,0 +1,4 @@
+[submodule "dimod"]
+    path = dimod
+    url = https://github.com/dwavesystems/dimod.git
+    branch = 0.8.15
