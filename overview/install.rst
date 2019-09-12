@@ -15,6 +15,14 @@ Ocean software requires a :ref:`Python environment<pythonEnvironment>`. Supporte
 * 2.7.x
 * 3.5 and higher
 
+.. attention::
+   D-Wave's Ocean software will stop supporting Python 2 at the end of 2019.
+
+   For more information on the move, among many in the Python development community,
+   to require Python3, see
+   `the Python 3 statement <http://python3statement.org/>`_.
+
+
 This section explains how to :ref:`install Ocean software<installOceanSoftware>`, either the entire suite of tools
 or particular tools from the D-Wave GitHub repositories listed under :ref:`projects`.
 
