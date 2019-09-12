@@ -16,8 +16,8 @@ submission through SAPI includes:
 
 1. API endpoint URL
 
-   A URL to the remote D-Wave system. By default, https://cloud.dwavesys.com/sapi is used to
-   connect to resources provided by D-Wave's Leap Quantum Application Environment.
+   A URL to the remote D-Wave system. By default, ``https://cloud.dwavesys.com/sapi``
+   is used to connect to resources provided by D-Wave's Leap Quantum Application Environment.
 
 2. API Token
 
@@ -55,21 +55,20 @@ Client tool installation).
 .. code-block:: bash
 
     $ dwave config create
-    Configuration file not found; the default location is: C:\\Users\\jane\\AppData\\Local\\dwavesystem\\dwave\\dwave.conf
-    Confirm configuration file path (editable):
-    Profile (create new): prod
-    API endpoint URL (editable): https://my.dwavesys.url/
-    Authentication token (editable): ABC-1234567890abcdef1234567890abcdef
-    Client class (qpu or sw): qpu
-    Solver (can be left blank): {"qpu": true, "vfyc": true}
-    Proxy URL (can be left blank):
+    Configuration file not found; the default location is: /home/jane/.config/dwave/dwave.conf
+    Confirm configuration file path [/home/jane/.config/dwave/dwave.conf]:
+    Profile (create new) [prod]:
+    API endpoint URL [skip]:
+    Authentication token [skip]: ABC-1234567890abcdef1234567890abcdef
+    Default client class (qpu or sw) [qpu]:
+    Default solver [skip]:
     Configuration saved.
 
-2. Enter the SAPI information (e.g. your API token) found as described above. You can
-   accept the command's defaults and in the future update the file if needed.
-
-   To get started, Leap users can create a minimum configuration by entering only an API
-   token; on-premises users should also set the URL to the on-premises system.
+2. Enter the SAPI information (e.g. your API token) found as described in the section
+   above. To get started, create a minimum configuration by accepting the command's
+   defaults (pressing Enter) for all prompts except the API token (Leap users) or
+   API token and endpoint (on-premises users). You can in the future update the
+   file if needed.
 
 Alternatively, you can create and edit a
 :std:doc:`D-Wave Cloud Client configuration file <cloud-client:index>`
@@ -182,7 +181,8 @@ and queries its parameters.
    u'auto_scale': ['parameters'],
    # Snipped above response for brevity
 
-Descriptions of D-Wave system parameters and properties are in the :ref:`sysdocs`.
+Descriptions of D-Wave system parameters and properties are in the
+:std:doc:`system documentation <sysdocs_gettingstarted:index>`.
 
 Submitting Problems to a D-Wave System
 --------------------------------------
