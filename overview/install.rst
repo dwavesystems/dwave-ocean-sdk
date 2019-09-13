@@ -18,8 +18,8 @@ Ocean software requires a :ref:`Python environment<pythonEnvironment>`. Supporte
 .. attention::
    D-Wave's Ocean software will stop supporting Python 2 at the end of 2019.
 
-   For more information on the move, among many in the Python development community,
-   to require Python3, see
+   For information on why many in the Python development community are 
+   requiring Python 3, see
    `the Python 3 statement <http://python3statement.org/>`_.
 
 
