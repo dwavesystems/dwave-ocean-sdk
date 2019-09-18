@@ -88,6 +88,15 @@ pygments_style = 'sphinx'
 # If true, `todo` and `todoList` produce output, else they produce nothing.
 todo_include_todos = True
 
+doctest_global_setup = """
+from __future__ import print_function, division
+
+import dimod
+import dwave.embedding
+import dwave.system
+
+"""
+
 # -- Options for HTML output ----------------------------------------------
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for

@@ -29,6 +29,7 @@ Understand the terminology.
 
    getting_started
    dimod/shortindex
+   dwave-system/shortindex
    glossary
    CONTRIBUTING
 
