@@ -22,8 +22,10 @@ Abstraction Layers
 
 .. figure:: ../_static/ocean_stack.png
   :name: stack
-  :scale: 70 %
+  :scale: 100 %
   :alt: Overview of the software stack.
+  :height: 400 pt
+  :width: 400 pt
 
   Ocean Software Stack
 
