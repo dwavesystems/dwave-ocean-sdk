@@ -196,7 +196,7 @@ each stage of the process to a layer of the Ocean stack.
     You might formulate a BQM mathematically; see :ref:`not` for a mathematical formulation
     for a two-variable problem.
 
-    See the :ref:`sysdocs` for more information on techniques for formulating problems
+    See the :std:doc:`system documents <sysdocs_gettingstarted:index>` for more information on techniques for formulating problems
     as BQMs.
 
 5. **Formulate**
@@ -267,5 +267,5 @@ work your way down the Ocean stack.
        and then seek performance improvements through :std:doc:`minorminer <minorminer:index>`.
    * - Configure the QPU
      - Use spin-reversal transforms to reduce errors, for example, or examine the annealing
-       with reverse anneal. See the :ref:`sysdocs` for more information of features
+       with reverse anneal. See the :std:doc:`system documents <sysdocs_gettingstarted:index>` for more information of features
        that improve performance.
