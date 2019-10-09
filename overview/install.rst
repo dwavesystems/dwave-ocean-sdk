@@ -18,7 +18,7 @@ Ocean software requires a :ref:`Python environment<pythonEnvironment>`. Supporte
 .. attention::
    D-Wave's Ocean software will stop supporting Python 2 at the end of 2019.
 
-   For information on why many in the Python development community are 
+   For information on why many in the Python development community are
    requiring Python 3, see
    `the Python 3 statement <http://python3statement.org/>`_.
 
@@ -48,6 +48,9 @@ depending on your operating system, you may need to first install Python and/or
    .. code-block:: bash
 
        sudo apt-get install python<version>
+
+   .. attention::
+      For Windows systems, note that only **64-bit** Python is supported.
 
 #. `Install virtualenv <https://packaging.python.org/guides/installing-using-pip-and-virtualenv>`_
    describes how to install the `virtualenv` tool for creating isolated Python environments
