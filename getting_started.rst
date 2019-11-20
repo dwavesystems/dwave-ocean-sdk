@@ -84,31 +84,18 @@ Advanced-Level Examples
 
 .. _projects-Demonstrations:
 
-Demonstrations
-==============
+Demonstrations and Jupyter Notebooks
+====================================
 
-Copy (clone) open-source code to run demos of solving known problems on a D-Wave
-system.
+D-Wave's `dwave-examples <https://github.com/dwave-examples>`_ GitHub repo
+contains demos, typically in the form of short code examples, you can copy (clone)
+and run.
 
-* `Circuit Fault Diagnosis <https://github.com/dwavesystems/circuit-fault-diagnosis-demo>`_
-
-  Demonstrates the use of the D-Wave system to solve circuit fault diagnosis, the problem of identifying
-  a minimum-sized set of components that, if faulty, explains an observation of incorrect outputs given a
-  set of inputs.
-
-* `Factoring <https://github.com/dwavesystems/factoring-demo>`_
-
-  Demonstrates the use of the D-Wave system to factor numbers in an entirely new way,
-  by turning a multiplication circuit into a constraint satisfaction problem that
-  allows the quantum computer to compute inputs from a predefined output. Essentially,
-  this means running the multiplication circuit in reverse.
-
-* `Structural Imbalance <https://github.com/dwavesystems/structural-imbalance-demo>`_
-
-  Demonstrates the use of the D-Wave system for analyzing the structural imbalance on
-  a signed social network. This demo calculates and shows structural imbalance for
-  social networks of militant organization based on data from the Stanford Militants
-  Mapping Project.
+D-Wave's `Leap <https://cloud.dwavesys.com/leap>`_ Quantum Application Environment
+provides a number of `Jupyter Notebooks <https://jupyter.org>`_ with detailed code examples for various types
+of problems (for example, constraint satisfaction problems) and ways of using the
+quantum computer (for example, hybrid computing and reverse annealing). These can also
+serve as a framework in which to develop your own code.
 
 .. _additional_tutorials:
 
@@ -128,8 +115,3 @@ Additional Tutorials
   This guide for more advanced users has an opening chapter of illustrative examples
   that explain the main steps of solving problems on the D-Wave system through two
   “toy” problems.
-
-* `Leap <https://cloud.dwavesys.com/leap/>`_
-
-  Leap includes Jupyter Notebooks that provide additional tutorial examples and a
-  framework to help you develop your own code.

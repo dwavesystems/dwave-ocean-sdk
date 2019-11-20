@@ -126,6 +126,10 @@ each stage of the process to a layer of the Ocean stack.
         - :std:doc:`dwave-cloud-client <cloud-client:index>` :code:`Solver()`
         - D-Wave system as a sampler.\ [#]_
         - For low-level control of problem submission.
+      * - Hybrid
+        - :std:doc:`dwave-hybrid <hybrid:index>` :code:`KerberosSampler()`
+        - *dimod*-compatible hybrid asynchronous decomposition sampler.
+        - For problems of arbitrary structure and size.
       * -
         - :std:doc:`dimod <dimod:index>` custom
         - Write a custom sampler for special cases.
