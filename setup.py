@@ -36,7 +36,7 @@ install_requires = [
     'dwave-neal>=0.5.0,<0.6.0',
     'dwave-tabu>=0.2.0,<0.3.0',
     'dimod>=0.8.0,<0.9.0',
-    'numpy<1.16.0',     # only while we support py34
+    'numpy<1.16.0',     # until sync'ed across all packages
     'pyqubo>=0.3.0',
 ]
 
@@ -64,7 +64,7 @@ classifiers = [
     'Programming Language :: Python :: 3.7'
 ]
 
-python_requires = '>=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*'
+python_requires = '>=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*'
 
 setup(
     name='dwave-ocean-sdk',
