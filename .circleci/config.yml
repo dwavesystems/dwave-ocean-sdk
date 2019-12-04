@@ -39,11 +39,6 @@ jobs:
     docker:
       - image: circleci/python:3.5-jessie
 
-  test-3.4:
-    <<: *full-test-template
-    docker:
-      - image: circleci/python:3.4-jessie
-
   test-2.7:
     <<: *full-test-template
     docker:
@@ -102,12 +97,6 @@ jobs:
     <<: *osx-tests-template
     environment:
       PYTHON: 3.5.5
-      HOMEBREW_NO_AUTO_UPDATE: 1
-
-  test-osx-3.4:
-    <<: *osx-tests-template
-    environment:
-      PYTHON: 3.4.8
       HOMEBREW_NO_AUTO_UPDATE: 1
 
   test-osx-2.7:
@@ -201,12 +190,10 @@ workflows:
       - test-3.7
       - test-3.6
       - test-3.5
-      - test-3.4
       - test-2.7
       - test-osx-3.7
       - test-osx-3.6
       - test-osx-3.5
-      - test-osx-3.4
       - test-osx-2.7
 
   deploy:
@@ -230,11 +217,9 @@ workflows:
       - test-3.7
       - test-3.6
       - test-3.5
-      - test-3.4
       - test-2.7
       - test-osx-3.7
       - test-osx-3.6
       - test-osx-3.5
-      - test-osx-3.4
       - test-osx-2.7
       - black-duck
