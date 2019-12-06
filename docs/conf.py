@@ -245,7 +245,8 @@ epub_exclude_files = ['search.html']
 #intersphinx_mapping = {'https://docs.python.org/': None,
 #                       'http://networkx.readthedocs.io/en/latest/': None}
 intersphinx_mapping = {'python': ('https://docs.python.org/', None),
-    'dimod': ('https://docs.ocean.dwavesys.com/projects/dimod/en/latest/', None),
+    'numpy': ('http://docs.scipy.org/doc/numpy/', None),
+    'bson': ('https://api.mongodb.com/python/current/', None),
     'binarycsp': ('https://docs.ocean.dwavesys.com/projects/binarycsp/en/latest/', None),
     'cloud-client': ('https://docs.ocean.dwavesys.com/projects/cloud-client/en/latest/', None),
     'networkx': ('https://networkx.github.io/documentation/stable/', None),
