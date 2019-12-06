@@ -22,3 +22,6 @@
 [submodule "dwave-cloud-client"]
 	path = dwave-cloud-client
 	url = https://github.com/dwavesystems/dwave-cloud-client
+[submodule "minorminer"]
+	path = minorminer
+	url = https://github.com/dwavesystems/minorminer

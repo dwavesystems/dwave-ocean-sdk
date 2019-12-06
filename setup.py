@@ -29,7 +29,7 @@ else:
 
 
 install_requires = [
-    'dwave-cloud-client==0.6.2'
+    'dwave-cloud-client==0.6.2',
     'dwave-networkx==0.8.3',
     'dwave-system==0.8.0',
     'dwave-qbsolv>=0.2.7,<0.3.0',
@@ -37,6 +37,7 @@ install_requires = [
     'dwave-neal==0.5.1',
     'dwave-tabu==0.2.1',
     'dimod==0.8.18',
+    'minorminer==0.1.9',
     'numpy<1.16.0',     # only while we support py34
     'pyqubo>=0.3.0',
 ]
