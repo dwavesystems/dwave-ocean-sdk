@@ -34,6 +34,7 @@ Understand the terminology.
   dwave-neal/shortindex
   dwave-networkx/shortindex
   dwave-system/shortindex
+  dwave-tabu/shortindex
 
 .. toctree::
   :caption: D-Wave
