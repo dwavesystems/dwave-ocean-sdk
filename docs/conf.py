@@ -89,6 +89,15 @@ pygments_style = 'sphinx'
 # If true, `todo` and `todoList` produce output, else they produce nothing.
 todo_include_todos = True
 
+doctest_global_setup = """
+from __future__ import print_function, division
+
+import dimod
+from dwave.embedding import *
+from dwave.system import *
+
+"""
+
 # -- Options for HTML output ----------------------------------------------
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
@@ -230,7 +239,6 @@ intersphinx_mapping = {'python': ('https://docs.python.org/', None),
     'cloud-client': ('https://docs.ocean.dwavesys.com/projects/cloud-client/en/latest/', None),
     'neal': ('https://docs.ocean.dwavesys.com/projects/neal/en/latest/', None),
     'networkx': ('https://docs.ocean.dwavesys.com/projects/dwave-networkx/en/latest/', None),
-    'system': ('https://docs.ocean.dwavesys.com/projects/system/en/latest/', None),
     'penaltymodel': ('https://docs.ocean.dwavesys.com/projects/penaltymodel/en/latest/', None),
     'minorminer': ('https://docs.ocean.dwavesys.com/projects/minorminer/en/latest/', None),
     'hybrid': ('https://docs.ocean.dwavesys.com/projects/hybrid/en/latest/', None),

@@ -27,6 +27,11 @@ Understand the terminology.
    contributing
 
 .. toctree::
+  :caption: Tools
+
+  dwave-system/shortindex
+
+.. toctree::
   :caption: D-Wave
   :hidden:
   :maxdepth: 1
