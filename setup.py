@@ -30,7 +30,7 @@ else:
 
 install_requires = [
     'dwave-networkx>=0.8.0,<0.9.0',
-    'dwave-system>=0.8.0,<0.9.0',
+    'dwave-system==0.8.0',
     'dwave-qbsolv>=0.2.7,<0.3.0',
     'dwave-hybrid>=0.4.0,<0.5.0',
     'dwave-neal>=0.5.0,<0.6.0',

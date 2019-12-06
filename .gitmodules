@@ -1,0 +1,3 @@
+[submodule "dwave-system"]
+	path = dwave-system
+	url = https://github.com/dwavesystems/dwave-system
