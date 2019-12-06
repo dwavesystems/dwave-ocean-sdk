@@ -30,6 +30,7 @@ Understand the terminology.
   :caption: Tools
   :maxdepth: 1
 
+  dwave-hybrid/shortindex
   dwave-networkx/shortindex
   dwave-system/shortindex
 

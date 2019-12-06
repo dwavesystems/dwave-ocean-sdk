@@ -93,11 +93,19 @@ doctest_global_setup = """
 from __future__ import print_function, division
 
 import networkx as nx
+import dwave_networkx as dnx
 
 import dimod
+
 from dwave.embedding import *
 from dwave.system import *
-import dwave_networkx as dnx
+
+from hybrid.samplers import *
+from hybrid.core import *
+from hybrid.utils import *
+from hybrid.decomposers import *
+from hybrid.composers import *
+from hybrid.flow import *
 
 """
 
@@ -244,7 +252,6 @@ intersphinx_mapping = {'python': ('https://docs.python.org/', None),
     'networkx': ('https://networkx.github.io/documentation/stable/', None),
     'penaltymodel': ('https://docs.ocean.dwavesys.com/projects/penaltymodel/en/latest/', None),
     'minorminer': ('https://docs.ocean.dwavesys.com/projects/minorminer/en/latest/', None),
-    'hybrid': ('https://docs.ocean.dwavesys.com/projects/hybrid/en/latest/', None),
     'qbsolv': ('https://docs.ocean.dwavesys.com/projects/qbsolv/en/latest/', None),
     'tabu': ('https://docs.ocean.dwavesys.com/projects/tabu/en/latest/', None),
     'sysdocs_gettingstarted': ('https://docs.dwavesys.com/docs/latest/', None)}
