@@ -28,7 +28,9 @@ Understand the terminology.
 
 .. toctree::
   :caption: Tools
+  :maxdepth: 1
 
+  dwave-networkx/shortindex
   dwave-system/shortindex
 
 .. toctree::

@@ -92,9 +92,12 @@ todo_include_todos = True
 doctest_global_setup = """
 from __future__ import print_function, division
 
+import networkx as nx
+
 import dimod
 from dwave.embedding import *
 from dwave.system import *
+import dwave_networkx as dnx
 
 """
 
@@ -238,7 +241,7 @@ intersphinx_mapping = {'python': ('https://docs.python.org/', None),
     'binarycsp': ('https://docs.ocean.dwavesys.com/projects/binarycsp/en/latest/', None),
     'cloud-client': ('https://docs.ocean.dwavesys.com/projects/cloud-client/en/latest/', None),
     'neal': ('https://docs.ocean.dwavesys.com/projects/neal/en/latest/', None),
-    'networkx': ('https://docs.ocean.dwavesys.com/projects/dwave-networkx/en/latest/', None),
+    'networkx': ('https://networkx.github.io/documentation/stable/', None),
     'penaltymodel': ('https://docs.ocean.dwavesys.com/projects/penaltymodel/en/latest/', None),
     'minorminer': ('https://docs.ocean.dwavesys.com/projects/minorminer/en/latest/', None),
     'hybrid': ('https://docs.ocean.dwavesys.com/projects/hybrid/en/latest/', None),
