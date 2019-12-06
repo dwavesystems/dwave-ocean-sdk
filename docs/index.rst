@@ -13,11 +13,6 @@ problems with quantum computers.
 
 See how to install and use Ocean tools.
 
-:ref:`projects`
-================
-
-Access a particular tool's documentation and repository.
-
 :ref:`glossary`
 =================
 
@@ -28,9 +23,8 @@ Understand the terminology.
    :maxdepth: 2
 
    getting_started
-   projects
    glossary
-   CONTRIBUTING
+   contributing
 
 .. toctree::
   :caption: D-Wave

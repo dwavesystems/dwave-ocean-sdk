@@ -49,7 +49,6 @@ autosummary_generate = True
 # You can specify multiple suffix as a list of string:
 #
 source_suffix = ['.rst', '.md']
-source_parsers = {'.md': 'recommonmark.parser.CommonMarkParser'}
 
 # The master toctree document.
 master_doc = 'index'
