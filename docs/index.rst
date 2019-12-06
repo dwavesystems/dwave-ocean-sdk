@@ -31,6 +31,7 @@ Understand the terminology.
   :maxdepth: 1
 
   dwave-hybrid/shortindex
+  dwave-neal/shortindex
   dwave-networkx/shortindex
   dwave-system/shortindex
 
