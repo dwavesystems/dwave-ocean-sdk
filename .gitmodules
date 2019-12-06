@@ -13,3 +13,6 @@
 [submodule "dwave-tabu"]
 	path = dwave-tabu
 	url = https://github.com/dwavesystems/dwave-tabu
+[submodule "dimod"]
+	path = dimod
+	url = https://github.com/dwavesystems/dimod

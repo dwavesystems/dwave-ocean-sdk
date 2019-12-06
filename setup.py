@@ -35,7 +35,7 @@ install_requires = [
     'dwave-hybrid==0.4.1',
     'dwave-neal==0.5.1',
     'dwave-tabu==0.2.1',
-    'dimod>=0.8.0,<0.9.0',
+    'dimod==0.8.18',
     'numpy<1.16.0',     # only while we support py34
     'pyqubo>=0.3.0',
 ]
