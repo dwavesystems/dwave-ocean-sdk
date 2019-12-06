@@ -19,3 +19,6 @@
 [submodule "dwavebinarycsp"]
 	path = dwavebinarycsp
 	url = https://github.com/dwavesystems/dwavebinarycsp
+[submodule "dwave-cloud-client"]
+	path = dwave-cloud-client
+	url = https://github.com/dwavesystems/dwave-cloud-client

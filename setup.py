@@ -29,6 +29,7 @@ else:
 
 
 install_requires = [
+    'dwave-cloud-client==0.6.2'
     'dwave-networkx==0.8.3',
     'dwave-system==0.8.0',
     'dwave-qbsolv>=0.2.7,<0.3.0',
