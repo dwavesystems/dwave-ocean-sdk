@@ -4,3 +4,6 @@
 [submodule "dwave-networkx"]
 	path = dwave-networkx
 	url = https://github.com/dwavesystems/dwave_networkx
+[submodule "dwave-hybrid"]
+	path = dwave-hybrid
+	url = https://github.com/dwavesystems/dwave-hybrid
