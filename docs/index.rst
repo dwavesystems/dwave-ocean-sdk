@@ -38,6 +38,7 @@ Understand the terminology.
   dwave-tabu/shortindex
   dwavebinarycsp/shortindex
   dimod/shortindex
+  minorminer/shortindex
 
 .. toctree::
   :caption: D-Wave

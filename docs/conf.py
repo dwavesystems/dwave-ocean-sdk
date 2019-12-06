@@ -249,7 +249,6 @@ intersphinx_mapping = {'python': ('https://docs.python.org/', None),
     'bson': ('https://api.mongodb.com/python/current/', None),
     'networkx': ('https://networkx.github.io/documentation/stable/', None),
     'penaltymodel': ('https://docs.ocean.dwavesys.com/projects/penaltymodel/en/latest/', None),
-    'minorminer': ('https://docs.ocean.dwavesys.com/projects/minorminer/en/latest/', None),
     'qbsolv': ('https://docs.ocean.dwavesys.com/projects/qbsolv/en/latest/', None),
     'sysdocs_gettingstarted': ('https://docs.dwavesys.com/docs/latest/', None)}
 
