@@ -16,3 +16,6 @@
 [submodule "dimod"]
 	path = dimod
 	url = https://github.com/dwavesystems/dimod
+[submodule "dwavebinarycsp"]
+	path = dwavebinarycsp
+	url = https://github.com/dwavesystems/dwavebinarycsp
