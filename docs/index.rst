@@ -30,6 +30,7 @@ Understand the terminology.
   :caption: Tools
   :maxdepth: 1
 
+  dwave-cloud-client/shortindex
   dwave-hybrid/shortindex
   dwave-neal/shortindex
   dwave-networkx/shortindex

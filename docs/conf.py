@@ -247,7 +247,6 @@ epub_exclude_files = ['search.html']
 intersphinx_mapping = {'python': ('https://docs.python.org/', None),
     'numpy': ('http://docs.scipy.org/doc/numpy/', None),
     'bson': ('https://api.mongodb.com/python/current/', None),
-    'cloud-client': ('https://docs.ocean.dwavesys.com/projects/cloud-client/en/latest/', None),
     'networkx': ('https://networkx.github.io/documentation/stable/', None),
     'penaltymodel': ('https://docs.ocean.dwavesys.com/projects/penaltymodel/en/latest/', None),
     'minorminer': ('https://docs.ocean.dwavesys.com/projects/minorminer/en/latest/', None),
