@@ -32,7 +32,7 @@ install_requires = [
     'dwave-cloud-client==0.6.2',
     'dwave-networkx==0.8.3',
     'dwave-system==0.8.0',
-    'dwave-qbsolv>=0.2.7,<0.3.0',
+    'dwave-qbsolv==0.2.10',
     'dwave-hybrid==0.4.1',
     'dwave-neal==0.5.1',
     'dwave-tabu==0.2.1',
