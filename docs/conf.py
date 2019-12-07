@@ -107,6 +107,12 @@ from hybrid.decomposers import *
 from hybrid.composers import *
 from hybrid.flow import *
 
+import penaltymodel.core as pm
+import penaltymodel.cache as pmc
+import penaltymodel.maxgap as maxgap
+import penaltymodel.mip as mip
+import penaltymodel.lp as lp
+
 """
 
 # -- Options for HTML output ----------------------------------------------
@@ -248,7 +254,6 @@ intersphinx_mapping = {'python': ('https://docs.python.org/', None),
     'numpy': ('http://docs.scipy.org/doc/numpy/', None),
     'bson': ('https://api.mongodb.com/python/current/', None),
     'networkx': ('https://networkx.github.io/documentation/stable/', None),
-    'penaltymodel': ('https://docs.ocean.dwavesys.com/projects/penaltymodel/en/latest/', None),
     'qbsolv': ('https://docs.ocean.dwavesys.com/projects/qbsolv/en/latest/', None),
     'sysdocs_gettingstarted': ('https://docs.dwavesys.com/docs/latest/', None)}
 

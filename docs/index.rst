@@ -39,6 +39,7 @@ Understand the terminology.
   dwavebinarycsp/shortindex
   dimod/shortindex
   minorminer/shortindex
+  penaltymodel/shortindex
 
 .. toctree::
   :caption: D-Wave
