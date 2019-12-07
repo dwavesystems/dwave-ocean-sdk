@@ -37,17 +37,21 @@ install_requires = [
     'dwave-neal==0.5.1',
     'dwave-tabu==0.2.1',
     'dimod==0.8.18',
+    'dwavebinarycsp==0.0.12',
     'minorminer==0.1.9',
+    'penaltymodel==0.16.2',
+    'penaltymodel-cache==0.4.0',
+    'penaltymodel-lp==0.1.0',
     'numpy<1.16.0',     # only while we support py34
     'pyqubo>=0.3.0',
 ]
 
 extras_require = {
     ':(platform_machine == "x86_64" or platform_machine == "amd64" or platform_machine == "AMD64") and python_version != "3.4"': [
-        'dwavebinarycsp[mip]==0.0.12'
+        'penaltymodel-mip==0.2.1'
     ],
     ':platform_machine != "x86_64" and platform_machine != "amd64" and platform_machine != "AMD64" or python_version == "3.4"': [
-        'dwavebinarycsp[maxgap]==0.0.12'
+        'penaltymodel-maxgap==0.5.1'
     ]
 }
 
