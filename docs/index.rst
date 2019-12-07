@@ -34,6 +34,7 @@ Understand the terminology.
   dwave-hybrid/shortindex
   dwave-neal/shortindex
   dwave-networkx/shortindex
+  dwave-qbsolv/shortindex
   dwave-system/shortindex
   dwave-tabu/shortindex
   dwavebinarycsp/shortindex

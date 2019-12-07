@@ -1,0 +1,1 @@
+../../dwave-qbsolv/docs/intro.rst
