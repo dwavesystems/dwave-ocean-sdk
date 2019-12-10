@@ -1,0 +1,1 @@
+../../minorminer/docs/source/intro.rst

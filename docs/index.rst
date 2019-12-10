@@ -13,11 +13,6 @@ problems with quantum computers.
 
 See how to install and use Ocean tools.
 
-:ref:`projects`
-================
-
-Access a particular tool's documentation and repository.
-
 :ref:`glossary`
 =================
 
@@ -28,9 +23,24 @@ Understand the terminology.
    :maxdepth: 2
 
    getting_started
-   projects
    glossary
-   CONTRIBUTING
+   contributing
+
+.. toctree::
+  :caption: Tools
+  :maxdepth: 1
+
+  dwave-cloud-client/shortindex
+  dwave-hybrid/shortindex
+  dwave-neal/shortindex
+  dwave-networkx/shortindex
+  dwave-qbsolv/shortindex
+  dwave-system/shortindex
+  dwave-tabu/shortindex
+  dwavebinarycsp/shortindex
+  dimod/shortindex
+  minorminer/shortindex
+  penaltymodel/shortindex
 
 .. toctree::
   :caption: D-Wave

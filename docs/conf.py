@@ -49,7 +49,6 @@ autosummary_generate = True
 # You can specify multiple suffix as a list of string:
 #
 source_suffix = ['.rst', '.md']
-source_parsers = {'.md': 'recommonmark.parser.CommonMarkParser'}
 
 # The master toctree document.
 master_doc = 'index'
@@ -89,6 +88,32 @@ pygments_style = 'sphinx'
 
 # If true, `todo` and `todoList` produce output, else they produce nothing.
 todo_include_todos = True
+
+doctest_global_setup = """
+from __future__ import print_function, division
+
+import networkx as nx
+import dwave_networkx as dnx
+
+import dimod
+
+from dwave.embedding import *
+from dwave.system import *
+
+from hybrid.samplers import *
+from hybrid.core import *
+from hybrid.utils import *
+from hybrid.decomposers import *
+from hybrid.composers import *
+from hybrid.flow import *
+
+import penaltymodel.core as pm
+import penaltymodel.cache as pmc
+import penaltymodel.maxgap as maxgap
+import penaltymodel.mip as mip
+import penaltymodel.lp as lp
+
+"""
 
 # -- Options for HTML output ----------------------------------------------
 
@@ -226,17 +251,9 @@ epub_exclude_files = ['search.html']
 #intersphinx_mapping = {'https://docs.python.org/': None,
 #                       'http://networkx.readthedocs.io/en/latest/': None}
 intersphinx_mapping = {'python': ('https://docs.python.org/', None),
-    'dimod': ('https://docs.ocean.dwavesys.com/projects/dimod/en/latest/', None),
-    'binarycsp': ('https://docs.ocean.dwavesys.com/projects/binarycsp/en/latest/', None),
-    'cloud-client': ('https://docs.ocean.dwavesys.com/projects/cloud-client/en/latest/', None),
-    'neal': ('https://docs.ocean.dwavesys.com/projects/neal/en/latest/', None),
-    'networkx': ('https://docs.ocean.dwavesys.com/projects/dwave-networkx/en/latest/', None),
-    'system': ('https://docs.ocean.dwavesys.com/projects/system/en/latest/', None),
-    'penaltymodel': ('https://docs.ocean.dwavesys.com/projects/penaltymodel/en/latest/', None),
-    'minorminer': ('https://docs.ocean.dwavesys.com/projects/minorminer/en/latest/', None),
-    'hybrid': ('https://docs.ocean.dwavesys.com/projects/hybrid/en/latest/', None),
-    'qbsolv': ('https://docs.ocean.dwavesys.com/projects/qbsolv/en/latest/', None),
-    'tabu': ('https://docs.ocean.dwavesys.com/projects/tabu/en/latest/', None),
+    'numpy': ('http://docs.scipy.org/doc/numpy/', None),
+    'bson': ('https://api.mongodb.com/python/current/', None),
+    'networkx': ('https://networkx.github.io/documentation/stable/', None),
     'sysdocs_gettingstarted': ('https://docs.dwavesys.com/docs/latest/', None)}
 
 # sort documentation they way the appear in the source file
