@@ -30,17 +30,17 @@ Understand the terminology.
   :caption: Tools
   :maxdepth: 1
 
-  dwave-cloud-client/shortindex
-  dwave-hybrid/shortindex
-  dwave-neal/shortindex
-  dwave-networkx/shortindex
-  dwave-qbsolv/shortindex
-  dwave-system/shortindex
-  dwave-tabu/shortindex
-  dwavebinarycsp/shortindex
-  dimod/shortindex
-  minorminer/shortindex
-  penaltymodel/shortindex
+  docs_dimod/sdk_index
+  docs_binarycsp/sdk_index  
+  docs_cloud/sdk_index
+  docs_hybrid/sdk_index
+  docs_neal/sdk_index
+  docs_dnx/sdk_index
+  docs_system/sdk_index
+  docs_tabu/sdk_index
+  docs_minorminer/sdk_index
+  docs_penalty/sdk_index
+  qbsolv
 
 .. toctree::
   :caption: D-Wave
