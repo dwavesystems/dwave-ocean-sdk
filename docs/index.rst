@@ -40,7 +40,7 @@ Understand the terminology.
   docs_tabu/sdk_index
   docs_minorminer/sdk_index
   docs_penalty/sdk_index
-  qbsolv
+  docs_qbsolv
 
 .. toctree::
   :caption: D-Wave
