@@ -1,3 +1,4 @@
+dwave-ocean-sdk
 sphinx
 sphinx_rtd_theme
 recommonmark
