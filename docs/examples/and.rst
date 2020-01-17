@@ -16,7 +16,7 @@ Example Requirements
 To run the code in this example, the following is required.
 
 * The requisite information for problem submission through SAPI, as described in :ref:`dwavesys`
-* Ocean tools :std:doc:`dwave-system <system:index>`.
+* Ocean tools :doc:`dwave-system </docs_system/sdk_index>`.
 
 If you installed `dwave-ocean-sdk <https://github.com/dwavesystems/dwave-ocean-sdk>`_
 and ran :code:`dwave config create`, your installation should meet these requirements.
@@ -134,7 +134,7 @@ For reference, we first solve with the same steps used in the :ref:`not` example
 before solving again while manually controlling additional parameters.
 
 Again we use sampler *DWaveSampler()* from Ocean software's
-:std:doc:`dwave-system <system:index>` and
+:doc:`dwave-system </docs_system/sdk_index>` and
 its *EmbeddingComposite()* composite to :term:`minor-embed` our unstructured problem (variables
 x1, x2, and z) on the sampler's graph structure (the QPU's numerically
 indexed qubits).
@@ -174,7 +174,7 @@ Solve the Problem by Sampling: Non-automated Minor-Embedding
 ============================================================
 
 This section looks more closely into :term:`minor-embedding`. Above and in the :ref:`not`
-example, :std:doc:`dwave-system <system:index>`
+example, :doc:`dwave-system </docs_system/sdk_index>`
 *EmbeddingComposite()* composite abstracted the minor-embedding.
 
 Minor-Embedding a NOT Gate
@@ -284,7 +284,7 @@ solutions they have a single value for :math:`z`. (Remember the output in the
 `Solve the Problem by Sampling: Automated Minor-Embedding`_ section with its identical
 two last lines? This was likely due to the qubits in a chain taking different values.)
 
-The code below uses Ocean's :std:doc:`dwave-system <system:index>`
+The code below uses Ocean's :doc:`dwave-system </docs_system/sdk_index>`
 *FixedEmbeddingComposite()* composite for manual minor-embedding. Its last line prints a
 confirmation that indeed all three variables are connected.
 (coupled).

@@ -45,13 +45,13 @@ into the following layers of functionality:
 * Sampler API
 
   Abstraction layer that represents the problem in a form that can access the selected sampler;
-  for example, a :std:doc:`dimod <dimod:index>` binary quadratic
+  for example, a :doc:`dimod </docs_dimod/sdk_index>` binary quadratic
   model (BQM) class representing your problem wrapped in a :term:`minor-embedding` composite
   that handles the mapping between your problem's variables and the sampler's graph.
 * Methods
 
   Tools that help formulate a problem as binary quadratic models; for example
-  :std:doc:`dwave_networkx <networkx:index>`
+  :doc:`dwave_networkx </docs_dnx/sdk_index>`
   (`repo <https://github.com/dwavesystems/dwave_networkx>`_\ ) for graph-related problems.
 * Application
 
@@ -103,37 +103,37 @@ each stage of the process to a layer of the Ocean stack.
         - Usage
         - Notes
       * - Classical
-        - :std:doc:`dimod <dimod:index>` :code:`ExactSampler()`
+        - :doc:`dimod </docs_dimod/sdk_index>` :code:`ExactSampler()`
         - Find all states for small (<20 variables) problems.
         - For code-development testing.
       * - Classical
-        - :std:doc:`dimod <dimod:index>` :code:`RandomSampler()`
+        - :doc:`dimod </docs_dimod/sdk_index>` :code:`RandomSampler()`
         - Random sampler for testing.
         - For code-development testing.
       * - Classical
-        - :std:doc:`dimod <dimod:index>` :code:`SimulatedAnnealingSampler()`
+        - :doc:`dimod </docs_dimod/sdk_index>` :code:`SimulatedAnnealingSampler()`
         - Simulated annealing sampler for testing.
         - For code-development testing.
       * - Classical
-        - :std:doc:`dwave-neal <neal:index>` :code:`SimulatedAnnealingSampler()`
+        - :doc:`dwave-neal </docs_neal/sdk_index>` :code:`SimulatedAnnealingSampler()`
         - Simulated annealing sampler.
         -
       * - Quantum
-        - :std:doc:`dwave-system <system:index>` :code:`DWaveSampler()`
+        - :doc:`dwave-system </docs_system/sdk_index>` :code:`DWaveSampler()`
         - Quick incorporation of the D-Wave system as a sampler.
         - Typically part of a composite that handles :term:`minor-embedding`.
       * - Quantum
-        - :std:doc:`dwave-cloud-client <cloud-client:index>` :code:`Solver()`
+        - :doc:`dwave-cloud-client </docs_cloud/sdk_index>` :code:`Solver()`
         - D-Wave system as a sampler.\ [#]_
         - For low-level control of problem submission.
       * - Hybrid
-        - :std:doc:`dwave-hybrid <hybrid:index>` :code:`KerberosSampler()`
+        - :doc:`dwave-hybrid </docs_hybrid/sdk_index>` :code:`KerberosSampler()`
         - *dimod*-compatible hybrid asynchronous decomposition sampler.
         - For problems of arbitrary structure and size.
       * -
-        - :std:doc:`dimod <dimod:index>` custom
+        - :doc:`dimod </docs_dimod/sdk_index>` custom
         - Write a custom sampler for special cases.
-        - See examples in :std:doc:`dimod <dimod:index>`.
+        - See examples in :doc:`dimod </docs_dimod/sdk_index>`.
 
 .. [#] This sampler is for low-level work on communicating with SAPI and is not
        a dimod sampler.
@@ -153,34 +153,34 @@ each stage of the process to a layer of the Ocean stack.
       * - Tool & Composite
         - Usage
         - Notes
-      * - :std:doc:`dwave-system <system:index>` :code:`EmbeddingComposite()`
+      * - :doc:`dwave-system </docs_system/sdk_index>` :code:`EmbeddingComposite()`
         - Maps unstructured problems to a structured sampler.
         - Enables quick incorporation of the D-Wave system as a sampler by handling the :term:`minor-embedding`
           to the QPU's :term:`Chimera` topology of qubits.
-      * - :std:doc:`dwave-system <system:index>` :code:`FixedEmbeddingComposite()`
+      * - :doc:`dwave-system </docs_system/sdk_index>` :code:`FixedEmbeddingComposite()`
         - Maps unstructured problems to a structured sampler.
         - Uses a pre-calculated minor-embedding for improved performance.
-      * - :std:doc:`dwave-system <system:index>` :code:`TilingComposite()`
+      * - :doc:`dwave-system </docs_system/sdk_index>` :code:`TilingComposite()`
         - Tiles small problems multiple times to a Chimera-structured sampler.
         - Enables parallel sampling for small problems.
-      * - :std:doc:`dwave-system <system:index>` :code:`VirtualGraphComposite()`
+      * - :doc:`dwave-system </docs_system/sdk_index>` :code:`VirtualGraphComposite()`
         - Uses the D-Wave virtual graph feature for improved minor-embedding.
         - Calibrates qubits in chains to compensate for the effects of biases and enables
           easy creation, optimization, use, and reuse of an embedding for a given working graph.
-      * - :std:doc:`dimod <dimod:index>` :code:`SpinReversalTransformComposite()`
+      * - :doc:`dimod </docs_dimod/sdk_index>` :code:`SpinReversalTransformComposite()`
         - Applies spin reversal transform preprocessing.
         - Improves QPU results by reducing the impact of possible analog and systematic errors.
-      * - :std:doc:`dimod <dimod:index>` :code:`StructureComposite()`
+      * - :doc:`dimod </docs_dimod/sdk_index>` :code:`StructureComposite()`
         - Creates a structured composed sampler from an unstructured sampler.
         - Maps from a problem graph (e.g., a square graph) to a sampler's graph.
 
    In addition to composites that provide pre- and post-processing, Ocean also provides
    stand-alone tools to handle complex or large problems. For example:
 
-   * :std:doc:`minorminer <minorminer:index>` for :term:`minor-embedding`
+   * :doc:`minorminer </docs_minorminer/source/sdk_index>` for :term:`minor-embedding`
      might be used to improve solutions by fine tuning parameters or incorporating problem
      knowledge into the embedding.
-   * :std:doc:`qbsolv <qbsolv:index>` splits problems too large
+   * :doc:`qbsolv </docs_qbsolv>` splits problems too large
      for the QPU into pieces solved either via a D-Wave system or a classical tabu solver.
 
 4. **Map to a Supported Format**
@@ -191,10 +191,10 @@ each stage of the process to a layer of the Ocean stack.
 
     Ocean provides tools for formulating the BQM:
 
-    * :std:doc:`dwavebinarycsp <binarycsp:index>` for constraint
+    * :doc:`dwavebinarycsp </docs_binarycsp/sdk_index>` for constraint
       satisfaction problems with small constraints over binary variables. For example, many
       problems can be posed as satisfiability problems or with Boolean logic.
-    * :std:doc:`dwave_networkx <networkx:index>` for
+    * :doc:`dwave_networkx </docs_dnx/sdk_index>` for
       implementing graph-theory algorithms of the D-Wave system. Many problems can be
       posed in a form of graphs---this tool handles the construction of BQMs for several
       standard graph algorithms such as maximum cut, cover, and coloring.
@@ -259,18 +259,18 @@ work your way down the Ocean stack.
      - Reformulate an integer problem to use binary variables, for example, or convert a
        nonquadratic (high-order) polynomial to a QUBO.
 
-       Ocean's :std:doc:`dwavebinarycsp <binarycsp:index>` and :std:doc:`dwave_networkx <networkx:index>`
+       Ocean's :doc:`dwavebinarycsp </docs_binarycsp/sdk_index>` and :doc:`dwave_networkx </docs_dnx/sdk_index>`
        can be helpful for some problems.
    * - Decompose
      - Allocate large problems to classical and quantum resources.
 
-       Ocean's :std:doc:`dwave-hybrid <hybrid:index>` provides a framework and building
+       Ocean's :doc:`dwave-hybrid </docs_hybrid/sdk_index>` provides a framework and building
        blocks to help you create hybrid workflows.
    * - Embed
      - Consider whether your problem has repeated elements, such as logic gates, when
        deciding what tool to use to :term:`minor-embed` your BQM on the QPU. You might
        start with fully automated embedding (using :code:`EmbeddingComposite()` for example)
-       and then seek performance improvements through :std:doc:`minorminer <minorminer:index>`.
+       and then seek performance improvements through :doc:`minorminer </docs_minorminer/source/sdk_index>`.
    * - Configure the QPU
      - Use spin-reversal transforms to reduce errors, for example, or examine the annealing
        with reverse anneal. See the :std:doc:`system documents <sysdocs_gettingstarted:index>` for more information of features

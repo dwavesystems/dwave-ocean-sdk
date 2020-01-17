@@ -5,8 +5,8 @@ Vertex Cover
 ============
 
 This example solves a few small examples of a known graph problem, *minimum vertex cover*.
-A `vertex cover <https://en.wikipedia.org/wiki/Vertex_cover>`_ is a set of vertices 
-such that each edge of the graph is incident with at least one vertex in the set. 
+A `vertex cover <https://en.wikipedia.org/wiki/Vertex_cover>`_ is a set of vertices
+such that each edge of the graph is incident with at least one vertex in the set.
 A minimum vertex cover is the vertex cover of smallest size.
 
 The purpose of this example is to help a new user to submit a problem to a
@@ -20,8 +20,8 @@ Example Requirements
 To run the code in this example, the following is required.
 
 * The requisite information for problem submission through SAPI, as described in :ref:`dwavesys`.
-* Ocean tools :std:doc:`dwave-system <system:index>`,  :std:doc:`dimod <dimod:index>`, and
-  :std:doc:`dwave_networkx <networkx:index>`.
+* Ocean tools :doc:`dwave-system </docs_system/sdk_index>`,  :doc:`dimod </docs_dimod/sdk_index>`, and
+  :doc:`dwave_networkx </docs_dnx/sdk_index>`.
 
 If you installed `dwave-ocean-sdk <https://github.com/dwavesystems/dwave-ocean-sdk>`_
 and ran :code:`dwave config create`, your installation should meet these requirements.
@@ -64,7 +64,7 @@ Solve the Problem by Sampling
 =============================
 
 For small numbers of variables, even your computer's CPU can solve minimum vertex covers
-quickly. In this example, we demonstrate how to solve the problem both classically 
+quickly. In this example, we demonstrate how to solve the problem both classically
 on your CPU and on the quantum computer.
 
 Solving Classically on a CPU
@@ -72,13 +72,13 @@ Solving Classically on a CPU
 
 Before using the D-Wave system, it can sometimes be helpful to test code locally.
 Here we select one of Ocean software's test samplers to solve classically on a CPU.
-Ocean's :std:doc:`dimod <dimod:index>` provides a sampler that
+Ocean's :doc:`dimod </docs_dimod/sdk_index>` provides a sampler that
 simply returns the BQM's value for every possible assignment of variable values.
 
 >>> from dimod.reference.samplers import ExactSolver
 >>> sampler = ExactSolver()
 
-The next code lines use Ocean's :std:doc:`dwave_networkx <networkx:index>`
+The next code lines use Ocean's :doc:`dwave_networkx </docs_dnx/sdk_index>`
 to produce a BQM for our :code:`s5` graph and solve it on our selected sampler. In other
 examples the BQM is explicitly created but the Ocean tool used here abstracts the
 BQM: given the problem graph it returns a solution to a BQM it creates internally.
@@ -91,7 +91,7 @@ Solving on a D-Wave System
 --------------------------
 
 We now use a sampler from Ocean software's
-:std:doc:`dwave-system <system:index>` to solve on a
+:doc:`dwave-system </docs_system/sdk_index>` to solve on a
 D-Wave system. In addition to *DWaveSampler()*, we use *EmbeddingComposite()*, which maps
 unstructured problems to the graph structure of the selected sampler, a process known as
 :term:`minor-embedding`: our problem star graph must be mapped to the QPU's numerically
@@ -124,7 +124,7 @@ The figure below shows another five-node (wheel) graph.
    A five-node wheel graph.
 
 The code snippet below creates a new graph and solves on a
-D-Wave system. 
+D-Wave system.
 
 >>> w5 = nx.wheel_graph(5)
 >>> print(dnx.min_vertex_cover(w5, sampler))

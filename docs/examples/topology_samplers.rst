@@ -30,14 +30,14 @@ defines the connectivity allowed by the :term:`binary quadratic model`.
 
 To create a software solver with the same connectivity as a D-Wave 2000Q quantum computer
 we first need a representation of the :term:`Chimera` graph which can be obtained
-from the :std:doc:`dwave_networkx <networkx:index>` project using the
+from the :doc:`dwave_networkx </docs_dnx/sdk_index>` project using the
 :func:`~dwave_networkx.chimera_graph` function.
 
 >>> C16 = dnx.chimera_graph(16)
 
 Next, we need a software sampler. We will use the
-:class:`neal.SimulatedAnnealingSampler` found in :std:doc:`dwave_neal <neal:index>`,
-though the :class:`tabu.TabuSampler` from :std:doc:`dwave-tabu <tabu:index>`
+:class:`neal.SimulatedAnnealingSampler` found in :doc:`dwave_neal </docs_neal/sdk_index>`,
+though the :class:`tabu.TabuSampler` from :doc:`dwave-tabu </docs_tabu/sdk_index>`
 would work equally well.
 
 .. dev note: we should maybe add a link to somewhere explaining the difference
@@ -46,7 +46,7 @@ would work equally well.
 >>> classical_sampler = neal.SimulatedAnnealingSampler()
 
 Now, with a classical sampler and the desired graph, we can use
-:std:doc:`dimod <dimod:index>`'s :class:`dimod.StructuredComposite` to create
+:doc:`dimod </docs_dimod/sdk_index>`'s :class:`dimod.StructuredComposite` to create
 a Chimera-structured sampler.
 
 >>> sampler = dimod.StructureComposite(classical_sampler, C16.nodes, C16.edges)
@@ -83,8 +83,8 @@ Creating a Pegasus Sampler
 Another topology of interest is the :term:`Pegasus` topology.
 
 As above, we can use the generator function :func:`dwave_networkx.pegasus_graph` found in
-:std:doc:`dwave_networkx <networkx:index>` and the
-:class:`neal.SimulatedAnnealingSampler` found in :std:doc:`dwave_neal <neal:index>`
+:doc:`dwave_networkx </docs_dnx/sdk_index>` and the
+:class:`neal.SimulatedAnnealingSampler` found in :doc:`dwave_neal </docs_neal/sdk_index>`
 to construct a sampler.
 
 >>> P6 = dnx.pegasus_graph(6)
@@ -103,7 +103,7 @@ our problem. Say that we have a :term:`fully connected` problem with 40 variable
 and we want to know the chain length needed to embed it on a 2048 node
 :term:`Chimera` graph.
 
-We can use :std:doc:`dwave-system <system:index>`'s
+We can use :doc:`dwave-system </docs_system/sdk_index>`'s
 :func:`~dwave.embedding.chimera.find_clique_embedding` function to find the
 embedding and determine the maximum chain length.
 
@@ -114,7 +114,7 @@ embedding and determine the maximum chain length.
 
 Similarly we can explore clique embeddings for a 40-variables fully connected
 problem with a 680 node Pegasus graph using
-:std:doc:`dwave-system <system:index>`'s
+:doc:`dwave-system </docs_system/sdk_index>`'s
 :func:`~dwave.embedding.pegasus.find_clique_embedding` function
 
 >>> num_variables = 40
