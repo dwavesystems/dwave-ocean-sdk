@@ -38,7 +38,7 @@ Understand the terminology.
   docs_dnx/sdk_index
   docs_system/sdk_index
   docs_tabu/sdk_index
-  docs_minorminer/sdk_index
+  docs_minorminer/source/sdk_index
   docs_penalty/sdk_index
   docs_qbsolv
 

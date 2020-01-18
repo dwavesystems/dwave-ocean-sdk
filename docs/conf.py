@@ -38,7 +38,8 @@ extensions = [
     'sphinx.ext.napoleon',
     'sphinx.ext.todo',
     'sphinx.ext.viewcode',
-    'sphinx.ext.githubpages'
+    'sphinx.ext.githubpages',
+    'sphinx.ext.ifconfig'
 ]
 
 autosummary_generate = True
@@ -81,7 +82,7 @@ add_module_names = False
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This patterns also effect to html_static_path and html_extra_path
-exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', 'README.rst']
+exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = 'sphinx'
@@ -150,6 +151,7 @@ def setup(app):
    app.add_stylesheet('theme_overrides.css')
    app.add_stylesheet('cookie_notice.css')
    app.add_javascript('cookie_notice.js')
+   app.add_config_value('target', 'sdk', 'env')
 
 
 # -- Options for HTMLHelp output ------------------------------------------

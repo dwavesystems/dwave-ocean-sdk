@@ -1,0 +1,1 @@
+../../minorminer/README.rst
