@@ -11,7 +11,16 @@ on a D-Wave quantum computer.
 Initial Set Up
 ==============
 
-Install the tools and configure for running on a D-Wave system
+D-Wave's `Leap <https://cloud.dwavesys.com/leap/>`_ integrated development
+environment (IDE) is the fastest way to get started writing your quantum
+application or just learning to use Ocean tools. This cloud-based IDE---run
+in your browser---is available to all Leap accounts. It provides
+reusable/disposable workspaces (developer environments pre-configured with
+Ocean and other standard libraries as well as D-Wave extensions) for running
+code from your own GitHub repository or a collection of code examples you can
+then modify.
+
+Alternatively, install the tools and configure for running on a D-Wave system
 (QPU) or locally (CPU/GPU).
 
 .. toctree::

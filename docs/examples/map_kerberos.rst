@@ -38,6 +38,8 @@ To run the code in this example, the following is required.
 
 If you installed `dwave-ocean-sdk <https://github.com/dwavesystems/dwave-ocean-sdk>`_
 and ran :code:`dwave config create`, your installation should meet these requirements.
+In D-Wave's `Leap <https://cloud.dwavesys.com/leap/>`_ IDE, the default workspace
+meets these requirements. 
 
 Solution Steps
 ==============

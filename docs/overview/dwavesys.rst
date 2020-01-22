@@ -38,6 +38,9 @@ You save your SAPI configuration (URL, API token, etc) in a
 that Ocean tools use unless overridden explicitly or with environment variables.
 Your configuration file can include one or more solvers.
 
+.. note:: When you work in D-Wave's `Leap <https://cloud.dwavesys.com/leap/>`_ IDE,
+   SAPI information such as your API token is pre-configured in the default
+   workspaces' environment variables.
 
 Configuring a D-Wave System as a Solver
 ---------------------------------------

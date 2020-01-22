@@ -10,13 +10,11 @@ Ocean software is supported on the following operating systems:
 * Windows (tested on 64-bit Windows 8, 10)
 * Mac (tested on mac OS X 10.13)
 
-Ocean software requires a :ref:`Python environment<pythonEnvironment>`. Supported Python versions are:
-
-* 2.7.x
-* 3.5 and higher
+Ocean software requires a :ref:`Python environment<pythonEnvironment>`. Python
+versions 3.5 and higher are supported.
 
 .. attention::
-   D-Wave's Ocean software will stop supporting Python 2 at the end of 2019.
+   D-Wave's Ocean software stopped supporting Python 2 at the end of 2019.
 
    For information on why many in the Python development community are
    requiring Python 3, see
