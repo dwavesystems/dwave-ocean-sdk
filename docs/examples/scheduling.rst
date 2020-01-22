@@ -26,9 +26,9 @@ Example Requirements
 To run the code in this example, the following is required.
 
 * The requisite information for problem submission through SAPI, as described in :ref:`dwavesys`.
-* Ocean tools :std:doc:`dwave-binarycsp <binarycsp:index>`,
-  :std:doc:`dwave-system <system:index>`,
-  and :std:doc:`dimod <dimod:index>`.
+* Ocean tools :doc:`dwave-binarycsp </docs_binarycsp/sdk_index>`,
+  :doc:`dwave-system </docs_system/sdk_index>`,
+  and :doc:`dimod </docs_dimod/sdk_index>`.
 
 If you installed `dwave-ocean-sdk <https://github.com/dwavesystems/dwave-ocean-sdk>`_
 and ran :code:`dwave config create`, your installation should meet these requirements.
@@ -85,7 +85,7 @@ find solutions that meet all the constraints.
    Non-business hours    Teleconference     Long            Optional            No (violates 4)
    ====================  =================  ==============  ==================  =================
 
-Ocean's :std:doc:`dwavebinarycsp <binarycsp:index>` enables the
+Ocean's :doc:`dwavebinarycsp </docs_binarycsp/sdk_index>` enables the
 definition of constraints in different ways, including by defining functions that evaluate
 True when the constraint is met. The code below defines a function that returns True when
 all this example's constraints are met.
@@ -105,7 +105,7 @@ The next code lines create a constraint from this function and adds it to CSP in
 >>> csp = dwavebinarycsp.ConstraintSatisfactionProblem(dwavebinarycsp.BINARY)
 >>> csp.add_constraint(scheduling, ['time', 'location', 'length', 'mandatory'])
 
-This tool, :std:doc:`dwavebinarycsp <binarycsp:index>`, can also convert the binary CSP to a BQM. The following code does so and
+This tool, :doc:`dwavebinarycsp </docs_binarycsp/sdk_index>`, can also convert the binary CSP to a BQM. The following code does so and
 displays the BQM's linear and quadratic coefficients, :math:`q_i` and :math:`q_{i,j}` respectively in
 :math:`\sum_i^N q_ix_i + \sum_{i<j}^N q_{i,j}x_i  x_j`, which are the inputs for programming
 the quantum computer.
@@ -132,7 +132,7 @@ Solving Classically on a CPU
 
 Before using the D-Wave system, it can sometimes be helpful to test code locally.
 Here we select one of Ocean software's test samplers to solve classically on a CPU.
-Ocean's :std:doc:`dimod <dimod:index>` provides a sampler that
+Ocean's :doc:`dimod </docs_dimod/sdk_index>` provides a sampler that
 simply returns the BQM's value (energy) for every possible assignment of variable values.
 
 >>> from dimod.reference.samplers import ExactSolver
@@ -169,7 +169,7 @@ Solving on a D-Wave System
 --------------------------
 
 We now solve on a D-Wave system using sampler *DWaveSampler()* from Ocean software's
-:std:doc:`dwave-system <system:index>`. We also use
+:doc:`dwave-system </docs_system/sdk_index>`. We also use
 its *EmbeddingComposite()* composite to map our unstructured problem (variables
 such as :code:`time` etc.) to the sampler's graph structure (the QPU's numerically
 indexed qubits) in a process known as :term:`minor-embedding`. The next code sets up

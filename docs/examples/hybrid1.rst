@@ -34,8 +34,8 @@ Example Requirements
 To run the code in this example, the following is required.
 
 * The requisite information for problem submission through SAPI, as described in :ref:`dwavesys`.
-* Ocean tools :std:doc:`dwave-system <system:index>`,  :std:doc:`dimod <dimod:index>`, and
-  :std:doc:`dwave-hybrid <hybrid:index>`.
+* Ocean tools :doc:`dwave-system </docs_system/sdk_index>`,  :doc:`dimod </docs_dimod/sdk_index>`, and
+  :doc:`dwave-hybrid </docs_hybrid/sdk_index>`.
 
 If you installed `dwave-ocean-sdk <https://github.com/dwavesystems/dwave-ocean-sdk>`_
 and ran :code:`dwave config create`, your installation should meet these requirements.
@@ -47,7 +47,7 @@ Solution Steps
 Section :ref:`solving_problems` describes the process of solving problems on the quantum
 computer in two steps: (1) Formulate the problem as a :term:`binary quadratic model` (BQM)
 and (2) Solve the BQM with a D-wave system or classical :term:`sampler`. This example
-uses :std:doc:`dwave-hybrid <hybrid:index>` to combine a tabu search on a CPU with
+uses :doc:`dwave-hybrid </docs_hybrid/sdk_index>` to combine a tabu search on a CPU with
 the submission of parts of the (large) problem to the D-Wave system.
 
 

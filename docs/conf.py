@@ -38,7 +38,8 @@ extensions = [
     'sphinx.ext.napoleon',
     'sphinx.ext.todo',
     'sphinx.ext.viewcode',
-    'sphinx.ext.githubpages'
+    'sphinx.ext.githubpages',
+    'sphinx.ext.ifconfig'
 ]
 
 autosummary_generate = True
@@ -150,6 +151,7 @@ def setup(app):
    app.add_stylesheet('theme_overrides.css')
    app.add_stylesheet('cookie_notice.css')
    app.add_javascript('cookie_notice.js')
+   app.add_config_value('target', 'sdk', 'env')
 
 
 # -- Options for HTMLHelp output ------------------------------------------

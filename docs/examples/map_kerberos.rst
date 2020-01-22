@@ -5,7 +5,7 @@ Large Map Coloring
 ==================
 
 This example solves a map coloring problem to demonstrate an out-of-the-box use of
-Ocean's classical-quantum hybrid sampler, :std:doc:`dwave-hybrid <hybrid:index>`
+Ocean's classical-quantum hybrid sampler, :doc:`dwave-hybrid </docs_hybrid/sdk_index>`
 *Kerberos*, that enables you to solve problems of arbitrary structure and size.
 
 Map coloring is an example of a constraint satisfaction problem (CSP). CSPs require
@@ -34,7 +34,7 @@ Example Requirements
 To run the code in this example, the following is required.
 
 * The requisite information for problem submission through SAPI, as described in :ref:`dwavesys`
-* Ocean tools :std:doc:`dwave-hybrid <system:index>` and :std:doc:`dwave_networkx <system:index>`.
+* Ocean tools :doc:`dwave-hybrid </docs_hybrid/sdk_index>` and :doc:`dwave_networkx </docs_dnx/sdk_index>`.
 
 If you installed `dwave-ocean-sdk <https://github.com/dwavesystems/dwave-ocean-sdk>`_
 and ran :code:`dwave config create`, your installation should meet these requirements.
@@ -75,17 +75,17 @@ You can see in the first non-comment line that the state of Alaska ("AK") has Ha
 >>> G = nx.read_adjlist('usa.adj', delimiter = ',')   # doctest: +SKIP
 
 Graph G now represents states as vertices and each state's neighbors as shared edges.
-Ocean's :std:doc:`dwave_networkx <system:index>` can return a
+Ocean's :doc:`dwave_networkx </docs_dnx/sdk_index>` can return a
 `minimum vertex coloring <https://en.wikipedia.org/wiki/Graph_coloring>`_ for a graph,
 which assigns a color to the vertices of a graph in a way that no adjacent vertices
 have the same color, using the minimum number of colors. Given a graph representing a
 map and a :term:`sampler`, the `min_vertex_coloring` function tries to solve the
 map coloring problem.
 
-:std:doc:`dwave-hybrid <hybrid:index>` Kerberos is classical-quantum hybrid asynchronous decomposition sampler, which can decompose large problems into smaller pieces that
+:doc:`dwave-hybrid </docs_hybrid/sdk_index>` Kerberos is classical-quantum hybrid asynchronous decomposition sampler, which can decompose large problems into smaller pieces that
 it can run both classically (on your local machine) and on the D-Wave system.
-Kerberos finds best samples by running in parallel :std:doc:`tabu search <tabu:index>`,
-:std:doc:`simulated annealing <neal:index>`, and D-Wave subproblem sampling on
+Kerberos finds best samples by running in parallel :doc:`tabu search </docs_tabu/sdk_index>`,
+:doc:`simulated annealing </docs_neal/sdk_index>`, and D-Wave subproblem sampling on
 problem variables that have high impact. The only optional parameters set here
 are a maximum number of iterations and number of iterations with no improvement that
 terminates sampling. (See the :ref:`hybrid1` example for more details on configuring

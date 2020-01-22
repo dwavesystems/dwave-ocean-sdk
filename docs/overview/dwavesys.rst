@@ -34,7 +34,7 @@ Leap users, select the Dashboard tab; for on-premises (Qubist) users, select the
 Solver API tab and the API Tokens menu item under your user name.
 
 You save your SAPI configuration (URL, API token, etc) in a
-:std:doc:`D-Wave Cloud Client configuration file <cloud-client:index>`
+:doc:`D-Wave Cloud Client configuration file </docs_cloud/sdk_index>`
 that Ocean tools use unless overridden explicitly or with environment variables.
 Your configuration file can include one or more solvers.
 
@@ -43,7 +43,7 @@ Configuring a D-Wave System as a Solver
 ---------------------------------------
 
 The simplest way to configure a solver is to use the
-:std:doc:`dwave-cloud-client <cloud-client:index>`
+:doc:`dwave-cloud-client </docs_cloud/sdk_index>`
 interactive CLI, which is installed as part of
 the `dwave-ocean-sdk <https://github.com/dwavesystems/dwave-ocean-sdk>`_ (or D-Wave Cloud
 Client tool installation).
@@ -71,17 +71,17 @@ Client tool installation).
    file if needed.
 
 Alternatively, you can create and edit a
-:std:doc:`D-Wave Cloud Client configuration file <cloud-client:index>`
+:doc:`D-Wave Cloud Client configuration file </docs_cloud/sdk_index>`
 manually or set the solver, API token, and URL directly in your code or as local environment
 variables. For more information, see the examples in this document or
-:std:doc:`D-Wave Cloud Client <cloud-client:index>`.
+:doc:`D-Wave Cloud Client </docs_cloud/sdk_index>`.
 
 Verifying Your Solver Configuration
 -----------------------------------
 
 You can test that your solver is configured correctly and that you have access to a
 D-Wave solver with the same
-:std:doc:`dwave-cloud-client <cloud-client:index>`
+:doc:`dwave-cloud-client </docs_cloud/sdk_index>``
 interactive CLI installed as part of the SDK or D-Wave Cloud Client tool installation.
 
 1. In your virtual environment, run the :code:`dwave ping` command (the output shown
@@ -123,7 +123,7 @@ interactive CLI installed as part of the SDK or D-Wave Cloud Client tool install
 Querying Available Solvers
 --------------------------
 
-The :std:doc:`dwave-cloud-client <cloud-client:index>`
+The :doc:`dwave-cloud-client </docs_cloud/sdk_index>`
 interactive CLI can also show you the available solvers, their parameters, and
 properties.
 
@@ -152,7 +152,7 @@ properties.
 
 Alternatively, from within your code or a Python interpreter you can query solvers available for
 a SAPI URL and API token using
-:std:doc:`dwave-cloud-client <cloud-client:index>` :meth:`~dwave.cloud.client.Client.get_solvers`
+:doc:`dwave-cloud-client </docs_cloud/sdk_index>` :meth:`~dwave.cloud.client.Client.get_solvers`
 function. For example, the code below queries available solvers for your default SAPI URL and a
 specified token.
 
@@ -188,10 +188,10 @@ Submitting Problems to a D-Wave System
 --------------------------------------
 
 Once you have configured a
-:std:doc:`D-Wave Cloud Client configuration file <cloud-client:index>`
+:doc:`D-Wave Cloud Client configuration file </docs_cloud/sdk_index>`
 your default solver configuration is used when you submit a problem without explicitly overriding it.
 For example, the following code uses a
-:std:doc:`dwave-system <system:index>`
+:doc:`dwave-system </docs_system/sdk_index>`
 structured sampler, :code:`EmbeddingComposite(DWaveSampler())`, as the sampler, which uses a
 D-Wave system for the compute resource. Because no parameters (e.g., SAPI endpoint URL) are set
 explicitly, the line :code:`sampler = EmbeddingComposite(DWaveSampler())` uses your default solver.
