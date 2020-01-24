@@ -78,7 +78,8 @@ To run the code in this example, the following is required.
 * The requisite information for problem submission through SAPI, as described in :ref:`dwavesys`
 * Ocean tools :doc:`dwavebinarycsp </docs_binarycsp/sdk_index>` and
   :doc:`dwave-system </docs_system/sdk_index>`. For the
-  optional graphics, you will also need `Matplotlib <https://matplotlib.org>`_\ .
+  optional graphics, you will also need `Matplotlib <https://matplotlib.org>`_
+  and :doc:`problem-inspector </docs_inspector/sdk_index>`.
 
 If you installed `dwave-ocean-sdk <https://github.com/dwavesystems/dwave-ocean-sdk>`_
 and ran :code:`dwave config create`, your installation should meet these requirements.
@@ -223,6 +224,21 @@ those embeddings are visualized graphically.
    representing qubits and lines representing couplers between qubit pairs. Color
    indicates the strengths of linear (qubit) and quadratic (coupler) biases: darker blue
    for increasingly negative values and darker red for increasingly positive values.
+
+Optionally, you can use the :doc:`problem-inspector </docs_inspector/sdk_index>`
+to view the solution on the QPU.
+
+.. note:: The next code requires the use of Ocean's problem inspector.
+
+>>> import dwave.inspector
+>>> dwave.inspector.show(response)   # doctest: +SKIP
+
+.. figure:: ../_static/inspector_CSP_broken_chain.png
+   :name: inspector_CSP_broken_chain
+   :alt: image
+   :align: center
+   :scale: 50 %
+   View of the logical and embedded problem rendered by Ocean's problem inspector for one arbitrary execution. The CSP's original BBQM, on the left, shows that the solution shown for variable :math:`z` is based on a broken chain; its embedded representation, on the right, shows the broken three-qubit chain for variable :math:`z` highlighted red. The current solution displayed for variable :math:`z` is based on two qubits with spin value :math:`-1` and one with value :math:`1`, and thus represented in the problem space with a broken (part white, part gold) dot.
 
 For the second approach, which creates a constraint satisfaction problem based on multiple
 small constraints, a larger number of variables (11 versus 7) need to be minor-embedded, resulting

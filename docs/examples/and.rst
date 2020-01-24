@@ -17,6 +17,7 @@ To run the code in this example, the following is required.
 
 * The requisite information for problem submission through SAPI, as described in :ref:`dwavesys`
 * Ocean tools :doc:`dwave-system </docs_system/sdk_index>`.
+  Optionally: :doc:`problem-inspector </docs_inspector/sdk_index>`.
 
 If you installed `dwave-ocean-sdk <https://github.com/dwavesystems/dwave-ocean-sdk>`_
 and ran :code:`dwave config create`, your installation should meet these requirements.
@@ -149,8 +150,7 @@ The next code sets up a D-Wave system as the sampler.
       :code:`sampler = DWaveSampler()`.
       You can see this information by running :code:`dwave config inspect` in your terminal.
 
->>> from dwave.system.samplers import DWaveSampler
->>> from dwave.system.composites import EmbeddingComposite
+>>> from dwave.system import DWaveSampler, EmbeddingComposite
 >>> sampler = DWaveSampler(endpoint='https://URL_to_my_D-Wave_system/', token='ABC-123456789012345678901234567890', solver='My_D-Wave_Solver')
 >>> sampler_embedded = EmbeddingComposite(sampler)
 
@@ -311,6 +311,21 @@ We ask for 5000 samples.
 {'z': 1, 'x1': 0, 'x2': 1} Energy:  1.0 Occurrences:  2
 {'z': 1, 'x1': 0, 'x2': 1} Energy:  1.0 Occurrences:  1
 
+Optionally, you can use the :doc:`problem-inspector </docs_inspector/sdk_index>`
+to view the solution on the QPU.
+
+.. note:: The next code requires the use of Ocean's problem inspector.
+
+>>> import dwave.inspector
+>>> dwave.inspector.show(response)   # doctest: +SKIP
+
+.. figure:: ../_static/inspector_AND.png
+  :name: inspector_AND
+  :scale: 50 %
+  :alt: View rendered by Ocean's problem inspector.
+
+  View of the logical and embedded problem rendered by Ocean's problem inspector. The AND gate's original QUBO is represented on the left; its embedded representation, on the right, shows a two-qubit chain of qubits 0 and 4 for variable Z. The current solution displayed, :math:`X1=1, X2=0, Z=0`, is represented by white and gold dots for binary :math:`0, 1` and white and blue dots for spin values :math:-1, 1
+
 For comparison, the following code purposely weakens the chain strength (strength of the
 coupler between qubits 0 and 4, which represents variable :math:`z`). The first
 line prints the range of values available for the D-Wave system this code is executed
@@ -334,3 +349,10 @@ and the result is that many returned samples represent invalid states for an AND
 {'z': 1, 'x1': 0, 'x2': 1} Energy:  1.0 Occurrences:  1289
 {'z': 1, 'x1': 1, 'x2': 0} Energy:  1.0 Occurrences:  1
 {'z': 0, 'x1': 1, 'x2': 1} Energy:  1.0 Occurrences:  1
+
+In this case calling the problem inspector shows broken chains:
+
+.. figure:: ../_static/inspector_AND_broken_chain.png
+  :name: inspector_AND_broken_chain
+  :scale: 50 %
+  :alt: View rendered by Ocean's problem inspector.
