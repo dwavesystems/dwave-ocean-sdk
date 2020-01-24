@@ -61,7 +61,7 @@ example about the effect of :term:`minor-embedding` on performance.
 
     A simple circuit is shown in Figure \ref{fig:logicCircuit}.
 
-.. figure:: ../_static/MultiGateCircuit.png
+.. figure:: ../_images/MultiGateCircuit.png
    :name: Problem_MultiGateCircuit
    :alt: image
    :align: center
@@ -209,7 +209,7 @@ yield significantly varied results, as shown in the following table:
 You can see the minor-embeddings found here: :ref:`multi_gate_results`; below
 those embeddings are visualized graphically.
 
-.. figure:: ../_static/SingleCSPembeddings.png
+.. figure:: ../_images/SingleCSPembeddings.png
    :name: SingleCSPembeddings
    :alt: image
    :align: center
@@ -250,7 +250,7 @@ the chain strength (to 2 instead of the default of 1).
 You can see the minor-embeddings used here: :ref:`multi_gate_results`; below
 those embeddings are visualized graphically.
 
-.. figure:: ../_static/MultiCSPembeddings.png
+.. figure:: ../_images/MultiCSPembeddings.png
    :name: MultiCSPembeddings
    :alt: image
    :align: center
@@ -295,7 +295,7 @@ the energy level of the binary quadratic model by at least 2 relative to ground 
 >>> plt.ylabel('Energy')
 
 
-.. figure:: ../_static/MultiGateCircuit_Results.png
+.. figure:: ../_images/MultiGateCircuit_Results.png
    :name: MultiGateCircuitResults
    :alt: image
    :align: center

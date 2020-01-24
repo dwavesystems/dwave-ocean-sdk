@@ -20,7 +20,7 @@ Abstraction Layers
 
 .. _fig_stack:
 
-.. figure:: ../_static/ocean_stack.png
+.. figure:: ../_images/ocean_stack.png
   :name: stack
   :scale: 100 %
   :alt: Overview of the software stack.

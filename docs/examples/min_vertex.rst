@@ -45,7 +45,7 @@ problem; here, the five-node star graph shown below. Intuitively, the solution t
 example is obvious --- the minimum set of vertices that touch all edges is node 0, but the general
 problem of finding such a set is NP hard.
 
-.. figure:: ../_static/minVertexS5.png
+.. figure:: ../_images/minVertexS5.png
    :name: min_Vertex_S5
    :alt: image
    :align: center
@@ -115,7 +115,7 @@ Additional Problem Graphs
 
 The figure below shows another five-node (wheel) graph.
 
-.. figure:: ../_static/minVertexW5.png
+.. figure:: ../_images/minVertexW5.png
    :name: min_Vertex_W5
    :alt: image
    :align: center
@@ -138,7 +138,7 @@ Note that the solution found for this problem is not unique; for example,
 
 The figure below shows a ten-node (circular-ladder) graph.
 
-.. figure:: ../_static/minVertexC5.png
+.. figure:: ../_images/minVertexC5.png
    :name: min_Vertex_C5
    :alt: image
    :align: center

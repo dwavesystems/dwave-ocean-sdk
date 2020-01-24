@@ -14,7 +14,7 @@ values, out of a finite domain, that result in the satisfying of all constraints
 The map-coloring CSP, for example, is to assign a color to each region of a map such that
 any two regions sharing a border have different colors.
 
-.. figure:: ../_static/Problem_MapColoring.png
+.. figure:: ../_images/Problem_MapColoring.png
    :name: Problem_MapColoring
    :alt: image
    :align: center
@@ -232,7 +232,7 @@ Plot a valid solution.
 The plot shows a solution returned by the D-Wave solver. No provinces sharing a border
 have the same color.
 
-.. figure:: ../_static/map_coloring_CSP4colors.png
+.. figure:: ../_images/map_coloring_CSP4colors.png
    :name: MapColoring_CSP4colors
    :alt: image
    :align: center
