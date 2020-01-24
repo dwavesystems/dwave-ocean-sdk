@@ -126,8 +126,7 @@ plot results.
 .. code-block:: python
 
     import dwavebinarycsp
-    from dwave.system.samplers import DWaveSampler
-    from dwave.system.composites import EmbeddingComposite
+    from dwave.system import DWaveSampler, EmbeddingComposite
     import networkx as nx
     import matplotlib.pyplot as plt
 

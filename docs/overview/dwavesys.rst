@@ -174,7 +174,7 @@ and queries its parameters.
 
 .. code-block:: python
 
-   >>> from dwave.system.samplers import DWaveSampler
+   >>> from dwave.system import DWaveSampler
    >>> sampler = DWaveSampler()
    >>> sampler.parameters
    {u'anneal_offsets': ['parameters'],
@@ -201,8 +201,7 @@ explicitly, the line :code:`sampler = EmbeddingComposite(DWaveSampler())` uses y
 
 .. code-block:: python
 
-   >>> from dwave.system.samplers import DWaveSampler
-   >>> from dwave.system.composites import EmbeddingComposite
+   >>> from dwave.system import DWaveSampler, EmbeddingComposite 
    >>> sampler = EmbeddingComposite(DWaveSampler())
    >>> response = sampler.sample_ising({'a': -0.5, 'b': 1.0}, {('a', 'b'): -1})
    >>> response.data_vectors['energy']       # doctest: +SKIP

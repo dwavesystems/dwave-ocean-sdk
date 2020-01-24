@@ -175,8 +175,7 @@ for a problem; this example sets `num_reads` to 1000.
 
 .. code-block:: python
 
-    >>> from dwave.system.samplers import DWaveSampler
-    >>> from dwave.system.composites import EmbeddingComposite
+    >>> from dwave.system import DWaveSampler, EmbeddingComposite
     >>> sampler = EmbeddingComposite(DWaveSampler())
     >>> response = sampler.sample(bqm, num_reads=1000)   # doctest: +SKIP
     >>> for datum in response.data(['sample', 'energy', 'num_occurrences']):     # doctest: +SKIP
@@ -221,7 +220,7 @@ and checks some features supported on the D-Wave system used as a sampler.
 
 .. code-block:: python
 
-    >>> from dwave.system.samplers import DWaveSampler
+    >>> from dwave.system import DWaveSampler
     >>> from dwave.system.composites import VirtualGraphComposite
     >>> DWaveSampler().properties['extended_j_range']
     [-2.0, 1.0]

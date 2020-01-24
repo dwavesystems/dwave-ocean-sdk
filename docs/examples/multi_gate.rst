@@ -165,8 +165,7 @@ The next code sets up a D-Wave system as the sampler.
 
 .. code-block:: python
 
-    from dwave.system.samplers import DWaveSampler
-    from dwave.system.composites import EmbeddingComposite
+    from dwave.system import DWaveSampler, EmbeddingComposite
 
     # Set up a D-Wave system as the sampler
     sampler = EmbeddingComposite(DWaveSampler(endpoint='https://URL_to_my_D-Wave_system/', token='ABC-123456789012345678901234567890', solver='My_D-Wave_Solver'))
@@ -233,12 +232,13 @@ to view the solution on the QPU.
 >>> import dwave.inspector
 >>> dwave.inspector.show(response)   # doctest: +SKIP
 
-.. figure:: ../_static/inspector_CSP_broken_chain.png
-   :name: inspector_CSP_broken_chain
+.. figure:: ../_static/inspector_CSP_broken.png
+   :name: inspector_CSP_broken
    :alt: image
    :align: center
    :scale: 50 %
-   View of the logical and embedded problem rendered by Ocean's problem inspector for one arbitrary execution. The CSP's original BBQM, on the left, shows that the solution shown for variable :math:`z` is based on a broken chain; its embedded representation, on the right, shows the broken three-qubit chain for variable :math:`z` highlighted red. The current solution displayed for variable :math:`z` is based on two qubits with spin value :math:`-1` and one with value :math:`1`, and thus represented in the problem space with a broken (part white, part gold) dot.
+
+   View of the logical and embedded problem rendered by Ocean's problem inspector for one arbitrary execution. The CSP's original BQM, on the left, shows that the solution shown for variable :math:`z` is based on a broken chain; its embedded representation, on the right, shows the broken three-qubit chain for variable :math:`z` highlighted red. The current solution displayed for variable :math:`z` is based on two qubits with spin value :math:`-1` and one with value :math:`1`, and thus represented in the problem space with a broken dot (part white, part gold).
 
 For the second approach, which creates a constraint satisfaction problem based on multiple
 small constraints, a larger number of variables (11 versus 7) need to be minor-embedded, resulting

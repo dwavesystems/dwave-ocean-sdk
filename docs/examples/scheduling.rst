@@ -183,8 +183,7 @@ a D-Wave system as the sampler.
       :code:`sampler = EmbeddingComposite(DWaveSampler())`.
       You can see this information by running :code:`dwave config inspect` in your terminal.
 
->>> from dwave.system.samplers import DWaveSampler
->>> from dwave.system.composites import EmbeddingComposite
+>>> from dwave.system import DWaveSampler, EmbeddingComposite
 >>> sampler = EmbeddingComposite(DWaveSampler(endpoint='https://URL_to_my_D-Wave_system/', token='ABC-123456789012345678901234567890', solver='My_D-Wave_Solver'))
 
 Because the sampled solution is probabilistic, returned solutions may differ between runs. Typically,
