@@ -324,7 +324,7 @@ to view the solution on the QPU.
   :scale: 50 %
   :alt: View rendered by Ocean's problem inspector.
 
-  View of the logical and embedded problem rendered by Ocean's problem inspector. The AND gate's original QUBO is represented on the left; its embedded representation, on the right, shows a two-qubit chain of qubits 0 and 4 for variable Z. The current solution displayed, :math:`X1=1, X2=0, Z=0`, is represented by white and gold dots for binary :math:`0, 1` and white and blue dots for spin values :math:-1, 1
+  View of the logical and embedded problem rendered by Ocean's problem inspector. The AND gate's original QUBO is represented on the left; its embedded representation, on the right, shows a two-qubit chain of qubits 0 and 4 for variable Z. The current solution displayed, :math:`X1=1, X2=0, Z=0`, is represented by white and gold dots for binary :math:`0, 1` and white and blue dots for spin values :math:`-1, 1`.
 
 For comparison, the following code purposely weakens the chain strength (strength of the
 coupler between qubits 0 and 4, which represents variable :math:`z`). The first

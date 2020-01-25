@@ -201,8 +201,21 @@ advanced features and Ocean software's advanced tools.
 The mapping from problem variables to qubits, :term:`minor-embedding`, can significantly
 affect performance. Ocean tools perform this mapping heuristically so simply rerunning
 a problem might improve results. Advanced users may customize the mapping by directly
-using the :doc:`minorminer </docs_minorminer/source/sdk_index>` tool or setting
-a minor-embedding themselves (or some combination).
+using the :doc:`minorminer </docs_minorminer/source/sdk_index>` tool, setting
+a minor-embedding themselves (or some combination), or using
+D-Wave's :doc:`problem-inspector </docs_inspector/sdk_index>` tool.
+
+.. note:: The next code requires the use of Ocean's problem inspector.
+
+>>> import dwave.inspector
+>>> dwave.inspector.show(response)   # doctest: +SKIP
+
+.. figure:: ../_static/inspector_AND2.png
+  :name: inspector_AND2
+  :scale: 50 %
+  :alt: View rendered by Ocean's problem inspector.
+
+  View of the logical and embedded problem rendered by Ocean's problem inspector. The AND gate's original BQM is represented on the left; its embedded representation, on the right, shows a two-qubit chain (qubits 176 and 180) for variable :math:`x2`. The tool is helpful in visualizing the quality of your embedding.
 
 D-Wave systems offer features such as spin-reversal (gauge) transforms and anneal offsets,
 which reduce the impact of possible analog and systematic errors.
