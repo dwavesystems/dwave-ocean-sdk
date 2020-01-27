@@ -20,8 +20,8 @@ Ocean and other standard libraries as well as D-Wave extensions) for running
 code from your own GitHub repository or a collection of code examples you can
 then modify.
 
-Alternatively, install the tools and configure for running on a D-Wave system
-(QPU) or locally (CPU/GPU).
+Alternatively, install the tools and configure for running on a D-Wave
+quantum processing unit (QPU) or locally (CPU/GPU).
 
 .. toctree::
    :maxdepth: 1
@@ -49,17 +49,41 @@ See how Ocean tools are used with these end-to-end examples.
 Beginner-Level Examples
 -----------------------
 
+Because many lerge, hard problems are best approached with quantum-classical hybrid
+solvers, a good place to start is with examples of :ref:`examples_hybrid` and then
+learn how to work directly on the quantum computer with examples of
+:ref:`examples_qpu`.
+
+.. _examples_hybrid:
+
+Quantum-Classical Hybrid Computing
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 .. toctree::
    :maxdepth: 1
    :hidden:
 
+   examples/hybrid_solver_service
    examples/map_kerberos
+
+* :ref:`hss` solves of an arbitrary-sized problem using a `Leap <https://cloud.dwavesys.com/leap/>`_
+  hybrid solver.
+* :ref:`map_kerberos` demonstrates using an out-of-the-box Ocean hybrid solver.
+
+.. _examples_qpu:
+
+Using the QPU
+~~~~~~~~~~~~~
+
+.. toctree::
+   :maxdepth: 1
+   :hidden:
+
    examples/min_vertex
    examples/scheduling
    examples/not
    examples/and
 
-* :ref:`map_kerberos` demonstrates out-of-the-box solving of an arbitrary-sized problem.
 * :ref:`min_vertex` solves a small graph problem.
 * :ref:`scheduling` solves a small constraint satisfaction problem.
 * :ref:`not` mathematically formulates a BQM for a two-variable problem.
@@ -78,7 +102,7 @@ Intermediate-Level Examples
 
 * :ref:`map_coloring` example solves a more complex constraint satisfaction problem.
 * :ref:`multi_gate` looks more deeply at :term:`minor-embedding`.
-* :ref:`hybrid1` illustrates solving a large problem using both classical and quantum resources.
+* :ref:`hybrid1` builds a hybrid workflow and solver for a large graph problem.
 
 Advanced-Level Examples
 -----------------------
