@@ -34,6 +34,7 @@ Understand the terminology.
   docs_binarycsp/sdk_index  
   docs_cloud/sdk_index
   docs_hybrid/sdk_index
+  docs_inspector
   docs_neal/sdk_index
   docs_dnx/sdk_index
   docs_system/sdk_index
