@@ -104,11 +104,10 @@ README file.
 
 .. _configureSolver:
 
-Configure a Solver
-==================
+Configure Access to Solvers
+===========================
 
 Most Ocean tools solve problems on a :term:`solver`, which is a compute resources such as a D-Wave
 system or CPU, and might require that you configure a default solver.
 
-* :ref:`dwavesys` describes how to configure your system to solve problems on a D-Wave system.
-* :ref:`cpu` describes how to configure your system to solve problems classically on your local CPU/GPU.
+:ref:`sapi_access` describes how to configure your system to access D-Wave solvers.

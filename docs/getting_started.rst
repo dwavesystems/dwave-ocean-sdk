@@ -27,19 +27,21 @@ quantum processing unit (QPU) or locally (CPU/GPU).
    :maxdepth: 1
 
    overview/install
-   overview/dwavesys
-   overview/cpu
+   overview/sapi
 
-Overview of Ocean Software
-==========================
+Solving Problems with Ocean Software
+====================================
 
-Learn how problems are formulated for solution on D-Wave systems using Ocean tools.
+Learn Ocean Software's workflow for problem solving.
 
 .. toctree::
    :maxdepth: 1
 
    overview/solving_problems
    overview/stack
+   overview/hybrid
+   overview/cpu
+   overview/qpu
 
 Examples
 ========
@@ -49,7 +51,7 @@ See how Ocean tools are used with these end-to-end examples.
 Beginner-Level Examples
 -----------------------
 
-Because many lerge, hard problems are best approached with quantum-classical hybrid
+Because many large, hard problems are best approached with quantum-classical hybrid
 solvers, a good place to start is with examples of :ref:`examples_hybrid` and then
 learn how to work directly on the quantum computer with examples of
 :ref:`examples_qpu`.

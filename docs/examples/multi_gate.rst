@@ -75,7 +75,7 @@ Example Requirements
 
 To run the code in this example, the following is required.
 
-* The requisite information for problem submission through SAPI, as described in :ref:`dwavesys`
+* The requisite information for problem submission through SAPI, as described in :ref:`sapi_access`
 * Ocean tools :doc:`dwavebinarycsp </docs_binarycsp/sdk_index>` and
   :doc:`dwave-system </docs_system/sdk_index>`. For the
   optional graphics, you will also need `Matplotlib <https://matplotlib.org>`_
@@ -158,7 +158,7 @@ the minor-embedding found.
 The next code sets up a D-Wave system as the sampler.
 
 .. note:: In the code below, replace sampler parameters as needed. If
-      you configured a default solver, as described in :ref:`dwavesys`, you
+      you configured a default solver, as described in :ref:`sapi_access`, you
       should be able to set the sampler without parameters as
       :code:`sampler = EmbeddingComposite(DWaveSampler())`.
       You can see this information by running :code:`dwave config inspect` in your terminal.

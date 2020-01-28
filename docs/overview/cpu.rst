@@ -1,4 +1,4 @@
-.. _cpu:
+.. _using_cpu:
 
 ========================
 Using a Classical Solver
@@ -10,7 +10,7 @@ To solve a problem classically on your local machine, you configure a classical 
 either one of those included in the Ocean tools or your own.
 
 Examples
-========
+~~~~~~~~
 
 Among several samplers provided in the :doc:`dimod </docs_dimod/sdk_index>`
 tool for testing your code locally, is the :code:`ExactSolver()` that calculates the energy of all
@@ -37,3 +37,30 @@ vary by execution.
    >>> response = solver.sample_ising({'a': -0.5, 'b': 1.0}, {('a', 'b'): -1}, num_reads=2)
    >>> response.data_vectors['energy']       # doctest: +SKIP
    array([-1.5, -0.5])
+
+If you use a classical solver running locally on your CPU, a
+single sample might provide the optimal solution.
+
+Ocean's :doc:`dimod </docs_dimod/sdk_index>` tool provides a reference solver
+that calculates the values of a BQM (its "energy") for all possible assignments of variables.
+Such a sampler can solve a small three-variable problem like the AND gate created above.
+
+.. code-block:: python
+
+    >>> from dimod.reference.samplers import ExactSolver
+    >>> sampler = ExactSolver()
+    >>> response = sampler.sample(bqm)    # doctest: +SKIP
+    >>> for datum in response.data(['sample', 'energy']):     # doctest: +SKIP
+    ...    print(datum.sample, datum.energy)
+    ...
+    {'x1': 0, 'x2': 0, 'y1': 0} -1.5
+    {'x1': 1, 'x2': 0, 'y1': 0} -1.5
+    {'x1': 0, 'x2': 1, 'y1': 0} -1.5
+    {'x1': 1, 'x2': 1, 'y1': 1} -1.5
+    {'x1': 1, 'x2': 1, 'y1': 0} 0.5
+    {'x1': 0, 'x2': 1, 'y1': 1} 0.5
+    {'x1': 1, 'x2': 0, 'y1': 1} 0.5
+    {'x1': 0, 'x2': 0, 'y1': 1} 4.5
+
+Note that the first four samples are the valid states of the AND gate and have
+lower values than the second four, which represent invalid states.

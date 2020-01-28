@@ -1,8 +1,8 @@
 .. _solving_problems:
 
-===================================
-Solving Problems on a D-Wave System
-===================================
+==============================
+Overview of the Ocean Workflow
+==============================
 
 This section explains some of the basics of how you can use D-Wave quantum computers
 to solve problems and how Ocean tools can help.
@@ -122,73 +122,31 @@ Solve the BQM with a Sampler
 ============================
 
 To solve your problem, now represented as a binary quadratic model, you submit it to
-a classical or quantum sampler. If you use a classical solver running locally on your CPU, a
-single sample might provide the optimal solution. When you use a probabilistic sampler
-like the D-Wave system, you typically program for multiple reads.
+a classical, quantum, or quantum-classical hybrid :term:`sampler`.
 
-.. note:: To configure access to a D-Wave system, see the :ref:`dwavesys` section.
+* :ref:`using_hybrid` describes submitting your problem to a quantum-classical hybrid solver.
+* :ref:`using_cpu` describes submitting your problem to a classical solver.
+* :ref:`using_qpu` describes submitting your problem to a D-Wave QPU.
 
 For example, the BQM of the AND gate created above may look like this:
 
-.. code-block:: python
-
-    >>> bqm     # doctest: +SKIP
-    BinaryQuadraticModel({'x1': 0.0, 'x2': 0.0, 'y1': 6.0}, {('x2', 'x1'): 2.0, ('y1', 'x1'): -4.0, ('y1', 'x2'): -4.0}, -1.5, Vartype.BINARY)
+>>> bqm     # doctest: +SKIP
+BinaryQuadraticModel({'x1': 0.0, 'x2': 0.0, 'y1': 6.0},
+...                  {('x2', 'x1'): 2.0, ('y1', 'x1'): -4.0, ('y1', 'x2'): -4.0},
+...                  -1.5,
+...                  Vartype.BINARY)
 
 The members of the two dicts are linear and quadratic coefficients, respectively,
 the third term is a constant offset associated with the model, and the fourth
 shows the variable types in this model are binary.
 
-Ocean's :doc:`dimod </docs_dimod/sdk_index>` tool provides a reference solver
-that calculates the values of a BQM (its "energy") for all possible assignments of variables.
-Such a sampler can solve a small three-variable problem like the AND gate created above.
-
-.. code-block:: python
-
-    >>> from dimod.reference.samplers import ExactSolver
-    >>> sampler = ExactSolver()
-    >>> response = sampler.sample(bqm)    # doctest: +SKIP
-    >>> for datum in response.data(['sample', 'energy']):     # doctest: +SKIP
-    ...    print(datum.sample, datum.energy)
-    ...
-    {'x1': 0, 'x2': 0, 'y1': 0} -1.5
-    {'x1': 1, 'x2': 0, 'y1': 0} -1.5
-    {'x1': 0, 'x2': 1, 'y1': 0} -1.5
-    {'x1': 1, 'x2': 1, 'y1': 1} -1.5
-    {'x1': 1, 'x2': 1, 'y1': 0} 0.5
-    {'x1': 0, 'x2': 1, 'y1': 1} 0.5
-    {'x1': 1, 'x2': 0, 'y1': 1} 0.5
-    {'x1': 0, 'x2': 0, 'y1': 1} 4.5
-
-Note that the first four samples are the valid states of the AND gate and have
-lower values than the second four, which represent invalid states.
-
-Ocean's :doc:`dwave-system </docs_system/sdk_index>` tool enables
-you to use a D-Wave system as a sampler. In addition to *DWaveSampler()*, the tool
-provides a *EmbeddingComposite()* composite that maps unstructured problems to the graph
-structure of the selected sampler, a process known as :term:`minor-embedding`.
-In our case, the problem is defined on alphanumeric variables :math:`x1, x2, y1`,
-that must be mapped to the QPU's numerically indexed qubits.
-
-Because of the sampler's probabilistic nature, you typically request multiple samples
-for a problem; this example sets `num_reads` to 1000.
-
-.. code-block:: python
-
-    >>> from dwave.system import DWaveSampler, EmbeddingComposite
-    >>> sampler = EmbeddingComposite(DWaveSampler())
-    >>> response = sampler.sample(bqm, num_reads=1000)   # doctest: +SKIP
-    >>> for datum in response.data(['sample', 'energy', 'num_occurrences']):     # doctest: +SKIP
-    ...    print(datum.sample, datum.energy, "Occurrences: ", datum.num_occurrences)
-    ...
-    {'x1': 0, 'x2': 1, 'y1': 0} -1.5 Occurrences:  92
-    {'x1': 1, 'x2': 1, 'y1': 1} -1.5 Occurrences:  256
-    {'x1': 0, 'x2': 0, 'y1': 0} -1.5 Occurrences:  264
-    {'x1': 1, 'x2': 0, 'y1': 0} -1.5 Occurrences:  173
-    {'x1': 1, 'x2': 0, 'y1': 1} 0.5 Occurrences:  215
-
-Note that the first four samples are the valid states of the AND gate and have
-lower values than invalid state :math:`x1=1, x2=0, y1=1`.
+>>> from dwave.system import LeapHybridSampler
+>>> sampler = LeapHybridSampler(solver={'category': 'hybrid'})    # doctest: +SKIP
+>>> answer = sampler.sample(bqm)   # doctest: +SKIP
+>>> print(answer)    # doctest: +SKIP
+x1 x2 y1 energy num_oc.
+0  0  1  0   -1.5       1
+['BINARY', 1 rows, 1 samples, 3 variables]
 
 .. _improving:
 
@@ -204,6 +162,9 @@ a problem might improve results. Advanced users may customize the mapping by dir
 using the :doc:`minorminer </docs_minorminer/source/sdk_index>` tool, setting
 a minor-embedding themselves (or some combination), or using
 D-Wave's :doc:`problem-inspector </docs_inspector/sdk_index>` tool.
+
+For example, consider the solution to the AND problem on a D-Wave QPU demonstrated
+in :ref:`using_qpu`.
 
 .. note:: The next code requires the use of Ocean's problem inspector.
 

@@ -35,7 +35,7 @@ Example Requirements
 
 To run the code in this example, the following is required.
 
-* The requisite information for problem submission through SAPI, as described in :ref:`dwavesys`
+* The requisite information for problem submission through SAPI, as described in :ref:`sapi_access`
 * Ocean tools :doc:`dwave-system </docs_system/sdk_index>` and :doc:`dwave_networkx </docs_dnx/sdk_index>`.
 
 If you installed `dwave-ocean-sdk <https://github.com/dwavesystems/dwave-ocean-sdk>`_

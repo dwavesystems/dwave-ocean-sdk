@@ -21,7 +21,7 @@ The code examples below will use the following imports:
 Creating a Chimera Sampler
 --------------------------
 
-As detailed in :ref:`cpu`, you might want to use a classical solver while
+As detailed in :ref:`using_cpu`, you might want to use a classical solver while
 developing your code or writing tests. However, it is sometimes useful to
 work with a software solver that behaves more like a quantum computer.
 

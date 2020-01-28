@@ -15,7 +15,7 @@ Example Requirements
 
 To run the code in this example, the following is required.
 
-* The requisite information for problem submission through SAPI, as described in :ref:`dwavesys`
+* The requisite information for problem submission through SAPI, as described in :ref:`sapi_access`
 * Ocean tools :doc:`dwave-system </docs_system/sdk_index>`.
   Optionally: :doc:`problem-inspector </docs_inspector/sdk_index>`.
 
@@ -145,7 +145,7 @@ indexed qubits).
 The next code sets up a D-Wave system as the sampler.
 
 .. note:: In the code below, replace sampler parameters in the third line. If
-      you configured a default solver, as described in :ref:`dwavesys`, you
+      you configured a default solver, as described in :ref:`sapi_access`, you
       should be able to set the sampler without parameters as
       :code:`sampler = DWaveSampler()`.
       You can see this information by running :code:`dwave config inspect` in your terminal.

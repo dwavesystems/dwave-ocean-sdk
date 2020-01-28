@@ -19,7 +19,7 @@ Example Requirements
 
 To run the code in this example, the following is required.
 
-* The requisite information for problem submission through SAPI, as described in :ref:`dwavesys`.
+* The requisite information for problem submission through SAPI, as described in :ref:`sapi_access`.
 * Ocean tools :doc:`dwave-system </docs_system/sdk_index>`,  :doc:`dimod </docs_dimod/sdk_index>`, and
   :doc:`dwave_networkx </docs_dnx/sdk_index>`.
 
@@ -99,7 +99,7 @@ unstructured problems to the graph structure of the selected sampler, a process 
 indexed qubits.
 
 .. note:: In the code below, replace sampler parameters in the third line. If
-      you configured a default solver, as described in :ref:`dwavesys`, you
+      you configured a default solver, as described in :ref:`sapi_access`, you
       should be able to set the sampler without parameters as
       :code:`sampler = EmbeddingComposite(DWaveSampler())`.
       You can see this information by running :code:`dwave config inspect` in your terminal.
