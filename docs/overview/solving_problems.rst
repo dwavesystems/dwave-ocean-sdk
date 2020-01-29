@@ -41,9 +41,10 @@ you can run on your computer.
 
 The following sections describe this problem-solving procedure in
 two steps (plus a third that may benefit some problems); see the :ref:`gs`
-examples and system documentation for further description.
+Examples section and :std:doc:`System Documentation <sysdocs_gettingstarted:index>`
+for further description.
 
-1. :ref:`formulating`.
+1. :ref:`formulating_bqm`.
 2. :ref:`submitting`.
 3. :ref:`improving`, if needed, using advanced features.
 
@@ -57,7 +58,7 @@ examples and system documentation for further description.
    of Boolean gates, a graph, a network, etc) is formulated as a BQM, mathematically or using
    Ocean functionality and (2) the BQM is sampled for solutions.
 
-.. _formulating:
+.. _formulating_bqm:
 
 Formulate Your Problem for a Quantum Computer
 =============================================
@@ -109,6 +110,18 @@ The following are two example formulations.
        >>> csp = dwavebinarycsp.ConstraintSatisfactionProblem(dwavebinarycsp.BINARY)
        >>> csp.add_constraint(gates.and_gate(['x1', 'x2', 'y1']))  # add an AND gate
        >>> bqm = dwavebinarycsp.stitch(csp)
+
+The resultant BQM of this AND gate may look like this:
+
+>>> bqm     # doctest: +SKIP
+BinaryQuadraticModel({'x1': 0.0, 'x2': 0.0, 'y1': 6.0},
+...                  {('x2', 'x1'): 2.0, ('y1', 'x1'): -4.0, ('y1', 'x2'): -4.0},
+...                  -1.5,
+...                  Vartype.BINARY)
+
+The members of the two dicts are linear and quadratic coefficients, respectively,
+the third term is a constant offset associated with the model, and the fourth
+shows the variable types in this model are binary.
 
 For more detailed information on the parts of Ocean programming model and how
 they work together, see :ref:`oceanstack`.

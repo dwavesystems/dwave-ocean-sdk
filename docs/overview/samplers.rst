@@ -4,9 +4,9 @@
 Solving Problems by Sampling
 ============================
 
-Having formulated your original problem, as described in the :ref:`solving_problems`
-section, into a :term:`BQM`, you sample it for solutions. Ocean
-software provides quantum, classical, and quantum-classical :term:`sampler`\ s that run
+Having followed the steps of the :ref:`formulating_bqm` section, you sample the
+:term:`BQM` that now represents your problem for solutions. Ocean software provides
+quantum, classical, and quantum-classical hybrid :term:`sampler`\ s that run
 either remotely (for example, in D-Wave's `Leap <https://cloud.dwavesys.com/leap/>`_
 environment) or locally on your CPU. These compute resources are known as
 :term:`solver`\ s.
@@ -19,29 +19,17 @@ environment) or locally on your CPU. These compute resources are known as
 Sample the BQM on a Solver
 ==========================
 
-To solve your problem, now represented as a binary quadratic model, you submit it to
-a classical, quantum, or quantum-classical hybrid :term:`sampler`.
+Ocean's :term:`sampler`\ s enable you to submit your problem to remote or local
+compute resources (:term:`solver`\ s) of different types:
 
-* :ref:`using_hybrid` describes submitting your problem to a quantum-classical hybrid solver.
-* :ref:`using_cpu` describes submitting your problem to a classical solver.
-* :ref:`using_qpu` describes submitting your problem to a D-Wave QPU.
+* :ref:`using_hybrid` such as `Leap's <https://cloud.dwavesys.com/leap/>`_ `hybrid_v1` solver
+* :ref:`using_cpu` such as :class:`dimod.ExactSolver` for exact solutions to small problems
+* :ref:`using_qpu` such a D-Wave 2000Q system.
 
-For example, the BQM of the AND gate created above may look like this:
-
->>> bqm     # doctest: +SKIP
-BinaryQuadraticModel({'x1': 0.0, 'x2': 0.0, 'y1': 6.0},
-...                  {('x2', 'x1'): 2.0, ('y1', 'x1'): -4.0, ('y1', 'x2'): -4.0},
-...                  -1.5,
-...                  Vartype.BINARY)
-
-The members of the two dicts are linear and quadratic coefficients, respectively,
-the third term is a constant offset associated with the model, and the fourth
-shows the variable types in this model are binary.
-
-The example code below submits the BQM to a Leap hybrid solver. In this case,
-:doc:`dimod </docs_dimod/sdk_index>`'s :class:`dimod.LeapHybridSampler` is the Ocean
-sampler and the remote compute resource selected might be Leap hybrid solver
-`hybrid_v1`.
+The example code below submits the BQM of the AND gate of the :ref:`formulating_bqm` section
+to a Leap hybrid solver. In this case, :doc:`dwave-system </docs_system/sdk_index>`'s
+:class:`dwave.system.LeapHybridSampler` is the Ocean sampler and the remote compute
+resource selected might be Leap hybrid solver `hybrid_v1`.
 
 >>> from dwave.system import LeapHybridSampler
 >>> sampler = LeapHybridSampler(solver={'category': 'hybrid'})    # doctest: +SKIP
@@ -50,10 +38,6 @@ sampler and the remote compute resource selected might be Leap hybrid solver
 x1 x2 y1 energy num_oc.
 0  0  1  0   -1.5       1
 ['BINARY', 1 rows, 1 samples, 3 variables]
-
-Several of the :ref:`gs` Examples section demonstrate solving problems on the
-D-Wave system, starting from very simple and gradually increasing the complexity.
-
 
 .. _improving:
 
@@ -68,11 +52,14 @@ When sampling directly on the D-Wave QPU, the mapping from problem variables to 
 affect performance. Ocean tools perform this mapping heuristically so simply rerunning
 a problem might improve results. Advanced users may customize the mapping by directly
 using the :doc:`minorminer </docs_minorminer/source/sdk_index>` tool, setting
-a minor-embedding themselves (or some combination), or using
+a minor-embedding themselves, or using
 D-Wave's :doc:`problem-inspector </docs_inspector/sdk_index>` tool.
 
-For example, consider the solution to the AND problem on a D-Wave QPU demonstrated
-in :ref:`using_qpu`.
+For example, the :ref:`and` example submits the BQM representing an AND gate
+to a D-Wave system, which requires mapping the problem's logical variables
+to qubits on the QPU. The code below invokes D-Wave's
+:doc:`problem-inspector </docs_inspector/sdk_index>` tool to visualize the
+minor-embedding.
 
 .. note:: The next code requires the use of Ocean's problem inspector.
 

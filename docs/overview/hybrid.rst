@@ -5,9 +5,8 @@ Hybrid Solvers
 ==============
 
 Quantum-classical hybrid is the use of both classical and quantum resources to solve
-problems, exploiting the complementary strengths that each provides.
-
-This `Medium Article <https://medium.com/d-wave/three-truths-and-the-advent-of-hybrid-quantum-computing-1941ba46ff8c>`_
+problems, exploiting the complementary strengths that each provides. This
+`Medium Article <https://medium.com/d-wave/three-truths-and-the-advent-of-hybrid-quantum-computing-1941ba46ff8c>`_
 provides an overview of, and motivation for, hybrid computing.
 
 Ocean currently supports two types of hybrid solvers:
