@@ -1,8 +1,8 @@
 .. _using_cpu:
 
-========================
-Using a Classical Solver
-========================
+=================
+Classical Solvers
+=================
 
 You might use a classical solver while developing your code or on a small version of
 your problem to verify your code.

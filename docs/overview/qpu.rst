@@ -1,8 +1,8 @@
 .. _using_qpu:
 
-==================
-Using a QPU Solver
-==================
+===============
+Quantum Solvers
+===============
 
 Once you have configured a
 :doc:`D-Wave Cloud Client configuration file </docs_cloud/sdk_index>`
@@ -21,8 +21,6 @@ explicitly, the line :code:`sampler = EmbeddingComposite(DWaveSampler())` uses y
    >>> response.data_vectors['energy']       # doctest: +SKIP
    array([-1.5])
 
-The examples under :ref:`gs` demonstrate solving problems on the
-D-Wave system, starting from very simple and gradually increasing the complexity.
 
 When you use a probabilistic sampler like the D-Wave system, you typically program for multiple reads.
 

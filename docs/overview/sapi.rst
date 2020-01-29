@@ -4,20 +4,20 @@
 Configuring Access to D-Wave Solvers
 ====================================
 
-the D-Wave Solver API (SAPI) provides access to :term:`solver`\ s, remote compute resources
+D-Wave's Solver API (SAPI) provides access to :term:`solver`\ s, remote compute resources
 for solving problems such as a D-Wave system or Leap's quantum-classical hybrid solvers.
 
 Interacting with SAPI
 =====================
 
-SAPI is an application layer built to provide resource discovery, permissions, and scheduling for
-compute resources at D-Wave. The requisite information for problem
+SAPI is an application layer built to provide resource discovery, permissions, and
+scheduling for D-Wave compute resources. The requisite information for problem
 submission through SAPI includes:
 
 1. API endpoint URL
 
    A URL to the remote resources. By default, ``https://cloud.dwavesys.com/sapi``
-   is used to connect to resources provided by D-Wave's Leap Quantum Application Environment,
+   is used to connect to resources provided by D-Wave's Leap quantum cloud service,
    including D-Wave quantum computers.
 
 2. API Token
@@ -50,8 +50,8 @@ Creating a Configuration File
 The simplest way to configure solver access is to use the
 :doc:`dwave-cloud-client </docs_cloud/sdk_index>`
 interactive CLI, which is installed as part of
-the `dwave-ocean-sdk <https://github.com/dwavesystems/dwave-ocean-sdk>`_ (or D-Wave Cloud
-Client tool installation).
+the `dwave-ocean-sdk <https://github.com/dwavesystems/dwave-ocean-sdk>`_ (or
+*dwave-cloud-client* tool installation).
 
 1. In the virtual environment you created as part of :ref:`install`, run the
    :code:`dwave config create` command (the output shown below
@@ -129,9 +129,10 @@ interactive CLI installed as part of the SDK or D-Wave Cloud Client tool install
 Querying Available Solvers
 ==========================
 
-You can see the solvers accessible to your account on the
-`Leap <https://cloud.dwavesys.com/leap/>`_ dashboard.
-From your terminal you can use the :doc:`dwave-cloud-client </docs_cloud/sdk_index>`
+.. note:: `Leap <https://cloud.dwavesys.com/leap/>`_ accounts can see accessible solvers
+   on the dashboard.
+
+From your terminal, you can use the :doc:`dwave-cloud-client </docs_cloud/sdk_index>`
 interactive CLI to see the available solvers, their parameters, and properties.
 
 1. Run the :code:`dwave solvers` command (the output shown below is illustrative only).

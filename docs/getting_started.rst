@@ -20,8 +20,9 @@ Ocean and other standard libraries as well as D-Wave extensions) for running
 code from your own GitHub repository or a collection of code examples you can
 then modify.
 
-Alternatively, install the tools and configure for running on a D-Wave
-quantum processing unit (QPU) or locally (CPU/GPU).
+Alternatively, install the tools and configure for running problems on D-Wave
+remote compute resources, including quantum-classical hybrid solvers and the
+D-Wave quantum processing unit (QPU), or locally on your CPU.
 
 .. toctree::
    :maxdepth: 1
@@ -29,8 +30,8 @@ quantum processing unit (QPU) or locally (CPU/GPU).
    overview/install
    overview/sapi
 
-Solving Problems with Ocean Software
-====================================
+Ocean's Programming Model
+=========================
 
 Learn Ocean Software's workflow for problem solving.
 
@@ -39,6 +40,17 @@ Learn Ocean Software's workflow for problem solving.
 
    overview/solving_problems
    overview/stack
+
+D-Wave Compute Resources
+========================
+
+Use Ocean's :term:`sampler`\ s to solve problems on D-Wave's compute resources (:term:`solver`\ s)
+or locally on your CPU.
+
+.. toctree::
+   :maxdepth: 1
+
+   overview/samplers
    overview/hybrid
    overview/cpu
    overview/qpu

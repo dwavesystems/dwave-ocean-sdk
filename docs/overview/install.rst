@@ -110,4 +110,5 @@ Configure Access to Solvers
 Most Ocean tools solve problems on a :term:`solver`, which is a compute resources such as a D-Wave
 system or CPU, and might require that you configure a default solver.
 
-:ref:`sapi_access` describes how to configure your system to access D-Wave solvers.
+:ref:`sapi_access` describes how to configure your system to access D-Wave or other
+remote solvers.
