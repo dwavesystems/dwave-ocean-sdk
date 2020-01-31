@@ -91,10 +91,10 @@ and checks some features supported on the D-Wave system used as a sampler.
 
     >>> from dwave.system import DWaveSampler
     >>> from dwave.system.composites import VirtualGraphComposite
-    >>> DWaveSampler().properties['extended_j_range']
+    >>> DWaveSampler(solver={'qpu':True}).properties['extended_j_range']
     [-2.0, 1.0]
     >>> embedding = {'x': {1}, 'y': {5}, 'z': {0, 4}}
-    >>> sampler = VirtualGraphComposite(DWaveSampler(), embedding)
+    >>> sampler = VirtualGraphComposite(DWaveSampler(solver={'qpu':True}), embedding)
     >>> sampler.parameters
     {u'anneal_offsets': ['parameters'],
      u'anneal_schedule': ['parameters'],
