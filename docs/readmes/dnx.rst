@@ -1,1 +1,0 @@
-../../dwave-networkx/README.rst
