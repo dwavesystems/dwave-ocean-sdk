@@ -34,7 +34,7 @@ install_requires = [
     'dwave-system==0.8.0',
     'dwave-qbsolv==0.2.10',
     'dwave-hybrid==0.4.1',
-    'dwave-neal==0.5.1',
+    'dwave-neal==0.5.2',
     'dwave-tabu==0.2.1',
     'dimod==0.8.18',
     'dwavebinarycsp==0.0.12',
