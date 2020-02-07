@@ -1,1 +1,0 @@
-../../dwavebinarycsp/README.rst

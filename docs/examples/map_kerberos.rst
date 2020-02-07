@@ -14,7 +14,7 @@ in the satisfying of all constraints. The map-coloring CSP is to assign a
 color to each region of a map such that any two regions sharing a border have different
 colors.
 
-.. figure:: ../_static/us_map.png
+.. figure:: ../_images/us_map.png
    :name: Problem_MapColoring
    :alt: image
    :align: center
@@ -109,7 +109,7 @@ Plot the solution, if valid.
 
 The graphic below shows the result of one such run.
 
-.. figure:: ../_static/map_coloring_usa.png
+.. figure:: ../_images/map_coloring_usa.png
    :name: USA_MapColoring
    :alt: image
    :align: center

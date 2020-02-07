@@ -256,7 +256,9 @@ intersphinx_mapping = {'python': ('https://docs.python.org/', None),
     'numpy': ('http://docs.scipy.org/doc/numpy/', None),
     'bson': ('https://api.mongodb.com/python/current/', None),
     'networkx': ('https://networkx.github.io/documentation/stable/', None),
-    'sysdocs_gettingstarted': ('https://docs.dwavesys.com/docs/latest/', None)}
+    'sysdocs_gettingstarted': ('https://docs.dwavesys.com/docs/latest/', None),
+    'oceandocs': ('https://docs.ocean.dwavesys.com/en/latest/', None),
+    }
 
 # sort documentation they way the appear in the source file
 autodoc_member_order = 'bysource'

@@ -7,7 +7,7 @@ Problem With Many Variables
 This example solves a graph problem with too many variables to fit onto the QPU.
 
 
-.. figure:: ../_static/hybrid_example1.png
+.. figure:: ../_images/hybrid_example1.png
    :name: HybridBarabasiAlbertGraph
    :alt: image
    :align: center

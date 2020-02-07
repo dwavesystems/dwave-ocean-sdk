@@ -51,7 +51,7 @@ examples and system documentation for further description.
 2. :ref:`submitting`.
 3. :ref:`improving`, if needed, using advanced features.
 
-.. figure:: ../_static/SolutionOverview.png
+.. figure:: ../_images/SolutionOverview.png
    :name: SolutionOverview
    :alt: image
    :align: center

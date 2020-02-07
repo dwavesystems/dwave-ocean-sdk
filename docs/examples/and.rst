@@ -203,7 +203,7 @@ We can map the NOT problem's two linear coefficients and single quadratic coeffi
 (0, 4). The figure below shows a minor embedding of the NOT gate into a D-Wave 2000Q QPU
 unit cell (four horizontal qubits connected to four vertical qubits via couplers).
 
-.. figure:: ../_static/Embedding_Chimera_NOT.png
+.. figure:: ../_images/Embedding_Chimera_NOT.png
    :name: Embedding_Chimera_NOT
    :alt: image
    :align: center
@@ -242,7 +242,7 @@ From NOT to AND: an Important Difference
   the single quadratic coefficient the weight of its connecting edge.
 * The BQM for an AND gate, :math:`3z + x_1x_2 - 2x_1z - 2x_2z`, needs a :math:`K_3` graph.
 
-.. figure:: ../_static/Embedding_NOTvsAND.png
+.. figure:: ../_images/Embedding_NOTvsAND.png
    :name: Embedding_NOTvsAND
    :alt: image
    :align: center
@@ -261,7 +261,7 @@ look at the Chimera unit cell structure shown below. You cannot connect 3 qubits
 closed loop. However, you can make a closed loop of 4 qubits using,
 say, qubits 0, 1, 4, and 5.
 
-.. figure:: ../_static/unit-cell.png
+.. figure:: ../_images/unit-cell.png
   :name: unit-cell
   :scale: 20 %
   :alt: Unit cell
@@ -271,7 +271,7 @@ say, qubits 0, 1, 4, and 5.
 To fit the 3-qubit loop into a 4-sided structure, create a chain of 2 qubits
 to represent a single variable. For example, chain qubit 0 and qubit 4 to represent variable :math:`z`.
 
-.. figure:: ../_static/Embedding_Chimera_AND.png
+.. figure:: ../_images/Embedding_Chimera_AND.png
   :name: Embedding_Chimera_AND
   :scale: 60 %
   :alt: Embedding a triangular graph into Chimera by using a chain.
