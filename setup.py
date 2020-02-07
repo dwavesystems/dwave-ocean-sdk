@@ -41,8 +41,7 @@ install_requires = [
     'minorminer==0.1.9',
     'penaltymodel==0.16.2',
     'penaltymodel-cache==0.4.0',
-    'penaltymodel-lp==0.1.0',
-    'numpy<1.16.0',     # only while we support py34
+    'penaltymodel-lp==0.1.1',
     'pyqubo>=0.3.0',
 ]
 
