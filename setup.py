@@ -41,7 +41,7 @@ install_requires = [
 
 extras_require = {
     ':(platform_machine == "x86_64" or platform_machine == "amd64" or platform_machine == "AMD64")': [
-        'penaltymodel-mip==0.2.1'
+        'penaltymodel-mip==0.2.2'
     ],
     ':platform_machine != "x86_64" and platform_machine != "amd64" and platform_machine != "AMD64"': [
         'penaltymodel-maxgap==0.5.1'
