@@ -39,12 +39,14 @@ install_requires = [
     'pyqubo>=0.3.0',
 ]
 
+# note: when updating the version of maxgap, it also must be updated in
+# docs/requirements.txt.
 extras_require = {
     ':(platform_machine == "x86_64" or platform_machine == "amd64" or platform_machine == "AMD64")': [
         'penaltymodel-mip==0.2.2'
     ],
     ':platform_machine != "x86_64" and platform_machine != "amd64" and platform_machine != "AMD64"': [
-        'penaltymodel-maxgap==0.5.1'
+        'penaltymodel-maxgap==0.5.1'  # see note above
     ]
 }
 
