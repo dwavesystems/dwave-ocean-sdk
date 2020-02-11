@@ -35,7 +35,7 @@ install_requires = [
     'minorminer==0.1.9',
     'penaltymodel==0.16.2',
     'penaltymodel-cache==0.4.0',
-    'penaltymodel-lp==0.1.2',
+    'penaltymodel-lp==0.1.3',
     'pyqubo>=0.3.0',
 ]
 
