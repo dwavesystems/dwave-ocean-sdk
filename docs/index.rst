@@ -25,6 +25,7 @@ Understand the terminology.
    getting_started
    glossary
    contributing
+   licenses
 
 .. toctree::
   :caption: Tools
