@@ -22,7 +22,7 @@ versions 3.5 and higher are supported.
 
 
 This section explains how to :ref:`install Ocean software<installOceanSoftware>`, either the entire suite of tools
-or particular tools from the D-Wave GitHub repositories listed under :ref:`projects`.
+or particular tools from the D-Wave GitHub repositories listed in the navigation bar.
 
 Most Ocean tools require that you :ref:`configure a solver<configureSolver>` on your
 system, which might be a D-Wave system or a classical sampler that runs on your local CPU.
@@ -99,7 +99,7 @@ for the full suite of Ocean tools.
       python setup.py install
 
 Note: To install a particular tool within the SDK only, follow the link to the GitHub repository for the tool,
-as listed under :ref:`projects`, and follow the installation instructions on the
+as listed in the navigation bar, and follow the installation instructions on the
 README file.
 
 .. _configureSolver:
