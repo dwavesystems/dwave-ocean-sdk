@@ -5,7 +5,7 @@ Configuring Access to D-Wave Solvers
 ====================================
 
 D-Wave's Solver API (SAPI) provides access to :term:`solver`\ s, remote compute resources
-for solving problems such as a D-Wave system or `Leap <https://cloud.dwavesys.com/leap/>`_ \'s
+for solving problems such as a D-Wave system or `Leap <https://cloud.dwavesys.com/leap/>`_\ 's
 quantum-classical hybrid solvers.
 
 Interacting with SAPI
