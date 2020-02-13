@@ -55,6 +55,29 @@ interactive CLI, which is installed as part of
 the `dwave-ocean-sdk <https://github.com/dwavesystems/dwave-ocean-sdk>`_ (or
 *dwave-cloud-client* tool installation).
 
+If you did not already do so with the :code:`dwave setup` command
+in the :ref:`dwave_setup` section, or want to make changes at a later time, you
+can use the :code:`dwave config` command.
+
+.. code-block:: bash
+
+    $ dwave config --help
+    Usage: dwave config [OPTIONS] COMMAND [ARGS]...
+
+    Create, update or inspect cloud client configuration file(s).
+
+    Options:
+      --help  Show this message and exit.
+
+    Commands:
+      create   Create and/or update cloud client configuration file.
+      inspect  Inspect existing configuration/profile.
+      ls       List configuration files detected (and/or examined paths).
+
+Creating a configuration file using the :code:`dwave config` is done
+as follows (the :code:`dwave setup` command of the :ref:`dwave_setup` section
+runs these same configuration steps):
+
 1. In the virtual environment you created as part of :ref:`install`, run the
    :code:`dwave config create` command (the output shown below
    includes the interactive prompts and placeholder replies).

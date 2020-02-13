@@ -112,7 +112,7 @@ writing code, you complete the setup of your environment with two last steps:
 
 * :ref:`setup_install`
 
-  Adds tools such as the :ref:`inspector`.
+  Adds non-open-source tools such as the :ref:`inspector`.
 * :ref:`sapi_access`
 
   Sets defaults used for accessing D-Wave compute resources.
@@ -162,13 +162,13 @@ the details.
 
 .. _setup_install:
 
-Install Contributor (Non-Open-Source) Ocean Tools
--------------------------------------------------
+Install Contributor Ocean Tools
+-------------------------------
 
 The interactive :code:`dwave setup` and :code:`dwave install` commands of the
 :doc:`dwave-cloud-client </docs_cloud/sdk_index>` tool, which is installed as part
 of the `dwave-ocean-sdk <https://github.com/dwavesystems/dwave-ocean-sdk>`_\ , steps
-you through installation of non-open-source tools.
+you through installation of non-open-source ("contrib") tools.
 
 If you did not install contributor packages with the :code:`dwave setup` command
 in the :ref:`dwave_setup` section, or want to add packages at a later time, you
@@ -191,6 +191,5 @@ Both commands describe the tools and enable you to select which if any to instal
 
 Most Ocean tools solve problems on a :term:`solver`, which is a compute resources
 such as a D-Wave system or CPU, and might require that you configure a default solver.
-
 :ref:`sapi_access` describes the next step of setting up your environment, how to
 configure your system to access D-Wave or other remote solvers.
