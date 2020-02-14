@@ -49,11 +49,10 @@ Your configuration file can include one or more solvers.
 Creating a Configuration File
 =============================
 
-The simplest way to configure solver access is to use the
-:doc:`dwave-cloud-client </docs_cloud/sdk_index>`
-interactive CLI, which is installed as part of
-the `dwave-ocean-sdk <https://github.com/dwavesystems/dwave-ocean-sdk>`_ (or
-*dwave-cloud-client* tool installation).
+The simplest way to configure solver access is to use the interactive CLI, which
+is installed as part of
+the `dwave-ocean-sdk <https://github.com/dwavesystems/dwave-ocean-sdk>`_
+installation.
 
 If you did not already do so with the :code:`dwave setup` command
 in the :ref:`dwave_setup` section, or want to make changes at a later time, you
@@ -112,8 +111,7 @@ Verifying Your Configuration
 ----------------------------
 
 You can test that your solver access is configured correctly with the same
-:doc:`dwave-cloud-client </docs_cloud/sdk_index>`
-interactive CLI installed as part of the SDK or D-Wave Cloud Client tool installation.
+interactive CLI installed as part of the SDK installation.
 
 1. In your virtual environment, run the :code:`dwave ping` command (the output shown
    below is illustrative only).
@@ -157,7 +155,7 @@ Querying Available Solvers
 .. note:: `Leap <https://cloud.dwavesys.com/leap/>`_ accounts can see accessible solvers
    on the dashboard.
 
-From your terminal, you can use the :doc:`dwave-cloud-client </docs_cloud/sdk_index>`
+From your terminal, you can use the 
 interactive CLI to see the available solvers, their parameters, and properties.
 
 1. Run the :code:`dwave solvers` command (the output shown below is illustrative only).

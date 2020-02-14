@@ -117,8 +117,7 @@ writing code, you complete the setup of your environment with two last steps:
 
   Sets defaults used for accessing D-Wave compute resources.
 
-The :doc:`dwave-cloud-client </docs_cloud/sdk_index>` tool, which is installed as
-part of the `dwave-ocean-sdk <https://github.com/dwavesystems/dwave-ocean-sdk>`_\ ,
+The `dwave-ocean-sdk <https://github.com/dwavesystems/dwave-ocean-sdk>`_
 includes an interactive CLI that steps you through setup.
 
 In the virtual environment you created as part of :ref:`install`, run the
@@ -166,8 +165,7 @@ Install Contributor Ocean Tools
 -------------------------------
 
 The interactive :code:`dwave setup` and :code:`dwave install` commands of the
-:doc:`dwave-cloud-client </docs_cloud/sdk_index>` tool, which is installed as part
-of the `dwave-ocean-sdk <https://github.com/dwavesystems/dwave-ocean-sdk>`_\ , steps
+the `dwave-ocean-sdk <https://github.com/dwavesystems/dwave-ocean-sdk>`_ steps
 you through installation of non-open-source ("contrib") tools.
 
 If you did not install contributor packages with the :code:`dwave setup` command
