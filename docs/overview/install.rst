@@ -170,7 +170,7 @@ you through installation of non-open-source ("contrib") tools.
 
 If you did not install contributor packages with the :code:`dwave setup` command
 in the :ref:`dwave_setup` section, or want to add packages at a later time, you
-can use the :code:`dwave install` command.
+can use it again then or use the :code:`dwave install` command.
 
 .. code-block:: bash
 
