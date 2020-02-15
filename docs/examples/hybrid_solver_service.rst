@@ -67,6 +67,9 @@ assigns :math:`0, 1` signs to represent friendly and hostile relationships.
 >>> G = nx.random_geometric_graph(problem_node_count, radius=0.0005*problem_node_count)
 >>> G.add_edges_from([(u, v, {'sign': 2*random.randint(0, 1)-1}) for u, v in G.edges])
 
+Solve the Problem by Sampling
+=============================
+
 As mentioned above, for this problem an Ocean's :doc:`dwave_networkx </docs_dnx/sdk_index>`
 function, `structural_imbalance()`, creates the appropriate BQM to represent
 the problem graph and returns a solution. It requires just the selection of a :term:`sampler`.

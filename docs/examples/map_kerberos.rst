@@ -39,7 +39,7 @@ To run the code in this example, the following is required.
 If you installed `dwave-ocean-sdk <https://github.com/dwavesystems/dwave-ocean-sdk>`_
 and ran :code:`dwave config create`, your installation should meet these requirements.
 In D-Wave's `Leap <https://cloud.dwavesys.com/leap/>`_ IDE, the default workspace
-meets these requirements. 
+meets these requirements.
 
 Solution Steps
 ==============
@@ -77,6 +77,10 @@ You can see in the first non-comment line that the state of Alaska ("AK") has Ha
 >>> G = nx.read_adjlist('usa.adj', delimiter = ',')   # doctest: +SKIP
 
 Graph G now represents states as vertices and each state's neighbors as shared edges.
+
+Solve the Problem by Sampling
+=============================
+
 Ocean's :doc:`dwave_networkx </docs_dnx/sdk_index>` can return a
 `minimum vertex coloring <https://en.wikipedia.org/wiki/Graph_coloring>`_ for a graph,
 which assigns a color to the vertices of a graph in a way that no adjacent vertices
