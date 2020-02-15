@@ -4,15 +4,17 @@
 Using the Problem Inspector
 ===========================
 
-This example shows how you can use D-Wave's problem inspector tool to
-evaluate the minor-embedding used in your problem submission to a QPU.
+This example solves a `graph partitioning <https://en.wikipedia.org/wiki/Graph_partition>`_
+problem to show how D-Wave's `problem inspector </docs_inspector>` tool can help
+you evaluate the minor-embedding used in your problem submissions to a QPU.
 
 Example Requirements
 ====================
 
 To run the code in this example, the following is required.
 
-* The requisite information for problem submission through SAPI, as described in :ref:`sapi_access`.
+* The requisite information for problem submission through SAPI, as described
+  in :ref:`sapi_access`.
 * Ocean tools :doc:`dwave-system </docs_system/sdk_index>` and
   :doc:`dwave-inspector </docs_inspector>`.
 
@@ -27,21 +29,25 @@ Solution Steps
 :ref:`solving_problems` describes the process of solving problems on the quantum
 computer in two steps: (1) Formulate the problem as a :term:`binary quadratic model` (BQM)
 and (2) Solve the BQM with a D-wave system or classical :term:`sampler`. In this example,
-a QUBO is formulated with simple math, the problem is submitted naively to the QPU,
-it's minor embedding examined using the problem inspector and improved.
+a :term:`QUBO` is formulated with simple math, the problem is submitted naively to
+the QPU, its minor embedding examined using the problem inspector, and the
+submission improved.
 
-Create a Problem Graph
-======================
+A Problem Graph
+===============
 
 This example uses a synthetic problem for illustrative purposes: a NetworkX
 generated graph,
-`NetworkX random_geometric_graph() <https://networkx.github.io/documentation/stable/reference/generators.html#module-networkx.generators.random>`_.
+`NetworkX random_geometric_graph() <https://networkx.github.io/documentation/stable/reference/generators.html#module-networkx.generators.random>`_. The problem of interest here,
+which is NP-hard, is to try and find the best division of the graph's nodes into two
+equal sets with a minimum number of edges between the two groups.
 
 .. code-block:: python
 
     import networkx as nx
 
-    G = nx.random_geometric_graph(n=15, radius=.55, dim=2)
+    graph_nodes = 16
+    G = nx.random_geometric_graph(n=graph_nodes, radius=.55, dim=2)
 
 .. figure:: ../_static/inspector_rand_geom_plot.png
    :name: InspectorRandGeomProblem
@@ -54,7 +60,10 @@ generated graph,
 Formulate the Problem as a BQM
 ==============================
 
-This example formulates the BQM as a QUBO in the same way as https://github.com/dwave-examples/graph-partitioning.
+This example formulates the BQM as a QUBO using the same steps described in
+detail in the `Graph Partitioning <https://github.com/dwave-examples/graph-partitioning>`_
+code example of the `D-Wave Code Examples <https://github.com/dwave-examples>`_ GitHub
+repository.
 
 .. code-block:: python
 
@@ -77,16 +86,25 @@ This example formulates the BQM as a QUBO in the same way as https://github.com/
     for i, j in combinations(G.nodes, 2):
     	Q[(i,j)] += 2*gamma
 
-Submit the Problem to the QPU
-=============================
+Print the maximum and minimum QUBO values:
 
-.. note:: It's recommended that you import the problem inspector before submitting
-   problem to the QPU.
+>>> print("Maximum element is {:.2f} and minimum is {:.2f}.".format(max(Q.values(), min(Q.values())))
+
+Submit to the Quantum Computer
+==============================
+
+.. note:: Importing the problem inspector activates for the session the capture of
+   data such as problems sent to the QPU and returned responses, relevant details of
+   minor-embedding, and warnings. The recommended workflow is to import it at the
+   start of your coding session or at least before submitting your problem, as is
+   done below.
 
 .. code-block:: python
 
     import numpy as np
     from dwave.system import DWaveSampler, EmbeddingComposite
+
+    # Import the problem inspector to begin data capture
     import dwave.inspector
 
     sampler = EmbeddingComposite(DWaveSampler(solver={'qpu': True}))
@@ -94,7 +112,10 @@ Submit the Problem to the QPU
 
 Check the best returned answer:
 
->>> sum(response.first.sample.values(), response.first.energy)
+>>> print("Number of nodes in one set is {}, in the other, {}. Energy is {}.".format(
+           sum(response.first.sample.values()),
+           graph_nodes - sum(response.first.sample.values()),
+           response.first.energy))
 
 A simple evaluation of the overall quality of the returned samples:
 
