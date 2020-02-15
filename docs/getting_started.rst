@@ -60,18 +60,15 @@ Examples
 
 See how Ocean tools are used with these end-to-end examples.
 
-Beginner-Level Examples
------------------------
-
 Because many large, hard problems are best approached with quantum-classical hybrid
-solvers, a good place to start is with examples of :ref:`examples_hybrid` and then
-learn how to work directly on the quantum computer with examples of
-:ref:`examples_qpu`.
+solvers, a good place to start is with examples of the :ref:`examples_hybrid` section 
+and then learn how to work directly on the quantum computer with examples of the
+:ref:`examples_qpu` section.
 
 .. _examples_hybrid:
 
-Quantum-Classical Hybrid Computing
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Beginner-Level Examples: Hybrid Computing
+-----------------------------------------
 
 .. toctree::
    :maxdepth: 1
@@ -86,8 +83,8 @@ Quantum-Classical Hybrid Computing
 
 .. _examples_qpu:
 
-Using the QPU
-~~~~~~~~~~~~~
+Beginner-Level Examples: Using the QPU
+--------------------------------------
 
 .. toctree::
    :maxdepth: 1
@@ -128,7 +125,7 @@ Advanced-Level Examples
    examples/inspector_graph_partitioning
    examples/topology_samplers
 
-* :ref:`inspector_graph_partitioning` uses the problem inspector tool to improve :term:`minor-embedding`.
+* :ref:`inspector_graph_partitioning` improves :term:`minor-embedding` on a graph partition problem.
 * :ref:`topology_samplers` running your code on software with different :term:`QPU`-inspired topologies.
 
 .. _projects-Demonstrations:
