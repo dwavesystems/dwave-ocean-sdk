@@ -125,8 +125,10 @@ Advanced-Level Examples
    :maxdepth: 1
    :hidden:
 
+   examples/inspector_graph_partitioning
    examples/topology_samplers
 
+* :ref:`inspector_graph_partitioning` uses the problem inspector tool to improve :term:`minor-embedding`.
 * :ref:`topology_samplers` running your code on software with different :term:`QPU`-inspired topologies.
 
 .. _projects-Demonstrations:
