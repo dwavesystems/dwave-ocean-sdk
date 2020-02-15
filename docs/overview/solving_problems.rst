@@ -1,10 +1,10 @@
 .. _solving_problems:
 
-This section explains some of the basics of how you can use D-Wave quantum computers
-to solve problems and how Ocean tools can help.
-
 How a D-Wave System Solves Problems
 ===================================
+
+This section explains some of the basics of how you can use D-Wave quantum computers
+to solve problems and how Ocean tools can help.
 
 For quantum computing, as for classical, solving a problem requires that it
 be formulated in a way the computer and its software understand.

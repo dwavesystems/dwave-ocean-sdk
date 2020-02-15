@@ -5,8 +5,9 @@ Using the Problem Inspector
 ===========================
 
 This example solves a `graph partitioning <https://en.wikipedia.org/wiki/Graph_partition>`_
-problem to show how D-Wave's `problem inspector </docs_inspector>` tool can help
-you evaluate the minor-embedding used in your problem submissions to a QPU.
+problem to show how D-Wave's :ref:`inspector` tool can help
+you evaluate the :term:`minor-embedding` used in your problem submissions to the
+quantum computer.
 
 Example Requirements
 ====================
@@ -26,15 +27,15 @@ meets these requirements.
 Solution Steps
 ==============
 
-:ref:`solving_problems` describes the process of solving problems on the quantum
+The :ref:`solving_problems` section describes the process of solving problems on the quantum
 computer in two steps: (1) Formulate the problem as a :term:`binary quadratic model` (BQM)
 and (2) Solve the BQM with a D-wave system or classical :term:`sampler`. In this example,
 a :term:`QUBO` is formulated with simple math, the problem is submitted naively to
 the QPU, its minor embedding examined using the problem inspector, and the
 submission improved.
 
-A Problem Graph
-===============
+Formulate the Problem
+=====================
 
 This example uses a synthetic problem for illustrative purposes: a NetworkX
 generated graph,
@@ -47,7 +48,7 @@ equal sets with a minimum number of edges between the two groups.
     import networkx as nx
 
     graph_nodes = 16
-    G = nx.random_geometric_graph(n=graph_nodes, radius=.55, dim=2)
+    G = nx.random_geometric_graph(n=graph_nodes, radius=.5, dim=2)
 
 .. figure:: ../_static/inspector_rand_geom_plot.png
    :name: InspectorRandGeomProblem
@@ -57,8 +58,8 @@ equal sets with a minimum number of edges between the two groups.
 
    One arbitrary generation of the problem graph.
 
-Formulate the Problem as a BQM
-==============================
+Reformulate the Problem Graph as a BQM
+--------------------------------------
 
 This example formulates the BQM as a QUBO using the same steps described in
 detail in the `Graph Partitioning <https://github.com/dwave-examples/graph-partitioning>`_
@@ -70,7 +71,7 @@ repository.
     from collections import defaultdict
     from itertools import combinations
 
-    gamma = 80
+    gamma = 60
 
     Q = defaultdict(int)
 
@@ -86,12 +87,13 @@ repository.
     for i, j in combinations(G.nodes, 2):
     	Q[(i,j)] += 2*gamma
 
-Print the maximum and minimum QUBO values:
+Print the range of values for the generated QUBO's elements:
 
->>> print("Maximum element is {:.2f} and minimum is {:.2f}.".format(max(Q.values(), min(Q.values())))
+>>> print("Maximum element is {:.2f} and minimum is {:.2f}.".format(max(Q.values()), min(Q.values())))
+Maximum element is 120.00 and minimum is -898.00.
 
-Submit to the Quantum Computer
-==============================
+Solve the Problem by Sampling
+=============================
 
 .. note:: Importing the problem inspector activates for the session the capture of
    data such as problems sent to the QPU and returned responses, relevant details of
@@ -108,7 +110,9 @@ Submit to the Quantum Computer
     import dwave.inspector
 
     sampler = EmbeddingComposite(DWaveSampler(solver={'qpu': True}))
-    response = sampler.sample_qubo(Q, num_reads=1000)
+
+    num_reads = 1000
+    response = sampler.sample_qubo(Q, num_reads=num_reads)
 
 Check the best returned answer:
 
@@ -116,53 +120,75 @@ Check the best returned answer:
            sum(response.first.sample.values()),
            graph_nodes - sum(response.first.sample.values()),
            response.first.energy))
+Number of nodes in one set is 8, in the other, 8. Energy is -3813.0.
 
-A simple evaluation of the overall quality of the returned samples:
+One simple measure of the overall quality of the returned samples is the percentage
+of samples based on chains with high breakage rates. Here a rate above one third is chosen:
 
->>> print(np.count_nonzero(response.record.chain_break_fraction > 0.33)
-
+>>> print("Percentage of samples with high rates of breaks is {}.".format(
+           np.count_nonzero(response.record.chain_break_fraction > 0.33)/num_reads*100))
+Percentage of samples with high rates of breaks is 78.7.
 
 Inspect the Submission
-========================
+----------------------
 
+Use the problem inspector on the returned samples:
+
+.. code-block:: python
+
+    dwave.inspector.show(response)
 
 .. figure:: ../_static/inspector_rand_geom_broken_chains.png
    :name: InspectorRandGeomBrokenChains
    :alt: image
    :align: center
-   :scale: 70 %
+   :scale: 50 %
 
-   Default chain strength: solutions.
+   Problem inspector displaying the logical problem: the problem graph, on the left, and the returned energies hysteresis, on the right, for a submission with the chain strength set to its default value. For one arbitrary solution, selected by clicking an energy bar on the right (highlighted white), all values but two are shown as being based on broken chains. The selected variable on the left, variable :math:`8`, is shown to be represented on the QPU by a chain of 6 qubits.
+
+You can select a view in the displayed problem that shows the broken chains on the
+QPU qubits:
 
 .. figure:: ../_static/inspector_rand_geom_broken_chains_target.png
    :name: InspectorRandGeomBrokenChains1
    :alt: image
    :align: center
-   :scale: 70 %
+   :scale: 50 %
 
-   Default chain strength: broken chain.
+   Problem inspector displaying the embedded problem, with broken chains highlighted, for a submission with the chain strength set to its default value.
+
+Using the same logic described in the
+`Graph Partitioning <https://github.com/dwave-examples/graph-partitioning>`_
+code example, the problem is resubmitted using a higher chain strength:
+
+.. code-block:: python
+
+    response = sampler.sample_qubo(Q, num_reads=num_reads, chain_strength=1000)
+
+Check the best returned answer and percentage of samples based on chains with breakage
+rates of over 33 percent:
+
+>>> print("Number of nodes in one set is {}, in the other, {}. Energy is {}.".format(
+           sum(response.first.sample.values()),
+           graph_nodes - sum(response.first.sample.values()),
+           response.first.energy))
+Number of nodes in one set is 8, in the other, 8. Energy is -3813.0.
+...
+>>> print("Percentage of samples with high rates of breaks is {}.".format(
+           np.count_nonzero(response.record.chain_break_fraction > 0.33)/num_reads*100))
+Percentage of samples with high rates of breaks is 0.0.
+
+Again use the problem inspector on the returned samples:
+
+.. code-block:: python
+
+    dwave.inspector.show(response)
 
 
 .. figure:: ../_static/inspector_rand_geom_no_broken_chains.png
    :name: InspectorRandGeomNoBrokenChains
    :alt: image
    :align: center
-   :scale: 70 %
+   :scale: 50 %
 
-   Default chain strength: chain_strength=100.
-
-Solve the Problem Using Hybrid Resources
-========================================
-
-Once you have a hybrid workflow, you can run and tune it within the dwave-hybrid framework
-or convert it to a `dimod` sampler.
-
-.. code-block:: python
-
-    # Convert to dimod sampler and run workflow
-    result = hybrid.HybridSampler(workflow).sample(bqm)
-
-While the tabu search runs locally, one or more subproblems are sent to the QPU.
-
->>> print("Solution: sample={}".format(result.first)) # doctest: +SKIP
-Solution: sample=Sample(sample={0: -1, 1: -1, 2: -1, 3: 1, 4: -1, ... energy=-169.0, num_occurrences=1)
+   Problem inspector displaying the logical problem: graph and the returned energies hysteresis for a submission with the chain strength set to :math:`1000`. For one arbitrary solution, selected by clicking an energy bar on the right (highlighted white), all values are shown as being based on non-broken chains. 
