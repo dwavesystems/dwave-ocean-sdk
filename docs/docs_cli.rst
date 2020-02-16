@@ -4,13 +4,16 @@
 dwave CLI
 =========
 
-The `dwave-ocean-sdk <https://github.com/dwavesystems/dwave-ocean-sdk>`_
-includes an interactive command line interface (CLI) that can help
-you set up and configure your development environment, communicate with
-D-Wave compute resources, and other useful actions. Its commands are
-run in the virtual environment you created as part of :ref:`install`.
+As part of the installation of the
+`dwave-ocean-sdk <https://github.com/dwavesystems/dwave-ocean-sdk>`_
+a `dwave` executable is installed; for example, in a virtual environment it might
+be installed as `<virtual_environment>\\Scripts\\dwave.exe`. Running this file from
+your system's console opens an interactive command line interface (CLI) that can
+help you set up and configure your development environment, communicate with
+D-Wave compute resources, and other useful actions.
 
-For **SDK version 1.6.1** the CLI provided the following commands and options
+Run *dwave* -\\-\ *help* for information on all the CLI options. For **SDK
+version 1.6.1** the CLI provided the following commands and options
 (see the output in your installation for the latest):
 
 .. code-block:: bash
@@ -36,6 +39,15 @@ For **SDK version 1.6.1** the CLI provided the following commands and options
       setup    Setup optional Ocean packages and configuration file(s).
       solvers  Get solver details.
       upload   Multipart problem upload with cold restart support.
+
+.. note:: If you work in a Bash shell and want command completion for `dwave`, add
+
+          .. code-block:: bash
+
+             eval "$(_DWAVE_COMPLETE=source <path>/dwave)"
+
+          to your shell's `.bashrc` configuration file, where `<path>` is the absolute
+          path to the installed `dwave` executable, for example `/home/Mary/my-quantum-app/env/bin`.
 
 Below are shown example sessions for some of the commands:
 
