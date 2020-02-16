@@ -132,7 +132,8 @@ Energy is -3813.0.
    Best graph partition found for a submission with a lowest energy value of :math:`-3813`.
 
 One simple measure of the overall quality of the returned samples is the percentage
-of samples based on chains with high breakage rates. Here a rate above one third is chosen:
+of samples based on chains with high breakage rates. Here a rate above one third is chosen
+as the acceptable threshold:
 
 >>> print("Percentage of samples with high rates of breaks is {}.".format(
            np.count_nonzero(response.record.chain_break_fraction > 0.33)/num_reads*100))
@@ -153,10 +154,10 @@ Use the problem inspector on the returned samples:
    :align: center
    :scale: 50 %
 
-   Problem inspector displaying the logical problem: the problem graph, on the left, and the returned energies hysteresis, on the right, for a submission with the chain strength set to its default value. For one arbitrary solution, selected by clicking an energy bar on the right (highlighted white), all values but two are shown as being based on broken chains. The selected variable on the left, variable :math:`8`, is shown to be represented on the QPU by a chain of 6 qubits.
+   Problem inspector displaying the logical problem: the problem BQM, on the left, and the returned energies histogram, on the right, for a submission with the chain strength set to its default value. For one arbitrary solution, selected by clicking an energy bar on the right (highlighted white), all values but two are shown as being based on broken chains. The selected variable on the left, variable :math:`8`, is shown to be represented on the QPU by a chain of 6 qubits.
 
-You can select a view in the displayed problem that shows the broken chains on the
-QPU qubits:
+The problem inspector can also display the embedded problem, showing the qubits chains
+viewed on a background representation of the QPU topology:
 
 .. figure:: ../_static/inspector_rand_geom_broken_chains_target.png
    :name: InspectorRandGeomBrokenChains1
@@ -175,8 +176,9 @@ code example, the problem is resubmitted using a higher chain strength:
     response = sampler.sample_qubo(Q, num_reads=num_reads, chain_strength=1000)
 
 Check the best returned answer and percentage of samples based on chains with breakage
-rates of over 33 percent. The result of the shown submission had a lower minimum
-energy and no samples based on high rates of broken chains.
+rates of over 33 percent. Results will vary due to the probabilistic nature of the
+quantum computer and its integrated control errors (ICE), but in this case the shown
+submission had a lower minimum energy and no samples based on high rates of broken chains.
 
 >>> print("Number of nodes in one set is {}, in the other, {}. \nEnergy is {}.".format(
            sum(response.first.sample.values()),
@@ -195,7 +197,7 @@ Percentage of samples with high rates of breaks is 0.0.
    :align: center
    :scale: 70 %
 
-   Best graph partition found for a submission with higher chain strength and improved lowest-energy returned solution.
+   Best graph partition found for a submission with higher chain strength.
 
 If you again use the problem inspector on the returned samples, you see the improved chains.
 
@@ -210,7 +212,7 @@ If you again use the problem inspector on the returned samples, you see the impr
    :align: center
    :scale: 50 %
 
-   Problem inspector displaying the logical problem: graph and the returned energies hysteresis for a submission with the chain strength set to :math:`1000`. For one arbitrary solution, selected by clicking an energy bar on the right (highlighted white), all values are shown as being based on non-broken chains.
+   Problem inspector displaying the logical problem: BQM and the returned energies histogram for a submission with the chain strength set to :math:`1000`. For one arbitrary solution, selected by clicking an energy bar on the right (highlighted white), all values are shown as being based on non-broken chains.
 
 Also of interest is the "spread" of solution energies. For this submission there are
 a few distinct clusters. The problem inspector can zoom in on the lowest:
@@ -221,14 +223,14 @@ a few distinct clusters. The problem inspector can zoom in on the lowest:
    :align: center
    :scale: 70 %
 
-   Zoom on lowest-energy returned solution for chain strength set to a value of :math:`1000`.
+   Zoom on lowest-energy returned samples for chain strength set to a value of :math:`1000`.
 
 You see that most the returned solutions of lowest energy cluster closely around an
 energy of approximately -3807 but that the QPU has found some even lower-energy
 solutions. From this one can assume that it might be possible find a better solution
 by increasing the number of reads. Additionally however, the complete lack of broken
 chains for the current returned sample set suggests that the chain strength can
-likely be lowered while still maintaining a low rate of broken chains. Doing so,
+likely be lowered while still maintaining a low rate of broken chains. Doing so
 enables the problem to be represented more accurately on the QPU.
 
 .. code-block:: python
@@ -236,7 +238,7 @@ enables the problem to be represented more accurately on the QPU.
     response = sampler.sample_qubo(Q, num_reads=num_reads, chain_strength=300)
 
 Below is one run of a few iterations of adjusting chain strength. Notice that the
-acceptable rate of chain breaks is also set lower, to breakage rates of over 5
+acceptable rate of chain breaks was set lower, to breakage rates of over 5
 percent.
 
 >>> print("Number of nodes in one set is {}, in the other, {}. \nEnergy is {}.".format(
@@ -250,8 +252,8 @@ Energy is -3817.0.
            np.count_nonzero(response.record.chain_break_fraction > 0.05)/num_reads*100))
 Percentage of samples with >5 percent chain breaks is 1.7000000000000002.
 
-The result of the shown submission had a lower minimum energy, :math:`-3817` and
-less than 2% of samples based on broken chains.
+The result of the shown submission, with a chain strength of :math:`300`, still had
+less than 2% of its samples based on broken chains.
 
 .. figure:: ../_static/inspector_rand_geom_sol_300.png
    :name: InspectorRandGeomBrokenChainsSol300
@@ -259,5 +261,4 @@ less than 2% of samples based on broken chains.
    :align: center
    :scale: 70 %
 
-   Best graph partition found for a submission with chain strength of :math:`300`
-   and lowest-energy returned solution of :math:`-3817`.
+   Best graph partition found for a submission with chain strength of :math:`300`.
