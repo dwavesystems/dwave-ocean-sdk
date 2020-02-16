@@ -30,8 +30,9 @@ Understand the terminology.
   :caption: Tools
   :maxdepth: 1
 
+  docs_cli
   docs_dimod/sdk_index
-  docs_binarycsp/sdk_index  
+  docs_binarycsp/sdk_index
   docs_cloud/sdk_index
   docs_hybrid/sdk_index
   docs_inspector
