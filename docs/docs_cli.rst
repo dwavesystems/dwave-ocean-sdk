@@ -55,6 +55,8 @@ and configures your environment.
 The output shown below includes the interactive prompts and placeholder replies
 for a full setup.
 
+.. cli-example-setup-start-marker
+
 .. code-block:: bash
 
     $ dwave setup
@@ -89,6 +91,8 @@ for a full setup.
     Default solver [skip]:
     Configuration saved.
 
+.. cli-example-setup-end-marker
+
 .. _cli_example_config:
 
 Configure
@@ -97,6 +101,8 @@ Configure
 The :code:`dwave config` command configures your environment.
 
 The output shown below includes the interactive prompts and placeholder replies.
+
+.. cli-example-config-start-marker
 
 .. code-block:: bash
 
@@ -110,6 +116,8 @@ The output shown below includes the interactive prompts and placeholder replies.
     Default solver [skip]:
     Configuration saved.
 
+.. cli-example-config-end-marker
+
 .. _cli_example_ping:
 
 Ping
@@ -118,6 +126,7 @@ Ping
 The :code:`dwave ping` command tests communications with the quantum computer
 configured using the :code:`dwave setup` or :code:`dwave config` commands.
 
+.. cli-example-ping-start-marker
 
 .. code-block:: bash
 
@@ -137,6 +146,8 @@ configured using the :code:`dwave setup` or :code:`dwave config` commands.
      * qpu_anneal_time_per_sample = 20 us
      # Snipped for brevity
 
+.. cli-example-ping-end-marker
+
 .. _cli_example_solvers:
 
 Solvers
@@ -144,6 +155,8 @@ Solvers
 
 The :code:`dwave solvers` command queries which D-Wave compute resources are
 currently available to your account based.
+
+.. cli-example-solvers-start-marker
 
 .. code-block:: bash
 
@@ -165,3 +178,5 @@ currently available to your account based.
           couplers: [[0, 4], [1, 4], [2, 4], [3, 4], [0, 5], [1, 5], [2, 5], ...
 
           <Output snipped for brevity>
+
+.. cli-example-solvers-end-marker
