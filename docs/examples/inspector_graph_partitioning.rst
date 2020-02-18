@@ -29,7 +29,7 @@ Solution Steps
 
 The :ref:`solving_problems` section describes the process of solving problems on the quantum
 computer in two steps: (1) Formulate the problem as a :term:`binary quadratic model` (BQM)
-and (2) Solve the BQM with a D-wave system or classical :term:`sampler`. In this example,
+and (2) Solve the BQM with a D-Wave system or classical :term:`sampler`. In this example,
 a :term:`QUBO` is formulated with simple math, the problem is submitted naively to
 the QPU, its minor embedding examined using the problem inspector, and the
 submission improved.
@@ -112,14 +112,14 @@ Solve the Problem by Sampling
     sampler = EmbeddingComposite(DWaveSampler(solver={'qpu': True}))
 
     num_reads = 1000
-    response = sampler.sample_qubo(Q, num_reads=num_reads)
+    sampleset = sampler.sample_qubo(Q, num_reads=num_reads)
 
 Check the best returned answer:
 
 >>> print("Number of nodes in one set is {}, in the other, {}. \nEnergy is {}.".format(
-           sum(response.first.sample.values()),
-           graph_nodes - sum(response.first.sample.values()),
-           response.first.energy))
+           sum(sampleset.first.sample.values()),
+           graph_nodes - sum(sampleset.first.sample.values()),
+           sampleset.first.energy))
 Number of nodes in one set is 8, in the other, 8.
 Energy is -3813.0.
 
@@ -136,7 +136,7 @@ of samples based on chains with high breakage rates. Here a rate above one third
 as the acceptable threshold:
 
 >>> print("Percentage of samples with high rates of breaks is {}.".format(
-           np.count_nonzero(response.record.chain_break_fraction > 0.33)/num_reads*100))
+           np.count_nonzero(sampleset.record.chain_break_fraction > 0.33)/num_reads*100))
 Percentage of samples with high rates of breaks is 78.7.
 
 Inspect the Submission
@@ -146,7 +146,7 @@ Use the problem inspector on the returned samples:
 
 .. code-block:: python
 
-    dwave.inspector.show(response)
+    dwave.inspector.show(sampleset)
 
 .. figure:: ../_static/inspector_rand_geom_broken_chains.png
    :name: InspectorRandGeomBrokenChains
@@ -173,7 +173,7 @@ code example, the problem is resubmitted using a higher chain strength:
 
 .. code-block:: python
 
-    response = sampler.sample_qubo(Q, num_reads=num_reads, chain_strength=1000)
+    sampleset = sampler.sample_qubo(Q, num_reads=num_reads, chain_strength=1000)
 
 Check the best returned answer and percentage of samples based on chains with breakage
 rates of over 33 percent. Results will vary due to the probabilistic nature of the
@@ -181,14 +181,14 @@ quantum computer and its integrated control errors (ICE), but in this case the s
 submission had a lower minimum energy and no samples based on high rates of broken chains.
 
 >>> print("Number of nodes in one set is {}, in the other, {}. \nEnergy is {}.".format(
-           sum(response.first.sample.values()),
-           graph_nodes - sum(response.first.sample.values()),
-           response.first.energy))
+           sum(sampleset.first.sample.values()),
+           graph_nodes - sum(sampleset.first.sample.values()),
+           sampleset.first.energy))
 Number of nodes in one set is 8, in the other, 8.
 Energy is -3815.0.
 ...
 >>> print("Percentage of samples with high rates of breaks is {}.".format(
-           np.count_nonzero(response.record.chain_break_fraction > 0.33)/num_reads*100))
+           np.count_nonzero(sampleset.record.chain_break_fraction > 0.33)/num_reads*100))
 Percentage of samples with high rates of breaks is 0.0.
 
 .. figure:: ../_static/inspector_rand_geom_sol_1000.png
@@ -203,7 +203,7 @@ If you again use the problem inspector on the returned samples, you see the impr
 
 .. code-block:: python
 
-    dwave.inspector.show(response)
+    dwave.inspector.show(sampleset)
 
 
 .. figure:: ../_static/inspector_rand_geom_no_broken_chains.png
@@ -235,21 +235,21 @@ enables the problem to be represented more accurately on the QPU.
 
 .. code-block:: python
 
-    response = sampler.sample_qubo(Q, num_reads=num_reads, chain_strength=300)
+    sampleset = sampler.sample_qubo(Q, num_reads=num_reads, chain_strength=300)
 
 Below is one run of a few iterations of adjusting chain strength. Notice that the
 acceptable rate of chain breaks was set lower, to breakage rates of over 5
 percent.
 
 >>> print("Number of nodes in one set is {}, in the other, {}. \nEnergy is {}.".format(
-           sum(response.first.sample.values()),
-           graph_nodes - sum(response.first.sample.values()),
-           response.first.energy))
+           sum(sampleset.first.sample.values()),
+           graph_nodes - sum(sampleset.first.sample.values()),
+           sampleset.first.energy))
 Number of nodes in one set is 8, in the other, 8.
 Energy is -3817.0.
 ...
 >>> print("Percentage of samples with >5 percent chain breaks is {}.".format(
-           np.count_nonzero(response.record.chain_break_fraction > 0.05)/num_reads*100))
+           np.count_nonzero(sampleset.record.chain_break_fraction > 0.05)/num_reads*100))
 Percentage of samples with >5 percent chain breaks is 1.7000000000000002.
 
 The result of the shown submission, with a chain strength of :math:`300`, still had
