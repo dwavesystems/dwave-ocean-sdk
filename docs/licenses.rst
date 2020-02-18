@@ -18,6 +18,12 @@ Below are the open-source licenses for the SDK and its tools:
    licenses/minorminer
    licenses/penaltymodel
 
+Ocean software also includes non-open-source packages you can optionally install with the following
+D-Wave end-user license agreements (EULAs):
 
+.. toctree::
+   :maxdepth: 1
+
+   licenses/drivers 
 
  
