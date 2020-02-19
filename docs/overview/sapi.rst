@@ -49,7 +49,7 @@ Your configuration file can include one or more solvers.
 Creating a Configuration File
 =============================
 
-The simplest way to configure solver access is to use the interactive CLI, which
+The simplest way to configure solver access is to use the :ref:`interactive CLI <dwave_cli>`, which
 is installed as part of
 the `dwave-ocean-sdk <https://github.com/dwavesystems/dwave-ocean-sdk>`_
 installation.
@@ -81,17 +81,9 @@ runs these same configuration steps):
    :code:`dwave config create` command (the output shown below
    includes the interactive prompts and placeholder replies).
 
-.. code-block:: bash
-
-    $ dwave config create
-    Configuration file not found; the default location is: /home/jane/.config/dwave/dwave.conf
-    Confirm configuration file path [/home/jane/.config/dwave/dwave.conf]:
-    Profile (create new) [prod]:
-    API endpoint URL [skip]:
-    Authentication token [skip]: ABC-1234567890abcdef1234567890abcdef
-    Default client class (qpu or sw) [qpu]:
-    Default solver [skip]:
-    Configuration saved.
+.. include:: ../docs_cli.rst
+  :start-after: cli-example-config-start-marker
+  :end-before: cli-example-config-end-marker
 
 2. Enter the SAPI information (e.g. your API token) found as described in the section
    above. To get started, create a minimum configuration by accepting the command's
@@ -110,29 +102,15 @@ document or :doc:`D-Wave Cloud Client </docs_cloud/sdk_index>`.
 Verifying Your Configuration
 ----------------------------
 
-You can test that your solver access is configured correctly with the same
-interactive CLI installed as part of the SDK installation.
+You can test that your solver access is configured correctly with the
+:ref:`interactive CLI <dwave_cli>`.
 
 1. In your virtual environment, run the :code:`dwave ping` command (the output shown
    below is illustrative only).
 
-.. code-block:: bash
-
-    $ dwave ping
-    Using endpoint: https://my.dwavesys.url/
-    Using solver: My_DWAVE_2000Q
-
-    Wall clock time:
-     * Solver definition fetch: 2007.239 ms
-     * Problem submit and results fetch: 1033.931 ms
-     * Total: 3041.171 ms
-
-    QPU timing:
-     * total_real_time = 10493 us
-     * anneal_time_per_run = 20 us
-     * post_processing_overhead_time = 128 us
-     * qpu_anneal_time_per_sample = 20 us
-     # Snipped for brevity
+.. include:: ../docs_cli.rst
+  :start-after: cli-example-ping-start-marker
+  :end-before: cli-example-ping-end-marker
 
 2. **Optionally**, run the :code:`dwave sample --random-problem` command to submit a random
    problem to a remote solver (the output shown below is illustrative only).
@@ -155,31 +133,14 @@ Querying Available Solvers
 .. note:: `Leap <https://cloud.dwavesys.com/leap/>`_ accounts can see accessible solvers
    on the dashboard.
 
-From your terminal, you can use the 
-interactive CLI to see the available solvers, their parameters, and properties.
+From your terminal, you can use the
+:ref:`interactive CLI <dwave_cli>` to see the available solvers, their parameters, and properties.
 
 1. Run the :code:`dwave solvers` command (the output shown below is illustrative only).
 
-.. code-block:: bash
-
-    $ dwave solvers
-    Solver: My_DWAVE_2000Q
-       Parameters:
-          anneal_offsets: A list of anneal offsets for each working qubit (NaN if u...
-          anneal_schedule: A piecewise linear annealing schedule specified by a list...
-          annealing_time: A positive integer that sets the duration (in microsecond...
-
-          <Output snipped for brevity>
-
-       Properties:
-          anneal_offset_ranges: [[-0.18627387668142237, 0.09542224439071689], [-0.1836548...
-          anneal_offset_step: 0.00426679499507194
-          anneal_offset_step_phi0: 0.0002716837027763096
-          annealing_time_range: [1, 150000]
-          chip_id: W7-1_C16_4724854-02-G4_C5R9-device-cal-data-18-05-27-14:27
-          couplers: [[0, 4], [1, 4], [2, 4], [3, 4], [0, 5], [1, 5], [2, 5], ...
-
-          <Output snipped for brevity>
+.. include:: ../docs_cli.rst
+  :start-after: cli-example-solvers-start-marker
+  :end-before: cli-example-solvers-end-marker
 
 Alternatively, from within your code or a Python interpreter you can query solvers available for
 a SAPI URL and API token using

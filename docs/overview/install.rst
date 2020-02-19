@@ -118,46 +118,16 @@ writing code, you complete the setup of your environment with two last steps:
   Sets defaults used for accessing D-Wave compute resources.
 
 The `dwave-ocean-sdk <https://github.com/dwavesystems/dwave-ocean-sdk>`_
-includes an interactive CLI that steps you through setup.
+includes an :ref:`interactive CLI <dwave_cli>` that steps you through setup.
 
 In the virtual environment you created as part of :ref:`install`, run the
 :code:`dwave setup` command. The output shown below includes the interactive
 prompts and placeholder replies for a full setup. The next sections explain
 the details.
 
-.. code-block:: bash
-
-    $ dwave setup
-
-    Optionally install non-open-source packages and configure your environment.
-
-    Do you want to select non-open-source packages to install (y/n)? [y]:
-
-    D-Wave Drivers
-    These drivers enable some automated performance-tuning features.
-    This package is available under the 'D-Wave EULA' license.
-    The terms of the license are available online: https://docs.ocean.dwavesys.com/eula
-    Install (y/n)? [y]:
-    Installing: D-Wave Drivers
-    Successfully installed D-Wave Drivers.
-
-    D-Wave Problem Inspector
-    This tool visualizes problems submitted to the quantum computer and the results returned.
-    This package is available under the 'D-Wave EULA' license.
-    The terms of the license are available online: https://docs.ocean.dwavesys.com/eula
-    Install (y/n)? [y]:
-    Installing: D-Wave Problem Inspector
-    Successfully installed D-Wave Problem Inspector.
-
-    Creating the D-Wave configuration file.
-    Configuration file not found; the default location is: /home/jane/.config/dwave/dwave.conf
-    Confirm configuration file path [/home/jane/.config/dwave/dwave.conf]:
-    Profile (create new) [prod]:
-    API endpoint URL [skip]:
-    Authentication token [skip]: ABC-1234567890abcdef1234567890abcdef
-    Default client class (qpu or sw) [qpu]:
-    Default solver [skip]:
-    Configuration saved.
+.. include:: ../docs_cli.rst
+  :start-after: cli-example-setup-start-marker
+  :end-before: cli-example-setup-end-marker
 
 .. _setup_install:
 
