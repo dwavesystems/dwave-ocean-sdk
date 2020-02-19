@@ -12,7 +12,7 @@ your system's console opens an interactive command line interface (CLI) that can
 help you set up and configure your development environment, communicate with
 D-Wave compute resources, and other useful actions.
 
-Run *dwave* -\\-\ *help* for information on all the CLI options. For **SDK
+Run :code:`dwave -- help` for information on all the CLI options. For **SDK
 version 1.6.1** the CLI provided the following commands and options
 (see the output in your installation for the latest):
 
@@ -173,7 +173,7 @@ currently available to your account based.
 .. code-block:: bash
 
     $ dwave solvers
-    Solver: My_DWAVE_2000Q
+    Solver: DW_2000Q_33
        Parameters:
           anneal_offsets: A list of anneal offsets for each working qubit (NaN if u...
           anneal_schedule: A piecewise linear annealing schedule specified by a list...
