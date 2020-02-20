@@ -22,8 +22,10 @@ sys.path.insert(0, os.path.abspath('.'))
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 # Temporary workaround for problem inspector
-for known_image in ["and_gate.png", "logical_problem.png", "physical_qubits.png"]:
-   os.symlink('../../dwave-inspector/_images/' + known_image, './_images/' + known_image)
+if not os.path.exists('./docs/_images/'):
+   os.makedirs('./docs/_images/')
+for image in os.listdir('../dwave-inspector/docs/_images/'):
+   os.symlink('../../../dwave-inspector/docs/_images/' + image, './docs/_images/' + image)
 
 # -- General configuration ------------------------------------------------
 # import sphinx
