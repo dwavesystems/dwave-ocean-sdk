@@ -85,7 +85,7 @@ This example selects Ocean software's :doc:`dwave-system </docs_system/sdk_index
 `LeapHybridSampler` class for using the Leap's cloud-based hybrid solvers.
 
 >>> from dwave.system import LeapHybridSampler
->>> sampler = LeapHybridSampler(solver={'category': 'hybrid'})
+>>> sampler = LeapHybridSampler()
 
 Finally, the returned set of frustrated edges and a bicoloring are counted and printed.
 
