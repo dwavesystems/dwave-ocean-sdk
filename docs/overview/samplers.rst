@@ -32,7 +32,7 @@ to a Leap hybrid solver. In this case, :doc:`dwave-system </docs_system/sdk_inde
 resource selected might be Leap hybrid solver `hybrid_v1`.
 
 >>> from dwave.system import LeapHybridSampler
->>> sampler = LeapHybridSampler(solver={'category': 'hybrid'})    # doctest: +SKIP
+>>> sampler = LeapHybridSampler()    # doctest: +SKIP
 >>> answer = sampler.sample(bqm)   # doctest: +SKIP
 >>> print(answer)    # doctest: +SKIP
 x1 x2 y1 energy num_oc.
