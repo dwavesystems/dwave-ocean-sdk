@@ -33,7 +33,7 @@ D-Wave quantum processing unit (QPU), or locally on your CPU.
 Ocean's Programming Model
 =========================
 
-Learn Ocean Software's workflow for problem solving.
+Learn Ocean software's workflow for problem solving.
 
 .. toctree::
    :maxdepth: 1
@@ -61,7 +61,7 @@ Examples
 See how Ocean tools are used with these end-to-end examples.
 
 Because many large, hard problems are best approached with quantum-classical hybrid
-solvers, a good place to start is with examples of the :ref:`examples_hybrid` section 
+solvers, a good place to start is with examples of the :ref:`examples_hybrid` section
 and then learn how to work directly on the quantum computer with examples of the
 :ref:`examples_qpu` section.
 
@@ -77,7 +77,7 @@ Beginner-Level Examples: Hybrid Computing
    examples/hybrid_solver_service
    examples/map_kerberos
 
-* :ref:`hss` solves of an arbitrary-sized problem using a `Leap <https://cloud.dwavesys.com/leap/>`_
+* :ref:`hss` solves an arbitrary-sized problem using a `Leap <https://cloud.dwavesys.com/leap/>`_
   hybrid solver.
 * :ref:`map_kerberos` demonstrates using an out-of-the-box Ocean hybrid solver.
 
@@ -134,8 +134,8 @@ Demonstrations and Jupyter Notebooks
 ====================================
 
 D-Wave's `dwave-examples <https://github.com/dwave-examples>`_ GitHub repo
-contains demos, typically in the form of short code examples, you can copy (clone)
-and run.
+contains demos, typically in the form of short code examples, you can open in
+the Leap IDE or copy (clone) locally and run.
 
 D-Wave's `Leap <https://cloud.dwavesys.com/leap>`_ Quantum Application Environment
 provides a number of `Jupyter Notebooks <https://jupyter.org>`_ with detailed code examples for various types

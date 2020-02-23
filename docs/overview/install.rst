@@ -135,7 +135,7 @@ Install Contributor Ocean Tools
 -------------------------------
 
 The interactive :code:`dwave setup` and :code:`dwave install` commands of the
-the `dwave-ocean-sdk <https://github.com/dwavesystems/dwave-ocean-sdk>`_ steps
+the `dwave-ocean-sdk <https://github.com/dwavesystems/dwave-ocean-sdk>`_ step
 you through installation of non-open-source ("contrib") tools.
 
 If you did not install contributor packages with the :code:`dwave setup` command
@@ -157,7 +157,7 @@ can use it again then or use the :code:`dwave install` command.
 
 Both commands describe the tools and enable you to select which if any to install.
 
-Most Ocean tools solve problems on a :term:`solver`, which is a compute resources
+Most Ocean tools solve problems on a :term:`solver`, which is a compute resource
 such as a D-Wave system or CPU, and might require that you configure a default solver.
 :ref:`sapi_access` describes the next step of setting up your environment, how to
 configure your system to access D-Wave or other remote solvers.

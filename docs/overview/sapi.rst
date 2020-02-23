@@ -44,7 +44,7 @@ Your configuration file can include one or more solvers.
 
 .. note:: When you work in D-Wave's `Leap <https://cloud.dwavesys.com/leap/>`_ IDE,
    SAPI information such as your API token is pre-configured in the default
-   workspaces' environment variables.
+   workspace's environment variables.
 
 Creating a Configuration File
 =============================
