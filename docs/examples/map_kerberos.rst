@@ -36,10 +36,9 @@ To run the code in this example, the following is required.
 * The requisite information for problem submission through SAPI, as described in :ref:`sapi_access`
 * Ocean tools :doc:`dwave-hybrid </docs_hybrid/sdk_index>` and :doc:`dwave_networkx </docs_dnx/sdk_index>`.
 
-If you installed `dwave-ocean-sdk <https://github.com/dwavesystems/dwave-ocean-sdk>`_
-and ran :code:`dwave config create`, your installation should meet these requirements.
-In D-Wave's `Leap <https://cloud.dwavesys.com/leap/>`_ IDE, the default workspace
-meets these requirements.
+.. include:: hybrid_solver_service.rst
+  :start-after: example-requirements-start-marker
+  :end-before: example-requirements-end-marker
 
 Solution Steps
 ==============

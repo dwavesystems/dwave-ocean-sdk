@@ -126,7 +126,7 @@ Advanced-Level Examples
    examples/topology_samplers
 
 * :ref:`inspector_graph_partitioning` improves :term:`minor-embedding` on a graph partition problem.
-* :ref:`topology_samplers` running your code on software with different :term:`QPU`-inspired topologies.
+* :ref:`topology_samplers` runs your code on software samplers with different :term:`QPU`-inspired topologies.
 
 .. _projects-Demonstrations:
 
