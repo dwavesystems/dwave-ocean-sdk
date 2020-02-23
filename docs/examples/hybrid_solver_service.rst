@@ -38,7 +38,7 @@ To run the code in this example, the following is required.
 * The requisite information for problem submission through SAPI, as described in :ref:`sapi_access`.
 * Ocean tools :doc:`dwave-system </docs_system/sdk_index>` and :doc:`dwave_networkx </docs_dnx/sdk_index>`.
 
-.. example-requirements-start-marker 
+.. example-requirements-start-marker
 
 If you installed `dwave-ocean-sdk <https://github.com/dwavesystems/dwave-ocean-sdk>`_
 and ran :code:`dwave setup`, your installation should meet these requirements.
@@ -74,9 +74,9 @@ assigns :math:`0, 1` signs to represent friendly and hostile relationships.
 Solve the Problem by Sampling
 =============================
 
-As mentioned above, for this problem an Ocean's :doc:`dwave_networkx </docs_dnx/sdk_index>`
-function, `structural_imbalance()`, creates the appropriate BQM to represent
-the problem graph and returns a solution. It requires just the selection of a :term:`sampler`.
+As mentioned above, this example uses Ocean's :doc:`dwave_networkx </docs_dnx/sdk_index>`
+function, `structural_imbalance()`, to create the appropriate BQM to represent
+the problem graph and return a solution. It requires just the selection of a :term:`sampler`.
 
 D-Wave's quantum cloud service provides cloud-based hybrid solvers you can submit arbitrary
 BQMs to. These solvers, which implement state-of-the-art classical algorithms together
@@ -85,8 +85,9 @@ where it benefits most, are designed to accommodate even very large problems. Le
 solvers can relieve you of the burden of any current and future development and optimization
 of hybrid algorithms that best solve your problem.
 
-This example selects Ocean software's :doc:`dwave-system </docs_system/sdk_index>`
-`LeapHybridSampler` class for using the Leap's cloud-based hybrid solvers.
+Ocean software's :doc:`dwave-system </docs_system/sdk_index>`
+`LeapHybridSampler` class enables you to easily incorporate Leap's hybrid solvers
+into your application:
 
 >>> from dwave.system import LeapHybridSampler
 >>> sampler = LeapHybridSampler()
