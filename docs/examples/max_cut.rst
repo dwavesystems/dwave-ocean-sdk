@@ -35,6 +35,9 @@ To run the code in this example, the following is required.
 * Installation of Ocean tools `dwave-system <https://github.com/dwavesystems/dwave-system>`_ and
   `dwave_networkx <http://dwave-networkx.readthedocs.io/en/latest/index.html>`_\ .
 
+.. include:: hybrid_solver_service.rst
+  :start-after: example-requirements-start-marker
+  :end-before: example-requirements-end-marker
 
 Example Code
 ============
@@ -67,7 +70,7 @@ algorithm for :term:`minor-embedding` into at least two :term:`Chimera` unit cel
 Two runs produced complementary results.
 
 >>> import dwave_networkx as dnx
->>> from dwave.system import DWaveSampler, EmbeddingComposite 
+>>> from dwave.system import DWaveSampler, EmbeddingComposite
 >>> G = dnx.chimera_graph(2, 1, 4)
 >>> sampler = EmbeddingComposite(DWaveSampler())
 >>> dnx.maximum_cut(G, sampler) # doctest: +SKIP

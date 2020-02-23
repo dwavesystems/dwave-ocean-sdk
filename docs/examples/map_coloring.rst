@@ -39,10 +39,9 @@ To run the code in this example, the following is required.
   :doc:`dwave-system </docs_system/sdk_index>`. For graphics,
   you will also need `NetworkX <https://networkx.github.io/>`_\ .
 
-If you installed `dwave-ocean-sdk <https://github.com/dwavesystems/dwave-ocean-sdk>`_
-and ran :code:`dwave config create`, your installation should meet these requirements.
-In D-Wave's `Leap <https://cloud.dwavesys.com/leap/>`_ IDE, the default workspace
-meets these requirements.
+.. include:: hybrid_solver_service.rst
+  :start-after: example-requirements-start-marker
+  :end-before: example-requirements-end-marker
 
 Solution Steps
 ==============

@@ -53,15 +53,13 @@ affect performance. Ocean tools perform this mapping heuristically so simply rer
 a problem might improve results. Advanced users may customize the mapping by directly
 using the :doc:`minorminer </docs_minorminer/source/sdk_index>` tool, setting
 a minor-embedding themselves, or using
-D-Wave's :doc:`problem-inspector </docs_inspector/sdk_index>` tool.
+D-Wave's :doc:`problem-inspector </docs_inspector>` tool.
 
 For example, the :ref:`and` example submits the BQM representing an AND gate
 to a D-Wave system, which requires mapping the problem's logical variables
 to qubits on the QPU. The code below invokes D-Wave's
-:doc:`problem-inspector </docs_inspector/sdk_index>` tool to visualize the
+:doc:`problem-inspector </docs_inspector>` tool to visualize the
 minor-embedding.
-
-.. note:: The next code requires the use of Ocean's problem inspector.
 
 >>> import dwave.inspector
 >>> dwave.inspector.show(response)   # doctest: +SKIP

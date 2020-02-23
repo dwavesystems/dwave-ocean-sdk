@@ -130,6 +130,10 @@ each stage of the process to a layer of the Ocean stack.
         - :doc:`dwave-hybrid </docs_hybrid/sdk_index>` :code:`KerberosSampler()`
         - *dimod*-compatible hybrid asynchronous decomposition sampler.
         - For problems of arbitrary structure and size.
+      * - Hybrid
+        - `Leap <https://cloud.dwavesys.com/leap/>`_\ 's :code:`LeapHybridSampler()`
+        - Cloud-based quantum-classical hybrid solver.
+        - For problems of arbitrary structure and size, especially large problems.
       * -
         - :doc:`dimod </docs_dimod/sdk_index>` custom
         - Write a custom sampler for special cases.

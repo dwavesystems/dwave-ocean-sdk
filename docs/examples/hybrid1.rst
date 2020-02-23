@@ -22,8 +22,7 @@ to the D-Wave system due to the number of its variables. Hard optimization probl
 might have many variables; for example, scheduling or allocation of resources. In such cases,
 quantum resources are used as an accelerator much as GPUs are for graphics.
 
-.. note:: Currently Ocean tools are not optimized for very large problems.
-      For fully connected graphs, the number of edges grows very quickly with
+.. note:: For fully connected graphs, the number of edges grows very quickly with
       increased nodes, degrading performance. The current example uses 100 nodes
       but with a degree of three (each node connects to three other nodes). You can
       increase the number of nodes substantially as long as you keep the graph sparse.
@@ -37,10 +36,9 @@ To run the code in this example, the following is required.
 * Ocean tools :doc:`dwave-system </docs_system/sdk_index>`,  :doc:`dimod </docs_dimod/sdk_index>`, and
   :doc:`dwave-hybrid </docs_hybrid/sdk_index>`.
 
-If you installed `dwave-ocean-sdk <https://github.com/dwavesystems/dwave-ocean-sdk>`_
-and ran :code:`dwave config create`, your installation should meet these requirements.
-In D-Wave's `Leap <https://cloud.dwavesys.com/leap/>`_ IDE, the default workspace
-meets these requirements.
+.. include:: hybrid_solver_service.rst
+  :start-after: example-requirements-start-marker
+  :end-before: example-requirements-end-marker
 
 Solution Steps
 ==============
