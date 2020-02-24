@@ -1,4 +1,4 @@
-penaltymodel-maxgap==0.5.1
+penaltymodel-maxgap==0.5.2
 
 sphinx
 sphinx_rtd_theme
