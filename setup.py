@@ -31,10 +31,10 @@ install_requires = [
     'dwave-neal==0.5.3',
     'dwave-tabu==0.2.2',
     'dimod==0.9.0',
-    'dwavebinarycsp==0.0.12',
+    'dwavebinarycsp==0.1.0',
     'minorminer==0.1.9',
-    'penaltymodel==0.16.2',
-    'penaltymodel-cache==0.4.0',
+    'penaltymodel==0.16.3',
+    'penaltymodel-cache==0.4.1',
     'penaltymodel-lp==0.1.3',
     'pyqubo>=0.3.0',
 ]
