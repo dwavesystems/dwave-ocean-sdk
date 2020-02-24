@@ -33,11 +33,12 @@ Example Requirements
 
 To run the code in this example, the following is required.
 
-* The requisite information for problem submission through SAPI, as described in :ref:`dwavesys`
+* The requisite information for problem submission through SAPI, as described in :ref:`sapi_access`
 * Ocean tools :doc:`dwave-hybrid </docs_hybrid/sdk_index>` and :doc:`dwave_networkx </docs_dnx/sdk_index>`.
 
-If you installed `dwave-ocean-sdk <https://github.com/dwavesystems/dwave-ocean-sdk>`_
-and ran :code:`dwave config create`, your installation should meet these requirements.
+.. include:: hybrid_solver_service.rst
+  :start-after: example-requirements-start-marker
+  :end-before: example-requirements-end-marker
 
 Solution Steps
 ==============
@@ -75,6 +76,10 @@ You can see in the first non-comment line that the state of Alaska ("AK") has Ha
 >>> G = nx.read_adjlist('usa.adj', delimiter = ',')   # doctest: +SKIP
 
 Graph G now represents states as vertices and each state's neighbors as shared edges.
+
+Solve the Problem by Sampling
+=============================
+
 Ocean's :doc:`dwave_networkx </docs_dnx/sdk_index>` can return a
 `minimum vertex coloring <https://en.wikipedia.org/wiki/Graph_coloring>`_ for a graph,
 which assigns a color to the vertices of a graph in a way that no adjacent vertices

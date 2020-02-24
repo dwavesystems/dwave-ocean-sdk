@@ -21,6 +21,10 @@ import sys
 sys.path.insert(0, os.path.abspath('.'))
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+# Temporary workaround for problem inspector
+if not os.path.exists('docs'):
+    os.symlink('../dwave-inspector/docs/', 'docs', target_is_directory=True)
+
 # -- General configuration ------------------------------------------------
 # import sphinx
 # if sphinx.__version__  # can check here

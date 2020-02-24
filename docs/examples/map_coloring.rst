@@ -33,14 +33,15 @@ Example Requirements
 To run the code in this example, the following is required.
 
 * The requisite information for problem submission through SAPI, as described in
-  :ref:`dwavesys`\ .
+  :ref:`sapi_access`\ .
 * Ocean tools
   :doc:`dwavebinarycsp </docs_binarycsp/sdk_index>` and
   :doc:`dwave-system </docs_system/sdk_index>`. For graphics,
   you will also need `NetworkX <https://networkx.github.io/>`_\ .
 
-If you installed `dwave-ocean-sdk <https://github.com/dwavesystems/dwave-ocean-sdk>`_
-and ran :code:`dwave config create`, your installation should meet these requirements.
+.. include:: hybrid_solver_service.rst
+  :start-after: example-requirements-start-marker
+  :end-before: example-requirements-end-marker
 
 Solution Steps
 ==============
@@ -124,8 +125,7 @@ plot results.
 .. code-block:: python
 
     import dwavebinarycsp
-    from dwave.system.samplers import DWaveSampler
-    from dwave.system.composites import EmbeddingComposite
+    from dwave.system import DWaveSampler, EmbeddingComposite
     import networkx as nx
     import matplotlib.pyplot as plt
 
@@ -188,7 +188,7 @@ system.
 The next code sets up a D-Wave system as the sampler and requests 50 samples.
 
 .. note:: In the code below, replace sampler parameters as needed. If
-      you configured a default solver, as described in :ref:`dwavesys`, you
+      you configured a default solver, as described in :ref:`sapi_access`, you
       should be able to set the sampler without parameters as
       :code:`sampler = EmbeddingComposite(DWaveSampler())`.
       You can see this information by running :code:`dwave config inspect` in your terminal.

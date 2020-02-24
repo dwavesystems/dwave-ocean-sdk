@@ -1,14 +1,10 @@
 .. _solving_problems:
 
-===================================
-Solving Problems on a D-Wave System
+How a D-Wave System Solves Problems
 ===================================
 
 This section explains some of the basics of how you can use D-Wave quantum computers
 to solve problems and how Ocean tools can help.
-
-How a D-Wave System Solves Problems
-===================================
 
 For quantum computing, as for classical, solving a problem requires that it
 be formulated in a way the computer and its software understand.
@@ -45,9 +41,10 @@ you can run on your computer.
 
 The following sections describe this problem-solving procedure in
 two steps (plus a third that may benefit some problems); see the :ref:`gs`
-examples and system documentation for further description.
+Examples section and :std:doc:`System Documentation <sysdocs_gettingstarted:index>`
+for further description.
 
-1. :ref:`formulating`.
+1. :ref:`formulating_bqm`.
 2. :ref:`submitting`.
 3. :ref:`improving`, if needed, using advanced features.
 
@@ -61,10 +58,10 @@ examples and system documentation for further description.
    of Boolean gates, a graph, a network, etc) is formulated as a BQM, mathematically or using
    Ocean functionality and (2) the BQM is sampled for solutions.
 
-.. _formulating:
+.. _formulating_bqm:
 
-Formulate the Problem as a BQM
-==============================
+Formulate Your Problem for a Quantum Computer
+=============================================
 
 There are different ways of mapping between a problem---chains of amino acids
 forming 3D structures of folded proteins, traffic in the streets of Beijing, circuits
@@ -114,131 +111,20 @@ The following are two example formulations.
        >>> csp.add_constraint(gates.and_gate(['x1', 'x2', 'y1']))  # add an AND gate
        >>> bqm = dwavebinarycsp.stitch(csp)
 
-Once you have a BQM that represents your problem, you sample it for solutions.
+The resultant BQM of this AND gate may look like this:
 
-.. _submitting:
-
-Solve the BQM with a Sampler
-============================
-
-To solve your problem, now represented as a binary quadratic model, you submit it to
-a classical or quantum sampler. If you use a classical solver running locally on your CPU, a
-single sample might provide the optimal solution. When you use a probabilistic sampler
-like the D-Wave system, you typically program for multiple reads.
-
-.. note:: To configure access to a D-Wave system, see the :ref:`dwavesys` section.
-
-For example, the BQM of the AND gate created above may look like this:
-
-.. code-block:: python
-
-    >>> bqm     # doctest: +SKIP
-    BinaryQuadraticModel({'x1': 0.0, 'x2': 0.0, 'y1': 6.0}, {('x2', 'x1'): 2.0, ('y1', 'x1'): -4.0, ('y1', 'x2'): -4.0}, -1.5, Vartype.BINARY)
+>>> bqm     # doctest: +SKIP
+BinaryQuadraticModel({'x1': 0.0, 'x2': 0.0, 'y1': 6.0},
+...                  {('x2', 'x1'): 2.0, ('y1', 'x1'): -4.0, ('y1', 'x2'): -4.0},
+...                  -1.5,
+...                  Vartype.BINARY)
 
 The members of the two dicts are linear and quadratic coefficients, respectively,
 the third term is a constant offset associated with the model, and the fourth
 shows the variable types in this model are binary.
 
-Ocean's :doc:`dimod </docs_dimod/sdk_index>` tool provides a reference solver
-that calculates the values of a BQM (its "energy") for all possible assignments of variables.
-Such a sampler can solve a small three-variable problem like the AND gate created above.
+For more detailed information on the parts of Ocean programming model and how
+they work together, see :ref:`oceanstack`.
 
-.. code-block:: python
-
-    >>> from dimod.reference.samplers import ExactSolver
-    >>> sampler = ExactSolver()
-    >>> response = sampler.sample(bqm)    # doctest: +SKIP
-    >>> for datum in response.data(['sample', 'energy']):     # doctest: +SKIP
-    ...    print(datum.sample, datum.energy)
-    ...
-    {'x1': 0, 'x2': 0, 'y1': 0} -1.5
-    {'x1': 1, 'x2': 0, 'y1': 0} -1.5
-    {'x1': 0, 'x2': 1, 'y1': 0} -1.5
-    {'x1': 1, 'x2': 1, 'y1': 1} -1.5
-    {'x1': 1, 'x2': 1, 'y1': 0} 0.5
-    {'x1': 0, 'x2': 1, 'y1': 1} 0.5
-    {'x1': 1, 'x2': 0, 'y1': 1} 0.5
-    {'x1': 0, 'x2': 0, 'y1': 1} 4.5
-
-Note that the first four samples are the valid states of the AND gate and have
-lower values than the second four, which represent invalid states.
-
-Ocean's :doc:`dwave-system </docs_system/sdk_index>` tool enables
-you to use a D-Wave system as a sampler. In addition to *DWaveSampler()*, the tool
-provides a *EmbeddingComposite()* composite that maps unstructured problems to the graph
-structure of the selected sampler, a process known as :term:`minor-embedding`.
-In our case, the problem is defined on alphanumeric variables :math:`x1, x2, y1`,
-that must be mapped to the QPU's numerically indexed qubits.
-
-Because of the sampler's probabilistic nature, you typically request multiple samples
-for a problem; this example sets `num_reads` to 1000.
-
-.. code-block:: python
-
-    >>> from dwave.system.samplers import DWaveSampler
-    >>> from dwave.system.composites import EmbeddingComposite
-    >>> sampler = EmbeddingComposite(DWaveSampler())
-    >>> response = sampler.sample(bqm, num_reads=1000)   # doctest: +SKIP
-    >>> for datum in response.data(['sample', 'energy', 'num_occurrences']):     # doctest: +SKIP
-    ...    print(datum.sample, datum.energy, "Occurrences: ", datum.num_occurrences)
-    ...
-    {'x1': 0, 'x2': 1, 'y1': 0} -1.5 Occurrences:  92
-    {'x1': 1, 'x2': 1, 'y1': 1} -1.5 Occurrences:  256
-    {'x1': 0, 'x2': 0, 'y1': 0} -1.5 Occurrences:  264
-    {'x1': 1, 'x2': 0, 'y1': 0} -1.5 Occurrences:  173
-    {'x1': 1, 'x2': 0, 'y1': 1} 0.5 Occurrences:  215
-
-Note that the first four samples are the valid states of the AND gate and have
-lower values than invalid state :math:`x1=1, x2=0, y1=1`.
-
-.. _improving:
-
-Improve the Solutions
-=====================
-
-More complex problems than the ones shown above can benefit from some of the D-Wave system's
-advanced features and Ocean software's advanced tools.
-
-The mapping from problem variables to qubits, :term:`minor-embedding`, can significantly
-affect performance. Ocean tools perform this mapping heuristically so simply rerunning
-a problem might improve results. Advanced users may customize the mapping by directly
-using the :doc:`minorminer </docs_minorminer/source/sdk_index>` tool or setting
-a minor-embedding themselves (or some combination).
-
-D-Wave systems offer features such as spin-reversal (gauge) transforms and anneal offsets,
-which reduce the impact of possible analog and systematic errors.
-
-You can see the parameters and properties a sampler supports. For example, Ocean's
-:doc:`dwave-system </docs_system/sdk_index>` lets you use the
-D-Wave's *virtual graphs* feature to simplify minor-embedding. The following example
-maps a problem's variables x, y to qubits 1, 5 and variable z to two qubits 0 and 4,
-and checks some features supported on the D-Wave system used as a sampler.
-
-.. attention::
-   D-Wave's *virtual graphs* feature can require many seconds of D-Wave system time to calibrate
-   qubits to compensate for the effects of biases. If your account has limited
-   D-Wave system access, consider using *FixedEmbeddingComposite()* instead.
-
-.. code-block:: python
-
-    >>> from dwave.system.samplers import DWaveSampler
-    >>> from dwave.system.composites import VirtualGraphComposite
-    >>> DWaveSampler().properties['extended_j_range']
-    [-2.0, 1.0]
-    >>> embedding = {'x': {1}, 'y': {5}, 'z': {0, 4}}
-    >>> sampler = VirtualGraphComposite(DWaveSampler(), embedding)
-    >>> sampler.parameters
-    {u'anneal_offsets': ['parameters'],
-     u'anneal_schedule': ['parameters'],
-     u'annealing_time': ['parameters'],
-     u'answer_mode': ['parameters'],
-     'apply_flux_bias_offsets': [],
-     u'auto_scale': ['parameters'],
-    >>>  # Snipped above response for brevity
-
-Note that the composed sampler (:code:`VirtualGraphComposite()` in the last example)
-inherits properties from the child sampler (:code:`DWaveSampler()` in that example).
-
-See the resources under :ref:`additional_tutorials` and the
-`System Documentation <https://docs.dwavesys.com/docs/latest/index.html>`_
-for more information.
+Once you have a BQM that represents your problem, you sample it for solutions.
+:ref:`samplers_and_solvers` explains how to submit your problem for solution.

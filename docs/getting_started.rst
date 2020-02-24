@@ -11,20 +11,29 @@ on a D-Wave quantum computer.
 Initial Set Up
 ==============
 
-Install the tools and configure for running on a D-Wave system
-(QPU) or locally (CPU/GPU).
+D-Wave's `Leap <https://cloud.dwavesys.com/leap/>`_ integrated development
+environment (IDE) is the fastest way to get started writing your quantum
+application or just learning to use Ocean tools. This cloud-based IDE---run
+in your browser---is available to all Leap accounts. It provides
+reusable/disposable workspaces (developer environments pre-configured with
+Ocean and other standard libraries as well as D-Wave extensions) for running
+code from your own GitHub repository or a collection of code examples you can
+then modify.
+
+Alternatively, install the tools and configure for running problems on D-Wave
+remote compute resources, including quantum-classical hybrid solvers and the
+D-Wave quantum processing unit (QPU), or locally on your CPU.
 
 .. toctree::
    :maxdepth: 1
 
    overview/install
-   overview/dwavesys
-   overview/cpu
+   overview/sapi
 
-Overview of Ocean Software
-==========================
+Ocean's Programming Model
+=========================
 
-Learn how problems are formulated for solution on D-Wave systems using Ocean tools.
+Learn Ocean software's workflow for problem solving.
 
 .. toctree::
    :maxdepth: 1
@@ -32,25 +41,60 @@ Learn how problems are formulated for solution on D-Wave systems using Ocean too
    overview/solving_problems
    overview/stack
 
+D-Wave Compute Resources
+========================
+
+Use Ocean's :term:`sampler`\ s to solve problems on D-Wave's compute resources (:term:`solver`\ s)
+or locally on your CPU.
+
+.. toctree::
+   :maxdepth: 1
+
+   overview/samplers
+   overview/hybrid
+   overview/cpu
+   overview/qpu
+
 Examples
 ========
 
 See how Ocean tools are used with these end-to-end examples.
 
-Beginner-Level Examples
------------------------
+Because many large, hard problems are best approached with quantum-classical hybrid
+solvers, a good place to start is with examples of the :ref:`examples_hybrid` section
+and then learn how to work directly on the quantum computer with examples of the
+:ref:`examples_qpu` section.
+
+.. _examples_hybrid:
+
+Beginner-Level Examples: Hybrid Computing
+-----------------------------------------
 
 .. toctree::
    :maxdepth: 1
    :hidden:
 
+   examples/hybrid_solver_service
    examples/map_kerberos
+
+* :ref:`hss` solves an arbitrary-sized problem using a `Leap <https://cloud.dwavesys.com/leap/>`_
+  hybrid solver.
+* :ref:`map_kerberos` demonstrates using an out-of-the-box Ocean hybrid solver.
+
+.. _examples_qpu:
+
+Beginner-Level Examples: Using the QPU
+--------------------------------------
+
+.. toctree::
+   :maxdepth: 1
+   :hidden:
+
    examples/min_vertex
    examples/scheduling
    examples/not
    examples/and
 
-* :ref:`map_kerberos` demonstrates out-of-the-box solving of an arbitrary-sized problem.
 * :ref:`min_vertex` solves a small graph problem.
 * :ref:`scheduling` solves a small constraint satisfaction problem.
 * :ref:`not` mathematically formulates a BQM for a two-variable problem.
@@ -69,7 +113,7 @@ Intermediate-Level Examples
 
 * :ref:`map_coloring` example solves a more complex constraint satisfaction problem.
 * :ref:`multi_gate` looks more deeply at :term:`minor-embedding`.
-* :ref:`hybrid1` illustrates solving a large problem using both classical and quantum resources.
+* :ref:`hybrid1` builds a hybrid workflow and solver for a large graph problem.
 
 Advanced-Level Examples
 -----------------------
@@ -78,9 +122,11 @@ Advanced-Level Examples
    :maxdepth: 1
    :hidden:
 
+   examples/inspector_graph_partitioning
    examples/topology_samplers
 
-* :ref:`topology_samplers` running your code on software with different :term:`QPU`-inspired topologies.
+* :ref:`inspector_graph_partitioning` improves :term:`minor-embedding` on a graph partition problem.
+* :ref:`topology_samplers` runs your code on software samplers with different :term:`QPU`-inspired topologies.
 
 .. _projects-Demonstrations:
 
@@ -88,8 +134,8 @@ Demonstrations and Jupyter Notebooks
 ====================================
 
 D-Wave's `dwave-examples <https://github.com/dwave-examples>`_ GitHub repo
-contains demos, typically in the form of short code examples, you can copy (clone)
-and run.
+contains demos, typically in the form of short code examples, you can open in
+the Leap IDE or copy (clone) locally and run.
 
 D-Wave's `Leap <https://cloud.dwavesys.com/leap>`_ Quantum Application Environment
 provides a number of `Jupyter Notebooks <https://jupyter.org>`_ with detailed code examples for various types

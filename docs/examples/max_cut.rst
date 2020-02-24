@@ -29,12 +29,15 @@ Example Requirements
 To run the code in this example, the following is required.
 
 * The requisite information for problem submission through SAPI, as described in
-  :ref:`dwavesys`\ , in a configuration file for connection to a D-Wave system,
+  :ref:`sapi_access`\ , in a configuration file for connection to a D-Wave system,
   as described in
   `dwave-cloud-client <http://dwave-cloud-client.readthedocs.io/en/latest/>`_\ .
 * Installation of Ocean tools `dwave-system <https://github.com/dwavesystems/dwave-system>`_ and
   `dwave_networkx <http://dwave-networkx.readthedocs.io/en/latest/index.html>`_\ .
 
+.. include:: hybrid_solver_service.rst
+  :start-after: example-requirements-start-marker
+  :end-before: example-requirements-end-marker
 
 Example Code
 ============
@@ -55,7 +58,7 @@ working :term:`Chimera` unit cell. It relies on the default embedding of the DWa
 See the example in :ref:`and` for fuller code on verifying that the target qubits are active.
 
 >>> import dwave_networkx as dnx
->>> from dwave.system.samplers import DWaveSampler
+>>> from dwave.system import DWaveSampler
 >>> G = dnx.chimera_graph(1, 1, 4)
 >>> sampler = DWaveSampler()
 >>> dnx.maximum_cut(G, sampler) # doctest: +SKIP
@@ -67,8 +70,7 @@ algorithm for :term:`minor-embedding` into at least two :term:`Chimera` unit cel
 Two runs produced complementary results.
 
 >>> import dwave_networkx as dnx
->>> from dwave.system.samplers import DWaveSampler
->>> from dwave.system.composites import EmbeddingComposite
+>>> from dwave.system import DWaveSampler, EmbeddingComposite
 >>> G = dnx.chimera_graph(2, 1, 4)
 >>> sampler = EmbeddingComposite(DWaveSampler())
 >>> dnx.maximum_cut(G, sampler) # doctest: +SKIP

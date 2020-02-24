@@ -15,11 +15,12 @@ Example Requirements
 
 To run the code in this example, the following is required.
 
-* The requisite information for problem submission through SAPI, as described in :ref:`dwavesys`
+* The requisite information for problem submission through SAPI, as described in :ref:`sapi_access`
 * Ocean tools :doc:`dwave-system </docs_system/sdk_index>` and :doc:`dimod </docs_dimod/sdk_index>`.
 
-If you installed `dwave-ocean-sdk <https://github.com/dwavesystems/dwave-ocean-sdk>`_
-and ran :code:`dwave config create`, your installation should meet these requirements.
+.. include:: hybrid_solver_service.rst
+  :start-after: example-requirements-start-marker
+  :end-before: example-requirements-end-marker
 
 Solution Steps
 ==============
@@ -188,13 +189,12 @@ indexed qubits) in a process known as :term:`minor-embedding`.
 The next code sets up a D-Wave system as the sampler.
 
 .. note:: In the code below, replace sampler parameters in the third line. If
-      you configured a default solver, as described in :ref:`dwavesys`, you
+      you configured a default solver, as described in :ref:`sapi_access`, you
       should be able to set the sampler without parameters as
       :code:`sampler = EmbeddingComposite(DWaveSampler())`.
       You can see this information by running :code:`dwave config inspect` in your terminal.
 
->>> from dwave.system.samplers import DWaveSampler
->>> from dwave.system.composites import EmbeddingComposite
+>>> from dwave.system import DWaveSampler, EmbeddingComposite
 >>> sampler = EmbeddingComposite(DWaveSampler(endpoint='https://URL_to_my_D-Wave_system/', token='ABC-123456789012345678901234567890', solver='My_D-Wave_Solver'))
 
 Because the sampled solution is probabilistic, returned solutions may differ between runs. Typically,
