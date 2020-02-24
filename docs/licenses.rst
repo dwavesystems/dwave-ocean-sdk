@@ -25,5 +25,6 @@ D-Wave end-user license agreements (EULAs):
    :maxdepth: 1
 
    licenses/drivers 
+   licenses/inspector
 
  
