@@ -23,9 +23,9 @@ exec(open("./dwaveoceansdk/package_info.py").read())
 
 
 install_requires = [
-    'dwave-cloud-client==0.6.3',
+    'dwave-cloud-client==0.7.0',
     'dwave-networkx==0.8.4',
-    'dwave-system==0.9.0',
+    'dwave-system==0.9.1',
     'dwave-qbsolv==0.3.0',
     'dwave-hybrid==0.4.2',
     'dwave-neal==0.5.3',
@@ -37,6 +37,7 @@ install_requires = [
     'penaltymodel-cache==0.4.1',
     'penaltymodel-lp==0.1.3',
     'pyqubo>=0.3.0',
+    'dwave-inspector==0.1.3',
 ]
 
 # note: when updating the version of maxgap, it also must be updated in
