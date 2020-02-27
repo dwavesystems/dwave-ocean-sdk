@@ -13,17 +13,17 @@ problems with quantum computers.
 
 See how to install and use Ocean tools.
 
-:ref:`glossary`
-=================
+:ref:`concepts_sdk`
+===================
 
-Understand the terminology.
+Learn Ocean concepts in depth or quickly look up terminology.
 
 .. toctree::
    :hidden:
    :maxdepth: 2
 
    getting_started
-   glossary
+   concepts/index
    contributing
    licenses
 
