@@ -4,9 +4,11 @@
 Minor-Embedding 
 ===============
 
-For more information on using the D-Wave system to solve CSPs, see the following documentation:
+To solve an arbitrarily posed binary quadratic problem directly on a D-Wave system requires mapping,
+called *minor embedding*, to a Chimera graph that represents the system's quantum processing unit.
+This preprocessing can be done by a composed sampler consisting of the
+:class:`~dwave.system.samplers.DWaveSampler()` and a composite that performs minor-embedding.
+(This step is handled automatically by :class:`~dwave.system.samplers.LeapHybridSampler()`
+and :std:doc:`dwave-hybrid <hybrid:index>` reference samplers.)
 
-* :std:doc:`D-Wave Problem-Solving Handbook <sysdocs_gettingstarted:doc_handbook>`
-
-   Provides a variety of techniques for, and examples of, reformulating CSPs as BQMs.
 
