@@ -7,15 +7,36 @@ Concepts
 
 See the :ref:`glossary` for short definitions of terminology or learn Ocean concepts here:
 
-* :ref:`bqm`  
+.. list-table:: Ocean Concepts
+   :widths: auto
+   :header-rows: 1
 
+   * - Concepts
+     - Related terms
+   * - :ref:`bqm_sdk`
+     - BQM, Ising, QUBO
+   * - :ref:`csp_sdk`
+     - CSP, binary CSP
+   * - :ref:`hybrid_sdk`
+     - quantum-classical hybrid, Leap's hybrid solvers, hybrid workflows
+   * - :ref:`embedding_sdk`
+     - embedding, mapping logical problems to physical qubits
+   * - :ref:`topology_sdk`
+     - Chimera, Pegasus
+   * - :ref:`samplers_sdk`
+     - sampler, solver, composite
 
 .. toctree::
+   :hidden:
    :maxdepth: 1
 
    bqm
    csp
+   hybrid
+   embedding
+   topology
    samplers
+   
 
 Glossary
 --------

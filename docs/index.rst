@@ -34,7 +34,7 @@ Packages
 
 The SDK includes the :ref:`dwave_cli` and the following packages:
 
-.. list-table:: Ocean Software
+.. list-table:: Ocean Packages
    :widths: auto
 
    * - :doc:`dimod </docs_dimod/sdk_index>` (`repo <https://github.com/dwavesystems/dimod>`_)
