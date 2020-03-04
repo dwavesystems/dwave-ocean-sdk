@@ -47,8 +47,10 @@ to change the underlying sampler implementation. We refer to these layers as `co
 A composed sampler includes at least one sampler and possibly many composites.
 
 Examples of composites are :class:`~dwave.system.composites.EmbeddingComposite()`,
-used in the example above, and :class:`~dwave.system.composites.VirtualGraphComposite()`,
-both of which handle the mapping known as :term:`minor-embedding`.
+which handle the mapping known as :term:`minor-embedding`,
+and :class:`~dimod.reference.composites.roofduality.RoofDualityComposite()`, which 
+uses `roof duality <https://en.wikipedia.org/wiki/Pseudo-Boolean_function>`_ to assign 
+some variables as a pre-processing step before submitting the problem for sampling.
 
 The use of samplers in solving problems is described
 in the following documentation:

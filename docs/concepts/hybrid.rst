@@ -9,9 +9,8 @@ exploiting the complementary strengths that each provides. As quantum processors
 offloading hard optimization problems to quantum computers promises performance benefits similar 
 to CPUs' outsourcing of compute-intensive graphics-display processing to GPUs. 
 
-This 
-`Medium Article <https://medium.com/d-wave/three-truths-and-the-advent-of-hybrid-quantum-computing-1941ba46ff8c>`_ 
-provides an overview of, and motivation for, hybrid computing. 
+For an overview of, and motivation for, hybrid computing, see this 
+`Medium Article <https://medium.com/d-wave/three-truths-and-the-advent-of-hybrid-quantum-computing-1941ba46ff8c>`_\ . 
 
 D-Wave's `Leap quantum cloud service <https://cloud.dwavesys.com/leap>`_ provides cloud-based 
 hybrid solvers you can submit arbitrary BQMs to. These solvers, which implement state-of-the-art 

@@ -20,11 +20,11 @@ See the :ref:`glossary` for short definitions of terminology or learn Ocean conc
    * - :ref:`hybrid_sdk`
      - quantum-classical hybrid, Leap's hybrid solvers, hybrid workflows
    * - :ref:`embedding_sdk`
-     - embedding, mapping logical problems to physical qubits
+     - embedding, mapping logical variables to physical qubits, chains, chain strength
    * - :ref:`topology_sdk`
      - Chimera, Pegasus
    * - :ref:`samplers_sdk`
-     - sampler, solver, composite
+     - solver
 
 .. toctree::
    :hidden:
