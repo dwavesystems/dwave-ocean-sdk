@@ -52,20 +52,24 @@ Glossary
          with associated linear and quadratic biases. Sometimes referred to in other tools as a problem.
          See a fuller description under :doc:`Binary Quadratic Models </concepts/bqm>`.
 
-      Chain length
-         The number of qubits in a :term:`Chain`.
-         See a fuller description under :doc:`Binary Quadratic Models </concepts/embedding>`.
-
       Chain
          One or more nodes or qubits in a target graph that represent a single variable in
          the source graph. See :term:`embedding`.
-         See a fuller description under :doc:`Binary Quadratic Models </concepts/embedding>`.
+         See a fuller description under :doc:`Minor-Embedding </concepts/embedding>`.
+
+      Chain length
+         The number of qubits in a :term:`Chain`.
+         See a fuller description under :doc:`Minor-Embedding </concepts/embedding>`.
+
+      Chain strength
+         Magnitude of the negative quadratic bias applied between variables to form a chain.
+         See a fuller description under :doc:`Minor-Embedding </concepts/embedding>`.
 
       Chimera
          The D-Wave :term:`QPU` is a lattice of interconnected qubits. While some qubits
          connect to others via couplers, the D-Wave QPU is not fully connected.
          Instead, the qubits interconnect in an architecture known as Chimera.
-         See a fuller description under :doc:`Binary Quadratic Models </concepts/topology>`.
+         See a fuller description under :doc:`QPU Topology </concepts/topology>`.
 
       Complete graph
       Fully connected
@@ -74,6 +78,12 @@ Glossary
           all of its variables.
 
           .. _complete graph: https://en.wikipedia.org/wiki/Complete_graph
+
+      Composed sampler
+          Samplers that apply pre- and/or post-processing to binary quadratic programs without
+          changing the underlying :term:`sampler` implementation by layering composite patterns
+          on the sampler. For example, a composed sampler might add spin transformations when
+          sampling from the D-Wave system.
 
       Composite
           A :term:`sampler` can be composed. The
@@ -92,7 +102,13 @@ Glossary
          the graph of the :term:`objective function`, may be represented by one or more
          physical qubits. The process of mapping the logical qubits to physical
          qubits is known as minor embedding.
-         See a fuller description under :doc:`Binary Quadratic Models </concepts/embedding>`.
+         See a fuller description under :doc:`Minor-Embedding </concepts/embedding>`.
+
+      Graph
+         A collection of nodes and edges. A graph can be derived
+         from a :term:`model`\ : a node for each variable and an edge for each pair
+         of variables with a non-zero quadratic bias.
+
 
       Hamiltonian
          A classical Hamiltonian is a mathematical description of some physical
@@ -119,7 +135,7 @@ Glossary
       Hardware graph
          See `hardware graph`_. The hardware graph is the physical lattice of
          interconnected qubits. See also :term:`working graph`.
-         See a fuller description under :doc:`Binary Quadratic Models </concepts/topology>`.
+         See a fuller description under :doc:`QPU Topology </concepts/topology>`.
 
          .. _hardware graph: https://docs.dwavesys.com/docs/latest/c_gs_4.html
 
@@ -145,6 +161,10 @@ Glossary
          The minimum distance between the ground state and the first excited
          state throughout any point in the anneal.
 
+      Model
+         A collection of variables with associated linear and
+         quadratic biases. Sometimes referred to as a **problem**.
+
       Objective function
          A mathematical expression of the energy of a system as a function of
          binary variables representing the qubits.
@@ -153,7 +173,7 @@ Glossary
          The D-Wave :term:`QPU` is a lattice of interconnected qubits. While some qubits
          connect to others via couplers, the D-Wave QPU is not fully connected.
          Instead, the qubits interconnect in an architecture known as Pegasus.
-         See a fuller description under :doc:`Binary Quadratic Models </concepts/topology>`.
+         See a fuller description under :doc:`QPU Topology </concepts/topology>`.
 
       Penalty function
          An algorithm for solving constrained optimization problems. In the context
@@ -215,10 +235,26 @@ Glossary
          A resource that runs a problem. Some solvers interface to the :term:`QPU`;
          others leverage CPU and GPU resources.
 
+      Source
+         In the context of :term:`embedding`, the model or induced :term:`graph` that we
+         wish to embed. Sometimes referred to as the **logical** graph/model.
+         See a fuller description under :doc:`Minor-Embedding </concepts/embedding>`.
+
+      Structured sampler
+         Samplers that are restricted to sampling only binary quadratic models defined
+         on a specific :term:`graph`.
+
       Subgraph
          See subgraph_ on wikipedia.
 
          .. _subgraph: https://en.wikipedia.org/wiki/Glossary_of_graph_theory_terms#subgraph
+
+      target
+         :term:`Embedding` attempts to create a target :term:`model` from a target
+         :term:`graph`. The process of embedding takes a source model, derives the source
+         graph, maps the source graph to the target graph, then derives the target
+         model. Sometimes referred to as the **embedded** graph/model.
+         See a fuller description under :doc:`Minor-Embedding </concepts/embedding>`.
 
       Working graph
          In a D-Wave QPU, the set of qubits and couplers that are available for computation is known as the working graph. The yield of a working graph is typically less than 100% of qubits and couplers that are fabricated and physically present in the QPU. See :term:`hardware graph`.
