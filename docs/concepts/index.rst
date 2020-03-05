@@ -50,18 +50,22 @@ Glossary
       BQM
          A collection of binary-valued variables  (variables that can be assigned two values, for example -1, 1) 
          with associated linear and quadratic biases. Sometimes referred to in other tools as a problem.
+         See a fuller description under :doc:`Binary Quadratic Models </concepts/bqm>`.
 
       Chain length
          The number of qubits in a :term:`Chain`.
+         See a fuller description under :doc:`Binary Quadratic Models </concepts/embedding>`.
 
       Chain
          One or more nodes or qubits in a target graph that represent a single variable in
          the source graph. See :term:`embedding`.
+         See a fuller description under :doc:`Binary Quadratic Models </concepts/embedding>`.
 
       Chimera
          The D-Wave :term:`QPU` is a lattice of interconnected qubits. While some qubits
          connect to others via couplers, the D-Wave QPU is not fully connected.
          Instead, the qubits interconnect in an architecture known as Chimera.
+         See a fuller description under :doc:`Binary Quadratic Models </concepts/topology>`.
 
       Complete graph
       Fully connected
@@ -88,6 +92,7 @@ Glossary
          the graph of the :term:`objective function`, may be represented by one or more
          physical qubits. The process of mapping the logical qubits to physical
          qubits is known as minor embedding.
+         See a fuller description under :doc:`Binary Quadratic Models </concepts/embedding>`.
 
       Hamiltonian
          A classical Hamiltonian is a mathematical description of some physical
@@ -114,6 +119,7 @@ Glossary
       Hardware graph
          See `hardware graph`_. The hardware graph is the physical lattice of
          interconnected qubits. See also :term:`working graph`.
+         See a fuller description under :doc:`Binary Quadratic Models </concepts/topology>`.
 
          .. _hardware graph: https://docs.dwavesys.com/docs/latest/c_gs_4.html
 
@@ -142,6 +148,12 @@ Glossary
       Objective function
          A mathematical expression of the energy of a system as a function of
          binary variables representing the qubits.
+
+      Pegasus
+         The D-Wave :term:`QPU` is a lattice of interconnected qubits. While some qubits
+         connect to others via couplers, the D-Wave QPU is not fully connected.
+         Instead, the qubits interconnect in an architecture known as Pegasus.
+         See a fuller description under :doc:`Binary Quadratic Models </concepts/topology>`.
 
       Penalty function
          An algorithm for solving constrained optimization problems. In the context

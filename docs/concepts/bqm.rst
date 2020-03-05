@@ -52,7 +52,7 @@ in the following documentation:
 
 * :std:doc:`Getting Started with the D-Wave System <sysdocs_gettingstarted:doc_getting_started>`
 
-   Introduces key concepts such as objective functions, Ising model, QUBOs, and graphs, explains
+   Introduces key concepts such as objective functions, Ising models, QUBOs, and graphs, explains
    how these models are used to represent problems, and provides some simple examples.
 * :std:doc:`D-Wave Problem-Solving Handbook <sysdocs_gettingstarted:doc_handbook>`
 
