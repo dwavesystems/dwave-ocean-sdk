@@ -9,6 +9,10 @@ must map it to a graph that represents the topology of the system's
 qubits. For D-Wave 2000Q systems, this is the *chimera* topology; for 
 next-generation Advantage systems, this is the *Pegasus* topology.
 
+.. note:: If you are sending your problem to a
+    `Leap <https://cloud.dwavesys.com/leap/>`_ quantum-classical :term:`hybrid` solver,
+    the solver handles all interactions with the QPU.
+
 Chimera
 -------
 

@@ -115,6 +115,8 @@ can be embedded by representing one variable with two qubits, for example:
 This BQM has six ground states (best solutions, shown below---solved by brute-force stepping through all 
 possible configurations of values for the variables---with lowest energy of -1.0):
 
+>>> bqm = dimod.BQM({}, {('s0', 's1'): -1, ('s0', 's2'): -1, ('s1', 's2'): 1}, 
+...                      0, dimod.Vartype.SPIN)
 >>> print(dimod.ExactSolver().sample(bqm))  # doctest: +SKIP
   s0 s1 s2 energy num_oc.
 0 -1 -1 -1   -1.0       1

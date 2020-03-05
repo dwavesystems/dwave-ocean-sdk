@@ -25,6 +25,8 @@ See the :ref:`glossary` for short definitions of terminology or learn Ocean conc
      - Chimera, Pegasus
    * - :ref:`samplers_sdk`
      - solver
+   * - :ref:`solutions_sdk`
+     - samples, sampleset, probabilistic, energy
 
 .. toctree::
    :hidden:
@@ -36,6 +38,7 @@ See the :ref:`glossary` for short definitions of terminology or learn Ocean conc
    embedding
    topology
    samplers
+   solutions
    
 
 Glossary
