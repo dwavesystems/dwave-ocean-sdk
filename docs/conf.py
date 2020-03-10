@@ -114,9 +114,11 @@ from hybrid.flow import *
 
 import penaltymodel.core as pm
 import penaltymodel.cache as pmc
-import penaltymodel.maxgap as maxgap
+#import penaltymodel.maxgap as maxgap
 import penaltymodel.mip as mip
 import penaltymodel.lp as lp
+
+import operator # Used by dwave-binarycsp 
 
 """
 
