@@ -98,19 +98,20 @@ the classical and quantum workflows.)
 
 >>> import dwave_networkx as dnx
 >>> from hybrid.reference.kerberos import KerberosSampler
->>> coloring = dnx.min_vertex_coloring(G, sampler=KerberosSampler(), chromatic_ub=4, max_iter=10, convergence=3)
->>> set(coloring.values())
+>>> coloring = dnx.min_vertex_coloring(G, sampler=KerberosSampler(), chromatic_ub=4, max_iter=10, convergence=3)   # doctest: +SKIP
+>>> set(coloring.values())       # doctest: +SKIP
 {0, 1, 2, 3}
 
 .. note:: The next code requires `Matplotlib <https://matplotlib.org>`_\ .
 
 Plot the solution, if valid.
 
->>> import matplotlib.pyplot as plt
->>> node_colors = [coloring.get(node) for node in G.nodes()]
->>> if dnx.is_vertex_coloring(G, coloring):  # adjust the next line if using a different map
+>>> import matplotlib.pyplot as plt       # doctest: +SKIP
+>>> node_colors = [coloring.get(node) for node in G.nodes()]           # doctest: +SKIP
+# Adjust the next line if using a different map
+>>> if dnx.is_vertex_coloring(G, coloring):  # doctest: +SKIP
 ...    nx.draw(G, pos=nx.shell_layout(G, nlist = [list(G.nodes)[x:x+10] for x in range(0, 50, 10)] + [[list(G.nodes)[50]]]), with_labels=True, node_color=node_colors, node_size=400, cmap=plt.cm.rainbow)
->>> plt.show()
+>>> plt.show()    # doctest: +SKIP
 
 The graphic below shows the result of one such run.
 

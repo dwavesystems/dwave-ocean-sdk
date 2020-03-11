@@ -60,7 +60,7 @@ See the example in :ref:`and` for fuller code on verifying that the target qubit
 >>> import dwave_networkx as dnx
 >>> from dwave.system import DWaveSampler
 >>> G = dnx.chimera_graph(1, 1, 4)
->>> sampler = DWaveSampler()
+>>> sampler = DWaveSampler()    # doctest: +SKIP
 >>> dnx.maximum_cut(G, sampler) # doctest: +SKIP
 {4, 5, 6, 7}
 
@@ -72,7 +72,7 @@ Two runs produced complementary results.
 >>> import dwave_networkx as dnx
 >>> from dwave.system import DWaveSampler, EmbeddingComposite
 >>> G = dnx.chimera_graph(2, 1, 4)
->>> sampler = EmbeddingComposite(DWaveSampler())
+>>> sampler = EmbeddingComposite(DWaveSampler())   # doctest: +SKIP
 >>> dnx.maximum_cut(G, sampler) # doctest: +SKIP
 {4, 5, 6, 7, 8, 9, 10, 11}
 >>> dnx.maximum_cut(G, sampler) # doctest: +SKIP
@@ -88,10 +88,10 @@ tool includes some graphic functionality helpful for work on Chimera graphs. The
 example code visualizes the graph used in the previous example code.
 
 >>> import dwave_networkx as dnx
->>> import matplotlib.pyplot as plt
+>>> import matplotlib.pyplot as plt     # doctest: +SKIP
 >>> G = dnx.chimera_graph(2, 1, 4)
->>> plt.ion()
->>> dnx.draw_chimera(G, with_labels=True)
+>>> plt.ion()       # doctest: +SKIP
+>>> dnx.draw_chimera(G, with_labels=True)      # doctest: +SKIP
 
 .. figure:: ../_images/draw_chimera_2_1_4.png
    :name: draw_chimera

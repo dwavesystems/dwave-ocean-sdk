@@ -150,12 +150,12 @@ The next code sets up a D-Wave system as the sampler.
       You can see this information by running :code:`dwave config inspect` in your terminal.
 
 >>> from dwave.system import DWaveSampler, EmbeddingComposite
->>> sampler = DWaveSampler(endpoint='https://URL_to_my_D-Wave_system/', token='ABC-123456789012345678901234567890', solver='My_D-Wave_Solver')
->>> sampler_embedded = EmbeddingComposite(sampler)
+>>> sampler = DWaveSampler(endpoint='https://URL_to_my_D-Wave_system/', token='ABC-123456789012345678901234567890', solver='My_D-Wave_Solver')   # doctest: +SKIP
+>>> sampler_embedded = EmbeddingComposite(sampler)       # doctest: +SKIP
 
 As before, we ask for 5000 samples.
 
->>> response = sampler_embedded.sample_qubo(Q, num_reads=5000)
+>>> response = sampler_embedded.sample_qubo(Q, num_reads=5000)      # doctest: +SKIP
 >>> for datum in response.data(['sample', 'energy', 'num_occurrences']):   # doctest: +SKIP
 ...    print(datum.sample, "Energy: ", datum.energy, "Occurrences: ", datum.num_occurrences)
 ...
@@ -220,13 +220,13 @@ the problem. Its last line prints a confirmation that indeed the two selected qu
 (coupled).
 
 >>> from dwave.system.composites import FixedEmbeddingComposite
->>> sampler_embedded = FixedEmbeddingComposite(sampler, {'x': [0], 'z': [4]})
+>>> sampler_embedded = FixedEmbeddingComposite(sampler, {'x': [0], 'z': [4]})   # doctest: +SKIP
 >>> print(sampler_embedded.adjacency)     # doctest: +SKIP
 {'x': {'z'}, 'z': {'x'}}
 
 As before, we ask for 5000 samples.
 
->>> response = sampler_embedded.sample_qubo(Q_not, num_reads=5000)
+>>> response = sampler_embedded.sample_qubo(Q_not, num_reads=5000)      # doctest: +SKIP
 >>> for datum in response.data(['sample', 'energy', 'num_occurrences']):   # doctest: +SKIP
 ...    print(datum.sample, "Energy: ", datum.energy, "Occurrences: ", datum.num_occurrences)
 ...
@@ -292,14 +292,14 @@ confirmation that indeed all three variables are connected.
 
 >>> from dwave.system.composites import FixedEmbeddingComposite
 >>> embedding = {'x1': {1}, 'x2': {5}, 'z': {0, 4}}
->>> sampler_embedded = FixedEmbeddingComposite(sampler, embedding)
+>>> sampler_embedded = FixedEmbeddingComposite(sampler, embedding)     # doctest: +SKIP
 >>> print(sampler_embedded.adjacency)     # doctest: +SKIP
 {'x1': {'x2', 'z'}, 'x2': {'x1', 'z'}, 'z': {'x1', 'x2'}}
 
 We ask for 5000 samples.
 
 >>> Q = {('x1', 'x2'): 1, ('x1', 'z'): -2, ('x2', 'z'): -2, ('z', 'z'): 3}
->>> response = sampler_embedded.sample_qubo(Q, num_reads=5000)
+>>> response = sampler_embedded.sample_qubo(Q, num_reads=5000)    # doctest: +SKIP
 >>> for datum in response.data(['sample', 'energy', 'num_occurrences']):   # doctest: +SKIP
 ...    print(datum.sample, "Energy: ", datum.energy, "Occurrences: ", datum.num_occurrences)
 ...
@@ -332,10 +332,10 @@ on. By default, *FixedEmbeddingComposite()* used the maximum chain strength, whi
 is 2. By setting it to a low value of 0.25, the two qubits are not strongly correlated
 and the result is that many returned samples represent invalid states for an AND gate.
 
->>> print(sampler.properties['extended_j_range'])
+>>> print(sampler.properties['extended_j_range'])   # doctest: +SKIP
 [-2.0, 1.0]
->>> sampler_embedded = FixedEmbeddingComposite(sampler, embedding)
->>> response = sampler_embedded.sample_qubo(Q, num_reads=5000, chain_strength=0.25)
+>>> sampler_embedded = FixedEmbeddingComposite(sampler, embedding)   # doctest: +SKIP
+>>> response = sampler_embedded.sample_qubo(Q, num_reads=5000, chain_strength=0.25)   # doctest: +SKIP
 >>> for datum in response.data(['sample', 'energy', 'num_occurrences']):   # doctest: +SKIP
 ...    print(datum.sample, "Energy: ", datum.energy, "Occurrences: ", datum.num_occurrences)
 ...
