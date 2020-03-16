@@ -98,7 +98,7 @@ The SDK includes the :ref:`dwave_cli` and the following packages:
   docs_binarycsp/sdk_index
   docs_cloud/sdk_index
   docs_hybrid/sdk_index
-  docs_inspector
+  docs_inspector/sdk_index
   docs_neal/sdk_index
   docs_dnx/sdk_index
   docs_system/sdk_index
