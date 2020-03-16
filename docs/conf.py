@@ -122,7 +122,7 @@ import penaltymodel.lp as lp
 
 import dwave.inspector
 
-import operator # Used by dwave-binarycsp 
+import operator         # Used by dwave-binarycsp
 
 """
 
