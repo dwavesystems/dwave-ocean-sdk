@@ -104,11 +104,20 @@ Glossary
          qubits is known as minor embedding.
          See a fuller description under :doc:`Minor-Embedding </concepts/embedding>`.
 
+      Excited state
+         States of a quantum system that have higher energy than the :term:`ground state`.
+         Such states represent non-optimal solutions for problems represented by an 
+         :term:`Objective function` and infeasible configurations for problems 
+         represented by a :term:`penalty model`.   
+
       Graph
          A collection of nodes and edges. A graph can be derived
          from a :term:`model`\ : a node for each variable and an edge for each pair
          of variables with a non-zero quadratic bias.
 
+      Ground state
+         The lowest-energy state of a quantum-mechanical system and the global minimum 
+         of a problem represented by an :term:`Objective function`.  
 
       Hamiltonian
          A classical Hamiltonian is a mathematical description of some physical
@@ -156,10 +165,11 @@ Glossary
          where the linear coefficients corresponding to qubit biases
          are :math:`h_i`, and the quadratic coefficients corresponding to coupling
          strengths are :math:`J_{i,j}`.
+         See also `Ising Model on Wikipedia <https://en.wikipedia.org/wiki/Ising_model>`_.
 
       Minimum gap
-         The minimum distance between the ground state and the first excited
-         state throughout any point in the anneal.
+         The minimum distance between the :term:`ground state` and the first 
+         :term:`excited state` throughout any point in the anneal.
 
       Model
          A collection of variables with associated linear and
@@ -180,6 +190,11 @@ Glossary
          of Ocean tools, penalty functions are typically employed to increase the energy
          level of a problem’s :term:`objective function` by penalizing non-valid configurations.
          See `Penalty method on Wikipedia <https://en.wikipedia.org/wiki/Penalty_method>`_
+
+      Penalty model
+         An approach to solving constraint satisfaction problems (CSP) using an :term:`Ising` model 
+         or a :term:`QUBO` by mapping each individual constraint in the CSP to a ‘small’ Ising model 
+         or QUBO.
 
       QPU
          Quantum processing unit
@@ -220,6 +235,7 @@ Glossary
             \begin{equation}
           		\text{E}_{qubo}(a_i, b_{i,j}; q_i) = \sum_{i} a_i q_i + \sum_{i<j} b_{i,j} q_i q_j.
             \end{equation}
+         See also `QUBO on Wikipedia <https://en.wikipedia.org/wiki/Quadratic_unconstrained_binary_optimization>`_.
 
       Sampler
          Samplers are processes that sample from low energy states of a problem's objective
@@ -236,6 +252,7 @@ Glossary
          others leverage CPU and GPU resources.
 
       Source
+      Source graph
          In the context of :term:`embedding`, the model or induced :term:`graph` that we
          wish to embed. Sometimes referred to as the **logical** graph/model.
          See a fuller description under :doc:`Minor-Embedding </concepts/embedding>`.
@@ -249,7 +266,8 @@ Glossary
 
          .. _subgraph: https://en.wikipedia.org/wiki/Glossary_of_graph_theory_terms#subgraph
 
-      target
+      Target
+      Target graph
          :term:`Embedding` attempts to create a target :term:`model` from a target
          :term:`graph`. The process of embedding takes a source model, derives the source
          graph, maps the source graph to the target graph, then derives the target
