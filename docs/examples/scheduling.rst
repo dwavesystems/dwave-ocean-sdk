@@ -91,7 +91,7 @@ definition of constraints in different ways, including by defining functions tha
 True when the constraint is met. The code below defines a function that returns True when
 all this example's constraints are met.
 
-.. code-block:: python
+.. testcode::
 
    def scheduling(time, location, length, mandatory):
        if time:                                 # Business hours
@@ -112,15 +112,15 @@ displays the BQM's linear and quadratic coefficients, :math:`q_i` and :math:`q_{
 the quantum computer.
 
 >>> bqm = dwavebinarycsp.stitch(csp)
->>> bqm.linear   # doctest: +SKIP
-{'length': -2.0, 'location': 2.0, 'mandatory': 0.0, 'time': 2.0}
->>> bqm.quadratic          # doctest: +SKIP
-{('location', 'length'): 2.0,
- ('mandatory', 'length'): 0.0,
- ('mandatory', 'location'): -2.0,
- ('time', 'length'): 0.0,
- ('time', 'location'): -4.0,
- ('time', 'mandatory'): 0.0}
+>>> dict(bqm.linear)   # doctest: +SKIP
+{time: 1.9999999994335194,
+ location: 1.9999999980072258,
+# Snipped here for brevity
+
+>>> dict(bqm.quadratic)          # doctest: +SKIP
+{('time', 'location'): -3.999999999997764,
+ ('time', 'length'): 1.8599138118774343,
+# Snipped here for brevity
 
 Solve the Problem by Sampling
 =============================
@@ -146,15 +146,16 @@ of variables by ascending order, so the first solution has the lowest value (low
 energy state). The code below sets variable :code:`min_energy` to the BQM's
 lowest value, which is in the first record of the returned result.
 
->>> min_energy = next(solution.data(['energy']))[0]
->>> print(min_energy)
--2.0
+>>> min_energy = solution.record.energy.min()
+>>> print(round(min_energy, 2))         # doctest: +SKIP
+-0.0
 
 The code below prints all those solutions (assignments of variables) for which the BQM has
-its minimum value.
+its minimum value\ [#]_\ .
 
->>> for sample, energy in solution.data(['sample', 'energy']):
-...     if energy == min_energy:
+>>> from math import isclose
+>>> for sample, energy in solution.data(['sample', 'energy']):    # doctest: +SKIP
+...     if isclose(energy, min_energy, abs_tol=1.0):
 ...         time = 'business hours' if sample['time'] else 'evenings'
 ...         location = 'office' if sample['location'] else 'home'
 ...         length = 'short' if sample['length'] else 'long'
@@ -165,6 +166,13 @@ During evenings at home, you can schedule a short meeting that is optional
 During evenings at home, you can schedule a short meeting that is mandatory
 During business hours at office, you can schedule a short meeting that is mandatory
 During business hours at office, you can schedule a long meeting that is mandatory
+
+.. [#] Because it compares float values, this code uses the standard :code:`isclose`
+   function to find values that are approximately equal. A small tolerance is needed
+   to overcome rounding errors but for simplicity a value of :code:`abs_tol=1.0` is used
+   because by default the :func:`~dwavebinarycsp.dwavebinarycsp.compilers.stitcher.stich` function increases the
+   energy of solutions that violate one constraint by :code:`min_classical_gap=2.0`.
+
 
 Solving on a D-Wave System
 --------------------------
@@ -183,22 +191,22 @@ a D-Wave system as the sampler.
       You can see this information by running :code:`dwave config inspect` in your terminal.
 
 >>> from dwave.system import DWaveSampler, EmbeddingComposite
->>> sampler = EmbeddingComposite(DWaveSampler(endpoint='https://URL_to_my_D-Wave_system/', token='ABC-123456789012345678901234567890', solver='My_D-Wave_Solver'))
+>>> sampler = EmbeddingComposite(DWaveSampler(endpoint='https://URL_to_my_D-Wave_system/', token='ABC-123456789012345678901234567890', solver='My_D-Wave_Solver'))      # doctest: +SKIP
 
 Because the sampled solution is probabilistic, returned solutions may differ between runs. Typically,
 when submitting a problem to the system, we ask for many samples, not just one. This way, we see multiple
 “best” answers and reduce the probability of settling on a suboptimal answer. Below, we
 ask for 5000 samples.
 
->>> response = sampler.sample(bqm, num_reads=5000)
+>>> sampleset = sampler.sample(bqm, num_reads=5000)      # doctest: +SKIP
 
 The code below prints all those solutions (assignments of variables) for which the BQM has
 its minimum value and the number of times it was found.
 
 >>> total = 0
-... for sample, energy, occurrences in response.data(['sample', 'energy', 'num_occurrences']):
+... for sample, energy, occurrences in sampleset.data(['sample', 'energy', 'num_occurrences']):  # doctest: +SKIP
 ...     total = total + occurrences
-...     if energy == min_energy:
+...     if isclose(energy, min_energy, abs_tol=1.0):
 ...         time = 'business hours' if sample['time'] else 'evenings'
 ...         location = 'office' if sample['location'] else 'home'
 ...         length = 'short' if sample['length'] else 'long'
@@ -227,3 +235,4 @@ following layers:
   correspond to assignments of variables that satisfy all constraints.
 * Sampler: classical *ExactSolver()* and then *DWaveSampler()*.
 * Compute resource: first a local CPU then a D-Wave system.
+

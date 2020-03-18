@@ -304,12 +304,12 @@ converted the constraint satisfaction problem to a binary quadratic model using 
 default minimum energy gap of 2. Therefore, each constraint violated by the solution increases
 the energy level of the binary quadratic model by at least 2 relative to ground energy.
 
->>> import matplotlib.pyplot as plt
->>> plt.ion()
->>> plt.scatter(range(len(data)), [x[1] for x in data], c=['y' if (x[2] == '1')
+>>> import matplotlib.pyplot as plt    # doctest: +SKIP
+>>> plt.ion()                          # doctest: +SKIP
+>>> plt.scatter(range(len(data)), [x[1] for x in data], c=['y' if (x[2] == '1')        # doctest: +SKIP
 ...             else 'r' for x in data],marker='.')
->>> plt.xlabel('Sample')
->>> plt.ylabel('Energy')
+>>> plt.xlabel('Sample')               # doctest: +SKIP
+>>> plt.ylabel('Energy')               # doctest: +SKIP
 
 
 .. figure:: ../_images/MultiGateCircuit_Results.png

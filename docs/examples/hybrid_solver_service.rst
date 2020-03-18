@@ -90,13 +90,13 @@ Ocean software's :doc:`dwave-system </docs_system/sdk_index>`
 into your application:
 
 >>> from dwave.system import LeapHybridSampler
->>> sampler = LeapHybridSampler()
+>>> sampler = LeapHybridSampler()     # doctest: +SKIP
 
 Finally, the returned set of frustrated edges and a bicoloring are counted and printed.
 
 >>> import dwave_networkx as dnx
->>> imbalance, bicoloring = dnx.structural_imbalance(G, sampler)
->>> set1 = int(sum(list(bicoloring.values())))
+>>> imbalance, bicoloring = dnx.structural_imbalance(G, sampler)    # doctest: +SKIP
+>>> set1 = int(sum(list(bicoloring.values())))        # doctest: +SKIP
 >>> print("One set has {} nodes; the other has {} nodes.".format(set1, problem_node_count-set1))  # doctest: +SKIP
 >>> print("The network has {} frustrated relationships.".format(len(list(imbalance.keys()))))    # doctest: +SKIP
 One set has 143 nodes; the other has 157 nodes.

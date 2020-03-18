@@ -25,6 +25,8 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 if not os.path.exists('docs'):
     os.symlink('../dwave-inspector/docs/', 'docs', target_is_directory=True)
 
+os.system('dwave install --yes inspector')   # To run doctests on examples with inspector
+
 # -- General configuration ------------------------------------------------
 # import sphinx
 # if sphinx.__version__  # can check here
@@ -114,9 +116,13 @@ from hybrid.flow import *
 
 import penaltymodel.core as pm
 import penaltymodel.cache as pmc
-import penaltymodel.maxgap as maxgap
+#import penaltymodel.maxgap as maxgap
 import penaltymodel.mip as mip
 import penaltymodel.lp as lp
+
+import dwave.inspector
+
+import operator         # Used by dwave-binarycsp
 
 """
 

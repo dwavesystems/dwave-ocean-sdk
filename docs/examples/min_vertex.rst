@@ -104,7 +104,7 @@ indexed qubits.
       You can see this information by running :code:`dwave config inspect` in your terminal.
 
 >>> from dwave.system import DWaveSampler, EmbeddingComposite
->>> sampler = EmbeddingComposite(DWaveSampler(endpoint='https://URL_to_my_D-Wave_system/', token='ABC-123456789012345678901234567890', solver='My_D-Wave_Solver'))
+>>> sampler = EmbeddingComposite(DWaveSampler(endpoint='https://URL_to_my_D-Wave_system/', token='ABC-123456789012345678901234567890', solver='My_D-Wave_Solver'))    # doctest: +SKIP
 >>> print(dnx.min_vertex_cover(s5, sampler))
 [0]
 
@@ -126,13 +126,13 @@ The code snippet below creates a new graph and solves on a
 D-Wave system.
 
 >>> w5 = nx.wheel_graph(5)
->>> print(dnx.min_vertex_cover(w5, sampler))
+>>> print(dnx.min_vertex_cover(w5, sampler))   # doctest: +SKIP
 [0, 1, 3]
 
 Note that the solution found for this problem is not unique; for example,
 [0, 2, 4] is also a valid solution.
 
->>> print(dnx.min_vertex_cover(w5, sampler))
+>>> print(dnx.min_vertex_cover(w5, sampler))     # doctest: +SKIP
 [0, 2, 4]
 
 The figure below shows a ten-node (circular-ladder) graph.
@@ -149,9 +149,9 @@ The code snippet below replaces the problem graph and submits twice to the
 D-Wave system for solution, producing two of the possible valid solutions.
 
 >>> c5 = nx.circular_ladder_graph(5)
->>> print(dnx.min_vertex_cover(c5, sampler))
+>>> print(dnx.min_vertex_cover(c5, sampler))   # doctest: +SKIP
 [0, 2, 3, 6, 8, 9]
->>> print(dnx.min_vertex_cover(c5, sampler))
+>>> print(dnx.min_vertex_cover(c5, sampler))   # doctest: +SKIP
 [1, 3, 4, 5, 7, 9]
 
 
