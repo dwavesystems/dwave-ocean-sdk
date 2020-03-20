@@ -105,7 +105,7 @@ import dwave_networkx as dnx
 import dimod
 
 from dwave.embedding import *
-from dwave.system import *
+#from dwave.system import *
 
 from hybrid.samplers import *
 from hybrid.core import *
@@ -124,7 +124,19 @@ import dwave.inspector
 
 import operator         # Used by dwave-binarycsp
 
+# Set up mocking for DWaveSampler 
+from unittest.mock import Mock
+from dwave.system.testing import MockDWaveSampler
+import dwave.system
+
+dwave.system.DWaveSampler = Mock()
+dwave.system.DWaveSampler.side_effect = MockDWaveSampler
+from dwave.system import *
+
 """
+
+
+
 
 # -- Options for HTML output ----------------------------------------------
 
