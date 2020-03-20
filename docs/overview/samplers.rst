@@ -26,8 +26,15 @@ compute resources (:term:`solver`\ s) of different types:
 * :ref:`using_cpu` such as :class:`dimod.ExactSolver` for exact solutions to small problems
 * :ref:`using_qpu` such a D-Wave 2000Q system.
 
-The example code below submits the BQM of the AND gate of the :ref:`formulating_bqm` section
-to a Leap hybrid solver. In this case, :doc:`dwave-system </docs_system/sdk_index>`'s
+The example code below submits the BQM of the AND gate of the :ref:`formulating_bqm` section,
+
+>>> import dimod
+>>> bqm = dimod.BinaryQuadraticModel({'x1': 0.0, 'x2': 0.0, 'y1': 6.0},
+...                  {('x2', 'x1'): 2.0, ('y1', 'x1'): -4.0, ('y1', 'x2'): -4.0},
+...                  0, 'BINARY')
+
+to a Leap hybrid solver.
+In this case, :doc:`dwave-system </docs_system/sdk_index>`'s
 :class:`dwave.system.LeapHybridSampler` is the Ocean sampler and the remote compute
 resource selected might be Leap hybrid solver `hybrid_v1`.
 
@@ -36,7 +43,7 @@ resource selected might be Leap hybrid solver `hybrid_v1`.
 >>> answer = sampler.sample(bqm)   # doctest: +SKIP
 >>> print(answer)    # doctest: +SKIP
 x1 x2 y1 energy num_oc.
-0  0  1  0   -1.5       1
+0  0  1  0    0.0       1
 ['BINARY', 1 rows, 1 samples, 3 variables]
 
 .. _improving:
@@ -85,22 +92,19 @@ and checks some features supported on the D-Wave system used as a sampler.
    qubits to compensate for the effects of biases. If your account has limited
    D-Wave system access, consider using *FixedEmbeddingComposite()* instead.
 
-.. code-block:: python
-
-    >>> from dwave.system import DWaveSampler
-    >>> from dwave.system.composites import VirtualGraphComposite
-    >>> DWaveSampler(solver={'qpu':True}).properties['extended_j_range']
-    [-2.0, 1.0]
-    >>> embedding = {'x': {1}, 'y': {5}, 'z': {0, 4}}
-    >>> sampler = VirtualGraphComposite(DWaveSampler(solver={'qpu':True}), embedding)
-    >>> sampler.parameters
-    {u'anneal_offsets': ['parameters'],
-     u'anneal_schedule': ['parameters'],
-     u'annealing_time': ['parameters'],
-     u'answer_mode': ['parameters'],
-     'apply_flux_bias_offsets': [],
-     u'auto_scale': ['parameters'],
-    >>>  # Snipped above response for brevity
+>>> from dwave.system import DWaveSampler
+>>> from dwave.system.composites import VirtualGraphComposite
+>>> DWaveSampler(solver={'qpu':True}).properties['extended_j_range']
+[-2.0, 1.0]
+>>> embedding = {'x': {1}, 'y': {5}, 'z': {0, 4}}
+>>> sampler = VirtualGraphComposite(DWaveSampler(solver={'qpu':True}), embedding)   # doctest: +SKIP
+>>> sampler.parameters         # doctest: +SKIP
+{u'anneal_offsets': ['parameters'],
+ u'anneal_schedule': ['parameters'],
+ u'annealing_time': ['parameters'],
+ u'answer_mode': ['parameters'],
+ 'apply_flux_bias_offsets': [],
+ u'auto_scale': ['parameters'], ...
 
 Note that the composed sampler (:code:`VirtualGraphComposite()` in the last example)
 inherits properties from the child sampler (:code:`DWaveSampler()` in that example).
