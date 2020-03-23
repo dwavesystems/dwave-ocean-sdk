@@ -193,7 +193,7 @@ The next code sets up a D-Wave system as the sampler.
    :end-before: default-config-end-marker
 
 >>> from dwave.system import DWaveSampler, EmbeddingComposite
->>> sampler = EmbeddingComposite(DWaveSampler())    # doctest: +SKIP
+>>> sampler = EmbeddingComposite(DWaveSampler())    
 
 Because the sampled solution is probabilistic, returned solutions may differ between runs. Typically,
 when submitting a problem to the system, we ask for many samples, not just one. This way, we see multiple
@@ -201,16 +201,21 @@ when submitting a problem to the system, we ask for many samples, not just one. 
 ask for 5000 samples.
 
 >>> Q = {('x', 'x'): -1, ('x', 'z'): 2, ('z', 'x'): 0, ('z', 'z'): -1}
->>> response = sampler.sample_qubo(Q, num_reads=5000)     # doctest: +SKIP
->>> for datum in response.data(['sample', 'energy', 'num_occurrences']):   # doctest: +SKIP
-...    print(datum.sample, "Energy: ", datum.energy, "Occurrences: ", datum.num_occurrences)
-...
-{'x': 0, 'z': 1} Energy:  -1.0 Occurrences:  2062
-{'x': 1, 'z': 0} Energy:  -1.0 Occurrences:  2937
-{'x': 1, 'z': 1} Energy:  0.0 Occurrences:  1
+>>> sampleset = sampler.sample_qubo(Q, num_reads=5000)     
+>>> print(sampleset)        # doctest: +SKIP
+   x  z energy num_oc. chain_.
+0  0  1   -1.0    2266     0.0
+1  1  0   -1.0    2732     0.0
+2  0  0    0.0       1     0.0
+3  1  1    0.0       1     0.0
+['BINARY', 4 rows, 5000 samples, 2 variables]
 
 Almost all the returned samples represent valid value assignments for a NOT gate,
-and minimize (are low-energy states of) the BQM.
+and minima (low-energy states) of the BQM, and with high likelihood the best (lowest-
+energy) samples satisfy the NOT gate formulation:
+
+>>> sampleset.first.sample["x"] != sampleset.first.sample["z"]
+True 
 
 Summary
 =======
