@@ -62,13 +62,13 @@ See :ref:`map_coloring` for a description of the following code.
     bqm = dwavebinarycsp.stitch(csp)
 
     # Set up a solver using the local system’s default D-Wave Cloud Client configuration file
-    # and sample 50 times
-    sampler = EmbeddingComposite(DWaveSampler())         # doctest: +SKIP
-    response = sampler.sample(bqm, num_reads=50)         # doctest: +SKIP
+    # and sample 1000 times
+    sampler = EmbeddingComposite(DWaveSampler())         
+    sampleset = sampler.sample(bqm, num_reads=1000)         
 
     # Plot the lowest-energy sample if it meets the constraints
-    sample = next(response.samples())      # doctest: +SKIP
-    if not csp.check(sample):              # doctest: +SKIP
+    sample = sampleset.first.sample      
+    if not csp.check(sample):              
         print("Failed to color map")
     else:
         plot_map(sample)
