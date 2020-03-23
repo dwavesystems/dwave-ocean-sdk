@@ -184,14 +184,12 @@ such as :code:`time` etc.) to the sampler's graph structure (the QPU's numerical
 indexed qubits) in a process known as :term:`minor-embedding`. The next code sets up
 a D-Wave system as the sampler.
 
-.. note:: In the code below, replace sampler parameters in the third line. If
-      you configured a default solver, as described in :ref:`sapi_access`, you
-      should be able to set the sampler without parameters as
-      :code:`sampler = EmbeddingComposite(DWaveSampler())`.
-      You can see this information by running :code:`dwave config inspect` in your terminal.
+.. include:: min_vertex.rst
+   :start-after: default-config-start-marker
+   :end-before: default-config-end-marker
 
 >>> from dwave.system import DWaveSampler, EmbeddingComposite
->>> sampler = EmbeddingComposite(DWaveSampler(endpoint='https://URL_to_my_D-Wave_system/', token='ABC-123456789012345678901234567890', solver='My_D-Wave_Solver'))      # doctest: +SKIP
+>>> sampler = EmbeddingComposite(DWaveSampler())      # doctest: +SKIP
 
 Because the sampled solution is probabilistic, returned solutions may differ between runs. Typically,
 when submitting a problem to the system, we ask for many samples, not just one. This way, we see multiple

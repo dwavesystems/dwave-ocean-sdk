@@ -156,18 +156,16 @@ the minor-embedding found.
 
 The next code sets up a D-Wave system as the sampler.
 
-.. note:: In the code below, replace sampler parameters as needed. If
-      you configured a default solver, as described in :ref:`sapi_access`, you
-      should be able to set the sampler without parameters as
-      :code:`sampler = EmbeddingComposite(DWaveSampler())`.
-      You can see this information by running :code:`dwave config inspect` in your terminal.
+.. include:: min_vertex.rst
+   :start-after: default-config-start-marker
+   :end-before: default-config-end-marker
 
 .. code-block:: python
 
     from dwave.system import DWaveSampler, EmbeddingComposite
 
     # Set up a D-Wave system as the sampler
-    sampler = EmbeddingComposite(DWaveSampler(endpoint='https://URL_to_my_D-Wave_system/', token='ABC-123456789012345678901234567890', solver='My_D-Wave_Solver'))
+    sampler = EmbeddingComposite(DWaveSampler())
 
 Next, we ask for 1000 samples and separate those that satisfy the CSP from
 those that fail to do so.

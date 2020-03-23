@@ -97,14 +97,17 @@ unstructured problems to the graph structure of the selected sampler, a process 
 :term:`minor-embedding`: our problem star graph must be mapped to the QPU's numerically
 indexed qubits.
 
-.. note:: In the code below, replace sampler parameters in the third line. If
-      you configured a default solver, as described in :ref:`sapi_access`, you
-      should be able to set the sampler without parameters as
-      :code:`sampler = EmbeddingComposite(DWaveSampler())`.
-      You can see this information by running :code:`dwave config inspect` in your terminal.
+.. default-config-start-marker
+
+.. note:: The code below sets a sampler without specifying :term:`SAPI` parameters. Configure
+      a default :term:`solver` as described in :ref:`sapi_access` to run the code as is,
+      or see :doc:`dwave-cloud-client </docs_cloud/sdk_index>` to access a particular 
+      solver by setting explicit parameters in your code or environment variables.
+
+.. default-config-end-marker
 
 >>> from dwave.system import DWaveSampler, EmbeddingComposite
->>> sampler = EmbeddingComposite(DWaveSampler(endpoint='https://URL_to_my_D-Wave_system/', token='ABC-123456789012345678901234567890', solver='My_D-Wave_Solver'))    # doctest: +SKIP
+>>> sampler = EmbeddingComposite(DWaveSampler())    # doctest: +SKIP
 >>> print(dnx.min_vertex_cover(s5, sampler))
 [0]
 
