@@ -107,7 +107,7 @@ indexed qubits.
 .. default-config-end-marker
 
 >>> from dwave.system import DWaveSampler, EmbeddingComposite
->>> sampler = EmbeddingComposite(DWaveSampler())    # doctest: +SKIP
+>>> sampler = EmbeddingComposite(DWaveSampler())    
 >>> print(dnx.min_vertex_cover(s5, sampler))
 [0]
 
