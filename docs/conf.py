@@ -133,15 +133,12 @@ import dwave.system
 dwave.system.DWaveSampler = Mock()
 dwave.system.DWaveSampler.side_effect = MockDWaveSampler
 dwave.system.samplers.DWaveSampler = Mock()      # Currently dwave-hybrid uses this
-dwave.system. samplers.DWaveSampler.side_effect = MockDWaveSampler
+dwave.system.samplers.DWaveSampler.side_effect = MockDWaveSampler
 
 from dwave.system import *
 from dwave.system.samplers import *
 
 """
-
-
-
 
 # -- Options for HTML output ----------------------------------------------
 
