@@ -49,6 +49,8 @@ The SDK includes the :ref:`dwave_cli` and the following packages:
      - Minimal implementation of the REST interface used to communicate with D-Wave :term:`Sampler` API (SAPI) servers.
    * - :doc:`dwave-hybrid <docs_hybrid/sdk_index>` (`repo <https://github.com/dwavesystems/dwave-hybrid>`_\ )
      - A general, minimal Python framework for building hybrid asynchronous decomposition samplers for quadratic unconstrained binary optimization (QUBO) problems.
+   * - :doc:`dwave-inspector <docs_inspector/sdk_index>` (`repo <https://github.com/dwavesystems/dwave-inspector>`_\ )
+     - A tool for visualizing problems submitted to, and answers received from, a D-Wave structured solver such as a D-Wave 2000Q quantum computer.
    * - :doc:`dwave-neal <docs_neal/sdk_index>` (`repo <https://github.com/dwavesystems/dwave-neal>`_\ )
      - An implementation of a simulated annealing sampler.
    * - :doc:`dwave-networkx <docs_dnx/sdk_index>` (`repo <https://github.com/dwavesystems/dwave_networkx>`_\ )
@@ -98,7 +100,7 @@ The SDK includes the :ref:`dwave_cli` and the following packages:
   docs_binarycsp/sdk_index
   docs_cloud/sdk_index
   docs_hybrid/sdk_index
-  docs_inspector
+  docs_inspector/sdk_index
   docs_neal/sdk_index
   docs_dnx/sdk_index
   docs_system/sdk_index
