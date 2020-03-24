@@ -98,14 +98,26 @@ todo_include_todos = True
 
 doctest_global_setup = """
 from __future__ import print_function, division
+import operator         # Used by dwave-binarycsp
+
+# Set up mocking for DWaveSampler 
+from unittest.mock import Mock
+from dwave.system.testing import MockDWaveSampler
+
+import dwave.system
+dwave.system.DWaveSampler = Mock()
+dwave.system.DWaveSampler.side_effect = MockDWaveSampler
+dwave.system.samplers.DWaveSampler = Mock()      
+dwave.system.samplers.DWaveSampler.side_effect = MockDWaveSampler
+
+from dwave.system import *
+from dwave.system.samplers import *
+from dwave.embedding import *
 
 import networkx as nx
 import dwave_networkx as dnx
 
 import dimod
-
-from dwave.embedding import *
-#from dwave.system import *
 
 from hybrid.samplers import *
 from hybrid.core import *
@@ -121,23 +133,6 @@ import penaltymodel.mip as mip
 import penaltymodel.lp as lp
 
 import dwave.inspector
-
-import operator         # Used by dwave-binarycsp
-
-# Set up mocking for DWaveSampler 
-from unittest.mock import Mock
-from dwave.system.testing import MockDWaveSampler
-
-import dwave.system
-
-dwave.system.DWaveSampler = Mock()
-dwave.system.DWaveSampler.side_effect = MockDWaveSampler
-dwave.system.samplers.DWaveSampler = Mock()      # Currently dwave-hybrid uses this
-dwave.system.samplers.DWaveSampler.side_effect = MockDWaveSampler
-
-from dwave.system import *
-from dwave.system.samplers import *
-
 """
 
 # -- Options for HTML output ----------------------------------------------
