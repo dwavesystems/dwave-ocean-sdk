@@ -340,16 +340,12 @@ Sample(sample={'a': 1, 'c': 1, 'b': 1, 'not1': 1, 'd': 0, 'or4': 1, 'or2': 1, 'n
 # Snipped this section for brevity
 Sample(sample={'a': 1, 'c': 1, 'b': 1, 'not1': 1, 'd': 0, 'or4': 1, 'or2': 1, 'not6': 1, 'and5': 0, 'z': 1, 'and3': 1}, energy=-3.5, num_occurrences=1, chain_break_fraction=0.2727272727272727)
 
-You can see, for example, that sample
-
-.. code-block:: python
+You can see, for example, that sample::
 
     Sample(sample={'a': 1, 'c': 1, 'b': 0, 'not1': 1, 'd': 1, 'or4': 1, 'or2': 1, 'not6': 1, 'and5': 1, 'z': 1, 'and3': 1}, energy=-7.5, num_occurrences=1, chain_break_fraction=0.18181818181818182)
 
 has a higher energy by 2 than the ground energy. It is expected that
-this solution violates a single constraint, and you can see that it violates constraint
-
-.. code-block:: python
+this solution violates a single constraint, and you can see that it violates constraint::
 
     Constraint.from_configurations(frozenset([(1, 0, 0), (0, 1, 0), (0, 0, 0), (1, 1, 1)]), ('a', 'not1', 'and3'), Vartype.BINARY, name='AND')
 
