@@ -44,8 +44,8 @@ qubits on the quantum processor, which is called by the
 :class:`~.DWaveSampler` sampler:
 
 >>> bqm = dimod.BQM({}, {('s0', 's1'): -1, ('s0', 's2'): -1, ('s1', 's2'): 1}, 0, dimod.Vartype.SPIN)  
->>> sampler = EmbeddingComposite(DWaveSampler(solver={'qpu': True}))     # doctest: +SKIP
->>> sampleset = sampler.sample(bqm, num_reads=1000)                      # doctest: +SKIP
+>>> sampler = EmbeddingComposite(DWaveSampler(solver={'qpu': True}))     
+>>> sampleset = sampler.sample(bqm, num_reads=1000)                      
 >>> print(sampleset)                                                     # doctest: +SKIP
   s0 s1 s2 energy num_oc. chain_b.
 0 -1 -1 +1   -1.0     141      0.0
@@ -66,13 +66,13 @@ were based on a broken :term:`chain` of qubits that represented one of the varia
 For this submission to a D-Wave 2000Q, the sampleset also contained the following
 additional information:
 
->>> print(sampleset.info.keys())
+>>> print(sampleset.info.keys())    # doctest: +SKIP
 dict_keys(['timing', 'problem_id', 'embedding_context', 'warnings'])
 
 For example, the `timing information <https://docs.dwavesys.com/docs/latest/doc_timing.html>`_ 
 for the problem might look something like:
 
->>> print(sampleset.info["timing"])
+>>> print(sampleset.info["timing"])  # doctest: +SKIP
 {'qpu_sampling_time': 314960, 
 'qpu_anneal_time_per_sample': 20, 
 'qpu_readout_time_per_sample': 274, 
