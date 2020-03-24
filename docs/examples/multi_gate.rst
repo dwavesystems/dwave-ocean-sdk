@@ -91,7 +91,9 @@ Formulating the Problem as a CSP
 This example demonstrates two formulations of constraints from the problem's
 logic gates:
 
-#. Single comprehensive constraint::
+#. Single comprehensive constraint.
+
+.. testcode::
 
     import dwavebinarycsp
 
@@ -109,7 +111,9 @@ logic gates:
     csp.add_constraint(logic_circuit, ['a', 'b', 'c', 'd', 'z'])
 
 
-#. Multiple small constraints::
+#. Multiple small constraints.
+
+.. testcode::
 
     import dwavebinarycsp
     import dwavebinarycsp.factories.constraint.gates as gates
@@ -129,7 +133,7 @@ logic gates:
 
 The next line of code converts the constraints into a BQM that we solve by sampling.
 
-.. code-block:: python
+.. testcode::
 
     # Convert the binary constraint satisfaction problem to a binary quadratic model
     bqm = dwavebinarycsp.stitch(csp)
@@ -160,7 +164,7 @@ The next code sets up a D-Wave system as the sampler.
    :start-after: default-config-start-marker
    :end-before: default-config-end-marker
 
-.. code-block:: python
+.. testcode::
 
     from dwave.system import DWaveSampler, EmbeddingComposite
 
@@ -170,13 +174,13 @@ The next code sets up a D-Wave system as the sampler.
 Next, we ask for 1000 samples and separate those that satisfy the CSP from
 those that fail to do so.
 
-.. code-block:: python
+.. testcode::
 
-    response = sampler.sample(bqm, num_reads=1000)
+    sampleset = sampler.sample(bqm, num_reads=1000)
 
     # Check how many solutions meet the constraints (are valid)
     valid, invalid, data = 0, 0, []
-    for datum in response.data(['sample', 'energy', 'num_occurrences']):
+    for datum in sampleset.data(['sample', 'energy', 'num_occurrences']):
         if (csp.check(datum.sample)):
             valid = valid+datum.num_occurrences
             for i in range(datum.num_occurrences):
@@ -185,7 +189,8 @@ those that fail to do so.
             invalid = invalid+datum.num_occurrences
             for i in range(datum.num_occurrences):
                 data.append((datum.sample, datum.energy, '0'))
-    print(valid, invalid)
+
+>>> print(valid, invalid)        # doctest: +SKIP
 
 For the single constraint approach, 4 runs with their different minor-embeddings
 yield significantly varied results, as shown in the following table:
@@ -227,7 +232,7 @@ to view the solution on the QPU.
 .. note:: The next code requires the use of Ocean's problem inspector.
 
 >>> import dwave.inspector
->>> dwave.inspector.show(response)   # doctest: +SKIP
+>>> dwave.inspector.show(sampleset)   # doctest: +SKIP
 
 .. figure:: ../_static/inspector_CSP_broken.png
    :name: inspector_CSP_broken
@@ -281,7 +286,7 @@ Looking at the Results
 You can verify the solution to the circuit problem by checking an arbitrary valid
 or invalid sample:
 
->>> print(next(response.samples()))      # doctest: +SKIP
+>>> print(sampleset.first.sample)      # doctest: +SKIP
 {'a': 1, 'c': 0, 'b': 0, 'not1': 1, 'd': 1, 'or4': 1, 'or2': 0, 'not6': 0,
 'and5': 1, 'z': 1, 'and3': 1}
 
@@ -297,18 +302,18 @@ the analytical solution for the circuit,
 
       &= 1
 
-You can also plot the energies for valid and invalid samples. The example code above
-converted the constraint satisfaction problem to a binary quadratic model using the
-default minimum energy gap of 2. Therefore, each constraint violated by the solution increases
-the energy level of the binary quadratic model by at least 2 relative to ground energy.
+The example code above converted the constraint satisfaction problem to a binary 
+quadratic model using the default minimum energy gap of 2. Therefore, each constraint 
+violated by the solution increases the energy level of the binary quadratic model by 
+at least 2 relative to ground energy. You can also plot the energies for valid and 
+invalid samples:: 
 
->>> import matplotlib.pyplot as plt    # doctest: +SKIP
->>> plt.ion()                          # doctest: +SKIP
->>> plt.scatter(range(len(data)), [x[1] for x in data], c=['y' if (x[2] == '1')        # doctest: +SKIP
-...             else 'r' for x in data],marker='.')
->>> plt.xlabel('Sample')               # doctest: +SKIP
->>> plt.ylabel('Energy')               # doctest: +SKIP
-
+   import matplotlib.pyplot as plt    
+   plt.ion()                          
+   plt.scatter(range(len(data)), [x[1] for x in data], c=['y' if (x[2] == '1')    \
+      else 'r' for x in data],marker='.')
+   plt.xlabel('Sample')               
+   plt.ylabel('Energy')               
 
 .. figure:: ../_images/MultiGateCircuit_Results.png
    :name: MultiGateCircuitResults
@@ -323,7 +328,7 @@ the energy level of the binary quadratic model by at least 2 relative to ground 
 You can see in the graph that valid solutions have energy -9.5 and invalid solutions
 energies of -7.5, -5.5, and -3.5.
 
->>> for datum in response.data(['sample', 'energy', 'num_occurrences', 'chain_break_fraction']):  # doctest: +SKIP
+>>> for datum in sampleset.data(['sample', 'energy', 'num_occurrences', 'chain_break_fraction']):  # doctest: +SKIP
 ...    print(datum)
 ...
 Sample(sample={'a': 1, 'c': 0, 'b': 1, 'not1': 0, 'd': 1, 'or4': 1, 'or2': 1, 'not6': 0, 'and5': 0, 'z': 0, 'and3': 0}, energy=-9.5, num_occurrences=13, chain_break_fraction=0.0)
