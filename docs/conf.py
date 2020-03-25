@@ -101,23 +101,19 @@ from __future__ import print_function, division
 import operator         # Used by dwave-binarycsp
 
 # Set up mocking for DWaveSampler 
-from unittest.mock import Mock
 from dwave.system.testing import MockDWaveSampler
-
 import dwave.system
-dwave.system.DWaveSampler = Mock()
-dwave.system.DWaveSampler.side_effect = MockDWaveSampler
-dwave.system.samplers.DWaveSampler = Mock()      
-dwave.system.samplers.DWaveSampler.side_effect = MockDWaveSampler
+dwave.system.DWaveSampler = MockDWaveSampler
+dwave.system.samplers.DWaveSampler = MockDWaveSampler
 
 from dwave.system import *
-from dwave.system.samplers import *
 from dwave.embedding import *
 
 import networkx as nx
 import dwave_networkx as dnx
 
 import dimod
+import dwavebinarycsp
 
 from hybrid.samplers import *
 from hybrid.core import *
