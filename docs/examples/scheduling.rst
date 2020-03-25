@@ -106,21 +106,22 @@ The next code lines create a constraint from this function and adds it to CSP in
 >>> csp = dwavebinarycsp.ConstraintSatisfactionProblem(dwavebinarycsp.BINARY)
 >>> csp.add_constraint(scheduling, ['time', 'location', 'length', 'mandatory'])
 
-This tool, :doc:`dwavebinarycsp </docs_binarycsp/sdk_index>`, can also convert the binary CSP to a BQM. The following code does so and
-displays the BQM's linear and quadratic coefficients, :math:`q_i` and :math:`q_{i,j}` respectively in
-:math:`\sum_i^N q_ix_i + \sum_{i<j}^N q_{i,j}x_i  x_j`, which are the inputs for programming
+This tool, :doc:`dwavebinarycsp </docs_binarycsp/sdk_index>`, can also convert the binary CSP to a BQM. 
+The following code does so and the graph below
+provides a view on the BQM's linear and quadratic coefficients, :math:`q_i` and :math:`q_{i,j}` respectively 
+in :math:`\sum_i^N q_ix_i + \sum_{i<j}^N q_{i,j}x_i  x_j`, which are the inputs for programming
 the quantum computer.
 
 >>> bqm = dwavebinarycsp.stitch(csp)
->>> dict(bqm.linear)   # doctest: +SKIP
-{time: 1.9999999994335194,
- location: 1.9999999980072258,
-# Snipped here for brevity
 
->>> dict(bqm.quadratic)          # doctest: +SKIP
-{('time', 'location'): -3.999999999997764,
- ('time', 'length'): 1.8599138118774343,
-# Snipped here for brevity
+.. figure:: ../_images/scheduling_bqm_heatmap.png
+   :name: schedulingBqmHeatmap
+   :alt: image
+   :align: center
+   :scale: 50 %
+
+   A heatmap of the BQM, with darker colors for higher linear (node color) and quadratic (edge color) values. You can see the values simply by using the :code:`print(bqm)` command.
+
 
 Solve the Problem by Sampling
 =============================
@@ -141,19 +142,21 @@ simply returns the BQM's value (energy) for every possible assignment of variabl
 >>> solution = sampler.sample(bqm)
 
 Valid solutions---assignments of variables that do not violate any constraint---should
-have the lowest value of the BQM, and *ExactSolver()* orders its assignments
-of variables by ascending order, so the first solution has the lowest value (lowest
-energy state). The code below sets variable :code:`min_energy` to the BQM's
-lowest value, which is in the first record of the returned result.
+have the lowest value of the BQM:
 
->>> min_energy = solution.record.energy.min()
->>> print(round(min_energy, 2))         # doctest: +SKIP
--0.0
+.. figure:: ../_images/scheduling_solution_exact.png
+   :name: schedulingSolutionExact
+   :alt: image
+   :align: center
+   :scale: 70 %
+
+   Energy of all 16 possible configurations. You can see the values simply by using the :code:`print(solution)` command.
 
 The code below prints all those solutions (assignments of variables) for which the BQM has
 its minimum value\ [#]_\ .
 
 >>> from math import isclose
+>>> min_energy = solution.record.energy.min()
 >>> for sample, energy in solution.data(['sample', 'energy']):    # doctest: +SKIP
 ...     if isclose(energy, min_energy, abs_tol=1.0):
 ...         time = 'business hours' if sample['time'] else 'evenings'
@@ -184,21 +187,19 @@ such as :code:`time` etc.) to the sampler's graph structure (the QPU's numerical
 indexed qubits) in a process known as :term:`minor-embedding`. The next code sets up
 a D-Wave system as the sampler.
 
-.. note:: In the code below, replace sampler parameters in the third line. If
-      you configured a default solver, as described in :ref:`sapi_access`, you
-      should be able to set the sampler without parameters as
-      :code:`sampler = EmbeddingComposite(DWaveSampler())`.
-      You can see this information by running :code:`dwave config inspect` in your terminal.
+.. include:: min_vertex.rst
+   :start-after: default-config-start-marker
+   :end-before: default-config-end-marker
 
 >>> from dwave.system import DWaveSampler, EmbeddingComposite
->>> sampler = EmbeddingComposite(DWaveSampler(endpoint='https://URL_to_my_D-Wave_system/', token='ABC-123456789012345678901234567890', solver='My_D-Wave_Solver'))      # doctest: +SKIP
+>>> sampler = EmbeddingComposite(DWaveSampler())      
 
 Because the sampled solution is probabilistic, returned solutions may differ between runs. Typically,
 when submitting a problem to the system, we ask for many samples, not just one. This way, we see multiple
 “best” answers and reduce the probability of settling on a suboptimal answer. Below, we
 ask for 5000 samples.
 
->>> sampleset = sampler.sample(bqm, num_reads=5000)      # doctest: +SKIP
+>>> sampleset = sampler.sample(bqm, num_reads=5000)      
 
 The code below prints all those solutions (assignments of variables) for which the BQM has
 its minimum value and the number of times it was found.

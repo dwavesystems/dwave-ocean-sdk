@@ -148,30 +148,25 @@ a SAPI URL and API token using
 function. For example, the code below queries available solvers for your default SAPI URL and a
 specified token.
 
-.. code-block:: python
-
-   >>> from dwave.cloud import Client
-   >>> client = Client.from_config(token='ABC-123456789123456789123456789')
-   >>> client.get_solvers()
-   [Solver(id='2000Q_ONLINE_SOLVER1'),
-    UnstructuredSolver(id='hybrid_v1')]
+>>> from dwave.cloud import Client        
+>>> client = Client.from_config(token='ABC-123456789123456789123456789')     # doctest: +SKIP
+>>> client.get_solvers()       # doctest: +SKIP
+[Solver(id='2000Q_ONLINE_SOLVER1'),
+ UnstructuredSolver(id='hybrid_v1')]
 
 Typically, once you have selected and configured a solver, your code queries its parameters and
 properties as attributes of the instantiated solver object. The code example below
-sets a D-Wave system as the sampler, using the default SAPI configuration as set above,
-and queries its parameters.
+(with output snipped for brevity) sets a D-Wave system as the sampler, using the default 
+SAPI configuration as set above, and queries its parameters.
 
-.. code-block:: python
-
-   >>> from dwave.system import DWaveSampler
-   >>> sampler = DWaveSampler(solver={'qpu': True})
-   >>> sampler.parameters
-   {u'anneal_offsets': ['parameters'],
-   u'anneal_schedule': ['parameters'],
-   u'annealing_time': ['parameters'],
-   u'answer_mode': ['parameters'],
-   u'auto_scale': ['parameters'],
-   # Snipped above response for brevity
+>>> from dwave.system import DWaveSampler
+>>> sampler = DWaveSampler(solver={'qpu': True})
+>>> sampler.parameters            # doctest: +SKIP
+{u'anneal_offsets': ['parameters'],
+ u'anneal_schedule': ['parameters'],
+ u'annealing_time': ['parameters'],
+ u'answer_mode': ['parameters'],
+ u'auto_scale': ['parameters'], ...
 
 Descriptions of D-Wave system parameters and properties are in the
 :std:doc:`system documentation <sysdocs_gettingstarted:index>`.

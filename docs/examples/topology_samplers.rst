@@ -73,7 +73,7 @@ a :term:`subgraph` of the full :term:`hardware graph`.
 >>> QPUGraph = nx.Graph(qpu_sampler.edgelist)
 >>> all(v in C16.nodes for v in QPUGraph.nodes)
 True
->>> all(edge in C16.edges for edge in QPUGraph.edges)
+>>> all(edge in C16.edges for edge in QPUGraph.edges)      # doctest: +SKIP
 True
 
 

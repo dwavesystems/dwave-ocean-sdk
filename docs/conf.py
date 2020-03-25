@@ -94,14 +94,22 @@ todo_include_todos = True
 
 doctest_global_setup = """
 from __future__ import print_function, division
+import operator         # Used by dwave-binarycsp
+
+# Set up mocking for DWaveSampler 
+from dwave.system.testing import MockDWaveSampler
+import dwave.system
+dwave.system.DWaveSampler = MockDWaveSampler
+dwave.system.samplers.DWaveSampler = MockDWaveSampler
+
+from dwave.system import *
+from dwave.embedding import *
 
 import networkx as nx
 import dwave_networkx as dnx
 
 import dimod
-
-from dwave.embedding import *
-from dwave.system import *
+import dwavebinarycsp
 
 from hybrid.samplers import *
 from hybrid.core import *
@@ -117,9 +125,6 @@ import penaltymodel.mip as mip
 import penaltymodel.lp as lp
 
 import dwave.inspector
-
-import operator         # Used by dwave-binarycsp
-
 """
 
 # -- Options for HTML output ----------------------------------------------

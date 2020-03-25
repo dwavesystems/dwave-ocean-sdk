@@ -58,7 +58,7 @@ generated graph,
 `NetworkX barabasi_albert_graph() <https://networkx.github.io/documentation/stable/reference/generators.html#module-networkx.generators.random>`_\ , with random +1 or -1
 couplings assigned to its edges.
 
-.. code-block:: python
+.. testcode::
 
     # Represent the graph problem as a binary quadratic model
     import dimod
@@ -83,7 +83,7 @@ the D-Wave system, and merges the subproblem's samples into the latest problem s
 In this case, subproblems contain 30 variables in a rolling window that can cover up
 to 75 percent of the problem's variables.
 
-.. code-block:: python
+.. testcode::
 
     # Set a workflow of tabu search in parallel to submissions to a D-Wave system
     import hybrid
@@ -101,7 +101,7 @@ Solve the Problem Using Hybrid Resources
 Once you have a hybrid workflow, you can run and tune it within the dwave-hybrid framework
 or convert it to a `dimod` sampler.
 
-.. code-block:: python
+.. testcode::
 
     # Convert to dimod sampler and run workflow
     result = hybrid.HybridSampler(workflow).sample(bqm)

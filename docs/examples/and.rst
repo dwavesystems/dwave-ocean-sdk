@@ -143,33 +143,34 @@ indexed qubits).
 
 The next code sets up a D-Wave system as the sampler.
 
-.. note:: In the code below, replace sampler parameters in the third line. If
-      you configured a default solver, as described in :ref:`sapi_access`, you
-      should be able to set the sampler without parameters as
-      :code:`sampler = DWaveSampler()`.
-      You can see this information by running :code:`dwave config inspect` in your terminal.
+.. include:: min_vertex.rst
+   :start-after: default-config-start-marker
+   :end-before: default-config-end-marker
 
 >>> from dwave.system import DWaveSampler, EmbeddingComposite
->>> sampler = DWaveSampler(endpoint='https://URL_to_my_D-Wave_system/', token='ABC-123456789012345678901234567890', solver='My_D-Wave_Solver')   # doctest: +SKIP
->>> sampler_embedded = EmbeddingComposite(sampler)       # doctest: +SKIP
+>>> sampler = DWaveSampler()   
+>>> sampler_embedded = EmbeddingComposite(sampler)       
 
 As before, we ask for 5000 samples.
 
->>> response = sampler_embedded.sample_qubo(Q, num_reads=5000)      # doctest: +SKIP
->>> for datum in response.data(['sample', 'energy', 'num_occurrences']):   # doctest: +SKIP
-...    print(datum.sample, "Energy: ", datum.energy, "Occurrences: ", datum.num_occurrences)
-...
-{'x1': 1, 'x2': 0, 'z': 0} Energy:  0.0 Occurrences:  1009
-{'x1': 1, 'x2': 1, 'z': 1} Energy:  0.0 Occurrences:  1452
-{'x1': 0, 'x2': 0, 'z': 0} Energy:  0.0 Occurrences:  1292
-{'x1': 0, 'x2': 1, 'z': 0} Energy:  0.0 Occurrences:  1246
-{'x1': 0, 'x2': 1, 'z': 0} Energy:  0.0 Occurrences:  1
+>>> sampleset = sampler_embedded.sample_qubo(Q, num_reads=5000)      
+>>> print(sampleset)   # doctest: +SKIP
+  x1 x2  z energy num_oc. chain_b.
+0  0  1  0    0.0    1812      0.0
+1  1  0  0    0.0     645      0.0
+2  1  1  1    0.0     862      0.0
+3  0  0  0    0.0    1676      0.0
+5  1  0  0    0.0       1 0.333333
+6  1  1  1    0.0       1 0.333333
+4  0  1  1    1.0       3      0.0
+['BINARY', 7 rows, 5000 samples, 3 variables]
 
 All the returned samples from this execution represent valid value assignments for an
 AND gate, and minimize (are low-energy states of) the BQM.
 
-Note that the last line of output from this execution shows a single sample that seems
-identical to the line above it. The next section addresses that.
+Note that lines 5 and 6 of output from this execution show samples that seem
+identical to lines 1 and 2 (but with non-zero values in the rightmost column, 
+:code:`chain_breaks`\ ). The next section addresses that.
 
 Solve the Problem by Sampling: Non-automated Minor-Embedding
 ============================================================
@@ -219,21 +220,20 @@ The following code uses the *FixedEmbeddingComposite* composite to manually mino
 the problem. Its last line prints a confirmation that indeed the two selected qubits are adjacent
 (coupled).
 
->>> from dwave.system.composites import FixedEmbeddingComposite
->>> sampler_embedded = FixedEmbeddingComposite(sampler, {'x': [0], 'z': [4]})   # doctest: +SKIP
->>> print(sampler_embedded.adjacency)     # doctest: +SKIP
-{'x': {'z'}, 'z': {'x'}}
+>>> from dwave.system import FixedEmbeddingComposite
+>>> sampler_embedded = FixedEmbeddingComposite(sampler, {'x': [0], 'z': [4]})   
+>>> print(sampler_embedded.adjacency["x"])
+{'z'}
 
 As before, we ask for 5000 samples.
 
->>> response = sampler_embedded.sample_qubo(Q_not, num_reads=5000)      # doctest: +SKIP
->>> for datum in response.data(['sample', 'energy', 'num_occurrences']):   # doctest: +SKIP
-...    print(datum.sample, "Energy: ", datum.energy, "Occurrences: ", datum.num_occurrences)
-...
-{'x': 0, 'z': 1} Energy:  -1.0 Occurrences:  2520
-{'x': 1, 'z': 0} Energy:  -1.0 Occurrences:  2474
-{'x': 0, 'z': 0} Energy:  0.0 Occurrences:  4
-{'x': 1, 'z': 1} Energy:  0.0 Occurrences:  2
+>>> sampleset = sampler_embedded.sample_qubo(Q_not, num_reads=5000)      
+>>> print(sampleset)   # doctest: +SKIP
+   x  z energy num_oc. chain_.
+0  0  1   -1.0    2310     0.0
+1  1  0   -1.0    2688     0.0
+2  0  0    0.0       2     0.0
+['BINARY', 3 rows, 5000 samples, 2 variables]
 
 From NOT to AND: an Important Difference
 ----------------------------------------
@@ -290,25 +290,24 @@ The code below uses Ocean's :doc:`dwave-system </docs_system/sdk_index>`
 confirmation that indeed all three variables are connected.
 (coupled).
 
->>> from dwave.system.composites import FixedEmbeddingComposite
 >>> embedding = {'x1': {1}, 'x2': {5}, 'z': {0, 4}}
->>> sampler_embedded = FixedEmbeddingComposite(sampler, embedding)     # doctest: +SKIP
+>>> sampler_embedded = FixedEmbeddingComposite(sampler, embedding)     
 >>> print(sampler_embedded.adjacency)     # doctest: +SKIP
 {'x1': {'x2', 'z'}, 'x2': {'x1', 'z'}, 'z': {'x1', 'x2'}}
 
 We ask for 5000 samples.
 
 >>> Q = {('x1', 'x2'): 1, ('x1', 'z'): -2, ('x2', 'z'): -2, ('z', 'z'): 3}
->>> response = sampler_embedded.sample_qubo(Q, num_reads=5000)    # doctest: +SKIP
->>> for datum in response.data(['sample', 'energy', 'num_occurrences']):   # doctest: +SKIP
-...    print(datum.sample, "Energy: ", datum.energy, "Occurrences: ", datum.num_occurrences)
-...
-{'z': 0, 'x1': 1, 'x2': 0} Energy:  0.0 Occurrences:  1088
-{'z': 0, 'x1': 0, 'x2': 1} Energy:  0.0 Occurrences:  1806
-{'z': 1, 'x1': 1, 'x2': 1} Energy:  0.0 Occurrences:  1126
-{'z': 0, 'x1': 0, 'x2': 0} Energy:  0.0 Occurrences:  977
-{'z': 1, 'x1': 0, 'x2': 1} Energy:  1.0 Occurrences:  2
-{'z': 1, 'x1': 0, 'x2': 1} Energy:  1.0 Occurrences:  1
+>>> sampleset = sampler_embedded.sample_qubo(Q, num_reads=5000)    
+>>> print(sampleset)   # doctest: +SKIP
+  x1 x2  z energy num_oc. chain_.
+0  1  0  0    0.0    2107     0.0
+1  0  1  0    0.0     684     0.0
+2  1  1  1    0.0    1011     0.0
+3  0  0  0    0.0    1193     0.0
+4  1  0  1    1.0       4     0.0
+5  1  1  0    1.0       1     0.0
+['BINARY', 6 rows, 5000 samples, 3 variables]
 
 Optionally, you can use the :doc:`problem-inspector </docs_inspector/sdk_index>`
 to view the solution on the QPU.
@@ -316,7 +315,7 @@ to view the solution on the QPU.
 .. note:: The next code requires the use of Ocean's problem inspector.
 
 >>> import dwave.inspector
->>> dwave.inspector.show(response)   # doctest: +SKIP
+>>> dwave.inspector.show(sampleset)   # doctest: +SKIP
 
 .. figure:: ../_static/inspector_AND.png
   :name: inspector_AND
@@ -332,24 +331,23 @@ on. By default, *FixedEmbeddingComposite()* used the maximum chain strength, whi
 is 2. By setting it to a low value of 0.25, the two qubits are not strongly correlated
 and the result is that many returned samples represent invalid states for an AND gate.
 
->>> print(sampler.properties['extended_j_range'])   # doctest: +SKIP
+>>> print(sampler.properties['extended_j_range'])   
 [-2.0, 1.0]
->>> sampler_embedded = FixedEmbeddingComposite(sampler, embedding)   # doctest: +SKIP
->>> response = sampler_embedded.sample_qubo(Q, num_reads=5000, chain_strength=0.25)   # doctest: +SKIP
->>> for datum in response.data(['sample', 'energy', 'num_occurrences']):   # doctest: +SKIP
-...    print(datum.sample, "Energy: ", datum.energy, "Occurrences: ", datum.num_occurrences)
-...
-{'z': 0, 'x1': 1, 'x2': 0} Energy:  0.0 Occurrences:  690
-{'z': 0, 'x1': 0, 'x2': 1} Energy:  0.0 Occurrences:  936
-{'z': 1, 'x1': 1, 'x2': 1} Energy:  0.0 Occurrences:  573
-{'z': 0, 'x1': 0, 'x2': 0} Energy:  0.0 Occurrences:  984
-{'z': 1, 'x1': 1, 'x2': 1} Energy:  0.0 Occurrences:  1
-{'z': 1, 'x1': 1, 'x2': 0} Energy:  1.0 Occurrences:  525
-{'z': 1, 'x1': 0, 'x2': 1} Energy:  1.0 Occurrences:  1289
-{'z': 1, 'x1': 1, 'x2': 0} Energy:  1.0 Occurrences:  1
-{'z': 0, 'x1': 1, 'x2': 1} Energy:  1.0 Occurrences:  1
+>>> sampler_embedded = FixedEmbeddingComposite(sampler, embedding)   
+>>> sampleset = sampler_embedded.sample_qubo(Q, num_reads=5000, chain_strength=0.25)   
+>>> print(sampleset)   # doctest: +SKIP
+  x1 x2  z energy num_oc. chain_b.
+0  1  0  0    0.0     629      0.0
+1  0  1  0    0.0     693      0.0
+3  1  1  1    0.0     660      0.0
+4  0  0  0    0.0     812      0.0
+2  1  0  1    1.0     773 0.333333
+5  0  1  1    1.0    1432 0.333333
+6  0  1  1    1.0       1      0.0
+['BINARY', 7 rows, 5000 samples, 3 variables]
 
-In this case calling the problem inspector shows broken chains:
+In this case, you are likely to see broken chains (non-zero values in the 
+:code:`chain_breaks` column) and calling the problem inspector shows these:
 
 .. figure:: ../_static/inspector_AND_broken_chain.png
   :name: inspector_AND_broken_chain

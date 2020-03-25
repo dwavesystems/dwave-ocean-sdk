@@ -103,21 +103,19 @@ The following are two example formulations.
 2. Ocean's :doc:`dwavebinarycsp </docs_binarycsp/sdk_index>` tool enables the
    following formulation of an AND gate as a BQM:
 
-   .. code-block:: python
-
-       >>> import dwavebinarycsp
-       >>> import dwavebinarycsp.factories.constraint.gates as gates
-       >>> csp = dwavebinarycsp.ConstraintSatisfactionProblem(dwavebinarycsp.BINARY)
-       >>> csp.add_constraint(gates.and_gate(['x1', 'x2', 'y1']))  # add an AND gate
-       >>> bqm = dwavebinarycsp.stitch(csp)
+>>> import dwavebinarycsp
+>>> import dwavebinarycsp.factories.constraint.gates as gates
+>>> csp = dwavebinarycsp.ConstraintSatisfactionProblem(dwavebinarycsp.BINARY)
+>>> csp.add_constraint(gates.and_gate(['x1', 'x2', 'y1']))  # add an AND gate
+>>> bqm = dwavebinarycsp.stitch(csp)
 
 The resultant BQM of this AND gate may look like this:
 
 >>> bqm     # doctest: +SKIP
 BinaryQuadraticModel({'x1': 0.0, 'x2': 0.0, 'y1': 6.0},
 ...                  {('x2', 'x1'): 2.0, ('y1', 'x1'): -4.0, ('y1', 'x2'): -4.0},
-...                  -1.5,
-...                  Vartype.BINARY)
+...                  0,
+...                  'BINARY')
 
 The members of the two dicts are linear and quadratic coefficients, respectively,
 the third term is a constant offset associated with the model, and the fourth
