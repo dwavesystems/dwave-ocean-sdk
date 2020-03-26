@@ -23,7 +23,7 @@ exec(open("./dwaveoceansdk/package_info.py").read())
 
 
 install_requires = [
-    'dwave-cloud-client==0.7.0',
+    'dwave-cloud-client==0.7.1',
     'dwave-networkx==0.8.5',
     'dwave-system==0.9.1',
     'dwave-qbsolv==0.3.0',
