@@ -83,6 +83,12 @@ the D-Wave system, and merges the subproblem's samples into the latest problem s
 In this case, subproblems contain 30 variables in a rolling window that can cover up
 to 75 percent of the problem's variables.
 
+.. testsetup::
+
+   import hybrid
+   import functools
+   hybrid.QPUSubproblemAutoEmbeddingSampler = functools.partial(hybrid.QPUSubproblemAutoEmbeddingSampler, qpu_sampler=MockDWaveSampler())
+
 .. testcode::
 
     # Set a workflow of tabu search in parallel to submissions to a D-Wave system
@@ -93,7 +99,6 @@ to 75 percent of the problem's variables.
           hybrid.EnergyImpactDecomposer(size=30, rolling=True, rolling_history=0.75)
           | hybrid.QPUSubproblemAutoEmbeddingSampler()
           | hybrid.SplatComposer()) | hybrid.ArgMin(), convergence=3)
-
 
 Solve the Problem Using Hybrid Resources
 ========================================

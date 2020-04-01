@@ -100,7 +100,6 @@ import operator         # Used by dwave-binarycsp
 from dwave.system.testing import MockDWaveSampler
 import dwave.system
 dwave.system.DWaveSampler = MockDWaveSampler
-dwave.system.samplers.DWaveSampler = MockDWaveSampler
 
 from dwave.system import *
 from dwave.embedding import *
