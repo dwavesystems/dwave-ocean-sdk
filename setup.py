@@ -23,15 +23,15 @@ exec(open("./dwaveoceansdk/package_info.py").read())
 
 
 install_requires = [
-    'dwave-cloud-client==0.7.1',
+    'dwave-cloud-client==0.7.2',
     'dwave-networkx==0.8.6',
-    'dwave-system==0.9.2',
+    'dwave-system==0.9.4',
     'dwave-qbsolv==0.3.0',
     'dwave-hybrid==0.4.3',
     'dwave-neal==0.5.4',
     'dwave-tabu==0.2.2',
     'dimod==0.9.1',
-    'dwavebinarycsp==0.1.1',
+    'dwavebinarycsp==0.1.2',
     'minorminer==0.1.9',
     'penaltymodel==0.16.3',
     'penaltymodel-cache==0.4.1',
@@ -44,12 +44,12 @@ install_requires = [
 # docs/requirements.txt.
 extras_require = {
     ':(platform_machine == "x86_64" or platform_machine == "amd64" or platform_machine == "AMD64")': [
-        'penaltymodel-mip==0.2.2'
+        'penaltymodel-mip==0.2.3'
     ],
     ':platform_machine != "x86_64" and platform_machine != "amd64" and platform_machine != "AMD64"': [
-        'penaltymodel-maxgap==0.5.2'  # see note above
+        'penaltymodel-maxgap==0.5.3'  # see note above
     ],
-    'all': ['penaltymodel-mip==0.2.2', 'penaltymodel-maxgap==0.5.2']
+    'all': ['penaltymodel-mip==0.2.3', 'penaltymodel-maxgap==0.5.3']
 }
 
 
