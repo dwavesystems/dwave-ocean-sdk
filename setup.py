@@ -44,12 +44,12 @@ install_requires = [
 # docs/requirements.txt.
 extras_require = {
     ':(platform_machine == "x86_64" or platform_machine == "amd64" or platform_machine == "AMD64")': [
-        'penaltymodel-mip==0.2.2'
+        'penaltymodel-mip==0.2.3'
     ],
     ':platform_machine != "x86_64" and platform_machine != "amd64" and platform_machine != "AMD64"': [
         'penaltymodel-maxgap==0.5.3'  # see note above
     ],
-    'all': ['penaltymodel-mip==0.2.2', 'penaltymodel-maxgap==0.5.3']
+    'all': ['penaltymodel-mip==0.2.3', 'penaltymodel-maxgap==0.5.3']
 }
 
 
