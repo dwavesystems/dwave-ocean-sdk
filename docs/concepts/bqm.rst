@@ -47,6 +47,13 @@ The :class:`.BinaryQuadraticModel` class can contain both these models and its m
 convenient utilities for working with, and interworking between, the two representations
 of a problem.
 
+Binary quadratic models are sometimes referred to as (unconstrained) binary
+`quadratic programs`_. We use BQM to avoid confusion with the
+`bounded error quantum polynomial time`_ (BQP) complexity class.
+
+.. _quadratic programs: https://en.wikipedia.org/wiki/Quadratic_programming
+.. _bounded error quantum polynomial time: https://en.wikipedia.org/wiki/BQP
+
 These models and their use in solving problems on the D-Wave system is described
 in the following documentation:
 
