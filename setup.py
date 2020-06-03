@@ -30,7 +30,7 @@ install_requires = [
     'dwave-hybrid==0.4.3',
     'dwave-neal==0.5.4',
     'dwave-tabu==0.2.2',
-    'dimod==0.9.1',
+    'dimod==0.9.2',
     'dwavebinarycsp==0.1.2',
     'minorminer==0.1.9',
     'penaltymodel==0.16.3',
