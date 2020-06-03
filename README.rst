@@ -20,7 +20,7 @@ Installation
 
 .. installation-start-marker
 
-Compatible with Python 2 and 3:
+Compatible with Python 3.5+:
 
 .. code-block:: bash
 
