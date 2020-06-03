@@ -36,7 +36,7 @@ install_requires = [
     'penaltymodel==0.16.3',
     'penaltymodel-cache==0.4.1',
     'penaltymodel-lp==0.1.3',
-    'pyqubo>=0.3.0',
+    'pyqubo>=0.4.0',
     'dwave-inspector==0.2.1',
 ]
 
