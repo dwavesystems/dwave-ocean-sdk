@@ -94,7 +94,6 @@ to 75 percent of the problem's variables.
           | hybrid.QPUSubproblemAutoEmbeddingSampler()
           | hybrid.SplatComposer()) | hybrid.ArgMin(), convergence=3)
 
-
 Solve the Problem Using Hybrid Resources
 ========================================
 

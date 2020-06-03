@@ -99,8 +99,9 @@ import operator         # Used by dwave-binarycsp
 # Set up mocking for DWaveSampler 
 from dwave.system.testing import MockDWaveSampler
 import dwave.system
+import hybrid
 dwave.system.DWaveSampler = MockDWaveSampler
-dwave.system.samplers.DWaveSampler = MockDWaveSampler
+hybrid.samplers.DWaveSampler = MockDWaveSampler
 
 from dwave.system import *
 from dwave.embedding import *
