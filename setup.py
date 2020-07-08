@@ -37,7 +37,7 @@ install_requires = [
     'penaltymodel-cache==0.4.1',
     'penaltymodel-lp==0.1.3',
     'pyqubo>=0.4.0',
-    'dwave-inspector==0.2.1',
+    'dwave-inspector==0.2.2',
 ]
 
 # note: when updating the version of maxgap, it also must be updated in
