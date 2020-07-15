@@ -11,9 +11,8 @@
 #    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 #    See the License for the specific language governing permissions and
 #    limitations under the License.
-#
-# ================================================================================================
-__version__ = '2.3.0'
+
+__version__ = '2.4.0'
 __author__ = 'D-Wave Systems Inc.'
 __authoremail__ = 'tools@dwavesys.com'
 __description__ = 'Software development kit for open source D-Wave tools'
