@@ -10,24 +10,92 @@ jobs:
 
       - checkout
 
+      - run: &install-boost-linux-template
+          name: install boost
+          command: |
+            sudo apt-get install libboost-dev
+
+      - run:
+          name: install swig
+          command: |
+            sudo apt-get install swig
+
       - run:
           name: create virtualenv
           command: |
             python -m virtualenv env
+
+      - run: &initialize-submodules
+          name: initialize submodules
+          command: |
+            git submodule init
+            git submodule update
+
+      - run: &install-dwave-inspector-dependencies
+          name: install dwave-inspector dependencies
+          command: |
+            . env/bin/activate
+            pip install dwave-inspectorapp --extra-index=https://pypi.dwavesys.com/simple
+
+      - run: &install-dwave-system-dependencies
+          name: install dwave-system dependencies
+          command: |
+            . env/bin/activate
+            pip install dwave-drivers --extra-index=https://pypi.dwavesys.com/simple
+    
+      - run: &install-penaltymodel-dependencies
+          name: install penaltymodel dependencies
+          command: |
+            . env/bin/activate
+            cd penaltymodel
+            pip install -r requirements.txt
+            pip install penaltymodel_core/
+            pip install penaltymodel_cache/
+            pip install penaltymodel_maxgap/
+            pip install penaltymodel_mip/
+            pip install penaltymodel_lp/
+            cd ..
 
       - run: &install-dependencies-template
           name: install dependencies
           command: |
             . env/bin/activate
             python --version
+            for submodule in */; do [[ -f $submodule/tests/requirements.txt ]] && pip install -r $submodule/tests/requirements.txt; done
+            pip install cython wheel twine
             pip install .
-        
+
+      - run: &build-ext-template
+          name: build tests
+          command: |
+            . env/bin/activate
+            python --version
+            cd dimod
+            python setup.py build_ext --inplace
+            cd ../dwave-neal
+            python setup.py build_ext --inplace
+            cd ../dwave-tabu
+            python setup.py build_ext --inplace
+            cd ../minorminer
+            python setup.py build_ext --inplace
+            cd ../dwave-greedy
+            python setup.py build_ext --inplace
+            cd ..
+
       - run: &run-tests-template
           name: run unittests
           command: |
             . env/bin/activate
             python --version
             python -m unittest discover
+            for submodule in */; do [[ -d $submodule/tests ]] && (cd $submodule; pwd; python -m unittest discover; cd ../;) done
+            cd penaltymodel
+            python -m unittest discover -s penaltymodel_core/
+            python -m unittest discover -s penaltymodel_cache/
+            python -m unittest discover -s penaltymodel_maxgap/
+            python -m unittest discover -s penaltymodel_mip/
+            python -m unittest discover -s penaltymodel_lp/
+            cd ..
 
   test-3.7:
     <<: *full-test-template
@@ -83,7 +151,27 @@ jobs:
             python -m pip install virtualenv
             python -m virtualenv env
 
+      - run: &install-boost-osx-template
+          name: install boost
+          command: |
+            brew install boost
+
+      - run:
+          name: install swig
+          command: |
+            brew install swig
+
+      - run: *initialize-submodules
+
+      - run: *install-dwave-inspector-dependencies
+
+      - run: *install-dwave-system-dependencies
+
+      - run: *install-penaltymodel-dependencies
+
       - run: *install-dependencies-template
+
+      - run: *build-ext-template
         
       - run: *run-tests-template
 
