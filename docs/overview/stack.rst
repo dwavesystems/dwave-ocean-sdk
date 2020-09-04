@@ -103,23 +103,23 @@ each stage of the process to a layer of the Ocean stack.
         - Usage
         - Notes
       * - Classical
-        - :doc:`dimod </docs_dimod/sdk_index>` :code:`ExactSampler()`
+        - :doc:`dimod </docs_dimod/sdk_index>` :class:`~dimod.reference.samplers.ExactSolver`
         - Find all states for small (<20 variables) problems.
         - For code-development testing.
       * - Classical
-        - :doc:`dimod </docs_dimod/sdk_index>` :code:`RandomSampler()`
+        - :doc:`dimod </docs_dimod/sdk_index>` :class:`~dimod.reference.samplers.random_sampler.RandomSampler` 
         - Random sampler for testing.
         - For code-development testing.
       * - Classical
-        - :doc:`dimod </docs_dimod/sdk_index>` :code:`SimulatedAnnealingSampler()`
+        - :doc:`dimod </docs_dimod/sdk_index>` :class:`~dimod.reference.samplers.simulated_annealing.SimulatedAnnealingSampler`
         - Simulated annealing sampler for testing.
         - For code-development testing.
       * - Classical
-        - :doc:`dwave-neal </docs_neal/sdk_index>` :code:`SimulatedAnnealingSampler()`
+        - :doc:`dwave-neal </docs_neal/sdk_index>` :class:`~neal.sampler.SimulatedAnnealingSampler`
         - Simulated annealing sampler.
         -
       * - Quantum
-        - :doc:`dwave-system </docs_system/sdk_index>` :code:`DWaveSampler()`
+        - :doc:`dwave-system </docs_system/sdk_index>` :class:`~dwave.system.samplers.DWaveSampler`
         - Quick incorporation of the D-Wave system as a sampler.
         - Typically part of a composite that handles :term:`minor-embedding`.
       * - Quantum
@@ -127,11 +127,11 @@ each stage of the process to a layer of the Ocean stack.
         - D-Wave system as a sampler.\ [#]_
         - For low-level control of problem submission.
       * - Hybrid
-        - :doc:`dwave-hybrid </docs_hybrid/sdk_index>` :code:`KerberosSampler()`
+        - :doc:`dwave-hybrid </docs_hybrid/sdk_index>` :class:`~hybrid.reference.kerberos.KerberosSampler`
         - *dimod*-compatible hybrid asynchronous decomposition sampler.
         - For problems of arbitrary structure and size.
       * - Hybrid
-        - `Leap <https://cloud.dwavesys.com/leap/>`_\ 's :code:`LeapHybridSampler()`
+        - `Leap <https://cloud.dwavesys.com/leap/>`_\ 's :class:`~dwave.system.samplers.LeapHybridSampler`
         - Cloud-based quantum-classical hybrid solver.
         - For problems of arbitrary structure and size, especially large problems.
       * -
@@ -157,24 +157,24 @@ each stage of the process to a layer of the Ocean stack.
       * - Tool & Composite
         - Usage
         - Notes
-      * - :doc:`dwave-system </docs_system/sdk_index>` :code:`EmbeddingComposite()`
+      * - :doc:`dwave-system </docs_system/sdk_index>` :class:`~dwave.system.composites.EmbeddingComposite`
         - Maps unstructured problems to a structured sampler.
         - Enables quick incorporation of the D-Wave system as a sampler by handling the :term:`minor-embedding`
           to the QPU's :term:`Chimera` topology of qubits.
-      * - :doc:`dwave-system </docs_system/sdk_index>` :code:`FixedEmbeddingComposite()`
+      * - :doc:`dwave-system </docs_system/sdk_index>` :class:`~dwave.system.composites.FixedEmbeddingComposite`
         - Maps unstructured problems to a structured sampler.
         - Uses a pre-calculated minor-embedding for improved performance.
-      * - :doc:`dwave-system </docs_system/sdk_index>` :code:`TilingComposite()`
+      * - :doc:`dwave-system </docs_system/sdk_index>` :class:`~dwave.system.composites.TilingComposite`
         - Tiles small problems multiple times to a Chimera-structured sampler.
         - Enables parallel sampling for small problems.
-      * - :doc:`dwave-system </docs_system/sdk_index>` :code:`VirtualGraphComposite()`
+      * - :doc:`dwave-system </docs_system/sdk_index>` :class:`~dwave.system.composites.VirtualGraphComposite`
         - Uses the D-Wave virtual graph feature for improved minor-embedding.
         - Calibrates qubits in chains to compensate for the effects of biases and enables
           easy creation, optimization, use, and reuse of an embedding for a given working graph.
-      * - :doc:`dimod </docs_dimod/sdk_index>` :code:`SpinReversalTransformComposite()`
+      * - :doc:`dimod </docs_dimod/sdk_index>` :class:`~dimod.reference.composites.spin_transform.SpinReversalTransformComposite`
         - Applies spin reversal transform preprocessing.
         - Improves QPU results by reducing the impact of possible analog and systematic errors.
-      * - :doc:`dimod </docs_dimod/sdk_index>` :code:`StructureComposite()`
+      * - :doc:`dimod </docs_dimod/sdk_index>` :class:`~dimod.reference.composites.structure.StructureComposite`
         - Creates a structured composed sampler from an unstructured sampler.
         - Maps from a problem graph (e.g., a square graph) to a sampler's graph.
 
@@ -273,7 +273,7 @@ work your way down the Ocean stack.
    * - Embed
      - Consider whether your problem has repeated elements, such as logic gates, when
        deciding what tool to use to :term:`minor-embed` your BQM on the QPU. You might
-       start with fully automated embedding (using :code:`EmbeddingComposite()` for example)
+       start with fully automated embedding (using :class:`~dwave.system.composites.EmbeddingComposite` for example)
        and then seek performance improvements through :doc:`minorminer </docs_minorminer/source/sdk_index>`.
    * - Configure the QPU
      - Use spin-reversal transforms to reduce errors, for example, or examine the annealing

@@ -5,8 +5,10 @@ Structural Imbalance in a Social Network
 ========================================
 
 This example solves a structural-imbalance problem, similar to the
-`Leap <https://cloud.dwavesys.com/leap/>`_ demo and Jupyter Notebook, to demonstrate
-using Leap's hybrid solver service on a problem of arbitrary structure and size.
+`Leap <https://cloud.dwavesys.com/leap/>`_ demo and 
+`Jupyter Notebook <https://github.com/dwave-examples/structural-imbalance-notebook>`_, 
+to demonstrate using Leap's hybrid solver service on a problem of arbitrary 
+structure and size.
 
 *Social networks* map relationships between people or organizations onto graphs, with
 the people/organizations as nodes and relationships as edges; for example,
@@ -75,7 +77,8 @@ Solve the Problem by Sampling
 =============================
 
 As mentioned above, this example uses Ocean's :doc:`dwave_networkx </docs_dnx/sdk_index>`
-function, `structural_imbalance()`, to create the appropriate BQM to represent
+function, :func:`~dwave_networkx.algorithms.social.structural_imbalance`, to create the 
+appropriate BQM to represent
 the problem graph and return a solution. It requires just the selection of a :term:`sampler`.
 
 D-Wave's quantum cloud service provides cloud-based hybrid solvers you can submit arbitrary
