@@ -27,13 +27,13 @@ Solution Steps
 
 Section :ref:`solving_problems` describes the process of solving problems on the quantum
 computer in two steps: (1) Formulate the problem as a :term:`binary quadratic model` (BQM)
-and (2) Solve the BQM with a D-wave system or classical :term:`sampler`. In this example,
-we mathematically formulate the BQM and use Ocean tools to solve it on a D-Wave system.
+and (2) Solve the BQM with a D-wave system or classical :term:`sampler`. This example
+mathematically formulates the BQM and uses Ocean tools to solve it on a D-Wave system.
 
 Formulate the NOT Gate as a BQM
 ===============================
 
-We use a :term:`sampler` like the D-Wave system to solve binary quadratic models (BQM)\ [#]_\:
+You use a :term:`sampler` like the D-Wave system to solve binary quadratic models (BQM)\ [#]_\:
 given :math:`M` variables :math:`x_1,...,x_N`, where each variable :math:`x_i` can
 have binary values :math:`0` or :math:`1`, the system tries to find assignments of values
 that minimize
@@ -89,7 +89,7 @@ in the :ref:`multi_gate` example.
 Representing the Problem With a Penalty Function
 ------------------------------------------------
 
-This example demonstrates a mathematical formulation of the BQM. We can represent a NOT gate,
+This example demonstrates a mathematical formulation of the BQM. You can represent a NOT gate,
 :math:`z \Leftrightarrow \neg x`, where :math:`x` is the
 gate's input and :math:`z` its output, using a :term:`penalty function`:
 
@@ -151,7 +151,7 @@ Formulating the Problem as a QUBO
 
 Sometimes penalty functions are of cubic or higher degree and must be
 reformulated as quadratic to be mapped to a binary quadratic model. For this
-penalty function we just need to drop the freestanding constant: the function's
+penalty function you just need to drop the freestanding constant: the function's
 values are simply shifted by :math:`-1` but still those representing valid states of
 the NOT gate are lower than those representing invalid states.
 The remaining terms of the penalty function,
@@ -182,9 +182,9 @@ for more information about formulating problems as QUBOs.
 Solve the Problem by Sampling
 =============================
 
-We now solve on a D-Wave system using sampler :class:`~dwave.system.samplers.DWaveSampler` 
-from Ocean software's :doc:`dwave-system </docs_system/sdk_index>`. We also use
-its :class:`~dwave.system.composites.EmbeddingComposite` composite to map our 
+Now solve on a D-Wave system using sampler :class:`~dwave.system.samplers.DWaveSampler` 
+from Ocean software's :doc:`dwave-system </docs_system/sdk_index>`. Also use
+its :class:`~dwave.system.composites.EmbeddingComposite` composite to map the 
 unstructured problem (variables such as :math:`x_2` etc.) to the sampler's graph structure 
 (the QPU's numerically indexed qubits) in a process known as :term:`minor-embedding`.
 
@@ -197,10 +197,10 @@ The next code sets up a D-Wave system as the sampler.
 >>> from dwave.system import DWaveSampler, EmbeddingComposite
 >>> sampler = EmbeddingComposite(DWaveSampler())    
 
-Because the sampled solution is probabilistic, returned solutions may differ between runs. Typically,
-when submitting a problem to the system, we ask for many samples, not just one. This way, we see multiple
-“best” answers and reduce the probability of settling on a suboptimal answer. Below, we
-ask for 5000 samples.
+Because the sampled solution is probabilistic, returned solutions may differ between runs. 
+Typically, when submitting a problem to the system, you ask for many samples, not just one. 
+This way, you see multiple “best” answers and reduce the probability of settling on a 
+suboptimal answer. Below, ask for 5000 samples.
 
 >>> Q = {('x', 'x'): -1, ('x', 'z'): 2, ('z', 'x'): 0, ('z', 'z'): -1}
 >>> sampleset = sampler.sample_qubo(Q, num_reads=5000)     

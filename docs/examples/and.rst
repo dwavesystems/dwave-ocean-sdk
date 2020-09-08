@@ -28,16 +28,16 @@ Solution Steps
 
 Section :ref:`solving_problems` describes the process of solving problems on the quantum
 computer in two steps: (1) Formulate the problem as a :term:`binary quadratic model` (BQM)
-and (2) Solve the BQM with a D-wave system or classical :term:`sampler`. In this example,
-we mathematically formulate the BQM and use Ocean tools to solve it on a D-Wave system.
+and (2) Solve the BQM with a D-wave system or classical :term:`sampler`. This example
+mathematically formulates the BQM and uses Ocean tools to solve it on a D-Wave system.
 
 Formulate the AND Gate as a BQM
 ===============================
 
 Ocean tools can automate the representation of logic gates as a BQM, as demonstrated
 in the :ref:`multi_gate` example. The :ref:`not` example presents a mathematical
-formulation of a BQM for a Boolean gate in detail. Here we briefly repeat the steps of mathematically
-formulating a BQM while adding details on the underlying physical processes.
+formulation of a BQM for a Boolean gate in detail. This example briefly repeats the steps 
+of mathematically formulating a BQM while adding details on the underlying physical processes.
 
 A D-Wave quantum processing unit (:term:`QPU`) is a chip with interconnected qubits; for example,
 a D-Wave 2000Q has up to 2048 qubits connected in a :term:`Chimera` topology. Programming it
@@ -63,7 +63,7 @@ the D-Wave system solves your problem by finding the low-energy states.
 
        where :math:`h_i` are biases and :math:`J_{i,j}` couplings between spins.
 
-Here we use another binary quadratic model (:term:`BQM`), the computer-science equivalent of the Ising model,
+This example uses another binary quadratic model (:term:`BQM`), the computer-science equivalent of the Ising model,
 the :term:`QUBO`: given :math:`M` variables :math:`x_1,...,x_N`, where each variable :math:`x_i` can
 have binary values :math:`0` or :math:`1`, the system tries to find assignments of values
 that minimize
@@ -132,10 +132,10 @@ The line of code below sets the QUBO coefficients for this AND gate.
 Solve the Problem by Sampling: Automated Minor-Embedding
 ========================================================
 
-For reference, we first solve with the same steps used in the :ref:`not` example
+For reference, first solve with the same steps used in the :ref:`not` example
 before solving again while manually controlling additional parameters.
 
-Again we use sampler :class:`~dwave.system.samplers.DWaveSampler` from Ocean software's
+Again use sampler :class:`~dwave.system.samplers.DWaveSampler` from Ocean software's
 :doc:`dwave-system </docs_system/sdk_index>` and
 its :class:`~dwave.system.composites.EmbeddingComposite` composite to :term:`minor-embed` 
 our unstructured problem (variables x1, x2, and z) on the sampler's graph structure (the 
@@ -151,7 +151,7 @@ The next code sets up a D-Wave system as the sampler.
 >>> sampler = DWaveSampler()   
 >>> sampler_embedded = EmbeddingComposite(sampler)       
 
-As before, we ask for 5000 samples.
+As before, ask for 5000 samples.
 
 >>> sampleset = sampler_embedded.sample_qubo(Q, num_reads=5000)      
 >>> print(sampleset)   # doctest: +SKIP
@@ -182,29 +182,29 @@ example, :doc:`dwave-system </docs_system/sdk_index>`
 Minor-Embedding a NOT Gate
 --------------------------
 
-For simplicity, we first return to the NOT gate. The :ref:`not`
+For simplicity, first return to the NOT gate. The :ref:`not`
 example found that a NOT gate can be represented by a BQM in QUBO form with the
 following coefficients:
 
 >>> Q_not = {('x', 'x'): -1, ('x', 'z'): 2, ('z', 'x'): 0, ('z', 'z'): -1}
 
 Minor embedding maps the two problem variables x and z to the indexed qubits of the
-D-Wave QPU. Here we do this mapping ourselves.
+D-Wave QPU. Here, do this mapping yourself.
 
-The next line of code looks at properties of the sampler. We select the first node,
+The next line of code looks at properties of the sampler. Select the first node,
 which on a QPU is a qubit, and print its adjacent nodes, i.e., coupled qubits.
 
 >>> print(sampler.adjacency[sampler.nodelist[0]])      # doctest: +SKIP
 {128, 4, 5, 6, 7}
 
-For the D-Wave 2000Q system the above code ran on, we see that the first available qubit
+For the D-Wave 2000Q system the above code ran on, you see that the first available qubit
 is adjacent to qubit 4 and four others. On an Advantage system with its Pegasus 
 topology, you might see an output such as this:
 
 >>> print(sampler.adjacency[sampler.nodelist[0]])      # doctest: +SKIP
 {15}
 
-We can map the NOT problem's two linear coefficients and single quadratic coefficient,
+You can map the NOT problem's two linear coefficients and single quadratic coefficient,
 :math:`q_1=q_2=-1` and :math:`q_{1,2}=2`, to biases on the D-Wave 2000Q's qubits 0 and 4 
 and coupling (0, 4). The figure below shows a minor embedding of the NOT gate into 
 the D-Wave 2000Q QPU unit cell (four horizontal qubits connected to four vertical qubits 
@@ -230,7 +230,7 @@ that indeed the two selected qubits are adjacent (coupled).
 >>> print(sampler_embedded.adjacency["x"])
 {'z'}
 
-As before, we ask for 5000 samples.
+As before, ask for 5000 samples.
 
 >>> sampleset = sampler_embedded.sample_qubo(Q_not, num_reads=5000)      
 >>> print(sampleset)   # doctest: +SKIP

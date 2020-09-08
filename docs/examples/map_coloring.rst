@@ -47,7 +47,7 @@ Solution Steps
 ==============
 
 Following the standard solution process described in Section :ref:`solving_problems`,
-we (1) formulate the problem as a :term:`binary quadratic model` (BQM) by using unary
+(1) formulate the problem as a :term:`binary quadratic model` (BQM) by using unary
 encoding to represent the :math:`C` colors: each region is represented by :math:`C`
 variables, one for each possible color, which is set to value :math:`1` if selected, while the
 remaining :math:`C-1` variables are :math:`0`. (2) Solve the BQM with a D-Wave system

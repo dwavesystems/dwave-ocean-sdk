@@ -40,7 +40,7 @@ Solution Steps
 Section :ref:`solving_problems` describes the process of solving problems on the quantum
 computer in two steps: (1) Formulate the problem as a :term:`binary quadratic model` (BQM)
 and (2) Solve the BQM with a D-wave system or classical :term:`sampler`. In this example,
-Ocean's *dwavebinarycsp* tool builds the BQM based on the constraints we formulate.
+Ocean's *dwavebinarycsp* tool builds the BQM based on the constraints you formulate.
 
 Formulate the Problem
 =====================
@@ -127,13 +127,13 @@ Solve the Problem by Sampling
 =============================
 
 For small numbers of variables, even your computer's CPU can solve CSPs
-quickly. Here we solve both classically on your CPU and on the quantum computer.
+quickly. Here you solve both classically on your CPU and on the quantum computer.
 
 Solving Classically on a CPU
 ----------------------------
 
 Before using the D-Wave system, it can sometimes be helpful to test code locally.
-Here we select one of Ocean software's test samplers to solve classically on a CPU.
+Here, select one of Ocean software's test samplers to solve classically on a CPU.
 Ocean's :doc:`dimod </docs_dimod/sdk_index>` provides a sampler that
 simply returns the BQM's value (energy) for every possible assignment of variable values.
 
@@ -180,8 +180,8 @@ During business hours at office, you can schedule a long meeting that is mandato
 Solving on a D-Wave System
 --------------------------
 
-We now solve on a D-Wave system using sampler :class:`~dwave.system.samplers.DWaveSampler` 
-from Ocean software's :doc:`dwave-system </docs_system/sdk_index>`. We also use
+Now solve on a D-Wave system using sampler :class:`~dwave.system.samplers.DWaveSampler` 
+from Ocean software's :doc:`dwave-system </docs_system/sdk_index>`. Also use
 its :class:`~dwave.system.composites.EmbeddingComposite` composite to map our unstructured 
 problem (variables such as :code:`time` etc.) to the sampler's graph structure (the QPU's numerically
 indexed qubits) in a process known as :term:`minor-embedding`. The next code sets up
@@ -194,10 +194,10 @@ a D-Wave system as the sampler.
 >>> from dwave.system import DWaveSampler, EmbeddingComposite
 >>> sampler = EmbeddingComposite(DWaveSampler())      
 
-Because the sampled solution is probabilistic, returned solutions may differ between runs. Typically,
-when submitting a problem to the system, we ask for many samples, not just one. This way, we see multiple
-“best” answers and reduce the probability of settling on a suboptimal answer. Below, we
-ask for 5000 samples.
+Because the sampled solution is probabilistic, returned solutions may differ between runs. 
+Typically, when submitting a problem to the system, you ask for many samples, not just one. 
+This way, you see multiple “best” answers and reduce the probability of settling on a 
+suboptimal answer. Below, ask for 5000 samples.
 
 >>> sampleset = sampler.sample(bqm, num_reads=5000)      
 

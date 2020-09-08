@@ -131,7 +131,7 @@ logic gates:
 .. note:: `dwavebinarycsp` works best for constraints of up to 4 variables; it may not
       function as expected for constraints of over 8 variables.
 
-The next line of code converts the constraints into a BQM that we solve by sampling.
+The next line of code converts the constraints into a BQM that you solve by sampling.
 
 .. testcode::
 
@@ -171,7 +171,7 @@ The next code sets up a D-Wave system as the sampler.
     # Set up a D-Wave system as the sampler
     sampler = EmbeddingComposite(DWaveSampler())
 
-Next, we ask for 1000 samples and separate those that satisfy the CSP from
+Next, ask for 1000 samples and separate those that satisfy the CSP from
 those that fail to do so.
 
 .. testcode::
