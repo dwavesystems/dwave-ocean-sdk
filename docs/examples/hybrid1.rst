@@ -27,6 +27,10 @@ quantum resources are used as an accelerator much as GPUs are for graphics.
       but with a degree of three (each node connects to three other nodes). You can
       increase the number of nodes substantially as long as you keep the graph sparse.
 
+For more detailed examples of using :doc:`dwave-hybrid </docs_hybrid/sdk_index>` 
+to combine classical and quantum resources in solving your problem, see the
+`Hybrid Computing Jupyter Notebooks <https://github.com/dwave-examples/structural-imbalance-notebook>`_.
+
 Example Requirements
 ====================
 

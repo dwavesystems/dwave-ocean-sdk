@@ -36,8 +36,8 @@ from the :doc:`dwave_networkx </docs_dnx/sdk_index>` project using the
 >>> C16 = dnx.chimera_graph(16)
 
 Next, you need a software sampler. Use the
-:class:`neal.SimulatedAnnealingSampler` found in :doc:`dwave_neal </docs_neal/sdk_index>`,
-though the :class:`tabu.TabuSampler` from :doc:`dwave-tabu </docs_tabu/sdk_index>`
+:class:`~neal.sampler.SimulatedAnnealingSampler` found in :doc:`dwave_neal </docs_neal/sdk_index>`,
+though the :class:`~tabu.sampler.TabuSampler` from :doc:`dwave-tabu </docs_tabu/sdk_index>`
 would work equally well.
 
 .. dev note: we should maybe add a link to somewhere explaining the difference
@@ -45,9 +45,9 @@ would work equally well.
 
 >>> classical_sampler = neal.SimulatedAnnealingSampler()
 
-Now, with a classical sampler and the desired graph, you can use
-:doc:`dimod </docs_dimod/sdk_index>`'s :class:`dimod.StructuredComposite` to create
-a Chimera-structured sampler.
+Now, with a classical sampler and the desired graph, you can use 
+:doc:`dimod </docs_dimod/sdk_index>`'s :class:`~dimod.reference.composites.structure.StructureComposite` 
+to create a Chimera-structured sampler.
 
 >>> sampler = dimod.StructureComposite(classical_sampler, C16.nodes, C16.edges)
 
@@ -58,11 +58,11 @@ This sampler accepts Chimera-structured problems. In this case, create an
 >>> J = {(u, v): 1 for u, v in C16.edges}
 >>> sampleset = sampler.sample_ising(h, J)
 
-You can even use the sampler with the :class:`dwave.system.EmbeddingComposite`
+You can even use the sampler with the :class:`~dwave.system.composites.EmbeddingComposite`.
 
 >>> embedding_sampler = EmbeddingComposite(sampler)
 
-Finally, you can confirm that the sampler matches the :obj:`dwave.system.DWaveSampler`'s
+Finally, you can confirm that the sampler matches the :class:`~dwave.system.samplers.DWaveSampler`\ 's
 structure. Make sure that the :term:`QPU` has the same topology you have
 been simulating. Also note that the :term:`working graph` of the QPU is usually
 a :term:`subgraph` of the full :term:`hardware graph`.
@@ -84,7 +84,7 @@ Another topology of interest is the :term:`Pegasus` topology.
 
 As above, you can use the generator function :func:`dwave_networkx.pegasus_graph` found in
 :doc:`dwave_networkx </docs_dnx/sdk_index>` and the
-:class:`neal.SimulatedAnnealingSampler` found in :doc:`dwave_neal </docs_neal/sdk_index>`
+:class:`~neal.sampler.SimulatedAnnealingSampler` found in :doc:`dwave_neal </docs_neal/sdk_index>`
 to construct a sampler.
 
 >>> P6 = dnx.pegasus_graph(6)
@@ -94,7 +94,7 @@ to construct a sampler.
 Working With Embeddings
 -----------------------
 
-The example above using the :class:`~dwave.system.EmbeddingComposite`
+The example above using the :class:`~dwave.system.composites.EmbeddingComposite`
 hints that you might be interested in trying :term:`embedding` with different
 topologies.
 
