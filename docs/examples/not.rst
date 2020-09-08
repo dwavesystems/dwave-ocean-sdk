@@ -33,7 +33,7 @@ we mathematically formulate the BQM and use Ocean tools to solve it on a D-Wave 
 Formulate the NOT Gate as a BQM
 ===============================
 
-We use a :term:`sampler` like the D-Wave systems to solve binary quadratic models (BQM)\ [#]_\:
+We use a :term:`sampler` like the D-Wave system to solve binary quadratic models (BQM)\ [#]_\:
 given :math:`M` variables :math:`x_1,...,x_N`, where each variable :math:`x_i` can
 have binary values :math:`0` or :math:`1`, the system tries to find assignments of values
 that minimize
@@ -142,7 +142,8 @@ assignments of variables that represent invalid states of a NOT gate, the BQM ba
 on this penalty function has minimal values (lowest energy states) for variable values
 that also represent a NOT gate.
 
-See the system documentation for more information about penalty functions in general,
+See the :std:doc:`D-Wave Problem-Solving Handbook <sysdocs_gettingstarted:doc_handbook>`
+for more information about penalty functions in general,
 and penalty functions for representing Boolean operations.
 
 Formulating the Problem as a QUBO
@@ -175,16 +176,17 @@ Often it is convenient to format the coefficients as an upper-triangular matrix:
 
      Q = \begin{bmatrix} -1 & 2 \\ 0 & -1 \end{bmatrix}
 
-See the system documentation for more information about formulating problems as QUBOs.
+See the :std:doc:`D-Wave Problem-Solving Handbook <sysdocs_gettingstarted:doc_handbook>` 
+for more information about formulating problems as QUBOs.
 
 Solve the Problem by Sampling
 =============================
 
-We now solve on a D-Wave system using sampler *DWaveSampler()* from Ocean software's
-:doc:`dwave-system </docs_system/sdk_index>`. We also use
-its *EmbeddingComposite()* composite to map our unstructured problem (variables
-such as :code:`time` etc.) to the sampler's graph structure (the QPU's numerically
-indexed qubits) in a process known as :term:`minor-embedding`.
+We now solve on a D-Wave system using sampler :class:`~dwave.system.samplers.DWaveSampler` 
+from Ocean software's :doc:`dwave-system </docs_system/sdk_index>`. We also use
+its :class:`~dwave.system.composites.EmbeddingComposite` composite to map our 
+unstructured problem (variables such as :math:`x_2` etc.) to the sampler's graph structure 
+(the QPU's numerically indexed qubits) in a process known as :term:`minor-embedding`.
 
 The next code sets up a D-Wave system as the sampler.
 
@@ -224,5 +226,5 @@ In the terminology of :ref:`oceanstack`\ , Ocean tools moved the original proble
 following layers:
 
 * The sampler API is a :term:`QUBO` formulation of the problem.
-* The sampler is *DWaveSampler()*.
+* The sampler is :class:`~dwave.system.samplers.DWaveSampler`.
 * The compute resource is a D-Wave system.

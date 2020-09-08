@@ -92,7 +92,8 @@ Solving on a D-Wave System
 
 We now use a sampler from Ocean software's
 :doc:`dwave-system </docs_system/sdk_index>` to solve on a
-D-Wave system. In addition to *DWaveSampler()*, we use *EmbeddingComposite()*, which maps
+D-Wave system. In addition to :class:`~dwave.system.samplers.DWaveSampler`, we use 
+:class:`~dwave.system.composites.EmbeddingComposite`, which maps
 unstructured problems to the graph structure of the selected sampler, a process known as
 :term:`minor-embedding`: our problem star graph must be mapped to the QPU's numerically
 indexed qubits.
@@ -172,5 +173,6 @@ following layers:
   vertex cover is a hard problem that can be solved on D-Wave systems.
 * Sampler API: the Ocean tool internally builds a BQM with lowest values ("ground states") that
   correspond to a minimum vertex cover and uses our selected sampler to solve it.
-* Sampler: classical *ExactSolver()* and then *DWaveSampler()*.
+* Sampler: classical :class:`~dimod.reference.samplers.ExactSolver` and then 
+  :class:`~dwave.system.samplers.DWaveSampler`.
 * Compute resource: first a local CPU then a D-Wave system.

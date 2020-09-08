@@ -62,7 +62,7 @@ Formulate the Problem
 =====================
 
 For a social graph, `G`, this example simply builds a random sparse graph---using the
-`NetworkX <https://networkx.github.io/>`_ `random_geometric_graph()` function, which
+`NetworkX <https://networkx.github.io/>`_ :code:`random_geometric_graph()` function, which
 places uniformly at random a specified number of nodes, `problem_node_count`, in a
 unit cube, joining edges of any two if the distance is below a given radius---and randomly
 assigns :math:`0, 1` signs to represent friendly and hostile relationships.
@@ -89,8 +89,8 @@ solvers can relieve you of the burden of any current and future development and 
 of hybrid algorithms that best solve your problem.
 
 Ocean software's :doc:`dwave-system </docs_system/sdk_index>`
-`LeapHybridSampler` class enables you to easily incorporate Leap's hybrid solvers
-into your application:
+:class:`~dwave.system.samplers.LeapHybridSampler` class enables you to easily incorporate 
+Leap's hybrid solvers into your application:
 
 >>> from dwave.system import LeapHybridSampler
 >>> sampler = LeapHybridSampler()     # doctest: +SKIP

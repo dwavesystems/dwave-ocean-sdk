@@ -4,7 +4,7 @@
 Constrained Scheduling
 ======================
 
-This example solves a binary *constraint satisfaction problem* (CSP). CSPs require that all
+This example solves a binary *constraint satisfaction problem* (:term:`CSP`). CSPs require that all
 a problem's variables be assigned values that result in the satisfying of all constraints.
 Here, the constraints are a company's policy for scheduling meetings:
 
@@ -180,10 +180,10 @@ During business hours at office, you can schedule a long meeting that is mandato
 Solving on a D-Wave System
 --------------------------
 
-We now solve on a D-Wave system using sampler *DWaveSampler()* from Ocean software's
-:doc:`dwave-system </docs_system/sdk_index>`. We also use
-its *EmbeddingComposite()* composite to map our unstructured problem (variables
-such as :code:`time` etc.) to the sampler's graph structure (the QPU's numerically
+We now solve on a D-Wave system using sampler :class:`~dwave.system.samplers.DWaveSampler` 
+from Ocean software's :doc:`dwave-system </docs_system/sdk_index>`. We also use
+its :class:`~dwave.system.composites.EmbeddingComposite` composite to map our unstructured 
+problem (variables such as :code:`time` etc.) to the sampler's graph structure (the QPU's numerically
 indexed qubits) in a process known as :term:`minor-embedding`. The next code sets up
 a D-Wave system as the sampler.
 
@@ -234,6 +234,7 @@ following layers:
 * Method: constraint compilation.
 * Sampler API: the Ocean tool builds a BQM with lowest values ("ground states") that
   correspond to assignments of variables that satisfy all constraints.
-* Sampler: classical *ExactSolver()* and then *DWaveSampler()*.
+* Sampler: classical :class:`~dimod.reference.samplers.ExactSolver` and then 
+  :class:`~dwave.system.samplers.DWaveSampler`.
 * Compute resource: first a local CPU then a D-Wave system.
 
