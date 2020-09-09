@@ -150,31 +150,7 @@ Naming
 Format
 ~~~~~~
 
-* When starting a new C++ project, copy the .clang-format file included here.
-* Our style is based on Google (as opposed to LLVM, Chromium, Mozilla, or Webkit) with minor differences.
-* :code:`ColumnLimit` is set to :code:`120`, as specified in `Coding Conventions`_.
-* :code:`NamespaceIndentation` is set to :code:`Inner` as a middle ground between :code:`None` (Google) and :code:`All`,
-  such that every line in a file defining a namespace isn't indented, but nested namespaces are easily spotted.
-* Various indent-width specifiers are scaled by a factor of 2 such that the base indent is :code:`4`, as specified in
-  `Coding Conventions`_, instead of :code:`2` (Google). This is especially helpful for readibility in cases like
-
-  .. code-block:: c++
-
-    if (condition) {
-        foo();
-    } else {
-        bar();
-    }
-
-  as opposed to
-
-  .. code-block:: c++
-
-    if (condition) {
-      foo();
-    } else {
-      bar();
-    }
+When starting a new C++ project, use clang-format with the .clang-format file included here.
 
 Additional Style
 ~~~~~~~~~~~~~~~~
