@@ -134,8 +134,21 @@ Documentation
 C++
 ---
 
-.clang-format
-~~~~~~~~~~~~~
+C++ Version
+~~~~~~~~~~~
+
+C++ code should be compatible with standard C++11.
+
+Naming
+~~~~~~
+* File names should be lowercase with underscores and end with ``.cpp`` or ``.hpp``.
+* Type names should be PascalCase. i.e. :code:`AdjArrayBQM`
+* Function names should be lowercase with underscores. i.e. :code:`num_variables()`.
+* Variables names should be lowercase with underscores. Private data members should have a trailing underscore.
+* Macros should be ``ALL_CAPS_WITH_UNDERSCORES``.
+
+Format
+~~~~~~
 
 * When starting a new C++ project, copy the .clang-format file included here.
 * Our style is based on Google (as opposed to LLVM, Chromium, Mozilla, or Webkit) with minor differences.
@@ -183,8 +196,6 @@ as opposed to
 .. code-block:: c++
 
   if (a) return;
-
-This could potentially be enforced by :code:`clang-tidy`.
 
 Versioning Scheme
 -----------------
