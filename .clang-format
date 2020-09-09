@@ -10,5 +10,4 @@ AccessModifierOffset: -2
 ConstructorInitializerIndentWidth: 8
 ContinuationIndentWidth: 8
 IndentWidth: 4
-ObjCBlockIndentWidth: 4
 ...
