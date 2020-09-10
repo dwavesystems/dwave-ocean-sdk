@@ -53,7 +53,7 @@ problem of finding such a set is NP hard.
 
    A five-node star graph.
 
-First, we run the code snippet below to create a star graph where node 0 is hub to four other nodes.
+First, run the code snippet below to create a star graph where node 0 is hub to four other nodes.
 The code uses `NetworkX <https://networkx.github.io/documentation/stable/index.html>`_\ , which is
 part of your *dwave_networkx* or *dwave-ocean-sdk* installation.
 
@@ -64,14 +64,14 @@ Solve the Problem by Sampling
 =============================
 
 For small numbers of variables, even your computer's CPU can solve minimum vertex covers
-quickly. In this example, we demonstrate how to solve the problem both classically
+quickly. This example demonstrates how to solve the problem both classically
 on your CPU and on the quantum computer.
 
 Solving Classically on a CPU
 ----------------------------
 
 Before using the D-Wave system, it can sometimes be helpful to test code locally.
-Here we select one of Ocean software's test samplers to solve classically on a CPU.
+Here, select one of Ocean software's test samplers to solve classically on a CPU.
 Ocean's :doc:`dimod </docs_dimod/sdk_index>` provides a sampler that
 simply returns the BQM's value for every possible assignment of variable values.
 
@@ -90,9 +90,10 @@ BQM: given the problem graph it returns a solution to a BQM it creates internall
 Solving on a D-Wave System
 --------------------------
 
-We now use a sampler from Ocean software's
+Now use a sampler from Ocean software's
 :doc:`dwave-system </docs_system/sdk_index>` to solve on a
-D-Wave system. In addition to *DWaveSampler()*, we use *EmbeddingComposite()*, which maps
+D-Wave system. In addition to :class:`~dwave.system.samplers.DWaveSampler`, use 
+:class:`~dwave.system.composites.EmbeddingComposite`, which maps
 unstructured problems to the graph structure of the selected sampler, a process known as
 :term:`minor-embedding`: our problem star graph must be mapped to the QPU's numerically
 indexed qubits.
@@ -172,5 +173,6 @@ following layers:
   vertex cover is a hard problem that can be solved on D-Wave systems.
 * Sampler API: the Ocean tool internally builds a BQM with lowest values ("ground states") that
   correspond to a minimum vertex cover and uses our selected sampler to solve it.
-* Sampler: classical *ExactSolver()* and then *DWaveSampler()*.
+* Sampler: classical :class:`~dimod.reference.samplers.ExactSolver` and then 
+  :class:`~dwave.system.samplers.DWaveSampler`.
 * Compute resource: first a local CPU then a D-Wave system.

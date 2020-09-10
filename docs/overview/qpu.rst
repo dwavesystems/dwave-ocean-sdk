@@ -5,8 +5,10 @@ Quantum Solvers
 ===============
 
 Ocean's :doc:`dwave-system </docs_system/sdk_index>` tool enables
-you to use a D-Wave system as a sampler. In addition to *DWaveSampler()*, the tool
-provides a *EmbeddingComposite()* composite that maps unstructured problems to the graph
+you to use a D-Wave system as a sampler. In addition to 
+:class:`~dwave.system.samplers.DWaveSampler`, the tool
+provides a :class:`~dwave.system.composites.EmbeddingComposite` composite 
+that maps unstructured problems to the graph
 structure of the selected sampler, a process known as :term:`minor-embedding`.
 For the AND gate of the :ref:`formulating_bqm` section, 
 

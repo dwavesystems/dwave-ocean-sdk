@@ -4,6 +4,9 @@
 Multiple-Gate Circuit: Further Details
 ======================================
 
+The binary quadratic models created by :doc:`dwavebinarycsp </docs_binarycsp/sdk_index>`
+and the embeddings found on a D-Wave 2000Q system for these BQMs.  
+
 Single Comprehensive Constraint
 ===============================
 

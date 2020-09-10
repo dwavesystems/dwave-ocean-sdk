@@ -131,7 +131,7 @@ logic gates:
 .. note:: `dwavebinarycsp` works best for constraints of up to 4 variables; it may not
       function as expected for constraints of over 8 variables.
 
-The next line of code converts the constraints into a BQM that we solve by sampling.
+The next line of code converts the constraints into a BQM that you solve by sampling.
 
 .. testcode::
 
@@ -171,7 +171,7 @@ The next code sets up a D-Wave system as the sampler.
     # Set up a D-Wave system as the sampler
     sampler = EmbeddingComposite(DWaveSampler())
 
-Next, we ask for 1000 samples and separate those that satisfy the CSP from
+Next, ask for 1000 samples and separate those that satisfy the CSP from
 those that fail to do so.
 
 .. testcode::
@@ -210,8 +210,8 @@ yield significantly varied results, as shown in the following table:
    * - 4
      - (316, 684)
 
-You can see the minor-embeddings found here: :ref:`multi_gate_results`; below
-those embeddings are visualized graphically.
+You can see the minor-embeddings found here on a D-Wave 2000Q system: 
+:ref:`multi_gate_results`; below those embeddings are visualized graphically.
 
 .. figure:: ../_images/SingleCSPembeddings.png
    :name: SingleCSPembeddings
@@ -220,7 +220,7 @@ those embeddings are visualized graphically.
    :scale: 50 %
 
    Each of the figure's 4 panels shows a minor-embedding found for one run of the example
-   code above. The panels show part of the Chimera graph representation of a D-Wave QPU,
+   code above. The panels show part of the Chimera graph representation of a D-Wave 2000Q QPU,
    where each unit cell is rendered as a cross of 4 horizontal and 4 vertical dots
    representing qubits and lines representing couplers between qubit pairs. Color
    indicates the strengths of linear (qubit) and quadratic (coupler) biases: darker blue
@@ -244,8 +244,8 @@ to view the solution on the QPU.
 
 For the second approach, which creates a constraint satisfaction problem based on multiple
 small constraints, a larger number of variables (11 versus 7) need to be minor-embedded, resulting
-in worse performance. However, performance can be greatly improved in this case by increasing
-the chain strength (to 2 instead of the default of 1).
+in worse performance. However, performance was greatly improved in this case by increasing
+the chain strength (to 2 instead of 1 previously used by default on the runs above).
 
 .. list-table:: Multiple Constraints
    :widths: 10 10 10

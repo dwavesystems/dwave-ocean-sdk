@@ -5,8 +5,10 @@ Structural Imbalance in a Social Network
 ========================================
 
 This example solves a structural-imbalance problem, similar to the
-`Leap <https://cloud.dwavesys.com/leap/>`_ demo and Jupyter Notebook, to demonstrate
-using Leap's hybrid solver service on a problem of arbitrary structure and size.
+`Leap <https://cloud.dwavesys.com/leap/>`_ demo and 
+`Jupyter Notebook <https://github.com/dwave-examples/structural-imbalance-notebook>`_, 
+to demonstrate using Leap's hybrid solver service on a problem of arbitrary 
+structure and size.
 
 *Social networks* map relationships between people or organizations onto graphs, with
 the people/organizations as nodes and relationships as edges; for example,
@@ -60,9 +62,9 @@ Formulate the Problem
 =====================
 
 For a social graph, `G`, this example simply builds a random sparse graph---using the
-`NetworkX <https://networkx.github.io/>`_ `random_geometric_graph()` function, which
-places uniformly at random a specified number of nodes, `problem_node_count`, in a
-unit cube, joining edges of any two if the distance is below a given radius---and randomly
+`NetworkX <https://networkx.github.io/>`_ :func:`~networkx.generators.geometric.random_geometric_graph()` 
+function, which places uniformly at random a specified number of nodes, `problem_node_count`, 
+in a unit cube, joining edges of any two if the distance is below a given radius---and randomly
 assigns :math:`0, 1` signs to represent friendly and hostile relationships.
 
 >>> import networkx as nx
@@ -75,7 +77,8 @@ Solve the Problem by Sampling
 =============================
 
 As mentioned above, this example uses Ocean's :doc:`dwave_networkx </docs_dnx/sdk_index>`
-function, `structural_imbalance()`, to create the appropriate BQM to represent
+function, :func:`~dwave_networkx.algorithms.social.structural_imbalance`, to create the 
+appropriate BQM to represent
 the problem graph and return a solution. It requires just the selection of a :term:`sampler`.
 
 D-Wave's quantum cloud service provides cloud-based hybrid solvers you can submit arbitrary
@@ -86,8 +89,8 @@ solvers can relieve you of the burden of any current and future development and 
 of hybrid algorithms that best solve your problem.
 
 Ocean software's :doc:`dwave-system </docs_system/sdk_index>`
-`LeapHybridSampler` class enables you to easily incorporate Leap's hybrid solvers
-into your application:
+:class:`~dwave.system.samplers.LeapHybridSampler` class enables you to easily incorporate 
+Leap's hybrid solvers into your application:
 
 >>> from dwave.system import LeapHybridSampler
 >>> sampler = LeapHybridSampler()     # doctest: +SKIP

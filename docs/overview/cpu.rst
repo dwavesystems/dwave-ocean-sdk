@@ -13,7 +13,8 @@ Examples
 ~~~~~~~~
 
 Among several samplers provided in the :doc:`dimod </docs_dimod/sdk_index>`
-tool for testing your code locally, is the :code:`ExactSolver()` that calculates the energy of all
+tool for testing your code locally, is the :class:`~dimod.reference.samplers.ExactSolver` 
+that calculates the energy of all
 possible samples for a given problem. Such a sampler can solve a small three-variable
 problem like the AND gate of the :ref:`formulating_bqm` section,
 

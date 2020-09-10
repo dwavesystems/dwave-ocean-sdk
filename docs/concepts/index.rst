@@ -93,6 +93,13 @@ Glossary
           We refer to these layers as "composites". A composed sampler includes at least one
           sampler and possibly many composites.
 
+      CSP
+          Constraint satisfaction problem. A 
+          `constraint satisfaction problem (CSP) <https://en.wikipedia.org/wiki/Constraint_satisfaction_problem>`_
+          requires that all the problem's variables be assigned values, out of a finite domain, 
+          that result in the satisfying of all constraints.
+          See a fuller description under :doc:`QPU Topology </concepts/csp>`.
+
       Embed
       Embedding
       Minor-embed
@@ -197,7 +204,7 @@ Glossary
          or QUBO.
 
       QPU
-         Quantum processing unit
+         Quantum processing unit.
 
       QUBO
          Quadratic unconstrained binary optimization.
