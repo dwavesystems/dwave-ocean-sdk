@@ -62,9 +62,9 @@ Formulate the Problem
 =====================
 
 For a social graph, `G`, this example simply builds a random sparse graph---using the
-`NetworkX <https://networkx.github.io/>`_ :code:`random_geometric_graph()` function, which
-places uniformly at random a specified number of nodes, `problem_node_count`, in a
-unit cube, joining edges of any two if the distance is below a given radius---and randomly
+`NetworkX <https://networkx.github.io/>`_ :func:`~networkx.generators.geometric.random_geometric_graph()` 
+function, which places uniformly at random a specified number of nodes, `problem_node_count`, 
+in a unit cube, joining edges of any two if the distance is below a given radius---and randomly
 assigns :math:`0, 1` signs to represent friendly and hostile relationships.
 
 >>> import networkx as nx

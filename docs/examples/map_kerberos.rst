@@ -86,8 +86,9 @@ Ocean's :doc:`dwave_networkx </docs_dnx/sdk_index>` can return a
 `minimum vertex coloring <https://en.wikipedia.org/wiki/Graph_coloring>`_ for a graph,
 which assigns a color to the vertices of a graph in a way that no adjacent vertices
 have the same color, using the minimum number of colors. Given a graph representing a
-map and a :term:`sampler`, the :code:`min_vertex_coloring` function tries to solve the
-map coloring problem.
+map and a :term:`sampler`, the 
+:func:`~dwave_networkx.algorithms.coloring.min_vertex_coloring` function tries to 
+solve the map coloring problem.
 
 :doc:`dwave-hybrid </docs_hybrid/sdk_index>` :class:`~hybrid.reference.kerberos.KerberosSampler` 
 is classical-quantum hybrid asynchronous decomposition sampler, which can decompose large problems 
