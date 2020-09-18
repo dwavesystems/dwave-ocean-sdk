@@ -34,3 +34,6 @@
 [submodule "dwave-inspector"]
 	path = dwave-inspector
 	url = https://github.com/dwavesystems/dwave-inspector.git
+[submodule "dwave-greedy"]
+	path = dwave-greedy
+	url = git@github.com:dwavesystems/dwave-greedy.git
