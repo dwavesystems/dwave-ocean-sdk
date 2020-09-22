@@ -4,18 +4,25 @@
 Postprocessing with a Greedy Solver
 ===================================
 
-This example improves a :class:`~dimod.SampleSet` returned from a QPU
-by postprocessing: it runs a steepest-descent solver initialized with 
-the samples of the sampleset to find minima in the samples' neighbourhoods.
+This example uses explicit postprocessing to improve results returned 
+from a quantum computer. 
 
-The purpose of this example is to illustrate the advantages of postprocessing
-results of non-deterministic samplers such as quantum computers. Typically,
-Ocean tools do some minimal postprocessing on those samples; for example, 
-when you use 
+Typically, Ocean tools do some minimal, implicit postprocessing; for 
+example, when you use 
 `embedding tools <https://docs.ocean.dwavesys.com/en/stable/docs_system/reference/embedding.html>`_
-a broken :term:`chain` may be resolved by majority vote of the states of all 
-the qubits of the chain. You can often improve results, at a low cost of 
-classical processing time, by such postprocessing.    
+to map problem variables to qubits, *broken* :term:`chain`\ s (differing
+states of the qubits representing a variable) may be resolved by majority 
+vote: Ocean sets the variable's value based on the state returned from 
+the majority of the qubits in the chain. You can often improve results, 
+at a low cost of classical processing time, by postprocessing.
+
+:doc:`dwave-greedy </docs_greedy/sdk_index>` provides an implementation of 
+a steepest-descent solver,  :class:`~greedy.sampler.SteepestDescentSolver`, 
+for binary quadratic models. This example runs this classical algorithm
+initialized from QPU samples to find minima in the samples' neighbourhoods.
+
+The purpose of this example is to illustrate the benefit of postprocessing
+results from non-deterministic samplers such as quantum computers.     
 
 Example Requirements
 ====================
@@ -53,19 +60,19 @@ couplers of a QPU, it sets quadratic biases equal to random integers between
     from dwave.system import DWaveSampler
     import numpy as np
     
-    sampler = DWaveSampler()
+    sampler = DWaveSampler(solver={'qpu': True})
     h = {v: 0.0 for v in sampler.nodelist}
     J = {tuple(c): np.random.choice(list(range(-5, 6))) for c in sampler.edgelist}
 
-Solve the Problem With/Without Postprocessing
-=============================================
+Solve the Problem and Run Postprocessing
+========================================
 
 Because the problem sets values of the Ising problem based on the qubits 
-and couplers of a selected QPU (a native problem), you can submit it directly 
-to that QPU without :term:`embedding`. The sampleset returned from the QPU is 
-used to initialize the steepest-descent algorithm of the 
-:doc:`dwave-greedy </docs_greedy/sdk_index>` classical solver, which finds the 
-closest minima for all returned samples.   
+and couplers of a selected QPU (a *native* problem), you can submit it directly 
+to that QPU without :term:`embedding`. The :class:`~dimod.SampleSet` returned 
+from the QPU is used to initialize :class:`~greedy.sampler.SteepestDescentSolver`: 
+for each sample, this classical solver runs its steepest-descent algorithm to
+find the closest minima.
 
 .. testcode::
 
@@ -77,7 +84,7 @@ closest minima for all returned samples.
     # Postprocess
     sampleset_pp = solver_greedy.sample_ising(h, J, initial_states=sampleset_qpu)
 
-You can graphically compare the results with and without the postprocessing.
+You can graphically compare the results before and after the postprocessing.
 
 .. note:: The next code requires `Matplotlib <https://matplotlib.org>`_\ .
 
@@ -85,7 +92,10 @@ You can graphically compare the results with and without the postprocessing.
 ...
 >>> plt.plot(list(range(100)), sampleset_qpu.record.energy, 'b.-', 
 ...                            sampleset_pp.record.energy, 'r^-') # doctest: +SKIP
->>> plt.show()    # doctest: +SKIP
+>>> plt.legend(['QPU samples', 'Postprocessed Samples'])          # doctest: +SKIP
+>>> plt.xlabel("Sample")    # doctest: +SKIP
+>>> plt.ylabel("Energy")    # doctest: +SKIP
+>>> plt.show()              # doctest: +SKIP
 
 The image below shows the result of one particular execution on an Advantage QPU.
 
@@ -97,7 +107,7 @@ The image below shows the result of one particular execution on an Advantage QPU
 
    QPU samples before and after postprocessing with a steepest-descent solver.
 
-For reference, this execution had the following median energies for the sampleset
+For reference, this execution had the following median energies 
 before and after postprocessing, and for a running the classical solver directly on
 the problem, in which case it uses random samples to initiate its local searches. 
 
