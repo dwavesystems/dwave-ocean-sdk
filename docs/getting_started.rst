@@ -110,10 +110,13 @@ Intermediate-Level Examples
    examples/map_coloring
    examples/multi_gate
    examples/hybrid1
+   examples/pp_greedy
 
 * :ref:`map_coloring` example solves a more complex constraint satisfaction problem.
 * :ref:`multi_gate` looks more deeply at :term:`minor-embedding`.
 * :ref:`hybrid1` builds a hybrid workflow and solver for a large graph problem.
+* :ref:`pp_greedy` improves samples returned from a QPU by post-processing with a 
+  classical greedy algorthim.
 
 Advanced-Level Examples
 -----------------------

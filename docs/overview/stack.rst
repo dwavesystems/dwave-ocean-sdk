@@ -115,6 +115,10 @@ each stage of the process to a layer of the Ocean stack.
         - Simulated annealing sampler for testing.
         - For code-development testing.
       * - Classical
+        - :doc:`dwave-neal </docs_greedy/sdk_index>` :class:`~greedy.sampler.SteepestDescentSolver`.
+        - A steepest-descent solver for binary quadratic models.
+        - For post-processing and convex problems.
+      * - Classical
         - :doc:`dwave-neal </docs_neal/sdk_index>` :class:`~neal.sampler.SimulatedAnnealingSampler`
         - Simulated annealing sampler.
         -
@@ -184,6 +188,10 @@ each stage of the process to a layer of the Ocean stack.
    * :doc:`minorminer </docs_minorminer/source/sdk_index>` for :term:`minor-embedding`
      might be used to improve solutions by fine tuning parameters or incorporating problem
      knowledge into the embedding.
+   * :doc:`dwave-greedy </docs_greedy/source/sdk_index>` provides a steepest-descent solver 
+     for binary quadratic models that can be run on the samples returned from solvers such 
+     as :class:`~dwave.system.samplers.DWaveSampler` to find local minima in the neighbourhoods 
+     of returned solutions. 
    * :doc:`qbsolv </docs_qbsolv>` splits problems too large
      for the QPU into pieces solved either via a D-Wave system or a classical tabu solver.
 

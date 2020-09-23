@@ -10,6 +10,7 @@ Below are the open-source licenses for the SDK and its tools:
    licenses/sdk
    licenses/binarycsp
    licenses/cloud
+   licenses/greedy
    licenses/hybrid
    licenses/neal
    licenses/dnx

@@ -47,6 +47,8 @@ The SDK includes the :ref:`dwave_cli` and the following packages:
        satisfaction problem with small constraints over binary variables.
    * - :doc:`dwave-cloud-client <docs_cloud/sdk_index>` (`repo <https://github.com/dwavesystems/dwave-cloud-client>`_)
      - Minimal implementation of the REST interface used to communicate with D-Wave :term:`Sampler` API (SAPI) servers.
+   * - :doc:`dwave-greedy <docs_greedy/sdk_index>` (`repo <https://github.com/dwavesystems/dwave-greedy>`_\ )
+     - An implementation of a steepest descent solver for binary quadratic models.
    * - :doc:`dwave-hybrid <docs_hybrid/sdk_index>` (`repo <https://github.com/dwavesystems/dwave-hybrid>`_\ )
      - A general, minimal Python framework for building hybrid asynchronous decomposition samplers for quadratic unconstrained binary optimization (QUBO) problems.
    * - :doc:`dwave-inspector <docs_inspector/sdk_index>` (`repo <https://github.com/dwavesystems/dwave-inspector>`_\ )
@@ -99,6 +101,7 @@ The SDK includes the :ref:`dwave_cli` and the following packages:
   docs_dimod/sdk_index
   docs_binarycsp/sdk_index
   docs_cloud/sdk_index
+  docs_greedy/sdk_index
   docs_hybrid/sdk_index
   docs_inspector/sdk_index
   docs_neal/sdk_index

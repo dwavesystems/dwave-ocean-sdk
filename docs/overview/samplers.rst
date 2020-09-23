@@ -78,8 +78,9 @@ minor-embedding.
 
   View of the logical and embedded problem rendered by Ocean's problem inspector. The AND gate's original BQM is represented on the left; its embedded representation on a D-Wave 2000Q system, on the right, shows a two-qubit chain (qubits 176 and 180) for variable :math:`x2`. The tool is helpful in visualizing the quality of your embedding.
 
-D-Wave systems offer features such as spin-reversal (gauge) transforms and anneal offsets,
-which reduce the impact of possible analog and systematic errors.
+Example :ref:`pp_greedy` improves samples returned from a QPU by post-processing with a 
+classical greedy algorthim. D-Wave systems offer features such as spin-reversal (gauge) 
+transforms and anneal offsets, which reduce the impact of possible analog and systematic errors.
 
 You can see the parameters and properties a sampler supports. For example, Ocean's
 :doc:`dwave-system </docs_system/sdk_index>` lets you use the
