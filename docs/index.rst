@@ -87,6 +87,8 @@ The SDK includes the :ref:`dwave_cli` and the following packages:
 
        While it can be used to find minors in arbitrary graphs, it is particularly geared towards the state of
        the art in QA: problem graphs of a few to a few hundred variables, and hardware graphs of a few thousand qubits.
+   * - :doc:`pyQUBO <docs_pyqubo>` (`repo <https://github.com/recruit-communications/pyqubo>`_)
+     - A package that helps you create QUBOs and Ising models from flexible mathematical expressions.
    * - :doc:`qbsolv <docs_qbsolv>` (`repo <https://github.com/dwavesystems/qbsolv>`_)
      - A decomposing solver that finds a minimum value of a large quadratic unconstrained binary
        optimization (:term:`QUBO`) problem by splitting it into pieces. The pieces are solved
@@ -110,6 +112,7 @@ The SDK includes the :ref:`dwave_cli` and the following packages:
   docs_tabu/sdk_index
   docs_minorminer/source/sdk_index
   docs_penalty/sdk_index
+  docs_pyqubo
   docs_qbsolv
 
 .. toctree::
