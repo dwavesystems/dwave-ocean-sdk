@@ -25,7 +25,7 @@ exec(open("./dwaveoceansdk/package_info.py").read())
 install_requires = [
     'dimod==0.9.6',
     'dwave-cloud-client==0.8.1',
-    'dwave-greedy==0.1.0',
+    'dwave-greedy==0.1.1',
     'dwave-hybrid==0.6.0',
     'dwave-inspector==0.2.4',
     'dwave-neal==0.5.6',
