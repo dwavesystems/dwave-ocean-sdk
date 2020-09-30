@@ -76,10 +76,13 @@ Beginner-Level Examples: Hybrid Computing
 
    examples/hybrid_solver_service
    examples/map_kerberos
+   examples/map_dqm
 
 * :ref:`hss` solves an arbitrary-sized problem using a `Leap <https://cloud.dwavesys.com/leap/>`_
   hybrid solver.
 * :ref:`map_kerberos` demonstrates using an out-of-the-box Ocean hybrid solver.
+* :ref:`map_dqm` solves a **discrete** quadratic model (:term:`DQM`) using 
+  `Leap <https://cloud.dwavesys.com/leap/>`_\ 's hybrid DQM solver.
 
 .. _examples_qpu:
 
