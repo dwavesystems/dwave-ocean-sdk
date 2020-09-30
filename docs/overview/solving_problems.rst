@@ -35,9 +35,13 @@ that assignments of :math:`x_1,...,x_N` also represent solutions to the problem.
 Ocean software can abstract away much of the mathematics and programming for some types of problems.
 At its heart is a binary quadratic model (BQM) class that together with other Ocean tools helps
 formulate various optimization problems.
-It also provides an API to binary quadratic :term:`sampler`\ s (the component used to minimize a BQM
+It provides an API to binary quadratic :term:`sampler`\ s (the component used to minimize a BQM
 and therefore solve the original problem), such as the D-Wave system and classical algorithms
-you can run on your computer.
+you can run on your computer\ [#]_. 
+
+.. [#] At a higher level of abstraction, it also provides a discrete quadratic 
+       model (:term:`DQM`) class, :class:`dimod.DiscreteQuadraticModel`, which 
+       can be used, for example, by :term:`hybrid` DQM samplers.  
 
 The following sections describe this problem-solving procedure in
 two steps (plus a third that may benefit some problems); see the :ref:`gs`

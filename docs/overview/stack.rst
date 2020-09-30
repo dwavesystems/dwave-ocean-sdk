@@ -127,6 +127,10 @@ each stage of the process to a layer of the Ocean stack.
         - Quick incorporation of the D-Wave system as a sampler.
         - Typically part of a composite that handles :term:`minor-embedding`.
       * - Quantum
+        - :doc:`dwave-system </docs_system/sdk_index>` :class:`~dwave.system.samplers.DWaveCliqueSampler`
+        - Quick incorporation of the D-Wave system as a sampler.
+        - Handles :term:`minor-embedding` for clique (:term:`complete graph`) problems.
+      * - Quantum
         - :doc:`dwave-cloud-client </docs_cloud/sdk_index>` :code:`Solver()`
         - D-Wave system as a sampler.\ [#]_
         - For low-level control of problem submission.
@@ -138,6 +142,11 @@ each stage of the process to a layer of the Ocean stack.
         - `Leap <https://cloud.dwavesys.com/leap/>`_\ 's :class:`~dwave.system.samplers.LeapHybridSampler`
         - Cloud-based quantum-classical hybrid solver.
         - For problems of arbitrary structure and size, especially large problems.
+      * - Hybrid
+        - `Leap <https://cloud.dwavesys.com/leap/>`_\ 's :class:`~dwave.system.samplers.LeapHybridDQMSampler`
+        - Cloud-based quantum-classical hybrid solver.
+        - For **discrete** quadratic models (:term:`DQM`) of arbitrary structure
+          and size.
       * -
         - :doc:`dimod </docs_dimod/sdk_index>` custom
         - Write a custom sampler for special cases.

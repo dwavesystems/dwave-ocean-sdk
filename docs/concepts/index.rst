@@ -165,6 +165,11 @@ Glossary
 
          .. _hardware graph: https://docs.dwavesys.com/docs/latest/c_gs_4.html
 
+      Hybrid
+         Quantum-classical hybrid is the use of both classical and quantum resources
+         to solve problems, exploiting the complementary strengths that each provides.
+         See :ref:`using_hybrid`.
+
       Ising
          Traditionally used in statistical mechanics. Variables are "spin up"
          (:math:`\uparrow`) and "spin down" (:math:`\downarrow`), states that
