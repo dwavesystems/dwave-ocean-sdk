@@ -152,7 +152,7 @@ specified token.
 >>> client = Client.from_config(token='ABC-123456789123456789123456789')     # doctest: +SKIP
 >>> client.get_solvers()       # doctest: +SKIP
 [Solver(id='2000Q_ONLINE_SOLVER1'),
- UnstructuredSolver(id='hybrid_v1')]
+ UnstructuredSolver(id='hybrid_binary_quadratic_model_version2')]
 
 Typically, once you have selected and configured a solver, your code queries its parameters and
 properties as attributes of the instantiated solver object. The code example below

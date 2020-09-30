@@ -17,6 +17,8 @@ See the :ref:`glossary` for short definitions of terminology or learn Ocean conc
      - BQM, Ising, QUBO
    * - :ref:`csp_sdk`
      - CSP, binary CSP
+   * - :ref:`dqm_sdk`
+     - DQM, discrete quadratic model
    * - :ref:`hybrid_sdk`
      - quantum-classical hybrid, Leap's hybrid solvers, hybrid workflows
    * - :ref:`embedding_sdk`
@@ -34,6 +36,7 @@ See the :ref:`glossary` for short definitions of terminology or learn Ocean conc
 
    bqm
    csp
+   dqm
    hybrid
    embedding
    topology
@@ -99,6 +102,13 @@ Glossary
           requires that all the problem's variables be assigned values, out of a finite domain, 
           that result in the satisfying of all constraints.
           See a fuller description under :doc:`QPU Topology </concepts/csp>`.
+
+      discrete quadratic model
+      DQM
+         A collection of discrete-valued variables  (variables that can be 
+         assigned the values specified by a set such as :math:`\{red, green, blue\}`
+         or :math:`\{33, 5.7, 3,14 \}` ) with associated linear and quadratic biases. 
+         See a fuller description under :doc:`Discrete Quadratic Models </concepts/dqm>`.
 
       Embed
       Embedding
