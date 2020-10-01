@@ -88,6 +88,9 @@ jobs:
             . env/bin/activate
             python --version
             python -m unittest discover
+            cd penaltymodel
+            python -m unittest discover
+            cd ..
             for submodule in */; do [[ -d $submodule/tests ]] && (cd $submodule; pwd; python -m unittest discover; cd ../;) done
             cd penaltymodel
             python -m unittest discover -s penaltymodel_core/
