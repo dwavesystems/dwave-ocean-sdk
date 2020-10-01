@@ -22,18 +22,19 @@ The :class:`dimod.DiscreteQuadraticModel` class can contain this model and its
 methods provide convenient utilities for working with representations
 of a problem.
 
-These models and their use in solving problems on the D-Wave system is described
+These models and their use in solving problems on the D-Wave system are described
 in the following documentation:
 
-* :std:doc:`Getting Started with the D-Wave System <sysdocs_gettingstarted:doc_getting_started>`
+* Example :ref:`map_dqm`
 
-   Introduces key concepts such as objective functions, Ising models, QUBOs, and graphs, explains
-   how these models are used to represent problems, and provides some simple examples.
-* :std:doc:`D-Wave Problem-Solving Handbook <sysdocs_gettingstarted:doc_handbook>`
+   Shows an example of using `Leap <https://cloud.dwavesys.com/leap/>`_\ 's hybrid
+   DQM solver, ``hybrid_binary_quadratic_model_version<x>``, to solve a map
+   coloring problem.
+* :class:`dimod.DiscreteQuadraticModel` class documentation
 
-   Provides a variety of techniques for, and examples of, reformulating problems as BQMs.
-* :std:doc:`Solving Problems on a D-Wave System <oceandocs:overview/solving_problems>`
+   Describes the DQM class and its methods.
+* :class:`~dwave.system.samplers.LeapHybridDQMSampler` class documentation
 
-   Describes and demonstrates the use of BQM in the context of Ocean software.
+   Describes Leap's DQM solver API.
 
 
