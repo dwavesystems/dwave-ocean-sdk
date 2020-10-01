@@ -22,9 +22,11 @@ Sample the BQM on a Solver
 Ocean's :term:`sampler`\ s enable you to submit your problem to remote or local
 compute resources (:term:`solver`\ s) of different types:
 
-* :ref:`using_hybrid` such as `Leap's <https://cloud.dwavesys.com/leap/>`_ `hybrid_binary_quadratic_model_version<x>` solver
-  or, for **discrete** quadratic models (:term:`DQM`), `hybrid_discrete_quadratic_model_version<x>` 
-* :ref:`using_cpu` such as :class:`~dimod.reference.samplers.ExactSolver` for exact solutions to small problems
+* :ref:`using_hybrid` such as `Leap's <https://cloud.dwavesys.com/leap/>`_ 
+  ``hybrid_binary_quadratic_model_version<x>`` solver or, for **discrete** 
+  quadratic models (:term:`DQM`), ``hybrid_discrete_quadratic_model_version<x>`` 
+* :ref:`using_cpu` such as :class:`~dimod.reference.samplers.ExactSolver` for 
+  exact solutions to small problems
 * :ref:`using_qpu` such the Advantage and D-Wave 2000Q systems.
 
 The example code below submits the BQM of the AND gate of the :ref:`formulating_bqm` section,
@@ -36,8 +38,9 @@ The example code below submits the BQM of the AND gate of the :ref:`formulating_
 
 to a Leap hybrid solver.
 In this case, :doc:`dwave-system </docs_system/sdk_index>`'s
-:class:`~dwave.system.samplers.LeapHybridSampler` is the Ocean sampler and the remote compute
-resource selected might be Leap hybrid solver `hybrid_binary_quadratic_model_version<x>`.
+:class:`~dwave.system.samplers.LeapHybridSampler` is the Ocean sampler and the
+remote compute resource selected might be Leap hybrid solver 
+``hybrid_binary_quadratic_model_version<x>``.
 
 >>> from dwave.system import LeapHybridSampler
 >>> sampler = LeapHybridSampler()    # doctest: +SKIP

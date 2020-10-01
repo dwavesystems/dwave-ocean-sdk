@@ -45,19 +45,21 @@ To run the code in this example, the following is required.
 Solution Steps
 ==============
 
-Section :ref:`solving_problems` describes the process of solving problems on the quantum
-computer in two steps: (1) Formulate the problem as a :term:`binary quadratic model` (BQM)
-and (2) Solve the BQM with a D-wave system or classical :term:`sampler`. In this example, a
-function in Ocean software handles both steps. Our task is mainly to select the sampler used
-to solve the problem.
+Section :ref:`solving_problems` describes the process of solving problems on the
+quantum computer in two steps: (1) Formulate the problem as a 
+:term:`binary quadratic model` (BQM) and (2) Solve the BQM with a D-wave system, 
+hybrid, or classical :term:`sampler`. In this example, a function in Ocean 
+software handles both steps. Our task is mainly to select the sampler used to 
+solve the problem.
 
 Formulate the Problem
 =====================
 
-This example uses the `NetworkX <https://networkx.github.io/>`_ *read_adjlist* function
-to read a text file, `usa.adj`, containing the states of the USA and their adjacencies (states
-with a shared border) into a graph. The original map information
-was found here on `write-only blog of Gregg Lind <https://writeonly.wordpress.com/2009/03/20/adjacency-list-of-states-of-the-united-states-us/>`_ and looks like this::
+This example uses the `NetworkX <https://networkx.github.io/>`_ 
+:func:`~networkx.readwrite.adjlist.read_adjlist` function to read a text file,
+``usa.adj``, containing the states of the USA and their adjacencies (states with
+a shared border) into a graph. The original map information was found on 
+`write-only blog of Gregg Lind <https://writeonly.wordpress.com/2009/03/20/adjacency-list-of-states-of-the-united-states-us/>`_ and looks like this::
 
     # Author Gregg Lind
     # License:  Public Domain.    I would love to hear about any projects you use if it for though!

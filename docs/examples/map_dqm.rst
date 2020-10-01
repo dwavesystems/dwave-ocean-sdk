@@ -5,9 +5,9 @@ Map Coloring: Hybrid DQM Sampler
 ================================
 
 This example solves the same map coloring problem of :ref:`map_kerberos` to 
-demonstrate the `Leap <https://cloud.dwavesys.com/leap/>`_ hybrid discrete 
+demonstrate `Leap <https://cloud.dwavesys.com/leap/>`_\ 's hybrid discrete 
 quadratic model (:term:`DQM`) solver, which enables you to solve problems 
-of arbitrary structure and size for variables with discrete values.
+of arbitrary structure and size for variables with **discrete** values.
 
 See :ref:`map_kerberos` for an description of the map coloring 
 :doc:`constraint satisfaction problem </concepts/csp>` (CSP). 
@@ -25,29 +25,41 @@ To run the code in this example, the following is required.
 
 * The requisite information for problem submission through SAPI, as described in
   :ref:`sapi_access`
-* Ocean tools :doc:`dwave-system </docs_system/sdk_index>`, :doc:`dimod </docs_dimod/sdk_index>`.
+* Ocean tools :doc:`dwave-system </docs_system/sdk_index>`, :doc:`dimod </docs_dimod/sdk_index>`,
+  and :doc:`dwave_networkx </docs_dnx/sdk_index>`.
 
 .. include:: hybrid_solver_service.rst
   :start-after: example-requirements-start-marker
   :end-before: example-requirements-end-marker
 
+.. note:: This example requires a minimal understanding of the :term:`penalty model` 
+   approach to solving problems by minimizing penalties. In short, you formulate 
+   the problem using positive values to penalize undesirable outcomes; that is,
+   the problem is formulated as an :term:`objective function` where desirable 
+   solutions are those with the lowest values. This is demonstrated in 
+   `Leap <https://cloud.dwavesys.com/leap/>`_\ 's *Structural Imbalance* demo, 
+   introduced in the :ref:`and` example, and comprehensively explained in the
+   `Problem Solving Handbook <https://docs.dwavesys.com/docs/latest/c_handbook_1.html>`_. 
+
 Solution Steps
 ==============
 
-Section :ref:`solving_problems` describes the process of solving problems on the quantum
-computer in two steps: (1) Formulate the problem as a :term:`binary quadratic model` (BQM)
-and (2) Solve the BQM with a D-wave system or classical :term:`sampler`. In this example, a
-DQM is created to formulate the problem and submitted to 
-the `Leap <https://cloud.dwavesys.com/leap/>`_ hybrid DQM solver, 
-`hybrid_binary_quadratic_model_version<x>`.
+Section :ref:`solving_problems` describes the process of solving problems on the
+quantum computer in two steps: (1) Formulate the problem as a 
+:term:`binary quadratic model` (BQM) or DQM and (2) Solve the BQM with a D-wave 
+system, hybrid or classical :term:`sampler`. In this example, a DQM is created 
+to formulate the problem and submitted to the 
+`Leap <https://cloud.dwavesys.com/leap/>`_ hybrid DQM solver, 
+``hybrid_binary_quadratic_model_version<x>``.
 
 Formulate the Problem
 =====================
 
-This example uses the `NetworkX <https://networkx.github.io/>`_ *read_adjlist* function
-to read a text file, `usa.adj`, containing the states of the USA and their adjacencies (states
-with a shared border) into a graph. The original map information
-was found here on `write-only blog of Gregg Lind <https://writeonly.wordpress.com/2009/03/20/adjacency-list-of-states-of-the-united-states-us/>`_ and looks like this::
+This example uses the `NetworkX <https://networkx.github.io/>`_ 
+:func:`~networkx.readwrite.adjlist.read_adjlist` function to read a text file, 
+``usa.adj``, containing the states of the USA and their adjacencies (states with
+a shared border) into a graph. The original map information was found on 
+`write-only blog of Gregg Lind <https://writeonly.wordpress.com/2009/03/20/adjacency-list-of-states-of-the-united-states-us/>`_ and looks like this::
 
     # Author Gregg Lind
     # License:  Public Domain.    I would love to hear about any projects you use if it for though!
@@ -73,12 +85,17 @@ Graph G now represents states as vertices and each state's neighbors as shared e
 >>> borders = G.edges       # doctest: +SKIP
 
 You can now create a :class:`dimod.DiscreteQuadraticModel` class to represent
-the problem. The problem's variables are the states; any map can be colored with 
-four colors, and these four colors are set as the *cases* of these variables.
-By setting quadratic bias values of 1 between identical cases of variables that
-share a border, and zeros otherwise, you increase the energy of the DQM for 
-every two adjacent states with the same color (this is known as a 
-:term:`penalty model`).   
+the problem. Because any planar map can be colored with four colors or fewer, 
+represent each state with a discrete variable that has four *cases* (binary 
+variables can have two values; discrete variables can have some arbitrary 
+number of cases).
+
+For every pair of states that share a border, set a quadratic bias of :math:`1` 
+between the variables' identical cases and :math:`0` between all different cases
+(by default, the quadratic bias is zero). Such as :term:`penalty model` adds
+a value of :math:`1` to solutions of the DQM for every pair of neighboring states
+with the same color. Optimal solutions are those with the fewest such neighboring 
+states.
 
 >>> import dimod
 ...
@@ -86,9 +103,9 @@ every two adjacent states with the same color (this is known as a
 ...
 >>> dqm = dimod.DiscreteQuadraticModel()
 >>> for state in states:            # doctest: +SKIP
-...    _ = dqm.add_variable(4, label=state)      
->>> for s0, s1 in borders:          # doctest: +SKIP
-...    dqm.set_quadratic(s0, s1, {(c, c): 1 for c in colors})
+...    dqm.add_variable(4, label=state)      
+>>> for state0, state1 in borders:          # doctest: +SKIP
+...    dqm.set_quadratic(state0, state1, {(color, color): 1 for color in colors})
 
 Solve the Problem by Sampling
 =============================
@@ -104,15 +121,21 @@ algorithms that best solve your problem.
 Ocean software's :doc:`dwave-system </docs_system/sdk_index>`
 :class:`~dwave.system.samplers.LeapHybridDQMSampler` class enables you to easily 
 incorporate Leap's hybrid DQM solvers into your application.
-The solution printed below has been snipped for brevity.
+The solution printed below is truncated.
 
 >>> from dwave.system import LeapHybridDQMSampler
 ...
->>> sampler = LeapHybridDQMSampler()              # doctest: +SKIP
->>> sampleset = dqm_sampler.sample_dqm(dqm)       # doctest: +SKIP
+>>> sampleset = LeapHybridDQMSampler().sample_dqm(dqm)       # doctest: +SKIP
 ...
->>> print(sampleset.first.energy, sampleset.first.sample)  # doctest: +SKIP
-0.0 {'AK': 0, 'AL': 1, 'MS': 0, 'TN': 2, 'GA': 3, 'FL': 0, ...
+>>> print("Energy: {}\nSolution: {}".format(
+...        sampleset.first.energy, sampleset.first.sample))  # doctest: +SKIP
+Energy: 0.0
+Solution: {'AK': 0, 'AL': 0, 'MS': 3, 'TN': 1, 'GA': 2, 'FL': 3, 'AR': 2, 
+# Snipped here for brevity
+
+The energy value of zero above signifies that this first (best) solution found
+has accumulated no penalties, meaning no pairs of neighboring states with the
+same color. 
 
 .. note:: The next code requires `Matplotlib <https://matplotlib.org>`_\ .
 
