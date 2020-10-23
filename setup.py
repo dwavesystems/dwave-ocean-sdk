@@ -38,7 +38,7 @@ install_requires = [
     'penaltymodel-cache==0.4.1',
     'penaltymodel-lp==0.1.3',
     'penaltymodel==0.16.3',
-    'pyqubo==0.4.0',
+    'pyqubo==1.0.7',
 ]
 
 # note: when updating the version of maxgap, it also must be updated in
