@@ -144,8 +144,8 @@ Naming
 
 * File names should be lowercase with underscores or dashes and end with ``.cpp`` or ``.hpp``.
 * Namespaces should be lowercase with underscores.
-* Class names should be PascalCase. i.e. :code:`AdjArrayBQM`.
-* Type aliases may follow other naming coventions to be more like the standard library. i.e. :code:`MyVector::value_type`
+* Class names should be PascalCase; i.e.,  :code:`AdjArrayBQM`.
+* Type aliases may follow other naming coventions to be more like the standard library; i.e., :code:`MyVector::value_type`
 * Function names should be lowercase with underscores. i.e. :code:`num_variables()`.
 * Variable names should be lowercase with underscores. Private data members should have a trailing underscore.
 * Global variable names should be ``ALL_CAPS_WITH_UNDERSCORES``.
@@ -154,11 +154,11 @@ Naming
 Format
 ~~~~~~
 
-* When starting a new C++ project, use clang-format with the .clang-format file included here.
+* When starting a new C++ project, use clang-format with the `.clang-format <.clang-format>`_ file included here.
 * Our format is based on `Google C++ style guide <https://google.github.io/styleguide/cppguide.html>`_ with some exceptions:
 
   - The naming conventions are as stated above.
-  - Column width is limited to 120 characters.
+  - Column width is limited to 120 characters. Best effort should be made to keep to 80 characters, but up to 120 can be used for clarity.
   - Indent widths are doubled so the base indent level is 4 spaces, line continuations indent 8 spaces, and access modifiers indent 2 spaces.
   
 Example Code
