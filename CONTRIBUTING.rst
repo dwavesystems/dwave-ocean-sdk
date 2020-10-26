@@ -137,7 +137,7 @@ C++
 .clang-format
 ~~~~~~~~~~~~~
 
-* When starting a new C++ project, copy the .clang-format file included here.
+* When starting a new C++ project, copy the `.clang-format <.clang-format>`_ file included here.
 * Our style is based on Google (as opposed to LLVM, Chromium, Mozilla, or Webkit) with minor differences.
 * :code:`ColumnLimit` is set to :code:`120`, as specified in `Coding Conventions`_.
 * :code:`NamespaceIndentation` is set to :code:`Inner` as a middle ground between :code:`None` (Google) and :code:`All`,
