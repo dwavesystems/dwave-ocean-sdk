@@ -134,57 +134,21 @@ Documentation
 C++
 ---
 
-.clang-format
-~~~~~~~~~~~~~
+C++ Version
+~~~~~~~~~~~
 
-* When starting a new C++ project, copy the .clang-format file included here.
-* Our style is based on Google (as opposed to LLVM, Chromium, Mozilla, or Webkit) with minor differences.
-* :code:`ColumnLimit` is set to :code:`120`, as specified in `Coding Conventions`_.
-* :code:`NamespaceIndentation` is set to :code:`Inner` as a middle ground between :code:`None` (Google) and :code:`All`,
-  such that every line in a file defining a namespace isn't indented, but nested namespaces are easily spotted.
-* Various indent-width specifiers are scaled by a factor of 2 such that the base indent is :code:`4`, as specified in
-  `Coding Conventions`_, instead of :code:`2` (Google). This is especially helpful for readibility in cases like
+C++ code should be compatible with standard C++11.
 
-  .. code-block:: c++
+Format
+~~~~~~
 
-    if (condition) {
-        foo();
-    } else {
-        bar();
-    }
+* Our format is based on `Google C++ style guide <https://google.github.io/styleguide/cppguide.html>`_ with some exceptions:
 
-  as opposed to
+  - Column width is limited to 120 characters. Best effort should be made to keep to 80 characters, but up to 120 can be used for clarity.
+  - The base indent level is 4.
+  - Non-const references are allowed.
 
-  .. code-block:: c++
-
-    if (condition) {
-      foo();
-    } else {
-      bar();
-    }
-
-Additional Style
-~~~~~~~~~~~~~~~~
-
-Favor the use of the optional braces for single-line control statements, which enhance consistency and extensibility.
-
-Example:
-
-Use the following format
-
-.. code-block:: c++
-
-  if (a) {
-      return;
-  }
-
-as opposed to
-
-.. code-block:: c++
-
-  if (a) return;
-
-This could potentially be enforced by :code:`clang-tidy`.
+* When starting a new C++ project, use clang-format with the `.clang-format <.clang-format>`_ file included here.
 
 Versioning Scheme
 -----------------
