@@ -139,50 +139,16 @@ C++ Version
 
 C++ code should be compatible with standard C++11.
 
-Naming
-~~~~~~
-
-* File names should be lowercase with underscores or dashes and end with ``.cpp`` or ``.hpp``.
-* Namespaces should be lowercase with underscores.
-* Class names should be PascalCase; i.e.,  :code:`AdjArrayBQM`.
-* Type aliases may follow other naming coventions to be more like the standard library; i.e., :code:`MyVector::value_type`
-* Function names should be lowercase with underscores. i.e. :code:`num_variables()`.
-* Variable names should be lowercase with underscores. Private data members should have a trailing underscore.
-* Global variable names should be ``ALL_CAPS_WITH_UNDERSCORES``.
-* Macros should be ``ALL_CAPS_WITH_UNDERSCORES``.
-
 Format
 ~~~~~~
 
-* When starting a new C++ project, use clang-format with the `.clang-format <.clang-format>`_ file included here.
 * Our format is based on `Google C++ style guide <https://google.github.io/styleguide/cppguide.html>`_ with some exceptions:
 
-  - The naming conventions are as stated above.
   - Column width is limited to 120 characters. Best effort should be made to keep to 80 characters, but up to 120 can be used for clarity.
-  - Indent widths are doubled so the base indent level is 4 spaces, line continuations indent 8 spaces, and access modifiers indent 2 spaces.
-  
-Example Code
-~~~~~~~~~~~~
+  - The base indent level is 4.
+  - Non-const references are allowed.
 
-.. code-block:: c++
-  
-  // example_project/src/my_class.cpp
-  namespace example_project {
-  int GLOBAL_MATRIX_OF_INTS[2][2] = {{1, 2},  // Arrays representing matricies may be formatted as such.
-                                     {3, 4}};
-  
-  template <typename T, typename IntType = bool>
-  class MyClass {
-    public:
-      using value_type = T;
-      value_type* y = nullptr;
-      value_type& find_element(int& argument) { return *(y + GLOBAL_MATRIX_OF_INTS[x_][argument++]); }
-  
-    private:
-      IntType x_;
-  };
-  }  // namespace example_project
-
+* When starting a new C++ project, use clang-format with the `.clang-format <.clang-format>`_ file included here.
 
 Versioning Scheme
 -----------------
