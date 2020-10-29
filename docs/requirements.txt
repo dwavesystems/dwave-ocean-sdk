@@ -6,3 +6,6 @@ recommonmark
 
 # needed for some of the examples
 matplotlib 
+
+# Needed for minorminer C docs
+breathe<4.13.0
