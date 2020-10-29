@@ -20,6 +20,7 @@ import os
 import sys
 import subprocess
 
+config_directory = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.abspath('.'))
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
@@ -43,7 +44,8 @@ extensions = [
     'sphinx.ext.todo',
     'sphinx.ext.viewcode',
     'sphinx.ext.githubpages',
-    'sphinx.ext.ifconfig'
+    'sphinx.ext.ifconfig',
+    'breathe',
 ]
 
 autosummary_generate = True
@@ -129,6 +131,15 @@ import penaltymodel.lp as lp
 
 import dwave.inspector
 """
+
+
+# Path to the cpp xml files
+breathe_projects = {"minorminer": os.path.join(
+    config_directory, '../minorminer/docs/build-cpp/xml/')}
+
+breathe_default_project = "minorminer"
+
+breathe_default_members = ('members', )
 
 # -- Options for HTML output ----------------------------------------------
 
