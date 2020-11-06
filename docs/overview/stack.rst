@@ -115,7 +115,7 @@ each stage of the process to a layer of the Ocean stack.
         - Simulated annealing sampler for testing.
         - For code-development testing.
       * - Classical
-        - :doc:`dwave-neal </docs_greedy/sdk_index>` :class:`~greedy.sampler.SteepestDescentSolver`.
+        - :doc:`dwave-greedy </docs_greedy/sdk_index>` :class:`~greedy.sampler.SteepestDescentSolver`.
         - A steepest-descent solver for binary quadratic models.
         - For post-processing and convex problems.
       * - Classical
