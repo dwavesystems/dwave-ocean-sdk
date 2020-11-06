@@ -202,7 +202,7 @@ is adjacent to qubit 4 and four others. On an Advantage system with its Pegasus
 topology, you might see an output such as this:
 
 >>> print(sampler.adjacency[sampler.nodelist[0]])      # doctest: +SKIP
-{15}
+{31, 2940, 2955, 2970, 2985}
 
 You can map the NOT problem's two linear coefficients and single quadratic coefficient,
 :math:`q_1=q_2=-1` and :math:`q_{1,2}=2`, to biases on the D-Wave 2000Q's qubits 0 and 4 
@@ -242,7 +242,7 @@ As before, ask for 5000 samples.
 
 On an Advantage system, the code above might set an embedding such as:
 
->>> sampler_embedded = FixedEmbeddingComposite(sampler, {'x': [0], 'z': [4]})
+>>> sampler_embedded = FixedEmbeddingComposite(sampler, {'x': [30], 'z': [31]})
 
 From NOT to AND: an Important Difference
 ----------------------------------------
