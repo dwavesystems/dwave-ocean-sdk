@@ -202,7 +202,7 @@ is adjacent to qubit 4 and four others. On an Advantage system with its Pegasus
 topology, you might see an output such as this:
 
 >>> print(sampler.adjacency[sampler.nodelist[0]])      # doctest: +SKIP
-{15}
+{31, 2940, 2955, 2970, 2985}
 
 You can map the NOT problem's two linear coefficients and single quadratic coefficient,
 :math:`q_1=q_2=-1` and :math:`q_{1,2}=2`, to biases on the D-Wave 2000Q's qubits 0 and 4 
@@ -242,7 +242,7 @@ As before, ask for 5000 samples.
 
 On an Advantage system, the code above might set an embedding such as:
 
->>> sampler_embedded = FixedEmbeddingComposite(sampler, {'x': [0], 'z': [4]})
+>>> sampler_embedded = FixedEmbeddingComposite(sampler, {'x': [30], 'z': [31]})
 
 From NOT to AND: an Important Difference
 ----------------------------------------
@@ -338,7 +338,7 @@ to view the solution on the QPU.
   View of the logical and embedded problem rendered by Ocean's problem inspector. The AND gate's original QUBO is represented on the left; its embedded representation, on the right, shows a two-qubit chain of qubits 0 and 4 for variable Z. The current solution displayed, :math:`X1=1, X2=0, Z=0`, is represented by white and gold dots for binary :math:`0, 1` and white and blue dots for spin values :math:`-1, 1`.
 
 For comparison, the following code purposely weakens the 
-:ref:`chain strength <embedding_sdk>` (strength of the
+:ref:`concepts__chain_strength` (strength of the
 coupler between qubits 0 and 4, which represents variable :math:`z`). The first
 line prints the range of values available for the D-Wave system this code is executed
 on. By explicitly setting chain strength to a low value of 0.25, the two qubits are not 

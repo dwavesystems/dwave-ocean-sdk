@@ -90,6 +90,8 @@ intentionally sets the embedding shown below to represent this same :math:`K_3` 
 
 	Three-variable :math:`K_3` fully-connected problem is embedded in six qubits on a D-Wave 2000Q. Variable :math:`s_0`, highlighted in dark magenta, is represented by three qubits, numbers 0, 4, and 7; Variable :math:`s_2` is represented by two qubits, numbers 3 and 6, shown with their connecting edge emphasized (and displaying a solution of :math:`+1`).
 
+.. _concepts__chain_strength:
+
 Chain Strength
 --------------
 
