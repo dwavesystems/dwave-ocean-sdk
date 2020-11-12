@@ -65,13 +65,13 @@ For a social graph, `G`, this example simply builds a random sparse graph---usin
 `NetworkX <https://networkx.github.io/>`_ :func:`~networkx.generators.geometric.random_geometric_graph()` 
 function, which places uniformly at random a specified number of nodes, `problem_node_count`, 
 in a unit cube, joining edges of any two if the distance is below a given radius---and randomly
-assigns :math:`0, 1` signs to represent friendly and hostile relationships.
+assigns :math:`-1, 1` signs to represent friendly and hostile relationships.
 
 >>> import networkx as nx
 >>> import random
 >>> problem_node_count = 300
 >>> G = nx.random_geometric_graph(problem_node_count, radius=0.0005*problem_node_count)
->>> G.add_edges_from([(u, v, {'sign': 2*random.randint(0, 1)-1}) for u, v in G.edges])
+>>> G.add_edges_from([(u, v, {'sign': random.choice((-1, 1))}) for u, v in G.edges])
 
 Solve the Problem by Sampling
 =============================
