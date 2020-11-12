@@ -91,7 +91,7 @@ Formulating the Problem as a CSP
 This example demonstrates two formulations of constraints from the problem's
 logic gates:
 
-#. Single comprehensive constraint.
+1. Single comprehensive constraint.
 
 .. testcode::
 
@@ -111,7 +111,7 @@ logic gates:
     csp.add_constraint(logic_circuit, ['a', 'b', 'c', 'd', 'z'])
 
 
-#. Multiple small constraints.
+2. Multiple small constraints.
 
 .. testcode::
 
