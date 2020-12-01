@@ -290,3 +290,9 @@ autodoc_member_order = 'bysource'
 
 # show inherited members
 # autodoc_default_flags = ['members', 'undoc-members', 'inherited-members', 'show-inheritance']
+
+read_the_docs_build = os.environ.get('READTHEDOCS', None) == 'True'
+
+if read_the_docs_build:
+
+    subprocess.call('cd ../minorminer/docs/; make cpp', shell=True)
