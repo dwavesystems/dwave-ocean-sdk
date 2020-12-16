@@ -1,8 +1,8 @@
 version: 2
 jobs:
-  test-3.8: &full-test-template
+  test-3.9: &full-test-template
     docker:
-      - image: circleci/python:3.8-buster
+      - image: circleci/python:3.9
 
     working_directory: ~/repo
 
@@ -29,26 +29,31 @@ jobs:
             python --version
             python -m unittest discover
 
+  test-3.8:
+    <<: *full-test-template
+    docker:
+      - image: circleci/python:3.8
+
   test-3.7:
     <<: *full-test-template
     docker:
-      - image: circleci/python:3.7-stretch
+      - image: circleci/python:3.7
 
   test-3.6:
     <<: *full-test-template
     docker:
-      - image: circleci/python:3.6-jessie
+      - image: circleci/python:3.6
 
   test-3.5:
     <<: *full-test-template
     docker:
-      - image: circleci/python:3.5-jessie
+      - image: circleci/python:3.5
 
-  test-osx-3.8: &osx-tests-template
+  test-osx-3.9: &osx-tests-template
     macos:
-      xcode: "11.2.1"
+      xcode: "12.2.0"
     environment:
-      PYTHON: 3.8.0
+      PYTHON: 3.9.0
       HOMEBREW_NO_AUTO_UPDATE: 1
 
     working_directory: ~/repo
@@ -62,8 +67,7 @@ jobs:
             brew install pyenv
 
       - restore_cache:
-          keys:
-            - pyenv-{{ .Environment.CIRCLE_JOB }}-xcode11.2.1
+          key: v2-pyenv-{{ .Environment.CIRCLE_JOB }}-xcode-12.2.0
 
       - run:
           name: install python
@@ -73,7 +77,7 @@ jobs:
       - save_cache:
           paths:
             - ~/.pyenv
-          key: pyenv-{{ .Environment.CIRCLE_JOB }}-xcode11.2.1
+          key: v2-pyenv-{{ .Environment.CIRCLE_JOB }}-xcode-12.2.0
 
       - run:
           name: create virtualenv
@@ -87,22 +91,28 @@ jobs:
         
       - run: *run-tests-template
 
+  test-osx-3.8:
+    <<: *osx-tests-template
+    environment:
+      PYTHON: 3.8.6
+      HOMEBREW_NO_AUTO_UPDATE: 1
+
   test-osx-3.7:
     <<: *osx-tests-template
     environment:
-      PYTHON: 3.7.4
+      PYTHON: 3.7.9
       HOMEBREW_NO_AUTO_UPDATE: 1
 
   test-osx-3.6:
     <<: *osx-tests-template
     environment:
-      PYTHON: 3.6.5
+      PYTHON: 3.6.12
       HOMEBREW_NO_AUTO_UPDATE: 1
 
   test-osx-3.5:
     <<: *osx-tests-template
     environment:
-      PYTHON: 3.5.5
+      PYTHON: 3.5.10
       HOMEBREW_NO_AUTO_UPDATE: 1
 
   test-doctest:
@@ -150,7 +160,7 @@ jobs:
 
   deploy:
     docker:
-      - image: circleci/python:3.6-jessie
+      - image: circleci/python:3.7
 
     working_directory: ~/repo
 
@@ -163,25 +173,12 @@ jobs:
             python -m virtualenv env
 
       - run:
-          name: install twine
-          command: |
-            . env/bin/activate
-            pip install twine
-
-      - run:
           name: verify version matches tag
           command: |
             . env/bin/activate
             pip install .
             echo $CIRCLE_TAG
             [[ "$(pip show dwave-ocean-sdk 2>/dev/null | grep Version)" == "Version: $CIRCLE_TAG" ]]
-
-      - run:
-          name: init .pypirc
-          command: |
-            echo -e "[pypi]" >> ~/.pypirc
-            echo -e "username = dwtools-ci" >> ~/.pypirc
-            echo -e "password = $PYPI_PASSWORD" >> ~/.pypirc
 
       - run:
           name: build sdist and bdist
@@ -194,7 +191,8 @@ jobs:
           name: upload
           command: |
             . env/bin/activate
-            twine upload dist/*
+            pip install twine
+            twine upload -u "$PYPI_USERNAME" -p "$PYPI_PASSWORD" --skip-existing ./dist/*
 
   black-duck:
     docker:
@@ -247,10 +245,12 @@ workflows:
 
   test:
     jobs:
+      - test-3.9
       - test-3.8
       - test-3.7
       - test-3.6
       - test-3.5
+      - test-osx-3.9
       - test-osx-3.8
       - test-osx-3.7
       - test-osx-3.6
@@ -275,10 +275,12 @@ workflows:
               only:
                 - master
     jobs:
+      - test-3.9
       - test-3.8
       - test-3.7
       - test-3.6
       - test-3.5
+      - test-osx-3.9
       - test-osx-3.8
       - test-osx-3.7
       - test-osx-3.6

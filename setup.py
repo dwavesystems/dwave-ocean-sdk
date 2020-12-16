@@ -1,18 +1,17 @@
 # Copyright 2018 D-Wave Systems Inc.
 #
-#    Licensed under the Apache License, Version 2.0 (the "License");
-#    you may not use this file except in compliance with the License.
-#    You may obtain a copy of the License at
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
 #
-#        http://www.apache.org/licenses/LICENSE-2.0
+#   http://www.apache.org/licenses/LICENSE-2.0
 #
-#    Unless required by applicable law or agreed to in writing, software
-#    distributed under the License is distributed on an "AS IS" BASIS,
-#    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-#    See the License for the specific language governing permissions and
-#    limitations under the License.
-#
-# ================================================================================================
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 from __future__ import absolute_import
 
 from setuptools import setup
@@ -23,34 +22,36 @@ exec(open("./dwaveoceansdk/package_info.py").read())
 
 
 install_requires = [
-    'dimod==0.9.10',
-    'dwave-cloud-client==0.8.1',
-    'dwave-greedy==0.1.1',
-    'dwave-hybrid==0.6.0',
+    'dimod==0.9.13',
+    'dwave-cloud-client==0.8.2',
+    'dwave-greedy==0.1.2',
+    'dwave-hybrid==0.6.1',
     'dwave-inspector==0.2.4',
-    'dwave-neal==0.5.6',
+    'dwave-neal==0.5.7',
     'dwave-networkx==0.8.8',
-    'dwave-qbsolv==0.3.1',
-    'dwave-system==1.2.1',
-    'dwave-tabu==0.3.0',
+    'dwave-qbsolv==0.3.2',
+    'dwave-system==1.3.0',
+    'dwave-tabu==0.3.1',
     'dwavebinarycsp==0.1.2',
-    'minorminer==0.2.3',
-    'penaltymodel-cache==0.4.1',
-    'penaltymodel-lp==0.1.3',
-    'penaltymodel==0.16.3',
-    'pyqubo==1.0.7',
+    'minorminer==0.2.5',
+    'penaltymodel-cache==0.4.3',
+    'penaltymodel-lp==0.1.4',
+    'penaltymodel==0.16.4',
 ]
 
 # note: when updating the version of maxgap, it also must be updated in
 # docs/requirements.txt.
 extras_require = {
     ':(platform_machine == "x86_64" or platform_machine == "amd64" or platform_machine == "AMD64")': [
-        'penaltymodel-mip==0.2.3'
+        'penaltymodel-mip==0.2.4'
     ],
     ':platform_machine != "x86_64" and platform_machine != "amd64" and platform_machine != "AMD64"': [
-        'penaltymodel-maxgap==0.5.3'  # see note above
+        'penaltymodel-maxgap==0.5.4'  # see note above
     ],
-    'all': ['penaltymodel-mip==0.2.3', 'penaltymodel-maxgap==0.5.3']
+    'all': ['penaltymodel-mip==0.2.4', 'penaltymodel-maxgap==0.5.4'],
+
+    # pyqubo doesn't support py39 yet, so we have to exclude it for now
+    ':python_version != "3.9"': ['pyqubo==1.0.7']
 }
 
 
@@ -64,6 +65,7 @@ classifiers = [
     'Programming Language :: Python :: 3.6',
     'Programming Language :: Python :: 3.7',
     'Programming Language :: Python :: 3.8',
+    'Programming Language :: Python :: 3.9',
 ]
 
 python_requires = '>=3.5'
