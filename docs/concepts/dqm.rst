@@ -5,18 +5,19 @@ Discrete Quadratic Models
 =========================
 
 The discrete quadratic model (DQM) is a polynomial over discrete variables with
-terms all of degree two or less, represented by equation,
+terms all of degree two or less.  Suppose that there are :math:`N` discrete
+variables :math:`\bf{d}_i`, each with :math:`n_i` cases.  Conceptually, the
+cases may represent any collection of discrete values, such as ``{red, green,
+blue, yellow}`` or ``{3.2, 67}``.  Using a binary variable :math:`x_{i,u}` to
+indicate whether discrete variable :math:`\bf{d}_i` is set to case :math:`u`,
+the objective function can be expressed by the equation:
 
 .. math::
 
-    E(\bf{v})
-    = \sum_{i=1} a_i v_i
-    + \sum_{i<j} b_{i,j} v_i v_j 
+    E(\bf{x})
+    = \sum_{i=1}^N \sum_{u=1}^{n_i} a_{i,u} x_{i,u}
+    + \sum_{i=1}^N \sum_{j=i+1}^N \sum_{u=1}^{n_i} \sum_{v=1}^{n_j} b_{i,j,u,v} x_{i,u} x_{j,v}
     + c
-    \qquad\qquad v_i \in\{A, B, C, ...\}
-
-where :math:`\{A, B, C, ...\}` are some set of discrete values such 
-``{red, green, blue, yellow}`` or ``{3.2, 67}``.  
 
 The :class:`dimod.DiscreteQuadraticModel` class can contain this model and its 
 methods provide convenient utilities for working with representations
