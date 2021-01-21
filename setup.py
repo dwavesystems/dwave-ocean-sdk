@@ -37,6 +37,7 @@ install_requires = [
     'penaltymodel-cache==0.4.3',
     'penaltymodel-lp==0.1.4',
     'penaltymodel==0.16.4',
+    'pyqubo==1.0.10'
 ]
 
 # note: when updating the version of maxgap, it also must be updated in
@@ -48,10 +49,7 @@ extras_require = {
     ':platform_machine != "x86_64" and platform_machine != "amd64" and platform_machine != "AMD64"': [
         'penaltymodel-maxgap==0.5.4'  # see note above
     ],
-    'all': ['penaltymodel-mip==0.2.4', 'penaltymodel-maxgap==0.5.4'],
-
-    # pyqubo doesn't support py39 yet, so we have to exclude it for now
-    ':python_version != "3.9"': ['pyqubo==1.0.7']
+    'all': ['penaltymodel-mip==0.2.4', 'penaltymodel-maxgap==0.5.4']
 }
 
 
