@@ -215,17 +215,6 @@ jobs:
           command: |
             python3 -m virtualenv env -p python3
 
-      # The latest version of `synopsys-detect` available to `hub-detect` script
-      # is 5.3.1. Unfortunately, `pip>=20` is supported only in 6.2+.
-      # So we downgrade pip to make `synopsys-detect<6.2` run.
-      # The fix in 6.2 (https://github.com/blackducksoftware/synopsys-detect/pull/107/files),
-      # is backwards compatible and will work with an older pip as well.
-      - run:
-          name: downgrade pip to make blackduck's hub-detect happy
-          command: |
-            . env/bin/activate
-            pip install 'pip<20'
-
       - run:
           name: install package
           command: |
@@ -236,8 +225,10 @@ jobs:
           name: install and run hub-detect
           command: |
             . env/bin/activate
-            bash <(curl -s https://blackducksoftware.github.io/hub-detect/hub-detect.sh) --blackduck.url=$BLACKDUCK_URL --blackduck.api.token=$BLACKDUCK_TOKEN --detect.code.location.name=dwave-ocean-sdk-circleci
+            bash <(curl -s -L https://detect.synopsys.com/detect.sh) --blackduck.url="$BLACKDUCK_URL" --blackduck.api.token="$BLACKDUCK_TOKEN" --detect.code.location.name=dwave-ocean-sdk-circleci --diagnostic --logging.level.detect=DEBUG
 
+      - store_artifacts:
+          path: ~/blackduck/runs/
 
 
 workflows:
