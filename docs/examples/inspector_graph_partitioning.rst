@@ -229,9 +229,9 @@ chains for the current returned sample set suggests that the chain strength can
 likely be lowered while still maintaining a low rate of broken chains. Doing so
 enables the problem to be represented more accurately on the QPU.
 
->>> sampleset = sampler.sample_qubo(Q, num_reads=num_reads, \
-                                    chain_strength=300, \
-                                    label='SDK Examples - Inspector')
+>>> sampleset = sampler.sample_qubo(Q, num_reads=num_reads, 
+...                                 chain_strength=300, 
+...                                 label='SDK Examples - Inspector')
 
 Below is one run of a few iterations of adjusting chain strength. Notice that the
 acceptable rate of chain breaks was set lower, to breakage rates of over 5
