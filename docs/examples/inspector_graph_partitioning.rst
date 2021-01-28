@@ -169,9 +169,9 @@ Using the same logic described in the
 `Graph Partitioning <https://github.com/dwave-examples/graph-partitioning>`_
 code example, the problem is resubmitted using a higher chain strength:
 
->>> sampleset = sampler.sample_qubo(Q, num_reads=num_reads, \
-                                    chain_strength=1000, \
-                                    label='SDK Examples - Inspector')
+>>> sampleset = sampler.sample_qubo(Q, num_reads=num_reads, 
+...                                 chain_strength=1000, 
+...                                 label='SDK Examples - Inspector')
 
 Check the best returned answer and percentage of samples based on chains with breakage
 rates of over 33 percent. Results will vary due to the probabilistic nature of the
