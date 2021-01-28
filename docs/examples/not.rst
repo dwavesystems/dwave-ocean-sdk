@@ -203,7 +203,7 @@ This way, you see multiple “best” answers and reduce the probability of sett
 suboptimal answer. Below, ask for 5000 samples.
 
 >>> Q = {('x', 'x'): -1, ('x', 'z'): 2, ('z', 'x'): 0, ('z', 'z'): -1}
->>> sampleset = sampler.sample_qubo(Q, num_reads=5000)     
+>>> sampleset = sampler.sample_qubo(Q, num_reads=5000, label='SDK Examples - NOT Gate')     
 >>> print(sampleset)        # doctest: +SKIP
    x  z energy num_oc. chain_.
 0  0  1   -1.0    2266     0.0

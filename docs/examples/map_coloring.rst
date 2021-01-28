@@ -185,7 +185,8 @@ The next code sets up a D-Wave system as the sampler and requests 1000 samples.
 
 >>> # Sample 1000 times
 >>> sampler = EmbeddingComposite(DWaveSampler())       # doctest: +SKIP
->>> sampleset = sampler.sample(bqm, num_reads=1000)    # doctest: +SKIP
+>>> sampleset = sampler.sample(bqm, num_reads=1000,
+...                            label='SDK Examples - Map Coloring BQM') # doctest: +SKIP
 ...
 >>> # Check that a good solution was found
 >>> sample = sampleset.first.sample     # doctest: +SKIP

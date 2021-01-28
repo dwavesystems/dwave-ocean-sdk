@@ -176,7 +176,7 @@ those that fail to do so.
 
 .. testcode::
 
-    sampleset = sampler.sample(bqm, num_reads=1000)
+    sampleset = sampler.sample(bqm, num_reads=1000, label='SDK Examples - Gate Circuit')
 
     # Check how many solutions meet the constraints (are valid)
     valid, invalid, data = 0, 0, []

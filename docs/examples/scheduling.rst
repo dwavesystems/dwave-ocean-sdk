@@ -199,7 +199,7 @@ Typically, when submitting a problem to the system, you ask for many samples, no
 This way, you see multiple “best” answers and reduce the probability of settling on a 
 suboptimal answer. Below, ask for 5000 samples.
 
->>> sampleset = sampler.sample(bqm, num_reads=5000)      
+>>> sampleset = sampler.sample(bqm, num_reads=5000, label='SDK Examples - Scheduling')      
 
 The code below prints all those solutions (assignments of variables) for which the BQM has
 its minimum value and the number of times it was found.

@@ -64,7 +64,7 @@ See :ref:`map_coloring` for a description of the following code.
     # Set up a solver using the local system’s default D-Wave Cloud Client configuration file
     # and sample 1000 times
     sampler = EmbeddingComposite(DWaveSampler())         
-    sampleset = sampler.sample(bqm, num_reads=1000)         
+    sampleset = sampler.sample(bqm, num_reads=1000, label='SDK Examples - Map Coloring BQM')         
 
     # Plot the lowest-energy sample if it meets the constraints
     sample = sampleset.first.sample      

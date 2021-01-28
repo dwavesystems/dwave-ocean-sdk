@@ -60,7 +60,7 @@ couplers of a QPU, it sets quadratic biases equal to random integers between
     from dwave.system import DWaveSampler
     import numpy as np
     
-    sampler = DWaveSampler(solver={'qpu': True})
+    sampler = DWaveSampler()
     h = {v: 0.0 for v in sampler.nodelist}
     J = {tuple(c): np.random.choice(list(range(-5, 6))) for c in sampler.edgelist}
 
@@ -80,7 +80,10 @@ find the closest minima.
 
     solver_greedy = SteepestDescentSolver()
 
-    sampleset_qpu = sampler.sample_ising(h, J, num_reads=100, answer_mode='raw')
+    sampleset_qpu = sampler.sample_ising(h, J, \
+                                         num_reads=100, \
+                                         answer_mode='raw', \
+                                         label='SDK Examples - Postprocessing')
     # Postprocess
     sampleset_pp = solver_greedy.sample_ising(h, J, initial_states=sampleset_qpu)
 

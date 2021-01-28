@@ -125,7 +125,8 @@ The solution printed below is truncated.
 
 >>> from dwave.system import LeapHybridDQMSampler
 ...
->>> sampleset = LeapHybridDQMSampler().sample_dqm(dqm)       # doctest: +SKIP
+>>> sampleset = LeapHybridDQMSampler().sample_dqm(dqm, 
+...                 label='SDK Examples - Map Coloring DQM')  # doctest: +SKIP
 ...
 >>> print("Energy: {}\nSolution: {}".format(
 ...        sampleset.first.energy, sampleset.first.sample))  # doctest: +SKIP

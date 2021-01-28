@@ -69,7 +69,7 @@ a :term:`subgraph` of the full :term:`hardware graph`.
 
 .. dev note: maybe in the future we want to talk about different topologies
 
->>> qpu_sampler = DWaveSampler(solver={'qpu': True, 'num_active_qubits__within': [2000, 2048]})
+>>> qpu_sampler = DWaveSampler(solver={'num_active_qubits__within': [2000, 2048]})
 >>> QPUGraph = nx.Graph(qpu_sampler.edgelist)
 >>> all(v in C16.nodes for v in QPUGraph.nodes)
 True
