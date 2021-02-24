@@ -153,7 +153,8 @@ The next code sets up a D-Wave system as the sampler.
 
 As before, ask for 5000 samples.
 
->>> sampleset = sampler_embedded.sample_qubo(Q, num_reads=5000)      
+>>> sampleset = sampler_embedded.sample_qubo(Q, num_reads=5000, 
+...                                          label='SDK Examples - AND Gate')      
 >>> print(sampleset)   # doctest: +SKIP
   x1 x2  z energy num_oc. chain_b.
 0  0  1  0    0.0    1812      0.0
@@ -232,7 +233,8 @@ that indeed the two selected qubits are adjacent (coupled).
 
 As before, ask for 5000 samples.
 
->>> sampleset = sampler_embedded.sample_qubo(Q_not, num_reads=5000)      
+>>> sampleset = sampler_embedded.sample_qubo(Q_not, num_reads=5000,
+...                                          label='SDK Examples - AND Gate')      
 >>> print(sampleset)   # doctest: +SKIP
    x  z energy num_oc. chain_.
 0  0  1   -1.0    2310     0.0
@@ -311,7 +313,8 @@ are connected (coupled).
 This submission asks for 5000 samples.
 
 >>> Q = {('x1', 'x2'): 1, ('x1', 'z'): -2, ('x2', 'z'): -2, ('z', 'z'): 3}
->>> sampleset = sampler_embedded.sample_qubo(Q, num_reads=5000)    
+>>> sampleset = sampler_embedded.sample_qubo(Q, num_reads=5000,
+...                                          label='SDK Examples - AND Gate')    
 >>> print(sampleset)   # doctest: +SKIP
   x1 x2  z energy num_oc. chain_.
 0  1  0  0    0.0    2107     0.0
@@ -348,7 +351,9 @@ for an AND gate.
 >>> print(sampler.properties['extended_j_range'])   
 [-2.0, 1.0]
 >>> sampler_embedded = FixedEmbeddingComposite(sampler, embedding)   
->>> sampleset = sampler_embedded.sample_qubo(Q, num_reads=5000, chain_strength=0.25)   
+>>> sampleset = sampler_embedded.sample_qubo(Q, num_reads=5000, 
+...                                          chain_strength=0.25,
+...                                          label='SDK Examples - AND Gate')   
 >>> print(sampleset)   # doctest: +SKIP
   x1 x2  z energy num_oc. chain_b.
 0  1  0  0    0.0     629      0.0
