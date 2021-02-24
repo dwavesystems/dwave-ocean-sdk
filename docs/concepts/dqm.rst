@@ -13,9 +13,9 @@ A discrete quadratic model may be defined as
 
 .. math::
 
-    H(\bf{d}) = \sum_{i} a(\bf{d}_i) + \sum_{i,j} b(\bf{d}_i,\bf{d}_j) + c
+    H(\bf{d}) = \sum_{i} a_i(\bf{d}_i) + \sum_{i,j} b_{i,j}(\bf{d}_i,\bf{d}_j) + c
 
-where :math:`\bf{d}_i` are the discrete variables, :math:`a()` and :math:`b()` 
+where :math:`\bf{d}_i` are the discrete variables, :math:`a_i()` and :math:`b_{i,j}()` 
 are real-valued functions, and :math:`c` is a constant (offset).
 
 You can represent any DQM with an equivalent model over **binary** variables 
@@ -61,5 +61,4 @@ in the following documentation:
 * :class:`~dwave.system.samplers.LeapHybridDQMSampler` class documentation
 
    Describes Leap's DQM solver API.
-
 
