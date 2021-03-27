@@ -19,6 +19,7 @@
 import os
 import sys
 import subprocess
+import inspect      
 
 config_directory = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.abspath('.'))
@@ -42,7 +43,7 @@ extensions = [
     'sphinx.ext.mathjax',
     'sphinx.ext.napoleon',
     'sphinx.ext.todo',
-    'sphinx.ext.viewcode',
+    'sphinx.ext.linkcode',
     'sphinx.ext.githubpages',
     'sphinx.ext.ifconfig',
     'breathe',
@@ -296,3 +297,86 @@ read_the_docs_build = os.environ.get('READTHEDOCS', None) == 'True'
 if read_the_docs_build:
 
     subprocess.call('cd ../minorminer/docs/; make cpp', shell=True)
+
+github_map = {'dwavebinarycsp': 'dwavebinarycsp',
+              'cloud': 'dwave-cloud-client',
+              'dimod':  'dimod',
+              'dwave_networkx': 'dwave-networkx',
+              'greedy': 'dwave-greedy',
+              'hybrid': 'dwave-hybrid',
+              'inspector': 'dwave-inspector',
+              'minorminer': 'minorminer',
+              'neal': 'dwave-neal',
+              'penaltymodel': {'cache': 'penaltymodel_cache',
+                               'core': 'penaltymodel_core',
+                               'lp': 'penaltymodel_lp',
+                               'mip': 'penaltymodel_mip'},
+              'system': 'dwave-system',
+              'embedding': 'dwave-system',
+              'tabu': 'dwave-tabu'}
+
+#f= open("info_sdk.txt","w+")
+def linkcode_resolve(domain, info):
+    """
+    Find the URL of the GitHub source for dwave-ocean-sdk objects.
+    """
+    # Based on https://github.com/numpy/numpy/blob/main/doc/source/conf.py
+
+    if domain != 'py':
+        #f.write("\n NOT PY " + domain)
+        return None
+
+    obj = sys.modules.get(info['module'])
+    for part in info['fullname'].split('.'):
+        try:
+            obj = getattr(obj, part)
+        except Exception:
+            #f.write("\n Exception1: " + info['module'])
+            return None
+
+    # strip decorators, which would resolve to the source of the decorator
+    # possibly an upstream bug in getsourcefile, bpo-1764286
+    try:
+        unwrap = inspect.unwrap
+    except AttributeError:
+        pass
+    else:
+        obj = unwrap(obj)
+
+    try:
+        fn = inspect.getsourcefile(obj)
+    except Exception:
+        #f.write("\n Exception2: " + info['module'])
+        return None
+
+    try:
+        source, lineno = inspect.getsourcelines(obj)
+        linespec = "#L%d-L%d" % (lineno, lineno + len(source) - 1)
+    except Exception:
+        lineno = ""
+
+    if not fn or not "site-packages" in fn:
+       #f.write("\n NO FN: " + info['module'])
+       return None
+    
+    if ".egg" in fn:
+       fn = fn.replace(fn[:fn.index("egg")+len("egg")], "")   
+    else:
+       fn = fn.replace(fn[:fn.index("site-packages")+len("site-packages")], "") 
+
+    target = fn.split("/")
+    repo = target[1] if not target[1] == "dwave" else target[2]
+
+
+    if repo in ["minorminer", ]:
+        fn = "https://github.com/dwavesystems/" + github_map[repo] + "/blob/main" + fn
+    elif repo == 'penaltymodel':
+        fn = "https://github.com/dwavesystems/penaltymodel/blob/master/" +  \
+             github_map[repo][info['module'].split('.')[1]] + fn  
+    else:
+        fn = "https://github.com/dwavesystems/" + github_map[repo] + "/blob/master" + fn     
+ 
+    #f.write("\nNEW: " + fn + "  --> " + linespec)
+
+    return fn + linespec
+
