@@ -316,7 +316,6 @@ github_map = {'dwavebinarycsp': 'dwavebinarycsp',
               'embedding': 'dwave-system',
               'tabu': 'dwave-tabu'}
 
-#f= open("info_sdk.txt","w+")
 def linkcode_resolve(domain, info):
     """
     Find the URL of the GitHub source for dwave-ocean-sdk objects.
@@ -324,7 +323,6 @@ def linkcode_resolve(domain, info):
     # Based on https://github.com/numpy/numpy/blob/main/doc/source/conf.py
 
     if domain != 'py':
-        #f.write("\n  C: " + info['module'] + " -->" + info['fullname'])
         return None
 
     obj = sys.modules.get(info['module'])
@@ -332,7 +330,6 @@ def linkcode_resolve(domain, info):
         try:
             obj = getattr(obj, part)
         except Exception:
-            #f.write("\n  Exception1: " + info['module'] + " -->" + info['fullname'])
             return None
 
     # strip decorators, which would resolve to the source of the decorator
@@ -347,7 +344,6 @@ def linkcode_resolve(domain, info):
     try:
         fn = inspect.getsourcefile(obj)
     except Exception:
-        #f.write("\n  Exception2: " + info['module'] + " -->" + info['fullname'])
         return None
 
     try:
@@ -357,7 +353,6 @@ def linkcode_resolve(domain, info):
         lineno = ""
 
     if not fn or not "site-packages" in fn:
-       #f.write("\n  NO FN: " + info['module'] + " -->" + info['fullname'])
        return None
     
     if ".egg" in fn:
@@ -368,7 +363,6 @@ def linkcode_resolve(domain, info):
     target = fn.split("/")
     repo = target[1] if not target[1] == "dwave" else target[2]
 
-
     if repo in ["minorminer", ]:
         fn = "https://github.com/dwavesystems/" + github_map[repo] + "/blob/main" + fn
     elif repo == 'penaltymodel':
@@ -377,7 +371,5 @@ def linkcode_resolve(domain, info):
     else:
         fn = "https://github.com/dwavesystems/" + github_map[repo] + "/blob/master" + fn     
  
-    #f.write("\nLink: " + fn + "  --> " + linespec)
-
     return fn + linespec
 
