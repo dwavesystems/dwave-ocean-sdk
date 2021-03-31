@@ -16,6 +16,11 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
+# This file contains function linkcode_resolve, based on 
+# https://github.com/numpy/numpy/blob/main/doc/source/conf.py, 
+# which is licensed under the BSD 3-Clause "New" or "Revised" 
+# license: ./licenses/numpy.rst  
+
 import os
 import sys
 import subprocess
