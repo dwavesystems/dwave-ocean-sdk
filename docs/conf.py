@@ -303,23 +303,41 @@ if read_the_docs_build:
 
     subprocess.call('cd ../minorminer/docs/; make cpp', shell=True)
 
-github_map = {'dwavebinarycsp': 'dwavebinarycsp',
-              'cloud': 'dwave-cloud-client',
-              'dimod':  'dimod',
-              'dwave_networkx': 'dwave-networkx',
-              'greedy': 'dwave-greedy',
-              'hybrid': 'dwave-hybrid',
-              'inspector': 'dwave-inspector',
-              'minorminer': 'minorminer',
-              'neal': 'dwave-neal',
-              'penaltymodel': {'cache': 'penaltymodel_cache',
-                               'core': 'penaltymodel_core',
-                               'lp': 'penaltymodel_lp',
-                               'maxgap': 'penaltymodel_maxgap',
-                               'mip': 'penaltymodel_mip'},
-              'system': 'dwave-system',
-              'embedding': 'dwave-system',
-              'tabu': 'dwave-tabu'}
+# Link to GitHub source
+github_map = {'dwavebinarycsp': ['dwavebinarycsp',],
+              'cloud': ['dwave-cloud-client',],
+              'dimod':  ['dimod',],
+              'dwave_networkx': ['dwave-networkx',],
+              'greedy': ['dwave-greedy',],
+              'hybrid': ['dwave-hybrid',],
+              'inspector': ['dwave-inspector',],
+              'minorminer': ['minorminer',],
+              'neal': ['dwave-neal',],
+              'penaltymodel': [{'cache': ['penaltymodel_cache',],
+                               'core': ['penaltymodel_core',],
+                               'lp': ['penaltymodel_lp',],
+                               'maxgap': ['penaltymodel_maxgap',],
+                               'mip': ['penaltymodel_mip',]}],
+              'system': ['dwave-system',],
+              'embedding': ['dwave-system',],
+              'tabu': ['dwave-tabu',]}
+
+ocean_repos = {**{gh: repo[0] for gh, repo in github_map.items() if isinstance(repo[0], str)}, \
+               ** {gh: repo[0].replace('_', '-') for gh, repo in github_map['penaltymodel'][0].items()}} 
+
+os.system('cd .. ; python setup.py egg_info; cd docs')
+with open('../dwave_ocean_sdk.egg-info/requires.txt', 'r') as requires_file:
+    repo_info = requires_file.readlines()
+    for line in repo_info:
+        if line.split('==')[0] == 'penaltymodel':
+            github_map['penaltymodel'][0]['core'].append(line.split('==')[1].rstrip())
+        for gh, repo in ocean_repos.items():
+            if repo in line:
+               if 'penaltymodel' in repo:
+                   github_map['penaltymodel'][0][gh].append(line.split('==')[1].rstrip())
+               else:
+                   github_map[gh].append(line.split('==')[1].rstrip())
+               #break  # not used because of embedding
 
 def linkcode_resolve(domain, info):
     """
@@ -347,6 +365,7 @@ def linkcode_resolve(domain, info):
     for i in range(len(obj)):
            obj[i] = inspect.unwrap(obj[i])
 
+    fn = None
     for i in range(len(obj)-1, -1, -1): 
         try: 
            fn = inspect.getsourcefile(obj[i]) 
@@ -374,13 +393,14 @@ def linkcode_resolve(domain, info):
     target = fn.split("/")
     repo = target[1] if not target[1] == "dwave" else target[2]
 
-    if repo in ["minorminer", ]:
-        fn = "https://github.com/dwavesystems/" + github_map[repo] + "/blob/main" + fn
-    elif repo == 'penaltymodel':
-        fn = "https://github.com/dwavesystems/penaltymodel/blob/master/" +  \
-             github_map[repo][info['module'].split('.')[1]] + fn  
+    if repo == 'penaltymodel':
+        fn = "https://github.com/dwavesystems/penaltymodel/blob/" +  \
+             github_map['penaltymodel'][0][info['module'].split('.')[1]][1] + "/" + \
+             github_map['penaltymodel'][0][info['module'].split('.')[1]][0] + fn
+
     else:
-        fn = "https://github.com/dwavesystems/" + github_map[repo] + "/blob/master" + fn     
+        fn = "https://github.com/dwavesystems/" + github_map[repo][0] + "/blob/" + \
+             github_map[repo][1] + "/" + fn     
  
     return fn + linespec
 
