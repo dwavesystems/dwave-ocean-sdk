@@ -326,36 +326,42 @@ def linkcode_resolve(domain, info):
     Find the URL of the GitHub source for dwave-ocean-sdk objects.
     """
     # Based on https://github.com/numpy/numpy/blob/main/doc/source/conf.py
+    # Updated to work on multiple submodules and fall back to next-level 
+    # module for objects such as properties
 
     if domain != 'py':
         return None
 
-    obj = sys.modules.get(info['module'])
+    obj={}
+    obj_inx = 0
+    obj[obj_inx] = sys.modules.get(info['module'])
     for part in info['fullname'].split('.'):
+        obj_inx += 1
         try:
-            obj = getattr(obj, part)
+            obj[obj_inx] = getattr(obj[obj_inx - 1], part)
         except Exception:
-            return None
+            pass
 
     # strip decorators, which would resolve to the source of the decorator
-    # possibly an upstream bug in getsourcefile, bpo-1764286
-    try:
-        unwrap = inspect.unwrap
-    except AttributeError:
-        pass
-    else:
-        obj = unwrap(obj)
+    # https://bugs.python.org/issue34305
+    for i in range(len(obj)):
+           obj[i] = inspect.unwrap(obj[i])
 
-    try:
-        fn = inspect.getsourcefile(obj)
-    except Exception:
-        return None
+    for i in range(len(obj)-1, -1, -1): 
+        try: 
+           fn = inspect.getsourcefile(obj[i]) 
+           if fn: 
+              obj_inx = i
+              break 
+        except:
+           pass 
 
+    linespec = ""
     try:
-        source, lineno = inspect.getsourcelines(obj)
-        linespec = "#L%d-L%d" % (lineno, lineno + len(source) - 1)
+        source, lineno = inspect.getsourcelines(obj[obj_inx])
+        linespec = "#L%d" % (lineno)
     except Exception:
-        lineno = ""
+        linespec = ""
 
     if not fn or not "site-packages" in fn:
        return None
