@@ -394,13 +394,13 @@ def linkcode_resolve(domain, info):
     repo = target[1] if not target[1] == "dwave" else target[2]
 
     if repo == 'penaltymodel':
-        fn = "https://github.com/dwavesystems/penaltymodel/blob/" +  \
+        fn = "https://github.com/dwavesystems/penaltymodel/tree/" +  \
+             info['module'].split('.')[1] + "-" + \
              github_map['penaltymodel'][0][info['module'].split('.')[1]][1] + "/" + \
              github_map['penaltymodel'][0][info['module'].split('.')[1]][0] + fn
-
     else:
         fn = "https://github.com/dwavesystems/" + github_map[repo][0] + "/blob/" + \
-             github_map[repo][1] + "/" + fn     
+             github_map[repo][1] + fn     
  
     return fn + linespec
 
