@@ -283,7 +283,7 @@ epub_exclude_files = ['search.html']
 # Example configuration for intersphinx: refer to the Python standard library.
 #intersphinx_mapping = {'https://docs.python.org/': None,
 #                       'http://networkx.readthedocs.io/en/latest/': None}
-intersphinx_mapping = {'python': ('https://docs.python.org/', None),
+intersphinx_mapping = {'python': ('https://docs.python.org/3/', None),
     'numpy': ('http://docs.scipy.org/doc/numpy/', None),
     'bson': ('https://api.mongodb.com/python/current/', None),
     'networkx': ('https://networkx.github.io/documentation/stable/', None),
