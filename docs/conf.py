@@ -337,7 +337,6 @@ with open('../dwave_ocean_sdk.egg-info/requires.txt', 'r') as requires_txt:
                if repo[0] in line:
                   github_map[gh].append(line.split('==')[1].rstrip())
 
-
 def linkcode_resolve(domain, info):
     """
     Find the URL of the GitHub source for dwave-ocean-sdk objects.
@@ -389,17 +388,17 @@ def linkcode_resolve(domain, info):
     else:
        fn = fn.replace(fn[:fn.index("site-packages")+len("site-packages")], "") 
 
-    target = fn.split("/")
-    repo = target[1] if not target[1] == "dwave" else target[2]
+    repo = fn.split("/")[1] if  \
+           (fn.split("/")[1] != "dwave") and (fn.split("/")[1] != "penaltymodel") \
+           else fn.split("/")[2]
 
-    if repo == 'penaltymodel':
-        fn = "https://github.com/dwavesystems/penaltymodel/tree/" +  \
-             info['module'].split('.')[1] + "-" + \
-             github_map['penaltymodel'][0][info['module'].split('.')[1]][1] + "/" + \
-             github_map['penaltymodel'][0][info['module'].split('.')[1]][0] + fn
+    if fn.split("/")[1] == 'penaltymodel':
+        pm_pkg = github_map['penaltymodel'][0][repo]
+        fn = "https://github.com/dwavesystems/penaltymodel/tree/{}-{}/{}{}".format( \
+             repo, pm_pkg[1], pm_pkg[0], fn)
     else:
-        fn = "https://github.com/dwavesystems/" + github_map[repo][0] + "/blob/" + \
-             github_map[repo][1] + fn     
+        pkg = github_map[repo]
+        fn = "https://github.com/dwavesystems/{}/blob/{}{}".format(pkg[0], pkg[1], fn) 
  
     return fn + linespec
 
