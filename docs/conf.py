@@ -25,6 +25,7 @@ import os
 import sys
 import subprocess
 import inspect      
+import pkg_resources
 
 config_directory = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.abspath('.'))
@@ -304,38 +305,28 @@ if read_the_docs_build:
     subprocess.call('cd ../minorminer/docs/; make cpp', shell=True)
 
 # Link to GitHub source
-github_map = {'dwavebinarycsp': ['dwavebinarycsp',],
-              'cloud': ['dwave-cloud-client',],
-              'dimod':  ['dimod',],
-              'dwave_networkx': ['dwave-networkx',],
-              'greedy': ['dwave-greedy',],
-              'hybrid': ['dwave-hybrid',],
-              'inspector': ['dwave-inspector',],
-              'minorminer': ['minorminer',],
-              'neal': ['dwave-neal',],
-              'penaltymodel': [{'cache': ['penaltymodel_cache',],
-                               'core': ['penaltymodel_core',],
-                               'lp': ['penaltymodel_lp',],
-                               'maxgap': ['penaltymodel_maxgap',],
-                               'mip': ['penaltymodel_mip',]}],
-              'system': ['dwave-system',],
-              'embedding': ['dwave-system',],
-              'tabu': ['dwave-tabu',]}
+github_map = {'dwavebinarycsp': 'dwavebinarycsp',
+              'cloud': 'dwave-cloud-client',
+              'dimod':  'dimod',
+              'dwave_networkx': 'dwave-networkx',
+              'greedy': 'dwave-greedy',
+              'hybrid': 'dwave-hybrid',
+              'inspector': 'dwave-inspector',
+              'minorminer': 'minorminer',
+              'neal': 'dwave-neal',
+              'penaltymodel': {'cache': 'penaltymodel_cache',
+                               'core': 'penaltymodel_core',
+                               'lp': 'penaltymodel_lp',
+                               'maxgap': 'penaltymodel_maxgap',
+                               'mip': 'penaltymodel_mip'},
+              'system': 'dwave-system',
+              'embedding': 'dwave-system',
+              'tabu': 'dwave-tabu'}
 
-os.system('cd .. ; python setup.py egg_info; cd docs')
-with open('../dwave_ocean_sdk.egg-info/requires.txt', 'r') as requires_txt:
-    repo_versions = requires_txt.readlines()
-    for line in repo_versions:
-        if line.split('==')[0] == 'penaltymodel':
-            github_map['penaltymodel'][0]['core'].append(line.split('==')[1].rstrip())
-        for gh, repo in github_map.items():
-            if gh=='penaltymodel':
-               for gh, repo in repo[0].items():
-                  if repo[0].replace('_', '-') in line:
-                     github_map['penaltymodel'][0][gh].append(line.split('==')[1].rstrip())
-            else: # non penalty model
-               if repo[0] in line:
-                  github_map[gh].append(line.split('==')[1].rstrip())
+reqs = pkg_resources.get_distribution('dwave-ocean-sdk').requires(extras=['all'])
+pkgs = [pkg_resources.get_distribution(req) for req in reqs]
+versions = {pkg.project_name: pkg.version for pkg in pkgs}
+versions['penaltymodel-core'] = versions.pop('penaltymodel')
 
 def linkcode_resolve(domain, info):
     """
@@ -394,12 +385,14 @@ def linkcode_resolve(domain, info):
            else fn.split("/")[2]
 
     if fn.split("/")[1] == 'penaltymodel':
-        pm_pkg = github_map['penaltymodel'][0][repo]
+        pm_module = github_map['penaltymodel'][repo] 
+        pm_ver = versions[github_map['penaltymodel'][repo].replace('_', '-')]
         fn = "https://github.com/dwavesystems/penaltymodel/tree/{}-{}/{}{}".format( \
-             repo, pm_pkg[1], pm_pkg[0], fn)
+             repo, pm_ver, pm_module, fn)
     else:
-        pkg = github_map[repo]
-        fn = "https://github.com/dwavesystems/{}/blob/{}{}".format(pkg[0], pkg[1], fn) 
+        pm_module = github_map[repo] 
+        pm_ver = versions[github_map[repo]]
+        fn = "https://github.com/dwavesystems/{}/blob/{}{}".format(pm_module, pm_ver, fn) 
  
     return fn + linespec
 
