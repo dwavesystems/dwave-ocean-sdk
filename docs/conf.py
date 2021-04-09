@@ -376,7 +376,8 @@ def linkcode_resolve(domain, info):
     linespec = ""
     try:
         source, lineno = inspect.getsourcelines(obj[obj_inx])
-        linespec = "#L%d" % (lineno)
+        if obj_inx != 0:
+           linespec = "#L%d" % (lineno) 
     except Exception:
         linespec = ""
 
