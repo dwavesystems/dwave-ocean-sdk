@@ -322,22 +322,21 @@ github_map = {'dwavebinarycsp': ['dwavebinarycsp',],
               'embedding': ['dwave-system',],
               'tabu': ['dwave-tabu',]}
 
-ocean_repos = {**{gh: repo[0] for gh, repo in github_map.items() if isinstance(repo[0], str)}, \
-               ** {gh: repo[0].replace('_', '-') for gh, repo in github_map['penaltymodel'][0].items()}} 
-
 os.system('cd .. ; python setup.py egg_info; cd docs')
-with open('../dwave_ocean_sdk.egg-info/requires.txt', 'r') as requires_file:
-    repo_info = requires_file.readlines()
-    for line in repo_info:
+with open('../dwave_ocean_sdk.egg-info/requires.txt', 'r') as requires_txt:
+    repo_versions = requires_txt.readlines()
+    for line in repo_versions:
         if line.split('==')[0] == 'penaltymodel':
             github_map['penaltymodel'][0]['core'].append(line.split('==')[1].rstrip())
-        for gh, repo in ocean_repos.items():
-            if repo in line:
-               if 'penaltymodel' in repo:
-                   github_map['penaltymodel'][0][gh].append(line.split('==')[1].rstrip())
-               else:
-                   github_map[gh].append(line.split('==')[1].rstrip())
-               #break  # not used because of embedding
+        for gh, repo in github_map.items():
+            if gh=='penaltymodel':
+               for gh, repo in repo[0].items():
+                  if repo[0].replace('_', '-') in line:
+                     github_map['penaltymodel'][0][gh].append(line.split('==')[1].rstrip())
+            else: # non penalty model
+               if repo[0] in line:
+                  github_map[gh].append(line.split('==')[1].rstrip())
+
 
 def linkcode_resolve(domain, info):
     """
