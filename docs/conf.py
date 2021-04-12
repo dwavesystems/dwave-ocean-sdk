@@ -16,9 +16,16 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
+# This file contains function linkcode_resolve, based on 
+# https://github.com/numpy/numpy/blob/main/doc/source/conf.py, 
+# which is licensed under the BSD 3-Clause "New" or "Revised" 
+# license: ./licenses/numpy.rst  
+
 import os
 import sys
 import subprocess
+import inspect      
+import pkg_resources
 
 config_directory = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.abspath('.'))
@@ -42,7 +49,7 @@ extensions = [
     'sphinx.ext.mathjax',
     'sphinx.ext.napoleon',
     'sphinx.ext.todo',
-    'sphinx.ext.viewcode',
+    'sphinx.ext.linkcode',
     'sphinx.ext.githubpages',
     'sphinx.ext.ifconfig',
     'breathe',
@@ -277,7 +284,7 @@ epub_exclude_files = ['search.html']
 # Example configuration for intersphinx: refer to the Python standard library.
 #intersphinx_mapping = {'https://docs.python.org/': None,
 #                       'http://networkx.readthedocs.io/en/latest/': None}
-intersphinx_mapping = {'python': ('https://docs.python.org/', None),
+intersphinx_mapping = {'python': ('https://docs.python.org/3/', None),
     'numpy': ('http://docs.scipy.org/doc/numpy/', None),
     'bson': ('https://api.mongodb.com/python/current/', None),
     'networkx': ('https://networkx.github.io/documentation/stable/', None),
@@ -296,3 +303,96 @@ read_the_docs_build = os.environ.get('READTHEDOCS', None) == 'True'
 if read_the_docs_build:
 
     subprocess.call('cd ../minorminer/docs/; make cpp', shell=True)
+
+# Link to GitHub source
+github_map = {'dwavebinarycsp': 'dwavebinarycsp',
+              'cloud': 'dwave-cloud-client',
+              'dimod':  'dimod',
+              'dwave_networkx': 'dwave-networkx',
+              'greedy': 'dwave-greedy',
+              'hybrid': 'dwave-hybrid',
+              'inspector': 'dwave-inspector',
+              'minorminer': 'minorminer',
+              'neal': 'dwave-neal',
+              'penaltymodel': {'cache': 'penaltymodel_cache',
+                               'core': 'penaltymodel_core',
+                               'lp': 'penaltymodel_lp',
+                               'maxgap': 'penaltymodel_maxgap',
+                               'mip': 'penaltymodel_mip'},
+              'system': 'dwave-system',
+              'embedding': 'dwave-system',
+              'tabu': 'dwave-tabu'}
+
+reqs = pkg_resources.get_distribution('dwave-ocean-sdk').requires(extras=['all'])
+pkgs = [pkg_resources.get_distribution(req) for req in reqs]
+versions = {pkg.project_name: pkg.version for pkg in pkgs}
+versions['penaltymodel-core'] = versions.pop('penaltymodel')
+
+def linkcode_resolve(domain, info):
+    """
+    Find the URL of the GitHub source for dwave-ocean-sdk objects.
+    """
+    # Based on https://github.com/numpy/numpy/blob/main/doc/source/conf.py
+    # Updated to work on multiple submodules and fall back to next-level 
+    # module for objects such as properties
+
+    if domain != 'py':
+        return None
+
+    obj={}
+    obj_inx = 0
+    obj[obj_inx] = sys.modules.get(info['module'])
+    for part in info['fullname'].split('.'):
+        obj_inx += 1
+        try:
+            obj[obj_inx] = getattr(obj[obj_inx - 1], part)
+        except Exception:
+            pass
+
+    # strip decorators, which would resolve to the source of the decorator
+    # https://bugs.python.org/issue34305
+    for i in range(len(obj)):
+           obj[i] = inspect.unwrap(obj[i])
+
+    fn = None
+    for i in range(len(obj)-1, -1, -1): 
+        try: 
+           fn = inspect.getsourcefile(obj[i]) 
+           if fn: 
+              obj_inx = i
+              break 
+        except:
+           pass 
+
+    linespec = ""
+    try:
+        source, lineno = inspect.getsourcelines(obj[obj_inx])
+        if obj_inx != 0:
+           linespec = "#L%d" % (lineno) 
+    except Exception:
+        linespec = ""
+
+    if not fn or not "site-packages" in fn:
+       return None
+    
+    if ".egg" in fn:
+       fn = fn.replace(fn[:fn.index("egg")+len("egg")], "")   
+    else:
+       fn = fn.replace(fn[:fn.index("site-packages")+len("site-packages")], "") 
+
+    repo = fn.split("/")[1] if  \
+           (fn.split("/")[1] != "dwave") and (fn.split("/")[1] != "penaltymodel") \
+           else fn.split("/")[2]
+
+    if fn.split("/")[1] == 'penaltymodel':
+        pm_module = github_map['penaltymodel'][repo] 
+        pm_ver = versions[github_map['penaltymodel'][repo].replace('_', '-')]
+        fn = "https://github.com/dwavesystems/penaltymodel/tree/{}-{}/{}{}".format( \
+             repo, pm_ver, pm_module, fn)
+    else:
+        pm_module = github_map[repo] 
+        pm_ver = versions[github_map[repo]]
+        fn = "https://github.com/dwavesystems/{}/blob/{}{}".format(pm_module, pm_ver, fn) 
+ 
+    return fn + linespec
+
