@@ -55,7 +55,7 @@ solve the problem.
 Formulate the Problem
 =====================
 
-This example uses the `NetworkX <https://networkx.github.io/>`_ 
+This example uses the `NetworkX <https://networkx.org>`_ 
 :func:`~networkx.readwrite.adjlist.read_adjlist` function to read a text file,
 ``usa.adj``, containing the states of the USA and their adjacencies (states with
 a shared border) into a graph. The original map information was found on 

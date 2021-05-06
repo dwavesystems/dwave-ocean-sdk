@@ -18,7 +18,7 @@ versions 3.6 and higher are supported.
 
    For information on why many in the Python development community are
    requiring Python 3, see
-   `the Python 3 statement <http://python3statement.org/>`_.
+   `the Python 3 statement <https://python3statement.org/>`_.
 
 
 This section explains how to :ref:`install Ocean software<installOceanSoftware>`, either the entire suite of tools
@@ -50,7 +50,7 @@ depending on your operating system, you may need to first install Python and/or
    .. attention::
       For Windows systems, note that only **64-bit** Python is supported.
 
-#. `Install virtualenv <https://packaging.python.org/guides/installing-using-pip-and-virtualenv>`_
+#. `Install virtualenv <https://packaging.python.org/guides/installing-using-pip-and-virtual-environments>`_
    describes how to install the `virtualenv` tool for creating isolated Python environments
    on your local machine for supported operating system.
 

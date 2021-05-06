@@ -32,9 +32,6 @@ problems with quantum computers.
 Packages
 ========
 
-The Ocean SDK includes the :ref:`dwave_cli` and the following packages:
-
-
 .. dropdown::  **dimod** --- Quadratic models: BQM, DQM. \ 
    :link-badge:`https://docs.ocean.dwavesys.com/en/stable/docs_dimod/sdk_index.html, "docs", cls=badge-primary fr text-white` \
    :link-badge:`https://github.com/dwavesystems/dimod, "code", cls=badge-secondary fr text-white` 

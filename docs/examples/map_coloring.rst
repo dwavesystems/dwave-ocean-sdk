@@ -37,7 +37,7 @@ To run the code in this example, the following is required.
 * Ocean tools
   :doc:`dwavebinarycsp </docs_binarycsp/sdk_index>` and
   :doc:`dwave-system </docs_system/sdk_index>`. For graphics,
-  you will also need `NetworkX <https://networkx.github.io/>`_\ .
+  you will also need `NetworkX <https://networkx.org>`_.
 
 .. include:: hybrid_solver_service.rst
   :start-after: example-requirements-start-marker
@@ -119,7 +119,7 @@ The example uses the
 :doc:`D-Wave binary CSP tool </docs_binarycsp/sdk_index>`
 to set up constraints and convert the CSP to a binary quadratic model,
 :doc:`dwave-system </docs_system/sdk_index>` to set up a D-Wave
-system as the :term:`sampler`, and `NetworkX <https://networkx.github.io/>`_ to
+system as the :term:`sampler`, and `NetworkX <https://networkx.org>`_ to
 plot results.
 
 >>> import dwavebinarycsp

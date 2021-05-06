@@ -39,7 +39,7 @@ To run the code in this example, the following is required.
    solutions are those with the lowest values. This is demonstrated in 
    `Leap <https://cloud.dwavesys.com/leap/>`_\ 's *Structural Imbalance* demo, 
    introduced in the :ref:`and` example, and comprehensively explained in the
-   `Problem Solving Handbook <https://docs.dwavesys.com/docs/latest/c_handbook_1.html>`_. 
+   :std:doc:`Problem Solving Handbook <sysdocs_gettingstarted:doc_handbook>`_. 
 
 Solution Steps
 ==============
@@ -55,7 +55,7 @@ to formulate the problem and submitted to the
 Formulate the Problem
 =====================
 
-This example uses the `NetworkX <https://networkx.github.io/>`_ 
+This example uses the `NetworkX <https://networkx.org>`_ 
 :func:`~networkx.readwrite.adjlist.read_adjlist` function to read a text file, 
 ``usa.adj``, containing the states of the USA and their adjacencies (states with
 a shared border) into a graph. The original map information was found on 

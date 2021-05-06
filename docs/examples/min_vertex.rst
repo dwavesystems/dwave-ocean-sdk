@@ -54,7 +54,7 @@ problem of finding such a set is NP hard.
    A five-node star graph.
 
 First, run the code snippet below to create a star graph where node 0 is hub to four other nodes.
-The code uses `NetworkX <https://networkx.github.io/documentation/stable/index.html>`_\ , which is
+The code uses `NetworkX <https://networkx.org/documentation/stable/index.html>`_\ , which is
 part of your *dwave_networkx* or *dwave-ocean-sdk* installation.
 
 >>> import networkx as nx

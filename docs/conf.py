@@ -98,6 +98,11 @@ add_module_names = False
 # This patterns also effect to html_static_path and html_extra_path
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
+linkcheck_ignore=[r'.clang-format',                   # would need symlink
+                  r'https://cloud.dwavesys.com/leap', # redirects, many checks
+                  r'https://scipy.org',               # ignores robots
+                  ]
+
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = 'sphinx'
 

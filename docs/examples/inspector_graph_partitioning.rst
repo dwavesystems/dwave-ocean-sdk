@@ -38,7 +38,8 @@ Formulate the Problem
 
 This example uses a synthetic problem for illustrative purposes: a NetworkX
 generated graph,
-`NetworkX random_geometric_graph() <https://networkx.github.io/documentation/stable/reference/generators.html#module-networkx.generators.random>`_. The problem of interest here,
+`NetworkX random_geometric_graph() <https://networkx.org/documentation/latest/reference/generators.html>`_.
+The problem of interest here,
 which is NP-hard, is to try and find the best division of the graph's nodes into two
 equal sets with a minimum number of edges between the two groups.
 

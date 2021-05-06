@@ -29,11 +29,9 @@ Example Requirements
 To run the code in this example, the following is required.
 
 * The requisite information for problem submission through SAPI, as described in
-  :ref:`sapi_access`\ , in a configuration file for connection to a D-Wave system,
-  as described in
-  `dwave-cloud-client <http://dwave-cloud-client.readthedocs.io/en/latest/>`_\ .
-* Installation of Ocean tools `dwave-system <https://github.com/dwavesystems/dwave-system>`_ and
-  `dwave_networkx <http://dwave-networkx.readthedocs.io/en/latest/index.html>`_\ .
+  :ref:`sapi_access`.
+* Installation of Ocean tools :doc:`dwave-system </docs_system/sdk_index>` and
+  :doc:`dwave_networkx </docs_dnx/sdk_index>`.
 
 .. include:: hybrid_solver_service.rst
   :start-after: example-requirements-start-marker
@@ -50,7 +48,7 @@ valid maximum cut.
 
 .. note:: As stated in the requirements section above, you should have set up
      a configuration file for connection to a D-Wave system, as described in
-     `dwave-cloud-client <http://dwave-cloud-client.readthedocs.io/en/latest/>`_\ .
+     :doc:`dwave-cloud-client </docs_cloud/sdk_index>`.
 
 The first example code creates a graph that exactly duplicates the structure of a fully
 working :term:`Chimera` unit cell. It relies on the default embedding of the DWaveSampler to correctly
@@ -83,7 +81,7 @@ Optional Example Code
 
 .. note:: This example code requires `Matplotlib <https://matplotlib.org>`_\ .
 
-The Ocean `dwave_networkx <http://dwave-networkx.readthedocs.io/en/latest/index.html>`_
+The Ocean :doc:`dwave_networkx </docs_dnx/sdk_index>`
 tool includes some graphic functionality helpful for work on Chimera graphs. The following
 example code visualizes the graph used in the previous example code.
 
