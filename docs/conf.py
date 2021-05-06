@@ -101,6 +101,8 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 linkcheck_ignore=[r'.clang-format',                   # would need symlink
                   r'https://cloud.dwavesys.com/leap', # redirects, many checks
                   r'https://scipy.org',               # ignores robots
+                  r'LICENSE',                         # would need symlink, checked by submodule
+                  r'CONTRIBUTING',                    # would need symlink, checked by submodule
                   ]
 
 # The name of the Pygments (syntax highlighting) style to use.
