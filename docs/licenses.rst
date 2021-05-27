@@ -18,6 +18,7 @@ Below are the open-source licenses for the SDK and its tools:
    licenses/tabu
    licenses/minorminer
    licenses/penaltymodel
+   licenses/preprocessing
    pyqubo <https://github.com/recruit-communications/pyqubo/blob/master/LICENSE>
    qbsolv <https://github.com/dwavesystems/qbsolv/blob/master/LICENSE>
 

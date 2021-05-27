@@ -319,6 +319,7 @@ github_map = {'dwavebinarycsp': 'dwavebinarycsp',
                                'lp': 'penaltymodel_lp',
                                'maxgap': 'penaltymodel_maxgap',
                                'mip': 'penaltymodel_mip'},
+              'preprocessing': 'dwave-preprocessing',
               'system': 'dwave-system',
               'embedding': 'dwave-system',
               'tabu': 'dwave-tabu'}

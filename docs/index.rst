@@ -64,6 +64,8 @@ The SDK includes the :ref:`dwave_cli` and the following packages:
        :term:`sampler`\ s.
    * - :doc:`dwave-ocean-sdk <index>` (`repo <https://github.com/dwavesystems/dwave-ocean-sdk>`_)
      - Installer for D-Wave's Ocean Tools.
+   * - :doc:`dwave-preprocessing <docs_preprocessing/sdk_index>` (`repo <https://github.com/dwavesystems/dwave-preprocessing.git>`_\ )
+     - Library containing common preprocessing tools for quadratic models.
    * - :std:doc:`dwave-system <docs_system/sdk_index>` (`repo <https://github.com/dwavesystems/dwave-system>`_)
      - Basic API for easily incorporating the D-Wave system as a :term:`sampler` in the
        D-Wave Ocean software stack.
@@ -112,6 +114,7 @@ The SDK includes the :ref:`dwave_cli` and the following packages:
   docs_tabu/sdk_index
   docs_minorminer/source/sdk_index
   docs_penalty/sdk_index
+  docs_preprocessing/sdk_index
   docs_pyqubo
   docs_qbsolv
 
