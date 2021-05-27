@@ -4,7 +4,6 @@ environment:
 
     # https://www.appveyor.com/docs/build-environment/#python
 
-    - PYTHON: "C:\\Python35-x64"
     - PYTHON: "C:\\Python36-x64"
     - PYTHON: "C:\\Python37-x64"
     - PYTHON: "C:\\Python38-x64"
