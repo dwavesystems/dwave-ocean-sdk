@@ -54,7 +54,7 @@ The Ocean SDK includes the :ref:`dwave_cli` and the following packages:
   :link-badge:`https://github.com/recruit-communications/pyqubo, "pyqubo", cls=badge-primary text-white`
   :link-badge:`https://github.com/dwavesystems/qbsolv, "qbsolv", cls=badge-primary text-white`
 
-.. tabbed:: Documentation
+.. tabbed:: Documentation & Descriptions
 
   .. dropdown::  :link-badge:`https://docs.ocean.dwavesys.com/en/stable/docs_dimod/sdk_index.html, "dimod", cls=badge-primary text-white`
 
@@ -180,8 +180,25 @@ The Ocean SDK includes the :ref:`dwave_cli` and the following packages:
   Leap <https://cloud.dwavesys.com/leap/>
   D-Wave System Documentation <https://docs.dwavesys.com/docs/latest/index.html>
 
-Indices and tables
-==================
+Index and D-Wave Links
+======================
 
-* :ref:`genindex`
+* :ref:`genindex`: Index for this site.
 
+* `Leap <https://cloud.dwavesys.com/leap>`_: Sign up for Leap quantum cloud service,
+  which gives you immediate, secure access to D-Wave quantum and hybrid solvers, as
+  well as a wealth of information to help you get started creating quantum applications.
+
+* `System Documentation <https://docs.dwavesys.com/docs/latest/index.html>`_: Here you will
+  find information such as
+
+  - `Getting Started  with the System <https://docs.dwavesys.com/docs/latest/doc_getting_started.html>`_---An
+    introduction to D-Wave's quantum computers, their hardware and how they work.
+
+  - `Solver Properties and Parameters <https://docs.dwavesys.com/docs/latest/doc_solver_ref.html>`_---Description
+    of properties and parameters for of D-Wave's quantum computers and
+    Leap's quantum-classical hybrid solvers.
+
+  - `Problem-Solving Handbook <https://docs.dwavesys.com/docs/latest/doc_handbook.html>`_---Information
+    and references on formulating problems and best practices in quantum
+    computing.
