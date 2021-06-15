@@ -1,8 +1,10 @@
 penaltymodel-maxgap==0.5.4
 
+# June 15, 2021: temporary docutil pinning for https://github.com/readthedocs/sphinx_rtd_theme/issues/1115
+docutils==0.16 
 sphinx>=4.0.0,<5.0.0
 sphinx_rtd_theme
-recommonmark
+recommonmark        
 
 # needed for some of the examples
 matplotlib 
