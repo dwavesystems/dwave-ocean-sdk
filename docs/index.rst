@@ -35,42 +35,58 @@ Packages
 The Ocean SDK includes the :ref:`dwave_cli` and the following packages:
 
 
-.. dropdown::  **dimod** :link-badge:`https://docs.ocean.dwavesys.com/en/stable/docs_dimod/sdk_index.html, "docs", cls=badge-primary text-white` :link-badge:`https://github.com/dwavesystems/dimod, "code", cls=badge-dark text-white` Quadratic models: BQM, DQM.
+.. dropdown::  **dimod** --- Quadratic models: BQM, DQM. \ 
+   :link-badge:`https://docs.ocean.dwavesys.com/en/stable/docs_dimod/sdk_index.html, "docs", cls=badge-primary text-white` \
+   :link-badge:`https://github.com/dwavesystems/dimod, "code", cls=badge-secondary text-white` 
 
    Shared API for binary quadratic :term:`sampler`\ s. Provides a binary quadratic model (BQM) class
    that contains :term:`Ising` and quadratic unconstrained binary optimization (:term:`QUBO`) models
    used by samplers such as the D-Wave system. Also provides utilities for constructing new samplers
    and composed samplers.
 
-.. dropdown:: **dwavebinarycsp** :link-badge:`https://docs.ocean.dwavesys.com/en/stable/docs_binarycsp/sdk_index.html,"docs", cls=badge-primary text-white` :link-badge:`https://github.com/dwavesystems/dwavebinarycsp,"code", cls=badge-dark text-white` Generates BQMs from constraint satisfaction problems.
+.. dropdown:: **dwavebinarycsp** --- Generates BQMs from constraint satisfaction problems. \
+   :link-badge:`https://docs.ocean.dwavesys.com/en/stable/docs_binarycsp/sdk_index.html,"docs", cls=badge-primary text-white` \
+   :link-badge:`https://github.com/dwavesystems/dwavebinarycsp,"code", cls=badge-secondary text-white` 
 
    Library to construct a binary quadratic model from a constraint satisfaction
    problem with small constraints over binary variables.
 
-.. dropdown:: **dwave-cloud-client** :link-badge:`https://docs.ocean.dwavesys.com/en/stable/docs_cloud/sdk_index.html, "docs", cls=badge-primary text-white` :link-badge:`https://github.com/dwavesystems/dwave-cloud-client, "code", cls=badge-dark text-white` API client to D-Wave solvers.
+.. dropdown:: **dwave-cloud-client** --- API client to D-Wave solvers. \
+   :link-badge:`https://docs.ocean.dwavesys.com/en/stable/docs_cloud/sdk_index.html, "docs", cls=badge-primary text-white` \
+   :link-badge:`https://github.com/dwavesystems/dwave-cloud-client, "code", cls=badge-secondary text-white` 
 
    Minimal implementation of the REST interface used to communicate with D-Wave
    :term:`Sampler` API (SAPI) servers.
 
-.. dropdown:: **dwave-greedy** :link-badge:`https://docs.ocean.dwavesys.com/en/stable/docs_greedy/sdk_index.html, "docs", cls=badge-primary text-white` :link-badge:`https://github.com/dwavesystems/dwave-greedy, "code", cls=badge-dark text-white` Steepest descent solver.
+.. dropdown:: **dwave-greedy** --- Steepest descent solver. \
+   :link-badge:`https://docs.ocean.dwavesys.com/en/stable/docs_greedy/sdk_index.html, "docs", cls=badge-primary text-white` \
+   :link-badge:`https://github.com/dwavesystems/dwave-greedy, "code", cls=badge-secondary text-white` 
 
    An implementation of a steepest descent solver for binary quadratic models.
 
-.. dropdown:: **dwave-hybrid** :link-badge:`https://docs.ocean.dwavesys.com/en/stable/docs_hybrid/sdk_index.html, "docs", cls=badge-primary text-white` :link-badge:`https://github.com/dwavesystems/dwave-hybrid, "code", cls=badge-dark text-white` Framework for building hybrid solvers.
+.. dropdown:: **dwave-hybrid** --- Framework for building hybrid solvers. \
+   :link-badge:`https://docs.ocean.dwavesys.com/en/stable/docs_hybrid/sdk_index.html, "docs", cls=badge-primary text-white` \
+   :link-badge:`https://github.com/dwavesystems/dwave-hybrid, "code", cls=badge-secondary text-white` 
 
    A general, minimal Python framework for building hybrid asynchronous decomposition
    samplers for quadratic unconstrained binary optimization (QUBO) problems.
 
-.. dropdown:: **dwave-inspector** :link-badge:`https://docs.ocean.dwavesys.com/en/stable/docs_inspector/sdk_index.html, "docs", cls=badge-primary text-white` :link-badge:`https://github.com/dwavesystems/dwave-inspector, "code", cls=badge-dark text-white` Visualizer for problems submitted to quantum computers.
+.. dropdown:: **dwave-inspector** --- Visualizer for problems submitted to quantum computers. \
+   :link-badge:`https://docs.ocean.dwavesys.com/en/stable/docs_inspector/sdk_index.html, "docs", cls=badge-primary text-white` \
+   :link-badge:`https://github.com/dwavesystems/dwave-inspector, "code", cls=badge-secondary text-white` 
 
    A tool for visualizing problems submitted to, and answers received from, a D-Wave
    structured solver such as a D-Wave 2000Q quantum computer.
 
-.. dropdown:: **dwave-neal** :link-badge:`https://docs.ocean.dwavesys.com/en/stable/docs_neal/sdk_index.html, "docs", cls=badge-primary text-white` :link-badge:`https://github.com/dwavesystems/dwave-neal, "code", cls=badge-dark text-white` Simulated annealing sampler.
+.. dropdown:: **dwave-neal** --- Simulated annealing sampler. \
+   :link-badge:`https://docs.ocean.dwavesys.com/en/stable/docs_neal/sdk_index.html, "docs", cls=badge-primary text-white` \
+   :link-badge:`https://github.com/dwavesystems/dwave-neal, "code", cls=badge-secondary text-white` 
 
    An implementation of a simulated annealing sampler.
 
-.. dropdown:: **dwave-networkx** :link-badge:`https://docs.ocean.dwavesys.com/en/stable/docs_dnx/sdk_index.html, "code", cls=badge-primary text-white` :link-badge:`https://github.com/dwavesystems/dwave-networkx, "code", cls=badge-dark text-white` NetworkX extension.
+.. dropdown:: **dwave-networkx** --- NetworkX extension. \
+   :link-badge:`https://docs.ocean.dwavesys.com/en/stable/docs_dnx/sdk_index.html, "docs", cls=badge-primary text-white` \
+   :link-badge:`https://github.com/dwavesystems/dwave-networkx, "code", cls=badge-secondary text-white` 
 
    Extension of NetworkX—a Python language package for exploration and analysis
    of networks and network algorithms—for users of D-Wave Systems.
@@ -79,15 +95,21 @@ The Ocean SDK includes the :ref:`dwave_cli` and the following packages:
    graph-theory algorithms on the D-Wave system and other binary quadratic model
    :term:`sampler`\ s.
 
-.. dropdown:: **dwave-ocean-sdk** :link-badge:`https://docs.ocean.dwavesys.com/en/stable/index.html, "docs", cls=badge-primary text-white` :link-badge:`https://github.com/dwavesystems/dwave-ocean-sdk, "code", cls=badge-dark text-white` Ocean software development kit.
+.. dropdown:: **dwave-ocean-sdk** --- Ocean software development kit. \
+   :link-badge:`https://docs.ocean.dwavesys.com/en/stable/index.html, "docs", cls=badge-primary text-white` \
+   :link-badge:`https://github.com/dwavesystems/dwave-ocean-sdk, "code", cls=badge-secondary text-white` 
 
    Installer for D-Wave's Ocean Tools.
 
-.. dropdown:: **dwave-preprocessing** :link-badge:`https://docs.ocean.dwavesys.com/en/stable/docs_preprocessing/sdk_index.html, "code", cls=badge-primary text-white` :link-badge:`https://github.com/dwavesystems/dwave-preprocessing, "code", cls=badge-dark text-white` Preprocessing tools for quadratic models.
+.. dropdown:: **dwave-preprocessing** --- Preprocessing tools for quadratic models. \
+   :link-badge:`https://docs.ocean.dwavesys.com/en/stable/docs_preprocessing/sdk_index.html, "docs", cls=badge-primary text-white` \
+   :link-badge:`https://github.com/dwavesystems/dwave-preprocessing, "code", cls=badge-secondary text-white` 
 
    Library containing common preprocessing tools for quadratic models.
 
-.. dropdown:: **dwave-system** :link-badge:`https://docs.ocean.dwavesys.com/en/stable/docs_system/sdk_index.html, "docs", cls=badge-primary text-white` :link-badge:`https://github.com/dwavesystems/dwave-system, "code", cls=badge-dark text-white` D-Wave samplers and composites.
+.. dropdown:: **dwave-system** --- D-Wave samplers and composites. \
+   :link-badge:`https://docs.ocean.dwavesys.com/en/stable/docs_system/sdk_index.html, "docs", cls=badge-primary text-white` \
+   :link-badge:`https://github.com/dwavesystems/dwave-system, "code", cls=badge-secondary text-white` 
 
    Basic API for easily incorporating the D-Wave system as a :term:`sampler` in the
    D-Wave Ocean software stack.
@@ -97,12 +119,16 @@ The Ocean SDK includes the :ref:`dwave_cli` and the following packages:
    It also includes several useful composites—layers of pre- and post-processing—that
    can be used with DWaveSampler to handle :term:`minor-embedding`, optimize chain strength, etc.
 
-.. dropdown:: **dwave-tabu** :link-badge:`https://docs.ocean.dwavesys.com/en/stable/docs_tabu/sdk_index.html, "docs", cls=badge-primary text-white` :link-badge:`https://github.com/dwavesystems/dwave-tabu, "code", cls=badge-dark text-white` Tabu sampler.
+.. dropdown:: **dwave-tabu** --- Tabu sampler. \
+   :link-badge:`https://docs.ocean.dwavesys.com/en/stable/docs_tabu/sdk_index.html, "docs", cls=badge-primary text-white` \
+   :link-badge:`https://github.com/dwavesystems/dwave-tabu, "code", cls=badge-secondary text-white` 
 
    An implementation of the MST2 multistart tabu search algorithm for quadratic unconstrained
    binary optimization (QUBO) problems with a dimod Python wrapper.
 
-.. dropdown:: **minorminer** :link-badge:`https://docs.ocean.dwavesys.com/en/stable/docs_minorminer/source/sdk_index.html, "docs", cls=badge-primary text-white` :link-badge:`https://github.com/dwavesystems/minorminer, "code", cls=badge-dark text-white` Minor-embeds graphs.
+.. dropdown:: **minorminer** --- Minor-embeds graphs. \
+   :link-badge:`https://docs.ocean.dwavesys.com/en/stable/docs_minorminer/source/sdk_index.html, "docs", cls=badge-primary text-white` \
+   :link-badge:`https://github.com/dwavesystems/minorminer, "code", cls=badge-secondary text-white` 
 
    A tool for finding graph :term:`minor-embedding`\ s, developed to embed :term:`Ising` problems onto quantum annealers (QA).
 
@@ -110,7 +136,9 @@ The Ocean SDK includes the :ref:`dwave_cli` and the following packages:
    towards the state of the art in QA: problem graphs of a few to a few hundred variables,
    and hardware graphs of a few thousand qubits.
 
-.. dropdown:: **penaltymodel** :link-badge:`https://docs.ocean.dwavesys.com/en/stable/docs_penalty/sdk_index.html, "docs", cls=badge-primary text-white` :link-badge:`https://github.com/dwavesystems/penaltymodel, "code", cls=badge-dark text-white` Maps constraints to binary quadratic models.
+.. dropdown:: **penaltymodel** --- Maps constraints to binary quadratic models. \
+   :link-badge:`https://docs.ocean.dwavesys.com/en/stable/docs_penalty/sdk_index.html, "docs", cls=badge-primary text-white` \
+   :link-badge:`https://github.com/dwavesystems/penaltymodel, "code", cls=badge-secondary text-white` 
 
    An approach to solve a constraint satisfaction problem (CSP) using an :term:`Ising`
    model or a :term:`QUBO`, is to map each individual constraint in the CSP to a ‘small’
@@ -119,11 +147,15 @@ The Ocean SDK includes the :ref:`dwave_cli` and the following packages:
    Includes a local cache for penalty models and a factory that generates penalty models
    using SMT solvers.
 
-.. dropdown:: **pyqubo** :link-badge:`https://pyqubo.readthedocs.io/en/latest, "docs", cls=badge-primary text-white` :link-badge:`https://github.com/recruit-communications/pyqubo, "code", cls=badge-dark text-white` Creates quadratic models from mathematical expressions.
+.. dropdown:: **pyqubo** --- Creates quadratic models from mathematical expressions. \
+   :link-badge:`https://pyqubo.readthedocs.io/en/latest, "docs", cls=badge-primary text-white` \
+   :link-badge:`https://github.com/recruit-communications/pyqubo, "code", cls=badge-secondary text-white` 
 
    A package that helps you create QUBOs and Ising models from flexible mathematical expressions.
 
-.. dropdown:: **qbsolv** :link-badge:`https://docs.ocean.dwavesys.com/projects/qbsolv/en/latest/, "docs", cls=badge-primary text-white` :link-badge:`https://github.com/dwavesystems/qbsolv, "code", cls=badge-dark text-white` Decomposing solver.
+.. dropdown:: **qbsolv** --- Decomposing solver. \
+   :link-badge:`https://docs.ocean.dwavesys.com/projects/qbsolv/en/latest/, "docs", cls=badge-primary text-white` \
+   :link-badge:`https://github.com/dwavesystems/qbsolv, "code", cls=badge-secondary text-white` 
 
    A decomposing solver that finds a minimum value of a large quadratic unconstrained binary
    optimization (:term:`QUBO`) problem by splitting it into pieces. The pieces are solved
