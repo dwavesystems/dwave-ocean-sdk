@@ -9,3 +9,17 @@
     max-width: 100%;
     overflow: visible;
 }
+
+/* subclass Bootstrap4 badges */
+.badge-secondary.fr
+{
+  float: right;
+  margin-left: 0.25rem;
+}
+
+.badge-primary.fr
+{
+  float: right;
+  margin-left: 0.25rem;
+}
+
