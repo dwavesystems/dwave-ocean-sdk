@@ -91,9 +91,9 @@ The Ocean SDK includes the :ref:`dwave_cli` and the following packages:
    Extension of NetworkX—a Python language package for exploration and analysis
    of networks and network algorithms—for users of D-Wave Systems.
 
-   dwave-networkx provides tools for working with :term:`Chimera` graphs and implementations of
-   graph-theory algorithms on the D-Wave system and other binary quadratic model
-   :term:`sampler`\ s.
+   dwave-networkx provides tools for working with :term:`Chimera` and :term:`Pegasus` 
+   graphs and implementations of graph-theory algorithms on the D-Wave system and other 
+   binary quadratic model :term:`sampler`\ s.
 
 .. dropdown:: **dwave-ocean-sdk** --- Ocean software development kit. \
    :link-badge:`https://docs.ocean.dwavesys.com/en/stable/index.html, "docs", cls=badge-primary fr text-white` \
