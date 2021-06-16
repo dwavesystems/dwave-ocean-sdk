@@ -15,4 +15,9 @@ under the BSD 3-Clause "New" or "Revised" license:
 
 .. include:: ./numpy.rst
 
+The documentation also uses `sphinx-panels <https://github.com/executablebooks/sphinx-panels>`_
+which is licensed under the MIT license:
+
+.. include:: ./sphinx-panels.rst
+
 
