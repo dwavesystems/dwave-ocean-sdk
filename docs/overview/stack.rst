@@ -197,7 +197,7 @@ each stage of the process to a layer of the Ocean stack.
    * :doc:`minorminer </docs_minorminer/source/sdk_index>` for :term:`minor-embedding`
      might be used to improve solutions by fine tuning parameters or incorporating problem
      knowledge into the embedding.
-   * :doc:`dwave-greedy </docs_greedy/source/sdk_index>` provides a steepest-descent solver 
+   * :doc:`dwave-greedy </docs_greedy/sdk_index>` provides a steepest-descent solver 
      for binary quadratic models that can be run on the samples returned from solvers such 
      as :class:`~dwave.system.samplers.DWaveSampler` to find local minima in the neighbourhoods 
      of returned solutions. 

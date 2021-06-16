@@ -24,7 +24,7 @@ versions 3.6 and higher are supported.
 This section explains how to :ref:`install Ocean software<installOceanSoftware>`, either the entire suite of tools
 or particular tools from the D-Wave GitHub repositories listed in the navigation bar.
 
-Most Ocean tools require that you :ref:`configure a solver<configureSolver>` on your
+Most Ocean tools require that you :ref:`configure a solver<sapi_access>` on your
 system, which might be a D-Wave system or a classical sampler that runs on your local CPU.
 
 .. _pythonEnvironment:

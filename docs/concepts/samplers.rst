@@ -12,7 +12,7 @@ A BQM sampler samples from low energy states in models such as those
 defined by an Ising equation or a Quadratic Unconstrained Binary Optimization (QUBO) problem
 and returns an iterable of samples, in order of increasing energy.
 
-Ocean software provides a variety of :std:doc:`dimod samplers <oceandocs:docs_dimod/introduction>`, which
+Ocean software provides a variety of :doc:`dimod </docs_dimod/sdk_index>` samplers, which
 all support ‘sample_qubo’ and ‘sample_ising’ methods as well as the generic BQM sampler method.
 In addition to :class:`~dwave.system.samplers.DWaveSampler()`, classical solvers, which run on CPU or GPU, are available and
 useful for developing code or on a small versions of a problem to verify code.
