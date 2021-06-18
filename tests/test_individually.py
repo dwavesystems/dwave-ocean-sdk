@@ -97,8 +97,9 @@ class TestSmokeIndividually(unittest.TestCase):
         from dwave.preprocessing.composites import ScaleComposite
 
         bqm = dimod.BinaryQuadraticModel.from_ising({'a': 10}, {'ab': -1, 'bc': 1})
-        result = roof_duality(bqm)
-        self.assertFalse(bqm.variables - result)
+        lb, fixed = roof_duality(bqm)
+        self.assertFalse(bqm.variables - fixed)
+        self.assertEqual(lb, -12.0)
 
         sampler = ScaleComposite(dimod.ExactSolver())
         result = sampler.sample(bqm, scalar=0.5)

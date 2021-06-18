@@ -29,7 +29,7 @@ install_requires = [
     'dwave-inspector==0.2.5',
     'dwave-neal==0.5.7',
     'dwave-networkx==0.8.8',
-    'dwave-preprocessing==0.1.2',
+    'dwave-preprocessing==0.2.0',
     'dwave-qbsolv==0.3.2',
     'dwave-system==1.5.0',
     'dwave-tabu==0.3.1',
