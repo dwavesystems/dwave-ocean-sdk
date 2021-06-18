@@ -27,7 +27,7 @@ Solution Steps
 
 Section :ref:`solving_problems` describes the process of solving problems on the quantum
 computer in two steps: (1) Formulate the problem as a :term:`binary quadratic model` (BQM)
-and (2) Solve the BQM with a D-wave system or classical :term:`sampler`. This example
+and (2) Solve the BQM with a D-Wave system or classical :term:`sampler`. This example
 mathematically formulates the BQM and uses Ocean tools to solve it on a D-Wave system.
 
 Formulate the NOT Gate as a BQM

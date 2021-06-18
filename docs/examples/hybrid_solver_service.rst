@@ -54,7 +54,7 @@ Solution Steps
 
 Section :ref:`solving_problems` describes the process of solving problems on the quantum
 computer in two steps: (1) Formulate the problem as a :term:`binary quadratic model` (BQM)
-and (2) Solve the BQM with a D-wave system, classical :term:`sampler`, or hybrid sampler.
+and (2) Solve the BQM with a D-Wave system, classical :term:`sampler`, or hybrid sampler.
 In this example, a function in Ocean software handles both steps. Our task is mainly to
 select the sampler used to solve the problem.
 
