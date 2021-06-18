@@ -164,6 +164,6 @@ Additional Tutorials
 
 * :std:doc:`D-Wave Problem-Solving Handbook <sysdocs_gettingstarted:doc_handbook>`
 
-  This guide for more advanced users has an opening chapter of illustrative examples
-  that explain the main steps of solving problems on the D-Wave system through two
-  “toy” problems.
+  This guide provides advanced guidance on using D-Wave solvers, in particular QPU solvers. 
+  It lists, explains, and demonstrates techniques of problem formulation, minor-embedding, 
+  and configuring QPU parameters to optimize performance.
