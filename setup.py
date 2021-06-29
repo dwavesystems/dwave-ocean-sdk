@@ -32,7 +32,7 @@ install_requires = [
     'dwave-preprocessing==0.2.0',
     'dwave-qbsolv==0.3.2',
     'dwave-system==1.6.0',
-    'dwave-tabu==0.3.1',
+    'dwave-tabu==0.4.1',
     'dwavebinarycsp==0.1.2',
     'minorminer==0.2.5',
     'penaltymodel-cache==0.4.3',
