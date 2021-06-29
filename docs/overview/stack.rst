@@ -52,7 +52,7 @@ into the following layers of functionality:
 
   Tools that help formulate a problem as binary quadratic models; for example
   :doc:`dwave_networkx </docs_dnx/sdk_index>`
-  (`repo <https://github.com/dwavesystems/dwave_networkx>`_\ ) for graph-related problems.
+  (`repo <https://github.com/dwavesystems/dwave-networkx>`_\ ) for graph-related problems.
 * Application
 
   Original problem in its context ("problem space"); for example, circuit fault diagnosis
@@ -257,8 +257,8 @@ each stage of the process to a layer of the Ocean stack.
 
    Ocean demo applications, which formulate known problems, include:
 
-   * `Structural Imbalance <https://github.com/dwavesystems/structural-imbalance-demo>`_\ .
-   * `Circuit-Fault Diagnosis <https://github.com/dwavesystems/circuit-fault-diagnosis-demo>`_\ .
+   * `Structural Imbalance <https://github.com/dwave-examples/structural-imbalance>`_.
+   * `Circuit-Fault Diagnosis <https://github.com/dwave-examples/circuit-fault-diagnosis>`_.
 
 
 Top-Down Approach

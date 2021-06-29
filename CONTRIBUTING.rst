@@ -26,7 +26,7 @@ the repository owner and they will merge your code in.
 Follow the commit conventions described here:
 
 * https://chris.beams.io/posts/git-commit/
-* http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html
+* https://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html
 
 TL;DR:
 
@@ -122,13 +122,13 @@ Documentation
   following are exceptions:
 
   * For D-Wave extensions of third-party projects, we match the existing convention (e.g. the `D-Wave NetworkX
-    <https://github.com/dwavesystems/dwave_networkx>`_ project follows `NumPy <http://scipy.org>`_ conventions).
+    <https://github.com/dwavesystems/dwave_networkx>`_ project follows `NumPy <https://scipy.org>`_ conventions).
   * Argument defaults are written "default=x" rather than "default x".
 
 * Private functions should include some sort of docstring.
 * If your module has more than one public unit, it should have a module docstring with a table of contents.
 * The docstring for the :code:`__init__` method goes on the class.
-* All docstrings should be parsable by the `Sphinx <http://www.sphinx-doc.org/en/stable/#>`_ documentation generation
+* All docstrings should be parsable by the `Sphinx <https://www.sphinx-doc.org/>`_ documentation generation
   tool (i.e. reStructuredText) The sphinx theme should be `readthedocs <https://docs.readthedocs.io/en/latest/>`_.
 
 C++
@@ -153,7 +153,7 @@ Format
 Versioning Scheme
 -----------------
 
-Our code follows `Semantic Versioning <http://semver.org/>`_ conventions: major.minor.patch.
+Our code follows `Semantic Versioning <https://semver.org/>`_ conventions: major.minor.patch.
 
 A change that breaks backwards compatibility must increment the major version. Anything below version 1.0.0 can break
 backwards compatibility.

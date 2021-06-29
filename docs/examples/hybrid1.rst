@@ -59,8 +59,8 @@ Formulate the Problem
 
 This example uses a synthetic problem for illustrative purposes: a NetworkX
 generated graph,
-`NetworkX barabasi_albert_graph() <https://networkx.github.io/documentation/stable/reference/generators.html#module-networkx.generators>`_\ , with random +1 or -1
-couplings assigned to its edges.
+`NetworkX barabasi_albert_graph() <https://networkx.org/documentation/latest/reference/generators.html>`_
+, with random +1 or -1 couplings assigned to its edges.
 
 .. testcode::
 
