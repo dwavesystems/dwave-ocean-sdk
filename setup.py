@@ -34,7 +34,7 @@ install_requires = [
     'dwave-system==1.6.0',
     'dwave-tabu==0.4.1',
     'dwavebinarycsp==0.1.2',
-    'minorminer==0.2.5',
+    'minorminer==0.2.6',
     'penaltymodel-cache==0.4.3',
     'penaltymodel-lp==0.1.4',
     'penaltymodel==0.16.4',
