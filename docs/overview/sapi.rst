@@ -54,9 +54,9 @@ is installed as part of
 the `dwave-ocean-sdk <https://github.com/dwavesystems/dwave-ocean-sdk>`_
 installation.
 
-If you did not already do so with the :code:`dwave setup` command
+If you did not already do so with the :ref:`dwave setup <cli_example_setup>` command
 in the :ref:`dwave_setup` section, or want to make changes at a later time, you
-can use the :code:`dwave config` command.
+can use the :ref:`dwave config <cli_example_config>` command.
 
 .. code-block:: bash
 
@@ -73,8 +73,8 @@ can use the :code:`dwave config` command.
       inspect  Inspect existing configuration/profile.
       ls       List configuration files detected (and/or examined paths).
 
-Creating a configuration file using the :code:`dwave config` is done
-as follows (the :code:`dwave setup` command of the :ref:`dwave_setup` section
+Creating a configuration file using the :ref:`dwave config <cli_example_config>` is done
+as follows (the :ref:`dwave setup <cli_example_setup>` command of the :ref:`dwave_setup` section
 runs these same configuration steps):
 
 1. In the virtual environment you created as part of :ref:`install`, run the
@@ -105,7 +105,7 @@ Verifying Your Configuration
 You can test that your solver access is configured correctly with the
 :ref:`interactive CLI <dwave_cli>`.
 
-1. In your virtual environment, run the :code:`dwave ping` command (the output shown
+1. In your virtual environment, run the :ref:`dwave ping <cli_example_ping>` command (the output shown
    below is illustrative only).
 
 .. include:: ../docs_cli.rst
@@ -136,7 +136,7 @@ Querying Available Solvers
 From your terminal, you can use the
 :ref:`interactive CLI <dwave_cli>` to see the available solvers, their parameters, and properties.
 
-1. Run the :code:`dwave solvers` command (the output shown below is illustrative only).
+1. Run the :ref:`dwave solvers <cli_example_solvers>` command (the output shown below is illustrative only).
 
 .. include:: ../docs_cli.rst
   :start-after: cli-example-solvers-start-marker
