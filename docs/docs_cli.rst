@@ -142,7 +142,7 @@ configured using the :code:`dwave setup` or :code:`dwave config` commands.
 
 .. code-block:: bash
 
-    $ dwave ping
+    $ dwave ping -s {"qpu": true}
     Using endpoint: https://cloud.dwavesys.com/sapi
     Using solver: My_DWAVE_2000Q
 
