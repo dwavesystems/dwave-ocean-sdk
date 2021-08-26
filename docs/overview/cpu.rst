@@ -21,19 +21,19 @@ problem such as a BQM representing a Boolean AND gate (see also the
 
 >>> from dimod.generators import and_gate
 >>> from dimod import ExactSolver
->>> bqm = and_gate('x1', 'x2', 'y1')
+>>> bqm = and_gate('in1', 'in2', 'out')
 >>> sampler = ExactSolver()
->>> response = sampler.sample(bqm)    
->>> print(response)       # doctest: +SKIP
-  x1 x2 y1 energy num_oc.
-0  0  0  0    0.0       1
-1  1  0  0    0.0       1
-3  0  1  0    0.0       1
-5  1  1  1    0.0       1
-2  1  1  0    2.0       1
-4  0  1  1    2.0       1
-6  1  0  1    2.0       1
-7  0  0  1    6.0       1
+>>> sampleset = sampler.sample(bqm)    
+>>> print(sampleset)       # doctest: +SKIP
+  in1 in2 out energy num_oc.
+0   0   0   0    0.0       1
+1   1   0   0    0.0       1
+3   0   1   0    0.0       1
+5   1   1   1    0.0       1
+2   1   1   0    2.0       1
+4   0   1   1    2.0       1
+6   1   0   1    2.0       1
+7   0   0   1    6.0       1
 ['BINARY', 8 rows, 8 samples, 3 variables]
 
 Note that the first four samples are the valid states of the AND gate and have

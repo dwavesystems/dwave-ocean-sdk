@@ -109,13 +109,13 @@ The following are two example formulations.
    following formulation of an AND gate as a BQM:
 
 >>> from dimod.generators import and_gate
->>> bqm = and_gate('x1', 'x2', 'y1')
+>>> bqm = and_gate('in1', 'in2', 'out')
 
 The BQM for this AND gate may look like this:
 
 >>> bqm     # doctest: +SKIP
-BinaryQuadraticModel({'x1': 0.0, 'x2': 0.0, 'y1': 3.0}, 
-...                  {('x2', 'x1'): 1.0, ('y1', 'x1'): -2.0, ('y1', 'x2'): -2.0}, 
+BinaryQuadraticModel({'in1': 0.0, 'in2': 0.0, 'out': 3.0}, 
+...                  {('in2', 'in1'): 1.0, ('out', 'in1'): -2.0, ('out', 'in2'): -2.0}, 
 ...                  0.0, 
 ...                  'BINARY')
 
