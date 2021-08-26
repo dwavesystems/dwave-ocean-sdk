@@ -105,21 +105,18 @@ The following are two example formulations.
       :math:`1`    :math:`1`     No               :math:`1`
       ===========  ============  ===============  ============
 
-2. Ocean's :doc:`dwavebinarycsp </docs_binarycsp/sdk_index>` tool enables the
+2. Ocean's :doc:`dimod </docs_dimod/sdk_index>` tool enables the
    following formulation of an AND gate as a BQM:
 
->>> import dwavebinarycsp
->>> import dwavebinarycsp.factories.constraint.gates as gates
->>> csp = dwavebinarycsp.ConstraintSatisfactionProblem(dwavebinarycsp.BINARY)
->>> csp.add_constraint(gates.and_gate(['x1', 'x2', 'y1']))  # add an AND gate
->>> bqm = dwavebinarycsp.stitch(csp)
+>>> from dimod.generators import and_gate
+>>> bqm = and_gate('x1', 'x2', 'y1')
 
-The resultant BQM of this AND gate may look like this:
+The BQM for this AND gate may look like this:
 
 >>> bqm     # doctest: +SKIP
-BinaryQuadraticModel({'x1': 0.0, 'x2': 0.0, 'y1': 6.0},
-...                  {('x2', 'x1'): 2.0, ('y1', 'x1'): -4.0, ('y1', 'x2'): -4.0},
-...                  0,
+BinaryQuadraticModel({'x1': 0.0, 'x2': 0.0, 'y1': 3.0}, 
+...                  {('x2', 'x1'): 1.0, ('y1', 'x1'): -2.0, ('y1', 'x2'): -2.0}, 
+...                  0.0, 
 ...                  'BINARY')
 
 The members of the two dicts are linear and quadratic coefficients, respectively,
