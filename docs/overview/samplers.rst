@@ -29,25 +29,21 @@ compute resources (:term:`solver`\ s) of different types:
   exact solutions to small problems
 * :ref:`using_qpu` such the Advantage and D-Wave 2000Q systems.
 
-The example code below submits the BQM of the AND gate of the :ref:`formulating_bqm` section,
-
->>> import dimod
->>> bqm = dimod.BinaryQuadraticModel({'x1': 0.0, 'x2': 0.0, 'y1': 6.0},
-...                  {('x2', 'x1'): 2.0, ('y1', 'x1'): -4.0, ('y1', 'x2'): -4.0},
-...                  0, 'BINARY')
-
-to a Leap hybrid solver.
+The example code below submits a BQM representing a Boolean AND gate (see also the
+:ref:`formulating_bqm` section) to a Leap hybrid solver.
 In this case, :doc:`dwave-system </docs_system/sdk_index>`'s
 :class:`~dwave.system.samplers.LeapHybridSampler` is the Ocean sampler and the
 remote compute resource selected might be Leap hybrid solver 
 ``hybrid_binary_quadratic_model_version<x>``.
 
+>>> from dimod.generators import and_gate
 >>> from dwave.system import LeapHybridSampler
+>>> bqm = and_gate('x1', 'x2', 'y1')
 >>> sampler = LeapHybridSampler()    # doctest: +SKIP
 >>> answer = sampler.sample(bqm)   # doctest: +SKIP
 >>> print(answer)    # doctest: +SKIP
-x1 x2 y1 energy num_oc.
-0  0  1  0    0.0       1
+  x1 x2 y1 energy num_oc.
+0  1  1  1    0.0       1
 ['BINARY', 1 rows, 1 samples, 3 variables]
 
 .. _improving:
