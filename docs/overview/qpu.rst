@@ -10,16 +10,13 @@ you to use a D-Wave system as a sampler. In addition to
 provides a :class:`~dwave.system.composites.EmbeddingComposite` composite 
 that maps unstructured problems to the graph
 structure of the selected sampler, a process known as :term:`minor-embedding`.
-For the AND gate of the :ref:`formulating_bqm` section, 
 
->>> import dimod
->>> bqm = dimod.BinaryQuadraticModel({'x1': 0.0, 'x2': 0.0, 'y1': 6.0},
-...                  {('x2', 'x1'): 2.0, ('y1', 'x1'): -4.0, ('y1', 'x2'): -4.0},
-...                  0, 'BINARY')
+For a BQM representing a Boolean AND gate (see also the :ref:`formulating_bqm` 
+section) the problem is defined on alphanumeric variables :math:`x1, x2, y1` 
+that must be mapped to the QPU's numerically indexed qubits.
 
-the problem is defined on
-alphanumeric variables :math:`x1, x2, y1`, that must be mapped to the QPU's numerically
-indexed qubits.
+>>> from dimod.generators import and_gate
+>>> bqm = and_gate('x1', 'x2', 'y1')
 
 Because of the sampler's probabilistic nature, you typically request multiple samples
 for a problem; this example sets `num_reads` to 1000.

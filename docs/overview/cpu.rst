@@ -16,16 +16,12 @@ Among several samplers provided in the :doc:`dimod </docs_dimod/sdk_index>`
 tool for testing your code locally, is the :class:`~dimod.reference.samplers.ExactSolver` 
 that calculates the energy of all
 possible samples for a given problem. Such a sampler can solve a small three-variable
-problem like the AND gate of the :ref:`formulating_bqm` section,
+problem such as a BQM representing a Boolean AND gate (see also the 
+:ref:`formulating_bqm` section) as follows:
 
->>> import dimod
->>> bqm = dimod.BinaryQuadraticModel({'x1': 0.0, 'x2': 0.0, 'y1': 6.0},
-...                  {('x2', 'x1'): 2.0, ('y1', 'x1'): -4.0, ('y1', 'x2'): -4.0},
-...                  0, 'BINARY')
-
-as follows:
-
->>> from dimod.reference.samplers import ExactSolver
+>>> from dimod.generators import and_gate
+>>> from dimod import ExactSolver
+>>> bqm = and_gate('x1', 'x2', 'y1')
 >>> sampler = ExactSolver()
 >>> response = sampler.sample(bqm)    
 >>> print(response)       # doctest: +SKIP
