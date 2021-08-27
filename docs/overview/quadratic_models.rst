@@ -40,8 +40,29 @@ square eliminating negative distance).
 Supported Models
 ================
 
-Ocean supports a few models you can use to express your problem as an objective
+Ocean supports various models you can use to express your problem as an objective
 function:
 
-* :ref:`bqm_sdk`
-* :ref:`dqm_sdk`
+* :ref:`bqm_sdk` are unconstrained and have binary variables
+
+  Used for applications that optimize over decisions that could either be true
+  (or yes) or false (no); for example, should an antenna transmit, or
+  did a network node experience failure?
+
+  Constraints for this model are typically represented by penalty models.
+
+* :ref:`cqm_sdk` enable constraints and have integer and binary variables
+
+  Used for applications that optimize over decisions that could either be true
+  (or yes) or false (no); for example, should an antenna transmit, or
+  did a network node experience failure?
+
+  Constraints for this model are represented natively. 
+
+* :ref:`dqm_sdk` are unconstrained and have discrete variables
+
+  Used for applications that optimize over several distinct options; for example,
+  which shift should employee X work, or should the state on a map be colored red,
+  blue, green or yellow?
+
+  Constraints for this model are typically represented by penalty models.
