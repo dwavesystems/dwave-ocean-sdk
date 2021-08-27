@@ -6,14 +6,16 @@ How a D-Wave System Solves Problems
 This section explains some of the basics of how you can use D-Wave quantum computers
 to solve problems and how Ocean tools can help.
 
-For quantum computing, as for classical, solving a problem requires that it
-be formulated in a way the computer and its software understand.
+.. moved to quadratic_models.rst
 
-For example, if you want your laptop to calculate the area of a $1 coin, you might
-express the problem as an equation, :math:`A=\pi r^2`, that you program as
-:code:`math.pi*13.245**2` in your Python CLI. For a laptop with Python software,
-this formulation---a particular string of alphanumeric symbols---causes the manipulation
-of bits in a CPU and memory chips that produces the correct result.
+  For quantum computing, as for classical, solving a problem requires that it
+  be formulated in a way the computer and its software understand.
+
+  For example, if you want your laptop to calculate the area of a $1 coin, you might
+  express the problem as an equation, :math:`A=\pi r^2`, that you program as
+  :code:`math.pi*13.245**2` in your Python CLI. For a laptop with Python software,
+  this formulation---a particular string of alphanumeric symbols---causes the manipulation
+  of bits in a CPU and memory chips that produces the correct result.
 
 The D-Wave system uses a quantum processing unit (QPU) to solve a :term:`binary quadratic model` (BQM)\ [#]_\ :
 given :math:`N` variables :math:`x_1,...,x_N`, where each variable
@@ -36,13 +38,13 @@ Ocean software can abstract away much of the mathematics and programming for som
 At its heart is a binary quadratic model (BQM) class that together with other Ocean tools helps
 formulate various optimization problems.
 It provides an API to binary quadratic :term:`sampler`\ s (the component used to minimize a BQM
-and therefore solve the original problem), such as the D-Wave system, 
+and therefore solve the original problem), such as the D-Wave system,
 `Leap <https://cloud.dwavesys.com/leap/>`_\ 's :term:`hybrid` quantum-classical
-solvers,and classical algorithms you can run on your computer\ [#]_. 
+solvers,and classical algorithms you can run on your computer\ [#]_.
 
-.. [#] At a higher level of abstraction, it also provides a discrete quadratic 
-       model (:term:`DQM`) class that can be used, for example, by the hybrid 
-       DQM samplers offered by `Leap <https://cloud.dwavesys.com/leap/>`_.  
+.. [#] At a higher level of abstraction, it also provides a discrete quadratic
+       model (:term:`DQM`) class that can be used, for example, by the hybrid
+       DQM samplers offered by `Leap <https://cloud.dwavesys.com/leap/>`_.
 
 The following sections describe this problem-solving procedure in
 two steps (plus a third that may benefit some problems); see the :ref:`gs`
@@ -69,8 +71,8 @@ Formulate Your Problem for a Quantum Computer
 =============================================
 
 There are different ways of mapping between a problem---chains of amino acids
-forming 3D structures of folded proteins, traffic in the streets of Beijing, 
-circuits of binary gates---and a BQM (or :term:`DQM`) to be solved (by sampling) 
+forming 3D structures of folded proteins, traffic in the streets of Beijing,
+circuits of binary gates---and a BQM (or :term:`DQM`) to be solved (by sampling)
 with a D-Wave system, a :term:`hybrid` solver, or locally on your CPU.
 
 For example, consider the problem of determining outputs of a Boolean logic circuit. In its original
@@ -126,6 +128,6 @@ shows the variable types in this model are binary.
 For more detailed information on the parts of Ocean programming model and how
 they work together, see :ref:`oceanstack`.
 
-Once you have a BQM (or :term:`DQM`) that represents your problem, you sample 
-it for solutions. :ref:`samplers_and_solvers` explains how to submit your 
+Once you have a BQM (or :term:`DQM`) that represents your problem, you sample
+it for solutions. :ref:`samplers_and_solvers` explains how to submit your
 problem for solution.
