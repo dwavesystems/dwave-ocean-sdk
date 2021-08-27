@@ -49,15 +49,16 @@ function:
   (or yes) or false (no); for example, should an antenna transmit, or
   did a network node experience failure?
 
-  Constraints for this model are typically represented by penalty models.
+  Constraints for this model are typically represented by
+  :ref:`penalty models <penalty_sdk>`.
 
-* :ref:`cqm_sdk` enable constraints and have integer and binary variables
+* :ref:`cqm_sdk` can be constrained and have integer and binary variables
 
   Used for applications that optimize over decisions that could either be true
   (or yes) or false (no); for example, should an antenna transmit, or
   did a network node experience failure?
 
-  Constraints for this model are represented natively. 
+  Constraints for this model are represented natively.
 
 * :ref:`dqm_sdk` are unconstrained and have discrete variables
 
@@ -65,4 +66,5 @@ function:
   which shift should employee X work, or should the state on a map be colored red,
   blue, green or yellow?
 
-  Constraints for this model are typically represented by penalty models.
+  Constraints for this model are typically represented by
+  :ref:`penalty models <penalty_sdk>`.

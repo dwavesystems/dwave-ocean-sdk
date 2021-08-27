@@ -25,6 +25,8 @@ See the :ref:`glossary` for short definitions of terminology or learn Ocean conc
      - quantum-classical hybrid, Leap's hybrid solvers, hybrid workflows
    * - :ref:`embedding_sdk`
      - embedding, mapping logical variables to physical qubits, chains, chain strength
+   * - :ref:`penalty_sdk`
+     - Penalty Models
    * - :ref:`topology_sdk`
      - Chimera, Pegasus
    * - :ref:`samplers_sdk`
@@ -42,6 +44,7 @@ See the :ref:`glossary` for short definitions of terminology or learn Ocean conc
    dqm
    hybrid
    embedding
+   penalty
    topology
    samplers
    solutions
