@@ -38,8 +38,9 @@ Learn Ocean software's workflow for problem solving.
 .. toctree::
    :maxdepth: 1
 
-   overview/quadratic_models
    overview/solving_problems
+   overview/formulation
+   overview/samplers
    overview/stack
 
 D-Wave Compute Resources
@@ -51,7 +52,6 @@ or locally on your CPU.
 .. toctree::
    :maxdepth: 1
 
-   overview/samplers
    overview/hybrid
    overview/cpu
    overview/qpu
