@@ -1,8 +1,8 @@
 .. _samplers_and_solvers:
 
-============================
-Solving Problems by Sampling
-============================
+==================================
+Sampling: Minimizing the Objective
+==================================
 
 Having followed the steps of the :ref:`formulating_bqm` section, you sample the
 :term:`BQM` that now represents your problem for solutions. Ocean software provides
@@ -22,10 +22,10 @@ Sample the BQM on a Solver
 Ocean's :term:`sampler`\ s enable you to submit your problem to remote or local
 compute resources (:term:`solver`\ s) of different types:
 
-* :ref:`using_hybrid` such as `Leap's <https://cloud.dwavesys.com/leap/>`_ 
-  ``hybrid_binary_quadratic_model_version<x>`` solver or, for **discrete** 
-  quadratic models (:term:`DQM`), ``hybrid_discrete_quadratic_model_version<x>`` 
-* :ref:`using_cpu` such as :class:`~dimod.reference.samplers.ExactSolver` for 
+* :ref:`using_hybrid` such as `Leap's <https://cloud.dwavesys.com/leap/>`_
+  ``hybrid_binary_quadratic_model_version<x>`` solver or, for **discrete**
+  quadratic models (:term:`DQM`), ``hybrid_discrete_quadratic_model_version<x>``
+* :ref:`using_cpu` such as :class:`~dimod.reference.samplers.ExactSolver` for
   exact solutions to small problems
 * :ref:`using_qpu` such the Advantage and D-Wave 2000Q systems.
 
@@ -33,7 +33,7 @@ The example code below submits a BQM representing a Boolean AND gate (see also t
 :ref:`formulating_bqm` section) to a Leap hybrid solver.
 In this case, :doc:`dwave-system </docs_system/sdk_index>`'s
 :class:`~dwave.system.samplers.LeapHybridSampler` is the Ocean sampler and the
-remote compute resource selected might be Leap hybrid solver 
+remote compute resource selected might be Leap hybrid solver
 ``hybrid_binary_quadratic_model_version<x>``.
 
 >>> from dimod.generators import and_gate
@@ -78,8 +78,8 @@ minor-embedding.
 
   View of the logical and embedded problem rendered by Ocean's problem inspector. The AND gate's original BQM is represented on the left; its embedded representation on a D-Wave 2000Q system, on the right, shows a two-qubit chain (qubits 176 and 180) for variable :math:`x2`. The tool is helpful in visualizing the quality of your embedding.
 
-Example :ref:`pp_greedy` improves samples returned from a QPU by post-processing with a 
-classical greedy algorthim. D-Wave systems offer features such as spin-reversal (gauge) 
+Example :ref:`pp_greedy` improves samples returned from a QPU by post-processing with a
+classical greedy algorthim. D-Wave systems offer features such as spin-reversal (gauge)
 transforms and anneal offsets, which reduce the impact of possible analog and systematic errors.
 
 You can see the parameters and properties a sampler supports. For example, Ocean's
@@ -91,7 +91,7 @@ and checks some features supported on a D-Wave 2000Q system used as a sampler.
 .. attention::
    D-Wave's *virtual graphs* feature can require many seconds of D-Wave system time to calibrate
    qubits to compensate for the effects of biases. If your account has limited
-   D-Wave system access, consider using :class:`~dwave.system.composites.FixedEmbeddingComposite` 
+   D-Wave system access, consider using :class:`~dwave.system.composites.FixedEmbeddingComposite`
    instead.
 
 >>> from dwave.system import DWaveSampler, VirtualGraphComposite
@@ -108,8 +108,8 @@ and checks some features supported on a D-Wave 2000Q system used as a sampler.
  'apply_flux_bias_offsets': [],
  u'auto_scale': ['parameters'], ...
 
-Note that the composed sampler (:class:`~dwave.system.composites.VirtualGraphComposite` 
-in the last example) inherits properties from the child sampler 
+Note that the composed sampler (:class:`~dwave.system.composites.VirtualGraphComposite`
+in the last example) inherits properties from the child sampler
 (:class:`~dwave.system.samplers.DWaveSampler` in that example).
 
 See the resources under :ref:`additional_tutorials` and the

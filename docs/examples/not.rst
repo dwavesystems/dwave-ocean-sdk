@@ -98,9 +98,9 @@ its output, using a :term:`penalty function`:
 
     2xz-x-z+1.
 
-This penalty function represents the NOT gate\ [1]_ in that for assignments of
+This penalty function represents the NOT gate in that for assignments of
 variables that match valid states of the gate, the function evaluates at a lower
-value than assignments that would be invalid for the gate. Therefore, when the
+value than assignments that would be invalid for the gate.\ [1]_ Therefore, when the
 D-Wave system minimizes a BQM based on this penalty function, it finds those
 assignments of variables that match valid gate states.
 
@@ -143,7 +143,7 @@ Solve the Problem by Sampling
 Now solve on a D-Wave system using sampler :class:`~dwave.system.samplers.DWaveSampler`
 from Ocean software's :doc:`dwave-system </docs_system/sdk_index>`. Also use
 its :class:`~dwave.system.composites.EmbeddingComposite` composite to map the
-unstructured problem (variables such as :math:`x_2` etc.) to the sampler's graph structure 
+unstructured problem (variables such as :math:`x_2` etc.) to the sampler's graph structure
 (the QPU's numerically indexed qubits) in a process known as :term:`minor-embedding`.
 
 The next code sets up a D-Wave system as the sampler.

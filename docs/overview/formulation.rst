@@ -51,26 +51,25 @@ and submit to samplers for solution:
 
 * :ref:`bqm_sdk` are unconstrained and have binary variables
 
-  Used for applications that optimize over decisions that could either be true
-  (or yes) or false (no); for example, should an antenna transmit, or
-  did a network node experience failure?
+  BQMs are typically used for applications that optimize over decisions that could
+  either be true (or yes) or false (no); for example, should an antenna transmit,
+  or did a network node experience failure?
 
   Constraints for this model are typically represented by
   :ref:`penalty models <penalty_sdk>`.
 
 * :ref:`cqm_sdk` can be constrained and have integer and binary variables
 
-  Used for applications that optimize over decisions that could either be true
-  (or yes) or false (no); for example, should an antenna transmit, or
-  did a network node experience failure?
+  CQMs are typically used for applications that optimize problems that might
+  include both integer and binary variables and one or more constraints.
 
   Constraints for this model are represented natively.
 
 * :ref:`dqm_sdk` are unconstrained and have discrete variables
 
-  Used for applications that optimize over several distinct options; for example,
-  which shift should employee X work, or should the state on a map be colored red,
-  blue, green or yellow?
+  DQMs are typically used for applications that optimize over several distinct
+  options; for example, which shift should employee X work, or should the state
+  on a map be colored red, blue, green or yellow?
 
   Constraints for this model are typically represented by
   :ref:`penalty models <penalty_sdk>`.
@@ -81,45 +80,33 @@ and submit to samplers for solution:
 
 .. _formulating_bqm:
 
-Example Formulation
-===================
+Example Formulation: BQM for a Boolean Circuit
+==============================================
 
 There are different ways of mapping between a problem---chains of amino acids
 forming 3D structures of folded proteins, traffic in the streets of Beijing,
-circuits of binary gates---and a BQM (or :term:`DQM`) to be solved (by sampling)
+circuits of binary gates---and a quadratic model to be solved (by sampling)
 with a D-Wave system, a :term:`hybrid` solver, or locally on your CPU.
 
-For example, consider the problem of determining outputs of a Boolean logic circuit. In its original
-context (in "problem space"), the circuit might be described with input and output voltages,
-equations of its component resistors, transistors, etc, an equation of logic symbols,
-multiple or an aggregated truth table, and so on. You can choose to use Ocean software to formulate
-BQMs for binary gates directly in your code or mathematically formulate a BQM, and both
-can be done in different ways too; for example, a BQM for each gate or one BQM for
-all the circuit's gates.
+For example, consider the problem of determining outputs of a Boolean logic circuit.
+In its original context (in "problem space"), the circuit might be described with
+input and output voltages, equations of its component resistors, transistors,
+etc, an equation of logic symbols, multiple or an aggregated truth table, and so
+on. You can choose to use Ocean software to formulate BQMs for binary gates
+directly in your code or mathematically formulate a BQM, and both can be done in
+various ways; for example, a BQM for each gate or one BQM for all the circuit's
+gates.
 
 The following are two example formulations.
 
-1. The :ref:`not` example, takes a NOT gate represented symbolically as
-   :math:`x_2 \Leftrightarrow \neg x_1` and formulates it mathematically as the following BQM:
+1. The :ref:`penalty_sdk` section shows a NOT gate, represented symbolically as
+   :math:`x_2 \Leftrightarrow \neg x_1`, formulated mathematically as BQM,
 
    .. math::
 
        -x_1 -x_2  + 2x_1x_2
 
-   The table below shows that this BQM has lower values for valid states of the NOT
-   gate (e.g., :math:`x_1=0, x_2=1`) and higher for invalid states (e.g., :math:`x_1=0, x_2=0`).
-
-   .. table:: Boolean NOT Operation Formulated as a BQM.
-      :name: BooleanNOTasQUBO
-
-      ===========  ============  ===============  ============
-      :math:`x_1`  :math:`x_2`   **Valid?**       **BQM Value**
-      ===========  ============  ===============  ============
-      :math:`0`    :math:`1`     Yes              :math:`0`
-      :math:`1`    :math:`0`     Yes              :math:`0`
-      :math:`0`    :math:`0`     No               :math:`1`
-      :math:`1`    :math:`1`     No               :math:`1`
-      ===========  ============  ===============  ============
+.. TODO: this example is replaced by https://github.com/dwavesystems/dwave-ocean-sdk/pull/142
 
 2. Ocean's :doc:`dwavebinarycsp </docs_binarycsp/sdk_index>` tool enables the
    following formulation of an AND gate as a BQM:
@@ -138,13 +125,16 @@ BinaryQuadraticModel({'x1': 0.0, 'x2': 0.0, 'y1': 6.0},
 ...                  0,
 ...                  'BINARY')
 
-The members of the two dicts are linear and quadratic coefficients, respectively,
-the third term is a constant offset associated with the model, and the fourth
-shows the variable types in this model are binary.
 
-For more detailed information on the parts of Ocean programming model and how
-they work together, see :ref:`oceanstack`.
-
-Once you have a BQM (or :term:`DQM`) that represents your problem, you sample
+Once you have a quadratic model that represents your problem, you sample
 it for solutions. :ref:`samplers_and_solvers` explains how to submit your
 problem for solution.
+
+For more detailed information on objective functions, how D-Wave quantum computers
+minimize objective functions, and techniques for reformulating problems as
+objective functions, see the
+:std:doc:`System Documentation <sysdocs_gettingstarted:index>`.
+
+For code examples that formulate quadratic models for various problems, see
+`D-Wave's examples repo <https://github.com/dwave-examples>`_ and the many
+customer applications on the `D-Wave website <https://www.dwavesys.com/>`_.

@@ -1,5 +1,6 @@
 .. _solving_problems:
 
+========================================
 Workflow Steps: Formulation and Sampling
 ========================================
 
@@ -29,6 +30,7 @@ The two main steps of solving problems on quantum computers are:
 .. _formulating_bqm:
 
 Formulate Your Problem for a Quantum Computer
+=============================================
 
 There are different ways of mapping between a problem---chains of amino acids
 forming 3D structures of folded proteins, traffic in the streets of Beijing,
