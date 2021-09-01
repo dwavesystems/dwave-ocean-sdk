@@ -1,74 +1,34 @@
 .. _solving_problems:
 
-How a D-Wave System Solves Problems
-===================================
+Workflow Steps: Formulation and Sampling
+========================================
 
-This section explains some of the basics of how you can use D-Wave quantum computers
-to solve problems and how Ocean tools can help.
+The two main steps of solving problems on quantum computers are:
 
-.. moved to quadratic_models.rst
+1. **Formulate your problem as an objective function**
 
-  For quantum computing, as for classical, solving a problem requires that it
-  be formulated in a way the computer and its software understand.
+   Objective (cost) functions are mathematical expressions of the problem to be
+   optimized; for quantum computing, these are quadratic models that have lowest
+   values (energy) for good solutions to the problems they represent.
 
-  For example, if you want your laptop to calculate the area of a $1 coin, you might
-  express the problem as an equation, :math:`A=\pi r^2`, that you program as
-  :code:`math.pi*13.245**2` in your Python CLI. For a laptop with Python software,
-  this formulation---a particular string of alphanumeric symbols---causes the manipulation
-  of bits in a CPU and memory chips that produces the correct result.
+2. **Find good solutions by sampling the quadratic model**
 
-The D-Wave system uses a quantum processing unit (QPU) to solve a :term:`binary quadratic model` (BQM)\ [#]_\ :
-given :math:`N` variables :math:`x_1,...,x_N`, where each variable
-:math:`x_i` can have binary values :math:`0` or :math:`1`, the system finds assignments of
-values that minimize
-
-.. math::
-
-    \sum_i^N q_ix_i + \sum_{i<j}^N q_{i,j}x_i  x_j
-
-where :math:`q_i` and :math:`q_{i,j}` are configurable (linear and quadratic) coefficients.
-To formulate a problem for the D-Wave system is to program :math:`q_i` and :math:`q_{i,j}` so
-that assignments of :math:`x_1,...,x_N` also represent solutions to the problem.
-
-.. [#] The "native" forms of BQM programmed into a D-Wave system are the :term:`Ising` model
-       traditionally used in statistical mechanics and its computer-science equivalent,
-       shown here, the :term:`QUBO`.
-
-Ocean software can abstract away much of the mathematics and programming for some types of problems.
-At its heart is a binary quadratic model (BQM) class that together with other Ocean tools helps
-formulate various optimization problems.
-It provides an API to binary quadratic :term:`sampler`\ s (the component used to minimize a BQM
-and therefore solve the original problem), such as the D-Wave system,
-`Leap <https://cloud.dwavesys.com/leap/>`_\ 's :term:`hybrid` quantum-classical
-solvers,and classical algorithms you can run on your computer\ [#]_.
-
-.. [#] At a higher level of abstraction, it also provides a discrete quadratic
-       model (:term:`DQM`) class that can be used, for example, by the hybrid
-       DQM samplers offered by `Leap <https://cloud.dwavesys.com/leap/>`_.
-
-The following sections describe this problem-solving procedure in
-two steps (plus a third that may benefit some problems); see the :ref:`gs`
-Examples section and :std:doc:`System Documentation <sysdocs_gettingstarted:index>`
-for further description.
-
-1. :ref:`formulating_bqm`.
-2. :ref:`submitting`.
-3. :ref:`improving`, if needed, using advanced features.
+   Samplers are processes that sample from low-energy states of objective functions.
+   Find good solutions by submitting your quadratic model to one of a variety of
+   quantum, classical, and hybrid quantum-classical samplers.
 
 .. figure:: ../_images/SolutionOverview.png
    :name: SolutionOverview
    :alt: image
    :align: center
-   :scale: 80 %
+   :height: 350 pt
+   :width: 850 pt
 
-   Solution steps: (1) a problem known in "problem space" (a circuit
-   of Boolean gates, a graph, a network, etc) is formulated as a BQM, mathematically or using
-   Ocean functionality and (2) the BQM is sampled for solutions.
+   Solution steps: (1) a problem known in "problem space" (a circuit of Boolean gates, a graph, a network, etc) is formulated as a quadratic model, mathematically or using Ocean functionality, and (2) the model is sampled for solutions.
 
 .. _formulating_bqm:
 
 Formulate Your Problem for a Quantum Computer
-=============================================
 
 There are different ways of mapping between a problem---chains of amino acids
 forming 3D structures of folded proteins, traffic in the streets of Beijing,
@@ -116,9 +76,9 @@ The following are two example formulations.
 The BQM for this AND gate may look like this:
 
 >>> bqm     # doctest: +SKIP
-BinaryQuadraticModel({'in1': 0.0, 'in2': 0.0, 'out': 3.0}, 
-...                  {('in2', 'in1'): 1.0, ('out', 'in1'): -2.0, ('out', 'in2'): -2.0}, 
-...                  0.0, 
+BinaryQuadraticModel({'in1': 0.0, 'in2': 0.0, 'out': 3.0},
+...                  {('in2', 'in1'): 1.0, ('out', 'in1'): -2.0, ('out', 'in2'): -2.0},
+...                  0.0,
 ...                  'BINARY')
 
 The members of the two dicts are linear and quadratic coefficients, respectively,
@@ -127,7 +87,3 @@ shows the variable types in this model are binary.
 
 For more detailed information on the parts of Ocean programming model and how
 they work together, see :ref:`oceanstack`.
-
-Once you have a BQM (or :term:`DQM`) that represents your problem, you sample
-it for solutions. :ref:`samplers_and_solvers` explains how to submit your
-problem for solution.
