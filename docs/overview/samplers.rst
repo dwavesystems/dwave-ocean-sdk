@@ -4,20 +4,15 @@
 Sampling: Minimizing the Objective
 ==================================
 
-Having followed the steps of the :ref:`formulating_bqm` section, you sample the
-:term:`BQM` that now represents your problem for solutions. Ocean software provides
-quantum, classical, and quantum-classical hybrid :term:`sampler`\ s that run
-either remotely (for example, in D-Wave's `Leap <https://cloud.dwavesys.com/leap/>`_
-environment) or locally on your CPU. These compute resources are known as
-:term:`solver`\ s.
+Having formulated an objective function that represents your problem as described
+in the :ref:`gs_formulation` section, you sample this :term:`quadratic model` (QM)
+for solutions. Ocean software provides quantum, classical, and quantum-classical
+hybrid :term:`sampler`\ s that run either remotely (for example, in D-Wave's
+`Leap <https://cloud.dwavesys.com/leap/>`_ environment) or locally on your CPU.
+These compute resources are known as :term:`solver`\ s.
 
 .. note:: Some classical samplers actually brute-force solve small problems rather
     than sample, and these are also referred to as "solvers".
-
-.. _submitting:
-
-Sample the BQM on a Solver
-==========================
 
 Ocean's :term:`sampler`\ s enable you to submit your problem to remote or local
 compute resources (:term:`solver`\ s) of different types:
@@ -28,6 +23,11 @@ compute resources (:term:`solver`\ s) of different types:
 * :ref:`using_cpu` such as :class:`~dimod.reference.samplers.ExactSolver` for
   exact solutions to small problems
 * :ref:`using_qpu` such the Advantage and D-Wave 2000Q systems.
+
+.. _submitting:
+
+Submit the QM to a Solver
+=========================
 
 The example code below submits a BQM representing a Boolean AND gate (see also the
 :ref:`formulating_bqm` section) to a Leap hybrid solver.
@@ -51,8 +51,22 @@ remote compute resource selected might be Leap hybrid solver
 Improve the Solutions
 =====================
 
-More complex problems than the ones shown above can benefit from some of the D-Wave system's
-advanced features and Ocean software's advanced tools.
+For complex problems, you can often improve solutions and performance by applying
+some of Ocean software's preprocessing, postprocessing, and diagnostic tools.
+
+Example: Preprocessing
+----------------------
+
+:std:doc:`dwave-preprocessing <oceandocs:docs_preprocessing/sdk_index>` provides
+algorithms such as roof duality, which fixes some of a problems variables before
+submitting to a sampler.
+
+Additionally, when submitting problems directly to a D-Wave system (:ref:`using_qpu`),
+you can benefit from some advanced features and the techniques described in the
+:std:doc:`Problem Solving Handbook <sysdocs_gettingstarted:doc_handbook>` guide.
+
+Example: Diagnostics
+---------------------
 
 When sampling directly on the D-Wave QPU, the mapping from problem variables to qubits,
 :term:`minor-embedding`, can significantly
@@ -78,40 +92,9 @@ minor-embedding.
 
   View of the logical and embedded problem rendered by Ocean's problem inspector. The AND gate's original BQM is represented on the left; its embedded representation on a D-Wave 2000Q system, on the right, shows a two-qubit chain (qubits 176 and 180) for variable :math:`x2`. The tool is helpful in visualizing the quality of your embedding.
 
+Example: Postprocessing
+-----------------------
+
 Example :ref:`pp_greedy` improves samples returned from a QPU by post-processing with a
 classical greedy algorthim. D-Wave systems offer features such as spin-reversal (gauge)
 transforms and anneal offsets, which reduce the impact of possible analog and systematic errors.
-
-You can see the parameters and properties a sampler supports. For example, Ocean's
-:doc:`dwave-system </docs_system/sdk_index>` lets you use the
-D-Wave's *virtual graphs* feature to simplify minor-embedding. The following example
-maps a problem's variables x, y to qubits 1, 5 and variable z to two qubits 0 and 4,
-and checks some features supported on a D-Wave 2000Q system used as a sampler.
-
-.. attention::
-   D-Wave's *virtual graphs* feature can require many seconds of D-Wave system time to calibrate
-   qubits to compensate for the effects of biases. If your account has limited
-   D-Wave system access, consider using :class:`~dwave.system.composites.FixedEmbeddingComposite`
-   instead.
-
->>> from dwave.system import DWaveSampler, VirtualGraphComposite
->>> qpu = DWaveSampler(solver={'qpu': True, 'topology__type': 'chimera'})
->>> qpu.properties['extended_j_range']
-[-2.0, 1.0]
->>> embedding = {'x': {1}, 'y': {5}, 'z': {0, 4}}
->>> sampler = VirtualGraphComposite(qpu, embedding)   # doctest: +SKIP
->>> sampler.parameters         # doctest: +SKIP
-{u'anneal_offsets': ['parameters'],
- u'anneal_schedule': ['parameters'],
- u'annealing_time': ['parameters'],
- u'answer_mode': ['parameters'],
- 'apply_flux_bias_offsets': [],
- u'auto_scale': ['parameters'], ...
-
-Note that the composed sampler (:class:`~dwave.system.composites.VirtualGraphComposite`
-in the last example) inherits properties from the child sampler
-(:class:`~dwave.system.samplers.DWaveSampler` in that example).
-
-See the resources under :ref:`additional_tutorials` and the
-`System Documentation <https://docs.dwavesys.com/docs/latest/index.html>`_
-for more information.
