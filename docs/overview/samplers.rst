@@ -54,16 +54,33 @@ Improve the Solutions
 For complex problems, you can often improve solutions and performance by applying
 some of Ocean software's preprocessing, postprocessing, and diagnostic tools.
 
+Additionally, when submitting problems directly to a D-Wave system (:ref:`using_qpu`),
+you can benefit from some advanced features and the techniques described in the
+:std:doc:`Problem Solving Handbook <sysdocs_gettingstarted:doc_handbook>` guide.
+
 Example: Preprocessing
 ----------------------
 
 :std:doc:`dwave-preprocessing <oceandocs:docs_preprocessing/sdk_index>` provides
-algorithms such as roof duality, which fixes some of a problems variables before
+algorithms such as roof duality, which fixes some of a problem's variables before
 submitting to a sampler.
 
-Additionally, when submitting problems directly to a D-Wave system (:ref:`using_qpu`),
-you can benefit from some advanced features and the techniques described in the
-:std:doc:`Problem Solving Handbook <sysdocs_gettingstarted:doc_handbook>` guide.
+As an illustrative example, consider the binary quadratic model, :math:`x + yz`.
+Clearly :math:`x=0` for all the best solutions (variable assignments that minimize
+the value of the model) because any assignment of variables that sets :math:`x=1`
+adds a value of 1 compared to assignments that set :math:`x=0`. (On the other
+hand, assignments :math:`y=0, z=0`, :math:`y=0, z=1`, :math:`y=1, z=0` are all
+equally good.) Therefore, you can fix variable :math:`x` and solve a smaller
+problem.
+
+>>> from dimod import BinaryQuadraticModel
+>>> from dwave.preprocessing import roof_duality
+>>> bqm = BinaryQuadraticModel({'x': 1}, {('y', 'z'): 1}, 0,'BINARY')
+>>> roof_duality(bqm)
+(0.0, {'x': 0})
+
+For problems with hundreds or thousands of variables, such preprocessing can
+significantly improve performance.
 
 Example: Diagnostics
 ---------------------
@@ -72,9 +89,9 @@ When sampling directly on the D-Wave QPU, the mapping from problem variables to 
 :term:`minor-embedding`, can significantly
 affect performance. Ocean tools perform this mapping heuristically so simply rerunning
 a problem might improve results. Advanced users may customize the mapping by directly
-using the :doc:`minorminer </docs_minorminer/source/sdk_index>` tool, setting
-a minor-embedding themselves, or using
-D-Wave's :doc:`problem-inspector </docs_inspector/sdk_index>` tool.
+using the :std:doc:`minorminer <oceandocs:docs_minorminer/source/sdk_index>` tool,
+setting a minor-embedding themselves, or using D-Wave's
+:doc:`problem-inspector </docs_inspector/sdk_index>` tool.
 
 For example, the :ref:`and` example submits the BQM representing an AND gate
 to a D-Wave system, which requires mapping the problem's logical variables

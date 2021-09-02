@@ -100,19 +100,19 @@ circumference is limited.
 
 In this example, the circumference of the rectangle is set to 4 (meaning the
 largest area is for the :math:`2x2` square). A CQM is created with two integer
-variables, :math:`x, y`, representing the lengths of the rectangel's sides, an
-objective function :math:`-x*y`, representing the rectangle's area (the
-multiplication of side :math:`x` by side :math:`y`, with a minus sign because
+variables, :math:`i, j`, representing the lengths of the rectangle's sides, an
+objective function :math:`-i*j`, representing the rectangle's area (the
+multiplication of side :math:`i` by side :math:`j`, with a minus sign because
 Ocean samplers minimize so the greatest area must be the objective's minimum value),
-and a constraint :math:`x + y <= 4`, requiring that the sum of both sides must
+and a constraint :math:`i + j <= 4`, requiring that the sum of both sides must
 not exceed the circumference.
 
 >>> from dimod import ConstrainedQuadraticModel, Integer
->>> x = Integer('x', upper_bound=4)
->>> y = Integer('y', upper_bound=4)
+>>> i = Integer('i', upper_bound=4)
+>>> j = Integer('j', upper_bound=4)
 >>> cqm = ConstrainedQuadraticModel()
->>> cqm.set_objective(-x*y)
->>> cqm.add_constraint(x+y <= 4, "Max circumference")
+>>> cqm.set_objective(-j*j)
+>>> cqm.add_constraint(j+j <= 4, "Max circumference")
 'Max circumference'
 
 .. _formulating_bqm:
