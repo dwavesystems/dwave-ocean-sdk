@@ -55,7 +55,9 @@ For complex problems, you can often improve solutions and performance by applyin
 some of Ocean software's preprocessing, postprocessing, and diagnostic tools.
 
 Additionally, when submitting problems directly to a D-Wave system (:ref:`using_qpu`),
-you can benefit from some advanced features and the techniques described in the
+you can benefit from some advanced features (for example features such as
+spin-reversal transforms and anneal offsets, which reduce the impact of possible
+analog and systematic errors) and the techniques described in the
 :std:doc:`Problem Solving Handbook <sysdocs_gettingstarted:doc_handbook>` guide.
 
 Example: Preprocessing
@@ -69,9 +71,9 @@ As an illustrative example, consider the binary quadratic model, :math:`x + yz`.
 Clearly :math:`x=0` for all the best solutions (variable assignments that minimize
 the value of the model) because any assignment of variables that sets :math:`x=1`
 adds a value of 1 compared to assignments that set :math:`x=0`. (On the other
-hand, assignments :math:`y=0, z=0`, :math:`y=0, z=1`, :math:`y=1, z=0` are all
-equally good.) Therefore, you can fix variable :math:`x` and solve a smaller
-problem.
+hand, assignment :math:`y=0, z=0`, assignment :math:`y=0, z=1`, and assignment
+:math:`y=1, z=0` are all equally good.) Therefore, you can fix variable :math:`x`
+and solve a smaller problem.
 
 >>> from dimod import BinaryQuadraticModel
 >>> from dwave.preprocessing import roof_duality
@@ -113,5 +115,4 @@ Example: Postprocessing
 -----------------------
 
 Example :ref:`pp_greedy` improves samples returned from a QPU by post-processing with a
-classical greedy algorthim. D-Wave systems offer features such as spin-reversal (gauge)
-transforms and anneal offsets, which reduce the impact of possible analog and systematic errors.
+classical greedy algorthim.
