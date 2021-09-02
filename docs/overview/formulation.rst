@@ -78,17 +78,42 @@ and submit to samplers for solution:
    :ref:`higher order models <oceandocs:higher_order>`, which are typically
    reduced to quadratic for sampling.
 
-.. _formulating_bqm:
-
-Example Formulation: BQM for a Boolean Circuit
-==============================================
-
 There are different ways of mapping between a problem---chains of amino acids
 forming 3D structures of folded proteins, traffic in the streets of Beijing,
 circuits of binary gates---and a quadratic model to be solved (by sampling)
 with a D-Wave system, a :term:`hybrid` solver, or locally on your CPU.
 
-For example, consider the problem of determining outputs of a Boolean logic circuit.
+.. _formulating_cqm:
+
+Example Formulation: CQM for Greatest Rectangle Area
+====================================================
+
+Consider the simple problem of finding the rectangle with the greatest area when the
+circumference is limited.
+
+In this example, the circumference of the rectangle is set to 4 (meaning the
+largest area is for the :math:`2x2` square). A CQM is created with two integer
+variables, :math:`x, y`, representing the lengths of the rectangel's sides, an
+objective function :math:`-x*y`, representing the rectangle's area (the
+multiplication of side :math:`x` by side :math:`y`, with a minus sign because
+Ocean samplers minimize so the greatest area must be the objective's minimum value),
+and a constraint :math:`x + y <= 4`, requiring that the sum of both sides must
+not exceed the circumference.
+
+>>> from dimod import ConstrainedQuadraticModel, Integer
+>>> x = Integer('x', upper_bound=4)
+>>> y = Integer('y', upper_bound=4)
+>>> cqm = ConstrainedQuadraticModel()
+>>> cqm.set_objective(-x*y)
+>>> cqm.add_constraint(x+y <= 4, "Max circumference")
+'Max circumference'
+
+.. _formulating_bqm:
+
+Example Formulation: BQM for a Boolean Circuit
+==============================================
+
+Consider the problem of determining outputs of a Boolean logic circuit.
 In its original context (in "problem space"), the circuit might be described with
 input and output voltages, equations of its component resistors, transistors,
 etc, an equation of logic symbols, multiple or an aggregated truth table, and so
