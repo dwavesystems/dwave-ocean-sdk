@@ -200,8 +200,8 @@ Glossary
          :term:`excited state` throughout any point in the anneal.
 
       Model
-         A collection of variables with associated linear and
-         quadratic biases. Sometimes referred to as a **problem**.
+         A collection of variables with associated biases. Sometimes referred to
+         as a **problem**.
 
       Objective function
          A mathematical expression of the energy of a system as a function of
@@ -223,6 +223,10 @@ Glossary
          An approach to solving constraint satisfaction problems (CSP) using an :term:`Ising` model
          or a :term:`QUBO` by mapping each individual constraint in the CSP to a ‘small’ Ising model
          or QUBO.
+
+      Quadratic model
+         A collection of binary and/or integer variables with associated linear
+         and quadratic biases. Sometimes referred to as a **problem**.
 
       QPU
          Quantum processing unit.
