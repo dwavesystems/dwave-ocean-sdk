@@ -19,7 +19,7 @@ Objective Functions
 ===================
 
 With quantum computing, you express your problem in a form that enables solution by
-minimization: an *objective function*, which is a mathematical expression of the
+minimization: an :term:`objective function`, which is a mathematical expression of the
 energy of a system. If you are solving your problem on a D-Wave quantum computer,
 for example, the system is the qubits of a quantum processing unit (QPU) and your
 objective function represents the states of the qubits as binary variables, and
@@ -38,10 +38,22 @@ by taking the square of the subtraction of one side from another. Minimization
 seeks the shortest distance between the sides, which occurs at equality (with the
 square eliminating negative distance).
 
+There are different ways of mapping between a problem---chains of amino acids
+forming 3D structures of folded proteins, traffic in the streets of Beijing,
+circuits of binary gates---and a quadratic model to be solved (by sampling)
+with a D-Wave system, a :term:`hybrid` solver, or locally on your CPU.
 The examples of this :ref:`Getting Started documentation <gs>` show some simple
-objective function to help you begin. D-Wave's
-:std:doc:`System Documentation <sysdocs_gettingstarted:index>` provides a wealth
-of resources on formulating problems.
+objective functions to help you begin using Ocean tools.
+
+For more detailed information on objective functions, how D-Wave quantum computers
+minimize objective functions, and techniques for reformulating problems as
+objective functions, see the
+:std:doc:`System Documentation <sysdocs_gettingstarted:index>` or the training
+content on the `D-Wave website <https://www.dwavesys.com/>`_.
+
+For code examples that formulate quadratic models for various problems, see
+`D-Wave's examples repo <https://github.com/dwave-examples>`_  and many example
+customer applications on the `D-Wave website <https://www.dwavesys.com/>`_.
 
 Supported Models
 ================
@@ -78,15 +90,10 @@ and submit to samplers for solution:
    :ref:`higher order models <oceandocs:higher_order>`, which are typically
    reduced to quadratic for sampling.
 
-There are different ways of mapping between a problem---chains of amino acids
-forming 3D structures of folded proteins, traffic in the streets of Beijing,
-circuits of binary gates---and a quadratic model to be solved (by sampling)
-with a D-Wave system, a :term:`hybrid` solver, or locally on your CPU.
-
 .. _formulating_cqm:
 
-Example Formulation: CQM for Greatest Rectangle Area
-====================================================
+Example: CQM for Greatest Rectangle Area
+========================================
 
 Consider the simple problem of finding the rectangle with the greatest area when the
 circumference is limited.
@@ -110,8 +117,8 @@ not exceed the circumference.
 
 .. _formulating_bqm:
 
-Example Formulation: BQM for a Boolean Circuit
-==============================================
+Example: BQM for a Boolean Circuit
+==================================
 
 Consider the problem of determining outputs of a Boolean logic circuit.
 In its original context (in "problem space"), the circuit might be described with
@@ -154,12 +161,3 @@ BinaryQuadraticModel({'x1': 0.0, 'x2': 0.0, 'y1': 6.0},
 Once you have a quadratic model that represents your problem, you sample
 it for solutions. :ref:`samplers_and_solvers` explains how to submit your
 problem for solution.
-
-For more detailed information on objective functions, how D-Wave quantum computers
-minimize objective functions, and techniques for reformulating problems as
-objective functions, see the
-:std:doc:`System Documentation <sysdocs_gettingstarted:index>`.
-
-For code examples that formulate quadratic models for various problems, see
-`D-Wave's examples repo <https://github.com/dwave-examples>`_ and the many
-customer applications on the `D-Wave website <https://www.dwavesys.com/>`_.
