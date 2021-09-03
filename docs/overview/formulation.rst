@@ -32,17 +32,17 @@ its qubits with the biases and couplings applied by your objective function; for
 hybrid quantum-classical algorithms, some parts of the objective function are
 minimized using classical heuristics and some by the QPU.
 
-As an illustrative example, consider the equation :math:`x+1=2`. To solve it
-by minimization, you can formulate the objective function :math:`\min_x[2-(x+1)]^2`
-by taking the square of the subtraction of one side from another. Minimization
-seeks the shortest distance between the sides, which occurs at equality (with the
-square eliminating negative distance).
+As an illustrative example, consider the equation :math:`x+1=2`. You can solve
+by minimization an equivalent objective function, :math:`\min_x[2-(x+1)]^2`,
+formulated by taking the square of the subtraction of one side from another.
+Minimization seeks the shortest distance between the sides, which occurs at
+equality (with the square eliminating negative distance).
 
-There are different ways of mapping between a problem---chains of amino acids
+There are many ways of mapping between a problem---chains of amino acids
 forming 3D structures of folded proteins, traffic in the streets of Beijing,
 circuits of binary gates---and a quadratic model to be solved (by sampling)
 with a D-Wave system, a :term:`hybrid` solver, or locally on your CPU.
-The examples of this :ref:`Getting Started documentation <gs>` show some simple
+The :ref:`Getting Started examples <gs>` given here show some simple
 objective functions to help you begin using Ocean tools.
 
 For more detailed information on objective functions, how D-Wave quantum computers
@@ -61,30 +61,30 @@ Supported Models
 Ocean supports various models to express your problem as an objective function
 and submit to samplers for solution:
 
-* :ref:`bqm_sdk` are unconstrained and have binary variables
+* :ref:`bqm_sdk` are unconstrained and have binary variables.
 
   BQMs are typically used for applications that optimize over decisions that could
   either be true (or yes) or false (no); for example, should an antenna transmit,
   or did a network node experience failure?
 
-  Constraints for this model are typically represented by
-  :ref:`penalty models <penalty_sdk>`.
+  Constraints for this model are typically represented by adding
+  :ref:`penalty models <penalty_sdk>` to the objective.
 
-* :ref:`cqm_sdk` can be constrained and have integer and binary variables
+* :ref:`cqm_sdk` can be constrained and have integer and binary variables.
 
   CQMs are typically used for applications that optimize problems that might
-  include both integer and binary variables and one or more constraints.
+  include integer and/or binary variables and one or more constraints.
 
   Constraints for this model are represented natively.
 
-* :ref:`dqm_sdk` are unconstrained and have discrete variables
+* :ref:`dqm_sdk` are unconstrained and have discrete variables.
 
   DQMs are typically used for applications that optimize over several distinct
   options; for example, which shift should employee X work, or should the state
   on a map be colored red, blue, green or yellow?
 
-  Constraints for this model are typically represented by
-  :ref:`penalty models <penalty_sdk>`.
+  Constraints for this model are typically represented by adding
+  :ref:`penalty models <penalty_sdk>` to the objective.
 
 .. note:: Ocean also provides support for
    :ref:`higher order models <oceandocs:higher_order>`, which are typically
@@ -99,13 +99,12 @@ Consider the simple problem of finding the rectangle with the greatest area when
 circumference is limited.
 
 In this example, the circumference of the rectangle is set to 4 (meaning the
-largest area is for the :math:`2x2` square). A CQM is created with two integer
+largest area is for the :math:`2X2` square). A CQM is created with two integer
 variables, :math:`i, j`, representing the lengths of the rectangle's sides, an
 objective function :math:`-i*j`, representing the rectangle's area (the
 multiplication of side :math:`i` by side :math:`j`, with a minus sign because
-Ocean samplers minimize so the greatest area must be the objective's minimum value),
-and a constraint :math:`i + j <= 4`, requiring that the sum of both sides must
-not exceed the circumference.
+Ocean samplers minimize rather than maximize), and a constraint :math:`i + j <= 4`,
+requiring that the sum of both sides must not exceed the circumference.
 
 >>> from dimod import ConstrainedQuadraticModel, Integer
 >>> i = Integer('i', upper_bound=4)
@@ -131,8 +130,8 @@ gates.
 
 The following are two example formulations.
 
-1. The :ref:`penalty_sdk` section shows a NOT gate, represented symbolically as
-   :math:`x_2 \Leftrightarrow \neg x_1`, formulated mathematically as BQM,
+1. The :ref:`penalty_sdk` section shows that a NOT gate, represented symbolically
+   as :math:`x_2 \Leftrightarrow \neg x_1`, is formulated mathematically as BQM,
 
    .. math::
 
