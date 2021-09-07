@@ -27,6 +27,8 @@ See the :ref:`glossary` for short definitions of terminology or learn Ocean conc
      - embedding, mapping logical variables to physical qubits, chains, chain strength
    * - :ref:`penalty_sdk`
      - Penalty Models
+   * - :ref:`qm_sdk`
+     - Quadratic Models
    * - :ref:`topology_sdk`
      - Chimera, Pegasus
    * - :ref:`samplers_sdk`
@@ -45,6 +47,7 @@ See the :ref:`glossary` for short definitions of terminology or learn Ocean conc
    hybrid
    embedding
    penalty
+   qm
    topology
    samplers
    solutions
