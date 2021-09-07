@@ -15,8 +15,8 @@ See the :ref:`glossary` for short definitions of terminology or learn Ocean conc
      - Related terms
    * - :ref:`bqm_sdk`
      - BQM, Ising, QUBO
-   * - CQM, constraints
-     - :ref:`cqm_sdk`
+   * - :ref:`cqm_sdk`
+     - CQM, constrained quadratic model
    * - :ref:`csp_sdk`
      - CSP, binary CSP
    * - :ref:`dqm_sdk`
