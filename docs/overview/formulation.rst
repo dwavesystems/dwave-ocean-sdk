@@ -40,7 +40,7 @@ equality (with the square eliminating negative distance).
 
 There are many ways of mapping between a problem---chains of amino acids
 forming 3D structures of folded proteins, traffic in the streets of Beijing,
-circuits of binary gates---and a quadratic model to be solved (by sampling)
+circuits of binary gates---and an objective function to be solved (by sampling)
 with a D-Wave system, a :term:`hybrid` solver, or locally on your CPU.
 The :ref:`Getting Started examples <gs>` given here show some simple
 objective functions to help you begin using Ocean tools.
@@ -110,8 +110,8 @@ requiring that the sum of both sides must not exceed the circumference.
 >>> i = Integer('i', upper_bound=4)
 >>> j = Integer('j', upper_bound=4)
 >>> cqm = ConstrainedQuadraticModel()
->>> cqm.set_objective(-j*j)
->>> cqm.add_constraint(j+j <= 4, "Max circumference")
+>>> cqm.set_objective(-i*j)
+>>> cqm.add_constraint(i+j <= 4, "Max circumference")
 'Max circumference'
 
 .. _formulating_bqm:
