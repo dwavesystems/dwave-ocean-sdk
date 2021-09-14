@@ -152,6 +152,46 @@ jobs:
             . env/bin/activate
             make -C docs/ linkcheck || true
 
+  # TODO: remove in ocean 4.0.0
+  test-forward-dimod-compat:
+    docker:
+      - image: circleci/python:3.9
+
+    steps:
+      - checkout
+
+      - run:
+          name: create virtualenv
+          command: |
+            python -m venv env
+
+      - run:
+          name: install ocean
+          command: |
+            . env/bin/activate
+            pip install -U pip
+            pip install .
+
+      - run: &pip-check
+          name: pip check
+          command: |
+            . env/bin/activate
+            pip check
+
+      - run:
+          name: upgrade dimod
+          command: |
+            . env/bin/activate
+            pip install dimod~=0.10.0
+
+      - run:
+          name: uninstall ocean shell
+          command: |
+            . env/bin/activate
+            pip uninstall -y dwave-ocean-sdk
+
+      - run: *pip-check
+
   deploy:
     docker:
       - image: circleci/python:3.7
@@ -239,6 +279,7 @@ workflows:
       - test-osx-3.7
       - test-osx-3.6
       - test-doctest
+      - test-forward-dimod-compat
 
   deploy:
     jobs:

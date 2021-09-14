@@ -22,35 +22,35 @@ exec(open("./dwaveoceansdk/package_info.py").read())
 
 
 install_requires = [
-    'dimod==0.9.15',
-    'dwave-cloud-client==0.8.6',
-    'dwave-greedy==0.2.0',
-    'dwave-hybrid==0.6.2',
-    'dwave-inspector==0.2.6',
-    'dwave-neal==0.5.7',
-    'dwave-networkx==0.8.8',
+    'dimod==0.9.16',
+    'dwave-cloud-client==0.8.7',
+    'dwave-greedy==0.2.1',
+    'dwave-hybrid==0.6.3',
+    'dwave-inspector==0.2.7',
+    'dwave-neal==0.5.8',
+    'dwave-networkx==0.8.9',
     'dwave-preprocessing==0.2.0',
-    'dwave-qbsolv==0.3.2',
-    'dwave-system==1.6.0',
-    'dwave-tabu==0.4.1',
-    'dwavebinarycsp==0.1.2',
+    'dwave-qbsolv==0.3.3',
+    'dwave-system==1.8.0',
+    'dwave-tabu==0.4.2',
+    'dwavebinarycsp==0.1.3',
     'minorminer==0.2.6',
-    'penaltymodel-cache==0.4.3',
-    'penaltymodel-lp==0.1.4',
-    'penaltymodel==0.16.4',
-    'pyqubo==1.0.12'
+    'penaltymodel-cache==0.4.4',
+    'penaltymodel-lp==0.1.5',
+    'penaltymodel==0.16.5',
+    'pyqubo==1.0.13'
 ]
 
 # note: when updating the version of maxgap, it also must be updated in
 # docs/requirements.txt.
 extras_require = {
     ':(platform_machine == "x86_64" or platform_machine == "amd64" or platform_machine == "AMD64")': [
-        'penaltymodel-mip==0.2.4'
+        'penaltymodel-mip==0.2.5'
     ],
     ':platform_machine != "x86_64" and platform_machine != "amd64" and platform_machine != "AMD64"': [
-        'penaltymodel-maxgap==0.5.4'  # see note above
+        'penaltymodel-maxgap==0.5.5'  # see note above
     ],
-    'all': ['penaltymodel-mip==0.2.4', 'penaltymodel-maxgap==0.5.4']
+    'all': ['penaltymodel-mip==0.2.5', 'penaltymodel-maxgap==0.5.5']
 }
 
 
