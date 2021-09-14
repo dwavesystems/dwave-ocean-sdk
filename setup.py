@@ -35,9 +35,9 @@ install_requires = [
     'dwave-tabu==0.4.2',
     'dwavebinarycsp==0.1.3',
     'minorminer==0.2.6',
-    'penaltymodel-cache==0.4.3',
-    'penaltymodel-lp==0.1.4',
-    'penaltymodel==0.16.4',
+    'penaltymodel-cache==0.4.4',
+    'penaltymodel-lp==0.1.5',
+    'penaltymodel==0.16.5',
     'pyqubo==1.0.12'
 ]
 
@@ -45,12 +45,12 @@ install_requires = [
 # docs/requirements.txt.
 extras_require = {
     ':(platform_machine == "x86_64" or platform_machine == "amd64" or platform_machine == "AMD64")': [
-        'penaltymodel-mip==0.2.4'
+        'penaltymodel-mip==0.2.5'
     ],
     ':platform_machine != "x86_64" and platform_machine != "amd64" and platform_machine != "AMD64"': [
-        'penaltymodel-maxgap==0.5.4'  # see note above
+        'penaltymodel-maxgap==0.5.5'  # see note above
     ],
-    'all': ['penaltymodel-mip==0.2.4', 'penaltymodel-maxgap==0.5.4']
+    'all': ['penaltymodel-mip==0.2.5', 'penaltymodel-maxgap==0.5.5']
 }
 
 
