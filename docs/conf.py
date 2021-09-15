@@ -99,6 +99,7 @@ add_module_names = False
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
 linkcheck_ignore=[r'.clang-format',                   # would need symlink
+                  r'setup.cfg',                       # would need symlink (for dimod)
                   r'https://cloud.dwavesys.com/leap', # redirects, many checks
                   r'https://scipy.org',               # ignores robots
                   r'LICENSE',                         # would need symlink, checked by submodule
