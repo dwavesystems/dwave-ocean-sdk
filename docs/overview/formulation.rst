@@ -98,20 +98,21 @@ Example: CQM for Greatest Rectangle Area
 Consider the simple problem of finding the rectangle with the greatest area when the
 circumference is limited.
 
-In this example, the circumference of the rectangle is set to 4 (meaning the
+In this example, the circumference of the rectangle is set to 8 (meaning the
 largest area is for the :math:`2X2` square). A CQM is created with two integer
 variables, :math:`i, j`, representing the lengths of the rectangle's sides, an
 objective function :math:`-i*j`, representing the rectangle's area (the
 multiplication of side :math:`i` by side :math:`j`, with a minus sign because
-Ocean samplers minimize rather than maximize), and a constraint :math:`i + j <= 4`,
-requiring that the sum of both sides must not exceed the circumference.
+Ocean samplers minimize rather than maximize), and a constraint
+:math:`2i + 2j <= 8`, requiring that the sum of both sides must not exceed the
+circumference.
 
 >>> from dimod import ConstrainedQuadraticModel, Integer
 >>> i = Integer('i', upper_bound=4)
 >>> j = Integer('j', upper_bound=4)
 >>> cqm = ConstrainedQuadraticModel()
 >>> cqm.set_objective(-i*j)
->>> cqm.add_constraint(i+j <= 4, "Max circumference")
+>>> cqm.add_constraint(2*i+2*j <= 8, "Max circumference")
 'Max circumference'
 
 .. _formulating_bqm:
