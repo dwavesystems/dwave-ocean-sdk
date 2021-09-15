@@ -73,7 +73,7 @@ generated graph,
     # Set node and edge values for the problem
     h = {v: 0.0 for v in graph.nodes}
     J = {edge: random.choice([-1, 1]) for edge in graph.edges}
-    bqm = dimod.BQM(h, J, offset=0, vartype=dimod.SPIN)
+    bqm = dimod.BQM(h, J, vartype=dimod.SPIN)
 
 Create a Hybrid Workflow
 ========================
