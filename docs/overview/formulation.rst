@@ -138,25 +138,26 @@ The following are two example formulations.
 
        -x_1 -x_2  + 2x_1x_2
 
-.. TODO: this example is replaced by https://github.com/dwavesystems/dwave-ocean-sdk/pull/142
-
-2. Ocean's :doc:`dwavebinarycsp </docs_binarycsp/sdk_index>` tool enables the
+2. Ocean's :doc:`dimod </docs_dimod/sdk_index>` tool enables the
    following formulation of an AND gate as a BQM:
 
->>> import dwavebinarycsp
->>> import dwavebinarycsp.factories.constraint.gates as gates
->>> csp = dwavebinarycsp.ConstraintSatisfactionProblem(dwavebinarycsp.BINARY)
->>> csp.add_constraint(gates.and_gate(['x1', 'x2', 'y1']))  # add an AND gate
->>> bqm = dwavebinarycsp.stitch(csp)
+>>> from dimod.generators import and_gate
+>>> bqm = and_gate('in1', 'in2', 'out')
 
-The resultant BQM of this AND gate may look like this:
+The BQM for this AND gate may look like this:
 
 >>> bqm     # doctest: +SKIP
-BinaryQuadraticModel({'x1': 0.0, 'x2': 0.0, 'y1': 6.0},
-...                  {('x2', 'x1'): 2.0, ('y1', 'x1'): -4.0, ('y1', 'x2'): -4.0},
-...                  0,
+BinaryQuadraticModel({'in1': 0.0, 'in2': 0.0, 'out': 3.0},
+...                  {('in2', 'in1'): 1.0, ('out', 'in1'): -2.0, ('out', 'in2'): -2.0},
+...                  0.0,
 ...                  'BINARY')
 
+The members of the two dicts are linear and quadratic coefficients, respectively,
+the third term is a constant offset associated with the model, and the fourth
+shows the variable types in this model are binary.
+
+For more detailed information on the parts of Ocean programming model and how
+they work together, see :ref:`oceanstack`.
 
 Once you have a quadratic model that represents your problem, you sample
 it for solutions. :ref:`samplers_and_solvers` explains how to submit your
