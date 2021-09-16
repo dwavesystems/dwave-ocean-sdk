@@ -228,8 +228,8 @@ Glossary
          or QUBO.
 
       Quadratic model
-         A collection of binary and/or integer variables with associated linear
-         and quadratic biases. Sometimes referred to as a **problem**.
+         A collection of variables with associated linear and quadratic biases.
+         Sometimes referred to as a **problem**.
 
       QPU
          Quantum processing unit.
