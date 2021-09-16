@@ -39,6 +39,8 @@ Learn Ocean software's workflow for problem solving.
    :maxdepth: 1
 
    overview/solving_problems
+   overview/formulation
+   overview/samplers
    overview/stack
 
 D-Wave Compute Resources
@@ -50,7 +52,6 @@ or locally on your CPU.
 .. toctree::
    :maxdepth: 1
 
-   overview/samplers
    overview/hybrid
    overview/cpu
    overview/qpu
@@ -81,7 +82,7 @@ Beginner-Level Examples: Hybrid Computing
 * :ref:`hss` solves an arbitrary-sized problem using a `Leap <https://cloud.dwavesys.com/leap/>`_
   hybrid solver.
 * :ref:`map_kerberos` demonstrates using an out-of-the-box Ocean hybrid solver.
-* :ref:`map_dqm` solves a **discrete** quadratic model (:term:`DQM`) using 
+* :ref:`map_dqm` solves a **discrete** quadratic model (:term:`DQM`) using
   `Leap <https://cloud.dwavesys.com/leap/>`_\ 's hybrid DQM solver.
 
 .. _examples_qpu:
@@ -118,7 +119,7 @@ Intermediate-Level Examples
 * :ref:`map_coloring` example solves a more complex constraint satisfaction problem.
 * :ref:`multi_gate` looks more deeply at :term:`minor-embedding`.
 * :ref:`hybrid1` builds a hybrid workflow and solver for a large graph problem.
-* :ref:`pp_greedy` improves samples returned from a QPU by post-processing with a 
+* :ref:`pp_greedy` improves samples returned from a QPU by post-processing with a
   classical greedy algorthim.
 
 Advanced-Level Examples
@@ -164,6 +165,6 @@ Additional Tutorials
 
 * :std:doc:`D-Wave Problem-Solving Handbook <sysdocs_gettingstarted:doc_handbook>`
 
-  This guide provides advanced guidance on using D-Wave solvers, in particular QPU solvers. 
-  It lists, explains, and demonstrates techniques of problem formulation, minor-embedding, 
+  This guide provides advanced guidance on using D-Wave solvers, in particular QPU solvers.
+  It lists, explains, and demonstrates techniques of problem formulation, minor-embedding,
   and configuring QPU parameters to optimize performance.

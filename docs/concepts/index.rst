@@ -15,6 +15,8 @@ See the :ref:`glossary` for short definitions of terminology or learn Ocean conc
      - Related terms
    * - :ref:`bqm_sdk`
      - BQM, Ising, QUBO
+   * - :ref:`cqm_sdk`
+     - CQM, constrained quadratic model
    * - :ref:`csp_sdk`
      - CSP, binary CSP
    * - :ref:`dqm_sdk`
@@ -23,6 +25,10 @@ See the :ref:`glossary` for short definitions of terminology or learn Ocean conc
      - quantum-classical hybrid, Leap's hybrid solvers, hybrid workflows
    * - :ref:`embedding_sdk`
      - embedding, mapping logical variables to physical qubits, chains, chain strength
+   * - :ref:`penalty_sdk`
+     - Penalty Models
+   * - :ref:`qm_sdk`
+     - Quadratic Models
    * - :ref:`topology_sdk`
      - Chimera, Pegasus
    * - :ref:`samplers_sdk`
@@ -35,14 +41,17 @@ See the :ref:`glossary` for short definitions of terminology or learn Ocean conc
    :maxdepth: 1
 
    bqm
+   cqm
    csp
    dqm
    hybrid
    embedding
+   penalty
+   qm
    topology
    samplers
    solutions
-   
+
 
 Glossary
 --------
@@ -51,7 +60,7 @@ Glossary
 
       binary quadratic model
       BQM
-         A collection of binary-valued variables  (variables that can be assigned two values, for example -1, 1) 
+         A collection of binary-valued variables  (variables that can be assigned two values, for example -1, 1)
          with associated linear and quadratic biases. Sometimes referred to in other tools as a problem.
          See a fuller description under :doc:`Binary Quadratic Models </concepts/bqm>`.
 
@@ -97,17 +106,17 @@ Glossary
           sampler and possibly many composites.
 
       CSP
-          Constraint satisfaction problem. A 
+          Constraint satisfaction problem. A
           `constraint satisfaction problem (CSP) <https://en.wikipedia.org/wiki/Constraint_satisfaction_problem>`_
-          requires that all the problem's variables be assigned values, out of a finite domain, 
+          requires that all the problem's variables be assigned values, out of a finite domain,
           that result in the satisfying of all constraints.
           See a fuller description under :doc:`QPU Topology </concepts/csp>`.
 
       discrete quadratic model
       DQM
-         A collection of discrete-valued variables  (variables that can be 
+         A collection of discrete-valued variables  (variables that can be
          assigned the values specified by a set such as :math:`\{red, green, blue\}`
-         or :math:`\{33, 5.7, 3,14 \}` ) with associated linear and quadratic biases. 
+         or :math:`\{33, 5.7, 3,14 \}` ) with associated linear and quadratic biases.
          See a fuller description under :doc:`Discrete Quadratic Models </concepts/dqm>`.
 
       Embed
@@ -123,9 +132,9 @@ Glossary
 
       Excited state
          States of a quantum system that have higher energy than the :term:`ground state`.
-         Such states represent non-optimal solutions for problems represented by an 
-         :term:`Objective function` and infeasible configurations for problems 
-         represented by a :term:`penalty model`.   
+         Such states represent non-optimal solutions for problems represented by an
+         :term:`Objective function` and infeasible configurations for problems
+         represented by a :term:`penalty model`.
 
       Graph
          A collection of nodes and edges. A graph can be derived
@@ -133,8 +142,8 @@ Glossary
          of variables with a non-zero quadratic bias.
 
       Ground state
-         The lowest-energy state of a quantum-mechanical system and the global minimum 
-         of a problem represented by an :term:`Objective function`.  
+         The lowest-energy state of a quantum-mechanical system and the global minimum
+         of a problem represented by an :term:`Objective function`.
 
       Hamiltonian
          A classical Hamiltonian is a mathematical description of some physical
@@ -190,12 +199,12 @@ Glossary
          See also `Ising Model on Wikipedia <https://en.wikipedia.org/wiki/Ising_model>`_.
 
       Minimum gap
-         The minimum distance between the :term:`ground state` and the first 
+         The minimum distance between the :term:`ground state` and the first
          :term:`excited state` throughout any point in the anneal.
 
       Model
-         A collection of variables with associated linear and
-         quadratic biases. Sometimes referred to as a **problem**.
+         A collection of variables with associated biases. Sometimes referred to
+         as a **problem**.
 
       Objective function
          A mathematical expression of the energy of a system as a function of
@@ -214,9 +223,13 @@ Glossary
          See `Penalty method on Wikipedia <https://en.wikipedia.org/wiki/Penalty_method>`_
 
       Penalty model
-         An approach to solving constraint satisfaction problems (CSP) using an :term:`Ising` model 
-         or a :term:`QUBO` by mapping each individual constraint in the CSP to a ‘small’ Ising model 
+         An approach to solving constraint satisfaction problems (CSP) using an :term:`Ising` model
+         or a :term:`QUBO` by mapping each individual constraint in the CSP to a ‘small’ Ising model
          or QUBO.
+
+      Quadratic model
+         A collection of variables with associated linear and quadratic biases.
+         Sometimes referred to as a **problem**.
 
       QPU
          Quantum processing unit.
@@ -298,6 +311,3 @@ Glossary
 
       Working graph
          In a D-Wave QPU, the set of qubits and couplers that are available for computation is known as the working graph. The yield of a working graph is typically less than 100% of qubits and couplers that are fabricated and physically present in the QPU. See :term:`hardware graph`.
-
-
-

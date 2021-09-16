@@ -89,62 +89,20 @@ in the :ref:`multi_gate` example.
 Representing the Problem With a Penalty Function
 ------------------------------------------------
 
-This example demonstrates a mathematical formulation of the BQM. You can represent a NOT gate,
-:math:`z \Leftrightarrow \neg x`, where :math:`x` is the
-gate's input and :math:`z` its output, using a :term:`penalty function`:
+This example demonstrates a mathematical formulation of the BQM.
+As shown in :ref:`penalty_sdk`, you can represent a NOT gate,
+:math:`z \Leftrightarrow \neg x`, where :math:`x` is the gate's input and :math:`z`
+its output, using a :term:`penalty function`:
 
 .. math::
 
     2xz-x-z+1.
 
-This penalty function represents the NOT gate in that for assignments of variables that
-match valid states of the gate, the function evaluates at a lower value than assignments
-that would be invalid for the gate. Therefore, when the D-Wave minimizes a BQM based on this
-penalty function, it finds those assignments of variables that match valid gate states.
-
-The table below shows that this function penalizes states
-that are not valid for the gate while no penalty is applied to assignments of
-variables that correctly represent a NOT gate. In this table, column **x** is all
-possible states of the gate's input; column :math:`\mathbf{z}` is the corresponding
-output values; column **Valid?** shows whether the variables represent a valid state
-for a NOT gate; column :math:`\mathbf{P}` shows the value of the penalty for all
-possible assignments of variables.
-
-.. table:: Boolean NOT Operation Represented by a Penalty Function.
-   :name: BooleanNOTAsPenalty
-
-   ===========  ===================  ==========  ===================
-   **x**        :math:`\mathbf{z}`   **Valid?**  :math:`\mathbf{P}`
-   ===========  ===================  ==========  ===================
-   :math:`0`    :math:`1`            Yes         :math:`0`
-   :math:`1`    :math:`0`            Yes         :math:`0`
-   :math:`0`    :math:`0`            No          :math:`1`
-   :math:`1`    :math:`1`            No          :math:`1`
-   ===========  ===================  ==========  ===================
-
-For example, the state :math:`x, z=0,1` of the first row represents
-valid assignments, and the value of :math:`P` is
-
-.. math::
-
-    2xz-x-z+1 = 2 \times 0 \times 1 - 0 - 1 + 1 = -1+1=0,
-
-not penalizing the valid assignment of variables. In contrast, the state :math:`x,
-z=0,0` of the third row represents an invalid assignment, and the
-value of :math:`P` is
-
-.. math::
-
-    2xz-x-z+1 = 2 \times 0 \times 0 -0 -0 +1 =1,
-
-adding a value of :math:`1` to the BQM being minimized. By penalizing both possible
-assignments of variables that represent invalid states of a NOT gate, the BQM based
-on this penalty function has minimal values (lowest energy states) for variable values
-that also represent a NOT gate.
-
-See the :std:doc:`D-Wave Problem-Solving Handbook <sysdocs_gettingstarted:doc_handbook>`
-for more information about penalty functions in general,
-and penalty functions for representing Boolean operations.
+This penalty function represents the NOT gate in that for assignments of
+variables that match valid states of the gate, the function evaluates at a lower
+value than assignments that would be invalid for the gate.\ [1]_ Therefore, when the
+D-Wave system minimizes a BQM based on this penalty function, it finds those
+assignments of variables that match valid gate states.
 
 Formulating the Problem as a QUBO
 ---------------------------------
@@ -176,16 +134,16 @@ Often it is convenient to format the coefficients as an upper-triangular matrix:
 
      Q = \begin{bmatrix} -1 & 2 \\ 0 & -1 \end{bmatrix}
 
-See the :std:doc:`D-Wave Problem-Solving Handbook <sysdocs_gettingstarted:doc_handbook>` 
+See the :std:doc:`D-Wave Problem-Solving Handbook <sysdocs_gettingstarted:doc_handbook>`
 for more information about formulating problems as QUBOs.
 
 Solve the Problem by Sampling
 =============================
 
-Now solve on a D-Wave system using sampler :class:`~dwave.system.samplers.DWaveSampler` 
+Now solve on a D-Wave system using sampler :class:`~dwave.system.samplers.DWaveSampler`
 from Ocean software's :doc:`dwave-system </docs_system/sdk_index>`. Also use
-its :class:`~dwave.system.composites.EmbeddingComposite` composite to map the 
-unstructured problem (variables such as :math:`x_2` etc.) to the sampler's graph structure 
+its :class:`~dwave.system.composites.EmbeddingComposite` composite to map the
+unstructured problem (variables such as :math:`x_2` etc.) to the sampler's graph structure
 (the QPU's numerically indexed qubits) in a process known as :term:`minor-embedding`.
 
 The next code sets up a D-Wave system as the sampler.
@@ -195,15 +153,15 @@ The next code sets up a D-Wave system as the sampler.
    :end-before: default-config-end-marker
 
 >>> from dwave.system import DWaveSampler, EmbeddingComposite
->>> sampler = EmbeddingComposite(DWaveSampler())    
+>>> sampler = EmbeddingComposite(DWaveSampler())
 
-Because the sampled solution is probabilistic, returned solutions may differ between runs. 
-Typically, when submitting a problem to the system, you ask for many samples, not just one. 
-This way, you see multiple “best” answers and reduce the probability of settling on a 
+Because the sampled solution is probabilistic, returned solutions may differ between runs.
+Typically, when submitting a problem to the system, you ask for many samples, not just one.
+This way, you see multiple “best” answers and reduce the probability of settling on a
 suboptimal answer. Below, ask for 5000 samples.
 
 >>> Q = {('x', 'x'): -1, ('x', 'z'): 2, ('z', 'x'): 0, ('z', 'z'): -1}
->>> sampleset = sampler.sample_qubo(Q, num_reads=5000, label='SDK Examples - NOT Gate')     
+>>> sampleset = sampler.sample_qubo(Q, num_reads=5000, label='SDK Examples - NOT Gate')
 >>> print(sampleset)        # doctest: +SKIP
    x  z energy num_oc. chain_.
 0  0  1   -1.0    2266     0.0
@@ -217,7 +175,7 @@ and minima (low-energy states) of the BQM, and with high likelihood the best (lo
 energy) samples satisfy the NOT gate formulation:
 
 >>> sampleset.first.sample["x"] != sampleset.first.sample["z"]
-True 
+True
 
 Summary
 =======
@@ -228,3 +186,45 @@ following layers:
 * The sampler API is a :term:`QUBO` formulation of the problem.
 * The sampler is :class:`~dwave.system.samplers.DWaveSampler`.
 * The compute resource is a D-Wave system.
+
+.. [1]
+
+  The table below shows that this function penalizes states
+  that are not valid for the gate while no penalty is applied to assignments of
+  variables that correctly represent a NOT gate. In this table, column **x** is all
+  possible states of the gate's input; column :math:`\mathbf{z}` is the corresponding
+  output values; column **Valid?** shows whether the variables represent a valid state
+  for a NOT gate; column :math:`\mathbf{P}` shows the value of the penalty for all
+  possible assignments of variables.
+
+  .. table:: Boolean NOT Operation Represented by a Penalty Function.
+     :name: BooleanNOTAsPenalty
+
+     ===========  ===================  ==========  ===================
+     **x**        :math:`\mathbf{z}`   **Valid?**  :math:`\mathbf{P}`
+     ===========  ===================  ==========  ===================
+     :math:`0`    :math:`1`            Yes         :math:`0`
+     :math:`1`    :math:`0`            Yes         :math:`0`
+     :math:`0`    :math:`0`            No          :math:`1`
+     :math:`1`    :math:`1`            No          :math:`1`
+     ===========  ===================  ==========  ===================
+
+  For example, the state :math:`x, z=0,1` of the first row represents
+  valid assignments, and the value of :math:`P` is
+
+  .. math::
+
+      2xz-x-z+1 = 2 \times 0 \times 1 - 0 - 1 + 1 = -1+1=0,
+
+  not penalizing the valid assignment of variables. In contrast, the state :math:`x,
+  z=0,0` of the third row represents an invalid assignment, and the
+  value of :math:`P` is
+
+  .. math::
+
+      2xz-x-z+1 = 2 \times 0 \times 0 -0 -0 +1 =1,
+
+  adding a value of :math:`1` to the BQM being minimized. By penalizing both possible
+  assignments of variables that represent invalid states of a NOT gate, the BQM based
+  on this penalty function has minimal values (lowest energy states) for variable values
+  that also represent a NOT gate.
