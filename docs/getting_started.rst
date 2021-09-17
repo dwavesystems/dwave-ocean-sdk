@@ -75,10 +75,13 @@ Beginner-Level Examples: Hybrid Computing
    :maxdepth: 1
    :hidden:
 
+   examples/hybrid_cqm_binpacking
    examples/hybrid_solver_service
    examples/map_kerberos
    examples/map_dqm
 
+* :ref:`example_cqm_binpacking` solves an constrained problem using a 
+  `Leap <https://cloud.dwavesys.com/leap/>`_ hybrid :term:`CQM` solver.
 * :ref:`hss` solves an arbitrary-sized problem using a `Leap <https://cloud.dwavesys.com/leap/>`_
   hybrid solver.
 * :ref:`map_kerberos` demonstrates using an out-of-the-box Ocean hybrid solver.
