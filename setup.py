@@ -31,7 +31,7 @@ install_requires = [
     'dwave-networkx==0.8.9',
     'dwave-preprocessing==0.3.0',
     'dwave-qbsolv==0.3.3',
-    'dwave-system==1.8.0',
+    'dwave-system==1.9.0',
     'dwave-tabu==0.4.2',
     'dwavebinarycsp==0.1.3',
     'minorminer==0.2.6',
