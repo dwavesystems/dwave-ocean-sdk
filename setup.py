@@ -23,7 +23,7 @@ exec(open("./dwaveoceansdk/package_info.py").read())
 
 install_requires = [
     'dimod==0.10.6',
-    'dwave-cloud-client==0.8.7',
+    'dwave-cloud-client==0.9.0.dev0',   # TODO: update before releasing 4.0
     'dwave-greedy==0.2.1',
     'dwave-hybrid==0.6.3',
     'dwave-inspector==0.2.7',
