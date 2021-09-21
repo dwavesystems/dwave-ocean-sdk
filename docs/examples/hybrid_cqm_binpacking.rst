@@ -108,6 +108,15 @@ Each bin has limited capacity. You can express this constraint for each bin
 ...         sum(weights[i] * item_in_bin[i][j] for i in range(num_items)) - bin_used[j] * bin_capacity <= 0,
 ...         label=f'capacity_bin_{j}')
 
+For 50 items and allowing for the worse case of 50 bins, this CQM requires
+over 2000 binary variables: 
+
+>>> len(cqm.variables)
+2550
+
+Given that bin capacity is defined above as ten times the average weight, 
+one could easily reduce the complexity of this model by significantly reducing 
+the number of bins. 
 
 Solve the Problem by Sampling
 =============================
@@ -126,7 +135,7 @@ easily incorporate Leap's hybrid CQM solvers into your application:
 
 >>> from dwave.system import LeapHybridCQMSampler
 >>> sampler = LeapHybridCQMSampler()     # doctest: +SKIP
->>> sampleset = sampler.sample_cqm(cqm)  # doctest: +SKIP
+>>> sampleset = sampler.sample_cqm(cqm, time_limit=300)  # doctest: +SKIP
 
 For one particular execution, the CQM hybrid sampler returned 55 samples, out of 
 which 49 were solutions that met all the constraints, including the best solution 
@@ -135,12 +144,12 @@ found:
 >>> print("{} feasible solutions of {}.".format(
 ...       sampleset.record.is_feasible.sum(), len(sampleset)))   # doctest: +SKIP
 49 feasible solutions of 55.
->>> sampleset.first.is_feasible                                  # doctest: +SKIP
-True
 
 The best solution found a packing that required 13 bins:
 
->>> selected_bins = [key for key, val in sampleset.first.sample.items() if 'bin_used' in key and val]
+>>> best = next(itertools.filterfalse(lambda d: not getattr(d,'is_feasible'),
+...             list(sampleset.data())))
+>>> selected_bins = [key for key, val in best.sample.items() if 'bin_used' in key and val]
 >>> print("{} bins are used.".format(len(selected_bins)))     # doctest: +SKIP
 13 bins are used.
 
@@ -148,11 +157,11 @@ The best solution found a packing that required 13 bins:
 ...     return [int(digs) for digs in name.split('_') if digs.isdigit()]
 
 >>> for bin in selected_bins:                        # doctest: +SKIP
-...     in_bin = [key for key, val in sampleset.first.sample.items() if 
+...     in_bin = [key for key, val in best.sample.items() if 
 ...        "item_in_bin" in key and 
 ...        get_indices(key)[1] == get_indices(bin)[0] 
 ...        and val]
-...     b = get_indices(bin)[0]
+...     b = get_indices(in_bin[0])[1]
 ...     w = [weights[get_indices(item)[0]] for item in in_bin]
 ...     print("Bin {} has weights {} for total {}".format(b, w, sum(w)))
 Bin 15 has weights [5] for total 5
