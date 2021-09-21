@@ -4,41 +4,21 @@
 Bin Packing
 ===========
 
-This example solves a structural-imbalance problem, similar to the
-`Leap <https://cloud.dwavesys.com/leap/>`_ demo and 
-`Jupyter Notebook <https://github.com/dwave-examples/structural-imbalance-notebook>`_, 
-to demonstrate using Leap's hybrid solver service on a problem of arbitrary 
+This example solves the known hard problem of 
+`bin packing <https://en.wikipedia.org/wiki/Bin_packing_problem>`_ to demonstrate
+using Leap's hybrid :term:`CQM` solver on a constrained problem of arbitrary 
 structure and size.
-
-*Social networks* map relationships between people or organizations onto graphs, with
-the people/organizations as nodes and relationships as edges; for example,
-Facebook friends form a social network. *Signed social networks* map both friendly and
-hostile relationships by assigning to edges either positive or negative values. Such
-networks are said to be *structurally balanced* when they can be cleanly divided into
-two sets, with each set containing only friends, and all relations between these sets
-are hostile. The measure of *structural imbalance* or *frustration* for a signed social
-network, when it cannot be cleanly divided, is the minimum number of edges that violate
-the social rule, “the enemy of my friend is my enemy.”
-
-.. figure:: ../_static/Romeo.png
-   :name: Problem_StructuralImbalance
-   :alt: image
-   :align: center
-   :scale: 70 %
-
-   Juliet’s new love of Romeo introduces imbalance into the social network of Verona. Green edges represent friendly relationships (Juliet & Romeo and Juliet & Lord Capulet) while red edges represent hostile relationships (Romeo and Lord Capulet). The black vertical line dividing the set with Romeo from the set with Lord Capulet crosses the friendly edge between Juliet and Lord Capulet.
-
-Finding a division that minimizes frustration is an NP-hard graph problem (it can be
-viewed as an expansion of the well-known
-`maximum cut <https://en.wikipedia.org/wiki/Maximum_cut>`_ problem).
 
 Example Requirements
 ====================
 
 To run the code in this example, the following is required.
 
-* The requisite information for problem submission through SAPI, as described in :ref:`sapi_access`.
-* Ocean tools :doc:`dwave-system </docs_system/sdk_index>` and :doc:`dwave_networkx </docs_dnx/sdk_index>`.
+* The requisite information for problem submission through SAPI, as described
+  in :ref:`sapi_access`.
+* Ocean tools :doc:`dwave-system </docs_system/sdk_index>` and 
+  :doc:`dimod </docs_dimod/sdk_index>`.
+* NumPy
 
 .. example-requirements-start-marker
 
@@ -53,25 +33,38 @@ Solution Steps
 ==============
 
 Section :ref:`solving_problems` describes the process of solving problems on the quantum
-computer in two steps: (1) Formulate the problem as a :term:`binary quadratic model` (BQM)
-and (2) Solve the BQM with a D-Wave system, classical :term:`sampler`, or hybrid sampler.
-In this example, a function in Ocean software handles both steps. Our task is mainly to
-select the sampler used to solve the problem.
+computer in two steps: (1) Formulate the problem as a :term:`quadratic model` (QM)
+and (2) Solve the QM with a D-Wave solver.
+This example formulates the bin-packing problem as a 
+:ref:`constrained quadratic model <cqm_sdk>` and uses the 
+:class:`~dwave.system.samplers.LeapHybridCQMSampler` to find good solutions.
 
 Formulate the Problem
 =====================
 
-For a social graph, `G`, this example simply builds a random sparse graph---using the
-`NetworkX <https://networkx.org>`_ :func:`~networkx.generators.geometric.random_geometric_graph()` 
-function, which places uniformly at random a specified number of nodes, `problem_node_count`, 
-in a unit cube, joining edges of any two if the distance is below a given radius---and randomly
-assigns :math:`-1, 1` signs to represent friendly and hostile relationships.
+>>> import numpy as np
+>>> num_items = 50
+>>> item_weight_range = [3, 7]
+>>> weights = list(np.random.randint(*item_weight_range, num_items))
+>>> bin_capacity = int(10 * np.mean(weights))
 
->>> import networkx as nx
->>> import random
->>> problem_node_count = 300
->>> G = nx.random_geometric_graph(problem_node_count, radius=0.0005*problem_node_count)
->>> G.add_edges_from([(u, v, {'sign': random.choice((-1, 1))}) for u, v in G.edges])
+>>> from dimod import ConstrainedQuadraticModel, Binary
+>>> cqm = ConstrainedQuadraticModel()
+>>> bin_used = [Binary(f'bin_used_{j}') for j in range(num_items)]
+>>> item_in_bin = [[Binary(f'item_in_bin_{i}_{j}') for j in range(num_items)]
+...      for i in range(num_items)]
+
+>>> cqm.set_objective(sum(bin_used))
+
+>>> for i in range(num_items):
+...     one_bin_per_item = cqm.add_constraint(sum(item_in_bin[i]) == 1, label=f'item_placing_{i}')
+
+
+>>> for j in range(num_items):
+...     bin_up_to_capacity = cqm.add_constraint(
+...         sum(weights[i] * item_in_bin[i][j] for i in range(num_items)) - bin_used[j] * bin_capacity <= 0,
+...         label=f'capacity_bin_{j}')
+
 
 Solve the Problem by Sampling
 =============================
