@@ -42,23 +42,66 @@ This example formulates the bin-packing problem as a
 Formulate the Problem
 =====================
 
+The bin-packing problem is to assign each item in a collection of items with 
+differing weights to one of a number of bins with limited capacity in such
+a way as to minimize the number of bins used. 
+
+The code below sets the number of items, :code:`num_items`, their weights, 
+:code:`weights`, randomly within a configurable range, :code:`item_weight_range`, 
+and bin capacity, :code:`bin_capacity`. 
+
 >>> import numpy as np
 >>> num_items = 50
 >>> item_weight_range = [3, 7]
 >>> weights = list(np.random.randint(*item_weight_range, num_items))
 >>> bin_capacity = int(10 * np.mean(weights))
 
+Next, a CQM is instantiated. 
+
 >>> from dimod import ConstrainedQuadraticModel, Binary
 >>> cqm = ConstrainedQuadraticModel()
+
+Objective Function
+------------------
+
+The objective function to minimize is the number of used bins. Because a bin 
+is either used or not used, you can use binary variables to indicate whether 
+or not a bin is used. Create enough of such variables: the worst possible 
+case is that each item requires an entire bin to itself. The binary variable 
+:code:`bin_used_<j>` indicates that bin :math:`j` is in use.
+
 >>> bin_used = [Binary(f'bin_used_{j}') for j in range(num_items)]
->>> item_in_bin = [[Binary(f'item_in_bin_{i}_{j}') for j in range(num_items)]
-...      for i in range(num_items)]
+
+To minimize the number of bins used is to minimize the value of 
+:math:`\sum_j \text{bin_used}_j`.
 
 >>> cqm.set_objective(sum(bin_used))
 
+Constraints
+-----------
+
+Each item can only go in one bin. This again is a binary outcome: item :math:`i`
+is either in bin :math:`j` (:code:`item_in_bin_<i>_<j> == 1`) or not 
+(:code:`item_in_bin_<i>_<j> == 0`). You can express this constraint as 
+
+.. math::
+
+	\sum_j \text{item_in_bin}_{i,j} == 1; 
+
+that is, over all bins :math:`j`, there is just one 
+:code:`item_in_bin_<i>_<j> == 1` for each :math:`i`. 
+
+>>> item_in_bin = [[Binary(f'item_in_bin_{i}_{j}') for j in range(num_items)]
+...      for i in range(num_items)]
 >>> for i in range(num_items):
 ...     one_bin_per_item = cqm.add_constraint(sum(item_in_bin[i]) == 1, label=f'item_placing_{i}')
 
+Each bin has limited capacity. You can express this constraint for each bin 
+:math:`j`: 
+
+.. math::
+
+	\sum_i \text{item_in_bin}_{i, j} * \text{weights}_i <= \text{bin_capacity} 
 
 >>> for j in range(num_items):
 ...     bin_up_to_capacity = cqm.add_constraint(
@@ -69,41 +112,59 @@ Formulate the Problem
 Solve the Problem by Sampling
 =============================
 
-As mentioned above, this example uses Ocean's :doc:`dwave_networkx </docs_dnx/sdk_index>`
-function, :func:`~dwave_networkx.algorithms.social.structural_imbalance`, to create the 
-appropriate BQM to represent
-the problem graph and return a solution. It requires just the selection of a :term:`sampler`.
-
-D-Wave's quantum cloud service provides cloud-based hybrid solvers you can submit arbitrary
-BQMs to. These solvers, which implement state-of-the-art classical algorithms together
-with intelligent allocation of the quantum processing unit (QPU) to parts of the problem
-where it benefits most, are designed to accommodate even very large problems. Leap's
-solvers can relieve you of the burden of any current and future development and optimization
+D-Wave's quantum cloud service provides cloud-based hybrid solvers you can
+submit arbitrary QMs to. These solvers, which implement state-of-the-art 
+classical algorithms together with intelligent allocation of the quantum 
+processing unit (QPU) to parts of the problem where it benefits most, are 
+designed to accommodate even very large problems. Leap's solvers can 
+relieve you of the burden of any current and future development and optimization
 of hybrid algorithms that best solve your problem.
 
 Ocean software's :doc:`dwave-system </docs_system/sdk_index>`
-:class:`~dwave.system.samplers.LeapHybridSampler` class enables you to easily incorporate 
-Leap's hybrid solvers into your application:
+:class:`~dwave.system.samplers.LeapCQMHybridSampler` class enables you to 
+easily incorporate Leap's hybrid CQM solvers into your application:
 
->>> from dwave.system import LeapHybridSampler
->>> sampler = LeapHybridSampler()     # doctest: +SKIP
+>>> from dwave.system import LeapHybridCQMSampler
+>>> sampler = LeapHybridCQMSampler()     # doctest: +SKIP
+>>> sampleset = sampler.sample_cqm(cqm)  # doctest: +SKIP
 
-Finally, the returned set of frustrated edges and a bicoloring are counted and printed.
+For one particular execution, the CQM hybrid sampler returned 55 samples, out of 
+which 49 were solutions that met all the constraints, including the best solution 
+found: 
 
->>> import dwave_networkx as dnx
->>> imbalance, bicoloring = dnx.structural_imbalance(G, sampler)    # doctest: +SKIP
->>> set1 = int(sum(list(bicoloring.values())))        # doctest: +SKIP
->>> print("One set has {} nodes; the other has {} nodes.".format(set1, problem_node_count-set1))  # doctest: +SKIP
->>> print("The network has {} frustrated relationships.".format(len(list(imbalance.keys()))))    # doctest: +SKIP
-One set has 143 nodes; the other has 157 nodes.
-The network has 904 frustrated relationships.
+>>> print("{} feasible solutions of {}.".format(
+...       sampleset.record.is_feasible.sum(), len(sampleset)))   # doctest: +SKIP
+49 feasible solutions of 55.
+>>> sampleset.first.is_feasible                                  # doctest: +SKIP
+True
 
-The graphic below visualizes the result of one such run.
+The best solution found a packing that required 13 bins:
 
-.. figure:: ../_static/structural_imbalance_300.png
-   :name: structural_imbalance_300
-   :alt: image
-   :align: center
-   :scale: 60 %
+>>> selected_bins = [key for key, val in sampleset.first.sample.items() if 'bin_used' in key and val]
+>>> print("{} bins are used.".format(len(selected_bins)))     # doctest: +SKIP
+13 bins are used.
 
-   One solution found for a 300-node problem. Two circular sets, of blue or yellow nodes, are internally connected by solid green edges representing friendly relationships while red edges representing hostile relationships and dashed green edges representing frustrated relationships are stretched out between these.
+>>> def get_indices(name):
+...     return [int(digs) for digs in name.split('_') if digs.isdigit()]
+
+>>> for bin in selected_bins:                        # doctest: +SKIP
+...     in_bin = [key for key, val in sampleset.first.sample.items() if 
+...        "item_in_bin" in key and 
+...        get_indices(key)[1] == get_indices(bin)[0] 
+...        and val]
+...     b = get_indices(bin)[0]
+...     w = [weights[get_indices(item)[0]] for item in in_bin]
+...     print("Bin {} has weights {} for total {}".format(b, w, sum(w)))
+Bin 15 has weights [5] for total 5
+Bin 16 has weights [5, 6, 5, 6, 3] for total 25
+Bin 17 has weights [6, 5] for total 11
+Bin 25 has weights [4, 5, 4, 6] for total 19
+Bin 29 has weights [4, 3, 6] for total 13
+Bin 35 has weights [4, 4, 6, 3, 3, 3] for total 23
+Bin 43 has weights [4, 5, 6] for total 15
+Bin 47 has weights [4, 3, 3, 3] for total 13
+Bin 49 has weights [3, 3, 5, 3, 4] for total 18
+Bin 5 has weights [5, 4, 6, 6] for total 21
+Bin 6 has weights [6, 3, 3, 5, 4, 3, 4, 5] for total 33
+Bin 7 has weights [5, 6] for total 11
+Bin 9 has weights [4, 4, 5] for total 13
