@@ -51,12 +51,15 @@ The code below sets the number of items, :code:`num_items`, their weights,
 and bin capacity, :code:`bin_capacity`. 
 
 >>> import numpy as np
->>> num_items = 50
+>>> num_items = 15
 >>> item_weight_range = [3, 7]
 >>> weights = list(np.random.randint(*item_weight_range, num_items))
 >>> bin_capacity = int(10 * np.mean(weights))
+>>> print("The problem will be to pack a total weight of {} into bins of capacity {}.".format(
+...       sum(weights), bin_capacity))
+The problem will be to pack a total weight of 77 into bins of capacity 51.
 
-Next, a CQM is instantiated. 
+Next, instantiate a CQM: 
 
 >>> from dimod import ConstrainedQuadraticModel, Binary
 >>> cqm = ConstrainedQuadraticModel()
@@ -108,11 +111,11 @@ Each bin has limited capacity. You can express this constraint for each bin
 ...         sum(weights[i] * item_in_bin[i][j] for i in range(num_items)) - bin_used[j] * bin_capacity <= 0,
 ...         label=f'capacity_bin_{j}')
 
-For 50 items and allowing for the worse case of 50 bins, this CQM requires
-over 2000 binary variables: 
+For 15 items and allowing for the worse case of 15 bins, this CQM requires
+over 200 binary variables: 
 
 >>> len(cqm.variables)
-2550
+240
 
 Given that bin capacity is defined above as ten times the average weight, 
 one could easily reduce the complexity of this model by significantly reducing 
@@ -135,23 +138,24 @@ easily incorporate Leap's hybrid CQM solvers into your application:
 
 >>> from dwave.system import LeapHybridCQMSampler
 >>> sampler = LeapHybridCQMSampler()     # doctest: +SKIP
->>> sampleset = sampler.sample_cqm(cqm, time_limit=300)  # doctest: +SKIP
+>>> sampleset = sampler.sample_cqm(cqm, time_limit=180)  # doctest: +SKIP
 
-For one particular execution, the CQM hybrid sampler returned 55 samples, out of 
-which 49 were solutions that met all the constraints, including the best solution 
+For one particular execution, the CQM hybrid sampler returned 47 samples, out of 
+which 31 were solutions that met all the constraints, including the best solution 
 found: 
 
 >>> print("{} feasible solutions of {}.".format(
 ...       sampleset.record.is_feasible.sum(), len(sampleset)))   # doctest: +SKIP
-49 feasible solutions of 55.
+31 feasible solutions of 47.
 
-The best solution found a packing that required 13 bins:
+The best solution found a packing that required 2 bins:
 
+>>> import itertools
 >>> best = next(itertools.filterfalse(lambda d: not getattr(d,'is_feasible'),
 ...             list(sampleset.data())))
 >>> selected_bins = [key for key, val in best.sample.items() if 'bin_used' in key and val]
 >>> print("{} bins are used.".format(len(selected_bins)))     # doctest: +SKIP
-13 bins are used.
+2 bins are used.
 
 >>> def get_indices(name):
 ...     return [int(digs) for digs in name.split('_') if digs.isdigit()]
@@ -163,17 +167,6 @@ The best solution found a packing that required 13 bins:
 ...        and val]
 ...     b = get_indices(in_bin[0])[1]
 ...     w = [weights[get_indices(item)[0]] for item in in_bin]
-...     print("Bin {} has weights {} for total {}".format(b, w, sum(w)))
-Bin 15 has weights [5] for total 5
-Bin 16 has weights [5, 6, 5, 6, 3] for total 25
-Bin 17 has weights [6, 5] for total 11
-Bin 25 has weights [4, 5, 4, 6] for total 19
-Bin 29 has weights [4, 3, 6] for total 13
-Bin 35 has weights [4, 4, 6, 3, 3, 3] for total 23
-Bin 43 has weights [4, 5, 6] for total 15
-Bin 47 has weights [4, 3, 3, 3] for total 13
-Bin 49 has weights [3, 3, 5, 3, 4] for total 18
-Bin 5 has weights [5, 4, 6, 6] for total 21
-Bin 6 has weights [6, 3, 3, 5, 4, 3, 4, 5] for total 33
-Bin 7 has weights [5, 6] for total 11
-Bin 9 has weights [4, 4, 5] for total 13
+...     print("Bin {} has weights {} for a total of {}.".format(b, w, sum(w)))
+Bin 1 has weights [4, 4, 6, 4, 6, 4, 6] for a total of 34.
+Bin 14 has weights [5, 6, 4, 6, 4, 6, 6, 6] for a total of 43.
