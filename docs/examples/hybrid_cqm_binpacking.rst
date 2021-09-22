@@ -18,7 +18,7 @@ To run the code in this example, the following is required.
   in :ref:`sapi_access`.
 * Ocean tools :doc:`dwave-system </docs_system/sdk_index>` and 
   :doc:`dimod </docs_dimod/sdk_index>`.
-* NumPy
+* :std:doc:`NumPy <numpy:index>` for some mathematical calculations.
 
 .. example-requirements-start-marker
 
@@ -46,65 +46,79 @@ The bin-packing problem is to assign each item in a collection of items with
 differing weights to one of a number of bins with limited capacity in such
 a way as to minimize the number of bins used. 
 
-The code below sets the number of items, :code:`num_items`, their weights, 
+The code below sets the number of items, :code:`num_items`, assigns weights, 
 :code:`weights`, randomly within a configurable range, :code:`item_weight_range`, 
-and bin capacity, :code:`bin_capacity`. 
+and sets a bin capacity, :code:`bin_capacity`, based on the average weight. 
 
 >>> import numpy as np
 >>> num_items = 15
 >>> item_weight_range = [3, 7]
 >>> weights = list(np.random.randint(*item_weight_range, num_items))
 >>> bin_capacity = int(10 * np.mean(weights))
->>> print("The problem will be to pack a total weight of {} into bins of capacity {}.".format(
+>>> print("Problem: pack a total weight of {} into bins of capacity {}.".format(
 ...       sum(weights), bin_capacity))
-The problem will be to pack a total weight of 77 into bins of capacity 51.
+Problem: pack a total weight of 77 into bins of capacity 51.
 
-Next, instantiate a CQM: 
+Instantiate a CQM: 
 
 >>> from dimod import ConstrainedQuadraticModel, Binary
 >>> cqm = ConstrainedQuadraticModel()
+
+You can now formulate an :term:`objective function` to optimize and constraints
+any feasible solution must meet, and set these in your CQM.
 
 Objective Function
 ------------------
 
 The objective function to minimize is the number of used bins. Because a bin 
-is either used or not used, you can use binary variables to indicate whether 
-or not a bin is used. Create enough of such variables: the worst possible 
-case is that each item requires an entire bin to itself. The binary variable 
-:code:`bin_used_<j>` indicates that bin :math:`j` is in use.
+is either used or not used, you can use binary variables to indicate bin usage. 
+Create enough of such variables: the worst possible case is that each item 
+requires an entire bin to itself (so you can set the number of bins to equal
+the number of items, :code:`num_items`). Binary variable :code:`bin_used_<j>` 
+indicates that bin :math:`j` is in use.
 
 >>> bin_used = [Binary(f'bin_used_{j}') for j in range(num_items)]
 
-To minimize the number of bins used is to minimize the value of 
-:math:`\sum_j \text{bin_used}_j`.
+To minimize the number of used bins is to minimize the sum of 
+:code:`bin_used_<j>` variables with value 1 (True, meaning the bin is being
+used):  
+
+.. math::
+
+	\sum_j \text{bin_used}_j
 
 >>> cqm.set_objective(sum(bin_used))
 
 Constraints
 -----------
 
-Each item can only go in one bin. This again is a binary outcome: item :math:`i`
-is either in bin :math:`j` (:code:`item_in_bin_<i>_<j> == 1`) or not 
-(:code:`item_in_bin_<i>_<j> == 0`). You can express this constraint as 
+The bin-packing problem has two constraints:
 
-.. math::
+1. Each item can go into only one bin. This again is a binary outcome: item 
+   :math:`i` is either in bin :math:`j` (:code:`item_in_bin_<i>_<j> == 1`) or 
+   not (:code:`item_in_bin_<i>_<j> == 0`). You can express this constraint as 
 
-	\sum_j \text{item_in_bin}_{i,j} == 1; 
+   .. math::
 
-that is, over all bins :math:`j`, there is just one 
-:code:`item_in_bin_<i>_<j> == 1` for each :math:`i`. 
+	\sum_j \text{item_in_bin}_{i,j} == 1. 
+
+   That is, over all :math:`j` bins, there is just one 
+   :code:`item_in_bin_<i>_<j> == 1` for each :math:`i`. 
 
 >>> item_in_bin = [[Binary(f'item_in_bin_{i}_{j}') for j in range(num_items)]
 ...      for i in range(num_items)]
 >>> for i in range(num_items):
 ...     one_bin_per_item = cqm.add_constraint(sum(item_in_bin[i]) == 1, label=f'item_placing_{i}')
 
-Each bin has limited capacity. You can express this constraint for each bin 
-:math:`j`: 
+2. Each bin has limited capacity. You can express this constraint for each bin
+   :math:`j`: 
 
-.. math::
+    .. math::
 
 	\sum_i \text{item_in_bin}_{i, j} * \text{weights}_i <= \text{bin_capacity} 
+
+   That is, for each bin :math:`j`, the sum of weights for those items placed
+   in the bin (:code:`item_in_bin_<i>_<j> == 1`) does not exceed capacity.
 
 >>> for j in range(num_items):
 ...     bin_up_to_capacity = cqm.add_constraint(
@@ -118,8 +132,8 @@ over 200 binary variables:
 240
 
 Given that bin capacity is defined above as ten times the average weight, 
-one could easily reduce the complexity of this model by significantly reducing 
-the number of bins. 
+one could easily reduce the complexity of this model by setting the number 
+of bins much smaller. 
 
 Solve the Problem by Sampling
 =============================
@@ -138,12 +152,13 @@ easily incorporate Leap's hybrid CQM solvers into your application:
 
 >>> from dwave.system import LeapHybridCQMSampler
 >>> sampler = LeapHybridCQMSampler()     # doctest: +SKIP
+
+Submit the CQM to the selected solver. For one particular execution, 
+with a maximum allowed runtime of 3 minutes, the CQM hybrid sampler 
+returned 47 samples, out of which 31 were solutions that met all the 
+constraints: 
+
 >>> sampleset = sampler.sample_cqm(cqm, time_limit=180)  # doctest: +SKIP
-
-For one particular execution, the CQM hybrid sampler returned 47 samples, out of 
-which 31 were solutions that met all the constraints, including the best solution 
-found: 
-
 >>> print("{} feasible solutions of {}.".format(
 ...       sampleset.record.is_feasible.sum(), len(sampleset)))   # doctest: +SKIP
 31 feasible solutions of 47.
@@ -157,8 +172,14 @@ The best solution found a packing that required 2 bins:
 >>> print("{} bins are used.".format(len(selected_bins)))     # doctest: +SKIP
 2 bins are used.
 
+The code below defines a simple function, :code:`get_indices`, that returns
+the indices signifying the bin and item from variable names. This is used 
+in parsing the solutions returned from the hybrid solver below.
+
 >>> def get_indices(name):
 ...     return [int(digs) for digs in name.split('_') if digs.isdigit()]
+
+For the best feasible solution, print the packing.
 
 >>> for bin in selected_bins:                        # doctest: +SKIP
 ...     in_bin = [key for key, val in best.sample.items() if 
@@ -170,3 +191,5 @@ The best solution found a packing that required 2 bins:
 ...     print("Bin {} has weights {} for a total of {}.".format(b, w, sum(w)))
 Bin 1 has weights [4, 4, 6, 4, 6, 4, 6] for a total of 34.
 Bin 14 has weights [5, 6, 4, 6, 4, 6, 6, 6] for a total of 43.
+
+The items were distributed in a way that kept each bin below its capacity. 
