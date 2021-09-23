@@ -179,8 +179,9 @@ Parse the best feasible solution:
 >>> s = [val for key, val in best.sample.items() if "s_" in key]
 >>> p = [val for key, val in best.sample.items() if "p_" in key]
 >>> r = [p*s for p, s in zip(p, s)]
->>> print("Revenue of {} found for selling {} daily.".format(sum(r), s))     # doctest: +SKIP
-Revenue of 9499.0 found for selling [10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 9.0, 11.0] daily.
+>>> print("Revenue of {} found for daily sales of: \n{}".format(sum(r), s))     # doctest: +SKIP
+Revenue of 9499.0 found for daily sales of: 
+[10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 9.0, 11.0]
 
 
 
