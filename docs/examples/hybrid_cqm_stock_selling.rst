@@ -57,10 +57,10 @@ Formulate the Problem
 First define the simple market used in this model: 
 
 * :code:`max_days` is the period over which you should sell all your shares.
-* :code:`total_shares` is the number of shares you own.
+* :code:`total_shares` is the number of shares you own (equal to :math:`\sum_i s_i`).
 * :code:`price_day_0` is the stock price on the first day of the period.
-* :code:`alpha` is a multiplier that controls how much the stock price increases
-  for each share sold into the market. 
+* :code:`alpha` is a multiplier, :math:`\alpha`, that controls how much the stock 
+  price increases for each share sold into the market. 
  
 >>> max_days = 10
 >>> total_shares = 100
@@ -84,20 +84,22 @@ you own an integer number of shares, it is convenient to use integer variables
 to indicate the number of shares sold each day, :code:`shares`. For simplicity,
 this model assumes stock prices, :code:`price`, are also integers. 
 
-Bounds on the range of values for integer variables reduces the solution space 
+Bounds on the range of values for integer variables shrink the solution space 
 the solver must search, so it is helpful to set such bounds; for many problems, 
-you can find bounds from your knowledge of the problem. In this case, you can 
-never sell more than the total number of shares you start with and the maximum 
-share price is the sum of the initial price and the entire price increase that
-results from selling all your shares, 
+you can find bounds from your knowledge of the problem. In this case, 
 
-.. math::
+* On any day, you cannot sell more than the total number of shares you start with 
+* the maximum share price is the sum of the initial price and the entire price 
+  increase that results from selling all your shares, 
 
-	p_0 + \alpha * \sum_i s_i.      
+  .. math::
+
+	\max(p) = p_0 + \alpha * \sum_i s_i.      
 
 >>> from dimod import Integer
+>>> max_p = price_day_0 + alpha*total_shares
 >>> shares = [Integer(f's_{i}', upper_bound=total_shares) for i in range(max_days)]
->>> price = [Integer(f'p_{i}', upper_bound=price_day_0 + alpha*total_shares) for i in range(max_days)]
+>>> price = [Integer(f'p_{i}', upper_bound=max_p) for i in range(max_days)]
 
 Daily revenue is the number of shares sold multiplied by the price on each sales
 day.
@@ -118,18 +120,15 @@ The simplified market in this problem has the following constraints:
    :math:`\sum_i s_i \le` :code:`total_shares`. 
 
 >>> cqm.add_constraint(sum(shares) <= total_shares, label='Sell only shares you own')
+'Sell only shares you own'
 
-2. Each day you can sell zero or more shares, :math:`s_i \ge 0`.
-
->>> for i in range(max_days):
-...    positive_shares = cqm.add_constraint(shares[i] >= 0, label=f'Sell positive numbers of shares {i}')
-
-3. On the first day of the selling period, the stock has a particular price
+2. On the first day of the selling period, the stock has a particular price
    :math:`p_0 =` :code:`price_day_0`.
 
->>> pricing_day0 = cqm.add_constraint(price[0] == price_day_0, label='Initial share price')
+>>> cqm.add_constraint(price[0] == price_day_0, label='Initial share price')
+'Initial share price'
 
-4. The stock price increases in proprtion to the number of shares sold the 
+3. The stock price increases in proprtion to the number of shares sold the 
    previous day:
 
    :math:`p_i = p_{i-1} + \alpha s_{i-1}`.
@@ -137,10 +136,10 @@ The simplified market in this problem has the following constraints:
 >>> for i in range(1, max_days):
 ...    pricing = cqm.add_constraint(price[i] - price[i-1] - alpha*shares[i-1] == 0, label=f'Sell at the price on day {i}')
 
-For a sales period of ten days, this CQM has altogether 21 constraints: 
+For a sales period of ten days, this CQM has altogether 11 constraints: 
 
 >>> len(cqm.constraints)
-21
+11
 
 Solve the Problem by Sampling
 =============================
@@ -165,7 +164,9 @@ with a maximum allowed runtime of a minute, the CQM hybrid sampler
 returned 41 samples, out of which 24 were solutions that met all the 
 constraints: 
 
->>> sampleset = sampler.sample_cqm(cqm, time_limit=60)  # doctest: +SKIP
+>>> sampleset = sampler.sample_cqm(cqm, 
+...                                time_limit=60, 
+...                                label="SDK Examples - Stock-Selling Strategy")  # doctest: +SKIP
 >>> print("{} feasible solutions of {}.".format(
 ...       sampleset.record.is_feasible.sum(), len(sampleset)))   # doctest: +SKIP
 24 feasible solutions of 41.

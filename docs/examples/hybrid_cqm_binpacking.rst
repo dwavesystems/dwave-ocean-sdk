@@ -9,7 +9,7 @@ This example solves the known hard problem of
 using Leap's hybrid :term:`CQM` solver on a constrained problem with binary variables.
 
 The bin-packing problem is to assign each item, :math:`i`, in a collection of 
-items with differing weights, :math:`w`, to one of a number of bins, :math:`b`, 
+items with differing weights, :math:`w_i`, to one of a number of bins, :math:`b_j`, 
 with limited capacity, :math:`c`, in such a way as to minimize the number of 
 bins used. 
 
@@ -46,9 +46,13 @@ This example formulates the bin-packing problem as a
 Formulate the Problem
 =====================
 
-The code below sets the number of items, :code:`num_items`, assigns weights, 
-:code:`weights`, randomly within a configurable range, :code:`item_weight_range`, 
-and sets a bin capacity, :code:`bin_capacity`, based on the average weight. 
+The code below sets some variables for the problem:
+
+* :code:`num_items` is the number of items.
+* :code:`weights` assigns weights, :math:`w_i`, to each item, `i`, randomly 
+  within a configurable range, :code:`item_weight_range`.
+* :code:`bin_capacity` is the bin capacity, :math:`c`, set based on the average 
+  weight.
 
 >>> import numpy as np
 >>> num_items = 15
@@ -72,10 +76,11 @@ Objective Function
 
 The objective function to minimize is the number of used bins. Because a bin 
 is either used or not used, you can use binary variables to indicate bin usage. 
+
 Create enough of such variables: the worst possible case is that each item 
 requires an entire bin to itself (so you can set the number of bins to equal
 the number of items, :code:`num_items`). Binary variable :code:`bin_used_<j>` 
-indicates that bin :math:`j` is in use.
+indicates that bin :math:`b_j` is in use.
 
 >>> from dimod import Binary
 >>> bin_used = [Binary(f'bin_used_{j}') for j in range(num_items)]
@@ -86,7 +91,7 @@ used):
 
 .. math::
 
-	\sum_j \text{bin_used}_j
+	\min (\sum_j b_j)
 
 >>> cqm.set_objective(sum(bin_used))
 
@@ -96,15 +101,16 @@ Constraints
 The bin-packing problem has two constraints:
 
 1. Each item can go into only one bin. This again is a binary outcome: item 
-   :math:`i` is either in bin :math:`j` (:code:`item_in_bin_<i>_<j> == 1`) or 
-   not (:code:`item_in_bin_<i>_<j> == 0`). You can express this constraint as 
+   :math:`i` is either in bin :math:`b_j` or not. You can express this constraint 
+   using binary variables, :math:`x_{i,j}`, as 
 
    .. math::
 
-	\sum_j \text{item_in_bin}_{i,j} == 1. 
+	\sum_j x_{i,j} == 1. 
 
-   That is, over all :math:`j` bins, there is just one 
-   :code:`item_in_bin_<i>_<j> == 1` for each :math:`i`. 
+   That is, over all :math:`j` bins, there is just one :math:`x_{i,j}`
+   with value True (or :code:`item_in_bin_<i>_<j> == 1` in the code below) for 
+   each :math:`i`. 
 
 >>> item_in_bin = [[Binary(f'item_in_bin_{i}_{j}') for j in range(num_items)]
 ...      for i in range(num_items)]
@@ -112,13 +118,13 @@ The bin-packing problem has two constraints:
 ...     one_bin_per_item = cqm.add_constraint(sum(item_in_bin[i]) == 1, label=f'item_placing_{i}')
 
 2. Each bin has limited capacity. You can express this constraint for each bin
-   :math:`j`: 
+   :math:`b_j` by summing over :math:`i` per value of :math:`j`: 
 
     .. math::
 
-	\sum_i \text{item_in_bin}_{i, j} * \text{weights}_i <= \text{bin_capacity} 
+	\sum_i x_{i, j} * w_i <= c 
 
-   That is, for each bin :math:`j`, the sum of weights for those items placed
+   That is, for each bin :math:`b_j`, the sum of weights for those items placed
    in the bin (:code:`item_in_bin_<i>_<j> == 1`) does not exceed capacity.
 
 >>> for j in range(num_items):
@@ -159,7 +165,9 @@ with a maximum allowed runtime of 3 minutes, the CQM hybrid sampler
 returned 47 samples, out of which 31 were solutions that met all the 
 constraints: 
 
->>> sampleset = sampler.sample_cqm(cqm, time_limit=180)  # doctest: +SKIP
+>>> sampleset = sampler.sample_cqm(cqm, 
+...                                time_limit=180
+...                                label="SDK Examples - Bin Packing")  # doctest: +SKIP
 >>> print("{} feasible solutions of {}.".format(
 ...       sampleset.record.is_feasible.sum(), len(sampleset)))   # doctest: +SKIP
 31 feasible solutions of 47.
