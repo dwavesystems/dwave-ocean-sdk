@@ -76,6 +76,7 @@ Beginner-Level Examples: Hybrid Computing
    :hidden:
 
    examples/hybrid_cqm_binpacking
+   examples/hybrid_cqm_stock_selling
    examples/hybrid_solver_service
    examples/map_kerberos
    examples/map_dqm
