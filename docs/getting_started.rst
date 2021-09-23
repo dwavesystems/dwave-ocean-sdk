@@ -81,12 +81,14 @@ Beginner-Level Examples: Hybrid Computing
    examples/map_kerberos
    examples/map_dqm
 
-* :ref:`example_cqm_binpacking` solves an constrained problem using a 
+* :ref:`example_cqm_binpacking` solves a binary constrained problem using a 
   `Leap <https://cloud.dwavesys.com/leap/>`_ hybrid :term:`CQM` solver.
-* :ref:`hss` solves an arbitrary-sized problem using a `Leap <https://cloud.dwavesys.com/leap/>`_
-  hybrid solver.
+* :ref:`example_cqm_stock_selling` solves an integer constrained problem using a 
+  `Leap <https://cloud.dwavesys.com/leap/>`_ hybrid :term:`CQM` solver.
+* :ref:`hss` solves an unconstrained problem using a 
+  `Leap <https://cloud.dwavesys.com/leap/>`_ hybrid :term:`BQM` solver.
 * :ref:`map_kerberos` demonstrates using an out-of-the-box Ocean hybrid solver.
-* :ref:`map_dqm` solves a **discrete** quadratic model (:term:`DQM`) using
+* :ref:`map_dqm` solves a discrete quadratic model (:term:`DQM`) using
   `Leap <https://cloud.dwavesys.com/leap/>`_\ 's hybrid DQM solver.
 
 .. _examples_qpu:
