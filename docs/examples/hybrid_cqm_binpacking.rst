@@ -6,8 +6,12 @@ Bin Packing
 
 This example solves the known hard problem of 
 `bin packing <https://en.wikipedia.org/wiki/Bin_packing_problem>`_ to demonstrate
-using Leap's hybrid :term:`CQM` solver on a constrained problem of arbitrary 
-structure and size.
+using Leap's hybrid :term:`CQM` solver on a constrained problem with binary variables.
+
+The bin-packing problem is to assign each item, :math:`i`, in a collection of 
+items with differing weights, :math:`w`, to one of a number of bins, :math:`b`, 
+with limited capacity, :math:`c`, in such a way as to minimize the number of 
+bins used. 
 
 Example Requirements
 ====================
@@ -42,10 +46,6 @@ This example formulates the bin-packing problem as a
 Formulate the Problem
 =====================
 
-The bin-packing problem is to assign each item in a collection of items with 
-differing weights to one of a number of bins with limited capacity in such
-a way as to minimize the number of bins used. 
-
 The code below sets the number of items, :code:`num_items`, assigns weights, 
 :code:`weights`, randomly within a configurable range, :code:`item_weight_range`, 
 and sets a bin capacity, :code:`bin_capacity`, based on the average weight. 
@@ -61,7 +61,7 @@ Problem: pack a total weight of 77 into bins of capacity 51.
 
 Instantiate a CQM: 
 
->>> from dimod import ConstrainedQuadraticModel, Binary
+>>> from dimod import ConstrainedQuadraticModel
 >>> cqm = ConstrainedQuadraticModel()
 
 You can now formulate an :term:`objective function` to optimize and constraints
@@ -77,6 +77,7 @@ requires an entire bin to itself (so you can set the number of bins to equal
 the number of items, :code:`num_items`). Binary variable :code:`bin_used_<j>` 
 indicates that bin :math:`j` is in use.
 
+>>> from dimod import Binary
 >>> bin_used = [Binary(f'bin_used_{j}') for j in range(num_items)]
 
 To minimize the number of used bins is to minimize the sum of 
