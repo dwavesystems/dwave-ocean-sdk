@@ -109,10 +109,10 @@ The bin-packing problem has two constraints:
 	\sum_j x_{i,j} == 1. 
 
    That is, over all :math:`j` bins, there is just one :math:`x_{i,j}`
-   with value True (or :code:`item_in_bin_<i>_<j> == 1` in the code below) for 
+   with value True (or :code:`item_<i>_in_bin_<j> == 1` in the code below) for 
    each :math:`i`. 
 
->>> item_in_bin = [[Binary(f'item_in_bin_{i}_{j}') for j in range(num_items)]
+>>> item_in_bin = [[Binary(f'item_{i}_in_bin_{j}') for j in range(num_items)]
 ...      for i in range(num_items)]
 >>> for i in range(num_items):
 ...     one_bin_per_item = cqm.add_constraint(sum(item_in_bin[i]) == 1, label=f'item_placing_{i}')
@@ -125,7 +125,7 @@ The bin-packing problem has two constraints:
 	\sum_i x_{i, j} * w_i <= c 
 
    That is, for each bin :math:`b_j`, the sum of weights for those items placed
-   in the bin (:code:`item_in_bin_<i>_<j> == 1`) does not exceed capacity.
+   in the bin (:code:`item_<i>_in_bin_<j> == 1`) does not exceed capacity.
 
 >>> for j in range(num_items):
 ...     bin_up_to_capacity = cqm.add_constraint(
@@ -166,7 +166,7 @@ returned 47 samples, out of which 31 were solutions that met all the
 constraints: 
 
 >>> sampleset = sampler.sample_cqm(cqm, 
-...                                time_limit=180
+...                                time_limit=180,
 ...                                label="SDK Examples - Bin Packing")  # doctest: +SKIP
 >>> print("{} feasible solutions of {}.".format(
 ...       sampleset.record.is_feasible.sum(), len(sampleset)))   # doctest: +SKIP
@@ -192,7 +192,7 @@ For the best feasible solution, print the packing.
 
 >>> for bin in selected_bins:                        # doctest: +SKIP
 ...     in_bin = [key for key, val in best.sample.items() if 
-...        "item_in_bin" in key and 
+...        "_in_bin" in key and 
 ...        get_indices(key)[1] == get_indices(bin)[0] 
 ...        and val]
 ...     b = get_indices(in_bin[0])[1]
