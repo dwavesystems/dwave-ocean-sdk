@@ -6,7 +6,7 @@ Stock-Sales Strategy in a Simplified Market
 
 This example finds a stock-selling strategy for a simplified market model to
 demonstrate using Leap's hybrid :term:`CQM` solver on a constrained problem 
-with integer variables.
+with integer and binary variables.
 
 In this very simple market, you have some number of shares that you want to 
 sell in daily parcels over a particular interval of days. Each sale of shares 
@@ -21,6 +21,9 @@ shares sold on day :math:`i`, and :math:`\alpha` is some multiplier.
 
 The goal of this problem is to find the optimal number of shares to sell every 
 day to maximize revenue from the total sales.
+
+The :ref:`example_cqm_stock_tax` section adds a tax to the market model to 
+demonstrate the incorporation of binary variables into the CQM.
 
 Example Requirements
 ====================
@@ -171,17 +174,134 @@ constraints:
 ...       sampleset.record.is_feasible.sum(), len(sampleset)))   # doctest: +SKIP
 24 feasible solutions of 41.
 
-Parse the best feasible solution:
+The small function below extracts from the returned sampleset the best feasible
+solution and parses it.
 
 >>> import itertools
->>> best = next(itertools.filterfalse(lambda d: not getattr(d,'is_feasible'),
-...             list(sampleset.data())))
->>> s = [val for key, val in best.sample.items() if "s_" in key]
->>> p = [val for key, val in best.sample.items() if "p_" in key]
->>> r = [p*s for p, s in zip(p, s)]
+>>> def parse_best(sampleset):
+...    best = next(itertools.filterfalse(lambda d: not getattr(d,'is_feasible'),
+...                list(sampleset.data())))
+...    s = [val for key, val in best.sample.items() if "s_" in key]
+...    p = [val for key, val in best.sample.items() if "p_" in key]
+...    r = [p*s for p, s in zip(p, s)]
+...    return r, s, best
+
+Parse and print the best feasible solution:
+
+>>> r, s, _ = parse_best(sampleset)
 >>> print("Revenue of {} found for daily sales of: \n{}".format(sum(r), s))     # doctest: +SKIP
 Revenue of 9499.0 found for daily sales of: 
 [10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 9.0, 11.0]
 
+.. _example_cqm_stock_tax:
 
+Market with Taxation
+====================
+
+The previous sections made use of only integer variables. Quadratic models
+also accept binary variables. This section models a market in which you pay
+an additional tax on early sales and uses a binary variable to incorporate 
+that update into the CQM created in the previous sections. 
+
+Consider a market in which you pay a tax in amount, :code:`tax_payment`, for
+selling shares during the first :code:`taxed_period` days of the period in 
+which you can sell your shares.
+
+>>> taxed_period = 3
+>>> tax_payment = 225
+
+Because you either pay this tax or do not pay it, you can use a binary variable,
+:code:`t`, to indicate payment. You can update the previous objective by 
+reducing the revenue from share sales by the tax payment (adding it to the 
+negative revenue) if the :code:`t` binary variable is 1:
+
+>>> from dimod import Binary
+>>> t = Binary('t')
+>>> cqm.set_objective(tax_payment*t - sum(revenue))
+
+Binary variable :code:`t` should be True (1) if sales in the first 
+:code:`taxed_period` days of the period are greater than zero; otherwise
+it should be False (0):
+
+.. math::
+
+	\sum_{i < \text{taxed_period}} s_i > 0 \longrightarrow t=1
+
+        \sum_{i < \text{taxed_period}} s_i = 0 \longrightarrow t=0
+
+One way to set such an indicator variable is to create a pair of linear constraints:
+
+.. math::
+
+	\frac{\sum_{i < \text{taxed_period}} s_i}{\sum_i s_i} \le t \le \sum_{i < \text{taxed_period}} s_i
+
+To show that this pair of inequalities indeed sets the desired binary indicator, 
+the table below shows, **bolded**, the binary values :math:`t` must take to 
+simultaneously meet both inequalities for :math:`\sum_{i < \text{taxed_period}} s_i`
+with sample values 0, 1, and 5 for the previous configured :code`total_shares = 100`. 
+
+.. list-table:: Binary Indicator Variable :math:`t` for :math:`\sum_i s_i = 100` 
+   :widths: auto
+   :header-rows: 1
+
+   * - :math:`\frac{\sum_{i < \text{taxed_period}} s_i}{\sum_i s_i}`
+     - :math:`\sum_{i < \text{taxed_period}} s_i`
+     - :math:`\pmb{t}`
+     - :math:`\frac{\sum_{i < \text{taxed_period}} s_i}{\sum_i s_i} \le \pmb{t} \le \sum_{i < \text{taxed_period}} s_i`
+   * - 0
+     - 0
+     - :math:`\pmb{0}` 
+     - :math:`0 = \pmb{0} = 0`
+   * - :math:`\frac{1}{100}`
+     - 1
+     - :math:`\pmb{1}`
+     - :math:`\frac{1}{100} < \pmb{1} = 1`
+   * - :math:`\frac{5}{100}`
+     - 5
+     - :math:`\pmb{1}`
+     - :math:`\frac{5}{100} < \pmb{1} < 5`
+
+Add these two constraints to the previously created CQM:
+
+>>> cqm.add_constraint(t - sum(shares[:taxed_period]) <= 0, label="Tax part 1")
+'Tax part 1'
+>>> cqm.add_constraint(1/total_shares*sum(shares[:taxed_period]) - t <= 0, label="Tax part 2")
+'Tax part 2'
+
+Submit the CQM to the selected solver. For one particular execution, 
+with a maximum allowed runtime of a minute, the CQM hybrid sampler 
+returned 50 samples, out of which 33 were solutions that met all the 
+constraints: 
+
+>>> sampleset = sampler.sample_cqm(cqm, 
+...                                time_limit=60, 
+...                                label="SDK Examples - Stock-Selling Strategy")  # doctest: +SKIP
+>>> print("{} feasible solutions of {}.".format(
+...       sampleset.record.is_feasible.sum(), len(sampleset)))   # doctest: +SKIP
+33 feasible solutions of 50.
+
+Parse and print the best feasible solution:
+
+>>> r, s, best = parse_best(sampleset)
+>>> income = sum(r) - best.sample['t']*tax_payment
+>>> print("Post-tax income of {} found for daily sales of: \n{}".format(income, s))     # doctest: +SKIP
+Post-tax income of 9283.0 found for daily sales of:
+[0.0, 0.0, 0.0, 13.0, 14.0, 14.0, 14.0, 16.0, 15.0, 14.0]
+
+Notice that the existence of this tax, though avoided in the sales strategy
+found above, has reduced your income by a little less than the tax fee (the
+maximum income if you had paid the tax would be 9275). If the tax is slightly
+reduced, it is more profitable to sell during the taxation period and pay the
+tax:
+
+>>> tax_payment = 220
+>>> cqm.set_objective(tax_payment*t - sum(revenue))   
+>>> sampleset = sampler.sample_cqm(cqm, 
+...                                time_limit=60, 
+...                                label="SDK Examples - Stock-Selling Strategy")  # doctest: +SKIP
+>>> r, s, best = parse_best(sampleset)
+>>> income = sum(r) - best.sample['t']*tax_payment
+>>> print("Post-tax income of {} found for daily sales of: \n{}".format(income, s))     # doctest: +SKIP
+Post-tax income of 9276.0 found for daily sales of:
+[10.0, 10.0, 10.0, 11.0, 9.0, 10.0, 12.0, 9.0, 10.0, 9.0]
 
