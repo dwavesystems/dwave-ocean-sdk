@@ -6,12 +6,13 @@ Bin Packing
 
 This example solves the known hard problem of 
 `bin packing <https://en.wikipedia.org/wiki/Bin_packing_problem>`_ to demonstrate
-using Leap's hybrid :term:`CQM` solver on a constrained problem with binary variables.
+using a `Leap <https://cloud.dwavesys.com/leap/>`_ hybrid :term:`CQM` solver on 
+a constrained problem with binary variables.
 
-The bin-packing problem is to assign each item, :math:`i`, in a collection of 
-items with differing weights, :math:`w_i`, to one of a number of bins, :math:`b_j`, 
-with limited capacity, :math:`c`, in such a way as to minimize the number of 
-bins used. 
+The bin-packing problem is to pack into a number of bins of limited capacity, 
+:math:`c`, a collection of items. Each item, :math:`i`, with weight, 
+:math:`w_i`, should be assigned to bin, :math:`b_j`, in such a way as to 
+minimize the number of bins used.
 
 Example Requirements
 ====================
@@ -22,7 +23,7 @@ To run the code in this example, the following is required.
   in :ref:`sapi_access`.
 * Ocean tools :doc:`dwave-system </docs_system/sdk_index>` and 
   :doc:`dimod </docs_dimod/sdk_index>`.
-* :std:doc:`NumPy <numpy:index>` for some mathematical calculations.
+* The :std:doc:`NumPy <numpy:index>` math package for some calculations.
 
 .. example-requirements-start-marker
 
@@ -38,7 +39,7 @@ Solution Steps
 
 Section :ref:`solving_problems` describes the process of solving problems on the quantum
 computer in two steps: (1) Formulate the problem as a :term:`quadratic model` (QM)
-and (2) Solve the QM with a D-Wave solver.
+and (2) Solve the QM with a D-Wave sampler.
 This example formulates the bin-packing problem as a 
 :ref:`constrained quadratic model <cqm_sdk>` and uses the 
 :class:`~dwave.system.samplers.LeapHybridCQMSampler` to find good solutions.
@@ -46,7 +47,7 @@ This example formulates the bin-packing problem as a
 Formulate the Problem
 =====================
 
-The code below sets some variables for the problem:
+First, set up the problem parameters.
 
 * :code:`num_items` is the number of items.
 * :code:`weights` assigns weights, :math:`w_i`, to each item, `i`, randomly 
@@ -63,7 +64,7 @@ The code below sets some variables for the problem:
 ...       sum(weights), bin_capacity))
 Problem: pack a total weight of 77 into bins of capacity 51.
 
-Instantiate a CQM: 
+Instantiate a CQM. 
 
 >>> from dimod import ConstrainedQuadraticModel
 >>> cqm = ConstrainedQuadraticModel()
@@ -75,12 +76,12 @@ Objective Function
 ------------------
 
 The objective function to minimize is the number of used bins. Because a bin 
-is either used or not used, you can use binary variables to indicate bin usage. 
+is either used or not, you can indicate bin usage with binary variables. 
 
-Create enough of such variables: the worst possible case is that each item 
-requires an entire bin to itself (so you can set the number of bins to equal
-the number of items, :code:`num_items`). Binary variable :code:`bin_used_<j>` 
-indicates that bin :math:`b_j` is in use.
+Binary variable\ [#]_ :code:`bin_used_<j>` indicates that bin :math:`b_j` is in use. 
+The worst possible case is that each item requires an entire bin to itself, so 
+the maximum number of bins (and the number of binary variables :code:`bin_used_<j>`
+to instantiate) is equal to the number of items, :code:`num_items`. 
 
 >>> from dimod import Binary
 >>> bin_used = [Binary(f'bin_used_{j}') for j in range(num_items)]
@@ -95,13 +96,38 @@ used):
 
 >>> cqm.set_objective(sum(bin_used))
 
+.. [#]
+
+   Always keep in mind that such "variables" are actually 
+   class :class:`dimod.BinaryQuadraticModel` objects,
+
+   >>> bin_used[0]
+   BinaryQuadraticModel({'bin_used_0': 1.0}, {}, 0.0, 'BINARY')
+
+   with a single variable of the requested label, :code:`bin_used_<j>`. This 
+   means, for example, that multiplying by two doubles the linear bias,
+
+   >>> 2*bin_used[0] 
+   BinaryQuadraticModel({'bin_used_0': 2.0}, {}, 0.0, 'BINARY')
+
+   multiplying two such "variables" creates a quadratic bias,
+
+   >>> bin_used[0]*bin_used[1]
+   BinaryQuadraticModel({'bin_used_0': 0.0, 'bin_used_1': 0.0}, 
+   ...                  {('bin_used_1', 'bin_used_0'): 1.0}, 0.0, 'BINARY')
+
+   but multiplying three binary quadratic models requires a non-quadratic term 
+   and so :code:`bin_used[0]*bin_used[1]*bin_used[2]` cannot generate a binary 
+   quadratic model and results in an error.    
+   
+
 Constraints
 -----------
 
 The bin-packing problem has two constraints:
 
 1. Each item can go into only one bin. This again is a binary outcome: item 
-   :math:`i` is either in bin :math:`b_j` or not. You can express this constraint 
+   :math:`i` is either in bin :math:`b_j` or not. You can express this constraint, 
    using binary variables, :math:`x_{i,j}`, as 
 
    .. math::
@@ -117,8 +143,8 @@ The bin-packing problem has two constraints:
 >>> for i in range(num_items):
 ...     one_bin_per_item = cqm.add_constraint(sum(item_in_bin[i]) == 1, label=f'item_placing_{i}')
 
-2. Each bin has limited capacity. You can express this constraint for each bin
-   :math:`b_j` by summing over :math:`i` per value of :math:`j`: 
+2. Each bin has limited capacity. You can express this constraint for each bin,
+   :math:`b_j`, by summing over :math:`i` per value of :math:`j`: 
 
     .. math::
 
@@ -182,8 +208,8 @@ The best solution found a packing that required 2 bins:
 2 bins are used.
 
 The code below defines a simple function, :code:`get_indices`, that returns
-the indices signifying the bin and item from variable names. This is used 
-in parsing the solutions returned from the hybrid solver below.
+the indices signifying the bin and item from variable names. This is used below
+in parsing the solutions returned from the hybrid solver.
 
 >>> def get_indices(name):
 ...     return [int(digs) for digs in name.split('_') if digs.isdigit()]
