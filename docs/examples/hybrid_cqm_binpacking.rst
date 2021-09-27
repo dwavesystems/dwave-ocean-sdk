@@ -104,7 +104,7 @@ used):
    >>> bin_used[0]
    BinaryQuadraticModel({'bin_used_0': 1.0}, {}, 0.0, 'BINARY')
 
-   with a single variable of the requested label, :code:`bin_used_<j>`. This 
+   with a single variable with the requested label, :code:`bin_used_<j>`. This 
    means, for example, that multiplying by two doubles the linear bias,
 
    >>> 2*bin_used[0] 

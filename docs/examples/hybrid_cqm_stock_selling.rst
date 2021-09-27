@@ -5,12 +5,12 @@ Stock-Sales Strategy in a Simplified Market
 ===========================================
 
 This example finds a stock-selling strategy for a simplified market model to
-demonstrate using Leap's hybrid :term:`CQM` solver on a constrained problem 
-with integer and binary variables.
+demonstrate using a `Leap <https://cloud.dwavesys.com/leap/>`_ hybrid :term:`CQM`
+solver on a constrained problem with integer and binary variables.
 
 In this very simple market, you have some number of shares that you want to 
-sell in daily parcels over a particular interval of days. Each sale of shares 
-increases the price of the stock, 
+sell in daily blocks over a defined interval of days. Each sale of shares 
+affects the market price of the stock, 
 
 .. math::
 
@@ -19,7 +19,7 @@ increases the price of the stock,
 where :math:`p_i` and :math:`s_i` are, respectively, the price and the number of 
 shares sold on day :math:`i`, and :math:`\alpha` is some multiplier. 
 
-The goal of this problem is to find the optimal number of shares to sell every 
+The goal of this problem is to find the optimal number of shares to sell per 
 day to maximize revenue from the total sales.
 
 The :ref:`example_cqm_stock_tax` section adds a tax to the market model to 
@@ -57,7 +57,7 @@ solutions.
 Formulate the Problem
 =====================
 
-First define the simple market used in this model: 
+First, define the market parameters. 
 
 * :code:`max_days` is the period over which you should sell all your shares.
 * :code:`total_shares` is the number of shares you own (equal to :math:`\sum_i s_i`).
@@ -70,7 +70,7 @@ First define the simple market used in this model:
 >>> price_day_0 = 50
 >>> alpha = 1
 
-Instantiate a CQM: 
+Instantiate a CQM.
 
 >>> from dimod import ConstrainedQuadraticModel
 >>> cqm = ConstrainedQuadraticModel()
@@ -85,15 +85,22 @@ Objective Function
 The objective function to maximize is the revenue from selling shares. Because
 you own an integer number of shares, it is convenient to use integer variables
 to indicate the number of shares sold each day, :code:`shares`. For simplicity,
-this model assumes stock prices, :code:`price`, are also integers. 
+this model assumes stock prices, :code:`price`, are also integers\ [#]_. 
 
-Bounds on the range of values for integer variables shrink the solution space 
-the solver must search, so it is helpful to set such bounds; for many problems, 
-you can find bounds from your knowledge of the problem. In this case, 
+.. [#]
+   One could use integer variables to model stock prices in dollars and cents
+   by multiplying the values by 100; however, this greatly increases the search 
+   space. One could also create a compromise model with somewhat greater 
+   resolution and search space by rounding to the nearest dime and multiplying
+   prices by 10, for example.  
 
-* On any day, you cannot sell more than the total number of shares you start with 
-* the maximum share price is the sum of the initial price and the entire price 
-  increase that results from selling all your shares, 
+Bounds on the range of values for integer variables shrink the solution 
+space the solver must search, so it is helpful to set such bounds; for many 
+problems, you can find bounds from your knowledge of the problem. In this case, 
+
+* On any day, you cannot sell more than the total number of shares you start with. 
+* The maximum share price is the sum of the initial price and the total price 
+  increase that would result from selling all your shares, 
 
   .. math::
 
@@ -113,6 +120,26 @@ To maximize the total revenue, :math:`\sum_i s_ip_i`, is to minimize the negativ
 of that same revenue:  
 
 >>> cqm.set_objective(-sum(revenue))
+
+.. note::
+
+   As noted in the :ref:`example_cqm_binpacking` example, keep in mind that 
+   these "variables" are actually class :class:`dimod.QuadraticModel` objects,
+
+   >>> price[0]
+   QuadraticModel({'p_0': 1.0}, {}, 0.0, {'p_0': 'INTEGER'}, dtype='float64')
+
+   with a single variable with the requested label, :code:`p_0` or :code:`s_0`.
+   This means, for example, that multiplying these models to create a 
+   :code:`revenue[0]` "variable" actually creates a new quadratic model,
+
+   >>> revenue[0]
+   QuadraticModel({'s_0': 0.0, 'p_0': 0.0}, 
+   ...            {('p_0', 's_0'): 1.0}, 
+   ...            0.0, 
+   ...            {'s_0': 'INTEGER', 'p_0': 'INTEGER'}, dtype='float64')
+
+   with a quadratic bias between :code:`p_0` and :code:`s_0`.
 
 Constraints
 -----------
@@ -147,25 +174,27 @@ For a sales period of ten days, this CQM has altogether 11 constraints:
 Solve the Problem by Sampling
 =============================
 
-D-Wave's quantum cloud service provides cloud-based hybrid solvers you can
-submit arbitrary QMs to. These solvers, which implement state-of-the-art 
-classical algorithms together with intelligent allocation of the quantum 
-processing unit (QPU) to parts of the problem where it benefits most, are 
-designed to accommodate even very large problems. Leap's solvers can 
-relieve you of the burden of any current and future development and optimization
-of hybrid algorithms that best solve your problem.
-
-Ocean software's :doc:`dwave-system </docs_system/sdk_index>`
-:class:`~dwave.system.samplers.LeapCQMHybridSampler` class enables you to 
-easily incorporate Leap's hybrid CQM solvers into your application:
+Instantiate a :class:`~dwave.system.samplers.LeapCQMHybridSampler` class 
+sampler,
 
 >>> from dwave.system import LeapHybridCQMSampler
 >>> sampler = LeapHybridCQMSampler()     # doctest: +SKIP
 
-Submit the CQM to the selected solver. For one particular execution, 
-with a maximum allowed runtime of a minute, the CQM hybrid sampler 
-returned 41 samples, out of which 24 were solutions that met all the 
-constraints: 
+and submit the CQM to the selected\ [#]_ solver. 
+
+.. [#]
+   You can see the selected solver using the 
+   :attr:`~dwave.cloud.solver.BaseSolver.name` property; for example,
+   
+   >>> sampler.solver.name
+   'hybrid_constrained_quadratic_model_version1'
+
+   and use :std:doc:`feature-based solver selection <oceandocs:docs_cloud/sdk_index>`
+   to select a particular solver.  
+
+For one particular execution, with a maximum allowed runtime of a minute, the 
+CQM hybrid solver returned 41 samples, out of which 24 were solutions that met
+all the constraints: 
 
 >>> sampleset = sampler.sample_cqm(cqm, 
 ...                                time_limit=60, 
@@ -238,7 +267,7 @@ One way to set such an indicator variable is to create a pair of linear constrai
 To show that this pair of inequalities indeed sets the desired binary indicator, 
 the table below shows, **bolded**, the binary values :math:`t` must take to 
 simultaneously meet both inequalities for :math:`\sum_{i < \text{taxed_period}} s_i`
-with sample values 0, 1, and 5 for the previous configured :code`total_shares = 100`. 
+with sample values 0, 1, and 5 for the previous configured :code:`total_shares = 100`. 
 
 .. list-table:: Binary Indicator Variable :math:`t` for :math:`\sum_i s_i = 100` 
    :widths: auto
