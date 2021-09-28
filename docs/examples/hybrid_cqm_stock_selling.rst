@@ -158,7 +158,7 @@ The simplified market in this problem has the following constraints:
 >>> cqm.add_constraint(price[0] == price_day_0, label='Initial share price')
 'Initial share price'
 
-3. The stock price increases in proprtion to the number of shares sold the 
+3. The stock price increases in proportion to the number of shares sold the 
    previous day:
 
    :math:`p_i = p_{i-1} + \alpha s_{i-1}`.

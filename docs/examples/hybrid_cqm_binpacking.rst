@@ -158,7 +158,7 @@ The bin-packing problem has two constraints:
 ...         sum(weights[i] * item_in_bin[i][j] for i in range(num_items)) - bin_used[j] * bin_capacity <= 0,
 ...         label=f'capacity_bin_{j}')
 
-For 15 items and allowing for the worse case of 15 bins, this CQM requires
+For 15 items and allowing for the worst case of 15 bins, this CQM requires
 over 200 binary variables: 
 
 >>> len(cqm.variables)
