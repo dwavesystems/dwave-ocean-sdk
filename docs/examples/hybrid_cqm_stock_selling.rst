@@ -206,10 +206,8 @@ all the constraints:
 The small function below extracts from the returned sampleset the best feasible
 solution and parses it.
 
->>> import itertools
 >>> def parse_best(sampleset):
-...    best = next(itertools.filterfalse(lambda d: not getattr(d,'is_feasible'),
-...                list(sampleset.data())))
+...    best = sampleset.filter(lambda row: row.is_feasible).first
 ...    s = [val for key, val in best.sample.items() if "s_" in key]
 ...    p = [val for key, val in best.sample.items() if "p_" in key]
 ...    r = [p*s for p, s in zip(p, s)]
