@@ -13,7 +13,7 @@ help you set up and configure your development environment, communicate with
 D-Wave compute resources, and other useful actions.
 
 Run :code:`dwave -- help` for information on all the CLI options. For **SDK
-version 1.6.1** the CLI provided the following commands and options
+version 4.0.0** the CLI provided the following commands and options
 (see the output in your installation for the latest):
 
 .. code-block:: bash
@@ -29,6 +29,7 @@ version 1.6.1** the CLI provided the following commands and options
       --debug      Enable debug logging.
       --trace      Enable trace-level debug logging.
       --log LEVEL  Set custom numeric or symbolic log level.
+      --platform   Show the platform tags and exit.
       --help       Show this message and exit.
 
     Commands:
@@ -94,13 +95,13 @@ for a full setup.
     Successfully installed D-Wave Problem Inspector.
 
     Creating the D-Wave configuration file.
-    Configuration file not found; the default location is: /home/jane/.config/dwave/dwave.conf
-    Confirm configuration file path [/home/jane/.config/dwave/dwave.conf]:
-    Profile (create new) [prod]:
-    API endpoint URL [skip]:
+    Using the simplified configuration flow.
+    Try 'dwave config create --full' for more options.
+
+    Creating new configuration file: /home/jane/.config/dwave/dwave.conf
+    Profile [defaults]:
+    Updating existing profile: defaults
     Authentication token [skip]: ABC-1234567890abcdef1234567890abcdef
-    Default client class (qpu or sw) [qpu]:
-    Default solver [skip]:
     Configuration saved.
 
 .. cli-example-setup-end-marker
@@ -119,13 +120,13 @@ The output shown below includes the interactive prompts and placeholder replies.
 .. code-block:: bash
 
     $ dwave config create
-    Configuration file not found; the default location is: /home/jane/.config/dwave/dwave.conf
-    Confirm configuration file path [/home/jane/.config/dwave/dwave.conf]:
-    Profile (create new) [prod]:
-    API endpoint URL [skip]:
+    Using the simplified configuration flow.
+    Try 'dwave config create --full' for more options.
+
+    Creating new configuration file: /home/jane/.config/dwave/dwave.conf
+    Profile [defaults]:
+    Updating existing profile: defaults
     Authentication token [skip]: ABC-1234567890abcdef1234567890abcdef
-    Default client class (qpu or sw) [qpu]:
-    Default solver [skip]:
     Configuration saved.
 
 .. cli-example-config-end-marker
