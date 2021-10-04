@@ -194,16 +194,16 @@ constraints:
 >>> sampleset = sampler.sample_cqm(cqm, 
 ...                                time_limit=180,
 ...                                label="SDK Examples - Bin Packing")  # doctest: +SKIP
->>> feasible_sampleset = sampleset.filter(lambda row: row.is_feasible)
->>> if len(feasible_sampleset):
+>>> feasible_sampleset = sampleset.filter(lambda row: row.is_feasible)  # doctest: +SKIP
+>>> if len(feasible_sampleset):      # doctest: +SKIP
 ...    best = feasible_sampleset.first
 ...    print("{} feasible solutions of {}.".format(
-...       len(feasible_sampleset), len(sampleset)))   # doctest: +SKIP
+...       len(feasible_sampleset), len(sampleset)))   
 31 feasible solutions of 47.
 
 The best solution found a packing that required 2 bins:
 
->>> selected_bins = [key for key, val in best.sample.items() if 'bin_used' in key and val]
+>>> selected_bins = [key for key, val in best.sample.items() if 'bin_used' in key and val]   # doctest: +SKIP
 >>> print("{} bins are used.".format(len(selected_bins)))     # doctest: +SKIP
 2 bins are used.
 

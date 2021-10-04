@@ -215,7 +215,7 @@ solution and parses it.
 
 Parse and print the best feasible solution:
 
->>> r, s, _ = parse_best(sampleset)
+>>> r, s, _ = parse_best(sampleset)                # doctest: +SKIP
 >>> print("Revenue of {} found for daily sales of: \n{}".format(sum(r), s))     # doctest: +SKIP
 Revenue of 9499.0 found for daily sales of: 
 [10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 9.0, 11.0]
@@ -309,8 +309,8 @@ constraints:
 
 Parse and print the best feasible solution:
 
->>> r, s, best = parse_best(sampleset)
->>> income = sum(r) - best.sample['t']*tax_payment
+>>> r, s, best = parse_best(sampleset)                  # doctest: +SKIP
+>>> income = sum(r) - best.sample['t']*tax_payment      # doctest: +SKIP
 >>> print("Post-tax income of {} found for daily sales of: \n{}".format(income, s))     # doctest: +SKIP
 Post-tax income of 9283.0 found for daily sales of:
 [0.0, 0.0, 0.0, 13.0, 14.0, 14.0, 14.0, 16.0, 15.0, 14.0]
@@ -326,8 +326,8 @@ tax:
 >>> sampleset = sampler.sample_cqm(cqm, 
 ...                                time_limit=60, 
 ...                                label="SDK Examples - Stock-Selling Strategy")  # doctest: +SKIP
->>> r, s, best = parse_best(sampleset)
->>> income = sum(r) - best.sample['t']*tax_payment
+>>> r, s, best = parse_best(sampleset)                        # doctest: +SKIP
+>>> income = sum(r) - best.sample['t']*tax_payment            # doctest: +SKIP
 >>> print("Post-tax income of {} found for daily sales of: \n{}".format(income, s))     # doctest: +SKIP
 Post-tax income of 9276.0 found for daily sales of:
 [10.0, 10.0, 10.0, 11.0, 9.0, 10.0, 12.0, 9.0, 10.0, 9.0]
