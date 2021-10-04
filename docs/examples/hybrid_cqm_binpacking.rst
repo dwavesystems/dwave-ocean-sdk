@@ -60,8 +60,8 @@ First, set up the problem parameters.
 >>> item_weight_range = [3, 7]
 >>> weights = list(np.random.randint(*item_weight_range, num_items))
 >>> bin_capacity = int(10 * np.mean(weights))
->>> print("Problem: pack a total weight of {} into bins of capacity {}.".format(
-...       sum(weights), bin_capacity))
+>>> print("Problem: pack a total weight of {} into bins of capacity {}.".format(      
+...       sum(weights), bin_capacity))              # doctest: +SKIP
 Problem: pack a total weight of 77 into bins of capacity 51.
 
 Instantiate a CQM. 
@@ -112,7 +112,7 @@ used):
 
    multiplying two such "variables" creates a quadratic bias,
 
-   >>> bin_used[0]*bin_used[1]
+   >>> bin_used[0]*bin_used[1]          # doctest: +SKIP
    BinaryQuadraticModel({'bin_used_0': 0.0, 'bin_used_1': 0.0}, 
    ...                  {('bin_used_1', 'bin_used_0'): 1.0}, 0.0, 'BINARY')
 

@@ -133,7 +133,7 @@ of that same revenue:
    This means, for example, that multiplying these models to create a 
    :code:`revenue[0]` "variable" actually creates a new quadratic model,
 
-   >>> revenue[0]
+   >>> revenue[0]                               # doctest: +SKIP
    QuadraticModel({'s_0': 0.0, 'p_0': 0.0}, 
    ...            {('p_0', 's_0'): 1.0}, 
    ...            0.0, 
@@ -186,7 +186,7 @@ and submit the CQM to the selected\ [#]_ solver.
    You can see the selected solver using the 
    :attr:`~dwave.cloud.solver.BaseSolver.name` property; for example,
    
-   >>> sampler.solver.name
+   >>> sampler.solver.name                          # doctest: +SKIP
    'hybrid_constrained_quadratic_model_version1'
 
    and use :std:doc:`feature-based solver selection <oceandocs:docs_cloud/sdk_index>`
