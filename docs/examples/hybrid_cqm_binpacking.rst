@@ -180,7 +180,7 @@ relieve you of the burden of any current and future development and optimization
 of hybrid algorithms that best solve your problem.
 
 Ocean software's :doc:`dwave-system </docs_system/sdk_index>`
-:class:`~dwave.system.samplers.LeapCQMHybridSampler` class enables you to 
+:class:`~dwave.system.samplers.LeapHybridCQMSampler` class enables you to 
 easily incorporate Leap's hybrid CQM solvers into your application:
 
 >>> from dwave.system import LeapHybridCQMSampler

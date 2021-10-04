@@ -174,7 +174,7 @@ For a sales period of ten days, this CQM has altogether 11 constraints:
 Solve the Problem by Sampling
 =============================
 
-Instantiate a :class:`~dwave.system.samplers.LeapCQMHybridSampler` class 
+Instantiate a :class:`~dwave.system.samplers.LeapHybridCQMSampler` class 
 sampler,
 
 >>> from dwave.system import LeapHybridCQMSampler
