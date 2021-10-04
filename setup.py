@@ -25,7 +25,7 @@ install_requires = [
     'dimod==0.10.7',
     'dwave-cloud-client==0.9.1',
     'dwave-greedy==0.2.1',
-    'dwave-hybrid==0.6.3',
+    'dwave-hybrid==0.6.4',
     'dwave-inspector==0.2.7',
     'dwave-neal==0.5.8',
     'dwave-networkx==0.8.9',
