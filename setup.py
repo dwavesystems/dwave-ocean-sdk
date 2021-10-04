@@ -28,7 +28,7 @@ install_requires = [
     'dwave-hybrid==0.6.4',
     'dwave-inspector==0.2.7',
     'dwave-neal==0.5.8',
-    'dwave-networkx==0.8.9',
+    'dwave-networkx==0.8.10',
     'dwave-preprocessing==0.3.0',
     'dwave-qbsolv==0.3.3',
     'dwave-system==1.9.0',
