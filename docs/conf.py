@@ -151,7 +151,12 @@ import dwave.inspector
 
 # Path to the cpp xml files
 breathe_projects = {"minorminer": os.path.join(
-    config_directory, '../minorminer/docs/build-cpp/xml/')}
+                      config_directory, '../minorminer/docs/build-cpp/xml/'),
+                   "dimod": os.path.join(
+                      config_directory, '../dimod/docs/build-cpp/xml/'),
+                   "dwave-preprocessing": os.path.join(
+                      config_directory, '../dwave-preprocessing/docs/build-cpp/xml/'),
+}
 
 breathe_default_project = "minorminer"
 
@@ -312,6 +317,8 @@ read_the_docs_build = os.environ.get('READTHEDOCS', None) == 'True'
 if read_the_docs_build:
 
     subprocess.call('cd ../minorminer/docs/; make cpp', shell=True)
+    subprocess.call('cd ../dimod/docs/; make cpp', shell=True)
+    subprocess.call('cd ../dwave-preprocessing/docs/; make cpp', shell=True)
 
 # Link to GitHub source
 github_map = {'dwavebinarycsp': 'dwavebinarycsp',
