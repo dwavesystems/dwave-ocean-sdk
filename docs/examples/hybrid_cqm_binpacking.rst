@@ -99,7 +99,7 @@ used):
 .. [#]
 
    Always keep in mind that such "variables" are actually 
-   class :class:`dimod.BinaryQuadraticModel` objects,
+   class :class:`~dimod.binary.binary_quadratic_model.BinaryQuadraticModel` objects,
 
    >>> bin_used[0]
    BinaryQuadraticModel({'bin_used_0': 1.0}, {}, 0.0, 'BINARY')
