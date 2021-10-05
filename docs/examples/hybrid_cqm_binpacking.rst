@@ -99,7 +99,7 @@ used):
 .. [#]
 
    Always keep in mind that such "variables" are actually 
-   class :class:`dimod.BinaryQuadraticModel` objects,
+   class :class:`~dimod.binary.binary_quadratic_model.BinaryQuadraticModel` objects,
 
    >>> bin_used[0]
    BinaryQuadraticModel({'bin_used_0': 1.0}, {}, 0.0, 'BINARY')
@@ -180,7 +180,7 @@ relieve you of the burden of any current and future development and optimization
 of hybrid algorithms that best solve your problem.
 
 Ocean software's :doc:`dwave-system </docs_system/sdk_index>`
-:class:`~dwave.system.samplers.LeapCQMHybridSampler` class enables you to 
+:class:`~dwave.system.samplers.LeapHybridCQMSampler` class enables you to 
 easily incorporate Leap's hybrid CQM solvers into your application:
 
 >>> from dwave.system import LeapHybridCQMSampler
