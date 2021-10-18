@@ -189,7 +189,7 @@ use the standard selection methods supported by Ocean's :ref:`sdk_index_cloud`:
 * Select a default region in your 
   :ref:`dwave-cloud-client configuration file <sdk_index_cloud>`. You can run 
   the :ref:`dwave config <cli_example_config>` CLI command with the 
-  :code:`-- full` option or edit an existing configuration file to set a 
+  :code:`--full` option or edit an existing configuration file to set a 
   preferred region.  
 * Set the appropriate environment variable (for example, 
   :code:`export DWAVE_API_REGION=eu-central-1` in a Unix shell) for your current 
@@ -197,4 +197,14 @@ use the standard selection methods supported by Ocean's :ref:`sdk_index_cloud`:
 * Explicitly select the region in your code. For example, the :code:`region`
   parameter in the code line :code:`sampler = DWaveSampler(region="na-west-1")` 
   selects a D-Wave quantum computer located in North America. 
+
+.. note:: Keep in mind the relative priorities of configurations set at 
+   various levels (in the above bullets, the configuration file, environment 
+   variables, and explicit parameters in your code), as described in the 
+   :ref:`sdk_index_cloud` documentation. For example, while the setting of both 
+   an endpoint and region on the same level (either two lines in the configuration 
+   file or two environment variables or two explicit parameters) results in 
+   selection based on the endpoint, setting a region explicitly overrides an 
+   endpoint configured using an environment variable or in the configuration
+   file. 
 
