@@ -17,10 +17,10 @@ submission through SAPI includes:
 
 1. API endpoint URL
 
-   A URL to the remote resources. By default, ``https://cloud.dwavesys.com/sapi``
-   is used to connect to resources provided by
-   D-Wave's `Leap <https://cloud.dwavesys.com/leap/>`_ quantum cloud service,
-   including D-Wave quantum computers.
+   A URL to the remote resources. By default, 
+   ``https://na-west-1.cloud.dwavesys.com/sapi/v2`` is used to connect to 
+   resources provided by D-Wave's `Leap <https://cloud.dwavesys.com/leap/>`_ 
+   quantum cloud service in North America, including D-Wave quantum computers.\ [#]_
 
 2. API Token
 
@@ -41,6 +41,10 @@ You save your SAPI configuration (URL, API token, etc) in a
 :doc:`D-Wave Cloud Client configuration file </docs_cloud/sdk_index>`
 that Ocean tools use unless overridden explicitly or with environment variables.
 Your configuration file can include one or more solvers.
+
+.. [#]
+   For information about using solvers in alternative geographical regions,
+   see the :ref:`sapi_intro_multiregion` section below.    
 
 .. note:: When you work in D-Wave's `Leap <https://cloud.dwavesys.com/leap/>`_ IDE,
    SAPI information such as your API token is pre-configured in the default
@@ -170,3 +174,27 @@ SAPI configuration as set above, and queries its parameters.
 
 Descriptions of D-Wave system parameters and properties are in the
 :std:doc:`system documentation <sysdocs_gettingstarted:index>`.
+
+.. _sapi_intro_multiregion:
+
+Accessing Solvers in Multiple Regions
+=====================================
+
+Leap quantum cloud service is distributed across multiple geographic regions.
+You can see the supported regions and the solvers available in each for your 
+account in your `Leap <https://cloud.dwavesys.com/leap/>`_ dashboard. To 
+specify a preferrence for solver selection from a particular region, you can 
+use the standard selection methods support by Ocean's :ref:`sdk_index_cloud`: 
+
+* Select a default region in your 
+  :ref:`dwave-cloud-client configuration file <sdk_index_cloud>`. You can run 
+  the :ref:`dwave config <cli_example_config>` CLI command with the 
+  :code:`-- full` option or edit an existing configuration file to set a 
+  preferred region.  
+* Set the appropriate environment variable (for example, 
+  :code:`export DWAVE_API_REGION=eu-central-1` in a Unix shell) for your current 
+  terminal or working session to select solvers from a preferred region. 
+* Explicitly select the region in your code. For example, the :code:`region`
+  parameter in the code line :code:`sampler = DWaveSampler(region="na-west-1")` 
+  selects a D-Wave quantum computer located in North America. 
+
