@@ -31,7 +31,7 @@ submission through SAPI includes:
 3. Solver
 
    A D-Wave resource to be used to solve your submitted problems; for example, a
-   hybrid solver or a D-Wave 2000Q quantum computer.
+   hybrid solver or an Advantage quantum computer.
 
 You can find all the above information when you log in to your D-Wave account. For
 Leap users, select the Dashboard tab; for on-premises (Qubist) users, select the
