@@ -169,7 +169,7 @@ Solvers
 =======
 
 The :code:`dwave solvers` command queries which D-Wave compute resources are
-currently available to your account based.
+currently available to your account.
 
 .. cli-example-solvers-start-marker
 
@@ -195,3 +195,12 @@ currently available to your account based.
           <Output snipped for brevity>
 
 .. cli-example-solvers-end-marker
+
+The example below lists which D-Wave compute resources are currently available 
+to your account in a particular region (Europe).
+
+.. code-block:: bash
+
+    $ dwave solvers --region eu-central-1 --list --all
+    Advantage_system5.1
+
