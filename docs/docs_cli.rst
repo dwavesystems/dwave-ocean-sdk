@@ -169,7 +169,7 @@ Solvers
 =======
 
 The :code:`dwave solvers` command queries which D-Wave compute resources are
-currently available to your account based.
+currently available to your account.
 
 .. cli-example-solvers-start-marker
 
