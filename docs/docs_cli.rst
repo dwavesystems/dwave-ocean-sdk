@@ -201,6 +201,6 @@ to your account in a particular region (Europe).
 
 .. code-block:: bash
 
-    $ dwave solvers --region eu-central-1 --list
+    $ dwave solvers --region eu-central-1 --list --all
     Advantage_system5.1
 
