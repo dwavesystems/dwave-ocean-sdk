@@ -195,3 +195,12 @@ currently available to your account.
           <Output snipped for brevity>
 
 .. cli-example-solvers-end-marker
+
+The example below lists which D-Wave compute resources are currently available 
+to your account in a particular region (Europe).
+
+.. code-block:: bash
+
+    $ dwave solvers --region eu-central-1 --list
+    Advantage_system5.1
+
