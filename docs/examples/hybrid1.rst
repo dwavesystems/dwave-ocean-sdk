@@ -27,7 +27,7 @@ quantum resources are used as an accelerator much as GPUs are for graphics.
       but with a degree of three (each node connects to three other nodes). You can
       increase the number of nodes substantially as long as you keep the graph sparse.
 
-For more detailed examples of using :doc:`dwave-hybrid </docs_hybrid/sdk_index>` 
+For more detailed examples of using :doc:`dwave-hybrid </docs_hybrid/sdk_index>`
 to combine classical and quantum resources in solving your problem, see the
 `Hybrid Computing Jupyter Notebooks <https://github.com/dwave-examples/structural-imbalance-notebook>`_.
 
@@ -47,12 +47,13 @@ To run the code in this example, the following is required.
 Solution Steps
 ==============
 
-Section :ref:`solving_problems` describes the process of solving problems on the quantum
-computer in two steps: (1) Formulate the problem as a :term:`binary quadratic model` (BQM)
-and (2) Solve the BQM with a D-Wave system or classical :term:`sampler`. This example
-uses :doc:`dwave-hybrid </docs_hybrid/sdk_index>` to combine a tabu search on a CPU with
-the submission of parts of the (large) problem to the D-Wave system.
+.. include:: hybrid_solver_service.rst
+  :start-after: example-steps-start-marker
+  :end-before: example-steps-end-marker
 
+This example uses :doc:`dwave-hybrid </docs_hybrid/sdk_index>` to combine a tabu
+search on a CPU with the submission of parts of the (large) problem to a D-Wave
+quantum computer.
 
 Formulate the Problem
 =====================

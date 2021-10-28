@@ -26,12 +26,13 @@ To run the code in this example, the following is required.
 Solution Steps
 ==============
 
-The :ref:`solving_problems` section describes the process of solving problems on the quantum
-computer in two steps: (1) Formulate the problem as a :term:`binary quadratic model` (BQM)
-and (2) Solve the BQM with a D-Wave system or classical :term:`sampler`. In this example,
-a :term:`QUBO` is formulated with simple math, the problem is submitted naively to
-the QPU, its minor embedding examined using the problem inspector, and the
-submission improved.
+.. include:: hybrid_solver_service.rst
+  :start-after: example-steps-start-marker
+  :end-before: example-steps-end-marker
+
+In this example, a :term:`QUBO` is formulated with simple math, the problem is
+submitted naively to the QPU, its minor embedding examined using the problem
+inspector, and the submission improved.
 
 Formulate the Problem
 =====================
@@ -170,8 +171,8 @@ Using the same logic described in the
 `Graph Partitioning <https://github.com/dwave-examples/graph-partitioning>`_
 code example, the problem is resubmitted using a higher chain strength:
 
->>> sampleset = sampler.sample_qubo(Q, num_reads=num_reads, 
-...                                 chain_strength=1000, 
+>>> sampleset = sampler.sample_qubo(Q, num_reads=num_reads,
+...                                 chain_strength=1000,
 ...                                 label='SDK Examples - Inspector')
 
 Check the best returned answer and percentage of samples based on chains with breakage
@@ -230,8 +231,8 @@ chains for the current returned sample set suggests that the chain strength can
 likely be lowered while still maintaining a low rate of broken chains. Doing so
 enables the problem to be represented more accurately on the QPU.
 
->>> sampleset = sampler.sample_qubo(Q, num_reads=num_reads, 
-...                                 chain_strength=300, 
+>>> sampleset = sampler.sample_qubo(Q, num_reads=num_reads,
+...                                 chain_strength=300,
 ...                                 label='SDK Examples - Inspector')
 
 Below is one run of a few iterations of adjusting chain strength. Notice that the
