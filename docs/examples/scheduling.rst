@@ -18,8 +18,8 @@ for scheduling meetings:
 Solving such a CSP means finding meetings that meet all the constraints.
 
 The purpose of this example is to help a new user to formulate a constraint
-satisfaction problem using Ocean tools and solve it on a D-Wave system. Other
-examples demonstrate more advanced steps that might be needed for complex
+satisfaction problem using Ocean tools and solve it on a D-Wave quantum computer.
+Other examples demonstrate more advanced steps that might be needed for complex
 problems.
 
 Example Requirements
@@ -44,13 +44,13 @@ Solution Steps
   :end-before: example-steps-end-marker
 
 This example creates a :term:`binary quadratic model` (BQM) based on
-:ref:`penalties <penalty_sdk>` to represent the problem's constraints. 
+:ref:`penalties <penalty_sdk>` to represent the problem's constraints.
 
 Formulate the Problem
 =====================
 
-D-Wave systems solve binary quadratic models, so the first step is to express the problem
-with binary variables.
+D-Wave quantum computers solve binary quadratic models, so the first step is to
+express the problem with binary variables.
 
 * Time of day is represented by binary variable :code:`time` with value :math:`1` for business hours
   and :math:`0` for hours outside the business day.
@@ -136,10 +136,11 @@ quickly. Here you solve both classically on your CPU and on the quantum computer
 Solving Classically on a CPU
 ----------------------------
 
-Before using the D-Wave system, it can sometimes be helpful to test code locally.
-Here, select one of Ocean software's test samplers to solve classically on a CPU.
-Ocean's :doc:`dimod </docs_dimod/sdk_index>` provides a sampler that
-simply returns the BQM's value (energy) for every possible assignment of variable values.
+Before using a D-Wave quantum computer, it can sometimes be helpful to test code
+locally. Here, select one of Ocean software's test samplers to solve classically
+on a CPU.
+Ocean's :doc:`dimod </docs_dimod/sdk_index>` provides a sampler that simply
+returns the BQM's value (energy) for every possible assignment of variable values.
 
 >>> from dimod.reference.samplers import ExactSolver
 >>> sampler = ExactSolver()
@@ -181,15 +182,15 @@ During business hours at office, you can schedule a long meeting that is mandato
    energy of solutions that violate one constraint by :code:`min_classical_gap=2.0`.
 
 
-Solving on a D-Wave System
---------------------------
+Solving on a D-Wave Quantum Computer
+------------------------------------
 
 Now solve on a D-Wave system using sampler :class:`~dwave.system.samplers.DWaveSampler`
 from Ocean software's :doc:`dwave-system </docs_system/sdk_index>`. Also use
 its :class:`~dwave.system.composites.EmbeddingComposite` composite to map our unstructured
 problem (variables such as :code:`time` etc.) to the sampler's graph structure (the QPU's numerically
 indexed qubits) in a process known as :term:`minor-embedding`. The next code sets up
-a D-Wave system as the sampler.
+a D-Wave quantum computer as the sampler.
 
 .. include:: min_vertex.rst
    :start-after: default-config-start-marker
@@ -199,7 +200,7 @@ a D-Wave system as the sampler.
 >>> sampler = EmbeddingComposite(DWaveSampler())
 
 Because the sampled solution is probabilistic, returned solutions may differ between runs.
-Typically, when submitting a problem to the system, you ask for many samples, not just one.
+Typically, when submitting a problem to a quantum computer, you ask for many samples, not just one.
 This way, you see multiple “best” answers and reduce the probability of settling on a
 suboptimal answer. Below, ask for 5000 samples.
 
@@ -240,4 +241,4 @@ following layers:
   correspond to assignments of variables that satisfy all constraints.
 * Sampler: classical :class:`~dimod.reference.samplers.ExactSolver` and then
   :class:`~dwave.system.samplers.DWaveSampler`.
-* Compute resource: first a local CPU then a D-Wave system.
+* Compute resource: first a local CPU then a D-Wave quantum computer.
