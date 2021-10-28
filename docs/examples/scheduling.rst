@@ -52,14 +52,24 @@ Formulate the Problem
 D-Wave quantum computers solve binary quadratic models, so the first step is to
 express the problem with binary variables.
 
-* Time of day is represented by binary variable :code:`time` with value :math:`1` for business hours
-  and :math:`0` for hours outside the business day.
-* Venue is represented by binary variable :code:`location` with value :math:`1` for office
-  and :math:`0` for teleconference.
-* Meeting duration is represented by variable :code:`length` with value :math:`1` for short meetings
-  (under 30 minutes) and :math:`0` for meetings of longer duration.
-* Participation is represented by variable :code:`mandatory` with value :math:`1` for mandatory
-  participation and :math:`0` for optional participation.
+* Time of day is represented by binary variable :math:`t` with value :math:`1`
+  for business hours and :math:`0` for hours outside the business day.
+* Venue is represented by binary variable :math:`v` with value :math:`1` for
+  office and :math:`0` for teleconference.
+* Meeting length is represented by variable :math:`l` with value :math:`1` for
+  short meetings (under 30 minutes) and :math:`0` for meetings of longer duration.
+* Participation is represented by variable :math:`m` with value :math:`1` for
+  mandatory participation and :math:`0` for optional participation.
+
+.. note:: A slightly more complex problem might require variables with multiple
+   values; for example, :code:`length` could have values :code:`{30, 60, 120}`
+   representing the duration in minutes of meetings of several lengths. For such
+   problems a :term:`discrete quadratic model` (DQM) could be a better choice.
+
+   In general, problems with constraints are more simply solved using a
+   :term:`constrained quadratic model` (CQM) and appropriate hybrid CQM solver;
+   however, the purpose of this example is to demonstrate solution directly on
+   a D-Wave quantum computer.
 
 For large numbers of variables and constraints, such problems can be hard.
 This example has four binary variables, so only :math:`2^4=16` possible meeting arrangements.
@@ -90,18 +100,47 @@ find solutions that meet all the constraints.
    Non-business hours    Teleconference     Long            Optional            No (violates 4)
    ====================  =================  ==============  ==================  =================
 
-Ocean's :doc:`dwavebinarycsp </docs_binarycsp/sdk_index>` enables the
-definition of constraints in different ways, including by defining functions that evaluate
-True when the constraint is met. The code below defines a function that returns True when
-all this example's constraints are met.
+Represent Constraints as Penalties
+----------------------------------
 
-.. testcode::
+You can represent each constraint as a BQM using :ref:`penalty_sdk`. This example
+uses :math:`\{0, 1\}` valued binary variables as follows:
 
-   def scheduling(time, location, length, mandatory):
-       if time:                                 # Business hours
-           return (location and mandatory)      # In office and mandatory participation
-       else:                                    # Outside business hours
-           return ((not location) and length)   # Teleconference for a short duration
+* Constraint 1: During business hours, all meetings must be attended in person
+  at the office.
+
+  This constraint requires that if :math:`t=1` (time of day is within
+  business hours) then :math:`v = 1` (venue is the office). A simple
+  penalty function is :math:`1-tv`, as shown in the truth table below:
+
+  .. list-table:: Constraint 1: :math:`1-tv`
+     :header-rows: 1
+
+     * - :math:`t`
+       - :math:`v`
+       - :math:`1-tv`
+     * - 0
+       - 0
+       - 1
+     * - 0
+       - 1
+       - 1
+     * - 1
+       - 0
+       - 1
+     * - 1
+       - 1
+       - 0
+
+  Penalty function :math:`-tv` has its lowest value when
+  :math:`t=1 \rightarrow v=1`. When incorporated in an objective function,
+  solutions with :math:`t=v=1` are preferred.
+
+* Constraint 2: During business hours, participation in meetings is mandatory.
+* Constraint 3: Outside business hours, meetings must be teleconferenced.
+* Constraint 4: Outside business hours, meetings must not exceed 30 minutes.
+
+Ocean's :doc:`dimod </docs_dimod/sdk_index>` enables the creation of BQMs.
 
 The next code lines create a constraint from this function and adds it to CSP instance,
 :code:`csp`, instantiated with binary variables.
