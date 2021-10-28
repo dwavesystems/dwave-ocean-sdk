@@ -4,31 +4,33 @@
 Constrained Scheduling
 ======================
 
-This example solves a binary *constraint satisfaction problem* (:term:`CSP`). CSPs require that all
-a problem's variables be assigned values that result in the satisfying of all constraints.
-Here, the constraints are a company's policy for scheduling meetings:
+This example solves a binary *constraint satisfaction problem* (:term:`CSP`). 
+CSPs require that all a problem's variables be assigned values that result in
+the satisfying of all constraints. Here, the constraints are a company's policy 
+for scheduling meetings:
 
-* Constraint 1: During business hours, all meetings must be attended in person at the office.
+* Constraint 1: During business hours, all meetings must be attended in person 
+  at the office.
 * Constraint 2: During business hours, participation in meetings is mandatory.
 * Constraint 3: Outside business hours, meetings must be teleconferenced.
 * Constraint 4: Outside business hours, meetings must not exceed 30 minutes.
 
 Solving such a CSP means finding meetings that meet all the constraints.
 
-The purpose of this example is to help a new user to formulate a constraint satisfaction problem
-using Ocean tools and solve it on a D-Wave system.
-Other examples demonstrate more advanced steps that might be needed for
-complex problems.
+The purpose of this example is to help a new user to formulate a constraint 
+satisfaction problem using Ocean tools and solve it on a D-Wave system. Other 
+examples demonstrate more advanced steps that might be needed for complex 
+problems.
 
 Example Requirements
 ====================
 
 To run the code in this example, the following is required.
 
-* The requisite information for problem submission through SAPI, as described in :ref:`sapi_access`.
-* Ocean tools :doc:`dwave-binarycsp </docs_binarycsp/sdk_index>`,
-  :doc:`dwave-system </docs_system/sdk_index>`,
-  and :doc:`dimod </docs_dimod/sdk_index>`.
+* The requisite information for problem submission through SAPI, as described 
+  in :ref:`sapi_access`.
+* Ocean tools :doc:`dwave-system </docs_system/sdk_index>` and 
+  :doc:`dimod </docs_dimod/sdk_index>`.
 
 .. include:: hybrid_solver_service.rst
   :start-after: example-requirements-start-marker
@@ -38,9 +40,10 @@ Solution Steps
 ==============
 
 Section :ref:`solving_problems` describes the process of solving problems on the quantum
-computer in two steps: (1) Formulate the problem as a :term:`binary quadratic model` (BQM)
-and (2) Solve the BQM with a D-Wave system or classical :term:`sampler`. In this example,
-Ocean's *dwavebinarycsp* tool builds the BQM based on the constraints you formulate.
+computer in two steps: (1) Formulate the problem as a :term:`quadratic model` (QM)
+and (2) Solve the QM with a D-Wave :term:`solver`. This example creates a 
+:term:`binary quadratic model` (BQM) based on :ref:`penalties <penalty_sdk>` to 
+represent the problem's constraints. 
 
 Formulate the Problem
 =====================
