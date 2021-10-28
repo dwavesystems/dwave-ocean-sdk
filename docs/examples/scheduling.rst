@@ -4,12 +4,12 @@
 Constrained Scheduling
 ======================
 
-This example solves a binary *constraint satisfaction problem* (:term:`CSP`). 
+This example solves a binary *constraint satisfaction problem* (:term:`CSP`).
 CSPs require that all a problem's variables be assigned values that result in
-the satisfying of all constraints. Here, the constraints are a company's policy 
+the satisfying of all constraints. Here, the constraints are a company's policy
 for scheduling meetings:
 
-* Constraint 1: During business hours, all meetings must be attended in person 
+* Constraint 1: During business hours, all meetings must be attended in person
   at the office.
 * Constraint 2: During business hours, participation in meetings is mandatory.
 * Constraint 3: Outside business hours, meetings must be teleconferenced.
@@ -17,9 +17,9 @@ for scheduling meetings:
 
 Solving such a CSP means finding meetings that meet all the constraints.
 
-The purpose of this example is to help a new user to formulate a constraint 
-satisfaction problem using Ocean tools and solve it on a D-Wave system. Other 
-examples demonstrate more advanced steps that might be needed for complex 
+The purpose of this example is to help a new user to formulate a constraint
+satisfaction problem using Ocean tools and solve it on a D-Wave system. Other
+examples demonstrate more advanced steps that might be needed for complex
 problems.
 
 Example Requirements
@@ -27,9 +27,9 @@ Example Requirements
 
 To run the code in this example, the following is required.
 
-* The requisite information for problem submission through SAPI, as described 
+* The requisite information for problem submission through SAPI, as described
   in :ref:`sapi_access`.
-* Ocean tools :doc:`dwave-system </docs_system/sdk_index>` and 
+* Ocean tools :doc:`dwave-system </docs_system/sdk_index>` and
   :doc:`dimod </docs_dimod/sdk_index>`.
 
 .. include:: hybrid_solver_service.rst
@@ -39,11 +39,12 @@ To run the code in this example, the following is required.
 Solution Steps
 ==============
 
-Section :ref:`solving_problems` describes the process of solving problems on the quantum
-computer in two steps: (1) Formulate the problem as a :term:`quadratic model` (QM)
-and (2) Solve the QM with a D-Wave :term:`solver`. This example creates a 
-:term:`binary quadratic model` (BQM) based on :ref:`penalties <penalty_sdk>` to 
-represent the problem's constraints. 
+.. include:: hybrid_solver_service.rst
+  :start-after: example-steps-start-marker
+  :end-before: example-steps-end-marker
+
+This example creates a :term:`binary quadratic model` (BQM) based on
+:ref:`penalties <penalty_sdk>` to represent the problem's constraints. 
 
 Formulate the Problem
 =====================
@@ -109,9 +110,9 @@ The next code lines create a constraint from this function and adds it to CSP in
 >>> csp = dwavebinarycsp.ConstraintSatisfactionProblem(dwavebinarycsp.BINARY)
 >>> csp.add_constraint(scheduling, ['time', 'location', 'length', 'mandatory'])
 
-This tool, :doc:`dwavebinarycsp </docs_binarycsp/sdk_index>`, can also convert the binary CSP to a BQM. 
+This tool, :doc:`dwavebinarycsp </docs_binarycsp/sdk_index>`, can also convert the binary CSP to a BQM.
 The following code does so and the graph below
-provides a view on the BQM's linear and quadratic coefficients, :math:`q_i` and :math:`q_{i,j}` respectively 
+provides a view on the BQM's linear and quadratic coefficients, :math:`q_i` and :math:`q_{i,j}` respectively
 in :math:`\sum_i^N q_ix_i + \sum_{i<j}^N q_{i,j}x_i  x_j`, which are the inputs for programming
 the quantum computer.
 
@@ -183,9 +184,9 @@ During business hours at office, you can schedule a long meeting that is mandato
 Solving on a D-Wave System
 --------------------------
 
-Now solve on a D-Wave system using sampler :class:`~dwave.system.samplers.DWaveSampler` 
+Now solve on a D-Wave system using sampler :class:`~dwave.system.samplers.DWaveSampler`
 from Ocean software's :doc:`dwave-system </docs_system/sdk_index>`. Also use
-its :class:`~dwave.system.composites.EmbeddingComposite` composite to map our unstructured 
+its :class:`~dwave.system.composites.EmbeddingComposite` composite to map our unstructured
 problem (variables such as :code:`time` etc.) to the sampler's graph structure (the QPU's numerically
 indexed qubits) in a process known as :term:`minor-embedding`. The next code sets up
 a D-Wave system as the sampler.
@@ -195,14 +196,14 @@ a D-Wave system as the sampler.
    :end-before: default-config-end-marker
 
 >>> from dwave.system import DWaveSampler, EmbeddingComposite
->>> sampler = EmbeddingComposite(DWaveSampler())      
+>>> sampler = EmbeddingComposite(DWaveSampler())
 
-Because the sampled solution is probabilistic, returned solutions may differ between runs. 
-Typically, when submitting a problem to the system, you ask for many samples, not just one. 
-This way, you see multiple “best” answers and reduce the probability of settling on a 
+Because the sampled solution is probabilistic, returned solutions may differ between runs.
+Typically, when submitting a problem to the system, you ask for many samples, not just one.
+This way, you see multiple “best” answers and reduce the probability of settling on a
 suboptimal answer. Below, ask for 5000 samples.
 
->>> sampleset = sampler.sample(bqm, num_reads=5000, label='SDK Examples - Scheduling')      
+>>> sampleset = sampler.sample(bqm, num_reads=5000, label='SDK Examples - Scheduling')
 
 The code below prints all those solutions (assignments of variables) for which the BQM has
 its minimum value and the number of times it was found.
@@ -237,7 +238,6 @@ following layers:
 * Method: constraint compilation.
 * Sampler API: the Ocean tool builds a BQM with lowest values ("ground states") that
   correspond to assignments of variables that satisfy all constraints.
-* Sampler: classical :class:`~dimod.reference.samplers.ExactSolver` and then 
+* Sampler: classical :class:`~dimod.reference.samplers.ExactSolver` and then
   :class:`~dwave.system.samplers.DWaveSampler`.
 * Compute resource: first a local CPU then a D-Wave system.
-

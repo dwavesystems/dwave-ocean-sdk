@@ -26,17 +26,19 @@ To run the code in this example, the following is required.
 Solution Steps
 ==============
 
-Section :ref:`solving_problems` describes the process of solving problems on the quantum
-computer in two steps: (1) Formulate the problem as a :term:`binary quadratic model` (BQM)
-and (2) Solve the BQM with a D-Wave system or classical :term:`sampler`. This example
-mathematically formulates the BQM and uses Ocean tools to solve it on a D-Wave system.
+.. include:: hybrid_solver_service.rst
+  :start-after: example-steps-start-marker
+  :end-before: example-steps-end-marker
+
+This example mathematically formulates the BQM and uses Ocean tools to solve it
+on a D-Wave quantum computer.
 
 Formulate the AND Gate as a BQM
 ===============================
 
 Ocean tools can automate the representation of logic gates as a BQM, as demonstrated
 in the :ref:`multi_gate` example. The :ref:`not` example presents a mathematical
-formulation of a BQM for a Boolean gate in detail. This example briefly repeats the steps 
+formulation of a BQM for a Boolean gate in detail. This example briefly repeats the steps
 of mathematically formulating a BQM while adding details on the underlying physical processes.
 
 A D-Wave quantum processing unit (:term:`QPU`) is a chip with interconnected qubits; for example,
@@ -137,8 +139,8 @@ before solving again while manually controlling additional parameters.
 
 Again use sampler :class:`~dwave.system.samplers.DWaveSampler` from Ocean software's
 :doc:`dwave-system </docs_system/sdk_index>` and
-its :class:`~dwave.system.composites.EmbeddingComposite` composite to :term:`minor-embed` 
-our unstructured problem (variables x1, x2, and z) on the sampler's graph structure (the 
+its :class:`~dwave.system.composites.EmbeddingComposite` composite to :term:`minor-embed`
+our unstructured problem (variables x1, x2, and z) on the sampler's graph structure (the
 QPU's numerically indexed qubits).
 
 The next code sets up a D-Wave system as the sampler.
@@ -148,13 +150,13 @@ The next code sets up a D-Wave system as the sampler.
    :end-before: default-config-end-marker
 
 >>> from dwave.system import DWaveSampler, EmbeddingComposite
->>> sampler = DWaveSampler()   
->>> sampler_embedded = EmbeddingComposite(sampler)       
+>>> sampler = DWaveSampler()
+>>> sampler_embedded = EmbeddingComposite(sampler)
 
 As before, ask for 5000 samples.
 
->>> sampleset = sampler_embedded.sample_qubo(Q, num_reads=5000, 
-...                                          label='SDK Examples - AND Gate')      
+>>> sampleset = sampler_embedded.sample_qubo(Q, num_reads=5000,
+...                                          label='SDK Examples - AND Gate')
 >>> print(sampleset)   # doctest: +SKIP
   x1 x2  z energy num_oc. chain_b.
 0  0  1  0    0.0    1812      0.0
@@ -170,7 +172,7 @@ All the returned samples from this execution represent valid value assignments f
 AND gate, and minimize (are low-energy states of) the BQM.
 
 Note that lines 5 and 6 of output from this execution show samples that seem
-identical to lines 1 and 2 (but with non-zero values in the rightmost column, 
+identical to lines 1 and 2 (but with non-zero values in the rightmost column,
 :code:`chain_breaks`\ ). The next section addresses that.
 
 Solve the Problem by Sampling: Non-automated Minor-Embedding
@@ -199,16 +201,16 @@ which on a QPU is a qubit, and print its adjacent nodes, i.e., coupled qubits.
 {128, 4, 5, 6, 7}
 
 For the D-Wave 2000Q system the above code ran on, you see that the first available qubit
-is adjacent to qubit 4 and four others. On an Advantage system with its Pegasus 
+is adjacent to qubit 4 and four others. On an Advantage system with its Pegasus
 topology, you might see an output such as this:
 
 >>> print(sampler.adjacency[sampler.nodelist[0]])      # doctest: +SKIP
 {31, 2940, 2955, 2970, 2985}
 
 You can map the NOT problem's two linear coefficients and single quadratic coefficient,
-:math:`q_1=q_2=-1` and :math:`q_{1,2}=2`, to biases on the D-Wave 2000Q's qubits 0 and 4 
-and coupling (0, 4). The figure below shows a minor embedding of the NOT gate into 
-the D-Wave 2000Q QPU unit cell (four horizontal qubits connected to four vertical qubits 
+:math:`q_1=q_2=-1` and :math:`q_{1,2}=2`, to biases on the D-Wave 2000Q's qubits 0 and 4
+and coupling (0, 4). The figure below shows a minor embedding of the NOT gate into
+the D-Wave 2000Q QPU unit cell (four horizontal qubits connected to four vertical qubits
 via couplers).
 
 .. figure:: ../_images/Embedding_Chimera_NOT.png
@@ -222,19 +224,19 @@ via couplers).
    embedded as qubits 0 and 4 (blue circles). Biases :math:`q_1,q_2=-1,-1`
    and coupling strength :math:`q_{1,2}=2` are also shown.
 
-The following code uses the :class:`~dwave.system.composites.FixedEmbeddingComposite` composite 
-to manually minor-embed the problem in the D-Wave 2000Q QPU. Its last line prints a confirmation 
+The following code uses the :class:`~dwave.system.composites.FixedEmbeddingComposite` composite
+to manually minor-embed the problem in the D-Wave 2000Q QPU. Its last line prints a confirmation
 that indeed the two selected qubits are adjacent (coupled).
 
 >>> from dwave.system import FixedEmbeddingComposite
->>> sampler_embedded = FixedEmbeddingComposite(sampler, {'x': [0], 'z': [4]})   
+>>> sampler_embedded = FixedEmbeddingComposite(sampler, {'x': [0], 'z': [4]})
 >>> print(sampler_embedded.adjacency["x"])
 {'z'}
 
 As before, ask for 5000 samples.
 
 >>> sampleset = sampler_embedded.sample_qubo(Q_not, num_reads=5000,
-...                                          label='SDK Examples - AND Gate')      
+...                                          label='SDK Examples - AND Gate')
 >>> print(sampleset)   # doctest: +SKIP
    x  z energy num_oc. chain_.
 0  0  1   -1.0    2310     0.0
@@ -266,8 +268,8 @@ You saw above how to minor-embed a :math:`K_2` graph on a D-Wave system. To mino
 :math:`K_3` graph on a D-Wave 2000Q system requires *chaining* qubits.
 
 .. note:: Advantage system's topology, Pegasus, can minor-embed a :math:`K_3` graph without chaining
-   qubits. However, this simple example is useful for understanding the concept, which applies to 
-   most large problems embedded on either system. 
+   qubits. However, this simple example is useful for understanding the concept, which applies to
+   most large problems embedded on either system.
 
 Minor-Embedding an AND Gate
 ---------------------------
@@ -302,11 +304,11 @@ two last lines? This was likely due to the qubits in a chain taking different va
 
 The code below uses Ocean's :doc:`dwave-system </docs_system/sdk_index>`
 :class:`~dwave.system.composites.FixedEmbeddingComposite` composite for manual minor-embedding
-on a D_Wave 2000Q system. Its last line prints a confirmation that indeed all three variables 
+on a D_Wave 2000Q system. Its last line prints a confirmation that indeed all three variables
 are connected (coupled).
 
 >>> embedding = {'x1': {1}, 'x2': {5}, 'z': {0, 4}}
->>> sampler_embedded = FixedEmbeddingComposite(sampler, embedding)     
+>>> sampler_embedded = FixedEmbeddingComposite(sampler, embedding)
 >>> print(sampler_embedded.adjacency)     # doctest: +SKIP
 {'x1': {'x2', 'z'}, 'x2': {'x1', 'z'}, 'z': {'x1', 'x2'}}
 
@@ -314,7 +316,7 @@ This submission asks for 5000 samples.
 
 >>> Q = {('x1', 'x2'): 1, ('x1', 'z'): -2, ('x2', 'z'): -2, ('z', 'z'): 3}
 >>> sampleset = sampler_embedded.sample_qubo(Q, num_reads=5000,
-...                                          label='SDK Examples - AND Gate')    
+...                                          label='SDK Examples - AND Gate')
 >>> print(sampleset)   # doctest: +SKIP
   x1 x2  z energy num_oc. chain_.
 0  1  0  0    0.0    2107     0.0
@@ -340,20 +342,20 @@ to view the solution on the QPU.
 
   View of the logical and embedded problem rendered by Ocean's problem inspector. The AND gate's original QUBO is represented on the left; its embedded representation, on the right, shows a two-qubit chain of qubits 0 and 4 for variable Z. The current solution displayed, :math:`X1=1, X2=0, Z=0`, is represented by white and gold dots for binary :math:`0, 1` and white and blue dots for spin values :math:`-1, 1`.
 
-For comparison, the following code purposely weakens the 
+For comparison, the following code purposely weakens the
 :ref:`concepts__chain_strength` (strength of the
 coupler between qubits 0 and 4, which represents variable :math:`z`). The first
 line prints the range of values available for the D-Wave system this code is executed
-on. By explicitly setting chain strength to a low value of 0.25, the two qubits are not 
-strongly correlated and the result is that many returned samples represent invalid states 
+on. By explicitly setting chain strength to a low value of 0.25, the two qubits are not
+strongly correlated and the result is that many returned samples represent invalid states
 for an AND gate.
 
->>> print(sampler.properties['extended_j_range'])   
+>>> print(sampler.properties['extended_j_range'])
 [-2.0, 1.0]
->>> sampler_embedded = FixedEmbeddingComposite(sampler, embedding)   
->>> sampleset = sampler_embedded.sample_qubo(Q, num_reads=5000, 
+>>> sampler_embedded = FixedEmbeddingComposite(sampler, embedding)
+>>> sampleset = sampler_embedded.sample_qubo(Q, num_reads=5000,
 ...                                          chain_strength=0.25,
-...                                          label='SDK Examples - AND Gate')   
+...                                          label='SDK Examples - AND Gate')
 >>> print(sampleset)   # doctest: +SKIP
   x1 x2  z energy num_oc. chain_b.
 0  1  0  0    0.0     629      0.0
@@ -365,7 +367,7 @@ for an AND gate.
 6  0  1  1    1.0       1      0.0
 ['BINARY', 7 rows, 5000 samples, 3 variables]
 
-In this case, you are likely to see broken chains (non-zero values in the 
+In this case, you are likely to see broken chains (non-zero values in the
 :code:`chain_breaks` column) and calling the problem inspector shows these:
 
 .. figure:: ../_static/inspector_AND_broken_chain.png

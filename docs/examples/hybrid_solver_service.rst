@@ -5,9 +5,9 @@ Structural Imbalance in a Social Network
 ========================================
 
 This example solves a structural-imbalance problem, similar to the
-`Leap <https://cloud.dwavesys.com/leap/>`_ demo and 
-`Jupyter Notebook <https://github.com/dwave-examples/structural-imbalance-notebook>`_, 
-to demonstrate using Leap's hybrid solver service on a problem of arbitrary 
+`Leap <https://cloud.dwavesys.com/leap/>`_ demo and
+`Jupyter Notebook <https://github.com/dwave-examples/structural-imbalance-notebook>`_,
+to demonstrate using Leap's hybrid solver service on a problem of arbitrary
 structure and size.
 
 *Social networks* map relationships between people or organizations onto graphs, with
@@ -52,18 +52,24 @@ meets these requirements.
 Solution Steps
 ==============
 
-Section :ref:`solving_problems` describes the process of solving problems on the quantum
-computer in two steps: (1) Formulate the problem as a :term:`binary quadratic model` (BQM)
-and (2) Solve the BQM with a D-Wave system, classical :term:`sampler`, or hybrid sampler.
-In this example, a function in Ocean software handles both steps. Our task is mainly to
-select the sampler used to solve the problem.
+.. example-steps-start-marker
+
+Section :ref:`solving_problems` describes the problem-solving workflow as
+consisting of two main steps: (1) Formulate the problem as an
+:term:`objective function` in a supported form of :term:`quadratic model` (QM)
+and (2) Solve your QM with a D-Wave :term:`solver`.
+
+.. example-steps-end-marker
+
+In this example, a function in Ocean software handles both steps. Our task is
+mainly to select the :term:`sampler` used to solve the problem.
 
 Formulate the Problem
 =====================
 
 For a social graph, `G`, this example simply builds a random sparse graph---using the
-`NetworkX <https://networkx.org>`_ :func:`~networkx.generators.geometric.random_geometric_graph()` 
-function, which places uniformly at random a specified number of nodes, `problem_node_count`, 
+`NetworkX <https://networkx.org>`_ :func:`~networkx.generators.geometric.random_geometric_graph()`
+function, which places uniformly at random a specified number of nodes, `problem_node_count`,
 in a unit cube, joining edges of any two if the distance is below a given radius---and randomly
 assigns :math:`-1, 1` signs to represent friendly and hostile relationships.
 
@@ -77,7 +83,7 @@ Solve the Problem by Sampling
 =============================
 
 As mentioned above, this example uses Ocean's :doc:`dwave_networkx </docs_dnx/sdk_index>`
-function, :func:`~dwave_networkx.algorithms.social.structural_imbalance`, to create the 
+function, :func:`~dwave_networkx.algorithms.social.structural_imbalance`, to create the
 appropriate BQM to represent
 the problem graph and return a solution. It requires just the selection of a :term:`sampler`.
 
@@ -89,7 +95,7 @@ solvers can relieve you of the burden of any current and future development and 
 of hybrid algorithms that best solve your problem.
 
 Ocean software's :doc:`dwave-system </docs_system/sdk_index>`
-:class:`~dwave.system.samplers.LeapHybridSampler` class enables you to easily incorporate 
+:class:`~dwave.system.samplers.LeapHybridSampler` class enables you to easily incorporate
 Leap's hybrid solvers into your application:
 
 >>> from dwave.system import LeapHybridSampler

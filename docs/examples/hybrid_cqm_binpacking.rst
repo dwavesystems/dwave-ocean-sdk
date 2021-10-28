@@ -32,9 +32,10 @@ To run the code in this example, the following is required.
 Solution Steps
 ==============
 
-Section :ref:`solving_problems` describes the process of solving problems on the quantum
-computer in two steps: (1) Formulate the problem as a :term:`quadratic model` (QM)
-and (2) Solve the QM with a D-Wave sampler.
+.. include:: hybrid_solver_service.rst
+  :start-after: example-steps-start-marker
+  :end-before: example-steps-end-marker
+
 This example formulates the bin-packing problem as a
 :ref:`constrained quadratic model <cqm_sdk>` and uses the
 :class:`~dwave.system.samplers.LeapHybridCQMSampler` to find good solutions.

@@ -30,11 +30,12 @@ To run the code in this example, the following is required.
 Solution Steps
 ==============
 
-Section :ref:`solving_problems` describes the process of solving problems on the quantum
-computer in two steps: (1) Formulate the problem as a :term:`binary quadratic model` (BQM)
-and (2) Solve the BQM with a D-Wave system or classical :term:`sampler`. In this example, a
-function in Ocean software handles both steps. Our task is mainly to select the sampler used
-to solve the problem.
+.. include:: hybrid_solver_service.rst
+  :start-after: example-steps-start-marker
+  :end-before: example-steps-end-marker
+
+In this example, a function in Ocean software handles both steps. Our task is
+mainly to select the sampler used to solve the problem.
 
 Formulate the Problem
 =====================
@@ -92,7 +93,7 @@ Solving on a D-Wave System
 
 Now use a sampler from Ocean software's
 :doc:`dwave-system </docs_system/sdk_index>` to solve on a
-D-Wave system. In addition to :class:`~dwave.system.samplers.DWaveSampler`, use 
+D-Wave system. In addition to :class:`~dwave.system.samplers.DWaveSampler`, use
 :class:`~dwave.system.composites.EmbeddingComposite`, which maps
 unstructured problems to the graph structure of the selected sampler, a process known as
 :term:`minor-embedding`: our problem star graph must be mapped to the QPU's numerically
@@ -102,13 +103,13 @@ indexed qubits.
 
 .. note:: The code below sets a sampler without specifying :term:`SAPI` parameters. Configure
       a default :term:`solver` as described in :ref:`sapi_access` to run the code as is,
-      or see :doc:`dwave-cloud-client </docs_cloud/sdk_index>` to access a particular 
+      or see :doc:`dwave-cloud-client </docs_cloud/sdk_index>` to access a particular
       solver by setting explicit parameters in your code or environment variables.
 
 .. default-config-end-marker
 
 >>> from dwave.system import DWaveSampler, EmbeddingComposite
->>> sampler = EmbeddingComposite(DWaveSampler())    
+>>> sampler = EmbeddingComposite(DWaveSampler())
 >>> print(dnx.min_vertex_cover(s5, sampler))
 [0]
 
@@ -173,6 +174,6 @@ following layers:
   vertex cover is a hard problem that can be solved on D-Wave systems.
 * Sampler API: the Ocean tool internally builds a BQM with lowest values ("ground states") that
   correspond to a minimum vertex cover and uses our selected sampler to solve it.
-* Sampler: classical :class:`~dimod.reference.samplers.ExactSolver` and then 
+* Sampler: classical :class:`~dimod.reference.samplers.ExactSolver` and then
   :class:`~dwave.system.samplers.DWaveSampler`.
 * Compute resource: first a local CPU then a D-Wave system.

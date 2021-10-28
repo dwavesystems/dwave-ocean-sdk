@@ -6,10 +6,10 @@ Large Map Coloring
 
 This example solves a map coloring problem to demonstrate an out-of-the-box use of
 Ocean's classical-quantum hybrid sampler, :doc:`dwave-hybrid </docs_hybrid/sdk_index>`
-:class:`~hybrid.reference.kerberos.KerberosSampler`, that enables you to solve problems 
+:class:`~hybrid.reference.kerberos.KerberosSampler`, that enables you to solve problems
 of arbitrary structure and size.
 
-Map coloring is an example of a 
+Map coloring is an example of a
 :doc:`constraint satisfaction problem </concepts/csp>` (CSP). CSPs require
 that all a problem's variables be assigned values, out of a finite domain, that result
 in the satisfying of all constraints. The map-coloring CSP is to assign a
@@ -45,20 +45,20 @@ To run the code in this example, the following is required.
 Solution Steps
 ==============
 
-Section :ref:`solving_problems` describes the process of solving problems on the
-quantum computer in two steps: (1) Formulate the problem as a 
-:term:`binary quadratic model` (BQM) and (2) Solve the BQM with a D-Wave system, 
-hybrid, or classical :term:`sampler`. In this example, a function in Ocean 
-software handles both steps. Our task is mainly to select the sampler used to 
-solve the problem.
+.. include:: hybrid_solver_service.rst
+  :start-after: example-steps-start-marker
+  :end-before: example-steps-end-marker
+
+In this example, a function in Ocean software handles both steps. Our task is
+mainly to select the sampler used to solve the problem.
 
 Formulate the Problem
 =====================
 
-This example uses the `NetworkX <https://networkx.org>`_ 
+This example uses the `NetworkX <https://networkx.org>`_
 :func:`~networkx.readwrite.adjlist.read_adjlist` function to read a text file,
 ``usa.adj``, containing the states of the USA and their adjacencies (states with
-a shared border) into a graph. The original map information was found on 
+a shared border) into a graph. The original map information was found on
 `write-only blog of Gregg Lind <https://writeonly.wordpress.com/2009/03/20/adjacency-list-of-states-of-the-united-states-us/>`_ and looks like this::
 
     # Author Gregg Lind
@@ -88,12 +88,12 @@ Ocean's :doc:`dwave_networkx </docs_dnx/sdk_index>` can return a
 `minimum vertex coloring <https://en.wikipedia.org/wiki/Graph_coloring>`_ for a graph,
 which assigns a color to the vertices of a graph in a way that no adjacent vertices
 have the same color, using the minimum number of colors. Given a graph representing a
-map and a :term:`sampler`, the 
-:func:`~dwave_networkx.algorithms.coloring.min_vertex_coloring` function tries to 
+map and a :term:`sampler`, the
+:func:`~dwave_networkx.algorithms.coloring.min_vertex_coloring` function tries to
 solve the map coloring problem.
 
-:doc:`dwave-hybrid </docs_hybrid/sdk_index>` :class:`~hybrid.reference.kerberos.KerberosSampler` 
-is classical-quantum hybrid asynchronous decomposition sampler, which can decompose large problems 
+:doc:`dwave-hybrid </docs_hybrid/sdk_index>` :class:`~hybrid.reference.kerberos.KerberosSampler`
+is classical-quantum hybrid asynchronous decomposition sampler, which can decompose large problems
 into smaller pieces that
 it can run both classically (on your local machine) and on the D-Wave system.
 Kerberos finds best samples by running in parallel :doc:`tabu search </docs_tabu/sdk_index>`,

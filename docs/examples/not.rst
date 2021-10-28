@@ -25,10 +25,12 @@ To run the code in this example, the following is required.
 Solution Steps
 ==============
 
-Section :ref:`solving_problems` describes the process of solving problems on the quantum
-computer in two steps: (1) Formulate the problem as a :term:`binary quadratic model` (BQM)
-and (2) Solve the BQM with a D-Wave system or classical :term:`sampler`. This example
-mathematically formulates the BQM and uses Ocean tools to solve it on a D-Wave system.
+.. include:: hybrid_solver_service.rst
+  :start-after: example-steps-start-marker
+  :end-before: example-steps-end-marker
+
+This example mathematically formulates the BQM and uses Ocean tools to solve it 
+on a D-Wave quantum computer.
 
 Formulate the NOT Gate as a BQM
 ===============================
