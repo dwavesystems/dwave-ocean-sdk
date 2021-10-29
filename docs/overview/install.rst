@@ -6,16 +6,22 @@ Installing Ocean Tools
 
 Ocean software is supported on the following operating systems:
 
-* Linux (tested on 64-bit OS)
-* Windows (tested on 64-bit Windows 8, 10)
-* Mac (tested on mac OS X 10.13)
+* **Linux:** tested on 64-bit OS
+* **Windows:** tested on 64-bit Windows 8, 10
+* **Mac:** tested on macOS 10.15.5 (Xcode 12.2)
 
 Ocean software requires a :ref:`Python environment<pythonEnvironment>`. Python
 versions 3.6 and higher are supported.
 
-This section explains how to :ref:`install Ocean software<installOceanSoftware>`, 
-either the entire suite of tools or particular tools from the D-Wave GitHub 
+This section explains how to :ref:`install Ocean software<installOceanSoftware>`,
+either the entire suite of tools or particular tools\ [#]_ from the D-Wave GitHub
 repositories listed in the navigation bar.
+
+.. [#]
+  Although individual Ocean packages accept dependencies within a range of
+  versions, not all combinations are tested. Only versions of individual Ocean
+  tools that form part of an official release of the Ocean SDK are guaranteed to
+  work together.
 
 .. _pythonEnvironment:
 
@@ -23,11 +29,11 @@ Python Virtual Environment
 ==========================
 
 It's recommended that you work in a
-`virtual environment <https://docs.python.org/3/library/venv.html>`_ on your 
-local machine; depending on your operating system, you may need to first install 
+`virtual environment <https://docs.python.org/3/library/venv.html>`_ on your
+local machine; depending on your operating system, you may need to first install
 Python.
 
-1. `Download Python <https://www.python.org/downloads>`_ describes how to install 
+1. `Download Python <https://www.python.org/downloads>`_ describes how to install
    Python on your local machine for supported operating system.
 
    .. attention::
@@ -41,8 +47,8 @@ Python.
        python -m venv ocean
        . ocean/bin/activate
 
-   (On Windows operating system, activating a virtual environment might be done with the
-   :code:`Scripts\activate` command instead.)
+   (On Windows operating system, activating a virtual environment might be done
+   with the :code:`Scripts\activate` command instead.)
 
 Your machine is now ready to install Ocean software.
 
@@ -51,36 +57,40 @@ Your machine is now ready to install Ocean software.
 Install Ocean Software
 ======================
 
-The simplest way to start is to install `dwave-ocean-sdk <https://github.com/dwavesystems/dwave-ocean-sdk>`_
-for the full suite of Ocean tools.
+The simplest way to start is to install
+`dwave-ocean-sdk <https://github.com/dwavesystems/dwave-ocean-sdk>`_ for the full
+suite of Ocean tools.
 
-* You can :code:`pip install` the SDK inside your newly created virtual environment, typically
-  with a command such as this to use the 
-  `Python Package Index (PyPI) repository <https://pypi.org/>`_,
+You can :code:`pip install` the SDK inside your newly created virtual environment.
 
-  .. code-block:: bash
-
-      pip install dwave-ocean-sdk
-
-  or such as this to directly install from the
-  `D-Wave GitHub repository <https://github.com/dwavesystems/dwave-ocean-sdk>`_,
+* For a standard installation of the latest released version from
+  the `Python Package Index (PyPI) <https://pypi.org/>`_ repository:
 
   .. code-block:: bash
 
-      pip install git+https://github.com/dwavesystems/dwave-ocean-sdk
+     pip install dwave-ocean-sdk
 
-* Alternatively, you can clone `dwave-ocean-sdk <https://github.com/dwavesystems/dwave-ocean-sdk>`_ repo
-  and install the SDK to your virtual environment; for example:
+* Advanced users might directly install the latest (development) SDK from the
+  `D-Wave GitHub <https://github.com/dwavesystems/dwave-ocean-sdk>`_ repository
+  using a command such as,
 
   .. code-block:: bash
 
-      git clone https://github.com/dwavesystems/dwave-ocean-sdk.git
-      cd dwave-ocean-sdk
-      python setup.py install
+     pip install git+https://github.com/dwavesystems/dwave-ocean-sdk
 
-Note: To install a particular tool within the SDK only, follow the link to the GitHub repository for the tool,
-as listed in the navigation bar, and follow the installation instructions on the
-README file.
+Alternatively, you can clone the
+`dwave-ocean-sdk <https://github.com/dwavesystems/dwave-ocean-sdk>`_ repo
+and install the SDK to your virtual environment; for example:
+
+.. code-block:: bash
+
+    git clone https://github.com/dwavesystems/dwave-ocean-sdk.git
+    cd dwave-ocean-sdk
+    python setup.py install
+
+Note: To install a particular tool within the SDK only, follow the link to the
+GitHub repository for the tool, as listed in the navigation bar, and follow the
+installation instructions on the README file.
 
 .. _dwave_setup:
 
