@@ -67,9 +67,10 @@ express the problem with binary variables.
    problems a :term:`discrete quadratic model` (DQM) could be a better choice.
 
    In general, problems with constraints are more simply solved using a
-   :term:`constrained quadratic model` (CQM) and appropriate hybrid CQM solver;
-   however, the purpose of this example is to demonstrate solution directly on
-   a D-Wave quantum computer.
+   :term:`constrained quadratic model` (CQM) and appropriate hybrid CQM solver, as
+   demonstrated in the :ref:`example_cqm_binpacking` and
+   :ref:`example_cqm_stock_selling` examples; however, the purpose of this example
+   is to demonstrate solution directly on a D-Wave quantum computer.
 
 For large numbers of variables and constraints, such problems can be hard.
 This example has four binary variables, so only :math:`2^4=16` possible meeting arrangements.
@@ -104,27 +105,27 @@ Represent Constraints as Penalties
 ----------------------------------
 
 You can represent each constraint as a BQM using :ref:`penalty_sdk`. This example
-uses :math:`\{0, 1\}` valued binary variables as follows:
+uses binary (:math:`\{0, 1\}`\ --valued) variables as follows:
 
 * Constraint 1: During business hours, all meetings must be attended in person
   at the office.
 
   This constraint requires that if :math:`t=1` (time of day is within
   business hours) then :math:`v = 1` (venue is the office). A simple
-  penalty function is :math:`1-tv`, as shown in the truth table below:
+  penalty function is :math:`t-tv`, as shown in the truth table below:
 
-  .. list-table:: Constraint 1: :math:`1-tv`
+  .. list-table:: Constraint 1: :math:`t-tv`
      :header-rows: 1
 
      * - :math:`t`
        - :math:`v`
-       - :math:`1-tv`
+       - :math:`t-tv`
      * - 0
        - 0
-       - 1
+       - 0
      * - 0
        - 1
-       - 1
+       - 0
      * - 1
        - 0
        - 1
@@ -132,13 +133,67 @@ uses :math:`\{0, 1\}` valued binary variables as follows:
        - 1
        - 0
 
-  Penalty function :math:`-tv` has its lowest value when
-  :math:`t=1 \rightarrow v=1`. When incorporated in an objective function,
-  solutions with :math:`t=v=1` are preferred.
+  Penalty function :math:`t-tv` sets a penalty of 1 when :math:`t=1 \; \& \; v=0`, for
+  a meeting outside the office during business hours. When incorporated in an
+  objective function, solutions that violate :math:`t=1 \rightarrow v=1` do not
+  have yield minimal values.
+
+  .. note:: One way to derive such a penalty function is to start with the
+    simple case of a Boolean operator: to penalize :math:`a=b=1` you could use
+    the AND constraint :math:`ab`. To penalize :math:`a=1, b=0`, you need
+    :math:`a \overline{b}`. For :math:`\{0, 1\}`\ --valued variables,
+    :math:`\overline{b} = 1-b` so you get :math:`a \overline{b} = a(1-b) = a - ab`.
+    For more information on formulating such constraints, see the
+    :std:doc:`D-Wave Problem-Solving Handbook <sysdocs_gettingstarted:doc_handbook>`
+    guide.
 
 * Constraint 2: During business hours, participation in meetings is mandatory.
+
+  This constraint requires that if :math:`t=1` (time of day is within
+  business hours) then :math:`m=1` (participation is mandatory). A penalty
+  function is :math:`t-tm`, analogous to constraint 1.
+
 * Constraint 3: Outside business hours, meetings must be teleconferenced.
+
+  This constraint requires that if :math:`t=0` (time of day is outside
+  business hours) then :math:`v=0` (venue is teleconference, not the office).
+  A penalty function is :math:`v-tv`, a reversal of constraint 1.
+
 * Constraint 4: Outside business hours, meetings must not exceed 30 minutes.
+
+  This constraint requires that if :math:`t=0` (time of day is outside
+  business hours) then :math:`l=1` (meeting length is short).
+  A simple penalty function is :math:`1+tl-t-l`, as shown in the truth
+  table below:
+
+  .. list-table:: Constraint 1: :math:`1+tl-t-l`
+     :header-rows: 1
+
+     * - :math:`t`
+       - :math:`l`
+       - :math:`1+tl-t-l`
+     * - 0
+       - 0
+       - 1
+     * - 0
+       - 1
+       - 0
+     * - 1
+       - 0
+       - 0
+     * - 1
+       - 1
+       - 0
+
+  Penalty function :math:`1+tl-t-l` sets a penalty of 1 when :math:`t=0 \; \& \; l=0`,
+  for a lengthy meeting outside business hours. When incorporated in an
+  objective function, solutions that violate :math:`t=0 \rightarrow l=1` do not
+  have yield minimal values.
+
+Create a BQM
+------------
+
+The total penalty for all four constraints is :math:`t-tv + t-tm + v-tv + 1+tl-t-l`.
 
 Ocean's :doc:`dimod </docs_dimod/sdk_index>` enables the creation of BQMs.
 
