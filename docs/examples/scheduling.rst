@@ -15,7 +15,8 @@ for scheduling meetings:
 * Constraint 3: Outside business hours, meetings must be teleconferenced.
 * Constraint 4: Outside business hours, meetings must not exceed 30 minutes.
 
-Solving such a CSP means finding meetings that meet all the constraints.
+Solving such a CSP means finding arrangements of meetings that meet all the
+constraints.
 
 The purpose of this example is to help a new user to formulate a constraint
 satisfaction problem using Ocean tools and solve it on a D-Wave quantum computer.
@@ -43,26 +44,45 @@ Solution Steps
   :start-after: example-steps-start-marker
   :end-before: example-steps-end-marker
 
-This example creates a :term:`binary quadratic model` (BQM) based on
-:ref:`penalties <penalty_sdk>` to represent the problem's constraints.
+This example represents the problem's constraints as :ref:`penalties <penalty_sdk>`
+(small :ref:`bqm_sdk`\ s that have higher values for variable assignments that
+violate constraints) and creates an :term:`objective function` by summing all
+four penalty models. Solvers that seek low-energy states are thus less likely to
+return meeting arrangements that violate constraints.
 
 Formulate the Problem
 =====================
 
 D-Wave quantum computers solve binary quadratic models, so the first step is to
-express the problem with binary variables.
+express the problem with binary variables (this example uses
+:math:`\{0, 1\}`\ --valued binary variables):
 
-* Time of day is represented by binary variable :math:`t` with value :math:`1`
-  for business hours and :math:`0` for hours outside the business day.
-* Venue is represented by binary variable :math:`v` with value :math:`1` for
-  office and :math:`0` for teleconference.
-* Meeting length is represented by variable :math:`l` with value :math:`1` for
-  short meetings (under 30 minutes) and :math:`0` for meetings of longer duration.
-* Participation is represented by variable :math:`m` with value :math:`1` for
-  mandatory participation and :math:`0` for optional participation.
+.. list-table:: Problem Variables
+   :header-rows: 1
+
+   * - **Variable**
+     - **Represents**
+     - **Value: 1**
+     - **Value: 0**
+   * - :math:`t`
+     - Time of day
+     - Business hours
+     - Non-business hours
+   * - :math:`v`
+     - Venue
+     - Office
+     - Teleconference
+   * - :math:`l`
+     - Length
+     - Short (< 30 min)
+     - Long
+   * - :math:`p`
+     - Participation
+     - Mandatory
+     - Optional
 
 .. note:: A slightly more complex problem might require variables with multiple
-   values; for example, :code:`length` could have values :code:`{30, 60, 120}`
+   values; for example, :code:`l` could have values :code:`{30, 60, 120}`
    representing the duration in minutes of meetings of several lengths. For such
    problems a :term:`discrete quadratic model` (DQM) could be a better choice.
 
@@ -104,15 +124,15 @@ find solutions that meet all the constraints.
 Represent Constraints as Penalties
 ----------------------------------
 
-You can represent each constraint as a BQM using :ref:`penalty_sdk`. This example
-uses binary (:math:`\{0, 1\}`\ --valued) variables as follows:
+You can represent constraints as a BQMs using :ref:`penalty_sdk` in many
+different ways.
 
 * Constraint 1: During business hours, all meetings must be attended in person
   at the office.
 
   This constraint requires that if :math:`t=1` (time of day is within
   business hours) then :math:`v = 1` (venue is the office). A simple
-  penalty function is :math:`t-tv`, as shown in the truth table below:
+  penalty function, :math:`t-tv`, is shown in the truth table below:
 
   .. list-table:: Constraint 1: :math:`t-tv`
      :header-rows: 1
@@ -133,16 +153,18 @@ uses binary (:math:`\{0, 1\}`\ --valued) variables as follows:
        - 1
        - 0
 
-  Penalty function :math:`t-tv` sets a penalty of 1 when :math:`t=1 \; \& \; v=0`, for
-  a meeting outside the office during business hours. When incorporated in an
-  objective function, solutions that violate :math:`t=1 \rightarrow v=1` do not
-  have yield minimal values.
+  Penalty function :math:`t-tv` sets a penalty of 1 for the the case
+  :math:`t=1 \; \& \; v=0`, representing a meeting outside the office during
+  business hours, which violates constraint 1. When incorporated in an
+  objective function, solutions that violate constraint 1 do not yield minimal
+  values.
 
   .. note:: One way to derive such a penalty function is to start with the
-    simple case of a Boolean operator: to penalize :math:`a=b=1` you could use
-    the AND constraint :math:`ab`. To penalize :math:`a=1, b=0`, you need
-    :math:`a \overline{b}`. For :math:`\{0, 1\}`\ --valued variables,
-    :math:`\overline{b} = 1-b` so you get :math:`a \overline{b} = a(1-b) = a - ab`.
+    simple case of a Boolean operator: the AND constraint, :math:`ab`, penalizes
+    variable values :math:`a=b=1`. To penalize :math:`a=1, b=0`, you need the
+    penalty function :math:`a \overline{b}`. For :math:`\{0, 1\}`\ --valued variables,
+    you can substitute :math:`\overline{b} = 1-b` into the penalty and get
+    :math:`a \overline{b} = a(1-b) = a - ab`.
     For more information on formulating such constraints, see the
     :std:doc:`D-Wave Problem-Solving Handbook <sysdocs_gettingstarted:doc_handbook>`
     guide.
@@ -150,8 +172,8 @@ uses binary (:math:`\{0, 1\}`\ --valued) variables as follows:
 * Constraint 2: During business hours, participation in meetings is mandatory.
 
   This constraint requires that if :math:`t=1` (time of day is within
-  business hours) then :math:`m=1` (participation is mandatory). A penalty
-  function is :math:`t-tm`, analogous to constraint 1.
+  business hours) then :math:`p=1` (participation is mandatory). A penalty
+  function is :math:`t-tp`, analogous to constraint 1.
 
 * Constraint 3: Outside business hours, meetings must be teleconferenced.
 
@@ -166,7 +188,7 @@ uses binary (:math:`\{0, 1\}`\ --valued) variables as follows:
   A simple penalty function is :math:`1+tl-t-l`, as shown in the truth
   table below:
 
-  .. list-table:: Constraint 1: :math:`1+tl-t-l`
+  .. list-table:: Constraint 4: :math:`1+tl-t-l`
      :header-rows: 1
 
      * - :math:`t`
@@ -185,40 +207,28 @@ uses binary (:math:`\{0, 1\}`\ --valued) variables as follows:
        - 1
        - 0
 
-  Penalty function :math:`1+tl-t-l` sets a penalty of 1 when :math:`t=0 \; \& \; l=0`,
-  for a lengthy meeting outside business hours. When incorporated in an
-  objective function, solutions that violate :math:`t=0 \rightarrow l=1` do not
-  have yield minimal values.
+  Penalty function :math:`1+tl-t-l` sets a penalty of 1 for the the case
+  :math:`t=0 \; \& \; l=0`, representing a lengthy meeting outside business hours,
+  which violates constraint 4. When incorporated in an objective function,
+  solutions that violate constraint 4 do not yield minimal values.
 
 Create a BQM
 ------------
 
-The total penalty for all four constraints is :math:`t-tv + t-tm + v-tv + 1+tl-t-l`.
+The total penalty for all four constraints is
+
+.. math::
+
+  t-tv + t-tp + v-tv + 1+tl-t-l
+  = -2tv -tp +tl +t +v -l
 
 Ocean's :doc:`dimod </docs_dimod/sdk_index>` enables the creation of BQMs.
 
-The next code lines create a constraint from this function and adds it to CSP instance,
-:code:`csp`, instantiated with binary variables.
-
->>> import dwavebinarycsp
->>> csp = dwavebinarycsp.ConstraintSatisfactionProblem(dwavebinarycsp.BINARY)
->>> csp.add_constraint(scheduling, ['time', 'location', 'length', 'mandatory'])
-
-This tool, :doc:`dwavebinarycsp </docs_binarycsp/sdk_index>`, can also convert the binary CSP to a BQM.
-The following code does so and the graph below
-provides a view on the BQM's linear and quadratic coefficients, :math:`q_i` and :math:`q_{i,j}` respectively
-in :math:`\sum_i^N q_ix_i + \sum_{i<j}^N q_{i,j}x_i  x_j`, which are the inputs for programming
-the quantum computer.
-
->>> bqm = dwavebinarycsp.stitch(csp)
-
-.. figure:: ../_images/scheduling_bqm_heatmap.png
-   :name: schedulingBqmHeatmap
-   :alt: image
-   :align: center
-   :scale: 50 %
-
-   A heatmap of the BQM, with darker colors for higher linear (node color) and quadratic (edge color) values. You can see the values simply by using the :code:`print(bqm)` command.
+>>> from dimod import BinaryQuadraticModel
+>>> bqm = BinaryQuadraticModel({'t': 1, 'v': 1, 'l': -1},
+...                            {'tv': -2, 'tl': 1, 'tp': -1},
+...                            1,
+...                            'BINARY')
 
 
 Solve the Problem by Sampling
