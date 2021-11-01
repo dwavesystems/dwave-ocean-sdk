@@ -220,7 +220,7 @@ The total penalty for all four constraints is
 .. math::
 
   t-tv + t-tp + v-tv + 1+tl-t-l
-  = -2tv -tp +tl +t +v -l
+  = -2tv -tp +tl +t +v -l +1
 
 Ocean's :doc:`dimod </docs_dimod/sdk_index>` enables the creation of BQMs.
 
@@ -248,43 +248,46 @@ returns the BQM's value (energy) for every possible assignment of variable value
 
 >>> from dimod.reference.samplers import ExactSolver
 >>> sampler = ExactSolver()
->>> solution = sampler.sample(bqm)
+>>> sampleset = sampler.sample(bqm)
 
-Valid solutions---assignments of variables that do not violate any constraint---should
-have the lowest value of the BQM:
+Valid solutions---assignments of variables that do not violate constraints---have
+the lowest value of the BQM (values of zero in the :code:`energy` field below):
 
-.. figure:: ../_images/scheduling_solution_exact.png
-   :name: schedulingSolutionExact
-   :alt: image
-   :align: center
-   :scale: 70 %
+>>> print(sampleset)
+    l  p  t  v energy num_oc.
+7   1  0  0  0    0.0       1
+8   1  1  0  0    0.0       1
+10  1  1  1  1    0.0       1
+13  0  1  1  1    0.0       1
+0   0  0  0  0    1.0       1
+2   0  0  1  1    1.0       1
+4   1  0  0  1    1.0       1
+5   1  0  1  1    1.0       1
+9   1  1  1  0    1.0       1
+11  1  1  0  1    1.0       1
+14  0  1  1  0    1.0       1
+15  0  1  0  0    1.0       1
+1   0  0  1  0    2.0       1
+3   0  0  0  1    2.0       1
+6   1  0  1  0    2.0       1
+12  0  1  0  1    2.0       1
+['BINARY', 16 rows, 16 samples, 4 variables]
 
-   Energy of all 16 possible configurations. You can see the values simply by using the :code:`print(solution)` command.
+The code below prints all those solutions (assignments of variables) for which the
+BQM has its minimum value.
 
-The code below prints all those solutions (assignments of variables) for which the BQM has
-its minimum value\ [#]_\ .
-
->>> from math import isclose
->>> min_energy = solution.record.energy.min()
->>> for sample, energy in solution.data(['sample', 'energy']):    # doctest: +SKIP
-...     if isclose(energy, min_energy, abs_tol=1.0):
-...         time = 'business hours' if sample['time'] else 'evenings'
-...         location = 'office' if sample['location'] else 'home'
-...         length = 'short' if sample['length'] else 'long'
-...         mandatory = 'mandatory' if sample['mandatory'] else 'optional'
+>>> for sample, energy in sampleset.data(['sample', 'energy']):
+...     if energy==0:
+...         time = 'business hours' if sample['t'] else 'evenings'
+...         location = 'office' if sample['v'] else 'home'
+...         length = 'short' if sample['l'] else 'long'
+...         mandatory = 'mandatory' if sample['p'] else 'optional'
 ...         print("During {} at {}, you can schedule a {} meeting that is {}".format(time, location, length, mandatory))
 ...
 During evenings at home, you can schedule a short meeting that is optional
 During evenings at home, you can schedule a short meeting that is mandatory
 During business hours at office, you can schedule a short meeting that is mandatory
 During business hours at office, you can schedule a long meeting that is mandatory
-
-.. [#] Because it compares float values, this code uses the standard :code:`isclose`
-   function to find values that are approximately equal. A small tolerance is needed
-   to overcome rounding errors but for simplicity a value of :code:`abs_tol=1.0` is used
-   because by default the :func:`~dwavebinarycsp.dwavebinarycsp.compilers.stitcher.stich` function increases the
-   energy of solutions that violate one constraint by :code:`min_classical_gap=2.0`.
-
 
 Solving on a D-Wave Quantum Computer
 ------------------------------------
