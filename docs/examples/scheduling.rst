@@ -58,6 +58,7 @@ express the problem with binary variables (this example uses
 :math:`\{0, 1\}`\ --valued binary variables):
 
 .. list-table:: Problem Variables
+   :widths: 15 25 25 35
    :header-rows: 1
 
    * - **Variable**
@@ -220,16 +221,19 @@ The total penalty for all four constraints is
 .. math::
 
   t-tv + t-tp + v-tv + 1+tl-t-l
+
   = -2tv -tp +tl +t +v -l +1
 
-Ocean's :doc:`dimod </docs_dimod/sdk_index>` enables the creation of BQMs.
+Ocean's :doc:`dimod </docs_dimod/sdk_index>` enables the creation of BQMs. Below,
+the first list of terms are the linear terms and the second are the quadratic terms;
+the offset is set to 1; and the variable type is set to use
+:math:`\{0, 1\}`\ --valued binary variables.
 
 >>> from dimod import BinaryQuadraticModel
 >>> bqm = BinaryQuadraticModel({'t': 1, 'v': 1, 'l': -1},
 ...                            {'tv': -2, 'tl': 1, 'tp': -1},
 ...                            1,
 ...                            'BINARY')
-
 
 Solve the Problem by Sampling
 =============================
@@ -253,25 +257,13 @@ returns the BQM's value (energy) for every possible assignment of variable value
 Valid solutions---assignments of variables that do not violate constraints---have
 the lowest value of the BQM (values of zero in the :code:`energy` field below):
 
->>> print(sampleset)
-    l  p  t  v energy num_oc.
-7   1  0  0  0    0.0       1
-8   1  1  0  0    0.0       1
-10  1  1  1  1    0.0       1
-13  0  1  1  1    0.0       1
-0   0  0  0  0    1.0       1
-2   0  0  1  1    1.0       1
-4   1  0  0  1    1.0       1
-5   1  0  1  1    1.0       1
-9   1  1  1  0    1.0       1
-11  1  1  0  1    1.0       1
-14  0  1  1  0    1.0       1
-15  0  1  0  0    1.0       1
-1   0  0  1  0    2.0       1
-3   0  0  0  1    2.0       1
-6   1  0  1  0    2.0       1
-12  0  1  0  1    2.0       1
-['BINARY', 16 rows, 16 samples, 4 variables]
+>>> print(sampleset.lowest(atol=.5))
+   l  p  t  v energy num_oc.
+0  1  0  0  0    0.0       1
+1  1  1  0  0    0.0       1
+2  1  1  1  1    0.0       1
+3  0  1  1  1    0.0       1
+['BINARY', 4 rows, 4 samples, 4 variables]
 
 The code below prints all those solutions (assignments of variables) for which the
 BQM has its minimum value.
@@ -279,11 +271,10 @@ BQM has its minimum value.
 >>> for sample, energy in sampleset.data(['sample', 'energy']):
 ...     if energy==0:
 ...         time = 'business hours' if sample['t'] else 'evenings'
-...         location = 'office' if sample['v'] else 'home'
+...         venue = 'office' if sample['v'] else 'home'
 ...         length = 'short' if sample['l'] else 'long'
-...         mandatory = 'mandatory' if sample['p'] else 'optional'
-...         print("During {} at {}, you can schedule a {} meeting that is {}".format(time, location, length, mandatory))
-...
+...         participation = 'mandatory' if sample['p'] else 'optional'
+...         print("During {} at {}, you can schedule a {} meeting that is {}".format(time, venue, length, participation))
 During evenings at home, you can schedule a short meeting that is optional
 During evenings at home, you can schedule a short meeting that is mandatory
 During business hours at office, you can schedule a short meeting that is mandatory
@@ -294,10 +285,11 @@ Solving on a D-Wave Quantum Computer
 
 Now solve on a D-Wave system using sampler :class:`~dwave.system.samplers.DWaveSampler`
 from Ocean software's :doc:`dwave-system </docs_system/sdk_index>`. Also use
-its :class:`~dwave.system.composites.EmbeddingComposite` composite to map our unstructured
-problem (variables such as :code:`time` etc.) to the sampler's graph structure (the QPU's numerically
-indexed qubits) in a process known as :term:`minor-embedding`. The next code sets up
-a D-Wave quantum computer as the sampler.
+its :class:`~dwave.system.composites.EmbeddingComposite` composite to map your
+unstructured problem (variables such as :code:`t` etc.) to the sampler's graph
+structure (the QPU's numerically indexed qubits) in a process known as
+:term:`minor-embedding`. The next code sets up a D-Wave quantum computer as the
+sampler.
 
 .. include:: min_vertex.rst
    :start-after: default-config-start-marker
@@ -316,22 +308,13 @@ suboptimal answer. Below, ask for 5000 samples.
 The code below prints all those solutions (assignments of variables) for which the BQM has
 its minimum value and the number of times it was found.
 
->>> total = 0
-... for sample, energy, occurrences in sampleset.data(['sample', 'energy', 'num_occurrences']):  # doctest: +SKIP
-...     total = total + occurrences
-...     if isclose(energy, min_energy, abs_tol=1.0):
-...         time = 'business hours' if sample['time'] else 'evenings'
-...         location = 'office' if sample['location'] else 'home'
-...         length = 'short' if sample['length'] else 'long'
-...         mandatory = 'mandatory' if sample['mandatory'] else 'optional'
-...         print("{}: During {} at {}, you can schedule a {} meeting that is {}".format(occurrences, time, location, length, mandatory))
-... print("Total occurrences: ", total)
-...
-1676: During business hours at office, you can schedule a long meeting that is mandatory
-1229: During business hours at office, you can schedule a short meeting that is mandatory
-1194: During evenings at home, you can schedule a short meeting that is optional
-898: During evenings at home, you can schedule a short meeting that is mandatory
-Total occurrences:  5000
+>>> print(sampleset.lowest(atol=.5))                     # doctest: +SKIP
+   l  p  t  v energy num_oc. chain_.
+0  1  0  0  0    0.0    1238     0.0
+1  0  1  1  1    0.0    1255     0.0
+2  1  1  0  0    0.0    1212     0.0
+3  1  1  1  1    0.0    1290     0.0
+['BINARY', 4 rows, 4995 samples, 4 variables]
 
 Summary
 =======
