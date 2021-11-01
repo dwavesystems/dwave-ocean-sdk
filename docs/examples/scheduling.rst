@@ -88,7 +88,7 @@ express the problem with binary variables (this example uses
    problems a :term:`discrete quadratic model` (DQM) could be a better choice.
 
    In general, problems with constraints are more simply solved using a
-   :term:`constrained quadratic model` (CQM) and appropriate hybrid CQM solver, as
+   :ref:`constrained quadratic model <cqm_sdk>` (CQM) and appropriate hybrid CQM solver, as
    demonstrated in the :ref:`example_cqm_binpacking` and
    :ref:`example_cqm_stock_selling` examples; however, the purpose of this example
    is to demonstrate solution directly on a D-Wave quantum computer.
