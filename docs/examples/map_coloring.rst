@@ -11,8 +11,8 @@ the example of :ref:`scheduling`.
 
 Constraint satisfaction problems require that all a problem's variables be assigned
 values, out of a finite domain, that result in the satisfying of all constraints.
-The map-coloring CSP, for example, is to assign a color to each region of a map such that
-any two regions sharing a border have different colors.
+The map-coloring CSP, for example, is to assign a color to each region of a map
+such that any two regions sharing a border have different colors.
 
 .. figure:: ../_images/Problem_MapColoring.png
    :name: Problem_MapColoring
@@ -35,7 +35,7 @@ To run the code in this example, the following is required.
 * The requisite information for problem submission through SAPI, as described in
   :ref:`sapi_access`\ .
 * Ocean tools
-  :doc:`dwavebinarycsp </docs_binarycsp/sdk_index>` and
+  :doc:`dimod </docs_dimod/sdk_index>` and
   :doc:`dwave-system </docs_system/sdk_index>`. For graphics,
   you will also need `NetworkX <https://networkx.org>`_.
 
@@ -56,13 +56,33 @@ by :math:`C` variables, one for each possible color, which is set to value
 :math:`1` if selected, while the remaining :math:`C-1` variables are :math:`0`.
 It then solves the BQM on a D-Wave quantum computer.
 
+
+This example represents the problem's constraints as :ref:`penalties <penalty_sdk>`
+and creates an :term:`objective function` by summing all penalty models.
+
+.. note:: This problem can be expressed more simply using variables with multiple
+   values; for example, provinces could have values 
+   :code:`{yellow, green, blue, red}` instead of four binary variables for the
+   four colors. For such problems a :term:`discrete quadratic model` (DQM) is a
+   better choice.
+
+   In general, problems with constraints are more simply solved using a
+   :ref:`constrained quadratic model <cqm_sdk>` (CQM) and appropriate hybrid CQM
+   solver, as demonstrated in the :ref:`example_cqm_binpacking` and
+   :ref:`example_cqm_stock_selling` examples; however, the purpose of this example
+   is to demonstrate solution directly on a D-Wave quantum computer.
+
 The full workflow is as follows:
 
-#. Formulate the problem as a graph, with provinces represented as nodes and shared borders as edges,
-   using 4 binary variables (one per color) for each province.
-#. Create a binary constraint satisfaction problem and add all the needed constraints.
-#. Convert to a binary quadratic model.
-#. Sample.
+#. Formulate the problem as a graph, with provinces represented as nodes and
+   shared borders as edges, using 4 binary variables (one per color) for each
+   province.
+#. Create one-hot penalties for each node to enforce the constraint that each
+   province is assigned one color only.
+#. Create penalties for each edge to enforce the constraint that no two neighbors
+   have the same color.
+#. Add all the constraints into a single BQM.
+#. Sample the BQM.
 #. Plot a valid solution.
 
 Four-Color Canadian Map
