@@ -61,7 +61,7 @@ This example represents the problem's constraints as :ref:`penalties <penalty_sd
 and creates an :term:`objective function` by summing all penalty models.
 
 .. note:: This problem can be expressed more simply using variables with multiple
-   values; for example, provinces could have values 
+   values; for example, provinces could have values
    :code:`{yellow, green, blue, red}` instead of four binary variables for the
    four colors. For such problems a :term:`discrete quadratic model` (DQM) is a
    better choice.
@@ -138,21 +138,20 @@ colors or use different maps). Canada's 13 provinces are denoted by postal codes
 .. note:: You can skip directly to the complete code for the problem here:
     :ref:`map_coloring_full_code`.
 
-The example uses the
-:doc:`D-Wave binary CSP tool </docs_binarycsp/sdk_index>`
-to set up constraints and convert the CSP to a binary quadratic model,
-:doc:`dwave-system </docs_system/sdk_index>` to set up a D-Wave
-system as the :term:`sampler`, and `NetworkX <https://networkx.org>`_ to
-plot results.
+The example uses :doc:`dimod </docs_dimod/sdk_index>` to set up penalties and
+create a binary quadratic model, :doc:`dwave-system </docs_system/sdk_index>` to
+set up a D-Wave quantum computer as the :term:`sampler`, and
+`NetworkX <https://networkx.org>`_ to plot results.
 
->>> import dwavebinarycsp
->>> from dwave.system import DWaveSampler, EmbeddingComposite
 >>> import networkx as nx
 >>> import matplotlib.pyplot as plt    # doctest: +SKIP
+>>> from dimod.generators import combinations
+>>> from dimod import BinaryQuadraticModel
+>>> from dwave.system import DWaveSampler, EmbeddingComposite
 
-Start by formulating the problem as a graph of the map with provinces as nodes and
-shared borders between provinces as edges (e.g., "('AB', 'BC')" is an edge representing
-the shared border between British Columbia and Alberta).
+Start by formulating the problem as a graph of the map with provinces as nodes
+and shared borders between provinces as edges (e.g., "('AB', 'BC')" is an edge
+representing the shared border between British Columbia and Alberta).
 
 >>> # Represent the map as the nodes and edges of a graph
 >>> provinces = ['AB', 'BC', 'MB', 'NB', 'NL', 'NS', 'NT', 'NU', 'ON', 'PE',
@@ -161,39 +160,43 @@ the shared border between British Columbia and Alberta).
 ...              ('MB', 'NU'), ('MB', 'ON'), ('MB', 'SK'), ('NB', 'NS'), ('NB', 'QC'),
 ...              ('NL', 'QC'), ('NT', 'NU'), ('NT', 'SK'), ('NT', 'YT'), ('ON', 'QC')]
 
-Create a binary constraint satisfaction problem based on two types of constraints,
-where `csp` is the
-:doc:`dwavebinarycsp </docs_binarycsp/sdk_index>` CSP object:
+You can set four arbitrary colors. The strings used below are recognized by
+the `Matplotlib <https://matplotlib.org>`_ graphics library to represent colors
+yellow, green, red, blue respectively.
 
-* :code:`csp.add_constraint(one_color_configurations, variables)` represents the constraint
-  that each node (province) select a single color, as represented by valid configurations
-  :code:`one_color_configurations = {(0, 0, 0, 1), (0, 0, 1, 0), (0, 1, 0, 0), (1, 0, 0, 0)}`
-* :code:`csp.add_constraint(not_both_1, variables)` represents the constraint that
-  two nodes (provinces) with a shared edge (border) not both select the same color.
+>>> colors = ['y', 'g', 'r', 'b']
 
->>> # Function for the constraint that two nodes with a shared edge not both select
->>> # one color
->>> def not_both_1(v, u):
-...    return not (v and u)
-...
->>> # Valid configurations for the constraint that each node select a single color
->>> one_color_configurations = {(0, 0, 0, 1), (0, 0, 1, 0), (0, 1, 0, 0), (1, 0, 0, 0)}
->>> colors = len(one_color_configurations)
-...
->>> # Create a binary constraint satisfaction problem
->>> csp = dwavebinarycsp.ConstraintSatisfactionProblem(dwavebinarycsp.BINARY)
-...
+Represent the binary constraint satisfaction problem with a BQM that models two
+constraint using penalty models:
+
+* :code:`bqm_one_hot` represents the constraint that each node (province) select
+  a single color as a `one-hot <https://en.wikipedia.org/wiki/One-hot>`_ penalty
+  model.
+* :code:`bqm_neighbors` represents the constraint that two nodes (provinces) with
+  a shared edge (border) not both select the same color.
+
 >>> # Add constraint that each node (province) select a single color
+>>> bqm_one_hot = BinaryQuadraticModel('BINARY')
 >>> for province in provinces:
-...    variables = [province+str(i) for i in range(colors)]
-...    csp.add_constraint(one_color_configurations, variables)
-...
->>> # Add constraint that each pair of nodes with a shared edge not both select one color
+...   variables = [province + "_" + c for c in colors]
+...   bqm_one_hot.update(combinations(variables, 1))
+
+You can see the binary variables created for one province, Alberta ("AB"):
+
+>>> print([variable for variable in bqm_one_hot.variables if provinces[0] in variable])
+['AB_y', 'AB_g', 'AB_r', 'AB_b']
+
+Similar variables are created for each of the provinces.
+
+>>> # Add constraint that pairs of nodes with shared edges not select one color
+>>> bqm_neighbors  = BinaryQuadraticModel('BINARY')
 >>> for neighbor in neighbors:
-...    v, u = neighbor
-...    for i in range(colors):
-...       variables = [v+str(i), u+str(i)]
-...       csp.add_constraint(not_both_1, variables)
+...   v, u = neighbor
+...   interactions = [(v + "_" + c, u + "_" + c) for c in colors]
+...   for interaction in interactions:
+...      bqm_neighbors.add_quadratic(interaction[0], interaction[1], 1)
+
+>>> bqm = bqm_one_hot + bqm_neighbors
 
 Convert the CSP into a binary quadratic model so it can be solved on the D-Wave
 system.
