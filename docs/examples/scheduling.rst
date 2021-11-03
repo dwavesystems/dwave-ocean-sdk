@@ -125,7 +125,7 @@ find solutions that meet all the constraints.
 Represent Constraints as Penalties
 ----------------------------------
 
-You can represent constraints as a BQMs using :ref:`penalty_sdk` in many
+You can represent constraints as BQMs using :ref:`penalty_sdk` in many
 different ways.
 
 * Constraint 1: During business hours, all meetings must be attended in person

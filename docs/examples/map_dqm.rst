@@ -9,7 +9,7 @@ demonstrate `Leap <https://cloud.dwavesys.com/leap/>`_\ 's hybrid discrete
 quadratic model (:term:`DQM`) solver, which enables you to solve problems
 of arbitrary structure and size for variables with **discrete** values.
 
-See :ref:`map_kerberos` for an description of the map coloring
+See :ref:`map_kerberos` for a description of the map coloring
 :doc:`constraint satisfaction problem </concepts/csp>` (CSP).
 
 The :ref:`map_coloring` advanced example demonstrates lower-level coding of a similar
@@ -48,7 +48,7 @@ Solution Steps
   :start-after: example-steps-start-marker
   :end-before: example-steps-end-marker
 
-In this example, a DQM is created to formulate the problem and submitted to the 
+In this example, a DQM is created to formulate the problem and submitted to the
 `Leap <https://cloud.dwavesys.com/leap/>`_ hybrid DQM solver,
 ``hybrid_binary_quadratic_model_version<x>``.
 
@@ -84,7 +84,7 @@ Graph G now represents states as vertices and each state's neighbors as shared e
 >>> states = G.nodes        # doctest: +SKIP
 >>> borders = G.edges       # doctest: +SKIP
 
-You can now create a :class:`dimod.DiscreteQuadraticModel` class to represent
+You can now create a :class:`dimod.DiscreteQuadraticModel` object to represent
 the problem. Because any planar map can be colored with four colors or fewer,
 represent each state with a discrete variable that has four *cases* (binary
 variables can have two values; discrete variables can have some arbitrary
