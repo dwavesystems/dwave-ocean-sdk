@@ -85,8 +85,8 @@ The full workflow is as follows:
 #. Sample the BQM.
 #. Plot a valid solution.
 
-Four-Color Canadian Map
-=======================
+Formulate the Problem
+=====================
 
 This example finds a solution to the map-coloring problem for a map of Canada
 using four colors (the sample code can easily be modified to change the number of
@@ -146,7 +146,7 @@ set up a D-Wave quantum computer as the :term:`sampler`, and
 >>> import networkx as nx
 >>> import matplotlib.pyplot as plt    # doctest: +SKIP
 >>> from dimod.generators import combinations
->>> from dimod import BinaryQuadraticModel
+>>> from dimod import BinaryQuadraticModel, ExactSolver
 >>> from dwave.system import DWaveSampler, EmbeddingComposite
 
 Start by formulating the problem as a graph of the map with provinces as nodes
@@ -166,12 +166,29 @@ yellow, green, red, blue respectively.
 
 >>> colors = ['y', 'g', 'r', 'b']
 
-Represent the binary constraint satisfaction problem with a BQM that models two
-constraint using penalty models:
+Represent the binary constraint satisfaction problem with a BQM that models the
+constraints using :ref:`penalty models <penalty_sdk>`:
 
 * :code:`bqm_one_hot` represents the constraint that each node (province) select
   a single color as a `one-hot <https://en.wikipedia.org/wiki/One-hot>`_ penalty
   model.
+
+  The following illustrative example shows a one-hot constraint on two variables,
+  represented by the penalty model, :math:`2ab - a - b`. You can easily verify
+  that the ground states (solutions with lowest values, zero in this case) are
+  for variable assignments with a single variable having a value of 1.
+
+  >>> bqm_one_hot = combinations(['a', 'b'], 1)
+  >>> print(bqm_one_hot)
+  BinaryQuadraticModel({'a': -1.0, 'b': -1.0}, {('b', 'a'): 2.0}, 1.0, 'BINARY')
+  >>> print(ExactSolver().sample(bqm_one_hot))
+     a  b energy num_oc.
+  1  1  0    0.0       1
+  3  0  1    0.0       1
+  0  0  0    1.0       1
+  2  1  1    1.0       1
+  ['BINARY', 4 rows, 4 samples, 2 variables]
+  
 * :code:`bqm_neighbors` represents the constraint that two nodes (provinces) with
   a shared edge (border) not both select the same color.
 
