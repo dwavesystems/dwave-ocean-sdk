@@ -153,7 +153,6 @@ Start by formulating the problem as a graph of the map with provinces as nodes
 and shared borders between provinces as edges (e.g., "('AB', 'BC')" is an edge
 representing the shared border between British Columbia and Alberta).
 
->>> # Represent the map as the nodes and edges of a graph
 >>> provinces = ['AB', 'BC', 'MB', 'NB', 'NL', 'NS', 'NT', 'NU', 'ON', 'PE',
 ...              'QC', 'SK', 'YT']
 >>> neighbors = [('AB', 'BC'), ('AB', 'NT'), ('AB', 'SK'), ('BC', 'NT'), ('BC', 'YT'),
@@ -167,11 +166,16 @@ yellow, green, red, blue respectively.
 >>> colors = ['y', 'g', 'r', 'b']
 
 Represent the binary constraint satisfaction problem with a BQM that models the
-constraints using :ref:`penalty models <penalty_sdk>`:
+two types of constraints using :ref:`penalty models <penalty_sdk>`.
 
-* :code:`bqm_one_hot` represents the constraint that each node (province) select
-  a single color as a `one-hot <https://en.wikipedia.org/wiki/One-hot>`_ penalty
-  model.
+Constraint 1: One Color Per Region
+----------------------------------
+
+In the code below, :code:`bqm_one_hot` represents the constraint that each node
+(province) select a single color as a `one-hot <https://en.wikipedia.org/wiki/One-hot>`_
+penalty model.
+
+.. note::
 
   The following illustrative example shows a one-hot constraint on two variables,
   represented by the penalty model, :math:`2ab - a - b`. You can easily verify
@@ -188,24 +192,59 @@ constraints using :ref:`penalty models <penalty_sdk>`:
   0  0  0    1.0       1
   2  1  1    1.0       1
   ['BINARY', 4 rows, 4 samples, 2 variables]
-  
-* :code:`bqm_neighbors` represents the constraint that two nodes (provinces) with
-  a shared edge (border) not both select the same color.
 
->>> # Add constraint that each node (province) select a single color
 >>> bqm_one_hot = BinaryQuadraticModel('BINARY')
 >>> for province in provinces:
 ...   variables = [province + "_" + c for c in colors]
 ...   bqm_one_hot.update(combinations(variables, 1))
 
-You can see the binary variables created for one province, Alberta ("AB"):
+As in the illustrative example above, the binary variables created for each
+province set linear biases of -1 and quadratic biases of 2 that penalize states
+where more than a single color is selected.
 
 >>> print([variable for variable in bqm_one_hot.variables if provinces[0] in variable])
 ['AB_y', 'AB_g', 'AB_r', 'AB_b']
+>>> print(bqm_one_hot.linear['AB_y'], bqm_one_hot.quadratic['AB_y', 'AB_g'])
+-1.0 2.0
 
-Similar variables are created for each of the provinces.
+Constraint 2: Different Colors for Adjacent Regions
+---------------------------------------------------
 
->>> # Add constraint that pairs of nodes with shared edges not select one color
+In the code below, :code:`bqm_neighbors` represents the constraint that two nodes
+(provinces) with a shared edge (border) not both select the same color.
+
+.. hint::
+
+  The following illustrative example shows an AND constraint on two variables,
+  represented by the penalty model, :math:`-ab`. You can easily verify
+  that the ground states (solutions with lowest values, zero in this case) are
+  for variable assignment :math:`a = b = 1`.
+
+  >>> bqm_and = BinaryQuadraticModel({}, {'ab': -1}, 1, 'BINARY')
+  >>> print(ExactSolver().sample(bqm_and))
+     a  b energy num_oc.
+  2  1  1    0.0       1
+  0  0  0    1.0       1
+  1  1  0    1.0       1
+  3  0  1    1.0       1
+  ['BINARY', 4 rows, 4 samples, 2 variables]
+
+  Switching the sign of the quadratic coefficient to :math:`+1` penalizes
+  variable assignment :math:`a = b = 1`.
+
+  >>> bqm_and_plus = BinaryQuadraticModel({}, {'ab': 1}, 0, 'BINARY')
+  >>> print(ExactSolver().sample(bqm_and_plus))
+     a  b energy num_oc.
+  0  0  0    0.0       1
+  1  1  0    0.0       1
+  3  0  1    0.0       1
+  2  1  1    1.0       1
+  ['BINARY', 4 rows, 4 samples, 2 variables]
+
+The code below sets quadratic coefficients to :math:`+1` for interactions between
+neighboring provinces' variables representing the same color, for example
+:code:`AB_y` and :code:`BC_y` (yellow for Alberta and British Columbia).
+
 >>> bqm_neighbors  = BinaryQuadraticModel('BINARY')
 >>> for neighbor in neighbors:
 ...   v, u = neighbor
@@ -213,12 +252,13 @@ Similar variables are created for each of the provinces.
 ...   for interaction in interactions:
 ...      bqm_neighbors.add_quadratic(interaction[0], interaction[1], 1)
 
+Create a BQM for the Problem
+----------------------------
+
 >>> bqm = bqm_one_hot + bqm_neighbors
 
-Convert the CSP into a binary quadratic model so it can be solved on the D-Wave
-system.
-
->>> bqm = dwavebinarycsp.stitch(csp)
+Sample the BQM
+--------------
 
 The next code sets up a D-Wave system as the sampler and requests 1000 samples.
 
@@ -240,7 +280,8 @@ The next code sets up a D-Wave system as the sampler and requests 1000 samples.
 
 .. note:: The next code requires `Matplotlib <https://matplotlib.org>`_\ .
 
-Plot a valid solution.
+Plot a Valid Solution
+---------------------
 
 .. code-block:: python
 
