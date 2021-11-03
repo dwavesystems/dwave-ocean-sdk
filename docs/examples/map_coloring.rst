@@ -270,23 +270,23 @@ a simple sum of the BQMs representing the constraints.
 Sample the BQM
 --------------
 
-The next code sets up a D-Wave system as the sampler and requests 1000 samples.
+Set up a D-Wave quantum computer as the sampler and request 1000 samples.
 
 .. include:: min_vertex.rst
    :start-after: default-config-start-marker
    :end-before: default-config-end-marker
 
->>> # Sample 1000 times
 >>> sampler = EmbeddingComposite(DWaveSampler())       # doctest: +SKIP
 >>> sampleset = sampler.sample(bqm, num_reads=1000,
 ...                            label='SDK Examples - Map Coloring BQM') # doctest: +SKIP
 ...
->>> # Check that a good solution was found
->>> sample = sampleset.first.sample     # doctest: +SKIP
->>> if not csp.check(sample):           # doctest: +SKIP
-...    print("Failed to color map. Try sampling again.")
-... else:
-...    print(sample)
+>>> best = sampleset.first     # doctest: +SKIP
+
+Verify that the quantum computer found a feasible solution (a solution that meets
+all the constraints).
+
+>>> if best.energy > 0:
+...     print("Failed to color map. Try sampling again.")
 
 .. note:: The next code requires `Matplotlib <https://matplotlib.org>`_\ .
 
@@ -295,26 +295,25 @@ Plot a Valid Solution
 
 .. code-block:: python
 
-    # Function that plots a returned sample
     def plot_map(sample):
         G = nx.Graph()
         G.add_nodes_from(provinces)
         G.add_edges_from(neighbors)
-        # Translate from binary to integer color representation
+        # Create a {province: selected color} dict
         color_map = {}
         for province in provinces:
-    	      for i in range(colors):
-                if sample[province+str(i)]:
-                    color_map[province] = i
-        # Plot the sample with color-coded nodes
+          for c in colors:
+           if sample[province + '_' + c]:
+               color_map[province] = c
+        # Plot with the selected colors
         node_colors = [color_map.get(node) for node in G.nodes()]
         nx.draw_circular(G, with_labels=True, node_color=node_colors, node_size=3000, cmap=plt.cm.rainbow)
         plt.show()
 
->>> plot_map(sample)    # doctest: +SKIP
+>>> plot_map(best.sample)    # doctest: +SKIP
 
-The plot shows a solution returned by the D-Wave solver. No provinces sharing a border
-have the same color.
+The plot shows a solution returned by the D-Wave solver. No provinces sharing a
+border have the same color.
 
 .. figure:: ../_images/map_coloring_CSP4colors.png
    :name: MapColoring_CSP4colors
