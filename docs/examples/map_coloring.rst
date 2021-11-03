@@ -283,7 +283,7 @@ Set up a D-Wave quantum computer as the sampler and request 1000 samples.
 
 Verify that the quantum computer found a feasible solution.
 
->>> if best.energy > 0:
+>>> if best.energy > 0:        # doctest: +SKIP
 ...     print("Failed to color map. Try sampling again.")
 
 Plot a Feasible Solution
