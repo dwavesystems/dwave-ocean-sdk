@@ -288,10 +288,13 @@ all the constraints).
 >>> if best.energy > 0:
 ...     print("Failed to color map. Try sampling again.")
 
-.. note:: The next code requires `Matplotlib <https://matplotlib.org>`_\ .
-
 Plot a Valid Solution
 ---------------------
+
+.. note:: The next code requires `Matplotlib <https://matplotlib.org>`_\ .
+
+The function below plots the map as a graph with nodes set to the selected color
+for each province.
 
 .. code-block:: python
 
@@ -312,14 +315,11 @@ Plot a Valid Solution
 
 >>> plot_map(best.sample)    # doctest: +SKIP
 
-The plot shows a solution returned by the D-Wave solver. No provinces sharing a
-border have the same color.
-
 .. figure:: ../_images/map_coloring_CSP4colors.png
    :name: MapColoring_CSP4colors
    :alt: image
    :align: center
-   :scale: 70 %
+   :scale: 40 %
 
    Solution for a map of Canada with four colors. The graph comprises 13 nodes representing
    provinces connected by edges representing shared borders. No two nodes connected by
