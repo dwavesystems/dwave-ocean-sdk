@@ -160,22 +160,23 @@ representing the shared border between British Columbia and Alberta).
 ...              ('NL', 'QC'), ('NT', 'NU'), ('NT', 'SK'), ('NT', 'YT'), ('ON', 'QC')]
 
 You can set four arbitrary colors. The strings used below are recognized by
-the `Matplotlib <https://matplotlib.org>`_ graphics library to represent colors
-yellow, green, red, blue respectively.
+the `Matplotlib <https://matplotlib.org>`_ graphics library, which is used for
+plotting a solution in the last step, to represent colors yellow, green, red,
+blue respectively.
 
 >>> colors = ['y', 'g', 'r', 'b']
 
-Represent the binary constraint satisfaction problem with a BQM that models the
-two types of constraints using :ref:`penalty models <penalty_sdk>`.
+The next steps represent the binary constraint satisfaction problem with a BQM
+that models the two types of constraints using :ref:`penalty models <penalty_sdk>`.
 
 Constraint 1: One Color Per Region
 ----------------------------------
 
-In the code below, :code:`bqm_one_hot` represents the constraint that each node
-(province) select a single color as a `one-hot <https://en.wikipedia.org/wiki/One-hot>`_
-penalty model.
+In the code below, :code:`bqm_one_color` uses a
+`one-hot <https://en.wikipedia.org/wiki/One-hot>`_ penalty model to formulate the
+constraint that each node (province) select a single color.
 
-.. note::
+.. hint::
 
   The following illustrative example shows a one-hot constraint on two variables,
   represented by the penalty model, :math:`2ab - a - b`. You can easily verify
@@ -193,18 +194,21 @@ penalty model.
   2  1  1    1.0       1
   ['BINARY', 4 rows, 4 samples, 2 variables]
 
->>> bqm_one_hot = BinaryQuadraticModel('BINARY')
+Set a one-hot constraint on the four binary variables representing the possible
+colors for each province.
+
+>>> bqm_one_color = BinaryQuadraticModel('BINARY')
 >>> for province in provinces:
 ...   variables = [province + "_" + c for c in colors]
-...   bqm_one_hot.update(combinations(variables, 1))
+...   bqm_one_color.update(combinations(variables, 1))
 
 As in the illustrative example above, the binary variables created for each
 province set linear biases of -1 and quadratic biases of 2 that penalize states
 where more than a single color is selected.
 
->>> print([variable for variable in bqm_one_hot.variables if provinces[0] in variable])
+>>> print([variable for variable in bqm_one_color.variables if provinces[0] in variable])
 ['AB_y', 'AB_g', 'AB_r', 'AB_b']
->>> print(bqm_one_hot.linear['AB_y'], bqm_one_hot.quadratic['AB_y', 'AB_g'])
+>>> print(bqm_one_color.linear['AB_y'], bqm_one_color.quadratic['AB_y', 'AB_g'])
 -1.0 2.0
 
 Constraint 2: Different Colors for Adjacent Regions
@@ -216,7 +220,7 @@ In the code below, :code:`bqm_neighbors` represents the constraint that two node
 .. hint::
 
   The following illustrative example shows an AND constraint on two variables,
-  represented by the penalty model, :math:`-ab`. You can easily verify
+  represented by the penalty model, :math:`1 - ab`. You can easily verify
   that the ground states (solutions with lowest values, zero in this case) are
   for variable assignment :math:`a = b = 1`.
 
@@ -229,8 +233,8 @@ In the code below, :code:`bqm_neighbors` represents the constraint that two node
   3  0  1    1.0       1
   ['BINARY', 4 rows, 4 samples, 2 variables]
 
-  Switching the sign of the quadratic coefficient to :math:`+1` penalizes
-  variable assignment :math:`a = b = 1`.
+  Switching the sign of the quadratic coefficient to :math:`+1` (and dropping the
+  offset) now penalizes variable assignment :math:`a = b = 1`.
 
   >>> bqm_and_plus = BinaryQuadraticModel({}, {'ab': 1}, 0, 'BINARY')
   >>> print(ExactSolver().sample(bqm_and_plus))
@@ -255,7 +259,13 @@ neighboring provinces' variables representing the same color, for example
 Create a BQM for the Problem
 ----------------------------
 
->>> bqm = bqm_one_hot + bqm_neighbors
+The previous sections created BQMs that represent the two types of constraints.
+For some problems, such constraints are supplementary to an objective that needs
+to be minimized, but in this problem, any solution that meets the constraints is
+a good solution. The BQM that represents the map coloring problem is therefore
+a simple sum of the BQMs representing the constraints.
+
+>>> bqm = bqm_one_color + bqm_neighbors
 
 Sample the BQM
 --------------
