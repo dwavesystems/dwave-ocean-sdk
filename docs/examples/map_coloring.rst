@@ -4,15 +4,14 @@
 Map Coloring
 ============
 
-This example solves a map-coloring problem to demonstrate using Ocean tools
-to solve a problem on a D-Wave system. It demonstrates using the D-Wave system
-to solve a more complex constraint satisfaction problem (CSP) than that solved in
-the example of :ref:`scheduling`.
+This example solves a map-coloring problem. It demonstrates using a D-Wave
+quantum computer to solve a more complex constraint satisfaction problem (CSP)
+than that solved in the :ref:`scheduling` example.
 
 Constraint satisfaction problems require that all a problem's variables be assigned
 values, out of a finite domain, that result in the satisfying of all constraints.
-The map-coloring CSP, for example, is to assign a color to each region of a map
-such that any two regions sharing a border have different colors.
+The map-coloring CSP requires that you assign a color to each region of a map such
+that any two regions sharing a border have different colors.
 
 .. figure:: ../_images/Problem_MapColoring.png
    :name: Problem_MapColoring
@@ -61,10 +60,10 @@ This example represents the problem's constraints as :ref:`penalties <penalty_sd
 and creates an :term:`objective function` by summing all penalty models.
 
 .. note:: This problem can be expressed more simply using variables with multiple
-   values; for example, provinces could have values
-   :code:`{yellow, green, blue, red}` instead of four binary variables for the
-   four colors. For such problems a :term:`discrete quadratic model` (DQM) is a
-   better choice.
+   values; for example, provinces could be represented by discrete variables with
+   values :code:`{yellow, green, blue, red}` instead of four binary variables
+   (one for each color). For such problems a :term:`discrete quadratic model`
+   (DQM) is a better choice.
 
    In general, problems with constraints are more simply solved using a
    :ref:`constrained quadratic model <cqm_sdk>` (CQM) and appropriate hybrid CQM
@@ -83,7 +82,7 @@ The full workflow is as follows:
    have the same color.
 #. Add all the constraints into a single BQM.
 #. Sample the BQM.
-#. Plot a valid solution.
+#. Plot a feasible solution (a solution that meets all the constraints).
 
 Formulate the Problem
 =====================
@@ -150,8 +149,8 @@ set up a D-Wave quantum computer as the :term:`sampler`, and
 >>> from dwave.system import DWaveSampler, EmbeddingComposite
 
 Start by formulating the problem as a graph of the map with provinces as nodes
-and shared borders between provinces as edges (e.g., "('AB', 'BC')" is an edge
-representing the shared border between British Columbia and Alberta).
+and shared borders between provinces as edges; e.g., :code:`('AB', 'BC')` is an
+edge representing the shared border between British Columbia and Alberta.
 
 >>> provinces = ['AB', 'BC', 'MB', 'NB', 'NL', 'NS', 'NT', 'NU', 'ON', 'PE',
 ...              'QC', 'SK', 'YT']
@@ -159,10 +158,10 @@ representing the shared border between British Columbia and Alberta).
 ...              ('MB', 'NU'), ('MB', 'ON'), ('MB', 'SK'), ('NB', 'NS'), ('NB', 'QC'),
 ...              ('NL', 'QC'), ('NT', 'NU'), ('NT', 'SK'), ('NT', 'YT'), ('ON', 'QC')]
 
-You can set four arbitrary colors. The strings used below are recognized by
+You can set four arbitrary colors. The strings chosen here are recognized by
 the `Matplotlib <https://matplotlib.org>`_ graphics library, which is used for
 plotting a solution in the last step, to represent colors yellow, green, red,
-blue respectively.
+and blue respectively.
 
 >>> colors = ['y', 'g', 'r', 'b']
 
@@ -181,7 +180,7 @@ constraint that each node (province) select a single color.
   The following illustrative example shows a one-hot constraint on two variables,
   represented by the penalty model, :math:`2ab - a - b`. You can easily verify
   that the ground states (solutions with lowest values, zero in this case) are
-  for variable assignments with a single variable having a value of 1.
+  for variable assignments where just one of the variables has the value 1.
 
   >>> bqm_one_hot = combinations(['a', 'b'], 1)
   >>> print(bqm_one_hot)
@@ -282,14 +281,13 @@ Set up a D-Wave quantum computer as the sampler and request 1000 samples.
 ...
 >>> best = sampleset.first     # doctest: +SKIP
 
-Verify that the quantum computer found a feasible solution (a solution that meets
-all the constraints).
+Verify that the quantum computer found a feasible solution.
 
 >>> if best.energy > 0:
 ...     print("Failed to color map. Try sampling again.")
 
-Plot a Valid Solution
----------------------
+Plot a Feasible Solution
+------------------------
 
 .. note:: The next code requires `Matplotlib <https://matplotlib.org>`_\ .
 
