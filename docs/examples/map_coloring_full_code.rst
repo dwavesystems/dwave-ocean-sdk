@@ -45,23 +45,23 @@ See :ref:`map_coloring` for a description of the following code.
     best = sampleset.first
 
     def plot_map(sample):
-    G = nx.Graph()
-    G.add_nodes_from(provinces)
-    G.add_edges_from(neighbors)
-    # Create a {province: selected color} dict
-    color_map = {}
-    for province in provinces:
-      for c in colors:
-       if sample[province + '_' + c]:
-           color_map[province] = c
-    # Plot with the selected colors
-    node_colors = [color_map.get(node) for node in G.nodes()]
-    nx.draw_circular(G, with_labels=True, node_color=node_colors, node_size=3000, cmap=plt.cm.rainbow)
-    plt.show()
+      G = nx.Graph()
+      G.add_nodes_from(provinces)
+      G.add_edges_from(neighbors)
+      # Create a {province: selected color} dict
+      color_map = {}
+      for province in provinces:
+        for c in colors:
+         if sample[province + '_' + c]:
+             color_map[province] = c
+      # Plot with the selected colors
+      node_colors = [color_map.get(node) for node in G.nodes()]
+      nx.draw_circular(G, with_labels=True, node_color=node_colors, node_size=3000, cmap=plt.cm.rainbow)
+      plt.show()
 
     # Plot the lowest-energy sample if it meets the constraints
     sample = sampleset.first.sample
-    if if best.energy > 0:
+    if best.energy > 0:
         print("Failed to color map")
     else:
         plot_map(best.sample)
