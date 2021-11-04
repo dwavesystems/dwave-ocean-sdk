@@ -6,11 +6,134 @@ Configuring Access to Leap's Solvers
 
 D-Wave's Solver API (SAPI) provides access to the :term:`solver`\ s---compute
 resources for solving problems, such as a D-Wave quantum computers and
-quantum-classical hybrid solvers---hosted in the Leap quantum cloud or of
-on-premises systems.
+quantum-classical hybrid solvers---hosted in the `Leap <https://cloud.dwavesys.com/leap/>`_
+quantum cloud or of on-premises systems.
 
 Interacting with SAPI
 =====================
+
+SAPI is an application layer built to provide resource discovery, permissions,
+and scheduling for D-Wave solvers. Problem submission through SAPI requires the
+following information. Typically, your work environment provides this information,
+with values being either configured explicitly or
+
+* **API Token (required\ [#]_\ )**
+
+  An authentication token used to authenticate the client session when you connect
+  to the remote environment.
+
+  .. dropdown:: Finding your API Token
+
+     You can find your API token on the Leap dashboard.
+
+     <screenshot here>
+
+  .. dropdown:: Using your API Token
+
+     Typically, you configure your work environment so Ocean tools can automatically
+     submit your API token when interacting with SAPI. Because tokens provide
+     authentication, user names and passwords are not required in your code.
+
+     .. list-table:: Using your API Token
+        :header-rows: 1
+
+        * - Where
+          - How
+          - Default
+          - Usage Notes
+        * - :ref:`Configuration file <sdk_index_cloud>`
+          - :ref:`Interactive CLI <dwave_cli>` or directly editing the file
+          -
+          - Overridden by tokens set in environment variables or explicitly in code
+        * - Environment variables
+          - export DWAVE
+          -
+          - Overridden by tokens set in explicitly in code
+        * - Explicit parameter
+          - You can set your API token directly in your code; for example,
+            :code:`sampleset = sampler(token="")`
+          -
+          - Not recommended outside of testing for security reasons
+
+        For non-Ocean clients, you set your token in the HTTP header
+        :code:`X-Auth-Token`; see the  :std:doc:`<oceandocs:doc_rest_api>` guide
+        for information.
+
+  .. [#] The Leap IDE automatically sets your default API token.
+
+* **Solver (default: feature-based selection)**
+
+  A D-Wave resource to be used to solve your submitted problems; for example, a
+  hybrid solver or an Advantage quantum computer.
+
+  .. dropdown:: Viewing Available Solvers
+
+     You can find view available solvers on the Leap dashboard or by querying SAPI.
+
+     .. list-table:: Viewing Available Solvers
+        :header-rows: 1
+
+        * - Where
+          - How
+          - Default
+          - Usage Notes
+        * - Leap dashboard
+          - Log in to your `Leap <https://cloud.dwavesys.com/leap/>`_ account
+          - Solvers for your current project are displayed
+          - Solvers may be local to a region
+        * - Ocean
+          - :ref:`Interactive CLI <dwave_cli>` or
+          - Queries solvers accessible to your current API token
+          -
+
+  .. dropdown:: Selecting a Solver
+
+     You can
+
+     .. list-table:: Selecting a Solver
+        :header-rows: 1
+
+        * - Where
+          - How
+          - Default
+          - Usage Notes
+        * - Leap dashboard
+          - Log in to your `Leap <https://cloud.dwavesys.com/leap/>`_ account
+          - Solvers for your current project are displayed
+          - Solvers may be local to a region
+        * - Ocean
+          - :ref:`Interactive CLI <dwave_cli>` or
+          - Queries solvers accessible to your current API token
+          -
+
+* **Region/Endpoint (default: North American URL)**
+
+  A URL to the remote resources.
+
+  .. dropdown:: Finding Solver API Endpoints
+
+     You can find view available solvers on the Leap dashboard or by querying SAPI.
+
+     .. list-table:: Viewing Available Solvers
+        :header-rows: 1
+
+        * - Where
+          - How
+          - Default
+          - Usage Notes
+        * - Leap dashboard
+          - Log in to your `Leap <https://cloud.dwavesys.com/leap/>`_ account
+          - Solvers for your current project are displayed
+          - Solvers may be local to a region
+        * - Ocean
+          - :ref:`Interactive CLI <dwave_cli>` or
+          - Queries solvers accessible to your current API token
+          -
+
+   You can find view available solvers on the Leap dashboard or by querying SAPI.
+
+
+
 
 SAPI is an application layer built to provide resource discovery, permissions, and
 scheduling for D-Wave solvers. The requisite information for problem
