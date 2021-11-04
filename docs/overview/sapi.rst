@@ -1,25 +1,26 @@
 .. _sapi_access:
 
 ====================================
-Configuring Access to D-Wave Solvers
+Configuring Access to Leap's Solvers
 ====================================
 
-D-Wave's Solver API (SAPI) provides access to :term:`solver`\ s, remote compute resources
-for solving problems such as a D-Wave system or `Leap <https://cloud.dwavesys.com/leap/>`_\ 's
-quantum-classical hybrid solvers.
+D-Wave's Solver API (SAPI) provides access to the :term:`solver`\ s---compute
+resources for solving problems, such as a D-Wave quantum computers and
+quantum-classical hybrid solvers---hosted in the Leap quantum cloud or of
+on-premises systems.
 
 Interacting with SAPI
 =====================
 
 SAPI is an application layer built to provide resource discovery, permissions, and
-scheduling for D-Wave compute resources. The requisite information for problem
+scheduling for D-Wave solvers. The requisite information for problem
 submission through SAPI includes:
 
 1. API endpoint URL
 
-   A URL to the remote resources. By default, 
-   ``https://na-west-1.cloud.dwavesys.com/sapi/v2`` is used to connect to 
-   resources provided by D-Wave's `Leap <https://cloud.dwavesys.com/leap/>`_ 
+   A URL to the remote resources. By default,
+   ``https://na-west-1.cloud.dwavesys.com/sapi/v2`` is used to connect to
+   resources provided by D-Wave's `Leap <https://cloud.dwavesys.com/leap/>`_
    quantum cloud service in North America, including D-Wave quantum computers.\ [#]_
 
 2. API Token
@@ -44,7 +45,7 @@ Your configuration file can include one or more solvers.
 
 .. [#]
    For information about using solvers in alternative geographical regions,
-   see the :ref:`sapi_intro_multiregion` section below.    
+   see the :ref:`sapi_intro_multiregion` section below.
 
 .. note:: When you work in D-Wave's `Leap <https://cloud.dwavesys.com/leap/>`_ IDE,
    SAPI information such as your API token is pre-configured in the default
@@ -152,7 +153,7 @@ a SAPI URL and API token using
 function. For example, the code below queries available solvers for your default SAPI URL and a
 specified token.
 
->>> from dwave.cloud import Client        
+>>> from dwave.cloud import Client
 >>> client = Client.from_config(token='ABC-123456789123456789123456789')     # doctest: +SKIP
 >>> client.get_solvers()       # doctest: +SKIP
 [Solver(id='2000Q_ONLINE_SOLVER1'),
@@ -160,7 +161,7 @@ specified token.
 
 Typically, once you have selected and configured a solver, your code queries its parameters and
 properties as attributes of the instantiated solver object. The code example below
-(with output snipped for brevity) sets a D-Wave system as the sampler, using the default 
+(with output snipped for brevity) sets a D-Wave system as the sampler, using the default
 SAPI configuration as set above, and queries its parameters.
 
 >>> from dwave.system import DWaveSampler
@@ -181,30 +182,29 @@ Accessing Solvers in Multiple Regions
 =====================================
 
 Leap quantum cloud service is distributed across multiple geographic regions.
-You can see the supported regions and the solvers available in each for your 
-account in your `Leap <https://cloud.dwavesys.com/leap/>`_ dashboard. 
-Ocean's :ref:`sdk_index_cloud` enables you to select solvers from a particular 
-region as follows: 
+You can see the supported regions and the solvers available in each for your
+account in your `Leap <https://cloud.dwavesys.com/leap/>`_ dashboard.
+Ocean's :ref:`sdk_index_cloud` enables you to select solvers from a particular
+region as follows:
 
-* Select a default region in your 
-  :ref:`dwave-cloud-client configuration file <sdk_index_cloud>`. You can run 
-  the :ref:`dwave config <cli_example_config>` CLI command with the 
-  :code:`--full` option or edit an existing configuration file to set a 
-  preferred region.  
-* Set the appropriate environment variable (for example, 
-  :code:`export DWAVE_API_REGION=eu-central-1` in a Unix shell) for your current 
-  terminal or working session to select solvers from a preferred region. 
+* Select a default region in your
+  :ref:`dwave-cloud-client configuration file <sdk_index_cloud>`. You can run
+  the :ref:`dwave config <cli_example_config>` CLI command with the
+  :code:`--full` option or edit an existing configuration file to set a
+  preferred region.
+* Set the appropriate environment variable (for example,
+  :code:`export DWAVE_API_REGION=eu-central-1` in a Unix shell) for your current
+  terminal or working session to select solvers from a preferred region.
 * Explicitly select the region in your code. For example, the :code:`region`
-  parameter in the code line :code:`sampler = DWaveSampler(region="na-west-1")` 
-  selects a D-Wave quantum computer located in North America. 
+  parameter in the code line :code:`sampler = DWaveSampler(region="na-west-1")`
+  selects a D-Wave quantum computer located in North America.
 
-.. note:: Keep in mind the relative priorities of configurations set at 
-   various levels (in the above bullets, the configuration file, environment 
-   variables, and explicit parameters in your code), as described in the 
-   :ref:`sdk_index_cloud` documentation. For example, while the setting of both 
-   an endpoint and region on the same level (either two lines in the configuration 
-   file or two environment variables or two explicit parameters) results in 
-   selection based on the endpoint, setting a region explicitly overrides an 
+.. note:: Keep in mind the relative priorities of configurations set at
+   various levels (in the above bullets, the configuration file, environment
+   variables, and explicit parameters in your code), as described in the
+   :ref:`sdk_index_cloud` documentation. For example, while the setting of both
+   an endpoint and region on the same level (either two lines in the configuration
+   file or two environment variables or two explicit parameters) results in
+   selection based on the endpoint, setting a region explicitly overrides an
    endpoint configured using an environment variable or in the configuration
-   file. 
-
+   file.
