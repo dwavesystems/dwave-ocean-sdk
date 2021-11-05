@@ -46,12 +46,15 @@ To run the code in this example, the following is required.
 Solution Steps
 ==============
 
-Following the standard solution process described in Section :ref:`solving_problems`,
-(1) formulate the problem as a :term:`binary quadratic model` (BQM) by using unary
-encoding to represent the :math:`C` colors: each region is represented by :math:`C`
-variables, one for each possible color, which is set to value :math:`1` if selected, while the
-remaining :math:`C-1` variables are :math:`0`. (2) Solve the BQM with a D-Wave system
-as the sampler.
+.. include:: hybrid_solver_service.rst
+  :start-after: example-steps-start-marker
+  :end-before: example-steps-end-marker
+
+This example formulates the problem as a :term:`binary quadratic model` (BQM) by
+using unary encoding to represent the :math:`C` colors: each region is represented
+by :math:`C` variables, one for each possible color, which is set to value
+:math:`1` if selected, while the remaining :math:`C-1` variables are :math:`0`.
+It then solves the BQM on a D-Wave quantum computer.
 
 The full workflow is as follows:
 
@@ -193,7 +196,7 @@ The next code sets up a D-Wave system as the sampler and requests 1000 samples.
 >>> if not csp.check(sample):           # doctest: +SKIP
 ...    print("Failed to color map. Try sampling again.")
 ... else:
-...    print(sample)   
+...    print(sample)
 
 .. note:: The next code requires `Matplotlib <https://matplotlib.org>`_\ .
 
