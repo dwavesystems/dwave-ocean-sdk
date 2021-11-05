@@ -127,8 +127,10 @@ Ocean's default values or your configuration.
 
      >>> from dwave.cloud import Client
      >>> with Client.from_config() as client:         # doctest: +SKIP
-     ...    print(client.get_solvers(hybrid=True))       
-     [BQMSolver(id='hybrid_binary_quadratic_model_version2'), DQMSolver(id='hybrid_discrete_quadratic_model_version1'), CQMSolver(id='hybrid_constrained_quadratic_model_version1')]
+     ...    print(client.get_solvers(hybrid=True))
+     [BQMSolver(id='hybrid_binary_quadratic_model_version2'),
+      DQMSolver(id='hybrid_discrete_quadratic_model_version1'),
+      CQMSolver(id='hybrid_constrained_quadratic_model_version1')]
 
      .. note:: For non-Ocean clients, you can retrieve a list of supported remote
         solvers by sending an :code:`HTTP GET` request to the
@@ -337,3 +339,34 @@ region as follows:
    selection based on the endpoint, setting a region explicitly overrides an
    endpoint configured using an environment variable or in the configuration
    file.
+
+Example: Viewing a Region's Solvers
+-----------------------------------
+
+You can use :ref:`interactive CLI <dwave_cli>` to query solvers in a particular
+region.
+
+.. code-block:: bash
+
+    $ dwave solvers --list --region eu-central-1
+    Advantage_system5.1
+
+Example: Using Configuration-File Profiles for Multiple Regions
+---------------------------------------------------------------
+
+You can set up your configuration file with profiles for multiple regions, as
+shown below.
+
+.. code-block:: bash
+
+  [defaults]
+  token = ABC-123456789123456789123456789
+
+  [europe]
+  token = DEF-987654321987654321987654321
+  region = eu-central-1
+
+You can then set the profile when instantiating a sampler, as below.
+
+>>> from dwave.system import DWaveSampler, EmbeddingComposite
+>>> sampler = EmbeddingComposite(DWaveSampler(profile="europe"))   # doctest: +SKIP
