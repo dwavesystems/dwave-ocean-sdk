@@ -46,17 +46,16 @@ Ocean's default values or your configuration.
         * - :ref:`Configuration file <sdk_index_cloud>`
           - Configure using the :ref:`dwave CLI <dwave_cli>` tool or edit the file
             manually.
-          - You can override this configuration by setting a token in an environment
-            variable or explicitly in you code.
-        * - Environment variable
+          - You can override this configuration by setting an environment
+            variable or explicitly in your code.
+        * - Environment variables
           - Configure :code:`DWAVE_API_TOKEN`. For example,
             :code:`export DWAVE_API_REGION=ABC-123456789123456789123456789` in
             a Unix shell.
-          - You can override this configuration by setting a token explicitly
-            in your code.
-        * - Explicit parameter
+          - You can override this configuration explicitly in your code.
+        * - Explicit parameters
           - You can set your API token directly in your code; for example,
-            :code:`sampleset = sampler(token="ABC-123456789123456789123456789")`
+            :code:`sampler = LeapHybridCQMSampler(token="ABC-123456789123456789123456789")`
           - Not recommended outside of testing (for security reasons).
 
      .. note:: For non-Ocean clients, you set your token in the HTTP header
@@ -75,45 +74,61 @@ Ocean's default values or your configuration.
 
   .. dropdown:: Viewing Available Solvers
 
-     You can find view available solvers on the Leap dashboard or by querying SAPI.
+     The :ref:`table_solvers_viewing` table shows various options to view
+     available solvers.
 
      .. list-table:: Viewing Available Solvers
+        :name: table_solvers_viewing
         :header-rows: 1
 
         * - Where
           - How
-          - Default
+          - Defaults
           - Usage Notes
         * - Leap dashboard
           - Log in to your `Leap <https://cloud.dwavesys.com/leap/>`_ account
-          - Solvers for your current project are displayed
+          - For users that belong to multiple projects, solvers accesible to your
+            current project are displayed; switch the current project to see
+            other solvers.
           - Solvers may be local to a region
         * - Ocean
-          - :ref:`Interactive CLI <dwave_cli>` or
-          - Queries solvers accessible to your current API token
-          -
+          - Use the :ref:`dwave CLI <dwave_cli>` tool or Ocean's
+            :meth:`~dwave.cloud.client.Client.get_solvers` method.
+          - For users that belong to multiple projects, queries solvers accesible
+            to your current API token; switch to another project's API token to
+            see other solvers.
+          - Solvers may be local to a region; see the :ref:`sapi_intro_multiregion`
+            section to query solvers outside your default region.
 
   .. dropdown:: Selecting a Solver
 
-     You can
-
-     Your configuration file can include one or more solvers.
+     By default Ocean selects solvers based on a set of preferred features. The
+     :ref:`table_solvers_selecting` table shows various options to configure
+     solver selection.
 
      .. list-table:: Selecting a Solver
+        :name: table_solvers_selecting
         :header-rows: 1
 
         * - Where
           - How
-          - Default
+          - Defaults
           - Usage Notes
-        * - Leap dashboard
-          - Log in to your `Leap <https://cloud.dwavesys.com/leap/>`_ account
-          - Solvers for your current project are displayed
-          - Solvers may be local to a region
-        * - Ocean
-          - :ref:`Interactive CLI <dwave_cli>` or
-          - Queries solvers accessible to your current API token
-          -
+        * - :ref:`Configuration file <sdk_index_cloud>`
+          - Configure using the :ref:`dwave CLI <dwave_cli>` tool or edit the file
+            manually.
+          - You can override this configuration by setting a solver in an environment
+            variable or explicitly in your code.
+        * - Environment variable
+          - Configure :code:`DWAVE_API_SOLVER`. For example,
+            :code:`export DWAVE_API_SOLVER={'num_qubits__gt': 2000}` in
+            a Unix shell.
+          - You can override this configuration by selecting a solver explicitly
+            in your code.
+        * - Explicit parameter
+          - You can set your solver selection directly in your code; for example,
+            :code:`sampler = DWaveSampler(solver={'topology__type': 'pegasus'})`
+          - Not recommended outside of testing (for security reasons).
 
 * **Region/Endpoint** (default: North American URL)
 
