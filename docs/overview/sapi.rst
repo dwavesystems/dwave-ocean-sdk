@@ -7,10 +7,23 @@ Configuring Access to Leap's Solvers
 D-Wave's Solver API (SAPI) provides access to the :term:`solver`\ s---compute
 resources for solving problems, such as a D-Wave quantum computers and
 quantum-classical hybrid solvers---hosted in the `Leap <https://cloud.dwavesys.com/leap/>`_
-quantum cloud.[#]_
+quantum cloud.\ [#]_
 
-.. [#] SAPI is used similarly for on-premises systems. Differnces for such systems
-     is noted below.
+.. [#] SAPI is used similarly for on-premises systems. Differences for such systems
+     are noted below.
+
+This page provides the following information:
+
+* Section :ref:`sapi_access_interacting` provides information on viewing and
+  configuring SAPI resources.
+* Section :ref:`sapi_access_config_create` steps you through creating a
+  configuration file, which enables you to interact conveniently with SAPI.
+* Section :ref:`sapi_access_config_verify` ensures that your environment is set
+  up correctly.
+* Section :ref:`sapi_intro_multiregion` provides information for users interested
+  in using solvers hosted outside their default region.
+
+.. _sapi_access_interacting:
 
 Interacting with SAPI
 =====================
@@ -102,6 +115,11 @@ Ocean's default values or your configuration.
           - Solvers may be local to a region; see the :ref:`sapi_intro_multiregion`
             section to query solvers outside your default region.
 
+     .. note:: For non-Ocean clients, you can retrieve a list of supported remote
+        solvers by sending an :code:`HTTP GET` request to the
+        :code:`<SAPI base URL>/solvers/` endpoint; see the
+        :std:doc:`sysdocs_gettingstarted:doc_rest_api` guide for information.
+
   .. dropdown:: Selecting a Solver
 
      By default Ocean selects solvers based on a set of preferred features; for
@@ -165,16 +183,21 @@ Ocean's default values or your configuration.
      .. note:: Users of on-premises systems should request the SAPI endpoint from
         system administrator.
 
+        .. TODO (need info): For non-Ocean clients, you can retrieve a list of
+           supported regions by sending an :code:`HTTP GET` request to the
+           :code:`<Metadata URL>/regions/` endpoint.
+
   For information about using solvers in alternative geographical regions,
   see the :ref:`sapi_intro_multiregion` section below.
 
-Creating a Configuration File
-=============================
+.. _sapi_access_config_create:
 
-The simplest way to configure solver access is to use the :ref:`interactive CLI <dwave_cli>`, which
-is installed as part of
-the `dwave-ocean-sdk <https://github.com/dwavesystems/dwave-ocean-sdk>`_
-installation.
+Create a Configuration File
+===========================
+
+The simplest way to configure solver access is to use the
+:ref:`interactive CLI <dwave_cli>`, which is installed as part of the
+`dwave-ocean-sdk <https://github.com/dwavesystems/dwave-ocean-sdk>`_ installation.
 
 If you did not already do so with the :ref:`dwave setup <cli_example_setup>` command
 in the :ref:`dwave_setup` section, or want to make changes at a later time, you
@@ -207,12 +230,16 @@ runs these same configuration steps):
   :start-after: cli-example-config-start-marker
   :end-before: cli-example-config-end-marker
 
-2. Enter the SAPI information (e.g. your API token) found as described in the section
-   above. To get started, create a minimum configuration by accepting the command's
-   defaults (pressing Enter) for all prompts except the API token\ [#]_\ . You
-   can in the future update the file if needed.
+2. Enter the SAPI information (e.g. your API token) found as described in the
+   :ref:`sapi_access_interacting` section above. To get started, create a minimum
+   configuration by accepting the command's defaults (pressing Enter) for all
+   prompts except the API token\ [#]_\ . You can in the future update the file
+   if needed.
 
-.. [#] Users of on-premises systems should also enter the SAPI endpoint.
+.. [#] Users of on-premises systems should also enter the SAPI endpoint. Users
+   interested in using solvers hosted outside their default region can also
+   configure the SAPI endpoint (see the :ref:`sapi_intro_multiregion` section for
+   the recommended way of configuring such access).  
 
 Alternatively, you can create and edit a
 :doc:`D-Wave Cloud Client configuration file </docs_cloud/sdk_index>`
@@ -222,8 +249,10 @@ You can always set or override your cofigurations in your code or with environme
 variables. For more information, see the examples in this document or
 :doc:`D-Wave Cloud Client </docs_cloud/sdk_index>`.
 
-Verifying Your Configuration
-----------------------------
+.. _sapi_access_config_verify:
+
+Verify Your Configuration
+=========================
 
 You can test that your solver access is configured correctly with the
 :ref:`interactive CLI <dwave_cli>`.
@@ -251,7 +280,7 @@ You can test that your solver access is configured correctly with the
     Energies: [-2882.197791239335]
 
 Querying Available Solvers
-==========================
+--------------------------
 
 .. note:: `Leap <https://cloud.dwavesys.com/leap/>`_ accounts can see accessible solvers
    on the dashboard.
