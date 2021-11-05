@@ -115,6 +115,21 @@ Ocean's default values or your configuration.
           - Solvers may be local to a region; see the :ref:`sapi_intro_multiregion`
             section to query solvers outside your default region.
 
+     Example: using :ref:`dwave CLI <dwave_cli>` to see the available solvers,
+     their parameters, and properties (the output shown below is illustrative only).
+
+     .. include:: ../docs_cli.rst
+        :start-after: cli-example-solvers-start-marker
+        :end-before: cli-example-solvers-end-marker
+
+     Example: using :doc:`dwave-cloud-client </docs_cloud/sdk_index>` to query
+     for hybrid solvers.
+
+     >>> from dwave.cloud import Client
+     >>> with Client.from_config() as client:         # doctest: +SKIP
+     ...    print(client.get_solvers(hybrid=True))       
+     [BQMSolver(id='hybrid_binary_quadratic_model_version2'), DQMSolver(id='hybrid_discrete_quadratic_model_version1'), CQMSolver(id='hybrid_constrained_quadratic_model_version1')]
+
      .. note:: For non-Ocean clients, you can retrieve a list of supported remote
         solvers by sending an :code:`HTTP GET` request to the
         :code:`<SAPI base URL>/solvers/` endpoint; see the
@@ -180,6 +195,17 @@ Ocean's default values or your configuration.
             :meth:`~dwave.cloud.client.Client.get_regions`
           -
 
+     Example: using :doc:`dwave-cloud-client </docs_cloud/sdk_index>` to query
+     supported regions.
+
+          >>> from dwave.cloud import Client
+          >>> with Client.from_config() as client:          # doctest: +SKIP
+          ...    regions = client.get_regions()
+          ...    print(regions['eu-central-1'])
+          ...    print(regions['na-west-1'])
+          {'name': 'Europe', 'endpoint': 'https://eu-central-1.cloud.dwavesys.com/sapi/v2/'}
+          {'name': 'North America', 'endpoint': 'https://na-west-1.cloud.dwavesys.com/sapi/v2/'}
+
      .. note:: Users of on-premises systems should request the SAPI endpoint from
         system administrator.
 
@@ -239,7 +265,7 @@ runs these same configuration steps):
 .. [#] Users of on-premises systems should also enter the SAPI endpoint. Users
    interested in using solvers hosted outside their default region can also
    configure the SAPI endpoint (see the :ref:`sapi_intro_multiregion` section for
-   the recommended way of configuring such access).  
+   the recommended way of configuring such access).
 
 Alternatively, you can create and edit a
 :doc:`D-Wave Cloud Client configuration file </docs_cloud/sdk_index>`
@@ -278,50 +304,6 @@ You can test that your solver access is configured correctly with the
     Samples: [[1, 1, -1, -1, -1, -1, 1, -1, -1, 1, -1, 1, 1, 1, -1, -1, -1, -1, -1, -1, -1, 1, 1, -1,...
     Occurrences: [1]
     Energies: [-2882.197791239335]
-
-Querying Available Solvers
---------------------------
-
-.. note:: `Leap <https://cloud.dwavesys.com/leap/>`_ accounts can see accessible solvers
-   on the dashboard.
-
-From your terminal, you can use the
-:ref:`interactive CLI <dwave_cli>` to see the available solvers, their parameters, and properties.
-
-1. Run the :ref:`dwave solvers <cli_example_solvers>` command (the output shown below is illustrative only).
-
-.. include:: ../docs_cli.rst
-  :start-after: cli-example-solvers-start-marker
-  :end-before: cli-example-solvers-end-marker
-
-Alternatively, from within your code or a Python interpreter you can query solvers available for
-a SAPI URL and API token using
-:doc:`dwave-cloud-client </docs_cloud/sdk_index>` :meth:`~dwave.cloud.client.Client.get_solvers`
-function. For example, the code below queries available solvers for your default SAPI URL and a
-specified token.
-
->>> from dwave.cloud import Client
->>> client = Client.from_config(token='ABC-123456789123456789123456789')     # doctest: +SKIP
->>> client.get_solvers()       # doctest: +SKIP
-[Solver(id='2000Q_ONLINE_SOLVER1'),
- UnstructuredSolver(id='hybrid_binary_quadratic_model_version2')]
-
-Typically, once you have selected and configured a solver, your code queries its parameters and
-properties as attributes of the instantiated solver object. The code example below
-(with output snipped for brevity) sets a D-Wave system as the sampler, using the default
-SAPI configuration as set above, and queries its parameters.
-
->>> from dwave.system import DWaveSampler
->>> sampler = DWaveSampler(solver={'qpu': True})
->>> sampler.parameters            # doctest: +SKIP
-{u'anneal_offsets': ['parameters'],
- u'anneal_schedule': ['parameters'],
- u'annealing_time': ['parameters'],
- u'answer_mode': ['parameters'],
- u'auto_scale': ['parameters'], ...
-
-Descriptions of D-Wave system parameters and properties are in the
-:std:doc:`system documentation <sysdocs_gettingstarted:index>`.
 
 .. _sapi_intro_multiregion:
 
