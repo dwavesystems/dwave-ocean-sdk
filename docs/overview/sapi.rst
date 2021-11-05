@@ -12,7 +12,7 @@ quantum cloud.
 Interacting with SAPI
 =====================
 
-SAPI is an application layer built to provide resource discovery, permissions,
+SAPI is an application layer that provides resource discovery, permissions,
 and scheduling for D-Wave solvers. Problem submission through SAPI requires the
 following information, typically provided by your work environment from either
 Ocean's default values or your configuration.
@@ -48,14 +48,14 @@ Ocean's default values or your configuration.
             manually.
           - You can override this configuration by setting an environment
             variable or explicitly in your code.
-        * - Environment variables
+        * - :std:doc:`Environment variables <oceandocs:docs_cloud/reference/configuration>`
           - Configure :code:`DWAVE_API_TOKEN`. For example,
-            :code:`export DWAVE_API_REGION=ABC-123456789123456789123456789` in
+            :code:`export DWAVE_API_REGION=ABC-1234 ... 789` in
             a Unix shell.
           - You can override this configuration explicitly in your code.
         * - Explicit parameters
           - You can set your API token directly in your code; for example,
-            :code:`sampler = LeapHybridCQMSampler(token="ABC-123456789123456789123456789")`
+            :code:`sampler = LeapHybridCQMSampler(token="ABC-1234 ... 789")`
           - Not recommended outside of testing (for security reasons).
 
      .. note:: For non-Ocean clients, you set your token in the HTTP header
@@ -70,7 +70,7 @@ Ocean's default values or your configuration.
 * **Solver** (default: feature-based selection)
 
   A D-Wave resource to be used to solve your submitted problems; for example, a
-  hybrid solver or an Advantage quantum computer.
+  quantum-classical hybrid solver or an Advantage quantum computer.
 
   .. dropdown:: Viewing Available Solvers
 
@@ -85,25 +85,27 @@ Ocean's default values or your configuration.
           - How
           - Defaults
           - Usage Notes
-        * - Leap dashboard
-          - Log in to your `Leap <https://cloud.dwavesys.com/leap/>`_ account
-          - For users that belong to multiple projects, solvers accesible to your
-            current project are displayed; switch the current project to see
-            other solvers.
-          - Solvers may be local to a region
-        * - Ocean
+        * - `Leap <https://cloud.dwavesys.com/leap/>`_ dashboard
+          - Log in to your Leap account.
+          - For users that belong to multiple projects, solvers accessible to the
+            current project are displayed; switch the current project if needed.
+          - Solvers may be local to a region.
+        * - :ref:`dwave-cloud-client <sdk_index_cloud>`
           - Use the :ref:`dwave CLI <dwave_cli>` tool or Ocean's
             :meth:`~dwave.cloud.client.Client.get_solvers` method.
-          - For users that belong to multiple projects, queries solvers accesible
-            to your current API token; switch to another project's API token to
-            see other solvers.
+          - For users that belong to multiple projects, queries return solvers
+            accessible to the current API token; switch to another project's API
+            token if needed.
           - Solvers may be local to a region; see the :ref:`sapi_intro_multiregion`
             section to query solvers outside your default region.
 
   .. dropdown:: Selecting a Solver
 
-     By default Ocean selects solvers based on a set of preferred features. The
-     :ref:`table_solvers_selecting` table shows various options to configure
+     By default Ocean selects solvers based on a set of preferred features; for
+     example, by default a problem submitted to a quantum computer with the
+     :class:`~dwave.system.samplers.DWaveSampler` class sampler might prefer the
+     less busy of two available QPUs.
+     The :ref:`table_solvers_selecting` table shows various options to configure
      solver selection.
 
      .. list-table:: Selecting a Solver
@@ -112,14 +114,13 @@ Ocean's default values or your configuration.
 
         * - Where
           - How
-          - Defaults
           - Usage Notes
         * - :ref:`Configuration file <sdk_index_cloud>`
           - Configure using the :ref:`dwave CLI <dwave_cli>` tool or edit the file
             manually.
           - You can override this configuration by setting a solver in an environment
             variable or explicitly in your code.
-        * - Environment variable
+        * - :std:doc:`Environment variables <oceandocs:docs_cloud/reference/configuration>`
           - Configure :code:`DWAVE_API_SOLVER`. For example,
             :code:`export DWAVE_API_SOLVER={'num_qubits__gt': 2000}` in
             a Unix shell.
@@ -128,42 +129,38 @@ Ocean's default values or your configuration.
         * - Explicit parameter
           - You can set your solver selection directly in your code; for example,
             :code:`sampler = DWaveSampler(solver={'topology__type': 'pegasus'})`
-          - Not recommended outside of testing (for security reasons).
+          -
 
 * **Region/Endpoint** (default: North American URL)
 
-  A URL to the remote resources.
+  A URL for a region's remote resources.
 
-  By default,
-  ``https://na-west-1.cloud.dwavesys.com/sapi/v2`` is used to connect to
-  resources provided by D-Wave's `Leap <https://cloud.dwavesys.com/leap/>`_
-  quantum cloud service in North America, including D-Wave quantum computers.\ [#]_
+  By default, Ocean connects to North American (region :code:`na-west-1`) Leap
+  quantum cloud resources at URL
+  :code:`https://na-west-1.cloud.dwavesys.com/sapi/v2`.
 
-  .. [#]
-     For information about using solvers in alternative geographical regions,
-     see the :ref:`sapi_intro_multiregion` section below.
+  .. dropdown:: Finding Supported Regions and Endpoints
 
-  .. dropdown:: Finding Solver API Endpoints
+     The :ref:`table_regions_viewing` table shows various options for viewing
+     available regions and their URLs.
 
-     You can find view available solvers on the Leap dashboard or by querying SAPI.
-
-     .. list-table:: Viewing Available Solvers
+     .. list-table:: Viewing Available Regions and Endpoints
+        :name: table_regions_viewing
         :header-rows: 1
 
         * - Where
           - How
-          - Default
           - Usage Notes
-        * - Leap dashboard
-          - Log in to your `Leap <https://cloud.dwavesys.com/leap/>`_ account
-          - Solvers for your current project are displayed
-          - Solvers may be local to a region
-        * - Ocean
-          - :ref:`Interactive CLI <dwave_cli>` or
-          - Queries solvers accessible to your current API token
+        * - `Leap <https://cloud.dwavesys.com/leap/>`_ dashboard
+          - Log in to your Leap account
+          - Solvers available to your account are grouped by region.
+        * - :ref:`dwave-cloud-client <sdk_index_cloud>`
+          - Use the :ref:`Interactive CLI <dwave_cli>` or
+            :meth:`~dwave.cloud.client.Client.get_regions`
           -
 
-   You can find view available solvers on the Leap dashboard or by querying SAPI.
+  For information about using solvers in alternative geographical regions,
+  see the :ref:`sapi_intro_multiregion` section below.
 
 Creating a Configuration File
 =============================
