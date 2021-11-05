@@ -7,7 +7,10 @@ Configuring Access to Leap's Solvers
 D-Wave's Solver API (SAPI) provides access to the :term:`solver`\ s---compute
 resources for solving problems, such as a D-Wave quantum computers and
 quantum-classical hybrid solvers---hosted in the `Leap <https://cloud.dwavesys.com/leap/>`_
-quantum cloud.
+quantum cloud.[#]_
+
+.. [#] SAPI is used similarly for on-premises systems. Differnces for such systems
+     is noted below.
 
 Interacting with SAPI
 =====================
@@ -159,6 +162,9 @@ Ocean's default values or your configuration.
             :meth:`~dwave.cloud.client.Client.get_regions`
           -
 
+     .. note:: Users of on-premises systems should request the SAPI endpoint from
+        system administrator.
+
   For information about using solvers in alternative geographical regions,
   see the :ref:`sapi_intro_multiregion` section below.
 
@@ -203,17 +209,18 @@ runs these same configuration steps):
 
 2. Enter the SAPI information (e.g. your API token) found as described in the section
    above. To get started, create a minimum configuration by accepting the command's
-   defaults (pressing Enter) for all prompts except the API token (Leap users) or
-   API token and endpoint (on-premises users). You can in the future update the
-   file if needed.
+   defaults (pressing Enter) for all prompts except the API token\ [#]_\ . You
+   can in the future update the file if needed.
+
+.. [#] Users of on-premises systems should also enter the SAPI endpoint.
 
 Alternatively, you can create and edit a
 :doc:`D-Wave Cloud Client configuration file </docs_cloud/sdk_index>`
 manually.
 
-You can always set or override the solver, API token, and URL directly in your code
-or as local environment variables. For more information, see the examples in this
-document or :doc:`D-Wave Cloud Client </docs_cloud/sdk_index>`.
+You can always set or override your cofigurations in your code or with environment
+variables. For more information, see the examples in this document or
+:doc:`D-Wave Cloud Client </docs_cloud/sdk_index>`.
 
 Verifying Your Configuration
 ----------------------------
