@@ -74,14 +74,15 @@ Ocean's default values or your configuration.
             :code:`sampler = LeapHybridCQMSampler(token="ABC-1234 ... 789")`
           - Not recommended outside of testing (for security reasons).
 
-     .. note:: For non-Ocean clients, you set your token in the HTTP header
-        :code:`X-Auth-Token`; see the :std:doc:`sysdocs_gettingstarted:doc_rest_api`
-        guide for information.
+     .. note:: For non-Ocean clients, you set your token in the HTTP header; see
+       the :std:doc:`sysdocs_gettingstarted:doc_rest_api` guide for information.
 
   .. [#]
-    When you work in D-Wave's `Leap <https://cloud.dwavesys.com/leap/>`_ IDE,
-    SAPI information such as your API token is pre-configured in the default
-    workspace's environment variables.
+    D-Wave's `Leap <https://cloud.dwavesys.com/leap/>`_ integrated development
+    environment (IDE) automatically reads your API token from your account.
+    You can use the configuration options of the :ref:`table_token_config` table
+    to substitute an alternative token, for example, if you belong to multiple
+    projects.
 
 * **Solver** (default: feature-based selection)
 
@@ -175,7 +176,7 @@ Ocean's default values or your configuration.
 
   By default, Ocean connects to North American (region :code:`na-west-1`) Leap
   quantum cloud resources at URL
-  :code:`https://na-west-1.cloud.dwavesys.com/sapi/v2`.
+  :code:`https://na-west-1.cloud.dwavesys.com/sapi/v2/`.
 
   .. dropdown:: Finding Supported Regions and Endpoints
 
@@ -205,8 +206,8 @@ Ocean's default values or your configuration.
           ...    regions = client.get_regions()
           ...    print(regions['eu-central-1'])
           ...    print(regions['na-west-1'])
-          {'name': 'Europe', 'endpoint': 'https://eu-central-1.cloud.dwavesys.com/sapi/v2/'}
-          {'name': 'North America', 'endpoint': 'https://na-west-1.cloud.dwavesys.com/sapi/v2/'}
+          North America (na-west-1): https://na-west-1.cloud.dwavesys.com/sapi/v2/
+          Europe (eu-central-1): https://eu-central-1.cloud.dwavesys.com/sapi/v2/
 
      .. note:: Users of on-premises systems should request the SAPI endpoint from
         system administrator.
