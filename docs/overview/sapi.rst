@@ -274,7 +274,7 @@ Alternatively, you can create and edit a
 :doc:`D-Wave Cloud Client configuration file </docs_cloud/sdk_index>`
 manually.
 
-You can always set or override your cofigurations in your code or with environment
+You can always set or override your configurations in your code or with environment
 variables. For more information, see the examples in this document or
 :doc:`D-Wave Cloud Client </docs_cloud/sdk_index>`.
 
@@ -364,7 +364,6 @@ shown below.
   token = ABC-123456789123456789123456789
 
   [europe]
-  token = DEF-987654321987654321987654321
   region = eu-central-1
 
 You can then set the profile when instantiating a sampler, as below.

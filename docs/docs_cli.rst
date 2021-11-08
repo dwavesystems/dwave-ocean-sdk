@@ -76,13 +76,13 @@ for a full setup.
 
     Optionally install non-open-source packages and configure your environment.
 
-    Do you want to select non-open-source packages to install (y/n)? [y]:
+    Do you want to select non-open-source packages to install (y/n)? [y]: ↵
 
     D-Wave Drivers
     These drivers enable some automated performance-tuning features.
     This package is available under the 'D-Wave EULA' license.
     The terms of the license are available online: https://docs.ocean.dwavesys.com/eula
-    Install (y/n)? [y]:
+    Install (y/n)? [y]: ↵
     Installing: D-Wave Drivers
     Successfully installed D-Wave Drivers.
 
@@ -90,7 +90,7 @@ for a full setup.
     This tool visualizes problems submitted to the quantum computer and the results returned.
     This package is available under the 'D-Wave EULA' license.
     The terms of the license are available online: https://docs.ocean.dwavesys.com/eula
-    Install (y/n)? [y]:
+    Install (y/n)? [y]: ↵
     Installing: D-Wave Problem Inspector
     Successfully installed D-Wave Problem Inspector.
 
@@ -99,9 +99,9 @@ for a full setup.
     Try 'dwave config create --full' for more options.
 
     Creating new configuration file: /home/jane/.config/dwave/dwave.conf
-    Profile [defaults]:
-    Updating existing profile: defaults
-    Authentication token [skip]: ABC-1234567890abcdef1234567890abcdef
+    Profile [defaults]: ↵
+    Updating existing profile: defaults ↵
+    Authentication token [skip]: ABC-1234567890abcdef1234567890abcdef ↵
     Configuration saved.
 
 .. cli-example-setup-end-marker
@@ -124,9 +124,9 @@ The output shown below includes the interactive prompts and placeholder replies.
     Try 'dwave config create --full' for more options.
 
     Creating new configuration file: /home/jane/.config/dwave/dwave.conf
-    Profile [defaults]:
-    Updating existing profile: defaults
-    Authentication token [skip]: ABC-1234567890abcdef1234567890abcdef
+    Profile [defaults]: ↵
+    Updating existing profile: defaults ↵
+    Authentication token [skip]: ABC-1234567890abcdef1234567890abcdef ↵
     Configuration saved.
 
 .. cli-example-config-end-marker
@@ -145,21 +145,26 @@ The example below, for a Bash Unix shell, pings only QPU solvers.
 
 .. code-block:: bash
 
-    $ dwave ping -s '{"qpu": true}'
+    $ dwave ping --client qpu
     Using endpoint: https://cloud.dwavesys.com/sapi
-    Using solver: My_DWAVE_2000Q
+    Using solver: DW_2000Q_6
+    Submitted problem ID: 34f773f7-77dc-7fa5-a7d5-7e397d90fc4a
 
     Wall clock time:
-     * Solver definition fetch: 2007.239 ms
-     * Problem submit and results fetch: 1033.931 ms
-     * Total: 3041.171 ms
+     * Solver definition fetch: 1888.499 ms
+     * Problem submit and results fetch: 1038.042 ms
+     * Total: 2926.541 ms
 
     QPU timing:
-     * total_real_time = 10493 us
-     * anneal_time_per_run = 20 us
-     * post_processing_overhead_time = 128 us
-     * qpu_anneal_time_per_sample = 20 us
-     # Snipped for brevity
+     * post_processing_overhead_time = 307.0 us
+     * qpu_access_overhead_time = 1185.96 us
+     * qpu_access_time = 10995.04 us
+     * qpu_anneal_time_per_sample = 20.0 us
+     * qpu_delay_time_per_sample = 20.54 us
+     * qpu_programming_time = 10756.1 us
+     * qpu_readout_time_per_sample = 198.4 us
+     * qpu_sampling_time = 238.94 us
+     * total_post_processing_time = 307.0 us
 
 .. cli-example-ping-end-marker
 
@@ -175,32 +180,18 @@ currently available to your account.
 
 .. code-block:: bash
 
-    $ dwave solvers
-    Solver: DW_2000Q_33
-       Parameters:
-          anneal_offsets: A list of anneal offsets for each working qubit (NaN if u...
-          anneal_schedule: A piecewise linear annealing schedule specified by a list...
-          annealing_time: A positive integer that sets the duration (in microsecond...
-
-          <Output snipped for brevity>
-
-       Properties:
-          anneal_offset_ranges: [[-0.18627387668142237, 0.09542224439071689], [-0.1836548...
-          anneal_offset_step: 0.00426679499507194
-          anneal_offset_step_phi0: 0.0002716837027763096
-          annealing_time_range: [1, 150000]
-          chip_id: W7-1_C16_4724854-02-G4_C5R9-device-cal-data-18-05-27-14:27
-          couplers: [[0, 4], [1, 4], [2, 4], [3, 4], [0, 5], [1, 5], [2, 5], ...
-
-          <Output snipped for brevity>
+    $ dwave solvers  --list --all
+    DW_2000Q_6
+    hybrid_binary_quadratic_model_version2
+    hybrid_discrete_quadratic_model_version1
+    Advantage_system4.1
 
 .. cli-example-solvers-end-marker
 
-The example below lists which D-Wave compute resources are currently available 
+The example below lists which D-Wave compute resources are currently available
 to your account in a particular region (Europe).
 
 .. code-block:: bash
 
     $ dwave solvers --region eu-central-1 --list --all
     Advantage_system5.1
-
