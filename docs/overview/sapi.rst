@@ -161,13 +161,13 @@ Ocean's default values or your configuration.
             variable or explicitly in your code.
         * - :std:doc:`Environment variables <oceandocs:docs_cloud/reference/configuration>`
           - Configure :code:`DWAVE_API_SOLVER`. For example,
-            :code:`export DWAVE_API_SOLVER={'num_qubits__gt': 2000}` in
+            :code:`export DWAVE_API_SOLVER='{"num_qubits__gt": 2000}'` in
             a Unix shell.
           - You can override this configuration by selecting a solver explicitly
             in your code.
         * - Explicit parameter
           - You can set your solver selection directly in your code; for example,
-            :code:`sampler = DWaveSampler(solver={'topology__type': 'pegasus'})`
+            :code:`sampler = DWaveSampler(solver=dict(topology__type='pegasus'))`
           -
 
 * **Region/Endpoint** (default: North American URL)
@@ -204,8 +204,8 @@ Ocean's default values or your configuration.
           >>> from dwave.cloud import Client
           >>> with Client.from_config() as client:          # doctest: +SKIP
           ...    regions = client.get_regions()
-          ...    print(regions['eu-central-1'])
-          ...    print(regions['na-west-1'])
+          ...    for code, info in regions.items():
+          ...        print(f"{info['name']} ({code}): {info['endpoint']}")
           North America (na-west-1): https://na-west-1.cloud.dwavesys.com/sapi/v2/
           Europe (eu-central-1): https://eu-central-1.cloud.dwavesys.com/sapi/v2/
 
