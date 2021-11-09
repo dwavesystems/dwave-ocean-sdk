@@ -56,6 +56,81 @@ jobs:
 
       - ocean/coverage-run-unittest
 
+  test-individual-pkgs:
+    docker:
+      - image: circleci/python:3.9
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      - run: &initialize-submodules
+          name: initialize submodules
+          command: |
+            git submodule init
+            git submodule update
+
+      - run: &create-virtualenv
+          name: create virtualenv
+          command: |
+            python -m virtualenv env
+
+      - run:
+          name: install dwave-inspector dependencies
+          command: |
+            . env/bin/activate
+            pip install dwave-inspectorapp --extra-index=https://pypi.dwavesys.com/simple
+
+      - run:
+          name: install dwave-system dependencies
+          command: |
+            . env/bin/activate
+            pip install dwave-drivers --extra-index=https://pypi.dwavesys.com/simple
+
+      - run:
+          name: install penaltymodel dependencies
+          command: |
+            . env/bin/activate
+            cd penaltymodel
+            pip install -r requirements.txt
+            pip install penaltymodel_core/
+            pip install penaltymodel_cache/
+            pip install penaltymodel_maxgap/
+            pip install penaltymodel_mip/
+            pip install penaltymodel_lp/
+            cd ..
+
+      - run:
+          name: install dependencies
+          command: |
+            . env/bin/activate
+            python --version
+            for submodule in */; do [[ -f $submodule/tests/requirements.txt ]] && pip install -r $submodule/tests/requirements.txt; done
+            pip install cython wheel twine
+            pip install .
+
+      - run:
+          name: build packages
+          command: |
+            . env/bin/activate
+            python --version
+            PKGS=(dimod dwave-neal dwave-tabu minorminer dwave-greedy dwave-preprocessing)
+            for package in "${PKGS[@]}"; do echo "$package"; cd "$package"; python setup.py build_ext --inplace; cd ../; done
+
+      - run:
+          name: run individual package unittests
+          command: |
+            . env/bin/activate
+            for submodule in */; do 
+              [[ -d $submodule/tests ]] && (
+                cd $submodule
+                pwd
+                if [[ $submodule == "dwave-inspector/" ]]; then pip install ./; fi
+                python -m unittest discover
+                cd ../;)
+              done
+
   test-doctest:
     docker:
       - image: circleci/python:3.7-stretch # as of march 2019 RTD uses 3.7
@@ -65,16 +140,9 @@ jobs:
     steps:
       - checkout
 
-      - run:
-          name: initialize submodules
-          command: |
-            git submodule init
-            git submodule update
+      - run: *initialize-submodules
 
-      - run:
-          name: create virtualenv
-          command: |
-            python -m virtualenv env
+      - run: *create-virtualenv
 
       - run:
           name: install dependencies
@@ -82,6 +150,7 @@ jobs:
             . env/bin/activate
             python --version
             pip install .
+
       - run:
           name: install docs requirements
           command: |
@@ -117,10 +186,7 @@ jobs:
     steps:
       - checkout
 
-      - run:
-          name: create virtualenv
-          command: |
-            python -m virtualenv env
+      - run: *create-virtualenv
 
       - run:
           name: verify version matches tag
@@ -194,7 +260,7 @@ workflows:
           matrix:
             parameters:
               python-version: *python-versions
-
+      - test-individual-pkgs
   deploy:
     jobs:
       - deploy:
