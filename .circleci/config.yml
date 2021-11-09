@@ -122,13 +122,14 @@ jobs:
           name: run individual package unittests
           command: |
             . env/bin/activate
-            for submodule in */; do 
-              [[ -d $submodule/tests ]] && (
+            for submodule in */; do
+              if [[ -d $submodule/tests ]]
+              then
                 cd $submodule
                 pwd
-                if [[ $submodule == "dwave-inspector/" ]]; then pip install ./; fi
                 python -m unittest discover
-                cd ../;)
+                cd ../
+              fi
               done
 
   test-doctest:
