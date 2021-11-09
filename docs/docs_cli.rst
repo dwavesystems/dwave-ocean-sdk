@@ -100,7 +100,7 @@ for a full setup.
 
     Creating new configuration file: /home/jane/.config/dwave/dwave.conf
     Profile [defaults]: ↵
-    Updating existing profile: defaults ↵
+    Updating existing profile: defaults
     Authentication token [skip]: ABC-1234567890abcdef1234567890abcdef ↵
     Configuration saved.
 
@@ -125,7 +125,7 @@ The output shown below includes the interactive prompts and placeholder replies.
 
     Creating new configuration file: /home/jane/.config/dwave/dwave.conf
     Profile [defaults]: ↵
-    Updating existing profile: defaults ↵
+    Updating existing profile: defaults 
     Authentication token [skip]: ABC-1234567890abcdef1234567890abcdef ↵
     Configuration saved.
 

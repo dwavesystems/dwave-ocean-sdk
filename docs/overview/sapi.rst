@@ -317,7 +317,7 @@ Leap quantum cloud service is distributed across multiple geographic regions.
 You can see the supported regions and the solvers available in each for your
 account in your `Leap <https://cloud.dwavesys.com/leap/>`_ dashboard.
 Ocean's :ref:`sdk_index_cloud` enables you to select solvers from a particular
-region as follows:
+region using one or more of the following options:
 
 * Select a default region in your
   :ref:`dwave-cloud-client configuration file <sdk_index_cloud>`. You can run
