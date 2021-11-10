@@ -5,8 +5,8 @@ Multiple-Gate Circuit
 =====================
 
 This example solves a logic circuit problem to demonstrate using Ocean tools
-to solve a problem on a D-Wave system. It builds on the discussion in the :ref:`and`
-example about the effect of :term:`minor-embedding` on performance.
+to solve a problem on a D-Wave quantum computer. It builds on the discussion in
+the :ref:`and` example about the effect of :term:`minor-embedding` on performance.
 
 .. raw::  latex
 
@@ -75,8 +75,9 @@ Example Requirements
 
 To run the code in this example, the following is required.
 
-* The requisite information for problem submission through SAPI, as described in :ref:`sapi_access`
-* Ocean tools :doc:`dwavebinarycsp </docs_binarycsp/sdk_index>` and
+* The requisite information for problem submission through SAPI, as described in
+  :ref:`sapi_access`
+* Ocean tools :doc:`dimod </docs_dimod/sdk_index>` and
   :doc:`dwave-system </docs_system/sdk_index>`. For the
   optional graphics, you will also need `Matplotlib <https://matplotlib.org>`_
   and :doc:`problem-inspector </docs_inspector/sdk_index>`.
@@ -88,48 +89,27 @@ To run the code in this example, the following is required.
 Formulating the Problem as a CSP
 ================================
 
-This example demonstrates two formulations of constraints from the problem's
-logic gates:
+This example
 
-1. Single comprehensive constraint.
-
-.. testcode::
-
-    import dwavebinarycsp
-
-    def logic_circuit(a, b, c, d, z):
-        not1 = not b
-        or2 = b or c
-        and3 = a and not1
-        or4 = or2 or d
-        and5 = and3 and or4
-        not6 = not or4
-        or7 = and5 or not6
-        return (z == or7)
-
-    csp = dwavebinarycsp.ConstraintSatisfactionProblem(dwavebinarycsp.BINARY)
-    csp.add_constraint(logic_circuit, ['a', 'b', 'c', 'd', 'z'])
+>>> from dimod import BinaryQuadraticModel, quicksum
+>>> from dimod.generators import and_gate, or_gate, xor_gate
+...
+>>> bqm2 = or_gate('b', 'c', 'out2')
+>>> bqm3 = and_gate('a', 'b', 'out3')
+>>> bqm3.flip_variable('b')
+>>> bqm4 = or_gate('out2', 'd', 'out4')
+>>> bqm5 = and_gate('out3', 'out4', 'out5')
+>>> bqm7 = or_gate('out5', 'out4', 'z')
+>>> bqm7.flip_variable('out4')
+...
+>>> bqm = bqm2 + bqm3 + bqm4 + bqm5 + bqm7
+>>> print(bqm.num_variables)
 
 
-2. Multiple small constraints.
 
-.. testcode::
 
-    import dwavebinarycsp
-    import dwavebinarycsp.factories.constraint.gates as gates
-    import operator
-
-    csp = dwavebinarycsp.ConstraintSatisfactionProblem(dwavebinarycsp.BINARY)
-    csp.add_constraint(operator.ne, ['b', 'not1'])  # add NOT 1 gate
-    csp.add_constraint(gates.or_gate(['b', 'c', 'or2']))  # add OR 2 gate
-    csp.add_constraint(gates.and_gate(['a', 'not1', 'and3']))  # add AND 3 gate
-    csp.add_constraint(gates.or_gate(['d', 'or2', 'or4']))  # add OR 4 gate
-    csp.add_constraint(gates.and_gate(['and3', 'or4', 'and5']))  # add AND 5 gate
-    csp.add_constraint(operator.ne, ['or4', 'not6'])  # add NOT 6 gate
-    csp.add_constraint(gates.or_gate(['and5', 'not6', 'z']))  # add OR 7 gate
-
-.. note:: `dwavebinarycsp` works best for constraints of up to 4 variables; it may not
-      function as expected for constraints of over 8 variables.
+    from dwave.system import DWaveSampler, EmbeddingComposite, DWaveCliqueSampler
+    import dwave.inspector
 
 The next line of code converts the constraints into a BQM that you solve by sampling.
 
@@ -157,6 +137,9 @@ Minor-Embedding and Sampling
 
 Algorithmic minor-embedding is heuristic---solution results vary significantly based on
 the minor-embedding found.
+
+>>> from dimod.generators import xor_gate
+
 
 The next code sets up a D-Wave system as the sampler.
 
@@ -210,7 +193,7 @@ yield significantly varied results, as shown in the following table:
    * - 4
      - (316, 684)
 
-You can see the minor-embeddings found here on a D-Wave 2000Q system: 
+You can see the minor-embeddings found here on a D-Wave 2000Q system:
 :ref:`multi_gate_results`; below those embeddings are visualized graphically.
 
 .. figure:: ../_images/SingleCSPembeddings.png
@@ -302,18 +285,18 @@ the analytical solution for the circuit,
 
       &= 1
 
-The example code above converted the constraint satisfaction problem to a binary 
-quadratic model using the default minimum energy gap of 2. Therefore, each constraint 
-violated by the solution increases the energy level of the binary quadratic model by 
-at least 2 relative to ground energy. You can also plot the energies for valid and 
-invalid samples:: 
+The example code above converted the constraint satisfaction problem to a binary
+quadratic model using the default minimum energy gap of 2. Therefore, each constraint
+violated by the solution increases the energy level of the binary quadratic model by
+at least 2 relative to ground energy. You can also plot the energies for valid and
+invalid samples::
 
-   import matplotlib.pyplot as plt    
-   plt.ion()                          
+   import matplotlib.pyplot as plt
+   plt.ion()
    plt.scatter(range(len(data)), [x[1] for x in data], c=['y' if (x[2] == '1')    \
       else 'r' for x in data],marker='.')
-   plt.xlabel('Sample')               
-   plt.ylabel('Energy')               
+   plt.xlabel('Sample')
+   plt.ylabel('Energy')
 
 .. figure:: ../_images/MultiGateCircuit_Results.png
    :name: MultiGateCircuitResults
