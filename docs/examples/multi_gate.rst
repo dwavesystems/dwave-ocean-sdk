@@ -91,6 +91,8 @@ Formulating the Problem as a CSP
 
 This example
 
+Small Circuit Problem
+---------------------
 
 >>> from dimod.generators import and_gate, or_gate, xor_gate
 ...
@@ -107,7 +109,7 @@ This example
 9
 
 This circuit is small enough to solve by brute force. The following code prints
-solutions in which the circuit's output, :math:`z` is true. 
+solutions in which the circuit's output, :math:`z` is true.
 
 >>> from dimod import ExactSolver
 >>> solutions = ExactSolver().sample(bqm).lowest()
@@ -125,30 +127,24 @@ solutions in which the circuit's output, :math:`z` is true.
  {'a': 1, 'b': 0, 'c': 0, 'd': 0, 'z': 1},
  {'a': 0, 'b': 0, 'c': 0, 'd': 0, 'z': 1}]
 
+However, such methods cannot work for much larger problems.
 
-    from dwave.system import DWaveSampler, EmbeddingComposite, DWaveCliqueSampler
-    import dwave.inspector
+Large-Circuit Problem
+---------------------
 
-The next line of code converts the constraints into a BQM that you solve by sampling.
+>>> num_circuits = 6
+...
+>>> bqm2 = [or_gate(f"b_{c}", f"c_{c}", f"out2_{c}") for c in range(num_circuits)]
+>>> bqm3 = [and_gate(f"a_{c}", f"b_{c}", f"out3_{c}") for c in range(num_circuits)]
+>>> [bqm.flip_variable("b_{}".format(indx)) for indx, bqm in enumerate(bqm3)]
+>>> bqm4 = [or_gate(f"out2_{c}", f"d_{c}", f"out4_{c}") for c in range(num_circuits)]
+>>> bqm5 = [and_gate(f"out3_{c}", f"out4_{c}", f"out5_{c}") for c in range(num_circuits)]
+>>> bqm7 = [or_gate(f"out5_{c}", f"out4_{c}", f"z_{c}") for c in range(num_circuits)]
+>>> [bqm.flip_variable("out4_{}".format(indx)) for indx, bqm in enumerate(bqm7)]
+>>> bqm_z = [xor_gate("z_0", "z_1", "zz0", "aux0")] +
+...         [xor_gate(f"z_{c}", f"zz{c-2}", f"zz{c-1}", f"aux{c-1}") for c in range(2, num_circuits)]
+>>> bqm = quicksum(bqm2 + bqm3 + bqm4 + bqm5 + bqm7 + bqm_z)
 
-.. testcode::
-
-    # Convert the binary constraint satisfaction problem to a binary quadratic model
-    bqm = dwavebinarycsp.stitch(csp)
-
-.. toctree::
-   :maxdepth: 1
-   :hidden:
-
-   multi_gate_results
-
-The first approach, which consolidates the circuit as a single constraint, yields a
-binary quadratic model with 7 variables: 4 inputs, 1, output, and 2 ancillary variables.
-The second approach, which creates a constraint satisfaction problem from multiple
-small constraints, yields a binary quadratic model with 11 variables: 4 inputs, 1 output, and
-6 intermediate outputs of the logic gates.
-
-You can see the binary quadratic models here: :ref:`multi_gate_results`.
 
 Minor-Embedding and Sampling
 ============================
@@ -156,8 +152,7 @@ Minor-Embedding and Sampling
 Algorithmic minor-embedding is heuristic---solution results vary significantly based on
 the minor-embedding found.
 
->>> from dimod import quicksum
->>> from dimod.generators import xor_gate
+TODO: picture of multiple circuits
 
 
 The next code sets up a D-Wave system as the sampler.
@@ -166,12 +161,18 @@ The next code sets up a D-Wave system as the sampler.
    :start-after: default-config-start-marker
    :end-before: default-config-end-marker
 
-.. testcode::
 
-    from dwave.system import DWaveSampler, EmbeddingComposite
+>>> from dwave.system import DWaveSampler, EmbeddingComposite, DWaveCliqueSampler
+>>> import dwave.inspector
 
-    # Set up a D-Wave system as the sampler
-    sampler = EmbeddingComposite(DWaveSampler())
+
+
+
+
+>>> from dimod import quicksum
+>>> from dimod.generators import xor_gate
+
+
 
 Next, ask for 1000 samples and separate those that satisfy the CSP from
 those that fail to do so.
