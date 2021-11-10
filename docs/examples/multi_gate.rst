@@ -91,7 +91,7 @@ Formulating the Problem as a CSP
 
 This example
 
->>> from dimod import BinaryQuadraticModel, quicksum
+
 >>> from dimod.generators import and_gate, or_gate, xor_gate
 ...
 >>> bqm2 = or_gate('b', 'c', 'out2')
@@ -104,8 +104,26 @@ This example
 ...
 >>> bqm = bqm2 + bqm3 + bqm4 + bqm5 + bqm7
 >>> print(bqm.num_variables)
+9
 
+This circuit is small enough to solve by brute force. The following code prints
+solutions in which the circuit's output, :math:`z` is true. 
 
+>>> from dimod import ExactSolver
+>>> solutions = ExactSolver().sample(bqm).lowest()
+>>> z = []
+>>> out_fields = [key for key in list(next(solutions.data(['sample'])))[0].keys() if 'out' in key]
+>>> for datum in solutions.data(['sample', 'energy']):
+>>>    if datum.sample['z'] == 1:
+>>>       for key in out_fields:
+>>>          datum.sample.pop(key)
+>>>       z.append(datum.sample)
+>>> z
+[{'a': 1, 'b': 0, 'c': 0, 'd': 1, 'z': 1},
+ {'a': 1, 'b': 0, 'c': 1, 'd': 1, 'z': 1},
+ {'a': 1, 'b': 0, 'c': 1, 'd': 0, 'z': 1},
+ {'a': 1, 'b': 0, 'c': 0, 'd': 0, 'z': 1},
+ {'a': 0, 'b': 0, 'c': 0, 'd': 0, 'z': 1}]
 
 
     from dwave.system import DWaveSampler, EmbeddingComposite, DWaveCliqueSampler
@@ -138,6 +156,7 @@ Minor-Embedding and Sampling
 Algorithmic minor-embedding is heuristic---solution results vary significantly based on
 the minor-embedding found.
 
+>>> from dimod import quicksum
 >>> from dimod.generators import xor_gate
 
 
