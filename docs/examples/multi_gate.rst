@@ -127,7 +127,7 @@ solutions in which the circuit's output, :math:`z` is true.
  {'a': 1, 'b': 0, 'c': 0, 'd': 0, 'z': 1},
  {'a': 0, 'b': 0, 'c': 0, 'd': 0, 'z': 1}]
 
-
+However, such methods cannot work for much larger problems.
 
 Minor-Embedding and Sampling
 ============================
@@ -144,25 +144,38 @@ The next code sets up a D-Wave system as the sampler.
 >>> from dwave.system import DWaveSampler, EmbeddingComposite, DWaveCliqueSampler
 ...
 >>> sampler1 = EmbeddingComposite(DWaveSampler(solver=dict(topology__type='pegasus')))
->>> sampler2 = DWaveCliqueSampler(solver=dict(topology__type='pegasus'))
+>>> sampler2 = DWaveCliqueSampler(solver=dict(name=sampler1.child.solver.name))
 
->>> from dimod.generators import ran_r
+The code below can take several minutes to run. Uncommenting the print statements
+lets you view the execution's progress.
+
 >>> import time
->>> start_time = time.time()
-... for x in []:
-...    sampleset1 = sampler_emb.sample(ran_r(1, x), num_reads=100, return_embedding=True)
-... print("Execution took: {:.2f} seconds.".format(time.time() - start_time))  # doctest: +SKIP
-Execution took: 0.87 seconds.
+>>> import networkx as nx
+>>> times = {'sampler1': [], 'sampler2': []}
+>>> for i in range(10):
+...   nodes = 10 + 10*i
+...   edges = 5 + 5*i
+...   G = nx.random_regular_graph(n=nodes, d=edges)
+...   # print("Submitting problem of {} nodes and {} edges to sampler1".format(nodes, edges))
+...   times['sampler1'].append(time.time())
+...   sampler1.sample_ising({}, {edge: 1 for edge in G.edges})
+...   times['sampler1'][i] = time.time() - times['sampler1'][i]
+...
+...   # print("Submitting problem of {} nodes and {} edges to sampler2".format(nodes, edges))
+...   times['sampler2'].append(time.time())
+...   sampler2.sample_ising({}, {edge: 1 for edge in G.edges})
+...   times['sampler2'][i] = time.time() - times['sampler2'][i]
 
-times = []
-   ...: start_time = time.time()
-   ...: samplers.append(EmbeddingComposite(DWaveSampler(solver=dict(topology__type='pegasus'))))
-   ...: times.append(time.time() - start_time)
-   ...: samplers.append(DWaveCliqueSampler(solver=dict(topology__type='pegasus')))
-   ...: times.append(time.time() - times[0])
+You can see below that while the first submission is slow for the DWaveCliqueSampler
+class, subsequent submissions are fast. For the EmbeddingComposite class, the
+time depends on the size and complexity of each problem and each submission incurs
+the cost of finding an embedding anew.
 
+>>> print("EmbeddingComposite times: " + str([round(t, 2) for t in times["sampler1"] ]))  # doctest: +SKIP
+EmbeddingComposite times: [0.06, 0.41, 1.39, 3.88, 9.7, 17.91, 22.02, 73.74, 65.05, 28.92]
+>>> print("DWaveCliqueSampler times: " + str([round(t, 2) for t in times["sampler2"] ]))  # doctest: +SKIP
+DWaveCliqueSampler times: [152.7, 0.11, 0.11, 0.13, 0.14, 0.16, 0.19, 0.25, 0.22, 0.25]
 
-However, such methods cannot work for much larger problems.
 
 Large-Circuit Problem
 ---------------------
