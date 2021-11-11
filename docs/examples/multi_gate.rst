@@ -94,7 +94,7 @@ This example
 Small Circuit Problem
 ---------------------
 
->>> from dimod.generators import and_gate, or_gate, xor_gate
+>>> from dimod.generators import and_gate, or_gate
 ...
 >>> bqm2 = or_gate('b', 'c', 'out2')
 >>> bqm3 = and_gate('a', 'b', 'out3')
@@ -127,11 +127,51 @@ solutions in which the circuit's output, :math:`z` is true.
  {'a': 1, 'b': 0, 'c': 0, 'd': 0, 'z': 1},
  {'a': 0, 'b': 0, 'c': 0, 'd': 0, 'z': 1}]
 
+
+
+Minor-Embedding and Sampling
+============================
+
+Algorithmic minor-embedding is heuristic---solution results vary significantly based on
+the minor-embedding found.
+
+The next code sets up a D-Wave system as the sampler.
+
+.. include:: min_vertex.rst
+   :start-after: default-config-start-marker
+   :end-before: default-config-end-marker
+
+>>> from dwave.system import DWaveSampler, EmbeddingComposite, DWaveCliqueSampler
+...
+>>> sampler1 = EmbeddingComposite(DWaveSampler(solver=dict(topology__type='pegasus')))
+>>> sampler2 = DWaveCliqueSampler(solver=dict(topology__type='pegasus'))
+
+>>> from dimod.generators import ran_r
+>>> import time
+>>> start_time = time.time()
+... for x in []:
+...    sampleset1 = sampler_emb.sample(ran_r(1, x), num_reads=100, return_embedding=True)
+... print("Execution took: {:.2f} seconds.".format(time.time() - start_time))  # doctest: +SKIP
+Execution took: 0.87 seconds.
+
+times = []
+   ...: start_time = time.time()
+   ...: samplers.append(EmbeddingComposite(DWaveSampler(solver=dict(topology__type='pegasus'))))
+   ...: times.append(time.time() - start_time)
+   ...: samplers.append(DWaveCliqueSampler(solver=dict(topology__type='pegasus')))
+   ...: times.append(time.time() - times[0])
+
+
 However, such methods cannot work for much larger problems.
 
 Large-Circuit Problem
 ---------------------
 
+TODO: picture of multiple circuits
+
+>>> from dimod import quicksum
+>>> from dimod.generators import xor_gate
+...
 >>> num_circuits = 6
 ...
 >>> bqm2 = [or_gate(f"b_{c}", f"c_{c}", f"out2_{c}") for c in range(num_circuits)]
@@ -141,38 +181,14 @@ Large-Circuit Problem
 >>> bqm5 = [and_gate(f"out3_{c}", f"out4_{c}", f"out5_{c}") for c in range(num_circuits)]
 >>> bqm7 = [or_gate(f"out5_{c}", f"out4_{c}", f"z_{c}") for c in range(num_circuits)]
 >>> [bqm.flip_variable("out4_{}".format(indx)) for indx, bqm in enumerate(bqm7)]
->>> bqm_z = [xor_gate("z_0", "z_1", "zz0", "aux0")] +
-...         [xor_gate(f"z_{c}", f"zz{c-2}", f"zz{c-1}", f"aux{c-1}") for c in range(2, num_circuits)]
+>>> bqm_z = [xor_gate("z_0", "z_1", "zz0", "aux0")] + [
+...          xor_gate(f"z_{c}", f"zz{c-2}", f"zz{c-1}", f"aux{c-1}") for c in range(2, num_circuits)]
 >>> bqm = quicksum(bqm2 + bqm3 + bqm4 + bqm5 + bqm7 + bqm_z)
+>>> print(bqm.num_variables)
+64
 
 
-Minor-Embedding and Sampling
-============================
-
-Algorithmic minor-embedding is heuristic---solution results vary significantly based on
-the minor-embedding found.
-
-TODO: picture of multiple circuits
-
-
-The next code sets up a D-Wave system as the sampler.
-
-.. include:: min_vertex.rst
-   :start-after: default-config-start-marker
-   :end-before: default-config-end-marker
-
-
->>> from dwave.system import DWaveSampler, EmbeddingComposite, DWaveCliqueSampler
 >>> import dwave.inspector
-
-
-
-
-
->>> from dimod import quicksum
->>> from dimod.generators import xor_gate
-
-
 
 Next, ask for 1000 samples and separate those that satisfy the CSP from
 those that fail to do so.
