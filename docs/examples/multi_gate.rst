@@ -4,9 +4,9 @@
 Multiple-Gate Circuit
 =====================
 
-This example solves a logic circuit problem to demonstrate using Ocean tools
-to solve a problem on a D-Wave quantum computer. It builds on the discussion in
-the :ref:`and` example about the effect of :term:`minor-embedding` on performance.
+This example solves a logic-circuit problem on a D-Wave quantum computer. It
+expands on the discussion in the :ref:`and` example about the effect of
+:term:`minor-embedding` on performance.
 
 .. raw::  latex
 
@@ -89,10 +89,14 @@ To run the code in this example, the following is required.
 Formulating the Problem as a CSP
 ================================
 
-This example
-
-Small Circuit Problem
----------------------
+Other examples (:ref:`not` and :ref:`and`) show how a Boolean gate is
+represented as a *constraint satisfaction problem* (:term:`CSP`) on a quantum
+computer. This example does the same for multiple gates that constitute a circuit.
+The code below uses common Boolean gates provided by
+:doc:`dimod </docs_dimod/sdk_index>` BQM generators, represents the NOT
+operation by flipping the relevant variable, and sums the BQMs. The resulting
+aggregate BQM has its lowest value for variable assignments that satisfy all the
+constraints representing the circuit's Boolean gates.
 
 >>> from dimod.generators import and_gate, or_gate
 ...
@@ -127,7 +131,7 @@ solutions in which the circuit's output, :math:`z` is true.
  {'a': 1, 'b': 0, 'c': 0, 'd': 0, 'z': 1},
  {'a': 0, 'b': 0, 'c': 0, 'd': 0, 'z': 1}]
 
-However, such methods cannot work for much larger problems.
+However, such brute-force methods are not effective for much larger problems.
 
 Minor-Embedding and Sampling
 ============================
