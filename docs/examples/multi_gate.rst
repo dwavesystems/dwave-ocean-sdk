@@ -92,6 +92,10 @@ Formulating the Problem as a CSP
 Other examples (:ref:`not` and :ref:`and`) show how a Boolean gate is
 represented as a *constraint satisfaction problem* (:term:`CSP`) on a quantum
 computer. This example does the same for multiple gates that constitute a circuit.
+
+Small-Circuit Problem
+---------------------
+
 The code below uses common Boolean gates provided by
 :doc:`dimod </docs_dimod/sdk_index>` BQM generators, represents the NOT
 operation by flipping the relevant variable, and sums the BQMs. The resulting
@@ -120,24 +124,68 @@ solutions in which the circuit's output, :math:`z` is true.
 >>> z = []
 >>> out_fields = [key for key in list(next(solutions.data(['sample'])))[0].keys() if 'out' in key]
 >>> for datum in solutions.data(['sample', 'energy']):
->>>    if datum.sample['z'] == 1:
->>>       for key in out_fields:
->>>          datum.sample.pop(key)
->>>       z.append(datum.sample)
->>> z
-[{'a': 1, 'b': 0, 'c': 0, 'd': 1, 'z': 1},
- {'a': 1, 'b': 0, 'c': 1, 'd': 1, 'z': 1},
- {'a': 1, 'b': 0, 'c': 1, 'd': 0, 'z': 1},
- {'a': 1, 'b': 0, 'c': 0, 'd': 0, 'z': 1},
- {'a': 0, 'b': 0, 'c': 0, 'd': 0, 'z': 1}]
+...    if datum.sample['z'] == 1:
+...       for key in out_fields:
+...          _ = datum.sample.pop(key)
+...       z.append(datum.sample)
+>>> for solution in z:
+...   print(solution)
+{'a': 1, 'b': 0, 'c': 0, 'd': 1, 'z': 1}
+{'a': 1, 'b': 0, 'c': 1, 'd': 1, 'z': 1}
+{'a': 1, 'b': 0, 'c': 1, 'd': 0, 'z': 1}
+{'a': 1, 'b': 0, 'c': 0, 'd': 0, 'z': 1}
+{'a': 0, 'b': 0, 'c': 0, 'd': 0, 'z': 1}
 
 However, such brute-force methods are not effective for much larger problems.
 
+Large-Circuit Problem
+---------------------
+
+In the figure below, the 7-gates circuit solved above is replicated with the
+outputs connected through a series of XOR gates.
+
+.. figure:: ../_images/MultiGateCircuit_3Instances.png
+   :name: Problem_MultiGateCircuit_3Instances
+   :alt: image
+   :align: center
+   :scale: 90 %
+
+   Multiple replications of the 7-gates circuit (:math:`z = \overline{b} (ac + ad + \overline{c}\overline{d})`) connected by XOR gates.
+
+The :code:`circuit_bqm` function replicates the BQM of the 7-gates circuit above
+for a specified number of circuits, connecting the outputs through a cascade of
+XOR gates.
+
+>>> from dimod import BinaryQuadraticModel, quicksum
+>>> from dimod.generators import and_gate, or_gate, xor_gate
+...
+>>> def circuit_bqm(n: int = 3) -> BinaryQuadraticModel:
+...       "Create a BQM for n replications of the 7-gate circuit."
+...
+...       if n < 2:
+...          raise ValueError("n must be at least 2")
+...
+...       bqm2 = [or_gate(f"b_{c}", f"c_{c}", f"out2_{c}") for c in range(n)]
+...       bqm3 = [and_gate(f"a_{c}", f"b_{c}", f"out3_{c}") for c in range(n)]
+...       [bqm.flip_variable("b_{}".format(indx)) for indx, bqm in enumerate(bqm3)]
+...       bqm4 = [or_gate(f"out2_{c}", f"d_{c}", f"out4_{c}") for c in range(n)]
+...       bqm5 = [and_gate(f"out3_{c}", f"out4_{c}", f"out5_{c}") for c in range(n)]
+...       bqm7 = [or_gate(f"out5_{c}", f"out4_{c}", f"z_{c}") for c in range(n)]
+...       [bqm.flip_variable("out4_{}".format(indx)) for indx, bqm in enumerate(bqm7)]
+...       bqm_z = [xor_gate("z_0", "z_1", "zz0", "aux0")] + [
+...                xor_gate(f"z_{c}", f"zz{c-2}", f"zz{c-1}", f"aux{c-1}") for c in range(2, n)]
+...       return quicksum(bqm2 + bqm3 + bqm4 + bqm5 + bqm7 + bqm_z)
+
+Create a BQM for six replications of the circuit. For this aggregated circuit,
+the number of variables has increased to 64.
+
+>>> num_circuits = 6
+>>> bqm = circuit_bqm(num_circuits)
+>>> print(bqm.num_variables)
+64
+
 Minor-Embedding and Sampling
 ============================
-
-Algorithmic minor-embedding is heuristic---solution results vary significantly based on
-the minor-embedding found.
 
 The next code sets up a D-Wave system as the sampler.
 
@@ -181,31 +229,14 @@ EmbeddingComposite times: [0.06, 0.41, 1.39, 3.88, 9.7, 17.91, 22.02, 73.74, 65.
 DWaveCliqueSampler times: [152.7, 0.11, 0.11, 0.13, 0.14, 0.16, 0.19, 0.25, 0.22, 0.25]
 
 
-Large-Circuit Problem
----------------------
-
-TODO: picture of multiple circuits
-
->>> from dimod import quicksum
->>> from dimod.generators import xor_gate
-...
->>> num_circuits = 6
-...
->>> bqm2 = [or_gate(f"b_{c}", f"c_{c}", f"out2_{c}") for c in range(num_circuits)]
->>> bqm3 = [and_gate(f"a_{c}", f"b_{c}", f"out3_{c}") for c in range(num_circuits)]
->>> [bqm.flip_variable("b_{}".format(indx)) for indx, bqm in enumerate(bqm3)]
->>> bqm4 = [or_gate(f"out2_{c}", f"d_{c}", f"out4_{c}") for c in range(num_circuits)]
->>> bqm5 = [and_gate(f"out3_{c}", f"out4_{c}", f"out5_{c}") for c in range(num_circuits)]
->>> bqm7 = [or_gate(f"out5_{c}", f"out4_{c}", f"z_{c}") for c in range(num_circuits)]
->>> [bqm.flip_variable("out4_{}".format(indx)) for indx, bqm in enumerate(bqm7)]
->>> bqm_z = [xor_gate("z_0", "z_1", "zz0", "aux0")] + [
-...          xor_gate(f"z_{c}", f"zz{c-2}", f"zz{c-1}", f"aux{c-1}") for c in range(2, num_circuits)]
->>> bqm = quicksum(bqm2 + bqm3 + bqm4 + bqm5 + bqm7 + bqm_z)
->>> print(bqm.num_variables)
-64
 
 
 >>> import dwave.inspector
+
+
+Algorithmic minor-embedding is heuristic---solution results vary significantly based on
+the minor-embedding found.
+
 
 Next, ask for 1000 samples and separate those that satisfy the CSP from
 those that fail to do so.
