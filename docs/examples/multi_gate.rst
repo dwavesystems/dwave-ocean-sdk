@@ -187,7 +187,20 @@ the number of variables has increased to 64.
 Minor-Embedding and Sampling
 ============================
 
-The next code sets up a D-Wave system as the sampler.
+The :ref:`and` example used the :class:`~dwave.system.composites.EmbeddingComposite`
+composite to :term:`minor-embed` its unstructured problem. That composite runs
+a :ref:`minorminer algorithm <sdk_index_minorminer>` to find a minorembedding
+each time you submit a problem.
+
+However, for some applications the submitted problems might be related or limited
+in size in such a way that you can find a common minor embedding for the entire
+set of problems you wish to submit. For the current problem, for example, you
+might wish to submit the same circuit multiple times while each time fixing
+inputs to zero or one in various configurations.
+
+The next code sets up a D-Wave system as the sampler using both the
+:class:`~dwave.system.composites.EmbeddingComposite` class and the
+:class:`~dwave.system.samplers.DWaveCliqueSampler` class.
 
 .. include:: min_vertex.rst
    :start-after: default-config-start-marker
@@ -198,37 +211,103 @@ The next code sets up a D-Wave system as the sampler.
 >>> sampler1 = EmbeddingComposite(DWaveSampler(solver=dict(topology__type='pegasus')))
 >>> sampler2 = DWaveCliqueSampler(solver=dict(name=sampler1.child.solver.name))
 
-The code below can take several minutes to run. Uncommenting the print statements
-lets you view the execution's progress.
+Performance Comparison: Embedding Time
+--------------------------------------
 
->>> import time
->>> import networkx as nx
->>> times = {'sampler1': [], 'sampler2': []}
->>> for i in range(10):
-...   nodes = 10 + 10*i
-...   edges = 5 + 5*i
-...   G = nx.random_regular_graph(n=nodes, d=edges)
-...   # print("Submitting problem of {} nodes and {} edges to sampler1".format(nodes, edges))
-...   times['sampler1'].append(time.time())
-...   sampler1.sample_ising({}, {edge: 1 for edge in G.edges})
-...   times['sampler1'][i] = time.time() - times['sampler1'][i]
-...
-...   # print("Submitting problem of {} nodes and {} edges to sampler2".format(nodes, edges))
-...   times['sampler2'].append(time.time())
-...   sampler2.sample_ising({}, {edge: 1 for edge in G.edges})
-...   times['sampler2'][i] = time.time() - times['sampler2'][i]
+The :class:`~dwave.system.samplers.DWaveCliqueSampler` class can save time
+if you submit a sequence of problems that are sub-graphs of a clique embedding
+found by the composite on a QPU. The table below shows the minor-embedding
+times\ [#]_ for a series on random problems of increasing size\ [#]_. Some
+differences of interest are highlighted in bold.
 
-You can see below that while the first submission is slow for the DWaveCliqueSampler
-class, subsequent submissions are fast. For the EmbeddingComposite class, the
-time depends on the size and complexity of each problem and each submission incurs
-the cost of finding an embedding anew.
+You can see below that while the first submission is slow for the
+:class:`~dwave.system.samplers.DWaveCliqueSampler` class, subsequent submissions
+are fast. For the :class:`~dwave.system.composites.EmbeddingComposite` class, the
+time depends on the size and complexity of each problem, can vary between
+submissions of the same problem, and each submission incurs the cost of finding
+an embedding anew.
 
->>> print("EmbeddingComposite times: " + str([round(t, 2) for t in times["sampler1"] ]))  # doctest: +SKIP
-EmbeddingComposite times: [0.06, 0.41, 1.39, 3.88, 9.7, 17.91, 22.02, 73.74, 65.05, 28.92]
->>> print("DWaveCliqueSampler times: " + str([round(t, 2) for t in times["sampler2"] ]))  # doctest: +SKIP
-DWaveCliqueSampler times: [152.7, 0.11, 0.11, 0.13, 0.14, 0.16, 0.19, 0.25, 0.22, 0.25]
+.. list-table:: Minor-Embedding Times
+   :widths: 20 10 10 30
+   :header-rows: 1
+
+   * - Problem Size: Nodes (Edges)
+     - :class:`~dwave.system.composites.EmbeddingComposite`
+     - :class:`~dwave.system.samplers.DWaveCliqueSampler`
+     - Notes
+   * - 10 (5)
+     - **0.06**
+     - **152.7**
+     - :class:`~dwave.system.samplers.DWaveCliqueSampler` calculates all clique
+       embeddings for the QPU
+   * - 20 (10)
+     - 0.41
+     - 0.11
+     -
+   * - 30 (15)
+     - 1.39
+     - 0.11
+     -
+   * - 40 (20)
+     - 3.88
+     - 0.13
+     -
+   * - 50 (25)
+     - 9.7
+     - 0.14
+     -
+   * - 60 (30)
+     - 17.91
+     - 0.16
+     -
+   * - 70 (35)
+     - 22.02
+     - 0.19
+     -
+   * - 80 (40)
+     - **73.74**
+     - **0.25**
+     -
+   * - 90 (45)
+     - 65.05
+     - 0.22
+     -
+   * - 100 (50)
+     - 28.92
+     - 0.25
+     - For this instance, :class:`~dwave.system.composites.EmbeddingComposite`
+       found a good embedding quickly; other executions might not.
+
+.. [#] The times are approximate: the code measured the blocking time when
+   submitting problems, in which minor-embedding is the major component.
+
+.. [#]
+
+  The code below can take several minutes to run. Uncommenting the print statements
+  lets you view the execution's progress. Note that if you have already
+  executed a submission with :class:`~dwave.system.samplers.DWaveCliqueSampler`,
+  your cache might need to be cleared with the
+  :func:`minorminer.busclique.busgraph_cache.clear_all_caches`
+  function.
+
+  >>> import time
+  >>> import networkx as nx
+  ...
+  >>> samplers = {"sampler1": sampler1, "sampler2": sampler2}
+  >>> times = {key: [] for key in samplers.keys()}
+  >>> for name, sampler in samplers.items():
+  ...    for i in range(10):
+  ...       nodes = 10 + 10*i
+  ...       edges = 5 + 5*i
+  ...       G = nx.random_regular_graph(n=nodes, d=edges)
+  ...       # print("Submitting problem of {} nodes and {} edges to sampler {}".format(nodes, edges, name))
+  ...       times[name].append(time.time())
+  ...       sampler.sample_ising({}, {edge: 1 for edge in G.edges})
+  ...       times[name][i] = time.time() - times[name][i]
 
 
+Performance Comparison: Solution Quality
+----------------------------------------
 
 
 >>> import dwave.inspector
@@ -236,188 +315,3 @@ DWaveCliqueSampler times: [152.7, 0.11, 0.11, 0.13, 0.14, 0.16, 0.19, 0.25, 0.22
 
 Algorithmic minor-embedding is heuristic---solution results vary significantly based on
 the minor-embedding found.
-
-
-Next, ask for 1000 samples and separate those that satisfy the CSP from
-those that fail to do so.
-
-.. testcode::
-
-    sampleset = sampler.sample(bqm, num_reads=1000, label='SDK Examples - Gate Circuit')
-
-    # Check how many solutions meet the constraints (are valid)
-    valid, invalid, data = 0, 0, []
-    for datum in sampleset.data(['sample', 'energy', 'num_occurrences']):
-        if (csp.check(datum.sample)):
-            valid = valid+datum.num_occurrences
-            for i in range(datum.num_occurrences):
-                data.append((datum.sample, datum.energy, '1'))
-        else:
-            invalid = invalid+datum.num_occurrences
-            for i in range(datum.num_occurrences):
-                data.append((datum.sample, datum.energy, '0'))
-
->>> print(valid, invalid)        # doctest: +SKIP
-
-For the single constraint approach, 4 runs with their different minor-embeddings
-yield significantly varied results, as shown in the following table:
-
-.. list-table:: Single Constraint
-   :widths: 10 10
-   :header-rows: 1
-
-   * - Embedding
-     - (valid, invalid)
-   * - 1
-     - (39, 961)
-   * - 2
-     - (1000, 0)
-   * - 3
-     - (998, 2)
-   * - 4
-     - (316, 684)
-
-You can see the minor-embeddings found here on a D-Wave 2000Q system:
-:ref:`multi_gate_results`; below those embeddings are visualized graphically.
-
-.. figure:: ../_images/SingleCSPembeddings.png
-   :name: SingleCSPembeddings
-   :alt: image
-   :align: center
-   :scale: 50 %
-
-   Each of the figure's 4 panels shows a minor-embedding found for one run of the example
-   code above. The panels show part of the Chimera graph representation of a D-Wave 2000Q QPU,
-   where each unit cell is rendered as a cross of 4 horizontal and 4 vertical dots
-   representing qubits and lines representing couplers between qubit pairs. Color
-   indicates the strengths of linear (qubit) and quadratic (coupler) biases: darker blue
-   for increasingly negative values and darker red for increasingly positive values.
-
-Optionally, you can use the :doc:`problem-inspector </docs_inspector/sdk_index>`
-to view the solution on the QPU.
-
-.. note:: The next code requires the use of Ocean's problem inspector.
-
->>> import dwave.inspector
->>> dwave.inspector.show(sampleset)   # doctest: +SKIP
-
-.. figure:: ../_static/inspector_CSP_broken.png
-   :name: inspector_CSP_broken
-   :alt: image
-   :align: center
-   :scale: 50 %
-
-   View of the logical and embedded problem rendered by Ocean's problem inspector for one arbitrary execution. The CSP's original BQM, on the left, shows that the solution shown for variable :math:`z` is based on a broken chain; its embedded representation, on the right, shows the broken three-qubit chain for variable :math:`z` highlighted red. The current solution displayed for variable :math:`z` is based on two qubits with spin value :math:`-1` and one with value :math:`1`, and thus represented in the problem space with a broken dot (part white, part gold).
-
-For the second approach, which creates a constraint satisfaction problem based on multiple
-small constraints, a larger number of variables (11 versus 7) need to be minor-embedded, resulting
-in worse performance. However, performance was greatly improved in this case by increasing
-the chain strength (to 2 instead of 1 previously used by default on the runs above).
-
-.. list-table:: Multiple Constraints
-   :widths: 10 10 10
-   :header-rows: 1
-
-   * - Embedding
-     - Chain Strength
-     - (valid, invalid)
-   * - 1
-     - 1
-     - (7, 993)
-   * - 2
-     - 1
-     - (417, 583)
-   * - 3
-     - 2
-     - (941, 59)
-   * - 4
-     - 2
-     - (923, 77)
-
-You can see the minor-embeddings used here: :ref:`multi_gate_results`; below
-those embeddings are visualized graphically.
-
-.. figure:: ../_images/MultiCSPembeddings.png
-   :name: MultiCSPembeddings
-   :alt: image
-   :align: center
-   :scale: 50 %
-
-   Each of the figure's 4 panels shows a minor-embedding found for one run of the example
-   code above, as described for the previous figure. Here, the top two panels are for
-   runs with the default chain-strength of 1 and the bottom two for chain-strengths of 2.
-
-Looking at the Results
-======================
-
-You can verify the solution to the circuit problem by checking an arbitrary valid
-or invalid sample:
-
->>> print(sampleset.first.sample)      # doctest: +SKIP
-{'a': 1, 'c': 0, 'b': 0, 'not1': 1, 'd': 1, 'or4': 1, 'or2': 0, 'not6': 0,
-'and5': 1, 'z': 1, 'and3': 1}
-
-For the lowest-energy sample of the last run, found above, the inputs are
-:math:`a, b, c, d = 1, 0, 0, 1` and the output is :math:`z=1`, which indeed matches
-the analytical solution for the circuit,
-
-.. math::
-
-    z &= \overline{b} (ac + ad + \overline{c}\overline{d})
-
-      &= 1(0+1+0)
-
-      &= 1
-
-The example code above converted the constraint satisfaction problem to a binary
-quadratic model using the default minimum energy gap of 2. Therefore, each constraint
-violated by the solution increases the energy level of the binary quadratic model by
-at least 2 relative to ground energy. You can also plot the energies for valid and
-invalid samples::
-
-   import matplotlib.pyplot as plt
-   plt.ion()
-   plt.scatter(range(len(data)), [x[1] for x in data], c=['y' if (x[2] == '1')    \
-      else 'r' for x in data],marker='.')
-   plt.xlabel('Sample')
-   plt.ylabel('Energy')
-
-.. figure:: ../_images/MultiGateCircuit_Results.png
-   :name: MultiGateCircuitResults
-   :alt: image
-   :align: center
-   :scale: 50 %
-
-   Energies per sample for a 1000-sample problem submission of the logic circuit.
-   Blue points represent valid solutions (solutions that solve the constraint satisfaction
-   problem) and red points the invalid solutions.
-
-You can see in the graph that valid solutions have energy -9.5 and invalid solutions
-energies of -7.5, -5.5, and -3.5.
-
->>> for datum in sampleset.data(['sample', 'energy', 'num_occurrences', 'chain_break_fraction']):  # doctest: +SKIP
-...    print(datum)
-...
-Sample(sample={'a': 1, 'c': 0, 'b': 1, 'not1': 0, 'd': 1, 'or4': 1, 'or2': 1, 'not6': 0, 'and5': 0, 'z': 0, 'and3': 0}, energy=-9.5, num_occurrences=13, chain_break_fraction=0.0)
-Sample(sample={'a': 1, 'c': 1, 'b': 1, 'not1': 0, 'd': 0, 'or4': 1, 'or2': 1, 'not6': 0, 'and5': 0, 'z': 0, 'and3': 0}, energy=-9.5, num_occurrences=14, chain_break_fraction=0.0)
-# Snipped this section for brevity
-Sample(sample={'a': 1, 'c': 0, 'b': 0, 'not1': 1, 'd': 1, 'or4': 1, 'or2': 0, 'not6': 1, 'and5': 1, 'z': 1, 'and3': 1}, energy=-7.5, num_occurrences=3, chain_break_fraction=0.09090909090909091)
-Sample(sample={'a': 1, 'c': 1, 'b': 0, 'not1': 1, 'd': 1, 'or4': 1, 'or2': 1, 'not6': 1, 'and5': 1, 'z': 1, 'and3': 1}, energy=-7.5, num_occurrences=1, chain_break_fraction=0.18181818181818182)
-Sample(sample={'a': 1, 'c': 1, 'b': 1, 'not1': 1, 'd': 0, 'or4': 1, 'or2': 1, 'not6': 1, 'and5': 1, 'z': 1, 'and3': 1}, energy=-5.5, num_occurrences=4, chain_break_fraction=0.18181818181818182)
-# Snipped this section for brevity
-Sample(sample={'a': 1, 'c': 1, 'b': 1, 'not1': 1, 'd': 0, 'or4': 1, 'or2': 1, 'not6': 1, 'and5': 0, 'z': 1, 'and3': 1}, energy=-3.5, num_occurrences=1, chain_break_fraction=0.2727272727272727)
-
-You can see, for example, that sample::
-
-    Sample(sample={'a': 1, 'c': 1, 'b': 0, 'not1': 1, 'd': 1, 'or4': 1, 'or2': 1, 'not6': 1, 'and5': 1, 'z': 1, 'and3': 1}, energy=-7.5, num_occurrences=1, chain_break_fraction=0.18181818181818182)
-
-has a higher energy by 2 than the ground energy. It is expected that
-this solution violates a single constraint, and you can see that it violates constraint::
-
-    Constraint.from_configurations(frozenset([(1, 0, 0), (0, 1, 0), (0, 0, 0), (1, 1, 1)]), ('a', 'not1', 'and3'), Vartype.BINARY, name='AND')
-
-on AND gate 3.
-
-Note also that for samples with higher energy there tends to be an increasing fraction of
-broken chains: zero for the valid solutions but rising to almost 30% for solutions that have
-three broken constraints.
