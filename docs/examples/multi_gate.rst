@@ -428,7 +428,7 @@ The figure below shows that for the BQM representing two replications of the
 :math:`z = \overline{b} (ac + ad + \overline{c}\overline{d})` circuit, with its
 20 variables and 34 edges, the clique embedding uses chains of length two to
 represent nodes that the embedding found by the code above represents without
-chains. 
+chains.
 
 .. figure:: ../_images/MultiGateCircuit_Embedding2.png
    :name: Problem_MultiGateCircuit_Embedding2
@@ -441,6 +441,25 @@ chains.
    (bottom-right).
 
 
+The next figure shows that for the BQM representing ten replications of the
+:math:`z = \overline{b} (ac + ad + \overline{c}\overline{d})` circuit, the clique
+embedding uses much longer chains than direct embedding of the problem:
 
-Algorithmic minor-embedding is heuristic---solution results vary significantly based on
-the minor-embedding found.
+>>> bqm = circuit_bqm(10)
+>>> for sampler in samplers.values():
+...    sampleset = sampler.sample(bqm, num_reads=5000, return_embedding=True)
+...    chain_len = max(len(x) for x in sampleset.info["embedding_context"]["embedding"].values())
+...    print("Maximum chain length: {}".format(chain_len))       # doctest: +SKIP
+...    dwave.inspector.show(sampleset)
+Maximum chain length: 2
+Maximum chain length: 11
+
+.. figure:: ../_images/MultiGateCircuit_Embedding10.png
+   :name: Problem_MultiGateCircuit_Embedding10
+   :alt: image
+   :align: center
+   :scale: 50 %
+
+   Graph of ten replications of the :math:`z = \overline{b} (ac + ad + \overline{c}\overline{d})`
+   circuit (top centre), an embedding (bottom-left), a clique-embedding
+   (bottom-right).
