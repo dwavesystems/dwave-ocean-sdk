@@ -217,7 +217,7 @@ Performance Comparison: Embedding Time
 The :class:`~dwave.system.samplers.DWaveCliqueSampler` class can save time
 if you submit a sequence of problems that are sub-graphs of a clique embedding
 found by the composite on a QPU. The table below shows the minor-embedding
-times\ [#]_ for a series on random problems of increasing size\ [#]_. Some
+times\ [#]_ for a series of random problems of increasing size\ [#]_. Some
 differences of interest are highlighted in bold.
 
 You can see below that while the first submission is slow for the
