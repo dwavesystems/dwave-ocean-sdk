@@ -198,6 +198,28 @@ set of problems you wish to submit. For the current problem, for example, you
 might wish to submit the same circuit multiple times while each time fixing
 inputs to zero or one in various configurations.
 
+One way of doing this is to pre-calculate a minor-embedding for a clique
+(a :term:`complete graph`) with the maximum number of nodes expected for your
+problem. Because any BQM of :math:`n` variables maps to a subgraph of an
+:math:`n`--node clique\ [#]_, you can use the pre-calculated embedding with any unused
+nodes and edges assigned values of zero.
+
+.. [#]
+  The figure below shows two random
+  :func:`~networkx.generators.random_graphs.random_regular_graph` graphs with four
+  and three nodes, respectively, each with two edges per node, on a background of
+  a 5-node clique.
+
+  .. figure:: ../_images/subgraphs_clique5.png
+     :name: MultiGateCircuit_SubgraphsClique5
+     :alt: image
+     :align: center
+     :scale: 50 %
+
+     Two subgraphs of a 5-node clique. The clique is plotted in yellow and the
+     random sub-graphs in blue (four nodes) and red (three nodes).
+
+
 The next code sets up a D-Wave system as the sampler using both the
 :class:`~dwave.system.composites.EmbeddingComposite` class and the
 :class:`~dwave.system.samplers.DWaveCliqueSampler` class.
@@ -283,12 +305,11 @@ an embedding anew.
 
 .. [#]
 
-  The code below can take several minutes to run. Uncommenting the print statements
+  The code below can take several minutes to run. Uncommenting the print statement
   lets you view the execution's progress. Note that if you have already
-  executed a submission with :class:`~dwave.system.samplers.DWaveCliqueSampler`,
-  your cache might need to be cleared with the
-  :func:`minorminer.busclique.busgraph_cache.clear_all_caches`
-  function.
+  used :class:`~dwave.system.samplers.DWaveCliqueSampler`, your cache might need
+  to be cleared with the :func:`minorminer.busclique.busgraph_cache.clear_all_caches`
+  function to measure the initial calculation time.
 
   >>> import time
   >>> import networkx as nx
@@ -338,7 +359,8 @@ typically results in an embedding with shorter chains.
 
 Compare the number of ground states (solutions for which the value of the BQM
 is zero, meaning no constraint is violated) found by the quantum computer when
-using a minor-embedding for problems of increasing size versus the clique embedding.
+minor-embedding each of a sequence of problems of increasing size versus using a
+clique embedding.
 
 The code below can take minutes to run. Uncommenting the print statements
 lets you view the execution's progress.
@@ -394,8 +416,30 @@ to ten times. For ten replication, a clique embedding of over 100 nodes is requi
      - 7.2
      - 0.3
 
+Ocean's :doc:`problem-inspector </docs_inspector/sdk_index>` can help you to
+understand such differences in solution quality.
 
 >>> import dwave.inspector
+>>> bqm = circuit_bqm(2)
+>>> sampleset1 = sampler1.sample(bqm, num_reads=5000, return_embedding=True)
+>>> dwave.inspector.show(sampleset1)
+
+The figure below shows that for the BQM representing two replications of the
+:math:`z = \overline{b} (ac + ad + \overline{c}\overline{d})` circuit, with its
+20 variables and 34 edges, the clique embedding uses chains of length two to
+represent nodes that the embedding found by the code above represents without
+chains. 
+
+.. figure:: ../_images/MultiGateCircuit_Embedding2.png
+   :name: Problem_MultiGateCircuit_Embedding2
+   :alt: image
+   :align: center
+   :scale: 50 %
+
+   Graph of two replications of the :math:`z = \overline{b} (ac + ad + \overline{c}\overline{d})`
+   circuit (top centre), an embedding (bottom-left), a clique-embedding
+   (bottom-right).
+
 
 
 Algorithmic minor-embedding is heuristic---solution results vary significantly based on
