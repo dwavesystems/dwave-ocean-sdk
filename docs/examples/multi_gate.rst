@@ -231,15 +231,15 @@ an embedding anew.
    :widths: 20 10 10 30
    :header-rows: 1
 
-   * - Problem Size: Nodes (Edges)
-     - :class:`~dwave.system.composites.EmbeddingComposite`
-     - :class:`~dwave.system.samplers.DWaveCliqueSampler`
+   * - Problem Size: Nodes (Edges/Node)
+     - :class:`~dwave.system.composites.EmbeddingComposite` Time [sec]
+     - :class:`~dwave.system.samplers.DWaveCliqueSampler` Time [sec]
      - Notes
    * - 10 (5)
      - **0.06**
      - **152.7**
      - :class:`~dwave.system.samplers.DWaveCliqueSampler` calculates all clique
-       embeddings for the QPU
+       embeddings for the QPU.
    * - 20 (10)
      - 0.41
      - 0.11
@@ -275,11 +275,11 @@ an embedding anew.
    * - 100 (50)
      - 28.92
      - 0.25
-     - For this instance, :class:`~dwave.system.composites.EmbeddingComposite`
+     - For this execution, :class:`~dwave.system.composites.EmbeddingComposite`
        found a good embedding quickly; other executions might not.
 
-.. [#] The times are approximate: the code measured the blocking time when
-   submitting problems, in which minor-embedding is the major component.
+.. [#] The times are approximate: the code measures the blocking time when
+   submitting problems, of which minor-embedding is the major element.
 
 .. [#]
 
@@ -305,9 +305,94 @@ an embedding anew.
   ...       sampler.sample_ising({}, {edge: 1 for edge in G.edges})
   ...       times[name][i] = time.time() - times[name][i]
 
+If you wish, for example, to submit a problem with two replications of the
+:math:`z = \overline{b} (ac + ad + \overline{c}\overline{d})` circuit, which
+has 20 variables (and 34 interactions), you can expect an embedding time of
+less than a second.
+
+>>> bqm1 = circuit_bqm(2)
+>>> bqm2 = bqm1.copy(bqm1)
+>>> bqm1.fix_variables([('b_0', 0), ('b_1', 0), ('a_0', 1)])
+>>> bqm2.fix_variables([('b_0', 1), ('b_1', 1), ('a_0', 0)])
+...
+>>> bqms = [bqm1, bqm2]
+>>> times = {key: [] for key in samplers.keys()}
+>>> for name, sampler in samplers.items():
+...    for i, bqm in enumerate(bqms):
+...       times[name].append(time.time())
+...       sampler.sample(bqm, num_reads=5000)
+...       times[name][i] = time.time() - times[name][i]
+>>> times                                                    # doctest: +SKIP
+{'sampler1': [0.43480920791625977, 0.381976842880249],
+ 'sampler2': [0.12912440299987793, 0.12194108963012695]}
+
+If, however, you wish to submit a problem with ten replications repeatedly, with
+some subset of the variables fixed, the overhead cost of embedding can be minutes.
 
 Performance Comparison: Solution Quality
 ----------------------------------------
+
+The :class:`~dwave.system.composites.EmbeddingComposite` class attempts to find
+a good for the problem rather than for a clique of the same number of nodes: this
+typically results in an embedding with shorter chains.
+
+Compare the number of ground states (solutions for which the value of the BQM
+is zero, meaning no constraint is violated) found by the quantum computer when
+using a minor-embedding for problems of increasing size versus the clique embedding.
+
+The code below can take minutes to run. Uncommenting the print statements
+lets you view the execution's progress.
+
+>>> samplers = {"sampler1": sampler1, "sampler2": sampler2}
+>>> samplesets = {key: [] for key in samplers.keys()}
+>>> for num_circuits in range(2, 11):
+...    bqm = circuit_bqm(num_circuits)
+...    for name, sampler in samplers.items():
+...       # print("Submitting problem of {} circuits to sampler {}".format(num_circuits, name))
+...       sampleset = sampler.sample(bqm, num_reads=5000)
+...       if sampleset.first.energy > 0:
+...          samplesets[name].append(0)
+...       else:
+...          samplesets[name].append(sum(sampleset.lowest().record.num_occurrences))
+
+The table below shows results for one execution with problems that replicate the
+:math:`z = \overline{b} (ac + ad + \overline{c}\overline{d})` circuit between two
+to ten times. For ten replication, a clique embedding of over 100 nodes is required.
+
+.. list-table:: Minor-Embedding Ground-State Ratio
+   :widths: 10 10 10
+   :header-rows: 1
+
+   * - Problem Size: Circuit Replications
+     - :class:`~dwave.system.composites.EmbeddingComposite` Ground-State Ratio [%]
+     - :class:`~dwave.system.samplers.DWaveCliqueSampler` Ground-State Ratio [%]
+   * - 2
+     - 69.6
+     - 74.4
+   * - 3
+     - 52.6
+     - 25.2
+   * - 4
+     - 40.5
+     - 16.8
+   * - 5
+     - 29.1
+     - 3.3
+   * - 6
+     - 20.9
+     - 2.9
+   * - 7
+     - 16.3
+     - 0.2
+   * - 8
+     - 14.4
+     - 0.0
+   * - 9
+     - 8.9
+     - 0.0
+   * - 10
+     - 7.2
+     - 0.3
 
 
 >>> import dwave.inspector
