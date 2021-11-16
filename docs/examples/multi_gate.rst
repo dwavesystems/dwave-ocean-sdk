@@ -249,7 +249,7 @@ time depends on the size and complexity of each problem, can vary between
 submissions of the same problem, and each submission incurs the cost of finding
 an embedding anew.
 
-.. list-table:: Minor-Embedding Times
+.. list-table:: Minor-Embedding: Embedding Times
    :widths: 20 10 10 30
    :header-rows: 1
 
@@ -381,7 +381,7 @@ The table below shows results for one execution with problems that replicate the
 :math:`z = \overline{b} (ac + ad + \overline{c}\overline{d})` circuit between two
 to ten times. For ten replication, a clique embedding of over 100 nodes is required.
 
-.. list-table:: Minor-Embedding Ground-State Ratio
+.. list-table:: Minor-Embedding: Ground-State Ratio Across Samplers
    :widths: 10 10 10
    :header-rows: 1
 
@@ -417,18 +417,20 @@ to ten times. For ten replication, a clique embedding of over 100 nodes is requi
      - 0.3
 
 Ocean's :doc:`problem-inspector </docs_inspector/sdk_index>` can help you to
-understand such differences in solution quality.
+understand such differences in solution quality. The code below visualizes
+the sample set returned from a quantum computer in your browser.
 
 >>> import dwave.inspector
 >>> bqm = circuit_bqm(2)
 >>> sampleset1 = sampler1.sample(bqm, num_reads=5000, return_embedding=True)
 >>> dwave.inspector.show(sampleset1)
 
-The figure below shows that for the BQM representing two replications of the
-:math:`z = \overline{b} (ac + ad + \overline{c}\overline{d})` circuit, with its
-20 variables and 34 edges, the clique embedding uses chains of length two to
-represent nodes that the embedding found by the code above represents without
-chains.
+The figure below, constituted of snapshots from the problem inspector for
+submissions to the two samplers defined above, shows that for the BQM representing
+two replications of the :math:`z = \overline{b} (ac + ad + \overline{c}\overline{d})`
+circuit, with its 20 variables and 34 edges, the clique embedding uses chains of
+length two to represent nodes that the embedding found by the code above represents
+without chains.
 
 .. figure:: ../_images/MultiGateCircuit_Embedding2.png
    :name: Problem_MultiGateCircuit_Embedding2
@@ -440,6 +442,9 @@ chains.
    circuit (top centre), an embedding (bottom-left), a clique-embedding
    (bottom-right).
 
+Short chains of a few qubits generally enable good quality solutions: for a
+circuit made of two replications the ratio of ground states is simialr for both
+methods of embedding used above.
 
 The next figure shows that for the BQM representing ten replications of the
 :math:`z = \overline{b} (ac + ad + \overline{c}\overline{d})` circuit, the clique
@@ -463,3 +468,84 @@ Maximum chain length: 11
    Graph of ten replications of the :math:`z = \overline{b} (ac + ad + \overline{c}\overline{d})`
    circuit (top centre), an embedding (bottom-left), a clique-embedding
    (bottom-right).
+
+For ten replications, the clique embedding has long chains of up to 11 qubits
+representing the problem's variables. Depending on the problem, such chains may
+degrade the solution, as is the case here.
+
+The :ref:`inspector_graph_partitioning` example demonstrates how the problem
+inspector can be used to analyze your problem submissions.
+
+Performance Comparison: Embedding Executions
+--------------------------------------------
+
+.. list-table:: Minor-Embedding: Ground-State Ratio Across Executions
+   :widths: 10 20 10
+   :header-rows: 1
+
+   * - Execution
+     - Ground-State Ratio [%]
+     - Chain Length
+   * - 1
+     - 10.1, 10.1, 8.9
+     - 4
+   * - 2
+     - 25.8, 29.1, 28.4
+     - 4
+   * - 3
+     - 24.9, 24.4, 27.9
+     - 3
+   * - 4
+     - 14.0, 11.0, 13.6
+     - 3
+   * - 5
+     - 38.5, 36.4, 34.5
+     - 4
+   * - 6
+     - 15.4, 14.6, 14.5
+     - 4
+   * - 7
+     - 43.8, 44.2, 45.1
+     - 3
+   * - 8
+     - 15.9, 17.2, 15.3
+     - 4
+   * - 9
+     - 31.1, 34.1, 27.1
+     - 3
+   * - 10
+     - 15.3, 11.5, 12.1
+     - 3
+
+.. [#]
+
+  >>> from dimod.generator import ran_r
+  >>> from dwave.system import DWaveSampler, EmbeddingComposite, FixedEmbeddingComposite
+  ...
+  >>> problem_size = 20
+  >>> num_problems = 10
+  >>> submission_repeats = 2
+  >>> qpu = DWaveSampler(solver=dict(topology__type='pegasus'))
+  >>> sampler1 = EmbeddingComposite(qpu)
+  >>> bqm = ran_r(10, problem_size)
+  ...
+  >>> samplesets = {}
+  >>> chain_len = []
+  >>> for runs in range(num_problems):
+  ...    samplesets[runs] = []
+  ...    print("Run {}".format(runs))
+  ...    sampleset = sampler1.sample(bqm, num_reads=5000, return_embedding=True)
+  ...    if sampleset.first.energy > 0:
+  ...        samplesets[runs].append(0)
+  ...    else:
+  ...        samplesets[runs].append(sum(sampleset.lowest().record.num_occurrences))
+  ...        embedding = sampleset.info["embedding_context"]["embedding"]
+  ...        chain_len.append(max(len(x) for x in embedding.values()))
+  ...        sampler2 = FixedEmbeddingComposite(qpu)), embedding=embedding)
+  ...    for i in range(submission_repeats):
+  ...        print("\tSubmitting {}--{}".format(runs, i))
+  ...        sampleset = sampler2.sample(bqm, num_reads=5000, return_embedding=True)
+  ...        if sampleset.first.energy > 0:
+  ...           samplesets[runs].append(0)
+  ...        else:
+  ...           samplesets[runs].append(sum(sampleset.lowest().record.num_occurrences))
