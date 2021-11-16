@@ -14,7 +14,6 @@
 #
 # ================================================================================================
 import unittest
-import os
 
 from dwave.system import DWaveSampler
 
@@ -23,12 +22,6 @@ try:
     _sampler = True
 except Exception:
     _sampler = False
-
-
-class TestTmp(unittest.TestCase):
-    def test_tmp(self):
-        a = os.environ['TEST_ENV_VAR']
-        print("TEST ENV VAR IS: ", a)
 
 
 class TestSmokeIndividually(unittest.TestCase):
