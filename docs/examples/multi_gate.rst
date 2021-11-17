@@ -238,7 +238,7 @@ embedding.
 >>> from dwave.system import DWaveSampler, EmbeddingComposite, DWaveCliqueSampler
 ...
 >>> sampler1 = EmbeddingComposite(DWaveSampler(solver=dict(topology__type='pegasus')))
->>> sampler2 = DWaveCliqueSampler(solver=dict(name=sampler1.child.solver.name))
+>>> sampler2 = DWaveCliqueSampler(solver=dict(name=sampler1.child.solver.name))  # doctest: +SKIP
 
 Performance Comparison: Embedding Time
 --------------------------------------
@@ -321,9 +321,9 @@ an embedding anew.
   >>> import time
   >>> import networkx as nx
   ...
-  >>> samplers = {"sampler1": sampler1, "sampler2": sampler2}
-  >>> times = {key: [] for key in samplers.keys()}
-  >>> for name, sampler in samplers.items():
+  >>> samplers = {"sampler1": sampler1, "sampler2": sampler2}   # doctest: +SKIP
+  >>> times = {key: [] for key in samplers.keys()}              # doctest: +SKIP
+  >>> for name, sampler in samplers.items():                    # doctest: +SKIP
   ...    for i in range(10):
   ...       nodes = 10 + 10*i
   ...       edges = 5 + 5*i
@@ -344,8 +344,8 @@ less than a second.
 >>> bqm2.fix_variables([('b_0', 1), ('b_1', 1), ('a_0', 0)])
 ...
 >>> bqms = [bqm1, bqm2]
->>> times = {key: [] for key in samplers.keys()}
->>> for name, sampler in samplers.items():
+>>> times = {key: [] for key in samplers.keys()}             # doctest: +SKIP
+>>> for name, sampler in samplers.items():                   # doctest: +SKIP
 ...    for i, bqm in enumerate(bqms):
 ...       times[name].append(time.time())
 ...       sampler.sample(bqm, num_reads=5000)
@@ -415,11 +415,11 @@ to ten times.
   The code below can take minutes to run. Uncommenting the print statements
   lets you view the execution's progress.
 
-  >>> samplers = {"sampler1": sampler1, "sampler2": sampler2}
-  >>> samplesets = {key: [] for key in samplers.keys()}
+  >>> samplers = {"sampler1": sampler1, "sampler2": sampler2}    # doctest: +SKIP
+  >>> samplesets = {key: [] for key in samplers.keys()}          # doctest: +SKIP
   >>> for num_circuits in range(2, 11):
   ...    bqm = circuit_bqm(num_circuits)
-  ...    for name, sampler in samplers.items():
+  ...    for name, sampler in samplers.items():                  # doctest: +SKIP
   ...       # print("Submitting problem of {} circuits to sampler {}".format(num_circuits, name))
   ...       sampleset = sampler.sample(bqm, num_reads=5000)
   ...       if sampleset.first.energy > 0:
@@ -463,7 +463,7 @@ replications, a clique embedding of over 100 nodes is required) of the
 embedding uses much longer chains than direct embedding of the problem:
 
 >>> bqm = circuit_bqm(10)
->>> for sampler in samplers.values():
+>>> for sampler in samplers.values():                            # doctest: +SKIP
 ...    sampleset = sampler.sample(bqm, num_reads=5000, return_embedding=True)
 ...    chain_len = max(len(x) for x in sampleset.info["embedding_context"]["embedding"].values())
 ...    print("Maximum chain length: {}".format(chain_len))       # doctest: +SKIP
@@ -551,13 +551,13 @@ Performance Comparison: Embedding Executions
   ...        samplesets[runs].append(0)
   ...    else:
   ...        samplesets[runs].append(sum(sampleset.lowest().record.num_occurrences))
-  ...        embedding = sampleset.info["embedding_context"]["embedding"]
-  ...        chain_len.append(max(len(x) for x in embedding.values()))
-  ...        sampler2 = FixedEmbeddingComposite(qpu)), embedding=embedding)
+  ...        embedding = sampleset.info["embedding_context"]["embedding"]  # doctest: +SKIP
+  ...        chain_len.append(max(len(x) for x in embedding.values()))     # doctest: +SKIP
+  ...        sampler2 = FixedEmbeddingComposite(qpu)), embedding=embedding)  # doctest: +SKIP
   ...    for i in range(submission_repeats):
   ...        print("\tSubmitting {}--{}".format(runs, i))
-  ...        sampleset = sampler2.sample(bqm, num_reads=5000, return_embedding=True)
-  ...        if sampleset.first.energy > 0:
+  ...        sampleset = sampler2.sample(bqm, num_reads=5000, return_embedding=True)   # doctest: +SKIP
+  ...        if sampleset.first.energy > 0:                  # doctest: +SKIP
   ...           samplesets[runs].append(0)
   ...        else:
   ...           samplesets[runs].append(sum(sampleset.lowest().record.num_occurrences))
