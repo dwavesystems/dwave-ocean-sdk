@@ -434,7 +434,7 @@ the sample set returned from a quantum computer in your browser.
 >>> import dwave.inspector
 >>> bqm = circuit_bqm(2)
 >>> sampleset1 = sampler1.sample(bqm, num_reads=5000, return_embedding=True)
->>> dwave.inspector.show(sampleset1)
+>>> dwave.inspector.show(sampleset1)                          # doctest: +SKIP
 
 The figure below, constituted of snapshots from the problem inspector for
 submissions to the two samplers defined above, shows that for the BQM representing
@@ -531,7 +531,7 @@ Performance Comparison: Embedding Executions
 
 .. [#]
 
-  >>> from dimod.generator import ran_r
+  >>> from dimod.generators import ran_r
   >>> from dwave.system import DWaveSampler, EmbeddingComposite, FixedEmbeddingComposite
   ...
   >>> problem_size = 20
