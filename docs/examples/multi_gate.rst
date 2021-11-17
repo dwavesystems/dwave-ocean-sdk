@@ -6,7 +6,8 @@ Multiple-Gate Circuit
 
 This example solves a logic-circuit problem on a D-Wave quantum computer. It
 expands on the discussion in the :ref:`and` example about the effect of
-:term:`minor-embedding` on performance.
+:term:`minor-embedding` on performance, demonstrating different approaches to
+embedding.
 
 .. raw::  latex
 
@@ -79,8 +80,8 @@ To run the code in this example, the following is required.
   :ref:`sapi_access`
 * Ocean tools :doc:`dimod </docs_dimod/sdk_index>` and
   :doc:`dwave-system </docs_system/sdk_index>`. For the
-  optional graphics, you will also need `Matplotlib <https://matplotlib.org>`_
-  and :doc:`problem-inspector </docs_inspector/sdk_index>`.
+  optional graphics, you will also need
+  :doc:`problem-inspector </docs_inspector/sdk_index>`.
 
 .. include:: hybrid_solver_service.rst
   :start-after: example-requirements-start-marker
@@ -91,16 +92,17 @@ Formulating the Problem as a CSP
 
 Other examples (:ref:`not` and :ref:`and`) show how a Boolean gate is
 represented as a *constraint satisfaction problem* (:term:`CSP`) on a quantum
-computer. This example does the same for multiple gates that constitute a circuit.
+computer. This example aggregates the resulting binary quadratic models (BQM)
+to do the same for multiple gates that constitute a circuit.
 
 Small-Circuit Problem
 ---------------------
 
-The code below uses common Boolean gates provided by
-:doc:`dimod </docs_dimod/sdk_index>` BQM generators, represents the NOT
-operation by flipping the relevant variable, and sums the BQMs. The resulting
-aggregate BQM has its lowest value for variable assignments that satisfy all the
-constraints representing the circuit's Boolean gates.
+The code below represents standard Boolean gates with BQMs provided by
+:doc:`dimod </docs_dimod/sdk_index>` BQM generators, represents the Boolean NOT
+operation by inverting the coefficients of the relevant variables, and sums the
+gate-level BQMs. The resulting aggregate BQM has its lowest value for variable
+assignments that satisfy all the constraints representing the circuit's Boolean gates.
 
 >>> from dimod.generators import and_gate, or_gate
 ...
@@ -116,10 +118,12 @@ constraints representing the circuit's Boolean gates.
 >>> print(bqm.num_variables)
 9
 
-This circuit is small enough to solve by brute force. The following code prints
-solutions in which the circuit's output, :math:`z` is true.
+This circuit is small enough to solve with a brute-force algorithm such as that
+used by the :class:`~dimod.reference.samplers.ExactSolver` class. The following
+code prints solutions in which the circuit's output, :math:`z`, is 1 (True).
 
 >>> from dimod import ExactSolver
+...
 >>> solutions = ExactSolver().sample(bqm).lowest()
 >>> z = []
 >>> out_fields = [key for key in list(next(solutions.data(['sample'])))[0].keys() if 'out' in key]
@@ -136,7 +140,7 @@ solutions in which the circuit's output, :math:`z` is true.
 {'a': 1, 'b': 0, 'c': 0, 'd': 0, 'z': 1}
 {'a': 0, 'b': 0, 'c': 0, 'd': 0, 'z': 1}
 
-However, such brute-force methods are not effective for much larger problems.
+Brute-force algorithms are not effective for large problems.
 
 Large-Circuit Problem
 ---------------------
@@ -152,9 +156,9 @@ outputs connected through a series of XOR gates.
 
    Multiple replications of the 7-gates circuit (:math:`z = \overline{b} (ac + ad + \overline{c}\overline{d})`) connected by XOR gates.
 
-The :code:`circuit_bqm` function replicates the BQM of the 7-gates circuit above
-for a specified number of circuits, connecting the outputs through a cascade of
-XOR gates.
+The :code:`circuit_bqm` function defined below replicates, for a specified number
+of circuits, the BQM developed for the 7-gates circuit and connects the outputs
+through a cascade of XOR gates.
 
 >>> from dimod import BinaryQuadraticModel, quicksum
 >>> from dimod.generators import and_gate, or_gate, xor_gate
@@ -176,11 +180,11 @@ XOR gates.
 ...                xor_gate(f"z_{c}", f"zz{c-2}", f"zz{c-1}", f"aux{c-1}") for c in range(2, n)]
 ...       return quicksum(bqm2 + bqm3 + bqm4 + bqm5 + bqm7 + bqm_z)
 
-Create a BQM for six replications of the circuit. For this aggregated circuit,
-the number of variables has increased to 64.
+Instantiate a BQM for six replications of the
+:math:`z = \overline{b} (ac + ad + \overline{c}\overline{d})` circuit. The
+resulting circuit has 64 variables.
 
->>> num_circuits = 6
->>> bqm = circuit_bqm(num_circuits)
+>>> bqm = circuit_bqm(6)
 >>> print(bqm.num_variables)
 64
 
@@ -188,27 +192,29 @@ Minor-Embedding and Sampling
 ============================
 
 The :ref:`and` example used the :class:`~dwave.system.composites.EmbeddingComposite`
-composite to :term:`minor-embed` its unstructured problem. That composite runs
-a :ref:`minorminer algorithm <sdk_index_minorminer>` to find a minorembedding
-each time you submit a problem.
+composite to :term:`minor-embed` its unstructured problem onto the topology of
+a quantum computer's qubits and couplers. That composite uses the
+:ref:`minorminer algorithm <sdk_index_minorminer>` to find a minor embedding
+for each problem you submit.
 
-However, for some applications the submitted problems might be related or limited
+For some applications, the submitted problems might be related or limited
 in size in such a way that you can find a common minor embedding for the entire
-set of problems you wish to submit. For the current problem, for example, you
-might wish to submit the same circuit multiple times while each time fixing
-inputs to zero or one in various configurations.
+set of problems. For instance, you might wish to submit the circuit of this
+example multiple times with various configurations of fixed inputs (inputs set to
+zero or one).
 
-One way of doing this is to pre-calculate a minor-embedding for a clique
-(a :term:`complete graph`) with the maximum number of nodes expected for your
-problem. Because any BQM of :math:`n` variables maps to a subgraph of an
-:math:`n`--node clique\ [#]_, you can use the pre-calculated embedding with any unused
-nodes and edges assigned values of zero.
+One approach is to pre-calculate a minor-embedding for a clique
+(a :term:`complete graph`), a "clique embedding", of a size at least equal to the
+maximum number of variables (nodes) expected in your problem. Because any BQM of
+:math:`n` variables maps to a subgraph of an :math:`n`--node clique\ [#]_, you
+can then use the clique embedding by assigning to all unused nodes and edges a
+value of zero.
 
 .. [#]
-  The figure below shows two random
+  The figure below illustrates such subgraphs. Two random
   :func:`~networkx.generators.random_graphs.random_regular_graph` graphs with four
-  and three nodes, respectively, each with two edges per node, on a background of
-  a 5-node clique.
+  and three nodes, respectively, each with two edges per node, are plotted on a
+  background of a 5-node clique.
 
   .. figure:: ../_images/subgraphs_clique5.png
      :name: MultiGateCircuit_SubgraphsClique5
@@ -220,9 +226,10 @@ nodes and edges assigned values of zero.
      random sub-graphs in blue (four nodes) and red (three nodes).
 
 
-The next code sets up a D-Wave system as the sampler using both the
-:class:`~dwave.system.composites.EmbeddingComposite` class and the
-:class:`~dwave.system.samplers.DWaveCliqueSampler` class.
+Configure a quantum computer as a sampler using both the
+:class:`~dwave.system.composites.EmbeddingComposite` class, for standard embedding,
+and the :class:`~dwave.system.samplers.DWaveCliqueSampler` class, for clique
+embedding.
 
 .. include:: min_vertex.rst
    :start-after: default-config-start-marker
@@ -354,32 +361,19 @@ Performance Comparison: Solution Quality
 ----------------------------------------
 
 The :class:`~dwave.system.composites.EmbeddingComposite` class attempts to find
-a good for the problem rather than for a clique of the same number of nodes: this
-typically results in an embedding with shorter chains.
+a good embedding for any given problem while the
+:class:`~dwave.system.samplers.DWaveCliqueSampler` reuses a clique embedding
+found once. Typically the former results in an embedding with shorter chains than
+the latter, with the difference in length increasing for larger problems.
 
-Compare the number of ground states (solutions for which the value of the BQM
-is zero, meaning no constraint is violated) found by the quantum computer when
-minor-embedding each of a sequence of problems of increasing size versus using a
-clique embedding.
+The table below compares the ratio of ground states (solutions for which the value
+of the BQM is zero, meaning no constraint is violated) to total samples returned
+from the quantum computer when minor-embedding a sequence of problems of increasing
+size with the two methods (standard embedding versus clique embedding).
 
-The code below can take minutes to run. Uncommenting the print statements
-lets you view the execution's progress.
-
->>> samplers = {"sampler1": sampler1, "sampler2": sampler2}
->>> samplesets = {key: [] for key in samplers.keys()}
->>> for num_circuits in range(2, 11):
-...    bqm = circuit_bqm(num_circuits)
-...    for name, sampler in samplers.items():
-...       # print("Submitting problem of {} circuits to sampler {}".format(num_circuits, name))
-...       sampleset = sampler.sample(bqm, num_reads=5000)
-...       if sampleset.first.energy > 0:
-...          samplesets[name].append(0)
-...       else:
-...          samplesets[name].append(sum(sampleset.lowest().record.num_occurrences))
-
-The table below shows results for one execution with problems that replicate the
+The results are for one code\ [#]_ execution on problems that replicate the
 :math:`z = \overline{b} (ac + ad + \overline{c}\overline{d})` circuit between two
-to ten times. For ten replication, a clique embedding of over 100 nodes is required.
+to ten times.
 
 .. list-table:: Minor-Embedding: Ground-State Ratio Across Samplers
    :widths: 10 10 10
@@ -416,6 +410,23 @@ to ten times. For ten replication, a clique embedding of over 100 nodes is requi
      - 7.2
      - 0.3
 
+.. [#]
+
+  The code below can take minutes to run. Uncommenting the print statements
+  lets you view the execution's progress.
+
+  >>> samplers = {"sampler1": sampler1, "sampler2": sampler2}
+  >>> samplesets = {key: [] for key in samplers.keys()}
+  >>> for num_circuits in range(2, 11):
+  ...    bqm = circuit_bqm(num_circuits)
+  ...    for name, sampler in samplers.items():
+  ...       # print("Submitting problem of {} circuits to sampler {}".format(num_circuits, name))
+  ...       sampleset = sampler.sample(bqm, num_reads=5000)
+  ...       if sampleset.first.energy > 0:
+  ...          samplesets[name].append(0)
+  ...       else:
+  ...          samplesets[name].append(sum(sampleset.lowest().record.num_occurrences))
+
 Ocean's :doc:`problem-inspector </docs_inspector/sdk_index>` can help you to
 understand such differences in solution quality. The code below visualizes
 the sample set returned from a quantum computer in your browser.
@@ -446,7 +457,8 @@ Short chains of a few qubits generally enable good quality solutions: for a
 circuit made of two replications the ratio of ground states is simialr for both
 methods of embedding used above.
 
-The next figure shows that for the BQM representing ten replications of the
+The next figure shows that for the BQM representing ten replications (for ten
+replications, a clique embedding of over 100 nodes is required) of the
 :math:`z = \overline{b} (ac + ad + \overline{c}\overline{d})` circuit, the clique
 embedding uses much longer chains than direct embedding of the problem:
 
