@@ -251,6 +251,10 @@ sampling the problems.
 The table below shows the minor-embedding times\ [#]_ for a series of random
 problems of increasing size\ [#]_. Some interesting differences are bolded.
 
+.. note:: The times below are for a particular development environment. Embedding
+   times can be expected to vary for different CPUs, operating systems, etc as
+   well as varying across problems and executions of the hueristic algorithm.
+
 .. list-table:: Minor-Embedding: Embedding Times
    :widths: 20 10 10 30
    :header-rows: 1
@@ -367,15 +371,17 @@ a good embedding for any given problem while the
 :class:`~dwave.system.samplers.DWaveCliqueSampler` reuses a clique embedding
 found once. Typically the former results in an embedding with shorter chains than
 the latter, with the difference in length increasing for larger problems.
+Chain length can significantly affect solution quality.
 
-The table below compares the ratio of ground states (solutions for which the value
-of the BQM is zero, meaning no constraint is violated) to total samples returned
-from the quantum computer when minor-embedding a sequence of problems of increasing
-size with the two methods (standard embedding versus clique embedding).
+The table below compares, for the two embedding methods, the ratio of ground
+states (solutions for which the value of the BQM is zero, meaning no constraint
+is violated or all assignments of values to the problem's variables match valid
+states of the circuit represented by the BQM) to total samples returned from the
+quantum computer when minor-embedding a sequence of problems of increasing size.
 
-The results are for one code\ [#]_ execution on problems that replicate the
-:math:`z = \overline{b} (ac + ad + \overline{c}\overline{d})` circuit between two
-to ten times.
+The results are for one particular code\ [#]_ execution on problems that replicate
+the :math:`z = \overline{b} (ac + ad + \overline{c}\overline{d})` circuit between
+two to ten times.
 
 .. list-table:: Minor-Embedding: Ground-State Ratio Across Samplers
    :widths: 10 10 10
@@ -412,6 +418,10 @@ to ten times.
      - 7.2
      - 0.3
 
+You can see that for small problems, using a clique embedding can produce
+high-quality solutions, and might be advantageously used when submitting a
+sequence of related problems.
+
 .. [#]
 
   The code below can take minutes to run. Uncommenting the print statements
@@ -429,9 +439,12 @@ to ten times.
   ...       else:
   ...          samplesets[name].append(sum(sampleset.lowest().record.num_occurrences))
 
-Ocean's :doc:`problem-inspector </docs_inspector/sdk_index>` can help you to
-understand such differences in solution quality. The code below visualizes
-the sample set returned from a quantum computer in your browser.
+Visualizing the Minor Embedding
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Ocean's :doc:`problem-inspector </docs_inspector/sdk_index>` can illuminate
+differences in solution quality between alternative minor embeddings. You can use
+it to visualize sample sets returned from a quantum computer in your browser.
 
 >>> import dwave.inspector
 >>> bqm = circuit_bqm(2)
@@ -442,8 +455,8 @@ The figure below, constituted of snapshots from the problem inspector for
 submissions to the two samplers defined above, shows that for the BQM representing
 two replications of the :math:`z = \overline{b} (ac + ad + \overline{c}\overline{d})`
 circuit, with its 20 variables and 34 edges, the clique embedding uses chains of
-length two to represent nodes that the embedding found by the code above represents
-without chains.
+length two to represent nodes that the standard embedding represented with
+single qubits.
 
 .. figure:: ../_images/MultiGateCircuit_Embedding2.png
    :name: Problem_MultiGateCircuit_Embedding2
@@ -452,17 +465,19 @@ without chains.
    :scale: 50 %
 
    Graph of two replications of the :math:`z = \overline{b} (ac + ad + \overline{c}\overline{d})`
-   circuit (top centre), an embedding (bottom-left), a clique-embedding
-   (bottom-right).
+   circuit (top centre), a standard embedding (bottom-left), and a
+   clique-embedding (bottom-right).
 
-Short chains of a few qubits generally enable good quality solutions: for a
-circuit made of two replications the ratio of ground states is simialr for both
-methods of embedding used above.
+Short chains of a few qubits generally enable good quality solutions: as shown
+in the table above, for a two-replications circuit the ratio of ground states is
+similar for both embedding methods.
 
-The next figure shows that for the BQM representing ten replications (for ten
-replications, a clique embedding of over 100 nodes is required) of the
-:math:`z = \overline{b} (ac + ad + \overline{c}\overline{d})` circuit, the clique
-embedding uses much longer chains than direct embedding of the problem:
+The BQM representing ten replications of the
+:math:`z = \overline{b} (ac + ad + \overline{c}\overline{d})` circuit, for which
+a clique embedding of over 100 nodes is required, the clique embedding has much
+longer chains than direct embedding of the problem (11 versus 2 qubits).
+Depending on the problem, such chains ma ydegrade the solution, as is the case
+here.
 
 >>> bqm = circuit_bqm(10)
 >>> for sampler in samplers.values():                            # doctest: +SKIP
@@ -482,10 +497,6 @@ Maximum chain length: 11
    Graph of ten replications of the :math:`z = \overline{b} (ac + ad + \overline{c}\overline{d})`
    circuit (top centre), an embedding (bottom-left), a clique-embedding
    (bottom-right).
-
-For ten replications, the clique embedding has long chains of up to 11 qubits
-representing the problem's variables. Depending on the problem, such chains may
-degrade the solution, as is the case here.
 
 The :ref:`inspector_graph_partitioning` example demonstrates how the problem
 inspector can be used to analyze your problem submissions.
