@@ -98,6 +98,8 @@ to do the same for multiple gates that constitute a circuit.
 Small-Circuit Problem
 ---------------------
 
+To start with, solve the circuit with 7 logic gates shown above.
+
 The code below represents standard Boolean gates with BQMs provided by
 :doc:`dimod </docs_dimod/sdk_index>` BQM generators, represents the Boolean NOT
 operation by inverting the coefficients of the relevant variables, and sums the
@@ -119,8 +121,8 @@ assignments that satisfy all the constraints representing the circuit's Boolean 
 9
 
 This circuit is small enough to solve with a brute-force algorithm such as that
-used by the :class:`~dimod.reference.samplers.ExactSolver` class. The following
-code prints solutions in which the circuit's output, :math:`z`, is 1 (True).
+used by the :class:`~dimod.reference.samplers.ExactSolver` class. Solve and
+print solutions in which the circuit's output, :math:`z`, is 1 (True).
 
 >>> from dimod import ExactSolver
 ...
@@ -157,8 +159,8 @@ outputs connected through a series of XOR gates.
    Multiple replications of the 7-gates circuit (:math:`z = \overline{b} (ac + ad + \overline{c}\overline{d})`) connected by XOR gates.
 
 The :code:`circuit_bqm` function defined below replicates, for a specified number
-of circuits, the BQM developed for the 7-gates circuit and connects the outputs
-through a cascade of XOR gates.
+of circuits, the BQM developed above and connects the outputs through a cascade
+of XOR gates.
 
 >>> from dimod import BinaryQuadraticModel, quicksum
 >>> from dimod.generators import and_gate, or_gate, xor_gate
@@ -180,9 +182,7 @@ through a cascade of XOR gates.
 ...                xor_gate(f"z_{c}", f"zz{c-2}", f"zz{c-1}", f"aux{c-1}") for c in range(2, n)]
 ...       return quicksum(bqm2 + bqm3 + bqm4 + bqm5 + bqm7 + bqm_z)
 
-Instantiate a BQM for six replications of the
-:math:`z = \overline{b} (ac + ad + \overline{c}\overline{d})` circuit. The
-resulting circuit has 64 variables.
+Instantiate a BQM for six replications. The resulting circuit has 64 variables.
 
 >>> bqm = circuit_bqm(6)
 >>> print(bqm.num_variables)
@@ -243,18 +243,13 @@ embedding.
 Performance Comparison: Embedding Time
 --------------------------------------
 
-The :class:`~dwave.system.samplers.DWaveCliqueSampler` class can save time
-if you submit a sequence of problems that are sub-graphs of a clique embedding
-found by the composite on a QPU. The table below shows the minor-embedding
-times\ [#]_ for a series of random problems of increasing size\ [#]_. Some
-differences of interest are highlighted in bold.
+The :class:`~dwave.system.samplers.DWaveCliqueSampler` class reduces the overhead
+of repeatedly finding minor embeddings for applications that submit a sequence of
+problems that are all sub-graphs of a clique that can be embedded on the QPU
+sampling the problems.
 
-You can see below that while the first submission is slow for the
-:class:`~dwave.system.samplers.DWaveCliqueSampler` class, subsequent submissions
-are fast. For the :class:`~dwave.system.composites.EmbeddingComposite` class, the
-time depends on the size and complexity of each problem, can vary between
-submissions of the same problem, and each submission incurs the cost of finding
-an embedding anew.
+The table below shows the minor-embedding times\ [#]_ for a series of random
+problems of increasing size\ [#]_. Some interesting differences are bolded.
 
 .. list-table:: Minor-Embedding: Embedding Times
    :widths: 20 10 10 30
@@ -310,6 +305,13 @@ an embedding anew.
 .. [#] The times are approximate: the code measures the blocking time when
    submitting problems, of which minor-embedding is the major element.
 
+You can see that while the first submission is slow for the
+:class:`~dwave.system.samplers.DWaveCliqueSampler` class, subsequent submissions
+are fast. For the :class:`~dwave.system.composites.EmbeddingComposite` class, the
+time depends on the size and complexity of each problem, can vary between
+submissions of the same problem, and each submission incurs the cost of finding
+an embedding anew.
+
 .. [#]
 
   The code below can take several minutes to run. Uncommenting the print statement
@@ -333,7 +335,7 @@ an embedding anew.
   ...       sampler.sample_ising({}, {edge: 1 for edge in G.edges})
   ...       times[name][i] = time.time() - times[name][i]
 
-If you wish, for example, to submit a problem with two replications of the
+For example, to submit a problem with two replications of the
 :math:`z = \overline{b} (ac + ad + \overline{c}\overline{d})` circuit, which
 has 20 variables (and 34 interactions), you can expect an embedding time of
 less than a second.
