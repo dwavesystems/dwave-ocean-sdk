@@ -203,7 +203,7 @@ set of problems. For instance, you might wish to submit the circuit of this
 example multiple times with various configurations of fixed inputs (inputs set to
 zero or one).
 
-One approach is to pre-calculate a minor-embedding for a clique
+One approach is to pre-calculate a minor embedding for a clique
 (a :term:`complete graph`), a "clique embedding", of a size at least equal to the
 maximum number of variables (nodes) expected in your problem. Because any BQM of
 :math:`n` variables maps to a subgraph of an :math:`n`--node clique\ [#]_, you
@@ -476,7 +476,7 @@ The BQM representing ten replications of the
 :math:`z = \overline{b} (ac + ad + \overline{c}\overline{d})` circuit, for which
 a clique embedding of over 100 nodes is required, the clique embedding has much
 longer chains than direct embedding of the problem (11 versus 2 qubits).
-Depending on the problem, such chains ma ydegrade the solution, as is the case
+Depending on the problem, such chains may degrade the solution, as is the case
 here.
 
 >>> bqm = circuit_bqm(10)
@@ -504,6 +504,19 @@ inspector can be used to analyze your problem submissions.
 Performance Comparison: Embedding Executions
 --------------------------------------------
 
+Algorithmic minor embedding is heuristic: solution results can vary significantly
+based on the minor embedding found.
+
+The table below compares, for a single random :func:`~dimod.generators.ran_r`
+problem of a given size, the ratio of ground states to total samples returned
+from the quantum computer over several executions\ [#]_ of minor embedding.
+The outlier results are bolded.
+
+For each run, the :class:`~dwave.system.composites.EmbeddingComposite` composed
+sampler finds and returns a minor embedding for the problem. The returned
+embedding is then reused twice by a
+:class:`~dwave.system.composites.FixedEmbeddingComposite` composed sampler.
+
 .. list-table:: Minor-Embedding: Ground-State Ratio Across Executions
    :widths: 10 20 10
    :header-rows: 1
@@ -512,7 +525,7 @@ Performance Comparison: Embedding Executions
      - Ground-State Ratio [%]
      - Chain Length
    * - 1
-     - 10.1, 10.1, 8.9
+     - 10.1, 10.1, **8.9**
      - 4
    * - 2
      - 25.8, 29.1, 28.4
@@ -530,7 +543,7 @@ Performance Comparison: Embedding Executions
      - 15.4, 14.6, 14.5
      - 4
    * - 7
-     - 43.8, 44.2, 45.1
+     - 43.8, 44.2, **45.1**
      - 3
    * - 8
      - 15.9, 17.2, 15.3
@@ -542,7 +555,16 @@ Performance Comparison: Embedding Executions
      - 15.3, 11.5, 12.1
      - 3
 
+You can see that each set of three submission of the problem using the same
+embedding have minor variations in the ground-state ratios. However, the variation
+across minor-embeddings of the same problem can be significant. Consequently,
+for some applications it can be beneficial to run the minor-embedding multiple
+times and select the best embedding. 
+
 .. [#]
+
+  The code below can take minutes to run. Uncommenting the print statements
+  lets you view the execution's progress.
 
   >>> from dimod.generators import ran_r
   >>> from dwave.system import DWaveSampler, EmbeddingComposite, FixedEmbeddingComposite
