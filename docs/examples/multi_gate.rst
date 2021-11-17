@@ -227,9 +227,9 @@ value of zero.
 
 
 Configure a quantum computer as a sampler using both the
-:class:`~dwave.system.composites.EmbeddingComposite` class, for standard embedding,
-and the :class:`~dwave.system.samplers.DWaveCliqueSampler` class, for clique
-embedding.
+:class:`~dwave.system.composites.EmbeddingComposite` composed sampler, for standard
+embedding, and the :class:`~dwave.system.samplers.DWaveCliqueSampler` composed
+sampler, for clique embedding.
 
 .. include:: min_vertex.rst
    :start-after: default-config-start-marker
@@ -243,10 +243,10 @@ embedding.
 Performance Comparison: Embedding Time
 --------------------------------------
 
-The :class:`~dwave.system.samplers.DWaveCliqueSampler` class reduces the overhead
-of repeatedly finding minor embeddings for applications that submit a sequence of
-problems that are all sub-graphs of a clique that can be embedded on the QPU
-sampling the problems.
+The :class:`~dwave.system.samplers.DWaveCliqueSampler` composed sampler reduces
+the overhead of repeatedly finding minor embeddings for applications that submit
+a sequence of problems that are all sub-graphs of a clique that can be embedded
+on the QPU sampling the problems.
 
 The table below shows the minor-embedding times\ [#]_ for a series of random
 problems of increasing size\ [#]_. Some interesting differences are bolded.
@@ -310,11 +310,11 @@ problems of increasing size\ [#]_. Some interesting differences are bolded.
    submitting problems, of which minor-embedding is the major element.
 
 You can see that while the first submission is slow for the
-:class:`~dwave.system.samplers.DWaveCliqueSampler` class, subsequent submissions
-are fast. For the :class:`~dwave.system.composites.EmbeddingComposite` class, the
-time depends on the size and complexity of each problem, can vary between
-submissions of the same problem, and each submission incurs the cost of finding
-an embedding anew.
+:class:`~dwave.system.samplers.DWaveCliqueSampler` composed sampler, subsequent
+submissions are fast. For the :class:`~dwave.system.composites.EmbeddingComposite`
+composed sampler, the time depends on the size and complexity of each problem,
+can vary between submissions of the same problem, and each submission incurs the
+cost of finding an embedding anew.
 
 .. [#]
 
@@ -366,8 +366,8 @@ some subset of the variables fixed, the overhead cost of embedding can be minute
 Performance Comparison: Solution Quality
 ----------------------------------------
 
-The :class:`~dwave.system.composites.EmbeddingComposite` class attempts to find
-a good embedding for any given problem while the
+The :class:`~dwave.system.composites.EmbeddingComposite` composed sampler attempts
+to find a good embedding for any given problem while the
 :class:`~dwave.system.samplers.DWaveCliqueSampler` reuses a clique embedding
 found once. Typically the former results in an embedding with shorter chains than
 the latter, with the difference in length increasing for larger problems.
@@ -559,7 +559,7 @@ You can see that each set of three submission of the problem using the same
 embedding have minor variations in the ground-state ratios. However, the variation
 across minor-embeddings of the same problem can be significant. Consequently,
 for some applications it can be beneficial to run the minor-embedding multiple
-times and select the best embedding. 
+times and select the best embedding.
 
 .. [#]
 
