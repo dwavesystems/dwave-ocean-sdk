@@ -108,15 +108,15 @@ assignments that satisfy all the constraints representing the circuit's Boolean 
 
 >>> from dimod.generators import and_gate, or_gate
 ...
->>> bqm2 = or_gate('b', 'c', 'out2')
->>> bqm3 = and_gate('a', 'b', 'out3')
->>> bqm3.flip_variable('b')
->>> bqm4 = or_gate('out2', 'd', 'out4')
->>> bqm5 = and_gate('out3', 'out4', 'out5')
->>> bqm7 = or_gate('out5', 'out4', 'z')
->>> bqm7.flip_variable('out4')
+>>> bqm_gate2 = or_gate('b', 'c', 'out2')
+>>> bqm_gate3 = and_gate('a', 'b', 'out3')
+>>> bqm_gate3.flip_variable('b')
+>>> bqm_gate4 = or_gate('out2', 'd', 'out4')
+>>> bqm_gate5 = and_gate('out3', 'out4', 'out5')
+>>> bqm_gate7 = or_gate('out5', 'out4', 'z')
+>>> bqm_gate7.flip_variable('out4')
 ...
->>> bqm = bqm2 + bqm3 + bqm4 + bqm5 + bqm7
+>>> bqm = bqm_gate2 + bqm_gate3 + bqm_gate4 + bqm_gate5 + bqm_gate7
 >>> print(bqm.num_variables)
 9
 
@@ -171,16 +171,16 @@ of XOR gates.
 ...       if n < 2:
 ...          raise ValueError("n must be at least 2")
 ...
-...       bqm2 = [or_gate(f"b_{c}", f"c_{c}", f"out2_{c}") for c in range(n)]
-...       bqm3 = [and_gate(f"a_{c}", f"b_{c}", f"out3_{c}") for c in range(n)]
-...       [bqm.flip_variable("b_{}".format(indx)) for indx, bqm in enumerate(bqm3)]
-...       bqm4 = [or_gate(f"out2_{c}", f"d_{c}", f"out4_{c}") for c in range(n)]
-...       bqm5 = [and_gate(f"out3_{c}", f"out4_{c}", f"out5_{c}") for c in range(n)]
-...       bqm7 = [or_gate(f"out5_{c}", f"out4_{c}", f"z_{c}") for c in range(n)]
-...       [bqm.flip_variable("out4_{}".format(indx)) for indx, bqm in enumerate(bqm7)]
+...       bqm_gate2 = [or_gate(f"b_{c}", f"c_{c}", f"out2_{c}") for c in range(n)]
+...       bqm_gate3 = [and_gate(f"a_{c}", f"b_{c}", f"out3_{c}") for c in range(n)]
+...       [bqm.flip_variable("b_{}".format(indx)) for indx, bqm in enumerate(bqm_gate3)]
+...       bqm_gate4 = [or_gate(f"out2_{c}", f"d_{c}", f"out4_{c}") for c in range(n)]
+...       bqm_gate5 = [and_gate(f"out3_{c}", f"out4_{c}", f"out5_{c}") for c in range(n)]
+...       bqm_gate7 = [or_gate(f"out5_{c}", f"out4_{c}", f"z_{c}") for c in range(n)]
+...       [bqm.flip_variable("out4_{}".format(indx)) for indx, bqm in enumerate(bqm_gate7)]
 ...       bqm_z = [xor_gate("z_0", "z_1", "zz0", "aux0")] + [
 ...                xor_gate(f"z_{c}", f"zz{c-2}", f"zz{c-1}", f"aux{c-1}") for c in range(2, n)]
-...       return quicksum(bqm2 + bqm3 + bqm4 + bqm5 + bqm7 + bqm_z)
+...       return quicksum(bqm_gate2 + bqm_gate3 + bqm_gate4 + bqm_gate5 + bqm_gate7 + bqm_z)
 
 Instantiate a BQM for six replications. The resulting circuit has 64 variables.
 
@@ -587,9 +587,10 @@ times and select the best embedding.
   ...        samplesets[runs].append(0)
   ...    else:
   ...        samplesets[runs].append(sum(sampleset.lowest().record.num_occurrences))
-  ...        embedding = sampleset.info["embedding_context"]["embedding"]  # doctest: +SKIP
-  ...        chain_len.append(max(len(x) for x in embedding.values()))     # doctest: +SKIP
-  ...        sampler2 = FixedEmbeddingComposite(qpu)), embedding=embedding)  # doctest: +SKIP
+  ...    embedding = sampleset.info["embedding_context"]["embedding"]  # doctest: +SKIP
+  ...    chain_len.append(max(len(x) for x in embedding.values()))     # doctest: +SKIP
+  ...    sampler2 = FixedEmbeddingComposite(qpu, embedding=embedding)  # doctest: +SKIP
+  ...
   ...    for i in range(submission_repeats):
   ...        print("\tSubmitting {}--{}".format(runs, i))
   ...        sampleset = sampler2.sample(bqm, num_reads=5000, return_embedding=True)   # doctest: +SKIP
