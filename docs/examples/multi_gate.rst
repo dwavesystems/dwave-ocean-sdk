@@ -253,7 +253,7 @@ problems of increasing size\ [#]_. Some interesting differences are bolded.
 
 .. note:: The times below are for a particular development environment. Embedding
    times can be expected to vary for different CPUs, operating systems, etc as
-   well as varying across problems and executions of the hueristic algorithm.
+   well as varying across problems and executions of the heuristic algorithm.
 
 .. list-table:: Minor-Embedding: Embedding Times
    :widths: 20 10 10 30
@@ -473,9 +473,10 @@ in the table above, for a two-replications circuit the ratio of ground states is
 similar for both embedding methods.
 
 The BQM representing ten replications of the
-:math:`z = \overline{b} (ac + ad + \overline{c}\overline{d})` circuit, for which
-a clique embedding of over 100 nodes is required, the clique embedding has much
-longer chains than direct embedding of the problem (11 versus 2 qubits).
+:math:`z = \overline{b} (ac + ad + \overline{c}\overline{d})` circuit has
+over 100 variables. Typically, minor embeddings for dense graphs require longer
+chains than those of sparse graphs; for this problem the clique embedding needed
+chains of up to 11 qubits versus the standard embedding's chains of 2 qubits.
 Depending on the problem, such chains may degrade the solution, as is the case
 here.
 
