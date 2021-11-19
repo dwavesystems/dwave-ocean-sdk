@@ -1,62 +1,232 @@
 .. _sapi_access:
 
 ====================================
-Configuring Access to D-Wave Solvers
+Configuring Access to Leap's Solvers
 ====================================
 
-D-Wave's Solver API (SAPI) provides access to :term:`solver`\ s, remote compute resources
-for solving problems such as a D-Wave system or `Leap <https://cloud.dwavesys.com/leap/>`_\ 's
-quantum-classical hybrid solvers.
+D-Wave's Solver API (SAPI) provides access to the :term:`solver`\ s---compute
+resources for solving problems, such as a D-Wave quantum computers and
+quantum-classical hybrid solvers---hosted in the `Leap <https://cloud.dwavesys.com/leap/>`_
+quantum cloud.\ [#]_
+
+.. [#] SAPI is used similarly for on-premises systems. Differences for such systems
+     are noted below.
+
+This page provides the following information:
+
+* Section :ref:`sapi_access_interacting` provides information on viewing and
+  configuring SAPI resources.
+* Section :ref:`sapi_access_config_create` steps you through creating a
+  configuration file, which enables you to interact conveniently with SAPI.
+* Section :ref:`sapi_access_config_verify` ensures that your environment is set
+  up correctly.
+* Section :ref:`sapi_intro_multiregion` provides information for users interested
+  in using solvers hosted outside their default region.
+
+.. _sapi_access_interacting:
 
 Interacting with SAPI
 =====================
 
-SAPI is an application layer built to provide resource discovery, permissions, and
-scheduling for D-Wave compute resources. The requisite information for problem
-submission through SAPI includes:
+SAPI is an application layer that provides resource discovery, permissions,
+and scheduling for D-Wave solvers. Problem submission through SAPI requires the
+following information, typically provided by your work environment from either
+Ocean's default values or your configuration.
 
-1. API endpoint URL
+* **API Token** (required\ [#]_\ )
 
-   A URL to the remote resources. By default, 
-   ``https://na-west-1.cloud.dwavesys.com/sapi/v2`` is used to connect to 
-   resources provided by D-Wave's `Leap <https://cloud.dwavesys.com/leap/>`_ 
-   quantum cloud service in North America, including D-Wave quantum computers.\ [#]_
+  An authentication token used to authenticate the client session when you connect
+  to the remote environment.
 
-2. API Token
+  .. dropdown:: Finding your API Token
 
-   An authentication token used to authenticate the client session when
-   you connect to the remote environment. Because tokens provide authentication, user names and
-   passwords are not required in your code.
+     You can find your API token on the Leap dashboard for your account. For users
+     that belong to multiple projects, the Leap dashboard displays the token for
+     the currently selected project.
 
-3. Solver
+  .. dropdown:: Using your API Token
 
-   A D-Wave resource to be used to solve your submitted problems; for example, a
-   hybrid solver or an Advantage quantum computer.
+     Typically, you configure your work environment so Ocean tools can automatically
+     submit your API token when interacting with SAPI. Because tokens provide
+     authentication, user names and passwords are not required in your code.
+     The :ref:`table_token_config` table shows various options of configuring and
+     directly using your API token.
 
-You can find all the above information when you log in to your D-Wave account. For
-Leap users, select the Dashboard tab; for on-premises (Qubist) users, select the
-Solver API tab and the API Tokens menu item under your user name.
+     .. list-table:: Using your API Token
+        :name: table_token_config
+        :header-rows: 1
 
-You save your SAPI configuration (URL, API token, etc) in a
-:doc:`D-Wave Cloud Client configuration file </docs_cloud/sdk_index>`
-that Ocean tools use unless overridden explicitly or with environment variables.
-Your configuration file can include one or more solvers.
+        * - Where
+          - How
+          - Usage Notes
+        * - :ref:`Configuration file <sdk_index_cloud>`
+          - Configure using the :ref:`dwave CLI <dwave_cli>` tool or edit the file
+            manually.
+          - You can override this configuration by setting an environment
+            variable or explicitly in your code.
+        * - :std:doc:`Environment variables <oceandocs:docs_cloud/reference/configuration>`
+          - Configure :code:`DWAVE_API_TOKEN`. For example,
+            :code:`export DWAVE_API_REGION=ABC-1234 ... 789` in
+            a Unix shell.
+          - You can override this configuration explicitly in your code.
+        * - Explicit parameters
+          - You can set your API token directly in your code; for example,
+            :code:`sampler = LeapHybridCQMSampler(token="ABC-1234 ... 789")`
+          - Not recommended outside of testing (for security reasons).
 
-.. [#]
-   For information about using solvers in alternative geographical regions,
-   see the :ref:`sapi_intro_multiregion` section below.    
+     .. note:: For non-Ocean clients, you set your token in the HTTP header; see
+       the :std:doc:`sysdocs_gettingstarted:doc_rest_api` guide for information.
 
-.. note:: When you work in D-Wave's `Leap <https://cloud.dwavesys.com/leap/>`_ IDE,
-   SAPI information such as your API token is pre-configured in the default
-   workspace's environment variables.
+  .. [#]
+    D-Wave's `Leap <https://cloud.dwavesys.com/leap/>`_ integrated development
+    environment (IDE) automatically reads your API token from your account.
+    You can use the configuration options of the :ref:`table_token_config` table
+    to substitute an alternative token, for example, if you belong to multiple
+    projects.
 
-Creating a Configuration File
-=============================
+* **Solver** (default: feature-based selection)
 
-The simplest way to configure solver access is to use the :ref:`interactive CLI <dwave_cli>`, which
-is installed as part of
-the `dwave-ocean-sdk <https://github.com/dwavesystems/dwave-ocean-sdk>`_
-installation.
+  A D-Wave resource to be used to solve your submitted problems; for example, a
+  quantum-classical hybrid solver or an Advantage quantum computer.
+
+  .. dropdown:: Viewing Available Solvers
+
+     The :ref:`table_solvers_viewing` table shows various options to view
+     available solvers.
+
+     .. list-table:: Viewing Available Solvers
+        :name: table_solvers_viewing
+        :header-rows: 1
+
+        * - Where
+          - How
+          - Defaults
+          - Usage Notes
+        * - `Leap <https://cloud.dwavesys.com/leap/>`_ dashboard
+          - Log in to your Leap account.
+          - For users that belong to multiple projects, solvers accessible to the
+            current project are displayed; switch the current project if needed.
+          - Solvers may be local to a region.
+        * - :ref:`dwave-cloud-client <sdk_index_cloud>`
+          - Use the :ref:`dwave CLI <dwave_cli>` tool or Ocean's
+            :meth:`~dwave.cloud.client.Client.get_solvers` method.
+          - For users that belong to multiple projects, queries return solvers
+            accessible to the current API token; switch to another project's API
+            token if needed.
+          - Solvers may be local to a region; see the :ref:`sapi_intro_multiregion`
+            section to query solvers outside your default region.
+
+     Example: using :ref:`dwave CLI <dwave_cli>` to see the available solvers,
+     their parameters, and properties (the output shown below is illustrative only).
+
+     .. include:: ../docs_cli.rst
+        :start-after: cli-example-solvers-start-marker
+        :end-before: cli-example-solvers-end-marker
+
+     Example: using :doc:`dwave-cloud-client </docs_cloud/sdk_index>` to query
+     for hybrid solvers.
+
+     >>> from dwave.cloud import Client
+     >>> with Client.from_config() as client:         # doctest: +SKIP
+     ...    print(client.get_solvers(hybrid=True))
+     [BQMSolver(id='hybrid_binary_quadratic_model_version2'),
+      DQMSolver(id='hybrid_discrete_quadratic_model_version1'),
+      CQMSolver(id='hybrid_constrained_quadratic_model_version1')]
+
+     .. note:: For non-Ocean clients, you can retrieve a list of supported remote
+        solvers by sending an :code:`HTTP GET` request to the
+        :code:`<SAPI base URL>/solvers/` endpoint; see the
+        :std:doc:`sysdocs_gettingstarted:doc_rest_api` guide for information.
+
+  .. dropdown:: Selecting a Solver
+
+     By default Ocean selects solvers based on a set of preferred features; for
+     example, by default a problem submitted to a quantum computer with the
+     :class:`~dwave.system.samplers.DWaveSampler` class sampler might prefer the
+     less busy of two available QPUs.
+     The :ref:`table_solvers_selecting` table shows various options to configure
+     solver selection.
+
+     .. list-table:: Selecting a Solver
+        :name: table_solvers_selecting
+        :header-rows: 1
+
+        * - Where
+          - How
+          - Usage Notes
+        * - :ref:`Configuration file <sdk_index_cloud>`
+          - Configure using the :ref:`dwave CLI <dwave_cli>` tool or edit the file
+            manually.
+          - You can override this configuration by setting a solver in an environment
+            variable or explicitly in your code.
+        * - :std:doc:`Environment variables <oceandocs:docs_cloud/reference/configuration>`
+          - Configure :code:`DWAVE_API_SOLVER`. For example,
+            :code:`export DWAVE_API_SOLVER='{"num_qubits__gt": 2000}'` in
+            a Unix shell.
+          - You can override this configuration by selecting a solver explicitly
+            in your code.
+        * - Explicit parameter
+          - You can set your solver selection directly in your code; for example,
+            :code:`sampler = DWaveSampler(solver=dict(topology__type='pegasus'))`
+          -
+
+* **Region/Endpoint** (default: North American URL)
+
+  A URL for a region's remote resources.
+
+  By default, Ocean connects to North American (region :code:`na-west-1`) Leap
+  quantum cloud resources at URL
+  :code:`https://na-west-1.cloud.dwavesys.com/sapi/v2/`.
+
+  .. dropdown:: Finding Supported Regions and Endpoints
+
+     The :ref:`table_regions_viewing` table shows various options for viewing
+     available regions and their URLs.
+
+     .. list-table:: Viewing Available Regions and Endpoints
+        :name: table_regions_viewing
+        :header-rows: 1
+
+        * - Where
+          - How
+          - Usage Notes
+        * - `Leap <https://cloud.dwavesys.com/leap/>`_ dashboard
+          - Log in to your Leap account
+          - Solvers available to your account are grouped by region.
+        * - :ref:`dwave-cloud-client <sdk_index_cloud>`
+          - Use the :ref:`Interactive CLI <dwave_cli>` or
+            :meth:`~dwave.cloud.client.Client.get_regions`
+          -
+
+     Example: using :doc:`dwave-cloud-client </docs_cloud/sdk_index>` to query
+     supported regions.
+
+          >>> from dwave.cloud import Client
+          >>> with Client.from_config() as client:          # doctest: +SKIP
+          ...    regions = client.get_regions()
+          ...    for code, info in regions.items():
+          ...        print(f"{info['name']} ({code}): {info['endpoint']}")
+          North America (na-west-1): https://na-west-1.cloud.dwavesys.com/sapi/v2/
+          Europe (eu-central-1): https://eu-central-1.cloud.dwavesys.com/sapi/v2/
+
+     .. note:: Users of on-premises systems should request the SAPI endpoint from
+        system administrator.
+
+        .. TODO (need info): For non-Ocean clients, you can retrieve a list of
+           supported regions by sending an :code:`HTTP GET` request to the
+           :code:`<Metadata URL>/regions/` endpoint.
+
+  For information about using solvers in alternative geographical regions,
+  see the :ref:`sapi_intro_multiregion` section below.
+
+.. _sapi_access_config_create:
+
+Create a Configuration File
+===========================
+
+The simplest way to configure solver access is to use the
+:ref:`interactive CLI <dwave_cli>`, which is installed as part of the
+`dwave-ocean-sdk <https://github.com/dwavesystems/dwave-ocean-sdk>`_ installation.
 
 If you did not already do so with the :ref:`dwave setup <cli_example_setup>` command
 in the :ref:`dwave_setup` section, or want to make changes at a later time, you
@@ -89,22 +259,29 @@ runs these same configuration steps):
   :start-after: cli-example-config-start-marker
   :end-before: cli-example-config-end-marker
 
-2. Enter the SAPI information (e.g. your API token) found as described in the section
-   above. To get started, create a minimum configuration by accepting the command's
-   defaults (pressing Enter) for all prompts except the API token (Leap users) or
-   API token and endpoint (on-premises users). You can in the future update the
-   file if needed.
+2. Enter the SAPI information (e.g. your API token) found as described in the
+   :ref:`sapi_access_interacting` section above. To get started, create a minimum
+   configuration by accepting the command's defaults (pressing Enter) for all
+   prompts except the API token\ [#]_\ . You can in the future update the file
+   if needed.
+
+.. [#] Users of on-premises systems should also enter the SAPI endpoint. Users
+   interested in using solvers hosted outside their default region can also
+   configure the SAPI endpoint (see the :ref:`sapi_intro_multiregion` section for
+   the recommended way of configuring such access).
 
 Alternatively, you can create and edit a
 :doc:`D-Wave Cloud Client configuration file </docs_cloud/sdk_index>`
 manually.
 
-You can always set or override the solver, API token, and URL directly in your code
-or as local environment variables. For more information, see the examples in this
-document or :doc:`D-Wave Cloud Client </docs_cloud/sdk_index>`.
+You can always set or override your configurations in your code or with environment
+variables. For more information, see the examples in this document or
+:doc:`D-Wave Cloud Client </docs_cloud/sdk_index>`.
 
-Verifying Your Configuration
-----------------------------
+.. _sapi_access_config_verify:
+
+Verify Your Configuration
+=========================
 
 You can test that your solver access is configured correctly with the
 :ref:`interactive CLI <dwave_cli>`.
@@ -131,80 +308,65 @@ You can test that your solver access is configured correctly with the
     Occurrences: [1]
     Energies: [-2882.197791239335]
 
-Querying Available Solvers
-==========================
-
-.. note:: `Leap <https://cloud.dwavesys.com/leap/>`_ accounts can see accessible solvers
-   on the dashboard.
-
-From your terminal, you can use the
-:ref:`interactive CLI <dwave_cli>` to see the available solvers, their parameters, and properties.
-
-1. Run the :ref:`dwave solvers <cli_example_solvers>` command (the output shown below is illustrative only).
-
-.. include:: ../docs_cli.rst
-  :start-after: cli-example-solvers-start-marker
-  :end-before: cli-example-solvers-end-marker
-
-Alternatively, from within your code or a Python interpreter you can query solvers available for
-a SAPI URL and API token using
-:doc:`dwave-cloud-client </docs_cloud/sdk_index>` :meth:`~dwave.cloud.client.Client.get_solvers`
-function. For example, the code below queries available solvers for your default SAPI URL and a
-specified token.
-
->>> from dwave.cloud import Client        
->>> client = Client.from_config(token='ABC-123456789123456789123456789')     # doctest: +SKIP
->>> client.get_solvers()       # doctest: +SKIP
-[Solver(id='2000Q_ONLINE_SOLVER1'),
- UnstructuredSolver(id='hybrid_binary_quadratic_model_version2')]
-
-Typically, once you have selected and configured a solver, your code queries its parameters and
-properties as attributes of the instantiated solver object. The code example below
-(with output snipped for brevity) sets a D-Wave system as the sampler, using the default 
-SAPI configuration as set above, and queries its parameters.
-
->>> from dwave.system import DWaveSampler
->>> sampler = DWaveSampler(solver={'qpu': True})
->>> sampler.parameters            # doctest: +SKIP
-{u'anneal_offsets': ['parameters'],
- u'anneal_schedule': ['parameters'],
- u'annealing_time': ['parameters'],
- u'answer_mode': ['parameters'],
- u'auto_scale': ['parameters'], ...
-
-Descriptions of D-Wave system parameters and properties are in the
-:std:doc:`system documentation <sysdocs_gettingstarted:index>`.
-
 .. _sapi_intro_multiregion:
 
 Accessing Solvers in Multiple Regions
 =====================================
 
 Leap quantum cloud service is distributed across multiple geographic regions.
-You can see the supported regions and the solvers available in each for your 
-account in your `Leap <https://cloud.dwavesys.com/leap/>`_ dashboard. 
-Ocean's :ref:`sdk_index_cloud` enables you to select solvers from a particular 
-region as follows: 
+You can see the supported regions and the solvers available in each for your
+account in your `Leap <https://cloud.dwavesys.com/leap/>`_ dashboard.
+Ocean's :ref:`sdk_index_cloud` enables you to select solvers from a particular
+region using one or more of the following options:
 
-* Select a default region in your 
-  :ref:`dwave-cloud-client configuration file <sdk_index_cloud>`. You can run 
-  the :ref:`dwave config <cli_example_config>` CLI command with the 
-  :code:`--full` option or edit an existing configuration file to set a 
-  preferred region.  
-* Set the appropriate environment variable (for example, 
-  :code:`export DWAVE_API_REGION=eu-central-1` in a Unix shell) for your current 
-  terminal or working session to select solvers from a preferred region. 
+* Select a default region in your
+  :ref:`dwave-cloud-client configuration file <sdk_index_cloud>`. You can run
+  the :ref:`dwave config <cli_example_config>` CLI command with the
+  :code:`--full` option or edit an existing configuration file to set a
+  preferred region.
+* Set the appropriate environment variable (for example,
+  :code:`export DWAVE_API_REGION=eu-central-1` in a Unix shell) for your current
+  terminal or working session to select solvers from a preferred region.
 * Explicitly select the region in your code. For example, the :code:`region`
-  parameter in the code line :code:`sampler = DWaveSampler(region="na-west-1")` 
-  selects a D-Wave quantum computer located in North America. 
+  parameter in the code line :code:`sampler = DWaveSampler(region="na-west-1")`
+  selects a D-Wave quantum computer located in North America.
 
-.. note:: Keep in mind the relative priorities of configurations set at 
-   various levels (in the above bullets, the configuration file, environment 
-   variables, and explicit parameters in your code), as described in the 
-   :ref:`sdk_index_cloud` documentation. For example, while the setting of both 
-   an endpoint and region on the same level (either two lines in the configuration 
-   file or two environment variables or two explicit parameters) results in 
-   selection based on the endpoint, setting a region explicitly overrides an 
+.. note:: Keep in mind the relative priorities of configurations set at
+   various levels (in the above bullets, the configuration file, environment
+   variables, and explicit parameters in your code), as described in the
+   :ref:`sdk_index_cloud` documentation. For example, while the setting of both
+   an endpoint and region on the same level (either two lines in the configuration
+   file or two environment variables or two explicit parameters) results in
+   selection based on the endpoint, setting a region explicitly overrides an
    endpoint configured using an environment variable or in the configuration
-   file. 
+   file.
 
+Example: Viewing a Region's Solvers
+-----------------------------------
+
+You can use :ref:`interactive CLI <dwave_cli>` to query solvers in a particular
+region.
+
+.. code-block:: bash
+
+    $ dwave solvers --list --region eu-central-1
+    Advantage_system5.1
+
+Example: Using Configuration-File Profiles for Multiple Regions
+---------------------------------------------------------------
+
+You can set up your configuration file with profiles for multiple regions, as
+shown below.
+
+.. code-block:: bash
+
+  [defaults]
+  token = ABC-123456789123456789123456789
+
+  [europe]
+  region = eu-central-1
+
+You can then set the profile when instantiating a sampler, as below.
+
+>>> from dwave.system import DWaveSampler, EmbeddingComposite
+>>> sampler = EmbeddingComposite(DWaveSampler(profile="europe"))   # doctest: +SKIP

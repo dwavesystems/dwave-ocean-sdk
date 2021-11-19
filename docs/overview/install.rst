@@ -112,8 +112,13 @@ includes an :ref:`interactive CLI <dwave_cli>` that steps you through setup.
 
 In the virtual environment you created as part of :ref:`install`, run the
 :code:`dwave setup` command. The output shown below includes the interactive
-prompts and placeholder replies for a full setup. The next sections explain
-the details.
+prompts and placeholder replies for a full setup.
+
+.. tip:: New users can accept the :code:`dwave setup` command’s defaults (press
+   Enter) for all prompts except the authentication token, which is displayed on
+   the `Leap <https://cloud.dwavesys.com/leap/>`_ dashboard for your account.
+   Section :ref:`sapi_access` explains how you can update your work environment's
+   configuration at any time.
 
 .. include:: ../docs_cli.rst
   :start-after: cli-example-setup-start-marker
