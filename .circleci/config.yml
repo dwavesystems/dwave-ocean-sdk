@@ -77,18 +77,6 @@ jobs:
             python -m virtualenv env
 
       - run:
-          name: install dwave-inspector dependencies
-          command: |
-            . env/bin/activate
-            pip install dwave-inspectorapp --extra-index=https://pypi.dwavesys.com/simple
-
-      - run:
-          name: install dwave-system dependencies
-          command: |
-            . env/bin/activate
-            pip install dwave-drivers --extra-index=https://pypi.dwavesys.com/simple
-
-      - run:
           name: install penaltymodel dependencies
           command: |
             . env/bin/activate
@@ -109,6 +97,7 @@ jobs:
             for submodule in */; do [[ -f $submodule/tests/requirements.txt ]] && pip install -r $submodule/tests/requirements.txt; done
             pip install cython wheel twine
             pip install .
+            dwave install --all --yes
 
       - run:
           name: build packages
