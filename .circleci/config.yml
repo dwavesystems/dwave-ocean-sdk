@@ -94,7 +94,14 @@ jobs:
           command: |
             . env/bin/activate
             python --version
-            for submodule in */; do [[ -f $submodule/tests/requirements.txt ]] && pip install -r $submodule/tests/requirements.txt; done
+            for submodule in */; do 
+              if [[ -f $submodule/tests/requirements.txt ]]; then
+                pip install -r $submodule/tests/requirements.txt
+              fi
+              if [[ -f $submodule/test_requirements.txt ]]; then
+                pip install -r $submodule/test_requirements.txt
+              fi
+              done
             pip install cython wheel twine
             pip install .
             dwave install --all --yes
