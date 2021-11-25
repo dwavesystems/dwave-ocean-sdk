@@ -87,46 +87,39 @@ jobs:
             pip install penaltymodel_maxgap/
             pip install penaltymodel_mip/
             pip install penaltymodel_lp/
-            cd ..
 
       - run:
           name: install dependencies
           command: |
             . env/bin/activate
             python --version
-            for submodule in */; do 
-              if [[ -f $submodule/tests/requirements.txt ]]; then
-                pip install -r $submodule/tests/requirements.txt
+            for subdir in */; do
+              if [[ -f "$subdir"/tests/requirements.txt ]]; then
+                pip install -r "$subdir"/tests/requirements.txt
               fi
-              if [[ -f $submodule/test_requirements.txt ]]; then
-                pip install -r $submodule/test_requirements.txt
+              if [[ -f "$subdir"/test_requirements.txt ]]; then
+                pip install -r "$subdir"/test_requirements.txt
               fi
               done
-            pip install cython wheel twine
+            pip install cython wheel
             pip install .
             dwave install --all --yes
-
-      - run:
-          name: build packages
-          command: |
-            . env/bin/activate
-            python --version
-            PKGS=(dimod dwave-neal dwave-tabu minorminer dwave-greedy dwave-preprocessing)
-            for package in "${PKGS[@]}"; do echo "$package"; cd "$package"; python setup.py build_ext --inplace; cd ../; done
 
       - run:
           name: run individual package unittests
           command: |
             . env/bin/activate
-            for submodule in */; do
-              if [[ -d $submodule/tests ]]
-              then
-                cd $submodule
+            for subdir in */; do
+              if [[ -d "$subdir"/tests ]] && [[ "$subdir" != "env/" ]]; then
+                cd "$subdir"
                 pwd
+                if [[ -f "setup.py" ]]; then
+                  python setup.py build_ext --inplace 2>/dev/null
+                fi
                 python -m unittest discover
                 cd ../
               fi
-              done
+            done
 
   test-doctest:
     docker:
