@@ -122,25 +122,31 @@ assignments that satisfy all the constraints representing the circuit's Boolean 
 
 This circuit is small enough to solve with a brute-force algorithm such as that
 used by the :class:`~dimod.reference.samplers.ExactSolver` class. Solve and
-print solutions in which the circuit's output, :math:`z`, is 1 (True).
+print all feasible solutions.
 
->>> from dimod import ExactSolver
+>>> from dimod import ExactSolver, drop_variables
 ...
 >>> solutions = ExactSolver().sample(bqm).lowest()
->>> z = []
 >>> out_fields = [key for key in list(next(solutions.data(['sample'])))[0].keys() if 'out' in key]
->>> for datum in solutions.data(['sample', 'energy']):
-...    if datum.sample['z'] == 1:
-...       for key in out_fields:
-...          _ = datum.sample.pop(key)
-...       z.append(datum.sample)
->>> for solution in z:
-...   print(solution)
-{'a': 1, 'b': 0, 'c': 0, 'd': 1, 'z': 1}
-{'a': 1, 'b': 0, 'c': 1, 'd': 1, 'z': 1}
-{'a': 1, 'b': 0, 'c': 1, 'd': 0, 'z': 1}
-{'a': 1, 'b': 0, 'c': 0, 'd': 0, 'z': 1}
-{'a': 0, 'b': 0, 'c': 0, 'd': 0, 'z': 1}
+>>> print(drop_variables(solutions, out_fields))
+    a  b  c  d  z energy num_oc.
+0   0  0  0  1  0    0.0       1
+1   0  0  1  1  0    0.0       1
+2   0  1  1  1  0    0.0       1
+3   0  1  0  1  0    0.0       1
+4   1  1  0  1  0    0.0       1
+5   1  1  1  1  0    0.0       1
+6   1  1  1  0  0    0.0       1
+7   1  1  0  0  0    0.0       1
+8   0  1  0  0  0    0.0       1
+9   0  1  1  0  0    0.0       1
+10  0  0  1  0  0    0.0       1
+11  1  0  0  1  1    0.0       1
+12  1  0  1  1  1    0.0       1
+13  1  0  1  0  1    0.0       1
+14  1  0  0  0  1    0.0       1
+15  0  0  0  0  1    0.0       1
+['BINARY', 16 rows, 16 samples, 5 variables]
 
 Brute-force algorithms are not effective for large problems.
 
