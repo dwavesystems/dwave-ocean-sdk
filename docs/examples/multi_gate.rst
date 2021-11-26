@@ -454,7 +454,7 @@ it to visualize sample sets returned from a quantum computer in your browser.
 
 >>> import dwave.inspector
 >>> bqm = circuit_bqm(2)
->>> sampleset1 = sampler1.sample(bqm, num_reads=5000, return_embedding=True)
+>>> sampleset1 = sampler1.sample(bqm, num_reads=5000)
 >>> dwave.inspector.show(sampleset1)                          # doctest: +SKIP
 
 The figure below, constituted of snapshots from the problem inspector for
