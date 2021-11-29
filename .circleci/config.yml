@@ -1,108 +1,125 @@
-version: 2
+version: 2.1
+
+orbs:
+  ocean: dwave/ocean@1.2
+
+environment:
+  PIP_PROGRESS_BAR: off
+
 jobs:
-  test-3.9: &full-test-template
+  test-linux:
+    parameters:
+      python-version:
+        type: string
+
+    docker:
+      - image: circleci/python:<< parameters.python-version >>
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      - ocean/pip-install:
+          requirements: tests/requirements.txt
+          cache: true
+
+      - ocean/pip-install:
+          packages: .
+          cache: false
+
+      - ocean/coverage-run-unittest
+
+  test-osx:
+    parameters:
+      python-version:
+        type: string
+
+    executor: ocean/macos
+
+    steps:
+      - checkout
+
+      - ocean/brew-install-pyenv
+
+      - ocean/pyenv-install-python:
+          python-version: << parameters.python-version >>
+          cache: true
+
+      - ocean/pip-install:
+          requirements: tests/requirements.txt
+          cache: true
+
+      - ocean/pip-install:
+          packages: .
+          cache: false
+
+      - ocean/coverage-run-unittest
+
+  test-individual-pkgs:
     docker:
       - image: circleci/python:3.9
 
     working_directory: ~/repo
 
     steps:
-
       - checkout
 
-      - run:
+      - run: &initialize-submodules
+          name: initialize submodules
+          command: |
+            git submodule init
+            git submodule update
+
+      - run: &create-virtualenv
           name: create virtualenv
           command: |
-            python -m virtualenv env
+            python -m venv env
 
-      - run: &install-dependencies-template
+      - run:
+          name: install penaltymodel dependencies
+          command: |
+            . env/bin/activate
+            cd penaltymodel
+            pip install -r requirements.txt
+            pip install penaltymodel_core/
+            pip install penaltymodel_cache/
+            pip install penaltymodel_maxgap/
+            pip install penaltymodel_mip/
+            pip install penaltymodel_lp/
+
+      - run:
           name: install dependencies
           command: |
             . env/bin/activate
             python --version
+            for subdir in */; do
+              if [[ -f "$subdir"/tests/requirements.txt ]]; then
+                pip install -r "$subdir"/tests/requirements.txt
+              fi
+              if [[ -f "$subdir"/test_requirements.txt ]]; then
+                pip install -r "$subdir"/test_requirements.txt
+              fi
+              done
+            pip install cython wheel
             pip install .
-        
-      - run: &run-tests-template
-          name: run unittests
+            dwave install --all --yes
+
+      - run:
+          name: run individual package unittests
           command: |
             . env/bin/activate
-            python --version
-            python -m unittest discover
-
-  test-3.8:
-    <<: *full-test-template
-    docker:
-      - image: circleci/python:3.8
-
-  test-3.7:
-    <<: *full-test-template
-    docker:
-      - image: circleci/python:3.7
-
-  test-3.6:
-    <<: *full-test-template
-    docker:
-      - image: circleci/python:3.6
-
-  test-osx-3.9: &osx-tests-template
-    macos:
-      xcode: "12.2.0"
-    environment:
-      PYTHON: 3.9.0
-      HOMEBREW_NO_AUTO_UPDATE: 1
-
-    working_directory: ~/repo
-
-    steps: 
-      - checkout
-
-      - run: 
-          name: install pyenv
-          command: |
-            brew install pyenv
-
-      - restore_cache:
-          key: v2-pyenv-{{ .Environment.CIRCLE_JOB }}-xcode-12.2.0
-
-      - run:
-          name: install python
-          command: |
-            pyenv install $PYTHON -s
-
-      - save_cache:
-          paths:
-            - ~/.pyenv
-          key: v2-pyenv-{{ .Environment.CIRCLE_JOB }}-xcode-12.2.0
-
-      - run:
-          name: create virtualenv
-          command: |
-            eval "$(pyenv init -)"
-            pyenv local $PYTHON
-            python -m pip install virtualenv
-            python -m virtualenv env
-
-      - run: *install-dependencies-template
-        
-      - run: *run-tests-template
-
-  test-osx-3.8:
-    <<: *osx-tests-template
-    environment:
-      PYTHON: 3.8.6
-      HOMEBREW_NO_AUTO_UPDATE: 1
-
-  test-osx-3.7:
-    <<: *osx-tests-template
-    environment:
-      PYTHON: 3.7.9
-      HOMEBREW_NO_AUTO_UPDATE: 1
-
-  test-osx-3.6:
-    <<: *osx-tests-template
-    environment:
-      PYTHON: 3.6.12
-      HOMEBREW_NO_AUTO_UPDATE: 1
+            for subdir in */; do
+              if [[ -d "$subdir"/tests ]] && [[ "$subdir" != "env/" ]]; then
+                cd "$subdir"
+                pwd
+                if [[ -f "setup.py" ]]; then
+                  python setup.py build_ext --inplace 2>/dev/null
+                fi
+                python -m unittest discover
+                cd ../
+              fi
+            done
 
   test-doctest:
     docker:
@@ -113,18 +130,16 @@ jobs:
     steps:
       - checkout
 
-      - run:
-          name: initialize submodules
-          command: |
-            git submodule init
-            git submodule update
+      - run: *initialize-submodules
+
+      - run: *create-virtualenv
 
       - run:
-          name: create virtualenv
+          name: install dependencies
           command: |
-            python -m virtualenv env
-
-      - run: *install-dependencies-template
+            . env/bin/activate
+            python --version
+            pip install .
 
       - run:
           name: install docs requirements
@@ -161,10 +176,7 @@ jobs:
     steps:
       - checkout
 
-      - run:
-          name: create virtualenv
-          command: |
-            python -m virtualenv env
+      - run: *create-virtualenv
 
       - run:
           name: verify version matches tag
@@ -207,7 +219,7 @@ jobs:
       - run:
           name: create virtual env
           command: |
-            python3 -m virtualenv env -p python3
+            python3 -m venv env -p python3
 
       - run:
           name: install package
@@ -230,16 +242,15 @@ workflows:
 
   test:
     jobs:
-      - test-3.9
-      - test-3.8
-      - test-3.7
-      - test-3.6
-      - test-osx-3.9
-      - test-osx-3.8
-      - test-osx-3.7
-      - test-osx-3.6
-      - test-doctest
-
+      - test-linux:
+          matrix:
+            parameters:
+              python-version: &python-versions [3.6.8, 3.7.9, 3.8.9, 3.9.4]
+      - test-osx:
+          matrix:
+            parameters:
+              python-version: *python-versions
+      - test-individual-pkgs
   deploy:
     jobs:
       - deploy:
@@ -258,13 +269,13 @@ workflows:
               only:
                 - master
     jobs:
-      - test-3.9
-      - test-3.8
-      - test-3.7
-      - test-3.6
-      - test-osx-3.9
-      - test-osx-3.8
-      - test-osx-3.7
-      - test-osx-3.6
+      - test-linux:
+          matrix:
+            parameters:
+              python-version: *python-versions
+      - test-osx:
+          matrix:
+            parameters:
+              python-version: *python-versions
       - test-doctest
       - black-duck
