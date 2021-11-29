@@ -74,7 +74,7 @@ jobs:
       - run: &create-virtualenv
           name: create virtualenv
           command: |
-            python -m virtualenv env
+            python -m venv env
 
       - run:
           name: install penaltymodel dependencies
@@ -219,7 +219,7 @@ jobs:
       - run:
           name: create virtual env
           command: |
-            python3 -m virtualenv env -p python3
+            python3 -m venv env -p python3
 
       - run:
           name: install package
