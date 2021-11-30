@@ -251,6 +251,8 @@ workflows:
             parameters:
               python-version: *python-versions
       - test-individual-pkgs
+      - test-doctest
+
   deploy:
     jobs:
       - deploy:
