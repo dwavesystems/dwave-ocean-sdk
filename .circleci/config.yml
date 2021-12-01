@@ -145,6 +145,7 @@ jobs:
           name: install docs requirements
           command: |
             . env/bin/activate
+            pip install wheel
             pip install -r docs/requirements.txt
 
       - run:
@@ -251,6 +252,8 @@ workflows:
             parameters:
               python-version: *python-versions
       - test-individual-pkgs
+      - test-doctest
+
   deploy:
     jobs:
       - deploy:
