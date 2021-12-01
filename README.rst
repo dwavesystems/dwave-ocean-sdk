@@ -1,5 +1,13 @@
+.. image:: docs/_static/Ocean_SDK_Banner.png
+
 .. image:: https://img.shields.io/pypi/v/dwave-ocean-sdk.svg
     :target: https://pypi.python.org/pypi/dwave-ocean-sdk
+
+.. image:: https://img.shields.io/pypi/pyversions/dwave-ocean-sdk.svg
+    :target: https://pypi.python.org/pypi/dwave-ocean-sdk
+
+.. image:: https://readthedocs.com/projects/d-wave-systems-dwave-ocean-sdk/badge
+    :target: https://docs.ocean.dwavesys.com
 
 .. image:: https://ci.appveyor.com/api/projects/status/c8ofdgyiy4w38lu3?svg=true
     :target: https://ci.appveyor.com/project/dwave-adtt/dwave-ocean-sdk
@@ -8,9 +16,6 @@
     :target: https://circleci.com/gh/dwavesystems/dwave-ocean-sdk
 
 .. index-start-marker
-
-dwave-ocean-sdk
-===============
 
 Installer for D-Wave's Ocean Tools.
 
