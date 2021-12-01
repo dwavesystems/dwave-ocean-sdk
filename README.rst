@@ -19,9 +19,12 @@
 
 Installer for D-Wave's Ocean Tools.
 
+`Ocean <https://docs.ocean.dwavesys.com/en/stable>`_ is
+`D-Wave's <https://www.dwavesys.com>`_ suite of tools for solving hard problems
+with quantum computers.
 
 Installation
-------------
+============
 
 .. installation-start-marker
 
@@ -39,8 +42,32 @@ To install from source:
 
 .. installation-end-marker
 
-Next Steps
-----------
+Getting Started
+===============
 
-For information on configuring solvers and using the Ocean tools, see
-the `Ocean Documentation <https://docs.ocean.dwavesys.com/en/latest/>`_\ .
+Start with the following D-Wave resources:
+
+* `System Documentation <https://docs.dwavesys.com/docs/latest/index.html>`_ to
+  learn about quantum computers and how to use them
+
+* `Getting Started with Ocean <https://docs.ocean.dwavesys.com/en/stable/getting_started>`_
+  to start coding with Ocean
+
+* `dwave-examples on GitHub <https://github.com/dwave-examples>`_ for code examples
+  and demos.
+
+Support
+=======
+
+Links to community
+GitHub issues
+
+Contributing
+============
+
+Your contributions are welcome!
+
+<link to contrib file>
+
+License
+=======
