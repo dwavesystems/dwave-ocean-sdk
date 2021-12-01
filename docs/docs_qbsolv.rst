@@ -12,8 +12,8 @@ A decomposing solver that finds a minimum value of a large quadratic unconstrain
    The qbsolv package is deprecated as of the end of 2021 and is planned for
    removal in an Ocean SDK release after March 2022.
 
-   Please update your code to use :ref:`sdk_index_hybrid` or
-   `Leap <https://cloud.dwavesys.com/leap/>`_ hybrid solvers instead.
+   Please update your code to use the :ref:`sdk_index_hybrid` package or
+   `Leap's <https://cloud.dwavesys.com/leap/>`_ hybrid solvers instead.
 
 .. qbsolv_deprecation-end-marker
 
