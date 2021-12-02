@@ -53,8 +53,11 @@ Start learning with the following D-Wave resources:
 * `Getting Started with Ocean <https://docs.ocean.dwavesys.com/en/stable/getting_started>`_
   to install and start coding with Ocean software.
 
-* `dwave-examples on GitHub <https://github.com/dwave-examples>`_ for code examples
-  and demos.
+* `dwave-examples <https://github.com/dwave-examples>`_ for code examples
+  and Jupyter Notebooks.
+
+* `D-Wave website <https://www.dwavesys.com/learn/resource-library>`_ for
+  whitepapers and additional resources.
 
 Example Quantum Program
 -----------------------
@@ -80,8 +83,12 @@ right side shows the qubits representing these variables.
 Support
 =======
 
-Links to community
-GitHub issues
+* `Leap user community <https://support.dwavesys.com/hc/en-us/community/topics>`_
+  to converse with a large community of D-Wave users.
+* `Leap help center <https://support.dwavesys.com/hc/en-us>`_
+  to search the Leap knowledge base.
+* `GitHub issues <https://github.com/dwavesystems>`_ to open issues or request
+  features on Ocean packages.
 
 Contributing
 ============
