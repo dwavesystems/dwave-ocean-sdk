@@ -45,6 +45,10 @@ To install from source:
 Getting Started
 ===============
 
+Sign up for the Leap quantum cloud service here:
+`Leap signup <https://cloud.dwavesys.com/leap/signup>`_. Leap provides a
+browser-based integrated development environment (IDE) with Ocean preinstalled.
+
 Start learning with the following D-Wave resources:
 
 * `System Documentation <https://docs.dwavesys.com/docs/latest/index.html>`_ to
@@ -62,7 +66,7 @@ Start learning with the following D-Wave resources:
 Example Quantum Program
 -----------------------
 
-The following lines of code solve a
+The following lines of code solve and visualize a
 `random <https://docs.ocean.dwavesys.com/en/stable/docs_dimod/reference/generators.html>`_
 problem on a quantum computer.
 
@@ -73,15 +77,20 @@ problem on a quantum computer.
 >>> bqm = ran_r(1, 30)
 >>> sampler = EmbeddingComposite(DWaveSampler())
 >>> sampleset = sampler.sample(bqm, num_reads=100)
+>>> dwave.inspector.show(sampleset)
 
-The left side of the graphic below visualizes a solution to the problem with white
-dots representing variables assigned values of -1 and blue dots values of +1; the
-right side shows the qubits representing these variables.
+The left side of the visualized solution represents the problem's variables as
+circles, with white dots for variables assigned values of -1 and blue dots for
+values of +1; the colors of the connecting lines represent values of the
+quadratic coefficients for each pair of variables. The right side shows the qubits
+representing these variables on a quantum processing unit.
 
 .. image:: docs/_static/inspector_bqm_ran_r_30.png
 
 Support
 =======
+
+Find support here:
 
 * `Leap user community <https://support.dwavesys.com/hc/en-us/community/topics>`_
   to converse with a large community of D-Wave users.
