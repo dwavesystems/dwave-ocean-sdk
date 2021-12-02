@@ -70,14 +70,16 @@ The following lines of code solve and visualize a
 `random <https://docs.ocean.dwavesys.com/en/stable/docs_dimod/reference/generators.html>`_
 problem on a quantum computer.
 
->>> from dwave.system import DWaveSampler, EmbeddingComposite
->>> from dimod.generators import ran_r
->>> import dwave.inspector
-...
->>> bqm = ran_r(1, 30)
->>> sampler = EmbeddingComposite(DWaveSampler())
->>> sampleset = sampler.sample(bqm, num_reads=100)
->>> dwave.inspector.show(sampleset)
+.. code-block:: python
+
+  import dimod
+  import dwave.inspector
+  import dwave.system
+
+  bqm = dimod.generators.ran_r(1, 20)
+  sampler = dwave.system.EmbeddingComposite(dwave.system.DWaveSampler())
+  sampleset = sampler.sample(bqm, num_reads=100)
+  dwave.inspector.show(sampleset)
 
 The left side of the visualized solution represents the problem's variables as
 circles, with white dots for variables assigned values of -1 and blue dots for
@@ -85,7 +87,7 @@ values of +1; the colors of the connecting lines represent values of the
 quadratic coefficients for each pair of variables. The right side shows the qubits
 representing these variables on a quantum processing unit.
 
-.. image:: docs/_static/inspector_bqm_ran_r_30.png
+.. image:: docs/_static/inspector_bqm_ran_r_20.png
 
 Support
 =======
