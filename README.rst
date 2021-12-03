@@ -28,17 +28,15 @@ Installation
 
 .. installation-start-marker
 
-Compatible with Python 3.6+:
+Installation from `PyPI <https://pypi.org/project/dwave-ocean-sdk/>`_:
 
 .. code-block:: bash
 
     pip install dwave-ocean-sdk
 
-To install from source:
-
-.. code-block:: bash
-
-    python setup.py install
+For more information, see the Ocean documentation's
+`installation <https://docs.ocean.dwavesys.com/en/stable/overview/install.html>`_
+page.
 
 .. installation-end-marker
 
