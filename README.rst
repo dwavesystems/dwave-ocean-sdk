@@ -17,11 +17,11 @@
 
 .. index-start-marker
 
-Installer for D-Wave's Ocean Tools.
-
 `Ocean <https://docs.ocean.dwavesys.com/en/stable>`_ is
 `D-Wave's <https://www.dwavesys.com>`_ suite of tools for solving hard problems
 with quantum computers.
+
+.. index-end-marker
 
 Installation
 ============
