@@ -4,9 +4,10 @@
 Multiple-Gate Circuit
 =====================
 
-This example solves a logic circuit problem to demonstrate using Ocean tools
-to solve a problem on a D-Wave system. It builds on the discussion in the :ref:`and`
-example about the effect of :term:`minor-embedding` on performance.
+This example solves a logic-circuit problem on a D-Wave quantum computer. It
+expands on the discussion in the :ref:`and` example about the effect of
+:term:`minor-embedding` on performance, demonstrating different approaches to
+embedding.
 
 .. raw::  latex
 
@@ -75,11 +76,12 @@ Example Requirements
 
 To run the code in this example, the following is required.
 
-* The requisite information for problem submission through SAPI, as described in :ref:`sapi_access`
-* Ocean tools :doc:`dwavebinarycsp </docs_binarycsp/sdk_index>` and
+* The requisite information for problem submission through SAPI, as described in
+  :ref:`sapi_access`
+* Ocean tools :doc:`dimod </docs_dimod/sdk_index>` and
   :doc:`dwave-system </docs_system/sdk_index>`. For the
-  optional graphics, you will also need `Matplotlib <https://matplotlib.org>`_
-  and :doc:`problem-inspector </docs_inspector/sdk_index>`.
+  optional graphics, you will also need
+  :doc:`problem-inspector </docs_inspector/sdk_index>`.
 
 .. include:: hybrid_solver_service.rst
   :start-after: example-requirements-start-marker
@@ -88,269 +90,517 @@ To run the code in this example, the following is required.
 Formulating the Problem as a CSP
 ================================
 
-This example demonstrates two formulations of constraints from the problem's
-logic gates:
+Other examples (:ref:`not` and :ref:`and`) show how a Boolean gate is
+represented as a *constraint satisfaction problem* (:term:`CSP`) on a quantum
+computer. This example aggregates the resulting binary quadratic models (BQM)
+to do the same for multiple gates that constitute a circuit.
 
-1. Single comprehensive constraint.
+Small-Circuit Problem
+---------------------
 
-.. testcode::
+To start with, solve the circuit with 7 logic gates shown above.
 
-    import dwavebinarycsp
+The code below represents standard Boolean gates with BQMs provided by
+:doc:`dimod </docs_dimod/sdk_index>` BQM generators, represents the Boolean NOT
+operation by inverting the coefficients of the relevant variables, and sums the
+gate-level BQMs. The resulting aggregate BQM has its lowest value for variable
+assignments that satisfy all the constraints representing the circuit's Boolean gates.
 
-    def logic_circuit(a, b, c, d, z):
-        not1 = not b
-        or2 = b or c
-        and3 = a and not1
-        or4 = or2 or d
-        and5 = and3 and or4
-        not6 = not or4
-        or7 = and5 or not6
-        return (z == or7)
+>>> from dimod.generators import and_gate, or_gate
+...
+>>> bqm_gate2 = or_gate('b', 'c', 'out2')
+>>> bqm_gate3 = and_gate('a', 'b', 'out3')
+>>> bqm_gate3.flip_variable('b')
+>>> bqm_gate4 = or_gate('out2', 'd', 'out4')
+>>> bqm_gate5 = and_gate('out3', 'out4', 'out5')
+>>> bqm_gate7 = or_gate('out5', 'out4', 'z')
+>>> bqm_gate7.flip_variable('out4')
+...
+>>> bqm = bqm_gate2 + bqm_gate3 + bqm_gate4 + bqm_gate5 + bqm_gate7
+>>> print(bqm.num_variables)
+9
 
-    csp = dwavebinarycsp.ConstraintSatisfactionProblem(dwavebinarycsp.BINARY)
-    csp.add_constraint(logic_circuit, ['a', 'b', 'c', 'd', 'z'])
+This circuit is small enough to solve with a brute-force algorithm such as that
+used by the :class:`~dimod.reference.samplers.ExactSolver` class. Solve and
+print all feasible solutions.
 
+>>> from dimod import ExactSolver, drop_variables
+...
+>>> solutions = ExactSolver().sample(bqm).lowest()
+>>> out_fields = [key for key in list(next(solutions.data(['sample'])))[0].keys() if 'out' in key]
+>>> print(drop_variables(solutions, out_fields))
+    a  b  c  d  z energy num_oc.
+0   0  0  0  1  0    0.0       1
+1   0  0  1  1  0    0.0       1
+2   0  1  1  1  0    0.0       1
+3   0  1  0  1  0    0.0       1
+4   1  1  0  1  0    0.0       1
+5   1  1  1  1  0    0.0       1
+6   1  1  1  0  0    0.0       1
+7   1  1  0  0  0    0.0       1
+8   0  1  0  0  0    0.0       1
+9   0  1  1  0  0    0.0       1
+10  0  0  1  0  0    0.0       1
+11  1  0  0  1  1    0.0       1
+12  1  0  1  1  1    0.0       1
+13  1  0  1  0  1    0.0       1
+14  1  0  0  0  1    0.0       1
+15  0  0  0  0  1    0.0       1
+['BINARY', 16 rows, 16 samples, 5 variables]
 
-2. Multiple small constraints.
+Brute-force algorithms are not effective for large problems.
 
-.. testcode::
+Large-Circuit Problem
+---------------------
 
-    import dwavebinarycsp
-    import dwavebinarycsp.factories.constraint.gates as gates
-    import operator
+In the figure below, the 7-gates circuit solved above is replicated with the
+outputs connected through a series of XOR gates.
 
-    csp = dwavebinarycsp.ConstraintSatisfactionProblem(dwavebinarycsp.BINARY)
-    csp.add_constraint(operator.ne, ['b', 'not1'])  # add NOT 1 gate
-    csp.add_constraint(gates.or_gate(['b', 'c', 'or2']))  # add OR 2 gate
-    csp.add_constraint(gates.and_gate(['a', 'not1', 'and3']))  # add AND 3 gate
-    csp.add_constraint(gates.or_gate(['d', 'or2', 'or4']))  # add OR 4 gate
-    csp.add_constraint(gates.and_gate(['and3', 'or4', 'and5']))  # add AND 5 gate
-    csp.add_constraint(operator.ne, ['or4', 'not6'])  # add NOT 6 gate
-    csp.add_constraint(gates.or_gate(['and5', 'not6', 'z']))  # add OR 7 gate
+.. figure:: ../_images/MultiGateCircuit_3Instances.png
+   :name: Problem_MultiGateCircuit_3Instances
+   :alt: image
+   :align: center
+   :scale: 90 %
 
-.. note:: `dwavebinarycsp` works best for constraints of up to 4 variables; it may not
-      function as expected for constraints of over 8 variables.
+   Multiple replications of the 7-gates circuit (:math:`z = \overline{b} (ac + ad + \overline{c}\overline{d})`) connected by XOR gates.
 
-The next line of code converts the constraints into a BQM that you solve by sampling.
+The :code:`circuit_bqm` function defined below replicates, for a specified number
+of circuits, the BQM developed above and connects the outputs through a cascade
+of XOR gates.
 
-.. testcode::
+>>> from dimod import BinaryQuadraticModel, quicksum
+>>> from dimod.generators import and_gate, or_gate, xor_gate
+...
+>>> def circuit_bqm(n: int = 3) -> BinaryQuadraticModel:
+...       "Create a BQM for n replications of the 7-gate circuit."
+...
+...       if n < 2:
+...          raise ValueError("n must be at least 2")
+...
+...       bqm_gate2 = [or_gate(f"b_{c}", f"c_{c}", f"out2_{c}") for c in range(n)]
+...       bqm_gate3 = [and_gate(f"a_{c}", f"b_{c}", f"out3_{c}") for c in range(n)]
+...       [bqm.flip_variable("b_{}".format(indx)) for indx, bqm in enumerate(bqm_gate3)]
+...       bqm_gate4 = [or_gate(f"out2_{c}", f"d_{c}", f"out4_{c}") for c in range(n)]
+...       bqm_gate5 = [and_gate(f"out3_{c}", f"out4_{c}", f"out5_{c}") for c in range(n)]
+...       bqm_gate7 = [or_gate(f"out5_{c}", f"out4_{c}", f"z_{c}") for c in range(n)]
+...       [bqm.flip_variable("out4_{}".format(indx)) for indx, bqm in enumerate(bqm_gate7)]
+...       bqm_z = [xor_gate("z_0", "z_1", "zz0", "aux0")] + [
+...                xor_gate(f"z_{c}", f"zz{c-2}", f"zz{c-1}", f"aux{c-1}") for c in range(2, n)]
+...       return quicksum(bqm_gate2 + bqm_gate3 + bqm_gate4 + bqm_gate5 + bqm_gate7 + bqm_z)
 
-    # Convert the binary constraint satisfaction problem to a binary quadratic model
-    bqm = dwavebinarycsp.stitch(csp)
+Instantiate a BQM for six replications. The resulting circuit has 64 variables.
 
-.. toctree::
-   :maxdepth: 1
-   :hidden:
-
-   multi_gate_results
-
-The first approach, which consolidates the circuit as a single constraint, yields a
-binary quadratic model with 7 variables: 4 inputs, 1, output, and 2 ancillary variables.
-The second approach, which creates a constraint satisfaction problem from multiple
-small constraints, yields a binary quadratic model with 11 variables: 4 inputs, 1 output, and
-6 intermediate outputs of the logic gates.
-
-You can see the binary quadratic models here: :ref:`multi_gate_results`.
+>>> bqm = circuit_bqm(6)
+>>> print(bqm.num_variables)
+64
 
 Minor-Embedding and Sampling
 ============================
 
-Algorithmic minor-embedding is heuristic---solution results vary significantly based on
-the minor-embedding found.
+The :ref:`and` example used the :class:`~dwave.system.composites.EmbeddingComposite`
+composite to :term:`minor-embed` its unstructured problem onto the topology of
+a quantum computer's qubits and couplers. That composite uses the
+:ref:`minorminer algorithm <sdk_index_minorminer>` to find a minor embedding
+for each problem you submit.
 
-The next code sets up a D-Wave system as the sampler.
+For some applications, the submitted problems might be related or limited
+in size in such a way that you can find a common minor embedding for the entire
+set of problems. For instance, you might wish to submit the circuit of this
+example multiple times with various configurations of fixed inputs (inputs set to
+zero or one).
+
+One approach is to pre-calculate a minor embedding for a clique
+(a :term:`complete graph`), a "clique embedding", of a size at least equal to the
+maximum number of variables (nodes) expected in your problem. Because any BQM of
+:math:`n` variables maps to a subgraph of an :math:`n`--node clique\ [#]_, you
+can then use the clique embedding by assigning to all unused nodes and edges a
+value of zero.
+
+.. [#]
+  The figure below illustrates such subgraphs. Two random
+  :func:`~networkx.generators.random_graphs.random_regular_graph` graphs with four
+  and three nodes, respectively, each with two edges per node, are plotted on a
+  background of a 5-node clique.
+
+  .. figure:: ../_images/subgraphs_clique5.png
+     :name: MultiGateCircuit_SubgraphsClique5
+     :alt: image
+     :align: center
+     :scale: 50 %
+
+     Two subgraphs of a 5-node clique. The clique is plotted in yellow and the
+     random sub-graphs in blue (four nodes) and red (three nodes).
+
+
+Configure a quantum computer as a sampler using both the
+:class:`~dwave.system.composites.EmbeddingComposite` composed sampler, for standard
+embedding, and the :class:`~dwave.system.samplers.DWaveCliqueSampler` composed
+sampler, for clique embedding.
 
 .. include:: min_vertex.rst
    :start-after: default-config-start-marker
    :end-before: default-config-end-marker
 
-.. testcode::
+>>> from dwave.system import DWaveSampler, EmbeddingComposite, DWaveCliqueSampler
+...
+>>> sampler1 = EmbeddingComposite(DWaveSampler(solver=dict(topology__type='pegasus')))
+>>> sampler2 = DWaveCliqueSampler(solver=dict(name=sampler1.child.solver.name))  # doctest: +SKIP
 
-    from dwave.system import DWaveSampler, EmbeddingComposite
+Performance Comparison: Embedding Time
+--------------------------------------
 
-    # Set up a D-Wave system as the sampler
-    sampler = EmbeddingComposite(DWaveSampler())
+The :class:`~dwave.system.samplers.DWaveCliqueSampler` composed sampler reduces
+the overhead of repeatedly finding minor embeddings for applications that submit
+a sequence of problems that are all sub-graphs of a clique that can be embedded
+on the QPU sampling the problems.
 
-Next, ask for 1000 samples and separate those that satisfy the CSP from
-those that fail to do so.
+The table below shows the minor-embedding times\ [#]_ for a series of random
+problems of increasing size\ [#]_. Some interesting differences are bolded.
 
-.. testcode::
+.. note:: The times below are for a particular development environment. Embedding
+   times can be expected to vary for different CPUs, operating systems, etc as
+   well as varying across problems and executions of the heuristic algorithm.
 
-    sampleset = sampler.sample(bqm, num_reads=1000, label='SDK Examples - Gate Circuit')
-
-    # Check how many solutions meet the constraints (are valid)
-    valid, invalid, data = 0, 0, []
-    for datum in sampleset.data(['sample', 'energy', 'num_occurrences']):
-        if (csp.check(datum.sample)):
-            valid = valid+datum.num_occurrences
-            for i in range(datum.num_occurrences):
-                data.append((datum.sample, datum.energy, '1'))
-        else:
-            invalid = invalid+datum.num_occurrences
-            for i in range(datum.num_occurrences):
-                data.append((datum.sample, datum.energy, '0'))
-
->>> print(valid, invalid)        # doctest: +SKIP
-
-For the single constraint approach, 4 runs with their different minor-embeddings
-yield significantly varied results, as shown in the following table:
-
-.. list-table:: Single Constraint
-   :widths: 10 10
+.. list-table:: Minor-Embedding: Embedding Times
+   :widths: 20 10 10 30
    :header-rows: 1
 
-   * - Embedding
-     - (valid, invalid)
-   * - 1
-     - (39, 961)
-   * - 2
-     - (1000, 0)
-   * - 3
-     - (998, 2)
-   * - 4
-     - (316, 684)
+   * - Problem Size: Nodes (Edges/Node)
+     - :class:`~dwave.system.composites.EmbeddingComposite` Time [sec]
+     - :class:`~dwave.system.samplers.DWaveCliqueSampler` Time [sec]
+     - Notes
+   * - 10 (5)
+     - **0.06**
+     - **152.7**
+     - :class:`~dwave.system.samplers.DWaveCliqueSampler` calculates all clique
+       embeddings for the QPU.
+   * - 20 (10)
+     - 0.41
+     - 0.11
+     -
+   * - 30 (15)
+     - 1.39
+     - 0.11
+     -
+   * - 40 (20)
+     - 3.88
+     - 0.13
+     -
+   * - 50 (25)
+     - 9.7
+     - 0.14
+     -
+   * - 60 (30)
+     - 17.91
+     - 0.16
+     -
+   * - 70 (35)
+     - 22.02
+     - 0.19
+     -
+   * - 80 (40)
+     - **73.74**
+     - **0.25**
+     -
+   * - 90 (45)
+     - 65.05
+     - 0.22
+     -
+   * - 100 (50)
+     - 28.92
+     - 0.25
+     - For this execution, :class:`~dwave.system.composites.EmbeddingComposite`
+       found a good embedding quickly; other executions might not.
 
-You can see the minor-embeddings found here on a D-Wave 2000Q system: 
-:ref:`multi_gate_results`; below those embeddings are visualized graphically.
+.. [#] The times are approximate: the code measures the blocking time when
+   submitting problems, of which minor-embedding is the major element.
 
-.. figure:: ../_images/SingleCSPembeddings.png
-   :name: SingleCSPembeddings
-   :alt: image
-   :align: center
-   :scale: 50 %
+You can see that while the first submission is slow for the
+:class:`~dwave.system.samplers.DWaveCliqueSampler` composed sampler, subsequent
+submissions are fast. For the :class:`~dwave.system.composites.EmbeddingComposite`
+composed sampler, the time depends on the size and complexity of each problem,
+can vary between submissions of the same problem, and each submission incurs the
+cost of finding an embedding anew.
 
-   Each of the figure's 4 panels shows a minor-embedding found for one run of the example
-   code above. The panels show part of the Chimera graph representation of a D-Wave 2000Q QPU,
-   where each unit cell is rendered as a cross of 4 horizontal and 4 vertical dots
-   representing qubits and lines representing couplers between qubit pairs. Color
-   indicates the strengths of linear (qubit) and quadratic (coupler) biases: darker blue
-   for increasingly negative values and darker red for increasingly positive values.
+.. [#]
 
-Optionally, you can use the :doc:`problem-inspector </docs_inspector/sdk_index>`
-to view the solution on the QPU.
+  The code below can take several minutes to run. Uncommenting the print statement
+  lets you view the execution's progress. Note that if you have already
+  used :class:`~dwave.system.samplers.DWaveCliqueSampler`, your cache might need
+  to be cleared with the :func:`minorminer.busclique.busgraph_cache.clear_all_caches`
+  function to measure the initial calculation time.
 
-.. note:: The next code requires the use of Ocean's problem inspector.
+  >>> import time
+  >>> import networkx as nx
+  ...
+  >>> samplers = {"sampler1": sampler1, "sampler2": sampler2}   # doctest: +SKIP
+  >>> times = {key: [] for key in samplers.keys()}              # doctest: +SKIP
+  >>> for name, sampler in samplers.items():                    # doctest: +SKIP
+  ...    for i in range(10):
+  ...       nodes = 10 + 10*i
+  ...       edges = 5 + 5*i
+  ...       G = nx.random_regular_graph(n=nodes, d=edges)
+  ...       # print("Submitting problem of {} nodes and {} edges to sampler {}".format(nodes, edges, name))
+  ...       times[name].append(time.time())
+  ...       sampler.sample_ising({}, {edge: 1 for edge in G.edges})
+  ...       times[name][i] = time.time() - times[name][i]
 
->>> import dwave.inspector
->>> dwave.inspector.show(sampleset)   # doctest: +SKIP
+For example, to submit a problem with two replications of the
+:math:`z = \overline{b} (ac + ad + \overline{c}\overline{d})` circuit, which
+has 20 variables (and 34 interactions), you can expect an embedding time of
+less than a second.
 
-.. figure:: ../_static/inspector_CSP_broken.png
-   :name: inspector_CSP_broken
-   :alt: image
-   :align: center
-   :scale: 50 %
+>>> bqm1 = circuit_bqm(2)
+>>> bqm2 = bqm1.copy(bqm1)
+>>> bqm1.fix_variables([('b_0', 0), ('b_1', 0), ('a_0', 1)])
+>>> bqm2.fix_variables([('b_0', 1), ('b_1', 1), ('a_0', 0)])
+...
+>>> bqms = [bqm1, bqm2]
+>>> times = {key: [] for key in samplers.keys()}             # doctest: +SKIP
+>>> for name, sampler in samplers.items():                   # doctest: +SKIP
+...    for i, bqm in enumerate(bqms):
+...       times[name].append(time.time())
+...       sampler.sample(bqm, num_reads=5000)
+...       times[name][i] = time.time() - times[name][i]
+>>> times                                                    # doctest: +SKIP
+{'sampler1': [0.43480920791625977, 0.381976842880249],
+ 'sampler2': [0.12912440299987793, 0.12194108963012695]}
 
-   View of the logical and embedded problem rendered by Ocean's problem inspector for one arbitrary execution. The CSP's original BQM, on the left, shows that the solution shown for variable :math:`z` is based on a broken chain; its embedded representation, on the right, shows the broken three-qubit chain for variable :math:`z` highlighted red. The current solution displayed for variable :math:`z` is based on two qubits with spin value :math:`-1` and one with value :math:`1`, and thus represented in the problem space with a broken dot (part white, part gold).
+If, however, you wish to submit a problem with ten replications repeatedly, with
+some subset of the variables fixed, the overhead cost of embedding can be minutes.
 
-For the second approach, which creates a constraint satisfaction problem based on multiple
-small constraints, a larger number of variables (11 versus 7) need to be minor-embedded, resulting
-in worse performance. However, performance was greatly improved in this case by increasing
-the chain strength (to 2 instead of 1 previously used by default on the runs above).
+Performance Comparison: Solution Quality
+----------------------------------------
 
-.. list-table:: Multiple Constraints
+The :class:`~dwave.system.composites.EmbeddingComposite` composed sampler attempts
+to find a good embedding for any given problem while the
+:class:`~dwave.system.samplers.DWaveCliqueSampler` reuses a clique embedding
+found once. Typically the former results in an embedding with shorter chains than
+the latter, with the difference in length increasing for larger problems.
+Chain length can significantly affect solution quality.
+
+The table below compares, for the two embedding methods, the ratio of ground
+states (solutions for which the value of the BQM is zero, meaning no constraint
+is violated or all assignments of values to the problem's variables match valid
+states of the circuit represented by the BQM) to total samples returned from the
+quantum computer when minor-embedding a sequence of problems of increasing size.
+
+The results are for one particular code\ [#]_ execution on problems that replicate
+the :math:`z = \overline{b} (ac + ad + \overline{c}\overline{d})` circuit between
+two to ten times.
+
+.. list-table:: Minor-Embedding: Ground-State Ratio Across Samplers
    :widths: 10 10 10
    :header-rows: 1
 
-   * - Embedding
-     - Chain Strength
-     - (valid, invalid)
-   * - 1
-     - 1
-     - (7, 993)
+   * - Problem Size: Circuit Replications
+     - :class:`~dwave.system.composites.EmbeddingComposite` Ground-State Ratio [%]
+     - :class:`~dwave.system.samplers.DWaveCliqueSampler` Ground-State Ratio [%]
    * - 2
-     - 1
-     - (417, 583)
+     - 69.6
+     - 74.4
    * - 3
-     - 2
-     - (941, 59)
+     - 52.6
+     - 25.2
    * - 4
-     - 2
-     - (923, 77)
+     - 40.5
+     - 16.8
+   * - 5
+     - 29.1
+     - 3.3
+   * - 6
+     - 20.9
+     - 2.9
+   * - 7
+     - 16.3
+     - 0.2
+   * - 8
+     - 14.4
+     - 0.0
+   * - 9
+     - 8.9
+     - 0.0
+   * - 10
+     - 7.2
+     - 0.3
 
-You can see the minor-embeddings used here: :ref:`multi_gate_results`; below
-those embeddings are visualized graphically.
+You can see that for small problems, using a clique embedding can produce
+high-quality solutions, and might be advantageously used when submitting a
+sequence of related problems.
 
-.. figure:: ../_images/MultiCSPembeddings.png
-   :name: MultiCSPembeddings
+.. [#]
+
+  The code below can take minutes to run. Uncommenting the print statements
+  lets you view the execution's progress.
+
+  >>> samplers = {"sampler1": sampler1, "sampler2": sampler2}    # doctest: +SKIP
+  >>> samplesets = {key: [] for key in samplers.keys()}          # doctest: +SKIP
+  >>> for num_circuits in range(2, 11):
+  ...    bqm = circuit_bqm(num_circuits)
+  ...    for name, sampler in samplers.items():                  # doctest: +SKIP
+  ...       # print("Submitting problem of {} circuits to sampler {}".format(num_circuits, name))
+  ...       sampleset = sampler.sample(bqm, num_reads=5000)
+  ...       if sampleset.first.energy > 0:
+  ...          samplesets[name].append(0)
+  ...       else:
+  ...          samplesets[name].append(sum(sampleset.lowest().record.num_occurrences))
+
+Visualizing the Minor Embedding
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Ocean's :doc:`problem-inspector </docs_inspector/sdk_index>` can illuminate
+differences in solution quality between alternative minor embeddings. You can use
+it to visualize sample sets returned from a quantum computer in your browser.
+
+>>> import dwave.inspector
+>>> bqm = circuit_bqm(2)
+>>> sampleset1 = sampler1.sample(bqm, num_reads=5000)
+>>> dwave.inspector.show(sampleset1)                          # doctest: +SKIP
+
+The figure below, constituted of snapshots from the problem inspector for
+submissions to the two samplers defined above, shows that for the BQM representing
+two replications of the :math:`z = \overline{b} (ac + ad + \overline{c}\overline{d})`
+circuit, with its 20 variables and 34 edges, the clique embedding uses chains of
+length two to represent nodes that the standard embedding represented with
+single qubits.
+
+.. figure:: ../_images/MultiGateCircuit_Embedding2.png
+   :name: Problem_MultiGateCircuit_Embedding2
    :alt: image
    :align: center
    :scale: 50 %
 
-   Each of the figure's 4 panels shows a minor-embedding found for one run of the example
-   code above, as described for the previous figure. Here, the top two panels are for
-   runs with the default chain-strength of 1 and the bottom two for chain-strengths of 2.
+   Graph of two replications of the :math:`z = \overline{b} (ac + ad + \overline{c}\overline{d})`
+   circuit (top centre), a standard embedding (bottom-left), and a
+   clique-embedding (bottom-right).
 
-Looking at the Results
-======================
+Short chains of a few qubits generally enable good quality solutions: as shown
+in the table above, for a two-replications circuit the ratio of ground states is
+similar for both embedding methods.
 
-You can verify the solution to the circuit problem by checking an arbitrary valid
-or invalid sample:
+The BQM representing ten replications of the
+:math:`z = \overline{b} (ac + ad + \overline{c}\overline{d})` circuit has
+over 100 variables. Typically, minor embeddings for dense graphs require longer
+chains than those of sparse graphs; for this problem the clique embedding needed
+chains of up to 11 qubits versus the standard embedding's chains of 2 qubits.
+Depending on the problem, such chains may degrade the solution, as is the case
+here.
 
->>> print(sampleset.first.sample)      # doctest: +SKIP
-{'a': 1, 'c': 0, 'b': 0, 'not1': 1, 'd': 1, 'or4': 1, 'or2': 0, 'not6': 0,
-'and5': 1, 'z': 1, 'and3': 1}
+>>> bqm = circuit_bqm(10)
+>>> for sampler in samplers.values():                            # doctest: +SKIP
+...    sampleset = sampler.sample(bqm, num_reads=5000, return_embedding=True)
+...    chain_len = max(len(x) for x in sampleset.info["embedding_context"]["embedding"].values())
+...    print("Maximum chain length: {}".format(chain_len))       # doctest: +SKIP
+...    dwave.inspector.show(sampleset)
+Maximum chain length: 2
+Maximum chain length: 11
 
-For the lowest-energy sample of the last run, found above, the inputs are
-:math:`a, b, c, d = 1, 0, 0, 1` and the output is :math:`z=1`, which indeed matches
-the analytical solution for the circuit,
-
-.. math::
-
-    z &= \overline{b} (ac + ad + \overline{c}\overline{d})
-
-      &= 1(0+1+0)
-
-      &= 1
-
-The example code above converted the constraint satisfaction problem to a binary 
-quadratic model using the default minimum energy gap of 2. Therefore, each constraint 
-violated by the solution increases the energy level of the binary quadratic model by 
-at least 2 relative to ground energy. You can also plot the energies for valid and 
-invalid samples:: 
-
-   import matplotlib.pyplot as plt    
-   plt.ion()                          
-   plt.scatter(range(len(data)), [x[1] for x in data], c=['y' if (x[2] == '1')    \
-      else 'r' for x in data],marker='.')
-   plt.xlabel('Sample')               
-   plt.ylabel('Energy')               
-
-.. figure:: ../_images/MultiGateCircuit_Results.png
-   :name: MultiGateCircuitResults
+.. figure:: ../_images/MultiGateCircuit_Embedding10.png
+   :name: Problem_MultiGateCircuit_Embedding10
    :alt: image
    :align: center
    :scale: 50 %
 
-   Energies per sample for a 1000-sample problem submission of the logic circuit.
-   Blue points represent valid solutions (solutions that solve the constraint satisfaction
-   problem) and red points the invalid solutions.
+   Graph of ten replications of the :math:`z = \overline{b} (ac + ad + \overline{c}\overline{d})`
+   circuit (top centre), an embedding (bottom-left), a clique-embedding
+   (bottom-right).
 
-You can see in the graph that valid solutions have energy -9.5 and invalid solutions
-energies of -7.5, -5.5, and -3.5.
+The :ref:`inspector_graph_partitioning` example demonstrates how the problem
+inspector can be used to analyze your problem submissions.
 
->>> for datum in sampleset.data(['sample', 'energy', 'num_occurrences', 'chain_break_fraction']):  # doctest: +SKIP
-...    print(datum)
-...
-Sample(sample={'a': 1, 'c': 0, 'b': 1, 'not1': 0, 'd': 1, 'or4': 1, 'or2': 1, 'not6': 0, 'and5': 0, 'z': 0, 'and3': 0}, energy=-9.5, num_occurrences=13, chain_break_fraction=0.0)
-Sample(sample={'a': 1, 'c': 1, 'b': 1, 'not1': 0, 'd': 0, 'or4': 1, 'or2': 1, 'not6': 0, 'and5': 0, 'z': 0, 'and3': 0}, energy=-9.5, num_occurrences=14, chain_break_fraction=0.0)
-# Snipped this section for brevity
-Sample(sample={'a': 1, 'c': 0, 'b': 0, 'not1': 1, 'd': 1, 'or4': 1, 'or2': 0, 'not6': 1, 'and5': 1, 'z': 1, 'and3': 1}, energy=-7.5, num_occurrences=3, chain_break_fraction=0.09090909090909091)
-Sample(sample={'a': 1, 'c': 1, 'b': 0, 'not1': 1, 'd': 1, 'or4': 1, 'or2': 1, 'not6': 1, 'and5': 1, 'z': 1, 'and3': 1}, energy=-7.5, num_occurrences=1, chain_break_fraction=0.18181818181818182)
-Sample(sample={'a': 1, 'c': 1, 'b': 1, 'not1': 1, 'd': 0, 'or4': 1, 'or2': 1, 'not6': 1, 'and5': 1, 'z': 1, 'and3': 1}, energy=-5.5, num_occurrences=4, chain_break_fraction=0.18181818181818182)
-# Snipped this section for brevity
-Sample(sample={'a': 1, 'c': 1, 'b': 1, 'not1': 1, 'd': 0, 'or4': 1, 'or2': 1, 'not6': 1, 'and5': 0, 'z': 1, 'and3': 1}, energy=-3.5, num_occurrences=1, chain_break_fraction=0.2727272727272727)
+Performance Comparison: Embedding Executions
+--------------------------------------------
 
-You can see, for example, that sample::
+Algorithmic minor embedding is heuristic: solution results can vary significantly
+based on the minor embedding found.
 
-    Sample(sample={'a': 1, 'c': 1, 'b': 0, 'not1': 1, 'd': 1, 'or4': 1, 'or2': 1, 'not6': 1, 'and5': 1, 'z': 1, 'and3': 1}, energy=-7.5, num_occurrences=1, chain_break_fraction=0.18181818181818182)
+The table below compares, for a single random :func:`~dimod.generators.ran_r`
+problem of a given size, the ratio of ground states to total samples returned
+from the quantum computer over several executions\ [#]_ of minor embedding.
+The outlier results are bolded.
 
-has a higher energy by 2 than the ground energy. It is expected that
-this solution violates a single constraint, and you can see that it violates constraint::
+For each run, the :class:`~dwave.system.composites.EmbeddingComposite` composed
+sampler finds and returns a minor embedding for the problem. The returned
+embedding is then reused twice by a
+:class:`~dwave.system.composites.FixedEmbeddingComposite` composed sampler.
 
-    Constraint.from_configurations(frozenset([(1, 0, 0), (0, 1, 0), (0, 0, 0), (1, 1, 1)]), ('a', 'not1', 'and3'), Vartype.BINARY, name='AND')
+.. list-table:: Minor-Embedding: Ground-State Ratio Across Executions
+   :widths: 10 20 10
+   :header-rows: 1
 
-on AND gate 3.
+   * - Execution
+     - Ground-State Ratio [%]
+     - Chain Length
+   * - 1
+     - 10.1, 10.1, **8.9**
+     - 4
+   * - 2
+     - 25.8, 29.1, 28.4
+     - 4
+   * - 3
+     - 24.9, 24.4, 27.9
+     - 3
+   * - 4
+     - 14.0, 11.0, 13.6
+     - 3
+   * - 5
+     - 38.5, 36.4, 34.5
+     - 4
+   * - 6
+     - 15.4, 14.6, 14.5
+     - 4
+   * - 7
+     - 43.8, 44.2, **45.1**
+     - 3
+   * - 8
+     - 15.9, 17.2, 15.3
+     - 4
+   * - 9
+     - 31.1, 34.1, 27.1
+     - 3
+   * - 10
+     - 15.3, 11.5, 12.1
+     - 3
 
-Note also that for samples with higher energy there tends to be an increasing fraction of
-broken chains: zero for the valid solutions but rising to almost 30% for solutions that have
-three broken constraints.
+You can see that each set of three submission of the problem using the same
+embedding have minor variations in the ground-state ratios. However, the variation
+across minor-embeddings of the same problem can be significant. Consequently,
+for some applications it can be beneficial to run the minor-embedding multiple
+times and select the best embedding.
+
+.. [#]
+
+  The code below can take minutes to run. Uncommenting the print statements
+  lets you view the execution's progress.
+
+  >>> from dimod.generators import ran_r
+  >>> from dwave.system import DWaveSampler, EmbeddingComposite, FixedEmbeddingComposite
+  ...
+  >>> problem_size = 20
+  >>> num_problems = 10
+  >>> submission_repeats = 2
+  >>> qpu = DWaveSampler(solver=dict(topology__type='pegasus'))
+  >>> sampler1 = EmbeddingComposite(qpu)
+  >>> bqm = ran_r(10, problem_size)
+  ...
+  >>> samplesets = {}
+  >>> chain_len = []
+  >>> for runs in range(num_problems):
+  ...    samplesets[runs] = []
+  ...    print("Run {}".format(runs))
+  ...    sampleset = sampler1.sample(bqm, num_reads=5000, return_embedding=True)
+  ...    if sampleset.first.energy > 0:
+  ...        samplesets[runs].append(0)
+  ...    else:
+  ...        samplesets[runs].append(sum(sampleset.lowest().record.num_occurrences))
+  ...    embedding = sampleset.info["embedding_context"]["embedding"]  # doctest: +SKIP
+  ...    chain_len.append(max(len(x) for x in embedding.values()))     # doctest: +SKIP
+  ...    sampler2 = FixedEmbeddingComposite(qpu, embedding=embedding)  # doctest: +SKIP
+  ...
+  ...    for i in range(submission_repeats):
+  ...        print("\tSubmitting {}--{}".format(runs, i))
+  ...        sampleset = sampler2.sample(bqm, num_reads=5000, return_embedding=True)   # doctest: +SKIP
+  ...        if sampleset.first.energy > 0:                  # doctest: +SKIP
+  ...           samplesets[runs].append(0)
+  ...        else:
+  ...           samplesets[runs].append(sum(sampleset.lowest().record.num_occurrences))
