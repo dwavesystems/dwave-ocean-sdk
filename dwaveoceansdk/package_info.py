@@ -12,7 +12,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-__version__ = '4.2.0'
-__author__ = 'D-Wave Systems Inc.'
+# This file is kept for backwards compatibility
+
+from dwaveoceansdk import __version__
+
+# keep description, author and author email up to date with setup.cfg
+__author__ = 'D-Wave Systems'
 __authoremail__ = 'tools@dwavesys.com'
 __description__ = 'Software development kit for open source D-Wave tools'
