@@ -79,13 +79,21 @@ problem on a quantum computer.
   sampleset = sampler.sample(bqm, num_reads=100)
   dwave.inspector.show(sampleset)
 
-The left side of the visualized solution represents the problem's variables as
-circles, with white dots for variables assigned values of -1 and blue dots for
-values of +1; the colors of the connecting lines represent values of the
-quadratic coefficients for each pair of variables. The right side shows the qubits
-representing these variables on a quantum processing unit.
+The left side of the
+`visualized <https://docs.ocean.dwavesys.com/en/stable/docs_inspector/intro.html>`_
+solution represents the problem's variables as circles, with white dots for
+variables assigned values of -1 and blue dots for values of +1; the colors of the
+connecting lines represent values of the quadratic coefficients for each pair of
+variables. The right side shows the qubits representing these variables on a
+quantum processing unit.
 
 .. image:: docs/_static/inspector_bqm_ran_r_20.png
+
+You can find introductory examples in the
+`Ocean documentation <https://docs.ocean.dwavesys.com/en/stable/getting_started.html>`_
+and `dwave-examples <https://github.com/dwave-examples>`_ GitHub repository, and
+many customer prototype applications on the
+`D-Wave website <https://www.dwavesys.com/learn/featured-applications/>`_.
 
 Support
 =======
