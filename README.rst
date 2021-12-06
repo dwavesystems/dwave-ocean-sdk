@@ -66,7 +66,8 @@ Example Quantum Program
 
 The following lines of code solve and visualize a
 `random <https://docs.ocean.dwavesys.com/en/stable/docs_dimod/reference/generators.html>`_
-problem on a quantum computer.
+`problem <https://docs.ocean.dwavesys.com/en/stable/concepts/bqm.html>`_
+on a quantum computer.
 
 .. code-block:: python
 
