@@ -104,8 +104,9 @@ Find support here:
   to converse with a large community of D-Wave users.
 * `Leap help center <https://support.dwavesys.com/hc/en-us>`_
   to search the Leap knowledge base.
-* `GitHub issues <https://github.com/dwavesystems>`_ to open issues or request
-  features on Ocean packages.
+* `SDK GitHub repo <https://github.com/dwavesystems/dwave-ocean-sdk/issues>`_ to
+  open issues or request features on the Ocean SDK or on any one of its
+  `packages <https://github.com/dwavesystems>`_.
 
 Contributing
 ============
