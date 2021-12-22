@@ -193,6 +193,7 @@ jobs:
           name: build sdist and bdist
           command: |
             . env/bin/activate
+            pip install -U pip setuptools wheel
             python setup.py sdist
             python setup.py bdist_wheel
 
