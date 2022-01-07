@@ -1,10 +1,10 @@
 version: 2.1
 
 orbs:
-  ocean: dwave/ocean@1.2
+  ocean: dwave/ocean@1.3
 
 environment:
-  PIP_PROGRESS_BAR: off
+  PIP_PROGRESS_BAR: 'off'
 
 jobs:
   test-linux:
@@ -30,12 +30,14 @@ jobs:
 
       - ocean/coverage-run-unittest
 
-  test-osx:
+  test-macos:
     parameters:
       python-version:
         type: string
 
-    executor: ocean/macos
+    executor:
+      name: ocean/macos
+      xcode: "13.2.0"
 
     steps:
       - checkout
@@ -58,7 +60,7 @@ jobs:
 
   test-individual-pkgs:
     docker:
-      - image: circleci/python:3.9
+      - image: circleci/python:3.10
 
     working_directory: ~/repo
 
@@ -191,6 +193,7 @@ jobs:
           name: build sdist and bdist
           command: |
             . env/bin/activate
+            pip install -U pip setuptools wheel
             python setup.py sdist
             python setup.py bdist_wheel
 
@@ -199,6 +202,7 @@ jobs:
           command: |
             . env/bin/activate
             pip install twine
+            twine check dist/*
             twine upload -u "$PYPI_USERNAME" -p "$PYPI_PASSWORD" --skip-existing ./dist/*
 
   black-duck:
@@ -246,8 +250,8 @@ workflows:
       - test-linux:
           matrix:
             parameters:
-              python-version: &python-versions [3.6.8, 3.7.9, 3.8.9, 3.9.4]
-      - test-osx:
+              python-version: &python-versions ["3.6.8", "3.7.9", "3.8.9", "3.9.4", "3.10.0"]
+      - test-macos:
           matrix:
             parameters:
               python-version: *python-versions
@@ -276,7 +280,7 @@ workflows:
           matrix:
             parameters:
               python-version: *python-versions
-      - test-osx:
+      - test-macos:
           matrix:
             parameters:
               python-version: *python-versions
