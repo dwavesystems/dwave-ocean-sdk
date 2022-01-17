@@ -11,7 +11,7 @@ Ocean software is supported on the following operating systems:
 * **Mac:** tested on macOS 10.15.5 (Xcode 12.2)
 
 Ocean software requires a :ref:`Python environment<pythonEnvironment>`. Python
-versions 3.6 and higher are supported.
+versions |python_requires| are supported.
 
 This section explains how to :ref:`install Ocean software<installOceanSoftware>`,
 either the entire suite of tools or particular tools\ [#]_ from the D-Wave GitHub
