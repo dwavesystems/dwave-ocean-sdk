@@ -206,6 +206,10 @@ jobs:
             twine upload -u "$PYPI_USERNAME" -p "$PYPI_PASSWORD" --skip-existing ./dist/*
 
   black-duck:
+    parameters:
+      configuration:
+        type: string
+
     docker:
       - image: circleci/openjdk:8-jdk-browsers
 
@@ -227,11 +231,26 @@ jobs:
             . env/bin/activate
             pip install .
 
+      # we have to mangle the pyproject.toml becuase otherwise black duck
+      # decides that we must be using poetry and fails. Luckily we don't
+      # have any important information in there for its purposes
+      - run:
+          name: mangle the pyproject.toml
+          command: |
+            mv pyproject.toml _pyproject.toml
+
       - run:
           name: install and run hub-detect
           command: |
             . env/bin/activate
-            bash <(curl -s -L https://detect.synopsys.com/detect.sh) --blackduck.url="$BLACKDUCK_URL" --blackduck.api.token="$BLACKDUCK_TOKEN" --detect.code.location.name=dwave-ocean-sdk-circleci --diagnostic --logging.level.detect=DEBUG
+            bash <(curl -s -L https://detect.synopsys.com/detect.sh) \
+              --blackduck.url="$BLACKDUCK_URL" \
+              --blackduck.api.token="$BLACKDUCK_TOKEN" \
+              --detect.code.location.name=dwave-ocean-sdk-circleci \
+              --detect.project.version.distribution=OPENSOURCE \
+              --detect.tools.excluded=SIGNATURE_SCAN \
+              --logging.level.detect=DEBUG \
+              << parameters.configuration >>
 
       - store_artifacts:
           path: ~/blackduck/runs/
@@ -256,11 +275,18 @@ workflows:
   deploy:
     jobs:
       - deploy:
-          filters:
+          filters: &deploy-filters
             tags:
               only: /^[0-9]+(\.[0-9]+)*(\.dev([0-9]+)?)?$/
             branches:
               ignore: /.*/
+      - black-duck:
+          name: black-duck
+          filters: *deploy-filters
+          matrix:
+            parameters:
+              # default name is the version number
+              configuration: [--detect.project.version.phase=RELEASED]
 
   nightly:
     triggers:
@@ -280,4 +306,9 @@ workflows:
             parameters:
               python-version: *python-versions
       - test-doctest
-      - black-duck
+      - black-duck:
+          name: black-duck
+          matrix:
+            parameters:
+              # default phase is DEVELOPMENT
+              configuration: [--detect.project.version.name=main-branch]
