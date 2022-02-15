@@ -2,6 +2,7 @@ penaltymodel-maxgap==0.5.6
 
 pydata-sphinx-theme==0.8.0
 sphinx-panels==0.6.0
+sphinx-remove-toctrees==0.0.3
 
 # needed for some of the examples
 matplotlib
