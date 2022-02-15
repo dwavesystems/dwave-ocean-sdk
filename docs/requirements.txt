@@ -1,10 +1,6 @@
 penaltymodel-maxgap==0.5.6
 
-# June 15, 2021: temporary docutil pinning for https://github.com/readthedocs/sphinx_rtd_theme/issues/1115
-docutils==0.16
-sphinx>=4.0.0,<5.0.0
-sphinx_rtd_theme
-recommonmark
+pydata-sphinx-theme==0.8.0
 sphinx-panels==0.6.0
 
 # needed for some of the examples

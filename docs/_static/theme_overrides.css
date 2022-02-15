@@ -15,3 +15,35 @@
   float: right;
   margin-left: 0.25rem;
 }
+
+:root {
+    /* dwave colors for convenience */
+    --dwave-color-ocean-blue: 42, 125, 225;
+    --dwave-color-dark-blue: 7, 76, 145;
+    --dwave-color-bright-blue: 3, 184, 255;
+
+    --dwave-color-leap-teal: 23, 190, 187;
+    --dwave-color-dark-teal: 0, 140, 130;
+    --dwave-color-bright-blue: 6, 236, 220;
+
+    --dwave-color-advantage-orange: 243, 120, 32;
+    --dwave-color-dark-orange: 175, 73, 4;
+    --dwave-color-bright-orange: 255, 161, 67;
+
+    /* theme overrides */
+    --pst-color-primary: var(--dwave-color-ocean-blue);
+    --pst-color-link: var(--dwave-color-dark-blue);
+    --pst-color-link-hover: var(--dwave-color-ocean-blue);
+    /*--pst-color-inline-code: var(--dwave-color-advantage-sienna);*/
+    --pst-color-success: var(--dwave-color-leap-teal);
+    --pst-color-info: var(--dwave-color-ocean-blue);
+    --pst-color-warning: var(--dwave-color-advantage-orange);
+    /*--pst-color-danger: 220, 53, 69;*/
+    --pst-color-active-navigation: var(--dwave-color-dark-blue);
+    --pst-color-navbar-link-hover: var(--dwave-color-dark-blue);
+    --pst-color-navbar-link-active: var(--dwave-color-dark-blue);
+    --pst-color-sidebar-link-hover: var(--dwave-color-dark-blue);
+    --pst-color-sidebar-link-active: var(--dwave-color-dark-blue);
+    --pst-color-toc-link-hover: var(--dwave-color-dark-blue);
+    --pst-color-toc-link-active: var(--dwave-color-dark-blue);
+}

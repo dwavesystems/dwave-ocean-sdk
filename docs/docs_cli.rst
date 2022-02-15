@@ -1,8 +1,8 @@
 .. _dwave_cli:
 
-=========
-dwave CLI
-=========
+===
+CLI
+===
 
 As part of the installation of the
 `dwave-ocean-sdk <https://github.com/dwavesystems/dwave-ocean-sdk>`_
