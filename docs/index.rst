@@ -20,7 +20,6 @@ problems with quantum computers.
    concepts/index
    contributing
    licenses
-   release_notes/index
 
 .. toctree::
   :caption: Tools
@@ -185,7 +184,7 @@ The Ocean SDK includes the :ref:`dwave_cli` and the following packages:
   docs_preprocessing/sdk_index
   docs_pyqubo
   docs_qbsolv
-  
+
 .. toctree::
   :caption: D-Wave
   :hidden:
