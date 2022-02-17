@@ -50,8 +50,7 @@ extensions = [
     'sphinx.ext.githubpages',
     'sphinx.ext.ifconfig',
     'breathe',
-    'sphinx_panels',
-    'sphinx_remove_toctrees',
+    'sphinx_panels'
 ]
 
 autosummary_generate = True
@@ -173,25 +172,6 @@ def setup(app):
 
 # -- Panels ---------------------------------------------------------------
 panels_add_bootstrap_css = False
-
-# -- Remove From Toctrees -------------------------------------------------
-# this is not every place generated files get put - we should probably update
-# the subpackages to put all of their generated files into the same directory
-remove_from_toctrees = [
-    'docs_binarycsp/reference/generated/*',
-    'docs_cloud/reference/generated/*',
-    'docs_dimod/reference/generated/*',
-    'docs_dnx/reference/generated/*',
-    'docs_greedy/reference/generated/*',
-    'docs_hybrid/reference/generated/*',
-    'docs_inspector/reference/generated/*',
-    'docs_minorminer/source/reference/generated/*',
-    'docs_neal/source/reference/generated/*',
-    'docs_penalty/source/reference/generated/*',
-    'docs_preprocessing/reference/generated/*',
-    'docs_system/reference/generated/*',
-    'docs_tabu/reference/generated/*',
-    ]
 
 # -- Intersphinx ----------------------------------------------------------
 intersphinx_mapping = {
