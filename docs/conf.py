@@ -156,6 +156,7 @@ html_theme_options = {
             "type": "local",
         },
     ],
+    "collapse_navigation": True,
 }
 html_sidebars = {
     "**": ["search-field", "sidebar-nav-bs"]  # remove ads
