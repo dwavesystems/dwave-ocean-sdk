@@ -144,15 +144,9 @@ html_theme_options = {
     ],
     "icon_links": [
         {
-            "name": "D-Wave",
-            "url": "https://www.dwavesys.com/",
-            "icon": "_static/Dots.svg",
-            "type": "local",
-        },
-        {
             "name": "Leap",
             "url": "https://cloud.dwavesys.com/leap/",
-            "icon": "_static/Leap.svg",
+            "icon": "_static/Dots.svg",
             "type": "local",
         },
     ],
