@@ -75,12 +75,15 @@ Beginner-Level Examples: Hybrid Computing
    :maxdepth: 1
    :hidden:
 
+   examples/hybrid_cqm_diet
    examples/hybrid_cqm_binpacking
    examples/hybrid_cqm_stock_selling
    examples/hybrid_solver_service
    examples/map_kerberos
    examples/map_dqm
 
+* :ref:`example_cqm_diet_reals` solves a linear-programming problem using a
+ `Leap <https://cloud.dwavesys.com/leap/>`_ hybrid :term:`CQM` solver.
 * :ref:`example_cqm_binpacking` solves a binary constrained problem using a
   `Leap <https://cloud.dwavesys.com/leap/>`_ hybrid :term:`CQM` solver.
 * :ref:`example_cqm_stock_selling` solves an integer constrained problem using a
