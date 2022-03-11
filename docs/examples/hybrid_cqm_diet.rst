@@ -1,12 +1,16 @@
 .. _example_cqm_diet_reals:
 
-=======================
-Linear-Programming Diet
-=======================
+============================
+Simple Diet-Planning Problem
+============================
 
-This example
+This example solves a simple linear-programming type of problem, optimizing a
+diet with requirements that can be expressed with a linear objective and constraints,
+to demonstrate using a `Leap <https://cloud.dwavesys.com/leap/>`_ hybrid
+:term:`CQM` solver on a constrained problem with real-valued variables.
 
-The goal of this problem is to find the optimal number .
+The goal of this problem is to optimize the enjoyment of a diet's foods while
+consuming sufficient quantities of macro-nutrients but not excessive calories.
 
 Example Requirements
 ====================
@@ -36,7 +40,9 @@ solutions.
 Formulate the Problem
 =====================
 
-
+The table below shows a selection of foods chosen by a dieter, with associated
+(not necessarily realistic) evaluations of nutrients and cost, and ranked for
+the dieter's enjoyment on a scale of one to ten.
 
 .. list-table:: Foods
    :header-rows: 1
@@ -90,28 +96,17 @@ Formulate the Problem
      - 5
      - 2.00
 
+For simplicity, store the table's contents as a dict:
 
-First, define the
-
->>> diet= {'Food': {0: 'rice',
-  1: 'tofu',
-  2: 'banana',
-  3: 'lentils',
-  4: 'bread',
-  5: 'avocado'},
- 'Calories': {0: 100, 1: 140, 2: 90, 3: 150, 4: 270, 5: 300},
- 'Protein': {0: 3, 1: 17, 2: 1, 3: 9, 4: 9, 5: 4},
- 'Fat': {0: 1, 1: 9, 2: 0, 3: 0, 4: 3, 5: 30},
- 'Carb': {0: 22, 1: 3, 2: 23, 3: 25, 4: 50, 5: 20},
- 'Fiber': {0: 2, 1: 2, 2: 3, 3: 4, 4: 3, 5: 14},
- 'Enjoyment': {0: 7, 1: 2, 2: 10, 3: 3, 4: 5, 5: 5},
- 'Cost': {0: 2.5, 1: 4.0, 2: 1.0, 3: 1.3, 4: 0.25, 5: 2.0}}
-
->>> quantity = [dimod.Real(f"{name}") for name in diet["Food"].values()]
-
->>> def total_nutrient(quantity, nutrient):
-...   return sum(q * c for q, c in zip(quantity, diet[nutrient].values()))
-
+>>> foods = {
+...   'Food': {0: 'rice', 1: 'tofu', 2: 'banana', 3: 'lentils', 4: 'bread', 5: 'avocado'},
+...   'Calories': {0: 100, 1: 140, 2: 90, 3: 150, 4: 270, 5: 300},
+...   'Protein': {0: 3, 1: 17, 2: 1, 3: 9, 4: 9, 5: 4},
+...   'Fat': {0: 1, 1: 9, 2: 0, 3: 0, 4: 3, 5: 30},
+...   'Carbs': {0: 22, 1: 3, 2: 23, 3: 25, 4: 50, 5: 20},
+...   'Fiber': {0: 2, 1: 2, 2: 3, 3: 4, 4: 3, 5: 14},
+...   'Enjoyment': {0: 7, 1: 2, 2: 10, 3: 3, 4: 5, 5: 5},
+...   'Cost': {0: 2.5, 1: 4.0, 2: 1.0, 3: 1.3, 4: 0.25, 5: 2.0}}
 
 Instantiate a CQM.
 
@@ -126,6 +121,14 @@ Objective Function
 ------------------
 
 The objective function to maximize
+
+
+>>> quantities = [dimod.Real(f"{food}") for food in foods["Food"].values()]
+
+
+>>> def total_mix(quantity, category):
+...   return sum(q * c for q, c in zip(quantity, foods[category].values()))
+
 
 Bounds on the range of values for integer variables shrink the solution
 space the solver must search, so it is helpful to set such bounds; for many
@@ -181,23 +184,7 @@ Solve the Problem by Sampling
 Instantiate a :class:`~dwave.system.samplers.LeapHybridCQMSampler` class
 sampler,
 
+>>> from dwave.system import LeapHybridCQMSampler
+>>> sampler = LeapHybridCQMSampler()
 
-
-import dimod
-
-quantity = [dimod.Real(f"{name}") for name in diet["Food"].values()]
-
-def total_nutrient(quantity, nutrient):
-   return sum(q * c for q, c in zip(quantity, diet[nutrient].values()))
-
-
-cqm = dimod.ConstrainedQuadraticModel()
-
-cqm.set_objective(-total_nutrient(quantity, "Enjoyment"))
-
-required_nutrients = {"Protein": 50, "Fat": 30, "Carb": 130, "Fiber": 30}
-
-cqm.add_constraint(total_nutrient(quantity, "Calories") <= 2000, label="Calories")
-
-for nutrient, ammount in required_nutrients.items():
-   cqm.add_constraint(total_nutrient(quantity, nutrient) >= ammount, label=nutrient)
+>>> sampleset = sampler.sample_cqm(cqm)
