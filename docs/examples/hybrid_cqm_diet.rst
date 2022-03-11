@@ -1,8 +1,8 @@
 .. _example_cqm_diet_reals:
 
-============================
-Simple Diet-Planning Problem
-============================
+=============
+Diet Planning
+=============
 
 This example solves a simple linear-programming type of problem, optimizing a
 diet with requirements that can be expressed with a linear objective and constraints,
@@ -44,7 +44,7 @@ The table below shows a selection of foods chosen by a dieter, with associated
 (not necessarily realistic) evaluations of nutrients and cost, and ranked for
 the dieter's enjoyment on a scale of one to ten.
 
-.. list-table:: Foods
+.. list-table:: Nutrients, Cost, and Enjoyment Rankings for Available Foods
    :header-rows: 1
 
    * - **Food**
@@ -96,7 +96,26 @@ the dieter's enjoyment on a scale of one to ten.
      - 5
      - 2.00
 
-For simplicity, store the table's contents as a dict:
+The following table shows the dieter's daily requirements for a few selected
+nutrients.
+
+.. list-table:: Daily Required Nutrients
+   :header-rows: 1
+
+   * - **Nutrient**
+     - **Calories**
+     - **Protein**
+     - **Fat**
+     - **Carbs**
+     - **Fiber**
+   * - **Daily Requirement**
+     - 2000
+     - 50
+     - 30
+     - 130
+     - 30
+
+For simplicity, store the contents of the two tables above as dicts:
 
 >>> foods = {
 ...   'Food': {0: 'rice', 1: 'tofu', 2: 'banana', 3: 'lentils', 4: 'bread', 5: 'avocado'},
@@ -105,8 +124,11 @@ For simplicity, store the table's contents as a dict:
 ...   'Fat': {0: 1, 1: 9, 2: 0, 3: 0, 4: 3, 5: 30},
 ...   'Carbs': {0: 22, 1: 3, 2: 23, 3: 25, 4: 50, 5: 20},
 ...   'Fiber': {0: 2, 1: 2, 2: 3, 3: 4, 4: 3, 5: 14},
-...   'Enjoyment': {0: 7, 1: 2, 2: 10, 3: 3, 4: 5, 5: 5},
+...   'Taste': {0: 7, 1: 2, 2: 10, 3: 3, 4: 5, 5: 5},
 ...   'Cost': {0: 2.5, 1: 4.0, 2: 1.0, 3: 1.3, 4: 0.25, 5: 2.0}}
+...
+>>> min_nutrients = {"Protein": 50, "Fat": 30, "Carbs": 130, "Fiber": 30}
+>>> max_calories = 2000
 
 Instantiate a CQM.
 
@@ -116,67 +138,98 @@ Instantiate a CQM.
 You can now formulate an :term:`objective function` to optimize and constraints
 any feasible solution must meet, and set these in your CQM.
 
-
 Objective Function
 ------------------
 
-The objective function to maximize
+The objective function to maximize enjoyment of the diet's foods while minimizing
+the purchase cost.
 
+Instantiate some real variables\ [#]_, :code:`quantities`, to select quantities
+of every available food.
 
 >>> quantities = [dimod.Real(f"{food}") for food in foods["Food"].values()]
 
+Bounds on the range of values for non-binary variables shrink the solution
+space the solver must search, so it is helpful to set such bounds; for many
+problems, you can find bounds from your knowledge of the problem. In this case,
+
+To maximize enjoyment and minimize cost is to assign values to the variable that
+represents quantities of each food, :math:`q_i`, such that when multiplied by
+coefficients representing the cost, :math:`c_i`, or taste, :math:`t_i`,
+of each food, form the linear terms of the following summations to be optimized:
+
+.. math::
+
+	\min \sum_i q_i c_i
+
+  \max \sum_i q_i t_i
+
+To optimizes two different objectives, enjoyment and cost, requires weighing one
+against the other. A simple way to do this, is to set priority weights; for example,
+
+.. math::
+
+	\text{objective} = \alpha \text{(objective 1)} + \beta \text{(objective 2)}
+
+By setting, for example :math:`\alpha=2, \beta=1`, you double the priority of the
+first objective compared to the second.
+
+You can define a utility function, :code:`total_mix`, to calculate the summations
+for any given category in the
 
 >>> def total_mix(quantity, category):
 ...   return sum(q * c for q, c in zip(quantity, foods[category].values()))
 
+Set the objective. Because Ocean solvers minimize objectives, to maximize enjoyment,
+:code:`Taste` is multiplied by `-1` and minimized.
 
-Bounds on the range of values for integer variables shrink the solution
-space the solver must search, so it is helpful to set such bounds; for many
-problems, you can find bounds from your knowledge of the problem. In this case,
+>>> cqm.set_objective(-total_mix(quantities, "Taste") + 60*total_mix(quantities, "Cost"))
 
-* O
+Section ??? belows shows how the priority weight was chosen. 
 
+.. [#]
 
->>> from dimod import Real
->>>
+   Always keep in mind that such "variables" are actually
+   class :class:`~dimod.QuadraticModel` objects,
 
+   >>> bin_used[0]
+   BinaryQuadraticModel({'bin_used_0': 1.0}, {}, 0.0, 'BINARY')
 
+   with a single variable with the requested label, :code:`bin_used_<j>`. This
+   means, for example, that multiplying by two doubles the linear bias,
 
->>> cqm.set_objective(-total_nutrient(quantity, "Enjoyment"))
+   >>> 2*bin_used[0]
+   BinaryQuadraticModel({'bin_used_0': 2.0}, {}, 0.0, 'BINARY')
 
-.. note::
+   multiplying two such "variables" creates a quadratic bias,
 
-   As noted in the :ref:`example_cqm_binpacking` example, keep in mind that
-   these "variables" are actually class :class:`dimod.QuadraticModel` objects,
+   >>> bin_used[0]*bin_used[1]          # doctest: +SKIP
+   BinaryQuadraticModel({'bin_used_0': 0.0, 'bin_used_1': 0.0},
+   ...                  {('bin_used_1', 'bin_used_0'): 1.0}, 0.0, 'BINARY')
 
-   >>> price[0]
-   QuadraticModel({'p_0': 1.0}, {}, 0.0, {'p_0': 'INTEGER'}, dtype='float64')
+   but multiplying three binary quadratic models requires a non-quadratic term
+   and so :code:`bin_used[0]*bin_used[1]*bin_used[2]` cannot generate a binary
+   quadratic model and results in an error.
 
-   with a single variable with the requested label, :code:`p_0` or :code:`s_0`.
-   This means, for example, that multiplying these models to create a
-   :code:`revenue[0]` "variable" actually creates a new quadratic model,
-
-   >>> revenue[0]                               # doctest: +SKIP
-   QuadraticModel({'s_0': 0.0, 'p_0': 0.0},
-   ...            {('p_0', 's_0'): 1.0},
-   ...            0.0,
-   ...            {'s_0': 'INTEGER', 'p_0': 'INTEGER'}, dtype='float64')
-
-   with a quadratic bias between :code:`p_0` and :code:`s_0`.
 
 Constraints
 -----------
 
 The problem has the following constraints:
 
-1. In t.
+1. Calories: no more than 2000
+2. Protein: at least 50
+3. Fat: at least 30
+4. Carbs: at least 130
+5. Fiber: at least 30
 
->>> cqm.add_constraint(
-'Swn'
+>>> for nutrient, amount in min_nutrients.items():
+...   cqm.add_constraint(total_mix(quantities, nutrient) >= amount, label=nutrient)
 
+You can access these constraints as a dict with the labels as keys:
 
->>> len(cqm.constraints)
-11
+>>> list(cqm.constraints.keys())
+['Calories', 'Protein', 'Fat', 'Carbs', 'Fiber']
 
 Solve the Problem by Sampling
 =============================
@@ -188,3 +241,6 @@ sampler,
 >>> sampler = LeapHybridCQMSampler()
 
 >>> sampleset = sampler.sample_cqm(cqm)
+
+>>> print({food: round(quantity) for food, quantity in sampleset.first.sample.items()})
+{'avocado': 1, 'banana': 0, 'bread': 7, 'lentils': 0, 'rice': 0, 'tofu': 0}
