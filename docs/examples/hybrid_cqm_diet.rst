@@ -63,6 +63,14 @@ the dieter's enjoyment on a scale of one to ten.
      - 2
      - 7
      - 2.50
+   * - Tofu
+     - 140
+     - 17
+     - 9
+     - 3
+     - 2
+     - 2
+     - 4.0
    * - Bananas
      - 90
      - 1
@@ -90,7 +98,7 @@ the dieter's enjoyment on a scale of one to ten.
    * - Avocado
      - 300
      - 4
-     - 3
+     - 30
      - 20
      - 14
      - 5
@@ -117,15 +125,21 @@ nutrients.
 
 For simplicity, store the contents of the two tables above as dicts:
 
+
+
 >>> foods = {
-...   'Food': {0: 'rice', 1: 'tofu', 2: 'banana', 3: 'lentils', 4: 'bread', 5: 'avocado'},
-...   'Calories': {0: 100, 1: 140, 2: 90, 3: 150, 4: 270, 5: 300},
-...   'Protein': {0: 3, 1: 17, 2: 1, 3: 9, 4: 9, 5: 4},
-...   'Fat': {0: 1, 1: 9, 2: 0, 3: 0, 4: 3, 5: 30},
-...   'Carbs': {0: 22, 1: 3, 2: 23, 3: 25, 4: 50, 5: 20},
-...   'Fiber': {0: 2, 1: 2, 2: 3, 3: 4, 4: 3, 5: 14},
-...   'Taste': {0: 7, 1: 2, 2: 10, 3: 3, 4: 5, 5: 5},
-...   'Cost': {0: 2.5, 1: 4.0, 2: 1.0, 3: 1.3, 4: 0.25, 5: 2.0}}
+...   'rice': {'Calories': 100, 'Protein': 3, 'Fat': 1, 'Carbs': 22, 'Fiber': 2,
+...            'Taste': 7, 'Cost': 2.5},
+...   'tofu': {'Calories': 140, 'Protein': 17, 'Fat': 9, 'Carbs': 3, 'Fiber': 2,
+...            'Taste': 2, 'Cost': 4.0},
+...   'banana': {'Calories': 90, 'Protein': 1, 'Fat': 0, 'Carbs': 23, 'Fiber': 3,
+...              'Taste': 10, 'Cost': 1.0},
+...   'lentils': {'Calories': 150, 'Protein': 9, 'Fat': 0, 'Carbs': 25, 'Fiber': 4,
+...               'Taste': 3, 'Cost': 1.3},
+...   'bread': {'Calories': 270, 'Protein': 9, 'Fat': 3, 'Carbs': 50, 'Fiber': 3,
+...             'Taste': 5, 'Cost': 0.25},
+...   'avocado': {'Calories': 300, 'Protein': 4, 'Fat': 30, 'Carbs': 20, 'Fiber': 14,
+...               'Taste': 5, 'Cost': 2.0}}
 ...
 >>> min_nutrients = {"Protein": 50, "Fat": 30, "Carbs": 130, "Fiber": 30}
 >>> max_calories = 2000
@@ -149,9 +163,36 @@ of every available food.
 
 >>> quantities = [dimod.Real(f"{food}") for food in foods["Food"].values()]
 
+.. [#]
+
+   Always keep in mind that such "variables" are actually
+   class :class:`~dimod.QuadraticModel` objects,
+
+   >>> bin_used[0]
+   BinaryQuadraticModel({'bin_used_0': 1.0}, {}, 0.0, 'BINARY')
+
+   with a single variable with the requested label, :code:`bin_used_<j>`. This
+   means, for example, that multiplying by two doubles the linear bias,
+
+   >>> 2*bin_used[0]
+   BinaryQuadraticModel({'bin_used_0': 2.0}, {}, 0.0, 'BINARY')
+
+   multiplying two such "variables" creates a quadratic bias,
+
+   >>> bin_used[0]*bin_used[1]          # doctest: +SKIP
+   BinaryQuadraticModel({'bin_used_0': 0.0, 'bin_used_1': 0.0},
+   ...                  {('bin_used_1', 'bin_used_0'): 1.0}, 0.0, 'BINARY')
+
+   but multiplying three binary quadratic models requires a non-quadratic term
+   and so :code:`bin_used[0]*bin_used[1]*bin_used[2]` cannot generate a binary
+   quadratic model and results in an error.
+
 Bounds on the range of values for non-binary variables shrink the solution
 space the solver must search, so it is helpful to set such bounds; for many
 problems, you can find bounds from your knowledge of the problem. In this case,
+no food should be assigned a quantity that exceeds :code:`max_calories` by itself.
+
+>>> for
 
 To maximize enjoyment and minimize cost is to assign values to the variable that
 represents quantities of each food, :math:`q_i`, such that when multiplied by
@@ -185,32 +226,7 @@ Set the objective. Because Ocean solvers minimize objectives, to maximize enjoym
 
 >>> cqm.set_objective(-total_mix(quantities, "Taste") + 60*total_mix(quantities, "Cost"))
 
-Section ??? belows shows how the priority weight was chosen. 
-
-.. [#]
-
-   Always keep in mind that such "variables" are actually
-   class :class:`~dimod.QuadraticModel` objects,
-
-   >>> bin_used[0]
-   BinaryQuadraticModel({'bin_used_0': 1.0}, {}, 0.0, 'BINARY')
-
-   with a single variable with the requested label, :code:`bin_used_<j>`. This
-   means, for example, that multiplying by two doubles the linear bias,
-
-   >>> 2*bin_used[0]
-   BinaryQuadraticModel({'bin_used_0': 2.0}, {}, 0.0, 'BINARY')
-
-   multiplying two such "variables" creates a quadratic bias,
-
-   >>> bin_used[0]*bin_used[1]          # doctest: +SKIP
-   BinaryQuadraticModel({'bin_used_0': 0.0, 'bin_used_1': 0.0},
-   ...                  {('bin_used_1', 'bin_used_0'): 1.0}, 0.0, 'BINARY')
-
-   but multiplying three binary quadratic models requires a non-quadratic term
-   and so :code:`bin_used[0]*bin_used[1]*bin_used[2]` cannot generate a binary
-   quadratic model and results in an error.
-
+Section :ref:`Tuning the Solution` belows shows how the priority weight was chosen.
 
 Constraints
 -----------
@@ -222,6 +238,9 @@ The problem has the following constraints:
 3. Fat: at least 30
 4. Carbs: at least 130
 5. Fiber: at least 30
+
+>>> cqm.add_constraint(total_mix(quantities, "Calories") <= max_calories, label="Calories")
+'Calories'
 
 >>> for nutrient, amount in min_nutrients.items():
 ...   cqm.add_constraint(total_mix(quantities, nutrient) >= amount, label=nutrient)
@@ -241,6 +260,91 @@ sampler,
 >>> sampler = LeapHybridCQMSampler()
 
 >>> sampleset = sampler.sample_cqm(cqm)
+>>> feasible_sampleset = sampleset.filter(lambda row: row.is_feasible)
 
->>> print({food: round(quantity) for food, quantity in sampleset.first.sample.items()})
+>>> def print_diet(sampleset):
+...    feasible_sampleset = sampleset.filter(lambda row: row.is_feasible)
+...    if len(feasible_sampleset):
+...       best = feasible_sampleset.first.sample
+...       print({food: round(quantity) for food, quantity in best.items()})
+...       for constraint in cqm.iter_constraint_data(feasible_sampleset.first.sample):
+...          print(f"{constraint.label} (nominal: {constraint.rhs_energy}): {round(constraint.lhs_energy)}")
+...   else:
+...      print("No good solutions found.")
+
+>>> print_diet(sampleset)
 {'avocado': 1, 'banana': 0, 'bread': 7, 'lentils': 0, 'rice': 0, 'tofu': 0}
+Calories (nominal: 2000): 2000
+Protein (nominal: 50): 62
+Fat (nominal: 30): 42
+Carbs (nominal: 130): 344
+Fiber (nominal: 30): 30
+
+You can see how successful the solution is for the optimized items:
+
+>>> def total_item(sample, category):
+...   return sum(foods[food][category] * amount for food, amount in sample.items())
+
+>>> print(f'Total taste of {round(total_item(best, "Taste"))} at cost {round(total_item(best, "Cost"))}')
+Total taste of 37 at cost 3
+
+Tuning the Solution
+===================
+
+A simple method to attain good priority weights, is to sample each objective on
+its own and use the energy of the best sample as representing its weight also in
+the combined objective.
+
+Start with enjoyment:
+
+>>> cqm.set_objective(-total_mix(quantities, "Taste"))
+>>> sampleset_taste = sampler.sample_cqm(cqm)
+>>> feasible_sampleset_taste = sampleset_taste.filter(lambda row: row.is_feasible)
+>>> if len(feasible_sampleset_taste):
+...   print(round(feasible_sampleset_taste.first.energy))
+-185
+
+>>> print_diet(sampleset_taste)
+{'avocado': 0, 'banana': 18, 'bread': 0, 'lentils': 0, 'rice': 0, 'tofu': 2}
+Calories (nominal: 2000): 2000
+Protein (nominal: 50): 50
+Fat (nominal: 30): 30
+Carbs (nominal: 130): 426
+Fiber (nominal: 30): 64
+
+>>> best_taste = feasible_sampleset_taste.first.sample
+>>> print(f'Total taste of {round(total_item(best_taste, "Taste"))} at cost '
+...       f'{round(total_item(best_taste, "Cost"))}')
+Total taste of 185 at cost 26
+
+You can see that this diet is high in bananas, the tastiest food, and makes up
+for that food's low levels of protein and fat with tofu.
+
+Next, for cost:
+
+>>> cqm.set_objective(total_mix(quantities, "Cost"))
+>>> sampleset_cost = sampler.sample_cqm(cqm)
+>>> feasible_sampleset_cost = sampleset_cost.filter(lambda row: row.is_feasible)
+>>> if len(feasible_sampleset_cost):
+...   print(round(feasible_sampleset_cost.first.energy))
+3
+
+>>> print_diet(sampleset_cost)
+{'avocado': 1, 'banana': 0, 'bread': 7, 'lentils': 0, 'rice': 0, 'tofu': 0}
+Calories (nominal: 2000): 2000
+Protein (nominal: 50): 62
+Fat (nominal: 30): 42
+Carbs (nominal: 130): 344
+Fiber (nominal: 30): 30
+
+>>> best_cost = feasible_sampleset_cost.first.sample
+>>> print(f'Total taste of {round(total_item(best_cost, "Taste"))} at cost '
+...       f'{round(total_item(best_cost, "Cost"))}')
+Total taste of 37 at cost 3
+
+This diet is ranked as less tasty than the previous but much cheaper. It relies
+mainly on bread and uses avocado to add fat and fiber.
+
+To give each a similar weighting in the combined objective, the
+:ref:`Objective Function` section above multiplied the objective that minimizes
+cost by a factor of :math:`185/3 \approx 60`.
