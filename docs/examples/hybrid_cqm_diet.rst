@@ -4,13 +4,14 @@
 Diet Planning
 =============
 
-This example solves a simple linear-programming type of problem, optimizing a
-diet with requirements that can be expressed with a linear objective and constraints,
-to demonstrate using a `Leap <https://cloud.dwavesys.com/leap/>`_ hybrid
-:term:`CQM` solver on a constrained problem with real-valued variables.
+This example demonstrates the use of a `Leap <https://cloud.dwavesys.com/leap/>`_
+hybrid :ref:`cqm_sdk` solver on a simple linear-programming type of optimization
+problem, which can be expressed as a linear objective and constraints with
+real-valued variables. Other examples include quadratic objectives and constraints,
+which better make use of the strengths of D-Wave's solvers.
 
 The goal of this problem is to optimize the enjoyment of a diet's foods while
-consuming sufficient quantities of macro-nutrients but not excessive calories.
+keeping to the dieter's budget and daily requirements on macro-nutrients.
 
 Example Requirements
 ====================
@@ -40,9 +41,9 @@ solutions.
 Formulate the Problem
 =====================
 
-The table below shows a selection of foods chosen by a dieter, with associated
-(not necessarily realistic) evaluations of nutrients and cost, and ranked for
-the dieter's enjoyment on a scale of one to ten.
+The table below shows a selection of foods chosen by a dieter, ranked for
+the dieter's enjoyment on a scale of one to ten, with evaluations (not necessarily
+realistic) of nutrients and costs.
 
 .. list-table:: Nutrients, Cost, and Enjoyment Rankings for Available Foods
    :header-rows: 1
@@ -104,8 +105,7 @@ the dieter's enjoyment on a scale of one to ten.
      - 5
      - 2.00
 
-The following table shows the dieter's daily requirements for a few selected
-nutrients.
+The following table shows the dieter's daily requirements for selected nutrients.
 
 .. list-table:: Daily Required Nutrients
    :header-rows: 1
@@ -125,8 +125,6 @@ nutrients.
 
 For simplicity, store the contents of the two tables above as dicts:
 
-
-
 >>> foods = {
 ...   'rice': {'Calories': 100, 'Protein': 3, 'Fat': 1, 'Carbs': 22, 'Fiber': 2,
 ...            'Taste': 7, 'Cost': 2.5},
@@ -144,10 +142,58 @@ For simplicity, store the contents of the two tables above as dicts:
 >>> min_nutrients = {"Protein": 50, "Fat": 30, "Carbs": 130, "Fiber": 30}
 >>> max_calories = 2000
 
-Instantiate a CQM.
+Variables
+=========
 
->>> from dimod import ConstrainedQuadraticModel
->>> cqm = ConstrainedQuadraticModel()
+Instantiate some real variables\ [#]_, :code:`quantities`, to select quantities
+of every available food.
+
+>>> quantities = [dimod.Real(f"{food}") for food in foods.keys()]
+
+.. [#]
+
+   Always keep in mind that such "variables" are actually
+   :class:`~dimod.QuadraticModel` objects,
+
+   >>> quantities[0]
+   QuadraticModel({'rice': 1.0}, {}, 0.0, {'rice': 'REAL'}, dtype='float64')
+
+   with a single variable with the requested label, :code:`rice`. This
+   means, for example, that multiplying by two doubles the linear bias,
+
+   >>> 2*quantities[0]
+   QuadraticModel({'rice': 2.0}, {}, 0.0, {'rice': 'REAL'}, dtype='float64')
+
+   multiplying two such "variables" creates a quadratic bias,
+
+   >>> quantities[0] * quantities[1]          # doctest: +SKIP
+   QuadraticModel({'rice': 0.0, 'tofu': 0.0}, {('tofu', 'rice'): 1.0}, 0.0,
+   ...            {'rice': 'REAL', 'tofu': 'REAL'}, dtype='float64')
+
+   but multiplying three such quadratic models requires a non-quadratic term
+   and so :code:`quantities[0] * quantities[1] * quantities[2]` cannot generate
+   a quadratic model and results in an error.
+
+Bounds on the range of values for non-binary variables shrink the solution
+space the solver must search, so it is helpful to set such bounds; for many
+problems, you can find bounds from your knowledge of the problem. In this case,
+no food by itself should be assigned a quantity that exceeds :code:`max_calories`.
+
+>>> for ind, food in enumerate(foods.keys()):
+...   ub = max_calories / foods[food]["Calories"]
+...   quantities[ind].set_upper_bound(food, ub)
+
+The maximum quantity of rice, for example is 20 because :math:`20*100 = 2000`.
+
+>>> quantities[0].upper_bound("rice")
+20.0
+
+In the case of lower bounds, this problem requires these for correct formulation:
+a valid mathematical solution might be to offset the calories of gorging on large
+numbers of tasty bananas by eating a negative amount of high-in-calories bread, so
+the formulation must include the impossibility of consuming negative quantities
+of food. Because Ocean sets a default value of zero for `~dimod.quadratic.Real`
+variables, no explicit configuration is needed.
 
 You can now formulate an :term:`objective function` to optimize and constraints
 any feasible solution must meet, and set these in your CQM.
@@ -155,57 +201,21 @@ any feasible solution must meet, and set these in your CQM.
 Objective Function
 ------------------
 
-The objective function to maximize enjoyment of the diet's foods while minimizing
-the purchase cost.
+The objective function must maximize enjoyment of the diet's foods while minimizing
+purchase cost.
 
-Instantiate some real variables\ [#]_, :code:`quantities`, to select quantities
-of every available food.
-
->>> quantities = [dimod.Real(f"{food}") for food in foods["Food"].values()]
-
-.. [#]
-
-   Always keep in mind that such "variables" are actually
-   class :class:`~dimod.QuadraticModel` objects,
-
-   >>> bin_used[0]
-   BinaryQuadraticModel({'bin_used_0': 1.0}, {}, 0.0, 'BINARY')
-
-   with a single variable with the requested label, :code:`bin_used_<j>`. This
-   means, for example, that multiplying by two doubles the linear bias,
-
-   >>> 2*bin_used[0]
-   BinaryQuadraticModel({'bin_used_0': 2.0}, {}, 0.0, 'BINARY')
-
-   multiplying two such "variables" creates a quadratic bias,
-
-   >>> bin_used[0]*bin_used[1]          # doctest: +SKIP
-   BinaryQuadraticModel({'bin_used_0': 0.0, 'bin_used_1': 0.0},
-   ...                  {('bin_used_1', 'bin_used_0'): 1.0}, 0.0, 'BINARY')
-
-   but multiplying three binary quadratic models requires a non-quadratic term
-   and so :code:`bin_used[0]*bin_used[1]*bin_used[2]` cannot generate a binary
-   quadratic model and results in an error.
-
-Bounds on the range of values for non-binary variables shrink the solution
-space the solver must search, so it is helpful to set such bounds; for many
-problems, you can find bounds from your knowledge of the problem. In this case,
-no food should be assigned a quantity that exceeds :code:`max_calories` by itself.
-
->>> for
-
-To maximize enjoyment and minimize cost is to assign values to the variable that
-represents quantities of each food, :math:`q_i`, such that when multiplied by
+To maximize enjoyment and minimize cost is to assign values to the variables that
+represent quantities of each food, :math:`q_i`, such that when multiplied by
 coefficients representing the cost, :math:`c_i`, or taste, :math:`t_i`,
 of each food, form the linear terms of the following summations to be optimized:
 
 .. math::
 
-	\min \sum_i q_i c_i
+	\min \sum_i q_i c_i \qquad \text{Minimize cost}
 
-  \max \sum_i q_i t_i
+  \max \sum_i q_i t_i \qquad \text{Maximize taste}
 
-To optimizes two different objectives, enjoyment and cost, requires weighing one
+To optimize two different objectives, enjoyment and cost, requires weighing one
 against the other. A simple way to do this, is to set priority weights; for example,
 
 .. math::
@@ -215,18 +225,22 @@ against the other. A simple way to do this, is to set priority weights; for exam
 By setting, for example :math:`\alpha=2, \beta=1`, you double the priority of the
 first objective compared to the second.
 
+Instantiate a CQM.
+
+>>> cqm = dimod.ConstrainedQuadraticModel()
+
 You can define a utility function, :code:`total_mix`, to calculate the summations
-for any given category in the
+for any given category such as calories.
 
 >>> def total_mix(quantity, category):
-...   return sum(q * c for q, c in zip(quantity, foods[category].values()))
+...   return sum(q * c for q, c in zip(quantity, (foods[food][category] for food in foods.keys())))
 
 Set the objective. Because Ocean solvers minimize objectives, to maximize enjoyment,
 :code:`Taste` is multiplied by `-1` and minimized.
 
->>> cqm.set_objective(-total_mix(quantities, "Taste") + 60*total_mix(quantities, "Cost"))
+>>> cqm.set_objective(-total_mix(quantities, "Taste") + 7*total_mix(quantities, "Cost"))
 
-Section :ref:`Tuning the Solution` belows shows how the priority weight was chosen.
+Section `Tuning the Solution`_ belows shows how the priority weight was chosen.
 
 Constraints
 -----------
@@ -239,8 +253,12 @@ The problem has the following constraints:
 4. Carbs: at least 130
 5. Fiber: at least 30
 
+Constrain the diet's calorie intake to the required daily maximum.
+
 >>> cqm.add_constraint(total_mix(quantities, "Calories") <= max_calories, label="Calories")
 'Calories'
+
+Require that the daily minimum of each nutrient is met or exceeded.
 
 >>> for nutrient, amount in min_nutrients.items():
 ...   cqm.add_constraint(total_mix(quantities, nutrient) >= amount, label=nutrient)
@@ -249,73 +267,84 @@ You can access these constraints as a dict with the labels as keys:
 
 >>> list(cqm.constraints.keys())
 ['Calories', 'Protein', 'Fat', 'Carbs', 'Fiber']
+>>> print(cqm.constraints["Calories"].to_polystring())
+100*rice + 140*tofu + 90*banana + 150*lentils + 270*bread + 300*avocado <= 2000
+>>> print(cqm.constraints["Protein"].to_polystring())
+3*rice + 17*tofu + banana + 9*lentils + 9*bread + 4*avocado >= 50
 
 Solve the Problem by Sampling
 =============================
 
-Instantiate a :class:`~dwave.system.samplers.LeapHybridCQMSampler` class
-sampler,
+D-Wave's quantum cloud service provides cloud-based hybrid solvers you can
+submit arbitrary QMs to. These solvers, which implement state-of-the-art
+classical algorithms together with intelligent allocation of the quantum
+processing unit (QPU) to parts of the problem where it benefits most, are
+designed to accommodate even very large problems. Leap's solvers can
+relieve you of the burden of any current and future development and optimization
+of hybrid algorithms that best solve your problem.
+
+Ocean software's :doc:`dwave-system </docs_system/sdk_index>`
+:class:`~dwave.system.samplers.LeapHybridCQMSampler` class enables you to
+easily incorporate Leap's hybrid CQM solvers into your application:
 
 >>> from dwave.system import LeapHybridCQMSampler
 >>> sampler = LeapHybridCQMSampler()
 
+Submit the CQM to the selected solver. For one particular execution, the CQM
+hybrid sampler returned 33 samples, out of which 32 were solutions that met all the
+constraints
+
 >>> sampleset = sampler.sample_cqm(cqm)
 >>> feasible_sampleset = sampleset.filter(lambda row: row.is_feasible)
+>>> print("{} feasible solutions of {}.".format(len(feasible_sampleset), len(sampleset)))
+32 feasible solutions of 33.
 
->>> def print_diet(sampleset):
-...    feasible_sampleset = sampleset.filter(lambda row: row.is_feasible)
-...    if len(feasible_sampleset):
-...       best = feasible_sampleset.first.sample
-...       print({food: round(quantity) for food, quantity in best.items()})
-...       for constraint in cqm.iter_constraint_data(feasible_sampleset.first.sample):
-...          print(f"{constraint.label} (nominal: {constraint.rhs_energy}): {round(constraint.lhs_energy)}")
-...   else:
-...      print("No good solutions found.")
+You can define a utility function, :code:`print_diet`, to display returned
+solutions in an intuitive format.
 
->>> print_diet(sampleset)
-{'avocado': 1, 'banana': 0, 'bread': 7, 'lentils': 0, 'rice': 0, 'tofu': 0}
+>>> def print_diet(sample):
+...    diet = {food: round(quantity) for food, quantity in sample.items()}
+...    print(f"Diet: {diet}")
+...    taste_total = sum(foods[food]["Taste"] * amount for food, amount in sample.items())
+...    cost_total = sum(foods[food]["Cost"] * amount for food, amount in sample.items())
+...    print(f"Total taste of {round(taste_total)} at cost {round(cost_total)}")
+...    for constraint in cqm.iter_constraint_data(sample):
+...       print(f"{constraint.label} (nominal: {constraint.rhs_energy}): {round(constraint.lhs_energy)}")
+
+The best solution found in this current execution was a diet of bread and bananas,
+with avocado completing the required fiber and fat portions:
+
+>>> best = feasible_sampleset.first.sample
+>>> print_diet(best)
+Diet: {'avocado': 1, 'banana': 7, 'bread': 5, 'lentils': 0, 'rice': 0, 'tofu': 0}
+Total taste of 93 at cost 9
 Calories (nominal: 2000): 2000
-Protein (nominal: 50): 62
-Fat (nominal: 30): 42
-Carbs (nominal: 130): 344
-Fiber (nominal: 30): 30
-
-You can see how successful the solution is for the optimized items:
-
->>> def total_item(sample, category):
-...   return sum(foods[food][category] * amount for food, amount in sample.items())
-
->>> print(f'Total taste of {round(total_item(best, "Taste"))} at cost {round(total_item(best, "Cost"))}')
-Total taste of 37 at cost 3
+Protein (nominal: 50): 50
+Fat (nominal: 30): 30
+Carbs (nominal: 130): 394
+Fiber (nominal: 30): 41
 
 Tuning the Solution
 ===================
 
-A simple method to attain good priority weights, is to sample each objective on
-its own and use the energy of the best sample as representing its weight also in
-the combined objective.
-
-Start with enjoyment:
+Consider sampling each objective on its own and comparing the energies of the
+best solutions. Start with enjoyment:
 
 >>> cqm.set_objective(-total_mix(quantities, "Taste"))
 >>> sampleset_taste = sampler.sample_cqm(cqm)
 >>> feasible_sampleset_taste = sampleset_taste.filter(lambda row: row.is_feasible)
->>> if len(feasible_sampleset_taste):
-...   print(round(feasible_sampleset_taste.first.energy))
+>>> best_taste = feasible_sampleset_taste.first
+>>> print(round(best_taste.energy))
 -185
 
->>> print_diet(sampleset_taste)
-{'avocado': 0, 'banana': 18, 'bread': 0, 'lentils': 0, 'rice': 0, 'tofu': 2}
+>>> print_diet(best_taste.sample)
+Diet: {'avocado': 0, 'banana': 18, 'bread': 0, 'lentils': 0, 'rice': 0, 'tofu': 2}
+Total taste of 185 at cost 26
 Calories (nominal: 2000): 2000
 Protein (nominal: 50): 50
 Fat (nominal: 30): 30
 Carbs (nominal: 130): 426
 Fiber (nominal: 30): 64
-
->>> best_taste = feasible_sampleset_taste.first.sample
->>> print(f'Total taste of {round(total_item(best_taste, "Taste"))} at cost '
-...       f'{round(total_item(best_taste, "Cost"))}')
-Total taste of 185 at cost 26
 
 You can see that this diet is high in bananas, the tastiest food, and makes up
 for that food's low levels of protein and fat with tofu.
@@ -325,26 +354,37 @@ Next, for cost:
 >>> cqm.set_objective(total_mix(quantities, "Cost"))
 >>> sampleset_cost = sampler.sample_cqm(cqm)
 >>> feasible_sampleset_cost = sampleset_cost.filter(lambda row: row.is_feasible)
->>> if len(feasible_sampleset_cost):
-...   print(round(feasible_sampleset_cost.first.energy))
+>>> best_cost = feasible_sampleset_cost.first
+>>> print(round(best_cost.energy))
 3
 
->>> print_diet(sampleset_cost)
-{'avocado': 1, 'banana': 0, 'bread': 7, 'lentils': 0, 'rice': 0, 'tofu': 0}
+>>> print_diet(best_cost.sample)
+Diet: {'avocado': 1, 'banana': 0, 'bread': 7, 'lentils': 0, 'rice': 0, 'tofu': 0}
+Total taste of 37 at cost 3
 Calories (nominal: 2000): 2000
 Protein (nominal: 50): 62
 Fat (nominal: 30): 42
 Carbs (nominal: 130): 344
 Fiber (nominal: 30): 30
 
->>> best_cost = feasible_sampleset_cost.first.sample
->>> print(f'Total taste of {round(total_item(best_cost, "Taste"))} at cost '
-...       f'{round(total_item(best_cost, "Cost"))}')
-Total taste of 37 at cost 3
-
 This diet is ranked as less tasty than the previous but much cheaper. It relies
 mainly on bread and uses avocado to add fat and fiber.
 
+Because :math:`185 \gg 3`, if you do not multiply the part of the objective
+representing cost by some positive factor, optimal solutions will maximize taste
+and neglect cost.
+
+Notice that to make a gain of 23 units of cost (:math:`26 - 3`), the energy of
+taste increased by 148 (:math:`185 - 37`), for a ratio of :math:`148/23 \approx 6.5`.
+
 To give each a similar weighting in the combined objective, the
-:ref:`Objective Function` section above multiplied the objective that minimizes
-cost by a factor of :math:`185/3 \approx 60`.
+`Objective Function`_ section above multiplied the objective that minimizes
+cost by a factor of :math:`6`.
+
+.. figure:: ../_images/diet_solutions_energy.png
+   :name: DietSolutionsEnergy
+   :alt: image
+   :align: center
+   :scale: 70 %
+
+   Energy of the objective for various multipliers of the cost.
