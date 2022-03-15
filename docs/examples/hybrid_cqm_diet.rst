@@ -5,10 +5,11 @@ Diet Planning
 =============
 
 This example demonstrates the use of a `Leap <https://cloud.dwavesys.com/leap/>`_
-hybrid :ref:`cqm_sdk` solver on a simple linear-programming type of optimization
-problem, which can be expressed as a linear objective and constraints with
-real-valued variables. Other examples include quadratic objectives and constraints,
-which better make use of the strengths of D-Wave's solvers.
+hybrid :ref:`cqm_sdk` solver on a simple mixed-integer linear-programming (MILP)
+type of optimization problem, which can be expressed as a linear objective and
+constraints with integer and real-valued variables. Other examples include
+quadratic objectives and constraints, which better make use of the strengths of
+D-Wave's solvers.
 
 The goal of this problem is to optimize the taste of a diet's foods while
 keeping to the dieter's budget and daily requirements on macro-nutrients.
@@ -123,21 +124,25 @@ The following table shows the dieter's daily requirements for selected nutrients
      - 130
      - 30
 
-For simplicity, store the contents of the two tables above as dicts:
+For simplicity, store the contents of the two tables above as a dict. The dict
+also contains information on whether portions of the food is best treated as
+continuous (for example, rice can be any weight), in which case it should be
+represented with real-valued variables, or as discrete units (such as fruit that
+is eaten whole), in which case it is best represented by integer-valued variables.
 
 >>> foods = {
 ...   'rice': {'Calories': 100, 'Protein': 3, 'Fat': 1, 'Carbs': 22, 'Fiber': 2,
-...            'Taste': 7, 'Cost': 2.5},
+...            'Taste': 7, 'Cost': 2.5, 'Units': 'continuous'},
 ...   'tofu': {'Calories': 140, 'Protein': 17, 'Fat': 9, 'Carbs': 3, 'Fiber': 2,
-...            'Taste': 2, 'Cost': 4.0},
+...            'Taste': 2, 'Cost': 4.0, 'Units': 'continuous'},
 ...   'banana': {'Calories': 90, 'Protein': 1, 'Fat': 0, 'Carbs': 23, 'Fiber': 3,
-...              'Taste': 10, 'Cost': 1.0},
+...              'Taste': 10, 'Cost': 1.0, 'Units': 'discrete'},
 ...   'lentils': {'Calories': 150, 'Protein': 9, 'Fat': 0, 'Carbs': 25, 'Fiber': 4,
-...               'Taste': 3, 'Cost': 1.3},
+...               'Taste': 3, 'Cost': 1.3, 'Units': 'continuous'},
 ...   'bread': {'Calories': 270, 'Protein': 9, 'Fat': 3, 'Carbs': 50, 'Fiber': 3,
-...             'Taste': 5, 'Cost': 0.25},
+...             'Taste': 5, 'Cost': 0.25, 'Units': 'continuous'},
 ...   'avocado': {'Calories': 300, 'Protein': 4, 'Fat': 30, 'Carbs': 20, 'Fiber': 14,
-...               'Taste': 5, 'Cost': 2.0}}
+...               'Taste': 5, 'Cost': 2.0, 'Units': 'discrete'}}
 ...
 >>> min_nutrients = {"Protein": 50, "Fat": 30, "Carbs": 130, "Fiber": 30}
 >>> max_calories = 2000
@@ -145,10 +150,12 @@ For simplicity, store the contents of the two tables above as dicts:
 Variables
 =========
 
-Instantiate some real variables\ [#]_, :code:`quantities`, to select quantities
-of every available food.
+Instantiate some real and integer variables\ [#]_, :code:`quantities`, to select
+quantities of every available food.
 
->>> quantities = [dimod.Real(f"{food}") for food in foods.keys()]
+>>> quantities = [dimod.Real(f"{food}") if foods[food]["Units"] == "continuous"
+...                                     else dimod.Integer(f"{food}")
+...                                     for food in foods.keys()]
 
 .. [#]
 
@@ -297,7 +304,7 @@ constraints
 >>> sampleset = sampler.sample_cqm(cqm)
 >>> feasible_sampleset = sampleset.filter(lambda row: row.is_feasible)
 >>> print("{} feasible solutions of {}.".format(len(feasible_sampleset), len(sampleset)))
-32 feasible solutions of 33.
+25 feasible solutions of 49.
 
 You can define a utility function, :code:`print_diet`, to display returned
 solutions in an intuitive format.
@@ -316,13 +323,13 @@ with avocado completing the required fiber and fat portions:
 
 >>> best = feasible_sampleset.first.sample
 >>> print_diet(best)
-Diet: {'avocado': 0.5, 'banana': 6.7, 'bread': 4.6, 'lentils': 0.0, 'rice': 0.0, 'tofu': 0.0}
-Total taste of 92.6 at cost 8.93
+Diet: {'avocado': 1.0, 'banana': 6.0, 'bread': 4.1, 'lentils': 0.3, 'rice': 0.0, 'tofu': 0.0}
+Total taste of 86.56 at cost 9.46
 Calories (nominal: 2000): 2000
 Protein (nominal: 50): 50
-Fat (nominal: 30): 30
-Carbs (nominal: 130): 394
-Fiber (nominal: 30): 41
+Fat (nominal: 30): 42
+Carbs (nominal: 130): 372
+Fiber (nominal: 30): 46
 
 Tuning the Solution
 ===================
@@ -335,15 +342,15 @@ best solutions. Start with taste:
 >>> feasible_sampleset_taste = sampleset_taste.filter(lambda row: row.is_feasible)
 >>> best_taste = feasible_sampleset_taste.first
 >>> print(round(best_taste.energy))
--185
+-177
 >>> print_diet(best_taste.sample)
-Diet: {'avocado': 0.5, 'banana': 17.9, 'bread': 0.0, 'lentils': 0.0, 'rice': 0.0, 'tofu': 1.8}
-Total taste of 184.9 at cost 25.95
+Diet: {'avocado': 0.0, 'banana': 17.0, 'bread': 0.0, 'lentils': 0.0, 'rice': 0.0, 'tofu': 3.3}
+Total taste of 176.93 at cost 30.41
 Calories (nominal: 2000): 2000
-Protein (nominal: 50): 50
+Protein (nominal: 50): 74
 Fat (nominal: 30): 30
-Carbs (nominal: 130): 426
-Fiber (nominal: 30): 64
+Carbs (nominal: 130): 402
+Fiber (nominal: 30): 58
 
 You can see that this diet is high in bananas, the tastiest food, and makes up
 for that food's low levels of protein and fat with tofu and some avocado.
@@ -357,19 +364,19 @@ Next, for cost:
 >>> print(round(best_cost.energy))
 3
 >>> print_diet(best_cost.sample)
-Diet: {'avocado': 0.7, 'banana': 0.0, 'bread': 6.6, 'lentils': 0.0, 'rice': 0.0, 'tofu': 0.0}
-Total taste of 36.63 at cost 3.11
-Calories (nominal: 2000): 2000
-Protein (nominal: 50): 62
-Fat (nominal: 30): 42
-Carbs (nominal: 130): 344
+Diet: {'avocado': 1.0, 'banana': 0.0, 'bread': 5.3, 'lentils': 0.0, 'rice': 0.0, 'tofu': 0.0}
+Total taste of 31.67 at cost 3.33
+Calories (nominal: 2000): 1740
+Protein (nominal: 50): 52
+Fat (nominal: 30): 46
+Carbs (nominal: 130): 287
 Fiber (nominal: 30): 30
 
 This diet is ranked as less tasty than the previous but much cheaper. It relies
 mainly on bread and uses avocado to add fat and fiber.
 
 Because of the differences in energy scale between the two parts of the
-combined objective, :math:`185 \gg 3`, if you do not multiply the part
+combined objective, :math:`177 \gg 3`, if you do not multiply the part
 representing cost by some positive factor, optimal solutions will maximize taste
 and neglect cost. That is, if in
 :math:`\text{objective} = \alpha \text{(objective 1)} + \beta \text{(objective 2)}`
@@ -381,23 +388,25 @@ to those found when optimizing for taste alone.
 >>> feasible_sampleset = sampleset.filter(lambda row: row.is_feasible)
 >>> best = feasible_sampleset.first.sample
 >>> print_diet(best)
-Diet: {'avocado': 0.5, 'banana': 17.9, 'bread': 0.0, 'lentils': 0.0, 'rice': 0.0, 'tofu': 1.8}
-Total taste of 184.9 at cost 25.95
+Diet: {'avocado': 0.0, 'banana': 17.0, 'bread': 0.0, 'lentils': 0.0, 'rice': 0.0, 'tofu': 3.3}
+Total taste of 176.93 at cost 30.41
 Calories (nominal: 2000): 2000
-Protein (nominal: 50): 50
+Protein (nominal: 50): 74
 Fat (nominal: 30): 30
-Carbs (nominal: 130): 426
-Fiber (nominal: 30): 64
+Carbs (nominal: 130): 402
+Fiber (nominal: 30): 58
 
 Compare the best solutions found when optimizing for taste and cost alone. Notice
-that to reduce 23 units of cost (:math:`26 - 3`) in the latter solution, the
-energy increased by 148 (:math:`185 - 37`) compared to the former solution, for
-a ratio of :math:`148/23 \approx 6.5`. To give each part of the combined objective
+that to reduce 27 units of cost (:math:`30 - 3`) in the latter solution, the
+energy increased by 145 (:math:`177 - 32`) compared to the former solution, for
+a ratio of :math:`145/27 \approx 5.5`. To give each part of the combined objective
 a similar weighting, the `Objective Function`_ section above multiplied the
 part of the objective that minimizes cost by a factor of :math:`6`.
 
 The graphic below shows the solution energies of the combined objective and both
 of its parts for :math:`\alpha = 1, \beta = \{1, 2, 3, ... 19, 20\}`.
+
+TODO: RERUN FOR MILP PROBLEM FORMAT
 
 .. figure:: ../_images/diet_solutions_energy.png
    :name: DietSolutionsEnergy
@@ -411,7 +420,7 @@ For low (:math:`1-5`) ratios of :math:`\frac{\beta}{\alpha}` solutions are optim
 for taste alone; for high ratios (:math:`> 15`) solutions are optimized for cost.
 The relationship between this ratio and the weightings of the two parts of the
 combined optimization is no-linear, so while you can use such reasoning as was
-done above to find a starting point for "good" relative weightings, typically 
+done above to find a starting point for "good" relative weightings, typically
 you need to experiment.
 
 Notice that in all the previous solutions, the resulting diet relied on only two
@@ -426,10 +435,10 @@ on minimum quantities of each food).
 >>> feasible_sampleset_diverse = sampleset_diverse.filter(lambda row: row.is_feasible)
 >>> best_diverse = feasible_sampleset_diverse.first.sample
 >>> print_diet(best_diverse)
-Diet: {'avocado': 1.0, 'banana': 11.6, 'bread': 1.0, 'lentils': 1.0, 'rice': 1.0, 'tofu': 1.0}
-Total taste of 137.56 at cost 21.61
+Diet: {'avocado': 1.0, 'banana': 11.0, 'bread': 1.2, 'lentils': 1.0, 'rice': 1.0, 'tofu': 1.0}
+Total taste of 132.93 at cost 21.1
 Calories (nominal: 2000): 2000
-Protein (nominal: 50): 54
-Fat (nominal: 30): 43
-Carbs (nominal: 130): 386
-Fiber (nominal: 30): 60
+Protein (nominal: 50): 55
+Fat (nominal: 30): 44
+Carbs (nominal: 130): 382
+Fiber (nominal: 30): 59
