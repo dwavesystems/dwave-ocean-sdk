@@ -105,9 +105,17 @@ Glossary
           We refer to these layers as "composites". A composed sampler includes at least one
           sampler and possibly many composites.
 
+      Constrained quadratic model
+      CQM
+          A collection of variables with associated linear and quadratic biases
+          representing a problem modeled as an :term:`objective function` and
+          inequality and equality constraints.
+
+          See a fuller description under :doc:`Constrained Quadratic Models </concepts/cqm>`.
+
+      Constraint satisfaction problem
       CSP
-          Constraint satisfaction problem. A
-          `constraint satisfaction problem (CSP) <https://en.wikipedia.org/wiki/Constraint_satisfaction_problem>`_
+          A `constraint satisfaction problem (CSP) <https://en.wikipedia.org/wiki/Constraint_satisfaction_problem>`_
           requires that all the problem's variables be assigned values, out of a finite domain,
           that result in the satisfying of all constraints.
           See a fuller description under :doc:`QPU Topology </concepts/csp>`.
