@@ -10,7 +10,7 @@ problem, which can be expressed as a linear objective and constraints with
 real-valued variables. Other examples include quadratic objectives and constraints,
 which better make use of the strengths of D-Wave's solvers.
 
-The goal of this problem is to optimize the enjoyment of a diet's foods while
+The goal of this problem is to optimize the taste of a diet's foods while
 keeping to the dieter's budget and daily requirements on macro-nutrients.
 
 Example Requirements
@@ -42,10 +42,10 @@ Formulate the Problem
 =====================
 
 The table below shows a selection of foods chosen by a dieter, ranked for
-the dieter's enjoyment on a scale of one to ten, with evaluations (not necessarily
+the dieter's taste on a scale of one to ten, with evaluations (not necessarily
 realistic) of nutrients and costs.
 
-.. list-table:: Nutrients, Cost, and Enjoyment Rankings for Available Foods
+.. list-table:: Nutrients, Cost, and Taste Rankings for Available Foods
    :header-rows: 1
 
    * - **Food**
@@ -201,10 +201,10 @@ any feasible solution must meet, and set these in your CQM.
 Objective Function
 ------------------
 
-The objective function must maximize enjoyment of the diet's foods while minimizing
+The objective function must maximize taste of the diet's foods while minimizing
 purchase cost.
 
-To maximize enjoyment and minimize cost is to assign values to the variables that
+To maximize taste and minimize cost is to assign values to the variables that
 represent quantities of each food, :math:`q_i`, such that when multiplied by
 coefficients representing the cost, :math:`c_i`, or taste, :math:`t_i`,
 of each food, form the linear terms of the following summations to be optimized:
@@ -215,7 +215,7 @@ of each food, form the linear terms of the following summations to be optimized:
 
   \max \sum_i q_i t_i \qquad \text{Maximize taste}
 
-To optimize two different objectives, enjoyment and cost, requires weighing one
+To optimize two different objectives, taste and cost, requires weighing one
 against the other. A simple way to do this, is to set priority weights; for example,
 
 .. math::
@@ -235,10 +235,10 @@ for any given category such as calories.
 >>> def total_mix(quantity, category):
 ...   return sum(q * c for q, c in zip(quantity, (foods[food][category] for food in foods.keys())))
 
-Set the objective. Because Ocean solvers minimize objectives, to maximize enjoyment,
+Set the objective. Because Ocean solvers minimize objectives, to maximize taste,
 :code:`Taste` is multiplied by `-1` and minimized.
 
->>> cqm.set_objective(-total_mix(quantities, "Taste") + 7*total_mix(quantities, "Cost"))
+>>> cqm.set_objective(-total_mix(quantities, "Taste") + 6*total_mix(quantities, "Cost"))
 
 Section `Tuning the Solution`_ belows shows how the priority weight was chosen.
 
@@ -303,11 +303,11 @@ You can define a utility function, :code:`print_diet`, to display returned
 solutions in an intuitive format.
 
 >>> def print_diet(sample):
-...    diet = {food: round(quantity) for food, quantity in sample.items()}
+...    diet = {food: round(quantity, 1) for food, quantity in sample.items()}
 ...    print(f"Diet: {diet}")
 ...    taste_total = sum(foods[food]["Taste"] * amount for food, amount in sample.items())
 ...    cost_total = sum(foods[food]["Cost"] * amount for food, amount in sample.items())
-...    print(f"Total taste of {round(taste_total)} at cost {round(cost_total)}")
+...    print(f"Total taste of {round(taste_total, 2)} at cost {round(cost_total, 2)}")
 ...    for constraint in cqm.iter_constraint_data(sample):
 ...       print(f"{constraint.label} (nominal: {constraint.rhs_energy}): {round(constraint.lhs_energy)}")
 
@@ -316,8 +316,8 @@ with avocado completing the required fiber and fat portions:
 
 >>> best = feasible_sampleset.first.sample
 >>> print_diet(best)
-Diet: {'avocado': 1, 'banana': 7, 'bread': 5, 'lentils': 0, 'rice': 0, 'tofu': 0}
-Total taste of 93 at cost 9
+Diet: {'avocado': 0.5, 'banana': 6.7, 'bread': 4.6, 'lentils': 0.0, 'rice': 0.0, 'tofu': 0.0}
+Total taste of 92.6 at cost 8.93
 Calories (nominal: 2000): 2000
 Protein (nominal: 50): 50
 Fat (nominal: 30): 30
@@ -328,7 +328,7 @@ Tuning the Solution
 ===================
 
 Consider sampling each objective on its own and comparing the energies of the
-best solutions. Start with enjoyment:
+best solutions. Start with taste:
 
 >>> cqm.set_objective(-total_mix(quantities, "Taste"))
 >>> sampleset_taste = sampler.sample_cqm(cqm)
@@ -336,10 +336,9 @@ best solutions. Start with enjoyment:
 >>> best_taste = feasible_sampleset_taste.first
 >>> print(round(best_taste.energy))
 -185
-
 >>> print_diet(best_taste.sample)
-Diet: {'avocado': 0, 'banana': 18, 'bread': 0, 'lentils': 0, 'rice': 0, 'tofu': 2}
-Total taste of 185 at cost 26
+Diet: {'avocado': 0.5, 'banana': 17.9, 'bread': 0.0, 'lentils': 0.0, 'rice': 0.0, 'tofu': 1.8}
+Total taste of 184.9 at cost 25.95
 Calories (nominal: 2000): 2000
 Protein (nominal: 50): 50
 Fat (nominal: 30): 30
@@ -347,7 +346,7 @@ Carbs (nominal: 130): 426
 Fiber (nominal: 30): 64
 
 You can see that this diet is high in bananas, the tastiest food, and makes up
-for that food's low levels of protein and fat with tofu.
+for that food's low levels of protein and fat with tofu and some avocado.
 
 Next, for cost:
 
@@ -357,10 +356,9 @@ Next, for cost:
 >>> best_cost = feasible_sampleset_cost.first
 >>> print(round(best_cost.energy))
 3
-
 >>> print_diet(best_cost.sample)
-Diet: {'avocado': 1, 'banana': 0, 'bread': 7, 'lentils': 0, 'rice': 0, 'tofu': 0}
-Total taste of 37 at cost 3
+Diet: {'avocado': 0.7, 'banana': 0.0, 'bread': 6.6, 'lentils': 0.0, 'rice': 0.0, 'tofu': 0.0}
+Total taste of 36.63 at cost 3.11
 Calories (nominal: 2000): 2000
 Protein (nominal: 50): 62
 Fat (nominal: 30): 42
@@ -370,16 +368,36 @@ Fiber (nominal: 30): 30
 This diet is ranked as less tasty than the previous but much cheaper. It relies
 mainly on bread and uses avocado to add fat and fiber.
 
-Because :math:`185 \gg 3`, if you do not multiply the part of the objective
+Because of the differences in energy scale between the two parts of the
+combined objective, :math:`185 \gg 3`, if you do not multiply the part
 representing cost by some positive factor, optimal solutions will maximize taste
-and neglect cost.
+and neglect cost. That is, if in
+:math:`\text{objective} = \alpha \text{(objective 1)} + \beta \text{(objective 2)}`
+you set set :math:`\alpha = \beta = 1`, solutions will likely be close or identical
+to those found when optimizing for taste alone.
 
-Notice that to make a gain of 23 units of cost (:math:`26 - 3`), the energy of
-taste increased by 148 (:math:`185 - 37`), for a ratio of :math:`148/23 \approx 6.5`.
+>>> cqm.set_objective(-total_mix(quantities, "Taste") + 1 * total_mix(quantities, "Cost"))
+>>> sampleset = sampler.sample_cqm(cqm)
+>>> feasible_sampleset = sampleset.filter(lambda row: row.is_feasible)
+>>> best = feasible_sampleset.first.sample
+>>> print_diet(best)
+Diet: {'avocado': 0.5, 'banana': 17.9, 'bread': 0.0, 'lentils': 0.0, 'rice': 0.0, 'tofu': 1.8}
+Total taste of 184.9 at cost 25.95
+Calories (nominal: 2000): 2000
+Protein (nominal: 50): 50
+Fat (nominal: 30): 30
+Carbs (nominal: 130): 426
+Fiber (nominal: 30): 64
 
-To give each a similar weighting in the combined objective, the
-`Objective Function`_ section above multiplied the objective that minimizes
-cost by a factor of :math:`6`.
+Compare the best solutions found when optimizing for taste and cost alone. Notice
+that to reduce 23 units of cost (:math:`26 - 3`) in the latter solution, the
+energy increased by 148 (:math:`185 - 37`) compared to the former solution, for
+a ratio of :math:`148/23 \approx 6.5`. To give each part of the combined objective
+a similar weighting, the `Objective Function`_ section above multiplied the
+part of the objective that minimizes cost by a factor of :math:`6`.
+
+The graphic below shows the solution energies of the combined objective and both
+of its parts for :math:`\alpha = 1, \beta = \{1, 2, 3, ... 19, 20\}`.
 
 .. figure:: ../_images/diet_solutions_energy.png
    :name: DietSolutionsEnergy
@@ -388,3 +406,30 @@ cost by a factor of :math:`6`.
    :scale: 70 %
 
    Energy of the objective for various multipliers of the cost.
+
+For low (:math:`1-5`) ratios of :math:`\frac{\beta}{\alpha}` solutions are optimized
+for taste alone; for high ratios (:math:`> 15`) solutions are optimized for cost.
+The relationship between this ratio and the weightings of the two parts of the
+combined optimization is no-linear, so while you can use such reasoning as was
+done above to find a starting point for "good" relative weightings, typically 
+you need to experiment.
+
+Notice that in all the previous solutions, the resulting diet relied on only two
+or three foods. If the dieter wants a more diverse diet, you can enforce that by
+setting appropriate bound on the variables (or, equivalently, adding constraints
+on minimum quantities of each food).
+
+>>> cqm.set_objective(-total_mix(quantities, "Taste") + 6*total_mix(quantities, "Cost"))
+>>> for variable in cqm.variables:
+...    cqm.set_lower_bound(variable, 1)
+>>> sampleset_diverse = sampler.sample_cqm(cqm)
+>>> feasible_sampleset_diverse = sampleset_diverse.filter(lambda row: row.is_feasible)
+>>> best_diverse = feasible_sampleset_diverse.first.sample
+>>> print_diet(best_diverse)
+Diet: {'avocado': 1.0, 'banana': 11.6, 'bread': 1.0, 'lentils': 1.0, 'rice': 1.0, 'tofu': 1.0}
+Total taste of 137.56 at cost 21.61
+Calories (nominal: 2000): 2000
+Protein (nominal: 50): 54
+Fat (nominal: 30): 43
+Carbs (nominal: 130): 386
+Fiber (nominal: 30): 60
