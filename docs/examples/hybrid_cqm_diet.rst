@@ -406,8 +406,6 @@ part of the objective that minimizes cost by a factor of :math:`6`.
 The graphic below shows the solution energies of the combined objective and both
 of its parts for :math:`\alpha = 1, \beta = \{1, 2, 3, ... 19, 20\}`.
 
-TODO: RERUN FOR MILP PROBLEM FORMAT
-
 .. figure:: ../_images/diet_solutions_energy.png
    :name: DietSolutionsEnergy
    :alt: image
