@@ -39,11 +39,11 @@
     --pst-color-info: var(--dwave-color-ocean-blue);
     --pst-color-warning: var(--dwave-color-advantage-orange);
     /*--pst-color-danger: 220, 53, 69;*/
-    --pst-color-active-navigation: var(--dwave-color-dark-blue);
-    --pst-color-navbar-link-hover: var(--dwave-color-dark-blue);
-    --pst-color-navbar-link-active: var(--dwave-color-dark-blue);
-    --pst-color-sidebar-link-hover: var(--dwave-color-dark-blue);
-    --pst-color-sidebar-link-active: var(--dwave-color-dark-blue);
-    --pst-color-toc-link-hover: var(--dwave-color-dark-blue);
-    --pst-color-toc-link-active: var(--dwave-color-dark-blue);
+    --pst-color-active-navigation: var(--dwave-color-ocean-blue);
+    --pst-color-navbar-link-hover: var(--dwave-color-ocean-blue);
+    --pst-color-navbar-link-active: var(--dwave-color-ocean-blue);
+    --pst-color-sidebar-link-hover: var(--dwave-color-ocean-blue);
+    --pst-color-sidebar-link-active: var(--dwave-color-ocean-blue);
+    --pst-color-toc-link-hover: var(--dwave-color-ocean-blue);
+    --pst-color-toc-link-active: var(--dwave-color-ocean-blue);
 }
