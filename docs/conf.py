@@ -132,7 +132,7 @@ if os.environ.get('READTHEDOCS', False):
 # -- Options for HTML output ----------------------------------------------
 
 html_theme = 'pydata_sphinx_theme'
-html_logo = "_static/Ocean.svg"
+html_logo = "_static/DWave-Ocean.svg"
 
 html_theme_options = {
     "github_url": "https://github.com/dwavesystems/dwave-ocean-sdk",
@@ -151,6 +151,7 @@ html_theme_options = {
         },
     ],
     "collapse_navigation": True,
+    "show_prev_next": False,
 }
 html_sidebars = {
     "**": ["search-field", "sidebar-nav-bs"]  # remove ads
