@@ -18,7 +18,7 @@ The constrained quadratic model (CQM) are problems of the form:
         \quad d=1, \dots, C_{\rm eq.},
     \end{align}
 
-where :math:`\{ x_i\}_{i=1, \dots, N}` can be binary or integer
+where :math:`\{ x_i\}_{i=1, \dots, N}` can be binary, integer, and real\ [#]_
 variables, :math:`a_{i}, b_{ij}, c` are real values and
 :math:`C_{\rm ineq.}, C_{\rm eq,}` are the number of inequality and
 equality constraints respectively.
@@ -26,3 +26,5 @@ equality constraints respectively.
 The :class:`dimod.ConstrainedQuadraticModel` class can contain this model and its
 methods provide convenient utilities for working with representations
 of a problem.
+
+.. [#] Real-valued variables are currently not supported in quadratic interactions. 
