@@ -5,10 +5,10 @@ Diet Planning
 =============
 
 This example demonstrates the use of a `Leap <https://cloud.dwavesys.com/leap/>`_
-hybrid :ref:`cqm_sdk` solver on a simple mixed-integer linear-programming (MILP)
+hybrid :ref:`cqm_sdk` (CQM) solver on a simple mixed-integer linear-programming (MILP)
 type of optimization problem, which can be expressed as a linear objective and
 constraints with integer and real-valued variables. Other examples include
-quadratic objectives and constraints, which better make use of the strengths of
+*quadratic* objectives and constraints, which better make use of the strengths of
 D-Wave's solvers.
 
 The goal of this problem is to optimize the taste of a diet's foods while
@@ -45,6 +45,8 @@ Formulate the Problem
 The table below shows a selection of foods chosen by a dieter, ranked for
 the dieter's taste on a scale of one to ten, with evaluations (not necessarily
 realistic) of nutrients and costs.
+
+.. _example_cqm_diet_reals_table_1:
 
 .. list-table:: Nutrients, Cost, and Taste Rankings for Available Foods
    :header-rows: 1
@@ -108,6 +110,8 @@ realistic) of nutrients and costs.
 
 The following table shows the dieter's daily requirements for selected nutrients.
 
+.. _example_cqm_diet_reals_table_2:
+
 .. list-table:: Daily Required Nutrients
    :header-rows: 1
 
@@ -125,10 +129,11 @@ The following table shows the dieter's daily requirements for selected nutrients
      - 30
 
 For simplicity, store the contents of the two tables above as a dict. The dict
-also contains information on whether portions of the food is best treated as
-continuous (for example, rice can be any weight), in which case it should be
-represented with real-valued variables, or as discrete units (such as fruit that
-is eaten whole), in which case it is best represented by integer-valued variables.
+also contains information on whether the portion of a particular food is best
+treated as continuous (for example, rice can be any weight), in which case it
+should be represented with real-valued variables, or as a discrete unit (such as
+fruit that is eaten whole), in which case it is best represented by integer-valued
+variables.
 
 >>> foods = {
 ...   'rice': {'Calories': 100, 'Protein': 3, 'Fat': 1, 'Carbs': 22, 'Fiber': 2,
@@ -150,8 +155,9 @@ is eaten whole), in which case it is best represented by integer-valued variable
 Variables
 =========
 
-Instantiate some real and integer variables\ [#]_, :code:`quantities`, to select
-quantities of every available food.
+Instantiate some real and integer variables\ [#]_ in a list, :code:`quantities`,
+that in the solutions will be assigned values for the selected quantities of
+every available food.
 
 >>> quantities = [dimod.Real(f"{food}") if foods[food]["Units"] == "continuous"
 ...                                     else dimod.Integer(f"{food}")
@@ -165,7 +171,7 @@ quantities of every available food.
    >>> quantities[0]
    QuadraticModel({'rice': 1.0}, {}, 0.0, {'rice': 'REAL'}, dtype='float64')
 
-   with a single variable with the requested label, :code:`rice`. This
+   with a single variable with the requested label; e.g., :code:`rice`. This
    means, for example, that multiplying by two doubles the linear bias,
 
    >>> 2*quantities[0]
@@ -190,20 +196,21 @@ no food by itself should be assigned a quantity that exceeds :code:`max_calories
 ...   ub = max_calories / foods[food]["Calories"]
 ...   quantities[ind].set_upper_bound(food, ub)
 
-The maximum quantity of rice, for example is 20 because :math:`20*100 = 2000`.
+The maximum quantity of rice, for example, which here has 100 calories per portion,
+is 20 portions because :math:`20*100 = 2000`.
 
 >>> quantities[0].upper_bound("rice")
 20.0
 
-In the case of lower bounds, this problem requires these for correct formulation:
+Lower bounds are actually *required* in this problem for correct formulation:
 a valid mathematical solution might be to offset the calories of gorging on large
 numbers of tasty bananas by eating a negative amount of high-in-calories bread, so
 the formulation must include the impossibility of consuming negative quantities
 of food. Because Ocean sets a default value of zero for `~dimod.quadratic.Real`
 variables, no explicit configuration is needed.
 
-You can now formulate an :term:`objective function` to optimize and constraints
-any feasible solution must meet, and set these in your CQM.
+You can now formulate an :term:`objective function` and any constraints feasible
+solutions must meet, and set these in your CQM.
 
 Objective Function
 ------------------
@@ -242,17 +249,19 @@ for any given category such as calories.
 >>> def total_mix(quantity, category):
 ...   return sum(q * c for q, c in zip(quantity, (foods[food][category] for food in foods.keys())))
 
-Set the objective. Because Ocean solvers minimize objectives, to maximize taste,
+Set the objective\ [#]_. Because Ocean solvers minimize objectives, to maximize taste,
 :code:`Taste` is multiplied by `-1` and minimized.
 
 >>> cqm.set_objective(-total_mix(quantities, "Taste") + 6*total_mix(quantities, "Cost"))
 
-Section `Tuning the Solution`_ belows shows how the priority weight was chosen.
+.. [#] Section `Tuning the Solution`_ belows shows how the priority weights
+  :math:`\alpha, \beta` above were chosen.
 
 Constraints
 -----------
 
-The problem has the following constraints:
+The problem has the following constraints of the
+`Daily Required Nutrients <example_cqm_diet_reals_table_2>`_ table:
 
 1. Calories: no more than 2000
 2. Protein: at least 50
@@ -282,7 +291,8 @@ You can access these constraints as a dict with the labels as keys:
 Solve the Problem by Sampling
 =============================
 
-D-Wave's quantum cloud service provides cloud-based hybrid solvers you can
+D-Wave's quantum cloud service provides cloud-based
+:std:doc:`hybrid solvers <sysdocs_gettingstarted:doc_leap_hybrid>` you can
 submit arbitrary QMs to. These solvers, which implement state-of-the-art
 classical algorithms together with intelligent allocation of the quantum
 processing unit (QPU) to parts of the problem where it benefits most, are
@@ -298,8 +308,8 @@ easily incorporate Leap's hybrid CQM solvers into your application:
 >>> sampler = LeapHybridCQMSampler()
 
 Submit the CQM to the selected solver. For one particular execution, the CQM
-hybrid sampler returned 33 samples, out of which 32 were solutions that met all the
-constraints
+hybrid sampler returned 49 samples, out of which 25 were solutions that met all
+the constraints.
 
 >>> sampleset = sampler.sample_cqm(cqm)
 >>> feasible_sampleset = sampleset.filter(lambda row: row.is_feasible)
@@ -334,7 +344,8 @@ Fiber (nominal: 30): 46
 Tuning the Solution
 ===================
 
-Consider sampling each objective on its own and comparing the energies of the
+Consider sampling each part of the combined objective on its own (i.e.,
+:math:`\alpha=1, \beta=0` and :math:`\alpha=0, \beta=1`), and comparing the
 best solutions. Start with taste:
 
 >>> cqm.set_objective(-total_mix(quantities, "Taste"))
@@ -353,7 +364,7 @@ Carbs (nominal: 130): 402
 Fiber (nominal: 30): 58
 
 You can see that this diet is high in bananas, the tastiest food, and makes up
-for that food's low levels of protein and fat with tofu and some avocado.
+for that food's low levels of protein and fat with tofu.
 
 Next, for cost:
 
@@ -397,11 +408,11 @@ Carbs (nominal: 130): 402
 Fiber (nominal: 30): 58
 
 Compare the best solutions found when optimizing for taste and cost alone. Notice
-that to reduce 27 units of cost (:math:`30 - 3`) in the latter solution, the
-energy increased by 145 (:math:`177 - 32`) compared to the former solution, for
-a ratio of :math:`145/27 \approx 5.5`. To give each part of the combined objective
-a similar weighting, the `Objective Function`_ section above multiplied the
-part of the objective that minimizes cost by a factor of :math:`6`.
+that to reduce 27 units of cost (:math:`30 - 3`) in the latter solution, taste
+was decreased by 145 (:math:`177 - 32`), for a ratio of :math:`145/27 \approx 5.5`.
+To give each part of the combined objective a similar weighting, the
+`Objective Function`_ section above multiplied the part of the objective that
+minimizes cost by a factor of :math:`\beta=6`.
 
 The graphic below shows the solution energies of the combined objective and both
 of its parts for :math:`\alpha = 1, \beta = \{1, 2, 3, ... 19, 20\}`.
@@ -417,14 +428,14 @@ of its parts for :math:`\alpha = 1, \beta = \{1, 2, 3, ... 19, 20\}`.
 For low (:math:`1-5`) ratios of :math:`\frac{\beta}{\alpha}` solutions are optimized
 for taste alone; for high ratios (:math:`> 15`) solutions are optimized for cost.
 The relationship between this ratio and the weightings of the two parts of the
-combined optimization is no-linear, so while you can use such reasoning as was
+combined optimization is non-linear, so while you can use such reasoning as was
 done above to find a starting point for "good" relative weightings, typically
 you need to experiment.
 
 Notice that in all the previous solutions, the resulting diet relied on only two
 or three foods. If the dieter wants a more diverse diet, you can enforce that by
-setting appropriate bound on the variables (or, equivalently, adding constraints
-on minimum quantities of each food).
+setting appropriate bounds on the variables (or, equivalently, adding constraints
+on minimum/maximum quantities of each food).
 
 >>> cqm.set_objective(-total_mix(quantities, "Taste") + 6*total_mix(quantities, "Cost"))
 >>> for variable in cqm.variables:
