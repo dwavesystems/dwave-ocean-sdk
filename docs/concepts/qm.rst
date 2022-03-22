@@ -28,8 +28,8 @@ Ocean supports various quadratic models:
 
 * :ref:`bqm_sdk` are unconstrained,  have binary variables, and are contained by
   the :class:`dimod.BinaryQuadraticModel` class.
-* :ref:`cqm_sdk` can be constrained,  have integer and binary variables, and are
-  contained by the :class:`dimod.ConstrainedQuadraticModel` class.
+* :ref:`cqm_sdk` can be constrained,  have real, integer and binary variables,
+  and are contained by the :class:`dimod.ConstrainedQuadraticModel` class.
 * :ref:`dqm_sdk` are unconstrained, have discrete variables, and are contained by
   the :class:`dimod.DiscreteQuadraticModel` class.
 
