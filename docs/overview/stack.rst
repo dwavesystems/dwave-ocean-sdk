@@ -107,7 +107,7 @@ each stage of the process to a layer of the Ocean stack.
         - Find all states for small (<20 variables) problems.
         - For code-development testing.
       * - Classical
-        - :doc:`dimod </docs_dimod/sdk_index>` :class:`~dimod.reference.samplers.random_sampler.RandomSampler` 
+        - :doc:`dimod </docs_dimod/sdk_index>` :class:`~dimod.reference.samplers.random_sampler.RandomSampler`
         - Random sampler for testing.
         - For code-development testing.
       * - Classical
@@ -143,9 +143,9 @@ each stage of the process to a layer of the Ocean stack.
         - Cloud-based quantum-classical hybrid solver.
         - For problems of arbitrary structure and size, especially large problems.
       * - Hybrid
-        - `Leap <https://cloud.dwavesys.com/leap/>`_\ 's :class:`~dwave.system.samplers.LeapHybridDQMSampler`
+        - `Leap <https://cloud.dwavesys.com/leap/>`_\ 's :class:`~dwave.system.samplers.LeapHybridCQMSampler`
         - Cloud-based quantum-classical hybrid solver.
-        - For **discrete** quadratic models (:term:`DQM`) of arbitrary structure
+        - For constrained quadratic models (:term:`CQM`) of arbitrary structure
           and size.
       * -
         - :doc:`dimod </docs_dimod/sdk_index>` custom
@@ -184,7 +184,8 @@ each stage of the process to a layer of the Ocean stack.
         - Uses the D-Wave virtual graph feature for improved minor-embedding.
         - Calibrates qubits in chains to compensate for the effects of biases and enables
           easy creation, optimization, use, and reuse of an embedding for a given working graph.
-      * - :doc:`dimod </docs_dimod/sdk_index>` :class:`~dimod.reference.composites.spin_transform.SpinReversalTransformComposite`
+      * - :std:doc:`dwave-preprocessing <oceandocs:docs_preprocessing/sdk_index>`
+          :class:`~dwave.preprocessing.composites.SpinReversalTransformComposite`
         - Applies spin reversal transform preprocessing.
         - Improves QPU results by reducing the impact of possible analog and systematic errors.
       * - :doc:`dimod </docs_dimod/sdk_index>` :class:`~dimod.reference.composites.structure.StructureComposite`
@@ -197,10 +198,10 @@ each stage of the process to a layer of the Ocean stack.
    * :doc:`minorminer </docs_minorminer/source/sdk_index>` for :term:`minor-embedding`
      might be used to improve solutions by fine tuning parameters or incorporating problem
      knowledge into the embedding.
-   * :doc:`dwave-greedy </docs_greedy/sdk_index>` provides a steepest-descent solver 
-     for binary quadratic models that can be run on the samples returned from solvers such 
-     as :class:`~dwave.system.samplers.DWaveSampler` to find local minima in the neighbourhoods 
-   * :doc:`dwave-hybrid </docs_hybrid/sdk_index>` splits problems too large for the QPU into 
+   * :doc:`dwave-greedy </docs_greedy/sdk_index>` provides a steepest-descent solver
+     for binary quadratic models that can be run on the samples returned from solvers such
+     as :class:`~dwave.system.samplers.DWaveSampler` to find local minima in the neighbourhoods
+   * :doc:`dwave-hybrid </docs_hybrid/sdk_index>` splits problems too large for the QPU into
      pieces solved either via a D-Wave system or a classical solver.
 
 4. **Map to a Supported Format**
