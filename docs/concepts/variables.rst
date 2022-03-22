@@ -55,7 +55,12 @@ The variables in these models may be of the following types:
 
   - Where should the sensor be built?
 
-TODO: add symbolic and distinction between label and QM. 
+.. [#] Ocean also provides some higher-order tools for developing and testing
+  your code; for example, the :class:`~dimod.reference.samplers.ExactPolySolver`
+  class.
+
+Supported Models and Hybrid Samplers
+====================================
 
 D-Wave's quantum computers solve **binary** quadratic models;
 `Leap <https://cloud.dwavesys.com/leap/>`_ `hybrid <hybrid_sdk>`_ solvers can
@@ -69,7 +74,7 @@ solver models with more varied variable types.
      - **Hybrid Samplers**
      - **Examples**
    * - Binary
-     - :class:`~dimod.BinaryQuadraticModel`
+     - :class:`~dimod.binary.BinaryQuadraticModel`
      - :class:`~dwave.system.samplers.LeapHybridSampler`
      - :ref:`hss`
    * - Binary, discrete
@@ -85,8 +90,42 @@ solver models with more varied variable types.
      - :class:`~dwave.system.samplers.LeapHybridCQMSampler`
      - :ref:`example_cqm_diet_reals`
 
+Variable Representations and Labels
+===================================
 
+Ocean enables you to represent a variable with a quadratic model, as described in
+:ref:`dimod's symbolic math <oceandocs:intro_symbolic_math>` documentation. This
+makes it important to distinguish between such a variable's representation and
+its label.
 
-.. [#] Ocean also provides some higher-order tools for developing and testing
-  your code; for example, the :class:`~dimod.reference.samplers.ExactPolySolver`
-  class.
+For example, in the code below, variables :code:`a, i, j` are represented by
+:class:`~dimod.QuadraticModel` objects and the ten variables in array :code:`x`
+by :class:`~dimod.binary.BinaryQuadraticModel` objects:
+
+>>> a = dimod.Real("a")
+>>> i, j = dimod.Integers(["i", "j"])
+>>> x = dimod.BinaryArray([f"x{i}" for i in range(10)])
+
+Each such variable is represented by a quadratic model that has a single linear
+bias of `1`,
+
+>>> x[0]
+BinaryQuadraticModel({'x0': 1.0}, {}, 0.0, 'BINARY')
+
+with its single variable having a specified label; e.g., :code:`x0` for the first
+model in :code:`x`.
+
+The code below adds two variables to a :class:`~dimod.ConstrainedQuadraticModel`.
+The first, using the :meth:`~dimod.ConstrainedQuadraticModel.add_variable` method,
+adds a variable by specifying a label, ``"b"``, and the type of required variable,
+``"REAL"``. The second, using the
+:meth:`~dimod.ConstrainedQuadraticModel.add_constraint_from_model` method, specifies
+the variable ``i`` instantiated above as a :class:`~dimod.QuadraticModel` object.
+
+>>> cqm = dimod.ConstrainedQuadraticModel()
+>>> cqm.add_variable("b", "REAL")
+'b'
+>>> cqm.add_constraint_from_model(i, ">=", 2, "Min i")
+'Min i'
+>>> cqm.variables
+Variables(['b', 'i'])
