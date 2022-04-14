@@ -50,7 +50,8 @@ extensions = [
     'sphinx.ext.githubpages',
     'sphinx.ext.ifconfig',
     'breathe',
-    'sphinx_panels'
+    'sphinx_panels',
+    'reno.sphinxext',
 ]
 
 autosummary_generate = True
