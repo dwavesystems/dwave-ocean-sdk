@@ -24,7 +24,7 @@ The variables in these models may be of the following types:
   :class:`~dimod.Vartype.SPIN`.
 
   Typically used for applications that optimize over decisions that could either
-  be true (or yes) or false (no)? For example,
+  be true (or yes) or false (no); for example,
 
   - Should the antenna transmit or no?
   - Did a network node experience failure?
@@ -33,8 +33,8 @@ The variables in these models may be of the following types:
   set ``{red, green, blue, yellow}``, represented by the dimod :class:`~dimod.Vartype`
   class :class:`~dimod.Vartype.INTEGER`.
 
-  Typically used for applications that optimize over several distinct options?
-  For example,
+  Typically used for applications that optimize over several distinct options;
+  for example,
 
   - Which shift should employee X work?
   - Should the state be colored red, blue, green or yellow?
@@ -42,7 +42,7 @@ The variables in these models may be of the following types:
 * **Integer**: represented by the dimod :class:`~dimod.Vartype` class
   :class:`~dimod.Vartype.INTEGER`.
 
-  Typically used for applications that optimize the number of something? For
+  Typically used for applications that optimize the number of something; for
   example,
 
   - How many widgets should be loaded onto the truck?
@@ -50,7 +50,7 @@ The variables in these models may be of the following types:
 * **Real**: represented by the dimod :class:`~dimod.Vartype` class
   :class:`~dimod.Vartype.REAL`.
 
-  Typically used for applications that optimize over an uncountable set? For
+  Typically used for applications that optimize over an uncountable set; for
   example,
 
   - Where should the sensor be built?
