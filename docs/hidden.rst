@@ -1,3 +1,5 @@
+:orphan:
+
 .. Some of the content of this page is derived from pydata-sphinx-theme under
 .. the following license:
 
