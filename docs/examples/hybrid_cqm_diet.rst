@@ -278,6 +278,10 @@ Require that the daily minimum of each nutrient is met or exceeded.
 
 >>> for nutrient, amount in min_nutrients.items():
 ...   cqm.add_constraint(total_mix(quantities, nutrient) >= amount, label=nutrient)
+'Protein'
+'Fat'
+'Carbs'
+'Fiber'
 
 You can access these constraints as a dict with the labels as keys:
 
@@ -305,15 +309,15 @@ Ocean software's :doc:`dwave-system </docs_system/sdk_index>`
 easily incorporate Leap's hybrid CQM solvers into your application:
 
 >>> from dwave.system import LeapHybridCQMSampler
->>> sampler = LeapHybridCQMSampler()
+>>> sampler = LeapHybridCQMSampler()                        # doctest: +SKIP
 
 Submit the CQM to the selected solver. For one particular execution, the CQM
 hybrid sampler returned 49 samples, out of which 25 were solutions that met all
 the constraints.
 
->>> sampleset = sampler.sample_cqm(cqm)
->>> feasible_sampleset = sampleset.filter(lambda row: row.is_feasible)
->>> print("{} feasible solutions of {}.".format(len(feasible_sampleset), len(sampleset)))
+>>> sampleset = sampler.sample_cqm(cqm)                    # doctest: +SKIP
+>>> feasible_sampleset = sampleset.filter(lambda row: row.is_feasible)   # doctest: +SKIP
+>>> print("{} feasible solutions of {}.".format(len(feasible_sampleset), len(sampleset)))    # doctest: +SKIP
 25 feasible solutions of 49.
 
 You can define a utility function, :code:`print_diet`, to display returned
@@ -331,8 +335,8 @@ solutions in an intuitive format.
 The best solution found in this current execution was a diet of bread and bananas,
 with avocado completing the required fiber and fat portions:
 
->>> best = feasible_sampleset.first.sample
->>> print_diet(best)
+>>> best = feasible_sampleset.first.sample                       # doctest: +SKIP
+>>> print_diet(best)                                             # doctest: +SKIP
 Diet: {'avocado': 1.0, 'banana': 6.0, 'bread': 4.1, 'lentils': 0.3, 'rice': 0.0, 'tofu': 0.0}
 Total taste of 86.56 at cost 9.46
 Calories (nominal: 2000): 2000
@@ -349,12 +353,12 @@ Consider sampling each part of the combined objective on its own (i.e.,
 best solutions. Start with taste:
 
 >>> cqm.set_objective(-total_mix(quantities, "Taste"))
->>> sampleset_taste = sampler.sample_cqm(cqm)
->>> feasible_sampleset_taste = sampleset_taste.filter(lambda row: row.is_feasible)
->>> best_taste = feasible_sampleset_taste.first
->>> print(round(best_taste.energy))
+>>> sampleset_taste = sampler.sample_cqm(cqm)                     # doctest: +SKIP
+>>> feasible_sampleset_taste = sampleset_taste.filter(lambda row: row.is_feasible)  # doctest: +SKIP
+>>> best_taste = feasible_sampleset_taste.first                   # doctest: +SKIP
+>>> print(round(best_taste.energy))                               # doctest: +SKIP
 -177
->>> print_diet(best_taste.sample)
+>>> print_diet(best_taste.sample)                                 # doctest: +SKIP
 Diet: {'avocado': 0.0, 'banana': 17.0, 'bread': 0.0, 'lentils': 0.0, 'rice': 0.0, 'tofu': 3.3}
 Total taste of 176.93 at cost 30.41
 Calories (nominal: 2000): 2000
@@ -369,12 +373,12 @@ for that food's low levels of protein and fat with tofu.
 Next, for cost:
 
 >>> cqm.set_objective(total_mix(quantities, "Cost"))
->>> sampleset_cost = sampler.sample_cqm(cqm)
->>> feasible_sampleset_cost = sampleset_cost.filter(lambda row: row.is_feasible)
->>> best_cost = feasible_sampleset_cost.first
->>> print(round(best_cost.energy))
+>>> sampleset_cost = sampler.sample_cqm(cqm)                     # doctest: +SKIP
+>>> feasible_sampleset_cost = sampleset_cost.filter(lambda row: row.is_feasible)  # doctest: +SKIP
+>>> best_cost = feasible_sampleset_cost.first                    # doctest: +SKIP
+>>> print(round(best_cost.energy))                               # doctest: +SKIP
 3
->>> print_diet(best_cost.sample)
+>>> print_diet(best_cost.sample)                                 # doctest: +SKIP
 Diet: {'avocado': 1.0, 'banana': 0.0, 'bread': 5.3, 'lentils': 0.0, 'rice': 0.0, 'tofu': 0.0}
 Total taste of 31.67 at cost 3.33
 Calories (nominal: 2000): 1740
@@ -395,10 +399,10 @@ you set set :math:`\alpha = \beta = 1`, solutions will likely be close or identi
 to those found when optimizing for taste alone.
 
 >>> cqm.set_objective(-total_mix(quantities, "Taste") + 1 * total_mix(quantities, "Cost"))
->>> sampleset = sampler.sample_cqm(cqm)
->>> feasible_sampleset = sampleset.filter(lambda row: row.is_feasible)
->>> best = feasible_sampleset.first.sample
->>> print_diet(best)
+>>> sampleset = sampler.sample_cqm(cqm)                        # doctest: +SKIP
+>>> feasible_sampleset = sampleset.filter(lambda row: row.is_feasible)  # doctest: +SKIP
+>>> best = feasible_sampleset.first.sample                     # doctest: +SKIP
+>>> print_diet(best)                                           # doctest: +SKIP
 Diet: {'avocado': 0.0, 'banana': 17.0, 'bread': 0.0, 'lentils': 0.0, 'rice': 0.0, 'tofu': 3.3}
 Total taste of 176.93 at cost 30.41
 Calories (nominal: 2000): 2000
@@ -440,10 +444,10 @@ on minimum/maximum quantities of each food).
 >>> cqm.set_objective(-total_mix(quantities, "Taste") + 6*total_mix(quantities, "Cost"))
 >>> for variable in cqm.variables:
 ...    cqm.set_lower_bound(variable, 1)
->>> sampleset_diverse = sampler.sample_cqm(cqm)
->>> feasible_sampleset_diverse = sampleset_diverse.filter(lambda row: row.is_feasible)
->>> best_diverse = feasible_sampleset_diverse.first.sample
->>> print_diet(best_diverse)
+>>> sampleset_diverse = sampler.sample_cqm(cqm)                   # doctest: +SKIP
+>>> feasible_sampleset_diverse = sampleset_diverse.filter(lambda row: row.is_feasible)  # doctest: +SKIP
+>>> best_diverse = feasible_sampleset_diverse.first.sample        # doctest: +SKIP
+>>> print_diet(best_diverse)                                      # doctest: +SKIP
 Diet: {'avocado': 1.0, 'banana': 11.0, 'bread': 1.2, 'lentils': 1.0, 'rice': 1.0, 'tofu': 1.0}
 Total taste of 132.93 at cost 21.1
 Calories (nominal: 2000): 2000
