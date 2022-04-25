@@ -20,7 +20,6 @@ Below are the open-source licenses for the SDK and its tools:
    licenses/penaltymodel
    licenses/preprocessing
    pyqubo <https://github.com/recruit-communications/pyqubo/blob/master/LICENSE>
-   qbsolv <https://github.com/dwavesystems/qbsolv/blob/master/LICENSE>
 
 Ocean software also includes non-open-source packages you can optionally install with the following
 D-Wave end-user license agreements (EULAs):

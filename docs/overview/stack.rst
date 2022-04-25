@@ -200,9 +200,8 @@ each stage of the process to a layer of the Ocean stack.
    * :doc:`dwave-greedy </docs_greedy/sdk_index>` provides a steepest-descent solver 
      for binary quadratic models that can be run on the samples returned from solvers such 
      as :class:`~dwave.system.samplers.DWaveSampler` to find local minima in the neighbourhoods 
-     of returned solutions. 
-   * :doc:`qbsolv </docs_qbsolv>` splits problems too large
-     for the QPU into pieces solved either via a D-Wave system or a classical tabu solver.
+   * :doc:`dwave-hybrid </docs_hybrid/sdk_index>` splits problems too large for the QPU into 
+     pieces solved either via a D-Wave system or a classical solver.
 
 4. **Map to a Supported Format**
 

@@ -28,9 +28,6 @@
 [submodule "penaltymodel"]
 	path = penaltymodel
 	url = https://github.com/dwavesystems/penaltymodel
-[submodule "dwave-qbsolv"]
-	path = dwave-qbsolv
-	url = https://github.com/dwavesystems/qbsolv
 [submodule "dwave-inspector"]
 	path = dwave-inspector
 	url = https://github.com/dwavesystems/dwave-inspector.git

@@ -58,14 +58,6 @@ class TestSmokeIndividually(unittest.TestCase):
 
         resp = sampler.sample_ising(h, J)
 
-    def test_qbsolv(self):
-        import dwave_qbsolv as qbsolv
-
-        h = {'a': -1, 'b': +1}
-        J = {('a', 'b'): -1}
-
-        resp = qbsolv.QBSolv().sample_ising(h, J)
-
     def test_hybrid(self):
         import dimod
         import hybrid

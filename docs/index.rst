@@ -149,19 +149,6 @@ The Ocean SDK includes the :ref:`dwave_cli` and the following packages:
 
    A package that helps you create QUBOs and Ising models from flexible mathematical expressions.
 
-.. dropdown:: **qbsolv (deprecated)** --- Decomposing solver. \
-   :link-badge:`https://docs.ocean.dwavesys.com/projects/qbsolv/en/latest/, "docs", cls=badge-primary fr text-white` \
-   :link-badge:`https://github.com/dwavesystems/qbsolv, "code", cls=badge-secondary fr text-white`
-
-   A decomposing solver that finds a minimum value of a large quadratic unconstrained binary
-   optimization (:term:`QUBO`) problem by splitting it into pieces. The pieces are solved
-   using a classical solver running the tabu algorithm. qbsolv also enables configuring
-   a D-Wave system as the solver.
-
-   .. include:: docs_qbsolv.rst
-      :start-after: qbsolv_deprecation-start-marker
-      :end-before: qbsolv_deprecation-end-marker
-
 .. packages-end-marker
 
 Index and D-Wave Links
