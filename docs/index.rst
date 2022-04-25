@@ -18,21 +18,18 @@ problems with quantum computers.
 
    getting_started
    concepts/index
+   docs_cli
+   packages
    contributing
    licenses
-
-.. toctree::
-  :caption: Tools
-  :hidden:
-  :maxdepth: 1
-
-  docs_cli
 
 ========
 Packages
 ========
 
 The Ocean SDK includes the :ref:`dwave_cli` and the following packages:
+
+.. packages-start-marker
 
 .. dropdown::  **dimod** --- Quadratic models: BQM, DQM. \
    :link-badge:`https://docs.ocean.dwavesys.com/en/stable/docs_dimod/sdk_index.html, "docs", cls=badge-primary fr text-white` \
@@ -165,34 +162,7 @@ The Ocean SDK includes the :ref:`dwave_cli` and the following packages:
       :start-after: qbsolv_deprecation-start-marker
       :end-before: qbsolv_deprecation-end-marker
 
-.. toctree::
-  :hidden:
-  :maxdepth: 1
-
-  docs_dimod/sdk_index
-  docs_binarycsp/sdk_index
-  docs_cloud/sdk_index
-  docs_greedy/sdk_index
-  docs_hybrid/sdk_index
-  docs_inspector/sdk_index
-  docs_neal/sdk_index
-  docs_dnx/sdk_index
-  docs_system/sdk_index
-  docs_tabu/sdk_index
-  docs_minorminer/source/sdk_index
-  docs_penalty/sdk_index
-  docs_preprocessing/sdk_index
-  docs_pyqubo
-  docs_qbsolv
-
-.. toctree::
-  :caption: D-Wave
-  :hidden:
-  :maxdepth: 1
-
-  D-Wave <https://www.dwavesys.com>
-  Leap <https://cloud.dwavesys.com/leap/>
-  D-Wave System Documentation <https://docs.dwavesys.com/docs/latest/index.html>
+.. packages-end-marker
 
 Index and D-Wave Links
 ======================

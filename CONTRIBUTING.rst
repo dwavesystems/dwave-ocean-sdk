@@ -1,6 +1,6 @@
-=================
-How to Contribute
-=================
+==========
+Contribute
+==========
 
 The goal of this document is to establish a common understanding among software contributors to D-Wave's Ocean software
 projects based on the code conventions and best practices used at D-Wave.

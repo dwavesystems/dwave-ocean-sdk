@@ -1,10 +1,8 @@
 penaltymodel-maxgap==0.5.6
 
-# June 15, 2021: temporary docutil pinning for https://github.com/readthedocs/sphinx_rtd_theme/issues/1115
-docutils==0.16
-sphinx>=4.0.0,<5.0.0
-sphinx_rtd_theme
-recommonmark
+pydata-sphinx-theme==0.8.0
+sphinx==4.4.0
+docutils==0.16  # docutils ~=0.17 causes some issues and sphinx 4.4.0 does not support newer
 sphinx-panels==0.6.0
 reno[sphinx]==3.3.0
 

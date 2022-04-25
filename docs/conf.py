@@ -132,9 +132,31 @@ if os.environ.get('READTHEDOCS', False):
 
 # -- Options for HTML output ----------------------------------------------
 
-import sphinx_rtd_theme
-html_theme = 'sphinx_rtd_theme'
-html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
+html_theme = 'pydata_sphinx_theme'
+html_logo = "_static/DWave-Ocean.svg"
+
+html_theme_options = {
+    "github_url": "https://github.com/dwavesystems/dwave-ocean-sdk",
+    "external_links": [
+        {
+            "url": "https://docs.dwavesys.com/docs/latest/index.html",
+            "name": "System Docs",
+        },
+    ],
+    "icon_links": [
+        {
+            "name": "Leap",
+            "url": "https://cloud.dwavesys.com/leap/",
+            "icon": "_static/Dots.svg",
+            "type": "local",
+        },
+    ],
+    "collapse_navigation": True,
+    "show_prev_next": False,
+}
+html_sidebars = {
+    "**": ["search-field", "sidebar-nav-bs"]  # remove ads
+}
 html_static_path = ['_static']
 
 
@@ -144,6 +166,9 @@ def setup(app):
    app.add_js_file('cookie_notice.js')
    app.add_config_value('target', 'sdk', 'env')
 
+
+# -- Panels ---------------------------------------------------------------
+panels_add_bootstrap_css = False
 
 # -- Intersphinx ----------------------------------------------------------
 intersphinx_mapping = {
