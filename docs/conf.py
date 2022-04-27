@@ -102,11 +102,7 @@ from hybrid.decomposers import *
 from hybrid.composers import *
 from hybrid.flow import *
 
-import penaltymodel.core as pm
-import penaltymodel.cache as pmc
-#import penaltymodel.maxgap as maxgap
-import penaltymodel.mip as mip
-import penaltymodel.lp as lp
+import penaltymodel
 
 import dwave.inspector
 """
@@ -191,11 +187,7 @@ github_map = {'dwavebinarycsp': 'dwavebinarycsp',
               'inspector': 'dwave-inspector',
               'minorminer': 'minorminer',
               'neal': 'dwave-neal',
-              'penaltymodel': {'cache': 'penaltymodel_cache',
-                               'core': 'penaltymodel_core',
-                               'lp': 'penaltymodel_lp',
-                               'maxgap': 'penaltymodel_maxgap',
-                               'mip': 'penaltymodel_mip'},
+              'penaltymodel': 'penaltymodel',
               'preprocessing': 'dwave-preprocessing',
               'system': 'dwave-system',
               'embedding': 'dwave-system',
@@ -204,7 +196,6 @@ github_map = {'dwavebinarycsp': 'dwavebinarycsp',
 reqs = pkg_resources.get_distribution('dwave-ocean-sdk').requires(extras=['all'])
 pkgs = [pkg_resources.get_distribution(req) for req in reqs]
 versions = {pkg.project_name: pkg.version for pkg in pkgs}
-versions['penaltymodel-core'] = versions.pop('penaltymodel')
 
 def linkcode_resolve(domain, info):
     """
@@ -259,17 +250,11 @@ def linkcode_resolve(domain, info):
        fn = fn.replace(fn[:fn.index("site-packages")+len("site-packages")], "") 
 
     repo = fn.split("/")[1] if  \
-           (fn.split("/")[1] != "dwave") and (fn.split("/")[1] != "penaltymodel") \
+           (fn.split("/")[1] != "dwave") \
            else fn.split("/")[2]
 
-    if fn.split("/")[1] == 'penaltymodel':
-        pm_module = github_map['penaltymodel'][repo] 
-        pm_ver = versions[github_map['penaltymodel'][repo].replace('_', '-')]
-        fn = "https://github.com/dwavesystems/penaltymodel/tree/{}-{}/{}{}".format( \
-             repo, pm_ver, pm_module, fn)
-    else:
-        pm_module = github_map[repo] 
-        pm_ver = versions[github_map[repo]]
-        fn = "https://github.com/dwavesystems/{}/blob/{}{}".format(pm_module, pm_ver, fn) 
+    pm_module = github_map[repo] 
+    pm_ver = versions[github_map[repo]]
+    fn = "https://github.com/dwavesystems/{}/blob/{}{}".format(pm_module, pm_ver, fn) 
  
     return fn + linespec

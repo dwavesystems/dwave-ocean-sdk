@@ -1,5 +1,3 @@
-penaltymodel-maxgap==0.5.6
-
 pydata-sphinx-theme==0.8.0
 sphinx==4.4.0
 docutils==0.16  # docutils ~=0.17 causes some issues and sphinx 4.4.0 does not support newer

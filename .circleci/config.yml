@@ -79,18 +79,6 @@ jobs:
             python -m venv env
 
       - run:
-          name: install penaltymodel dependencies
-          command: |
-            . env/bin/activate
-            cd penaltymodel
-            pip install -r requirements.txt
-            pip install penaltymodel_core/
-            pip install penaltymodel_cache/
-            pip install penaltymodel_maxgap/
-            pip install penaltymodel_mip/
-            pip install penaltymodel_lp/
-
-      - run:
           name: install dependencies
           command: |
             . env/bin/activate
