@@ -184,8 +184,8 @@ contains many more code examples:
 
 .. _additional_tutorials:
 
-Additional Learning
-===================
+Further Learning
+================
 
 * :std:doc:`Getting Started with the D-Wave System <sysdocs_gettingstarted:doc_getting_started>`
 
@@ -200,3 +200,17 @@ Additional Learning
   This guide provides advanced guidance on using D-Wave solvers, in particular QPU solvers.
   It lists, explains, and demonstrates techniques of problem formulation, minor-embedding,
   and configuring QPU parameters to optimize performance.
+
+* Package introductions
+
+    The following Ocean packages have extended introductions:
+
+  * The :ref:`introduction to dimod <intro_dimod>` describes Ocean's supported
+    models (e.g., BQMs), the format of returned solutions, :ref:`intro_symbolic_math`,
+    and :ref:`intro_scaling`.
+
+  * The :ref:`introduction to dwave-cloud-client <intro_cloud>` discusses how to
+    configure selection of and communications with solvers.
+
+  * The :ref:`introduction to dwave-hybrid <intro_hybrid>` explains how to use
+    the Python framework for running and building hybrid samplers.
