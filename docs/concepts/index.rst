@@ -318,4 +318,13 @@ Glossary
          See a fuller description under :doc:`Minor-Embedding </concepts/embedding>`.
 
       Working graph
-         In a D-Wave QPU, the set of qubits and couplers that are available for computation is known as the working graph. The yield of a working graph is typically less than 100% of qubits and couplers that are fabricated and physically present in the QPU. See :term:`hardware graph`.
+         In a D-Wave QPU, the set of qubits and couplers that are available for
+         computation is known as the working graph. The yield of a working graph
+         is typically less than 100% of qubits and couplers that are fabricated
+         and physically present in the QPU. See :term:`hardware graph`.
+
+      Zephyr
+         The D-Wave :term:`QPU` is a lattice of interconnected qubits. While some
+         qubits connect to others via couplers, the D-Wave QPU is not fully connected.
+         Instead, the qubits interconnect in an architecture known as Zephyr.
+         See more information on topologies, see :doc:`QPU Topology </concepts/topology>`.
