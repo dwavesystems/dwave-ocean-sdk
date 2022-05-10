@@ -108,12 +108,6 @@ pep8
 
 As a baseline, follow the `pep8 <https://www.python.org/dev/peps/pep-0008/>`_ style guide for python.
 
-Python 2/3
-~~~~~~~~~~
-
-All code should be both Python 2 and 3 compatible.
-
-
 Documentation
 ~~~~~~~~~~~~~
 
