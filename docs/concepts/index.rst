@@ -35,7 +35,8 @@ See the :ref:`glossary` for short definitions of terminology or learn Ocean conc
      - solver
    * - :ref:`solutions_sdk`
      - samples, sampleset, probabilistic, energy
-
+   * - :ref:`variables_sdk`
+     - binary, discrete, integer, real variables
 .. toctree::
    :hidden:
    :maxdepth: 1
@@ -51,7 +52,7 @@ See the :ref:`glossary` for short definitions of terminology or learn Ocean conc
    topology
    samplers
    solutions
-
+   variables
 
 Glossary
 --------

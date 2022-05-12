@@ -70,7 +70,7 @@ and submit to samplers for solution:
   Constraints for this model are typically represented by adding
   :ref:`penalty models <penalty_sdk>` to the objective.
 
-* :ref:`cqm_sdk` can be constrained and have integer and binary variables.
+* :ref:`cqm_sdk` can be constrained and have real, integer and binary variables.
 
   CQMs are typically used for applications that optimize problems that might
   include integer and/or binary variables and one or more constraints.
