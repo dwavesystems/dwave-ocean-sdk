@@ -119,6 +119,7 @@ breathe_projects = {"minorminer": os.path.join(
                     }
 
 breathe_default_members = ('members', )
+breathe_default_project = "minorminer"
 
 # we want to build the c++ docs in RTD
 if os.environ.get('READTHEDOCS', False):
