@@ -120,4 +120,4 @@ problem with a 680 node Pegasus graph using
 >>> num_variables = 40
 >>> embedding = dwave.embedding.pegasus.find_clique_embedding(num_variables, 6)
 >>> max(len(chain) for chain in embedding.values())
-6
+5
