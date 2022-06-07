@@ -1,20 +1,25 @@
 .. _topology_sdk:
 
 ============
-QPU Topology 
+QPU Topology
 ============
 
-To solve a :term:`bqm` on the D-Wave system, you
-must map it to a graph that represents the topology of the system's
-qubits. For D-Wave 2000Q systems, this is the *chimera* topology; for 
-next-generation Advantage systems, this is the *Pegasus* topology.
+To solve a :term:`bqm` on the D-Wave system, you must map it to a graph that
+represents the topology of the system's qubits:
+
+* :ref:`topology_sdk_chimera` topology for D-Wave 2000Q systems
+* :ref:`topology_sdk_pegasus` topology for Advantage systems
+* :ref:`topology_sdk_zephyr` topology for next-generation quantum computers
+  currently under development
 
 .. note:: If you are sending your problem to a
     `Leap <https://cloud.dwavesys.com/leap/>`_ quantum-classical :term:`hybrid` solver,
     the solver handles all interactions with the QPU.
 
+.. _topology_sdk_chimera:
+
 Chimera
--------
+=======
 
 The Chimera architecture comprises sets of connected unit cells, each with four
 horizontal qubits connected to four vertical qubits via couplers (bipartite
@@ -23,12 +28,13 @@ qubits connected, creating a lattice of sparsely connected qubits. A unit cell
 is typically rendered as either a cross or a column.
 
 .. figure:: ../_images/ChimeraUnitCell.png
-	:align: center
-	:name: ChimeraUnitCell
-	:scale: 40 %
-	:alt: Chimera unit cell.
+  :align: center
+  :name: ChimeraUnitCell
+  :height: 150 pt
+  :width: 300 pt
+  :alt: Chimera unit cell.
 
-	Chimera unit cell.
+  Chimera unit cell.
 
 
 .. figure:: ../_images/chimera.png
@@ -46,8 +52,10 @@ The notation CN refers to a Chimera graph consisting of an :math:`N{\rm x}N` gri
 The D-Wave 2000Q QPU supports a C16 Chimera graph: its 2048 qubits are logically mapped into a
 :math:`16 {\rm x} 16` matrix of unit cells of 8 qubits.
 
+.. _topology_sdk_pegasus:
+
 Pegasus
--------
+=======
 
 In Pegasus as in Chimera, qubits are “oriented” vertically or horizontally but similarly aligned
 qubits can also be also shifted by distances and in groupings that differ between Pegasus families.
@@ -85,3 +93,50 @@ Pegasus qubits are considered to have a nominal length of 12 (each qubit is conn
 As we use the notation CN to refer to a Chimera graph with size parameter N, we refer to instances
 of Pegasus topologies by PN; for example, P3 is a graph with 144 nodes.
 
+.. _topology_sdk_zephyr:
+
+Zephyr
+======
+
+D-Wave is currently developing its next-generation QPU with the Zephyr topology:
+qubits are “oriented” vertically or horizontally, as in :ref:`topology_sdk_chimera`
+and :ref:`topology_sdk_pegasus`, and are shifted and connected with three coupler
+types as in Pegasus, but this new graph achieves higher nominal length (16) and
+degree (20).
+A qubit in the Zephyr topology has sixteen internal couplers connecting it to
+orthogonal qubits and two external couplers and two odd couplers connecting it to
+similarly aligned qubits.
+
+Zephyr topology enables native :math:`K_4` and :math:`K_{8,8}` subgraphs.
+
+As the notations :math:`C_n` and :math:`P_n` refer to :ref:`topology_sdk_chimera`
+and :ref:`topology_sdk_pegasus` graphs with size parameter N, :math:`Z_n` refers
+to instances of Zephyr topologies;
+specifically, :math:`Z_n` is a :math:`(2n+1) \times (2n+1)` grid of unit cells.
+For example, :math:`Z_3` is a graph with 336 nodes.
+
+A Zephyr unit cell contains two groups of eight half qubits, with each qubit  in
+the cell coupled either to four oppositely aligned qubits and one similarly aligned
+qubit (four :math:`K_{4,4}` complete graphs with their internal and external
+couplings) or to eight oppositely aligned qubits and one similarly aligned qubit
+(a :math:`K_{8,8}` complete graph with its internal and odd couplings).
+
+.. figure:: ../_images/zephyr_unitcell_halfqubits.png
+  :align: center
+  :name: ZephyrUnitCellsHalfQubits
+  :height: 400 pt
+  :width: 400 pt
+  :alt: Zephyr Unit Cell.
+
+  Zephyr unit cells: for the center unit cell, one group of eight half qubits are shown in orange, another in blue.
+
+Graph Tools
+===========
+
+The following graph tools are provided for these topologies:
+
+* :ref:`graph generation <generators_dnx>` creates graphs for the
+  supported topologies of various sizes.
+* :ref:`drawing <drawing>` visualizes the graphs you create.
+* :std:doc:`indexing<docs_dnx/reference/utilities>` helps translate
+  coordinates of the supported graphs.
