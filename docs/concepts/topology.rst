@@ -107,7 +107,8 @@ A qubit in the Zephyr topology has sixteen internal couplers connecting it to
 orthogonal qubits and two external couplers and two odd couplers connecting it to
 similarly aligned qubits.
 
-Zephyr topology enables native :math:`K_4` and :math:`K_{8,8}` subgraphs.
+Zephyr topology enables native :math:`K_4` and :math:`K_{8,8}` subgraphs. A
+:math:`Z_n` has cliques of size :math:`16n-8` with chain length :math:`n+1`.
 
 As the notations :math:`C_n` and :math:`P_n` refer to :ref:`topology_sdk_chimera`
 and :ref:`topology_sdk_pegasus` graphs with size parameter N, :math:`Z_n` refers
@@ -135,8 +136,9 @@ Graph Tools
 
 The following graph tools are provided for these topologies:
 
+* :ref:`drawing <drawing>` visualizes the graphs you create.
 * :ref:`graph generation <generators_dnx>` creates graphs for the
   supported topologies of various sizes.
-* :ref:`drawing <drawing>` visualizes the graphs you create.
 * :std:doc:`indexing<docs_dnx/reference/utilities>` helps translate
   coordinates of the supported graphs.
+* :ref:`minorminer <sdk_index_minorminer>` is a heuristic tool for minor embedding.
