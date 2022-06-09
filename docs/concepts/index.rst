@@ -79,10 +79,11 @@ Glossary
          See a fuller description under :doc:`Minor-Embedding </concepts/embedding>`.
 
       Chimera
-         The D-Wave :term:`QPU` is a lattice of interconnected qubits. While some qubits
-         connect to others via couplers, the D-Wave QPU is not fully connected.
-         Instead, the qubits interconnect in an architecture known as Chimera.
-         See a fuller description under :doc:`QPU Topology </concepts/topology>`.
+         A D-Wave :term:`QPU` is a lattice of interconnected qubits. While some qubits
+         connect to others via couplers, D-Wave QPUs are not fully connected.
+         For D-Wave 2000Q QPUs, the qubits interconnect in an architecture known
+         as Chimera. See a fuller description under :doc:`QPU Topology </concepts/topology>`.
+         See also :term:`Pegasus` and :term:`Zephyr`.
 
       Complete graph
       Fully connected
@@ -220,10 +221,11 @@ Glossary
          binary variables representing the qubits.
 
       Pegasus
-         The D-Wave :term:`QPU` is a lattice of interconnected qubits. While some qubits
-         connect to others via couplers, the D-Wave QPU is not fully connected.
-         Instead, the qubits interconnect in an architecture known as Pegasus.
-         See a fuller description under :doc:`QPU Topology </concepts/topology>`.
+         A D-Wave :term:`QPU` is a lattice of interconnected qubits. While some qubits
+         connect to others via couplers, D-Wave QPUs are not fully connected.
+         For an Advantage QPU, the qubits interconnect in an architecture known
+         as Pegasus. See a fuller description under :doc:`QPU Topology </concepts/topology>`.
+         See also :term:`Chimera` and :term:`Zephyr`.
 
       Penalty function
          An algorithm for solving constrained optimization problems. In the context
@@ -325,7 +327,9 @@ Glossary
          and physically present in the QPU. See :term:`hardware graph`.
 
       Zephyr
-         The D-Wave :term:`QPU` is a lattice of interconnected qubits. While some
-         qubits connect to others via couplers, the D-Wave QPU is not fully connected.
-         Instead, the qubits interconnect in an architecture known as Zephyr.
-         See more information on topologies, see :doc:`QPU Topology </concepts/topology>`.
+         A D-Wave :term:`QPU` is a lattice of interconnected qubits. While some
+         qubits connect to others via couplers, D-Wave QPUs are not fully connected.
+         For D-Wave's next-generation QPU currently under development, the qubits
+         interconnect in an architecture known as Zephyr. See a fuller description
+         under :doc:`QPU Topology </concepts/topology>`.
+         See also :term:`Pegasus` and :term:`Chimera`.
