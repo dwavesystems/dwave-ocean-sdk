@@ -119,6 +119,7 @@ breathe_projects = {"minorminer": os.path.join(
                     }
 
 breathe_default_members = ('members', )
+breathe_default_project = "minorminer"
 
 # we want to build the c++ docs in RTD
 if os.environ.get('READTHEDOCS', False):
@@ -137,6 +138,10 @@ html_theme_options = {
         {
             "url": "https://docs.dwavesys.com/docs/latest/index.html",
             "name": "System Docs",
+        },
+        {
+            "url": "https://docs.dwavesys.com/docs/latest/legal.html",
+            "name": "Legal",
         },
     ],
     "icon_links": [
@@ -202,7 +207,7 @@ def linkcode_resolve(domain, info):
     Find the URL of the GitHub source for dwave-ocean-sdk objects.
     """
     # Based on https://github.com/numpy/numpy/blob/main/doc/source/conf.py
-    # Updated to work on multiple submodules and fall back to next-level 
+    # Updated to work on multiple submodules and fall back to next-level
     # module for objects such as properties
 
     if domain != 'py':
@@ -224,37 +229,37 @@ def linkcode_resolve(domain, info):
            obj[i] = inspect.unwrap(obj[i])
 
     fn = None
-    for i in range(len(obj)-1, -1, -1): 
-        try: 
-           fn = inspect.getsourcefile(obj[i]) 
-           if fn: 
+    for i in range(len(obj)-1, -1, -1):
+        try:
+           fn = inspect.getsourcefile(obj[i])
+           if fn:
               obj_inx = i
-              break 
+              break
         except:
-           pass 
+           pass
 
     linespec = ""
     try:
         source, lineno = inspect.getsourcelines(obj[obj_inx])
         if obj_inx != 0:
-           linespec = "#L%d" % (lineno) 
+           linespec = "#L%d" % (lineno)
     except Exception:
         linespec = ""
 
     if not fn or not "site-packages" in fn:
        return None
-    
+
     if ".egg" in fn:
-       fn = fn.replace(fn[:fn.index("egg")+len("egg")], "")   
+       fn = fn.replace(fn[:fn.index("egg")+len("egg")], "")
     else:
-       fn = fn.replace(fn[:fn.index("site-packages")+len("site-packages")], "") 
+       fn = fn.replace(fn[:fn.index("site-packages")+len("site-packages")], "")
 
     repo = fn.split("/")[1] if  \
            (fn.split("/")[1] != "dwave") \
            else fn.split("/")[2]
 
-    pm_module = github_map[repo] 
+    pm_module = github_map[repo]
     pm_ver = versions[github_map[repo]]
-    fn = "https://github.com/dwavesystems/{}/blob/{}{}".format(pm_module, pm_ver, fn) 
- 
+    fn = "https://github.com/dwavesystems/{}/blob/{}{}".format(pm_module, pm_ver, fn)
+
     return fn + linespec
