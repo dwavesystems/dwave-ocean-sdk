@@ -199,7 +199,7 @@ jobs:
         type: string
 
     docker:
-      - image: circleci/openjdk:8-jdk-browsers
+      - image: cimg/openjdk:8.0
 
     steps:
       - checkout
