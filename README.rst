@@ -52,7 +52,7 @@ Start learning with the following D-Wave resources:
 * `System Documentation <https://docs.dwavesys.com/docs/latest/index.html>`_ to
   learn about quantum computers and how to use them.
 
-* `Getting Started with Ocean <https://docs.ocean.dwavesys.com/en/stable/getting_started>`_
+* `Getting Started with Ocean <https://docs.ocean.dwavesys.com/en/stable/getting_started.html>`_
   to install and start coding with Ocean software.
 
 * `dwave-examples <https://github.com/dwave-examples>`_ for code examples
