@@ -204,19 +204,3 @@ Deprecations
 .. deprecated:: v0.3
 
    This is a deprecation message.
-
-----------
-Autosphinx
-----------
-
-.. autoclass:: dimod.BinaryQuadraticModel
-
-~~~~~~~~~~~~~~~~~~
-Methods/Attributes
-~~~~~~~~~~~~~~~~~~
-
-.. autosummary::
-   :toctree: _build/generated/
-
-   ~dimod.BinaryQuadraticModel.num_variables
-   ~dimod.BinaryQuadraticModel.get_linear
