@@ -74,12 +74,6 @@ The Ocean SDK includes the :ref:`dwave_cli` and the following packages:
    A tool for visualizing problems submitted to, and answers received from, a D-Wave
    structured solver such as a D-Wave 2000Q quantum computer.
 
-.. dropdown:: **dwave-neal** --- Simulated annealing sampler. \
-   :link-badge:`https://docs.ocean.dwavesys.com/en/stable/docs_neal/sdk_index.html, "docs", cls=badge-primary fr text-white` \
-   :link-badge:`https://github.com/dwavesystems/dwave-neal, "code", cls=badge-secondary fr text-white`
-
-   An implementation of a simulated annealing sampler.
-
 .. dropdown:: **dwave-networkx** --- NetworkX extension. \
    :link-badge:`https://docs.ocean.dwavesys.com/en/stable/docs_dnx/sdk_index.html, "docs", cls=badge-primary fr text-white` \
    :link-badge:`https://github.com/dwavesystems/dwave-networkx, "code", cls=badge-secondary fr text-white`
