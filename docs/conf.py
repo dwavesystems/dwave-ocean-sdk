@@ -175,7 +175,6 @@ panels_add_bootstrap_css = False
 intersphinx_mapping = {
     'python': ('https://docs.python.org/3/', None),
     'numpy': ('http://docs.scipy.org/doc/numpy/', None),
-    'bson': ('https://api.mongodb.com/python/current/', None),
     'networkx': ('https://networkx.org/documentation/stable/', None),
     'sysdocs_gettingstarted': ('https://docs.dwavesys.com/docs/latest/', None),
     'oceandocs': ('https://docs.ocean.dwavesys.com/en/stable/', None),
