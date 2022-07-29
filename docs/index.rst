@@ -103,6 +103,21 @@ The Ocean SDK includes the :ref:`dwave_cli` and the following packages:
 
    Library containing common preprocessing tools for quadratic models.
 
+.. dropdown:: **dwave-samplers** --- Classical algorithms for solving binary quadratic models. \
+   :link-badge:`https://docs.ocean.dwavesys.com/en/stable/docs_samplers/index.html, "docs", cls=badge-primary fr text-white` \
+   :link-badge:`https://github.com/dwavesystems/dwave-samplers, "code", cls=badge-secondary fr text-white`
+
+   A library that implements the following classical algorithms as :term:`samplers<sampler>` for solving
+   :term:`binary quadratic models<BQM>` (BQM):
+
+   * Random: a sampler that draws uniform random samples.
+   * Simulated Annealing: a probabilistic heuristic for optimization and approximate
+     Boltzmann sampling well suited to finding good solutions of large problems.
+   * Steepest Descent: a discrete analogue of gradient descent, often used in
+     machine learning, that quickly finds a local minimum.
+   * Tabu: a heuristic that employs local search with methods to escape local minima.
+   * Tree Decomposition: an exact solver for problems with low treewidth.
+
 .. dropdown:: **dwave-system** --- D-Wave samplers and composites. \
    :link-badge:`https://docs.ocean.dwavesys.com/en/stable/docs_system/sdk_index.html, "docs", cls=badge-primary fr text-white` \
    :link-badge:`https://github.com/dwavesystems/dwave-system, "code", cls=badge-secondary fr text-white`

@@ -37,3 +37,6 @@
 [submodule "dwave-preprocessing"]
 	path = dwave-preprocessing
 	url = https://github.com/dwavesystems/dwave-preprocessing.git
+[submodule "dwave-samplers"]
+	path = dwave-samplers
+	url = https://github.com/dwavesystems/dwave-samplers.git
