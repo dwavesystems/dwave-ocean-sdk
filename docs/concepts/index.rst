@@ -5,7 +5,7 @@ Concepts
 ========
 
 
-See the :ref:`glossary` for short definitions of terminology or learn Ocean concepts here:
+See the :ref:`ocean_glossary` for short definitions of terminology or learn Ocean concepts here:
 
 .. list-table:: Ocean Concepts
    :widths: auto
@@ -53,6 +53,8 @@ See the :ref:`glossary` for short definitions of terminology or learn Ocean conc
    samplers
    solutions
    variables
+
+.. _ocean_glossary:
 
 Glossary
 --------
