@@ -4,7 +4,7 @@
 Working With Different Topologies
 =================================
 
-The examples shows how to construct software samplers with the same structure
+The examples below show how to construct software samplers with the same structure
 as the :term:`QPU`, and how to work with :term:`embedding`\s with different
 topologies.
 
@@ -45,8 +45,8 @@ would work equally well.
 
 >>> classical_sampler = neal.SimulatedAnnealingSampler()
 
-Now, with a classical sampler and the desired graph, you can use 
-:doc:`dimod </docs_dimod/sdk_index>`'s :class:`~dimod.reference.composites.structure.StructureComposite` 
+Now, with a classical sampler and the desired graph, you can use
+:doc:`dimod </docs_dimod/sdk_index>`'s :class:`~dimod.reference.composites.structure.StructureComposite`
 to create a Chimera-structured sampler.
 
 >>> sampler = dimod.StructureComposite(classical_sampler, C16.nodes, C16.edges)
