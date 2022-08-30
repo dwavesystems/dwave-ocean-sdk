@@ -52,6 +52,7 @@ extensions = [
     'breathe',
     'sphinx_panels',
     'reno.sphinxext',
+    'sphinx_copybutton',
 ]
 
 autosummary_generate = True
@@ -75,6 +76,10 @@ linkcheck_ignore = [r'.clang-format',                    # would need symlink
 pygments_style = 'sphinx'
 
 todo_include_todos = True
+
+copybutton_prompt_text = r">>> |\.\.\. |\$ "
+copybutton_prompt_is_regexp = True
+copybutton_line_continuation_character = "\\"
 
 doctest_global_setup = """
 import operator         # Used by dwave-binarycsp

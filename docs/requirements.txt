@@ -2,6 +2,7 @@ pydata-sphinx-theme==0.8.0
 sphinx==4.4.0
 docutils==0.16  # docutils ~=0.17 causes some issues and sphinx 4.4.0 does not support newer
 sphinx-panels==0.6.0
+sphinx-copybutton
 reno[sphinx]==3.3.0
 
 # needed for some of the examples
