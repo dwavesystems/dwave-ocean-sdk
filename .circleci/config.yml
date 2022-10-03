@@ -265,7 +265,7 @@ workflows:
       - deploy:
           filters: &deploy-filters
             tags:
-              only: /^[0-9]+(\.[0-9]+)*(\.dev([0-9]+)?)?$/
+              only: /^[0-9]+(\.[0-9]+)*((\.dev|rc)([0-9]+)?)?$/
             branches:
               ignore: /.*/
       - black-duck:
