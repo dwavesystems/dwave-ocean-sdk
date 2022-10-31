@@ -288,9 +288,9 @@ You can access these constraints as a dict with the labels as keys:
 >>> list(cqm.constraints.keys())
 ['Calories', 'Protein', 'Fat', 'Carbs', 'Fiber']
 >>> print(cqm.constraints["Calories"].to_polystring())
-100*rice + 140*tofu + 90*banana + 150*lentils + 270*bread + 300*avocado <= 2000
+100*rice + 140*tofu + 90*banana + 150*lentils + 270*bread + 300*avocado <= 2000.0
 >>> print(cqm.constraints["Protein"].to_polystring())
-3*rice + 17*tofu + banana + 9*lentils + 9*bread + 4*avocado >= 50
+3*rice + 17*tofu + banana + 9*lentils + 9*bread + 4*avocado >= 50.0
 
 Solve the Problem by Sampling
 =============================
