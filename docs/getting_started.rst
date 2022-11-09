@@ -124,11 +124,14 @@ Intermediate-Level Examples
    examples/map_coloring
    examples/multi_gate
    examples/hybrid1
+   examples/pp_cqm_presolve
    examples/pp_greedy
 
 * :ref:`map_coloring` example solves a more complex constraint satisfaction problem.
 * :ref:`multi_gate` looks more deeply at :term:`minor-embedding`.
 * :ref:`hybrid1` builds a hybrid workflow and solver for a large graph problem.
+* :ref:`pp_cqm_presolve` runs presolve algorithms on a CQM before submission to
+  a Leap hybrid CQM solver.
 * :ref:`pp_greedy` improves samples returned from a QPU by post-processing with a
   classical greedy algorthim.
 
