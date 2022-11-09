@@ -20,7 +20,6 @@ Example Requirements
 
 To run the code in this example, the following is required.
 
-* The requisite information for problem submission through SAPI, as described in :ref:`sapi_access`.
 * Ocean tools :doc:`dimod </docs_dimod/sdk_index>` and :doc:`dwave-preprocessing </docs_preprocessing/sdk_index>`.
 
 .. include:: hybrid_solver_service.rst
