@@ -52,6 +52,7 @@ not exceed 5.
 
     j = dimod.Integer("j")
     cqm = dimod.ConstrainedQuadraticModel()
+    cqm.set_objective(-j)
     cqm.add_constraint(j <= 5, "Maximum j")
 
 Clearly, the global optimum for this CQM occurs for the default value of the lower
