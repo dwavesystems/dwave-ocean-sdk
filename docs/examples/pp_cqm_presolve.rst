@@ -39,8 +39,8 @@ This example adds an optional step of preprocessing the submitted model.
 Formulate the Problem
 =====================
 
-This example uses a simplified problem for illustrative purposes: a CQM with no
-objective and just a single, one-variable constraint. This is sufficient to
+This example uses a simplified problem for illustrative purposes: a CQM with just
+a single-variable objective and constraint. This is sufficient to
 show how to run :class:`~dwave.preprocessing.presolve.Presolver` methods.
 
 The CQM created below has a constraint requiring that integer variable ``j``
@@ -52,7 +52,7 @@ not exceed 5.
 
     j = dimod.Integer("j")
     cqm = dimod.ConstrainedQuadraticModel()
-    cqm.set_objective(-j)
+    cqm.set_objective(j)
     cqm.add_constraint(j <= 5, "Maximum j")
 
 Clearly, the global optimum for this CQM occurs for the default value of the lower
@@ -88,7 +88,20 @@ capable of solving this very simple CQM.
 >>> print(sampleset.first)
 Sample(sample={0: 0}, energy=0.0, num_occurrences=1, is_satisfied=array([], dtype=bool), is_feasible=True)
 
-View the solution as assignments of the original CQM's variables: 
+View the solution as assignments of the original CQM's variables:
 
 >>> presolve.restore_samples(sampleset.first.sample)
 (array([[0.]]), Variables(['j']))
+
+You can also create the sample set for the original CQM:
+
+>>> restored_sampleset = dimod.SampleSet.from_samples_cqm(presolve.restore_samples(sampleset.samples()), cqm)
+>>> print(restored_sampleset)
+    j energy num_oc. is_sat. is_fea.
+0 0.0    0.0       1 arra...    True
+1 1.0    1.0       1 arra...    True
+2 2.0    2.0       1 arra...    True
+3 3.0    3.0       1 arra...    True
+4 4.0    4.0       1 arra...    True
+5 5.0    5.0       1 arra...    True
+['INTEGER', 6 rows, 6 samples, 1 variables]
