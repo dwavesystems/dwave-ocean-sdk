@@ -7,9 +7,6 @@
 [submodule "dwave-hybrid"]
 	path = dwave-hybrid
 	url = https://github.com/dwavesystems/dwave-hybrid
-[submodule "dwave-neal"]
-	path = dwave-neal
-	url = https://github.com/dwavesystems/dwave-neal
 [submodule "dwave-tabu"]
 	path = dwave-tabu
 	url = https://github.com/dwavesystems/dwave-tabu
