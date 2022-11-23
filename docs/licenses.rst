@@ -13,7 +13,6 @@ Below are the open-source licenses for the SDK and its tools:
    licenses/hybrid
    licenses/dnx
    licenses/system
-   licenses/tabu
    licenses/minorminer
    licenses/penaltymodel
    licenses/preprocessing

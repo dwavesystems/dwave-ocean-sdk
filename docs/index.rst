@@ -118,13 +118,6 @@ The Ocean SDK includes the :ref:`dwave_cli` and the following packages:
    It also includes several useful composites—layers of pre- and post-processing—that
    can be used with DWaveSampler to handle :term:`minor-embedding`, optimize chain strength, etc.
 
-.. dropdown:: **dwave-tabu** --- Tabu sampler. \
-   :link-badge:`https://docs.ocean.dwavesys.com/en/stable/docs_tabu/sdk_index.html, "docs", cls=badge-primary fr text-white` \
-   :link-badge:`https://github.com/dwavesystems/dwave-tabu, "code", cls=badge-secondary fr text-white`
-
-   An implementation of the MST2 multistart tabu search algorithm for quadratic unconstrained
-   binary optimization (QUBO) problems with a dimod Python wrapper.
-
 .. dropdown:: **minorminer** --- Minor-embeds graphs. \
    :link-badge:`https://docs.ocean.dwavesys.com/en/stable/docs_minorminer/source/sdk_index.html, "docs", cls=badge-primary fr text-white` \
    :link-badge:`https://github.com/dwavesystems/minorminer, "code", cls=badge-secondary fr text-white`
