@@ -98,6 +98,7 @@ The Ocean SDK includes the :ref:`dwave_cli` and the following packages:
    A library that implements the following classical algorithms as :term:`samplers<sampler>` for solving
    :term:`binary quadratic models<BQM>` (BQM):
 
+   * Planar: an exact solver for planar Ising problems with no linear biases.
    * Random: a sampler that draws uniform random samples.
    * Simulated Annealing: a probabilistic heuristic for optimization and approximate
      Boltzmann sampling well suited to finding good solutions of large problems.
