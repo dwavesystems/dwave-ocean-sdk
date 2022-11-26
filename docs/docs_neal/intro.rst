@@ -6,8 +6,8 @@ Introduction
 
 .. attention::
 
-    ``dwave-neal`` is deprecated since ``dwave-ocean-sdk`` 5.4.0 in favor of
-    :ref:`index_dwave_samplers` and will be removed in ``dwave-ocean-sdk`` 7.0.0.
+    ``dwave-neal`` is deprecated since ``dwave-ocean-sdk`` 6.1.0 in favor of
+    :ref:`index_dwave_samplers` and will be removed in ``dwave-ocean-sdk`` 8.0.0.
 
 *Samplers* are processes that sample from low energy states of a problem’s objective function.
 A binary quadratic model (:term:`BQM`\ ) :term:`sampler` samples from low energy states in models

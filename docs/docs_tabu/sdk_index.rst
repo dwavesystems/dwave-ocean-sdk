@@ -6,8 +6,8 @@ dwave-tabu
 
 .. attention::
 
-    ``dwave-neal`` is deprecated since ``dwave-ocean-sdk`` 5.4.0 in favor of
-    :ref:`index_dwave_samplers` and will be removed in ``dwave-ocean-sdk`` 7.0.0.
+    ``dwave-neal`` is deprecated since ``dwave-ocean-sdk`` 6.1.0 in favor of
+    :ref:`index_dwave_samplers` and will be removed in ``dwave-ocean-sdk`` 8.0.0.
 
 A C/C++ implementation of the `MST2 multistart tabu search algorithm
 <https://link.springer.com/article/10.1023/B:ANOR.0000039522.58036.68>`_
