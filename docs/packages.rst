@@ -18,10 +18,11 @@ Packages
   docs_inspector/sdk_index
   docs_neal/sdk_index
   docs_dnx/sdk_index
+  docs_preprocessing/sdk_index
+  docs_samplers/index
   docs_system/sdk_index
   docs_tabu/sdk_index
   docs_minorminer/source/sdk_index
   docs_penalty/sdk_index
-  docs_preprocessing/sdk_index
   docs_pyqubo
   docs_qbsolv

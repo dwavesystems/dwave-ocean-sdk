@@ -54,11 +54,11 @@ The Ocean SDK includes the :ref:`dwave_cli` and the following packages:
    Minimal implementation of the REST interface used to communicate with D-Wave
    :term:`Sampler` API (SAPI) servers.
 
-.. dropdown:: **dwave-greedy** --- Steepest descent solver. \
-   :link-badge:`https://docs.ocean.dwavesys.com/en/stable/docs_greedy/sdk_index.html, "docs", cls=badge-primary fr text-white` \
-   :link-badge:`https://github.com/dwavesystems/dwave-greedy, "code", cls=badge-secondary fr text-white`
+.. dropdown:: **dwave-gate** --- Package for quantum circuits. \
+   :link-badge:`https://github.com/dwavesystems/dwave-gate, "docs", cls=badge-primary fr text-white` \
+   :link-badge:`https://github.com/dwavesystems/dwave-gate, "code", cls=badge-secondary fr text-white`
 
-   An implementation of a steepest descent solver for binary quadratic models.
+   A software package for constructing, modifying and running quantum circuits.
 
 .. dropdown:: **dwave-hybrid** --- Framework for building hybrid solvers. \
    :link-badge:`https://docs.ocean.dwavesys.com/en/stable/docs_hybrid/sdk_index.html, "docs", cls=badge-primary fr text-white` \
@@ -73,12 +73,6 @@ The Ocean SDK includes the :ref:`dwave_cli` and the following packages:
 
    A tool for visualizing problems submitted to, and answers received from, a D-Wave
    structured solver such as a D-Wave 2000Q quantum computer.
-
-.. dropdown:: **dwave-neal** --- Simulated annealing sampler. \
-   :link-badge:`https://docs.ocean.dwavesys.com/en/stable/docs_neal/sdk_index.html, "docs", cls=badge-primary fr text-white` \
-   :link-badge:`https://github.com/dwavesystems/dwave-neal, "code", cls=badge-secondary fr text-white`
-
-   An implementation of a simulated annealing sampler.
 
 .. dropdown:: **dwave-networkx** --- NetworkX extension. \
    :link-badge:`https://docs.ocean.dwavesys.com/en/stable/docs_dnx/sdk_index.html, "docs", cls=badge-primary fr text-white` \
@@ -103,6 +97,22 @@ The Ocean SDK includes the :ref:`dwave_cli` and the following packages:
 
    Library containing common preprocessing tools for quadratic models.
 
+.. dropdown:: **dwave-samplers** --- Classical algorithms for solving binary quadratic models. \
+   :link-badge:`https://docs.ocean.dwavesys.com/en/stable/docs_samplers/index.html, "docs", cls=badge-primary fr text-white` \
+   :link-badge:`https://github.com/dwavesystems/dwave-samplers, "code", cls=badge-secondary fr text-white`
+
+   A library that implements the following classical algorithms as :term:`samplers<sampler>` for solving
+   :term:`binary quadratic models<BQM>` (BQM):
+
+   * Planar: an exact solver for planar Ising problems with no linear biases.
+   * Random: a sampler that draws uniform random samples.
+   * Simulated Annealing: a probabilistic heuristic for optimization and approximate
+     Boltzmann sampling well suited to finding good solutions of large problems.
+   * Steepest Descent: a discrete analogue of gradient descent, often used in
+     machine learning, that quickly finds a local minimum.
+   * Tabu: a heuristic that employs local search with methods to escape local minima.
+   * Tree Decomposition: an exact solver for problems with low treewidth.
+
 .. dropdown:: **dwave-system** --- D-Wave samplers and composites. \
    :link-badge:`https://docs.ocean.dwavesys.com/en/stable/docs_system/sdk_index.html, "docs", cls=badge-primary fr text-white` \
    :link-badge:`https://github.com/dwavesystems/dwave-system, "code", cls=badge-secondary fr text-white`
@@ -114,13 +124,6 @@ The Ocean SDK includes the :ref:`dwave_cli` and the following packages:
    parameters such as system identification and authentication down the stack.
    It also includes several useful composites—layers of pre- and post-processing—that
    can be used with DWaveSampler to handle :term:`minor-embedding`, optimize chain strength, etc.
-
-.. dropdown:: **dwave-tabu** --- Tabu sampler. \
-   :link-badge:`https://docs.ocean.dwavesys.com/en/stable/docs_tabu/sdk_index.html, "docs", cls=badge-primary fr text-white` \
-   :link-badge:`https://github.com/dwavesystems/dwave-tabu, "code", cls=badge-secondary fr text-white`
-
-   An implementation of the MST2 multistart tabu search algorithm for quadratic unconstrained
-   binary optimization (QUBO) problems with a dimod Python wrapper.
 
 .. dropdown:: **minorminer** --- Minor-embeds graphs. \
    :link-badge:`https://docs.ocean.dwavesys.com/en/stable/docs_minorminer/source/sdk_index.html, "docs", cls=badge-primary fr text-white` \

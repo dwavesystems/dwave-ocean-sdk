@@ -7,12 +7,6 @@
 [submodule "dwave-hybrid"]
 	path = dwave-hybrid
 	url = https://github.com/dwavesystems/dwave-hybrid
-[submodule "dwave-neal"]
-	path = dwave-neal
-	url = https://github.com/dwavesystems/dwave-neal
-[submodule "dwave-tabu"]
-	path = dwave-tabu
-	url = https://github.com/dwavesystems/dwave-tabu
 [submodule "dimod"]
 	path = dimod
 	url = https://github.com/dwavesystems/dimod
@@ -31,9 +25,9 @@
 [submodule "dwave-inspector"]
 	path = dwave-inspector
 	url = https://github.com/dwavesystems/dwave-inspector.git
-[submodule "dwave-greedy"]
-	path = dwave-greedy
-	url = https://github.com/dwavesystems/dwave-greedy.git
 [submodule "dwave-preprocessing"]
 	path = dwave-preprocessing
 	url = https://github.com/dwavesystems/dwave-preprocessing.git
+[submodule "dwave-samplers"]
+	path = dwave-samplers
+	url = https://github.com/dwavesystems/dwave-samplers.git
