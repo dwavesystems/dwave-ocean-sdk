@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  ocean: dwave/ocean@1.3
+  ocean: dwave/ocean@1
 
 environment:
   PIP_PROGRESS_BAR: 'off'
@@ -13,7 +13,7 @@ jobs:
         type: string
 
     docker:
-      - image: circleci/python:<< parameters.python-version >>
+      - image: cimg/python:<< parameters.python-version >>
 
     working_directory: ~/repo
 
@@ -60,7 +60,7 @@ jobs:
 
   test-individual-pkgs:
     docker:
-      - image: circleci/python:3.10
+      - image: cimg/python:3.10
 
     working_directory: ~/repo
 
@@ -113,7 +113,7 @@ jobs:
 
   test-doctest:
     docker:
-      - image: circleci/python:3.7-stretch # as of march 2019 RTD uses 3.7
+      - image: cimg/python:3.7 # as of march 2019 RTD uses 3.7
 
     working_directory: ~/repo
 
@@ -160,7 +160,7 @@ jobs:
 
   deploy:
     docker:
-      - image: circleci/python:3.7
+      - image: cimg/python:3.7
 
     working_directory: ~/repo
 
@@ -252,7 +252,7 @@ workflows:
       - test-linux:
           matrix:
             parameters:
-              python-version: &python-versions ["3.7.9", "3.8.9", "3.9.4", "3.10.0"]
+              python-version: &python-versions ["3.7.9", "3.8.9", "3.9.4", "3.10.0", "3.11.0"]
       - test-macos:
           matrix:
             parameters:
