@@ -42,6 +42,16 @@ jobs:
     steps:
       - checkout
 
+      - when:
+          condition:
+            matches:
+              pattern: "^3\\.[123][123456789].*$"
+              value: << parameters.python-version >>
+          steps:
+            - run:
+                name: Update brew to get latest pyenv
+                command: brew update
+
       - ocean/brew-install-pyenv
 
       - ocean/pyenv-install-python:
