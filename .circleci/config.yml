@@ -243,7 +243,7 @@ jobs:
           name: install and run hub-detect
           command: |
             . env/bin/activate
-            bash <(curl -s -L https://detect.synopsys.com/detect.sh) \
+            bash <(curl -s -L https://detect.synopsys.com/detect8.sh) \
               --blackduck.url="$BLACKDUCK_URL" \
               --blackduck.api.token="$BLACKDUCK_TOKEN" \
               --detect.code.location.name=dwave-ocean-sdk-circleci \
@@ -282,6 +282,7 @@ workflows:
               ignore: /.*/
       - black-duck:
           name: black-duck
+          context: blackduck
           filters: *deploy-filters
           matrix:
             parameters:
@@ -308,6 +309,7 @@ workflows:
       - test-doctest
       - black-duck:
           name: black-duck
+          context: blackduck
           matrix:
             parameters:
               # default phase is DEVELOPMENT
