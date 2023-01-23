@@ -282,6 +282,7 @@ workflows:
               ignore: /.*/
       - black-duck:
           name: black-duck
+          context: blackduck
           filters: *deploy-filters
           matrix:
             parameters:
@@ -308,6 +309,7 @@ workflows:
       - test-doctest
       - black-duck:
           name: black-duck
+          context: blackduck
           matrix:
             parameters:
               # default phase is DEVELOPMENT
