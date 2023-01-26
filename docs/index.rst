@@ -55,7 +55,7 @@ The Ocean SDK includes the :ref:`dwave_cli` and the following packages:
    :term:`Sampler` API (SAPI) servers.
 
 .. dropdown:: **dwave-gate** --- Package for quantum circuits. \
-   :link-badge:`https://github.com/dwavesystems/dwave-gate, "docs", cls=badge-primary fr text-white` \
+   :link-badge:`https://docs.ocean.dwavesys.com/en/stable/docs_gate/sdk_index.html, "docs", cls=badge-primary fr text-white` \
    :link-badge:`https://github.com/dwavesystems/dwave-gate, "code", cls=badge-secondary fr text-white`
 
    A software package for constructing, modifying and running quantum circuits.
