@@ -104,7 +104,7 @@ jobs:
               fi
               done
             pip install cython wheel
-            pip install .
+            pip install .[all]
             dwave install --all --yes
 
       - run:
@@ -141,7 +141,7 @@ jobs:
           command: |
             . env/bin/activate
             python --version
-            pip install .
+            pip install .[all]
 
       - run:
           name: install docs requirements
@@ -185,7 +185,7 @@ jobs:
           name: verify version matches tag
           command: |
             . env/bin/activate
-            pip install .
+            pip install .[all]
             echo $CIRCLE_TAG
             [[ "$(pip show dwave-ocean-sdk 2>/dev/null | grep Version)" == "Version: $CIRCLE_TAG" ]]
 
@@ -229,7 +229,7 @@ jobs:
             python3 --version
             python3 -m venv env
             . env/bin/activate
-            pip install .
+            pip install .[all]
 
       # we have to mangle the pyproject.toml becuase otherwise black duck
       # decides that we must be using poetry and fails. Luckily we don't
