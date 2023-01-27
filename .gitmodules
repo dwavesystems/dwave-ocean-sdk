@@ -33,4 +33,4 @@
 	url = https://github.com/dwavesystems/dwave-samplers.git
 [submodule "dwave-gate"]
 	path = dwave-gate
-	url = git@github.com:dwavesystems/dwave-gate.git
+	url = https://github.com/dwavesystems/dwave-gate.git
