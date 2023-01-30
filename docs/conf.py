@@ -204,7 +204,7 @@ github_map = {'dwavebinarycsp': 'dwavebinarycsp',
               'embedding': 'dwave-system',
               'tabu': 'dwave-tabu'}
 
-reqs = pkg_resources.get_distribution('dwave-ocean-sdk').requires()
+reqs = pkg_resources.get_distribution('dwave-ocean-sdk').requires(extras=['all'])
 pkgs = [pkg_resources.get_distribution(req) for req in reqs]
 versions = {pkg.project_name: pkg.version for pkg in pkgs}
 
