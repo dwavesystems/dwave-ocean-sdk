@@ -102,13 +102,16 @@ jobs:
               if [[ -f "$subdir"/test_requirements.txt ]]; then
                 pip install -r "$subdir"/test_requirements.txt
               fi
+              if [[ -f "$subdir"/requirements_dev.txt ]]; then
+                pip install -r "$subdir"/requirements_dev.txt
+              fi
               done
-            pip install cython wheel
+            pip install cython wheel cgen
             pip install .[all]
             dwave install --all --yes
 
       - run:
-          name: run individual package unittests
+          name: run individual package unit tests
           command: |
             . env/bin/activate
             for subdir in */; do
@@ -116,9 +119,16 @@ jobs:
                 cd "$subdir"
                 pwd
                 if [[ -f "setup.py" ]]; then
+                  if [[ "$subdir" == "dwave-gate/" ]]; then
+                    python dwave/gate/simulator/operation_generation.py
+                  fi
                   python setup.py build_ext --inplace 2>/dev/null
                 fi
-                python -m unittest discover
+                if [[ -f "requirements_dev.txt" ]] && grep -q pytest "requirements_dev.txt"; then
+                  python -m pytest tests/
+                else
+                  python -m unittest discover
+                fi
                 cd ../
               fi
             done
