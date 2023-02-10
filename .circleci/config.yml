@@ -124,11 +124,7 @@ jobs:
                   fi
                   python setup.py build_ext --inplace 2>/dev/null
                 fi
-                if [[ -f "requirements_dev.txt" ]] && grep -q pytest "requirements_dev.txt"; then
-                  python -m pytest tests/
-                else
-                  python -m unittest discover
-                fi
+                python -m pytest tests
                 cd ../
               fi
             done
