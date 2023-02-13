@@ -13,6 +13,7 @@ Packages
   docs_dimod/sdk_index
   docs_binarycsp/sdk_index
   docs_cloud/sdk_index
+  docs_gate/sdk_index
   docs_greedy/sdk_index
   docs_hybrid/sdk_index
   docs_inspector/sdk_index

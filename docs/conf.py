@@ -179,7 +179,7 @@ panels_add_bootstrap_css = False
 # -- Intersphinx ----------------------------------------------------------
 intersphinx_mapping = {
     'python': ('https://docs.python.org/3/', None),
-    'numpy': ('http://docs.scipy.org/doc/numpy/', None),
+    'numpy': ('http://numpy.org/doc/stable/', None),
     'networkx': ('https://networkx.org/documentation/stable/', None),
     'sysdocs_gettingstarted': ('https://docs.dwavesys.com/docs/latest/', None),
     'oceandocs': ('https://docs.ocean.dwavesys.com/en/stable/', None),
@@ -190,6 +190,7 @@ intersphinx_mapping = {
 github_map = {'dwavebinarycsp': 'dwavebinarycsp',
               'cloud': 'dwave-cloud-client',
               'dimod':  'dimod',
+              'gate': 'dwave-gate',
               'dwave_networkx': 'dwave-networkx',
               'greedy': 'dwave-greedy',
               'hybrid': 'dwave-hybrid',
@@ -203,7 +204,7 @@ github_map = {'dwavebinarycsp': 'dwavebinarycsp',
               'embedding': 'dwave-system',
               'tabu': 'dwave-tabu'}
 
-reqs = pkg_resources.get_distribution('dwave-ocean-sdk').requires()
+reqs = pkg_resources.get_distribution('dwave-ocean-sdk').requires(extras=['all'])
 pkgs = [pkg_resources.get_distribution(req) for req in reqs]
 versions = {pkg.project_name: pkg.version for pkg in pkgs}
 

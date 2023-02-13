@@ -102,13 +102,16 @@ jobs:
               if [[ -f "$subdir"/test_requirements.txt ]]; then
                 pip install -r "$subdir"/test_requirements.txt
               fi
+              if [[ -f "$subdir"/requirements_dev.txt ]]; then
+                pip install -r "$subdir"/requirements_dev.txt
+              fi
               done
-            pip install cython wheel
-            pip install .
+            pip install cython wheel cgen
+            pip install .[all]
             dwave install --all --yes
 
       - run:
-          name: run individual package unittests
+          name: run individual package unit tests
           command: |
             . env/bin/activate
             for subdir in */; do
@@ -116,9 +119,12 @@ jobs:
                 cd "$subdir"
                 pwd
                 if [[ -f "setup.py" ]]; then
+                  if [[ "$subdir" == "dwave-gate/" ]]; then
+                    python dwave/gate/simulator/operation_generation.py
+                  fi
                   python setup.py build_ext --inplace 2>/dev/null
                 fi
-                python -m unittest discover
+                python -m pytest tests
                 cd ../
               fi
             done
@@ -141,7 +147,7 @@ jobs:
           command: |
             . env/bin/activate
             python --version
-            pip install .
+            pip install .[all]
 
       - run:
           name: install docs requirements
@@ -185,7 +191,7 @@ jobs:
           name: verify version matches tag
           command: |
             . env/bin/activate
-            pip install .
+            pip install .[all]
             echo $CIRCLE_TAG
             [[ "$(pip show dwave-ocean-sdk 2>/dev/null | grep Version)" == "Version: $CIRCLE_TAG" ]]
 
@@ -229,7 +235,7 @@ jobs:
             python3 --version
             python3 -m venv env
             . env/bin/activate
-            pip install .
+            pip install .[all]
 
       # we have to mangle the pyproject.toml becuase otherwise black duck
       # decides that we must be using poetry and fails. Luckily we don't

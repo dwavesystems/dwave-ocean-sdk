@@ -10,6 +10,7 @@ Below are the open-source licenses for the SDK and its tools:
    licenses/sdk
    licenses/binarycsp
    licenses/cloud
+   licenses/gate
    licenses/hybrid
    licenses/dnx
    licenses/system
@@ -25,7 +26,7 @@ D-Wave end-user license agreements (EULAs):
 .. toctree::
    :maxdepth: 1
 
-   licenses/drivers 
+   licenses/drivers
    licenses/inspector
 
- 
+
