@@ -290,13 +290,8 @@ workflows:
               configuration: [--detect.project.version.phase=RELEASED]
 
   nightly:
-    triggers:
-      - schedule:
-          cron: "0 0 * * *"
-          filters:
-            branches:
-              only:
-                - master
+    when:
+      equal: [nightly, << pipeline.schedule.name >>]
     jobs:
       - test-linux:
           matrix:
