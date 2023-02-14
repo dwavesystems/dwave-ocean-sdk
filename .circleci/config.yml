@@ -266,6 +266,9 @@ workflows:
   version: 2
 
   test:
+    when:
+      not:
+        equal: [scheduled_pipeline, << pipeline.trigger_source >>]
     jobs:
       - test-linux:
           matrix:
@@ -281,7 +284,7 @@ workflows:
   deploy:
     jobs:
       - deploy:
-          filters: &deploy-filters
+          filters: &on-tag-push
             tags:
               only: /^[0-9]+(\.[0-9]+)*((\.dev|rc)([0-9]+)?)?$/
             branches:
@@ -289,7 +292,7 @@ workflows:
       - black-duck:
           name: black-duck
           context: blackduck
-          filters: *deploy-filters
+          filters: *on-tag-push
           matrix:
             parameters:
               # default name is the version number
