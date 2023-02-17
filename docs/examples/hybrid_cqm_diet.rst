@@ -261,7 +261,7 @@ Constraints
 -----------
 
 The problem has the following constraints of the
-`Daily Required Nutrients <example_cqm_diet_reals_table_2>`_ table:
+:ref:`Daily Required Nutrients <example_cqm_diet_reals_table_2>` table:
 
 1. Calories: no more than 2000
 2. Protein: at least 50

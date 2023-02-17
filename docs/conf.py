@@ -69,6 +69,7 @@ linkcheck_ignore = [r'.clang-format',                    # would need symlink
                     r'setup.cfg',                        # would need symlink (for dimod)
                     r'https://cloud.dwavesys.com/leap',  # redirects, many checks
                     r'https://scipy.org',                # ignores robots
+                    r'https://epubs.siam.org',           # ignores robots since Feb 2023
                     r'LICENSE',                          # would need symlink, checked by submodule
                     r'CONTRIBUTING',                     # would need symlink, checked by submodule
                     ]
