@@ -63,8 +63,8 @@ Supported Models and Hybrid Samplers
 ====================================
 
 D-Wave's quantum computers solve **binary** quadratic models;
-`Leap <https://cloud.dwavesys.com/leap/>`_ `hybrid <hybrid_sdk>`_ solvers can
-solver models with more varied variable types.
+`Leap <https://cloud.dwavesys.com/leap/>`_ :ref:`hybrid solvers <using_hybrid>` can
+solve models with more varied variable types.
 
 .. list-table:: Variable Types and Supported Models, Hybrid Samplers
    :header-rows: 1

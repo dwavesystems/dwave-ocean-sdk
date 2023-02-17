@@ -69,7 +69,7 @@ additional information:
 >>> print(sampleset.info.keys())    # doctest: +SKIP
 dict_keys(['timing', 'problem_id', 'embedding_context', 'warnings'])
 
-For example, the `timing information <https://docs.dwavesys.com/docs/latest/doc_timing.html>`_ 
+For example, the `timing information <https://docs.dwavesys.com/docs/latest/c_qpu_timing.html>`_ 
 for the problem might look something like:
 
 >>> print(sampleset.info["timing"])  # doctest: +SKIP
