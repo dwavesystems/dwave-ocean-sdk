@@ -138,7 +138,6 @@ Format
 
 * Our format is based on `Google C++ style guide <https://google.github.io/styleguide/cppguide.html>`_ with some exceptions:
 
-  - Column width is limited to 120 characters. Best effort should be made to keep to 80 characters, but up to 120 can be used for clarity.
   - The base indent level is 4.
   - Non-const references are allowed.
 

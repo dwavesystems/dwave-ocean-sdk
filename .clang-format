@@ -2,10 +2,10 @@
 Language: Cpp
 BasedOnStyle: Google
 
-ColumnLimit: 120
+ColumnLimit: 80
 NamespaceIndentation: Inner
 
 # Scaled by a factor of 2 such that the base indent is 4
-AccessModifierOffset: -2
+AccessModifierOffset: -3
 IndentWidth: 4
 ...
