@@ -42,18 +42,18 @@ formulation of a BQM for a Boolean gate in detail. This example briefly repeats 
 of mathematically formulating a BQM while adding details on the underlying physical processes.
 
 A D-Wave quantum processing unit (:term:`QPU`) is a chip with interconnected qubits; for example,
-a D-Wave 2000Q has up to 2048 qubits connected in a :term:`Chimera` topology. Programming it
+a D-Wave 2000Q has over 5000 qubits connected in a :term:`Pegasus` topology. Programming it
 consists mostly of setting two inputs:
 
 * Qubit bias weights: control the degree to which a qubit tends to a particular state.
 * Qubit coupling strengths: control the degree to which two qubits tend to the same state.
 
 The biases and couplings define an energy landscape, and the D-Wave quantum computer seeks
-the minimum energy of that landscape. Once you express your problem in a formulation\ [#]_
+the minimum energy of that landscape. Once you express your problem in a formulation\ [1]_
 such that desired outcomes have low energy values and undesired outcomes high energy values,
 the D-Wave system solves your problem by finding the low-energy states.
 
-.. [#] This formulation, called an :term:`objective function`, corresponds to the :term:`Ising`
+.. [1] This formulation, called an :term:`objective function`, corresponds to the :term:`Ising`
        model traditionally used in statistical mechanics: given :math:`N` variables
        :math:`s_1,...,s_N`, corresponding to physical Ising spins, where each variable
        :math:`s_i` can have values :math:`-1` or :math:`+1`, the system energy for
@@ -131,11 +131,10 @@ The line of code below sets the QUBO coefficients for this AND gate.
 
 >>> Q = {('x1', 'x2'): 1, ('x1', 'z'): -2, ('x2', 'z'): -2, ('z', 'z'): 3}
 
-Solve the Problem by Sampling: Automated Minor-Embedding
-========================================================
+Solve the Problem by Sampling (Automated Minor-Embedding)
+=========================================================
 
-For reference, first solve with the same steps used in the :ref:`not` example
-before solving again while manually controlling additional parameters.
+For reference, first solve with the same steps used in the :ref:`not` example.
 
 Again use sampler :class:`~dwave.system.samplers.DWaveSampler` from Ocean software's
 :doc:`dwave-system </docs_system/sdk_index>` and
@@ -175,8 +174,8 @@ Note that lines 5 and 6 of output from this execution show samples that seem
 identical to lines 1 and 2 (but with non-zero values in the rightmost column,
 :code:`chain_breaks`\ ). The next section addresses that.
 
-Solve the Problem by Sampling: Non-automated Minor-Embedding
-============================================================
+Understanding Minor-Embedding
+=============================
 
 This section looks more closely into :term:`minor-embedding`. Above and in the :ref:`not`
 example, :doc:`dwave-system </docs_system/sdk_index>`
@@ -197,39 +196,46 @@ D-Wave QPU. Here, do this mapping yourself.
 The next line of code looks at properties of the sampler. Select the first node,
 which on a QPU is a qubit, and print its adjacent nodes, i.e., coupled qubits.
 
+>>> sampler.nodelist[0]
+30
 >>> print(sampler.adjacency[sampler.nodelist[0]])      # doctest: +SKIP
-{128, 4, 5, 6, 7}
+{2985, 2955, 45, 2970, 2940, 31}
 
-For the D-Wave 2000Q system the above code ran on, you see that the first available qubit
-is adjacent to qubit 4 and four others. On an Advantage system with its Pegasus
-topology, you might see an output such as this:
+For the Advantage system the above code ran on, you see that the first available 
+qubit, ``30``, is adjacent to qubit ``2985`` and a few others. 
 
->>> print(sampler.adjacency[sampler.nodelist[0]])      # doctest: +SKIP
-{31, 2940, 2955, 2970, 2985}
+You can map the NOT problem's two linear coefficients and single quadratic
+coefficient, :math:`q_1=q_2=-1` and :math:`q_{1,2}=2`, to biases on the 
+Advantage's qubits ``30`` and ``2985`` and coupling ``(30, 2985)``. The figure 
+below shows a minor embedding of the NOT gate onto an Advantage QPU.\ [2]_
 
-You can map the NOT problem's two linear coefficients and single quadratic coefficient,
-:math:`q_1=q_2=-1` and :math:`q_{1,2}=2`, to biases on the D-Wave 2000Q's qubits 0 and 4
-and coupling (0, 4). The figure below shows a minor embedding of the NOT gate into
-the D-Wave 2000Q QPU unit cell (four horizontal qubits connected to four vertical qubits
-via couplers).
+.. figure:: ../_images/embedding_pegasus_NOT.png
+    :name: Embedding_Pegasus_NOT
+    :alt: image
+    :align: center
+    :scale: 50 %
 
-.. figure:: ../_images/Embedding_Chimera_NOT.png
-   :name: Embedding_Chimera_NOT
-   :alt: image
-   :align: center
-   :scale: 90 %
+    A NOT gate minor embedded onto an Advantage QPU. Variables :math:`x,z` 
+    (left) are minor-embedded as qubits ``30`` and ``2985`` (right). Coupling 
+    strength :math:`q_{1,2}=0.5` is also shown.
 
-   A NOT gate minor embedded into the topmost left unit cell of a
-   D-Wave 2000Q QPU. Variables :math:`x_1,x_2` are minor
-   embedded as qubits 0 and 4 (blue circles). Biases :math:`q_1,q_2=-1,-1`
-   and coupling strength :math:`q_{1,2}=2` are also shown.
+.. [2]
+    As explained in the 
+    :std:doc:`system documentation <sysdocs_gettingstarted:doc_getting_started>`,
+    on the QPU linear biases (amplitude of magnetic fields applied to qubits) 
+    and quadratic biases (strength of coupling between qubits) represent an 
+    Ising model (see [1_]), and therefore values are translated,
 
-The following code uses the :class:`~dwave.system.composites.FixedEmbeddingComposite` composite
-to manually minor-embed the problem in the D-Wave 2000Q QPU. Its last line prints a confirmation
-that indeed the two selected qubits are adjacent (coupled).
+    >>> dimod.qubo_to_ising(Q_not) 
+    ({'x': 0.0, 'z': 0.0}, {('x', 'z'): 0.5}, -0.5)
+
+    producing the bias of ``0.5`` for coupler ``(30, 2985)`` above. 
+
+The following code uses the :class:`~dwave.system.composites.FixedEmbeddingComposite` 
+composite to manually minor-embed the problem on an Advantage QPU. 
 
 >>> from dwave.system import FixedEmbeddingComposite
->>> sampler_embedded = FixedEmbeddingComposite(sampler, {'x': [0], 'z': [4]})
+>>> sampler_embedded = FixedEmbeddingComposite(sampler, {"x": [30], "z": [2985]})
 >>> print(sampler_embedded.adjacency["x"])
 {'z'}
 
@@ -239,14 +245,11 @@ As before, ask for 5000 samples.
 ...                                          label='SDK Examples - AND Gate')
 >>> print(sampleset)   # doctest: +SKIP
    x  z energy num_oc. chain_.
-0  0  1   -1.0    2310     0.0
-1  1  0   -1.0    2688     0.0
+0  0  1   -1.0    2264     0.0
+1  1  0   -1.0    2733     0.0
 2  0  0    0.0       2     0.0
-['BINARY', 3 rows, 5000 samples, 2 variables]
-
-On an Advantage system, the code above might set an embedding such as:
-
->>> sampler_embedded = FixedEmbeddingComposite(sampler, {'x': [30], 'z': [31]})
+3  1  1    0.0       1     0.0
+['BINARY', 4 rows, 5000 samples, 2 variables]
 
 From NOT to AND: an Important Difference
 ----------------------------------------
@@ -264,12 +267,12 @@ From NOT to AND: an Important Difference
 
    NOT gate :math:`K_2` complete graph (top) versus AND gate :math:`K_3` complete graph (bottom.)
 
-You saw above how to minor-embed a :math:`K_2` graph on a D-Wave system. To minor-embed a fully connected
-:math:`K_3` graph on a D-Wave 2000Q system requires *chaining* qubits.
+In the previous section, to minor-embed a :math:`K_2` graph on a QPU, you selected
+an arbitrary qubit (the first listed for simplicity) and could then select as 
+the second any of the qubits coupled to the first. To minor-embed a fully connected
+:math:`K_3` graph on a D-Wave 2000Q system is less straightforward. 
 
-.. note:: Advantage system's topology, Pegasus, can minor-embed a :math:`K_3` graph without chaining
-   qubits. However, this simple example is useful for understanding the concept, which applies to
-   most large problems embedded on either system.
+Larger cliques such as :math:`K_5` require *chaining* qubits.
 
 Minor-Embedding an AND Gate
 ---------------------------
