@@ -421,12 +421,20 @@ Advantage QPU.
 Chain Strength 
 --------------
 
-For illustrative purposes, the following code purposely weakens the
+For illustrative purposes, this subsection purposely weakens the
 :ref:`chain strength <concepts__chain_strength>` (strength of the coupling 
-between qubits ``45`` and ``46``, which represent variable :math:`z`). By 
-explicitly setting chain strength to a low value of 0.25, the two qubits are 
-not strongly correlated and the result is that many returned samples represent 
-invalid states for an AND gate.
+between qubits ``45`` and ``46``, which represent variable :math:`z`). 
+
+In the previous subsection, the chain strength, which by default is set by the 
+:func:`~dwave.embedding.chain_strength.uniform_torque_compensation` function,
+was close to 1. 
+
+>>> print(round(sampleset.info['embedding_context']['chain_strength'], 3))  # doctest: +SKIP
+0.866
+
+The following code explicitly sets chain strength to a lower value of ``0.25``. 
+Consequently, the two qubits are less strongly correlated and the result is that 
+many returned samples represent invalid states for an AND gate.
 
 .. note:: The next code requires the use of Ocean's 
     :std:doc:`docs_inspector/sdk_index` tool.
