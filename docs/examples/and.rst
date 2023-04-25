@@ -227,13 +227,13 @@ onto an Advantage QPU.
     
 Notice that coupling strength is :code:`BIAS 0.5` above: as explained in the 
 :std:doc:`system documentation <sysdocs_gettingstarted:doc_getting_started>`,
-the QPU can be viewed as minimizing the Ising model of [1_] above, with linear 
-biases setting the amplitudes of magnetic fields applied to qubits and quadratic 
-biases the strength of coupling between qubits. While QUBOs are more convenient 
-to work with for some problems, Ocean converts problems submitted to a QPU to 
-equivalent Ising models, producing the :math:`J_{1,2}` bias of ``0.5`` for 
-the ``[30, 31]`` coupler shown above (and, not shown, zero :math:`h_1=h_2` 
-biases on the two qubits):
+the QPU can be viewed as minimizing the Ising model (see Ising_ footnote
+above), with linear biases setting the amplitudes of magnetic fields applied 
+to qubits and quadratic biases the strength of coupling between qubits. While
+QUBOs are more convenient to work with for some problems, Ocean converts 
+problems submitted to a QPU to equivalent Ising models, producing the 
+:math:`J_{1,2}` bias of ``0.5`` for the ``[30, 31]`` coupler shown above (and
+, not shown, zero :math:`h_1=h_2` biases on the two qubits):
 
 >>> dimod.qubo_to_ising(Q_not) 
 ({'x': 0.0, 'z': 0.0}, {('x', 'z'): 0.5}, -0.5)
