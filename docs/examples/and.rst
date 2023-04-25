@@ -49,11 +49,11 @@ consists mostly of setting two inputs:
 * Qubit coupling strengths: control the degree to which two qubits tend to the same state.
 
 The biases and couplings define an energy landscape, and the D-Wave quantum computer seeks
-the minimum energy of that landscape. Once you express your problem in a formulation\ [1]_
+the minimum energy of that landscape. Once you express your problem in a formulation\ [#Ising]_
 such that desired outcomes have low energy values and undesired outcomes high energy values,
 the D-Wave system solves your problem by finding the low-energy states.
 
-.. [1] This formulation, called an :term:`objective function`, corresponds to the :term:`Ising`
+.. [#Ising] This formulation, called an :term:`objective function`, corresponds to the :term:`Ising`
        model traditionally used in statistical mechanics: given :math:`N` variables
        :math:`s_1,...,s_N`, corresponding to physical Ising spins, where each variable
        :math:`s_i` can have values :math:`-1` or :math:`+1`, the system energy for
