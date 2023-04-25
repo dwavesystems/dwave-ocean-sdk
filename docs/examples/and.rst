@@ -141,7 +141,7 @@ For reference, first solve with the same steps used in the :ref:`not` example.
 Again use sampler :class:`~dwave.system.samplers.DWaveSampler` from Ocean software's
 :doc:`dwave-system </docs_system/sdk_index>` and
 its :class:`~dwave.system.composites.EmbeddingComposite` composite to :term:`minor-embed`
-the unstructured problem (variables x1, x2, and z) on the sampler's graph structure (the
+the unstructured problem (variables :math:`x_1`, :math`x_2`, and :math`z`) on the sampler's graph structure (the
 QPU's numerically indexed qubits).
 
 The next code sets up a D-Wave system as the sampler.
