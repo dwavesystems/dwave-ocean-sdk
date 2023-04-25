@@ -199,7 +199,7 @@ The next line of code looks at the ``nodelist`` property of the sampler. Select
 the first node, which on a QPU is a qubit, and print its adjacent nodes, which 
 are the qubits it is coupled to.
 
->>> sampler.nodelist[0]
+>>> sampler.nodelist[0]   # doctest: +SKIP
 30
 >>> print(sampler.adjacency[sampler.nodelist[0]])      # doctest: +SKIP
 {2985, 2955, 45, 2970, 2940, 31}
@@ -256,7 +256,7 @@ As in the :ref:`not` example, most the results from 5000 samples are valid
 states of a NOT gate, with complementary values for :math:`x` and :math:`z`.
 
 >>> sampleset = sampler_embedded.sample_qubo(Q_not, num_reads=5000,
-...                                          label='SDK Examples - AND Gate')
+...                                          label='SDK Examples - AND Gate') # doctest: +SKIP
 >>> print(sampleset)   # doctest: +SKIP
    x  z energy num_oc. chain_.
 0  0  1   -1.0    2264     0.0
@@ -292,7 +292,7 @@ From NOT to AND to Larger Problems
 
 In the previous subsection, to minor-embed a :math:`K_2` graph on a QPU, you selected
 an arbitrary qubit (for simplicity, the first listed) and could then select as 
-the second any of the qubits coupled to the first. To minor-embed a :math:`K_3` 
+the second any of the qubits coupled to the first. Minor-embedding a :math:`K_3` 
 graph on a D-Wave QPU is less straightforward. 
 
 Consider trying to expand the minor embedding you found for the NOT gate above 
@@ -307,7 +307,7 @@ qubit coupled to both:
 
 Qubit ``30`` is coupled to 5 additional qubits and qubit ``31`` is coupled to 6,\ [#]_
 but none common to both. Because each qubit is coupled to a limited set of other 
-qubits, only a small subset of coupled qubits are also coupled in common to a 
+qubits, only a minority of coupled qubits are also coupled in common to a 
 third qubit.
 
 .. [#]
@@ -392,7 +392,7 @@ to qubit ``46``. You can represent variable :math:`z` as a chain of qubits
 True
 >>> sampler_embedded = FixedEmbeddingComposite(sampler, {"x1": [30], "x2": [31], "z": [45, 46]})   # doctest: +SKIP
 >>> sampleset = sampler_embedded.sample_qubo(Q, num_reads=5000,
-...                                          label='SDK Examples - AND Gate')
+...                                          label='SDK Examples - AND Gate') # doctest: +SKIP
 >>> print(sampleset)   # doctest: +SKIP
   x1 x2  z energy num_oc. chain_b.
 0  0  1  0    0.0    1522      0.0
