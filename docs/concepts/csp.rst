@@ -12,17 +12,17 @@ The map-coloring CSP, for example, is to assign a color to each region of a map 
 any two regions sharing a border have different colors.
 
 .. figure:: ../_images/Problem_MapColoring.png
-   :name: Problem_MapColoring
-   :alt: image
-   :align: center
-   :scale: 70 %
+    :name: Problem_MapColoring
+    :alt: image
+    :align: center
+    :scale: 70 %
 
-   Coloring a map of Canada with four colors.
+    Coloring a map of Canada with four colors.
 
 The constraints for the map-coloring problem can be expressed as follows:
 
-* Each region is assigned one color only, of :math:`C` possible colors.
-* The color assigned to one region cannot be assigned to adjacent regions.
+*   Each region is assigned one color only, of :math:`C` possible colors.
+*   The color assigned to one region cannot be assigned to adjacent regions.
 
 A finite domain CSP consists of a set of variables, a specification
 of the domain of each variable, and a specification of the
@@ -59,16 +59,16 @@ can be expressed as a set of valid configurations: (0, 0, 0), (0, 1, 0), (1, 0, 
 (1, 1, 1), where the variable order is :math:`(x_1, x_2, y)`.
 
 .. table:: Boolean AND Operation
-   :name: BooleanANDAsPenalty
+    :name: BooleanANDAsPenalty
 
-   ===============  ============================
-   :math:`x_1,x_2`  :math:`y`
-   ===============  ============================
-   :math:`0,0`      :math:`0`
-   :math:`0,1`      :math:`0`
-   :math:`1,0`      :math:`0`
-   :math:`1,1`      :math:`1`
-   ===============  ============================
+    ===============  ============================
+    :math:`x_1,x_2`  :math:`y`
+    ===============  ============================
+    :math:`0,0`      :math:`0`
+    :math:`0,1`      :math:`0`
+    :math:`1,0`      :math:`0`
+    :math:`1,1`      :math:`1`
+    ===============  ============================
 
 You can use Ocean's :doc:`dwavebinarycsp </docs_binarycsp/sdk_index>` to construct a :term:`BQM` from 
 a CSP. It maps each individual constraint in the CSP to a ‘small’ Ising model or QUBO, in a mapping 
@@ -76,12 +76,12 @@ called a :doc:`penalty model </docs_penalty/sdk_index>`.
 
 For more information on using the D-Wave system to solve CSPs, see the following documentation:
 
-* :std:doc:`Getting Started with the D-Wave System <sysdocs_gettingstarted:doc_getting_started>`
+*   :std:doc:`Getting Started with the D-Wave System <sysdocs_gettingstarted:doc_getting_started>`
 
-   Introduces the use of QUBOs to represent constraints in some simple examples.
-* :std:doc:`D-Wave Problem-Solving Handbook <sysdocs_gettingstarted:doc_handbook>`
+    Introduces the use of QUBOs to represent constraints in some simple examples.
+*   :std:doc:`D-Wave Problem-Solving Handbook <sysdocs_gettingstarted:doc_handbook>`
 
-   Provides a variety of techniques for, and examples of, reformulating CSPs as BQMs.
+    Provides a variety of techniques for, and examples of, reformulating CSPs as BQMs.
 
 
 

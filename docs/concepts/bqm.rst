@@ -50,15 +50,15 @@ of a problem.
 These models and their use in solving problems on the D-Wave system is described
 in the following documentation:
 
-* :std:doc:`Getting Started with the D-Wave System <sysdocs_gettingstarted:doc_getting_started>`
+*   :std:doc:`Getting Started with the D-Wave System <sysdocs_gettingstarted:doc_getting_started>`
 
-   Introduces key concepts such as objective functions, Ising models, QUBOs, and graphs, explains
-   how these models are used to represent problems, and provides some simple examples.
-* :std:doc:`D-Wave Problem-Solving Handbook <sysdocs_gettingstarted:doc_handbook>`
+    Introduces key concepts such as objective functions, Ising models, QUBOs, and graphs, explains
+    how these models are used to represent problems, and provides some simple examples.
+*   :std:doc:`D-Wave Problem-Solving Handbook <sysdocs_gettingstarted:doc_handbook>`
 
-   Provides a variety of techniques for, and examples of, reformulating problems as BQMs.
-* :std:doc:`Solving Problems on a D-Wave System <oceandocs:overview/solving_problems>`
+    Provides a variety of techniques for, and examples of, reformulating problems as BQMs.
+*   :std:doc:`Solving Problems on a D-Wave System <oceandocs:overview/solving_problems>`
 
-   Describes and demonstrates the use of BQM in the context of Ocean software.
+    Describes and demonstrates the use of BQM in the context of Ocean software.
 
 

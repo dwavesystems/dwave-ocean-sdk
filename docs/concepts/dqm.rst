@@ -50,15 +50,15 @@ of a problem.
 These models and their use in solving problems on the D-Wave system are described
 in the following documentation:
 
-* Example :ref:`map_dqm`
+*   Example :ref:`map_dqm`
 
-   Shows an example of using `Leap <https://cloud.dwavesys.com/leap/>`_\ 's hybrid
-   DQM solver, ``hybrid_binary_quadratic_model_version<x>``, to solve a map
-   coloring problem.
-* :class:`dimod.DiscreteQuadraticModel` class documentation
+    Shows an example of using `Leap <https://cloud.dwavesys.com/leap/>`_\ 's hybrid
+    DQM solver, ``hybrid_binary_quadratic_model_version<x>``, to solve a map
+    coloring problem.
+*   :class:`dimod.DiscreteQuadraticModel` class documentation
 
-   Describes the DQM class and its methods.
-* :class:`~dwave.system.samplers.LeapHybridDQMSampler` class documentation
+    Describes the DQM class and its methods.
+*   :class:`~dwave.system.samplers.LeapHybridDQMSampler` class documentation
 
-   Describes Leap's DQM solver API.
+    Describes Leap's DQM solver API.
 

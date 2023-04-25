@@ -82,7 +82,7 @@ Other qubits might have been chosen; for example,
 
 intentionally sets the embedding shown below to represent this same :math:`K_3` graph:
 
- .. figure:: ../_images/embedding_3var6qubits.png
+.. figure:: ../_images/embedding_3var6qubits.png
 	:align: left
 	:name: Embedding3var6qubits
 	:scale: 60 %
@@ -158,7 +158,7 @@ The solutions of line 2 and 6 above shown a chains broken in a third of
 the variables, meaning that for variable :math:`s_0` the two qubits representing
 it did not return identical values. 
 
- .. figure:: ../_images/embedding_3var6groundstatesBroken.png
+.. figure:: ../_images/embedding_3var6groundstatesBroken.png
 	:align: left
 	:name: Embedding3var6qubitsGroundStatesBroken
 	:scale: 60 %
@@ -168,22 +168,22 @@ it did not return identical values.
 
 For information on handling embedding and chains, see the following documentation:
 
-* :ref:`and`, :ref:`multi_gate`, and :ref:`inspector_graph_partitioning` examples
+*   :ref:`and`, :ref:`multi_gate`, and :ref:`inspector_graph_partitioning` examples
 
-   Show through some simple examples how to embed and set chain strength.
-* :std:doc:`minorminer <oceandocs:docs_minorminer/source/sdk_index>` tool
+    Show through some simple examples how to embed and set chain strength.
+*   :std:doc:`minorminer <oceandocs:docs_minorminer/source/sdk_index>` tool
 
-   Is the hueristic used by common Ocean embedding :term:`composite`\ s.
-* :std:doc:`problem inspector <oceandocs:docs_inspector/sdk_index>` tool
+    Is the hueristic used by common Ocean embedding :term:`composite`\ s.
+*   :std:doc:`problem inspector <oceandocs:docs_inspector/sdk_index>` tool
 
-   Visualizes embeddings.  
-* :std:doc:`dwave-system <oceandocs:docs_system/reference/composites>` Composites section
+    Visualizes embeddings.  
+*   :std:doc:`dwave-system <oceandocs:docs_system/reference/composites>` Composites section
 
-   Provides embedding composites
+    Provides embedding composites
   
-* :std:doc:`dwave-system <oceandocs:docs_system/reference/embedding>` Embedding section
+*   :std:doc:`dwave-system <oceandocs:docs_system/reference/embedding>` Embedding section
  
-   Describes chain-related functionality.  
+    Describes chain-related functionality.  
 
 
 

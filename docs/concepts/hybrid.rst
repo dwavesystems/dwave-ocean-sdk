@@ -33,14 +33,14 @@ performance.
 
 For more information on hybrid computing, see the following:
 
-* :doc:`dwave-hybrid <docs_hybrid/sdk_index>`
+*   :doc:`dwave-hybrid <docs_hybrid/sdk_index>`
 
-   Describes how to use reference hybrid solvers, build hybrid workflows, and your own hybrid components.
-* :std:doc:`Using Leap’s Hybrid Solvers <sysdocs_gettingstarted:doc_leap_hybrid>`
+    Describes how to use reference hybrid solvers, build hybrid workflows, and your own hybrid components.
+*   :std:doc:`Using Leap’s Hybrid Solvers <sysdocs_gettingstarted:doc_leap_hybrid>`
 
-   Introduces Leap‘s quantum-classical hybrid solvers and provides references to usage information.
+    Introduces Leap‘s quantum-classical hybrid solvers and provides references to usage information.
 
-* :doc:`Getting Started Demonstrations and Jupyter Notebooks <getting_started>` 
+*   :doc:`Getting Started Demonstrations and Jupyter Notebooks <getting_started>` 
 
-   Provides pointers to a code-examples repository and Jupyter Notebooks, which have relevant content.  
+    Provides pointers to a code-examples repository and Jupyter Notebooks, which have relevant content.  
 
