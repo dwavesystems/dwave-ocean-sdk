@@ -42,18 +42,18 @@ formulation of a BQM for a Boolean gate in detail. This example briefly repeats 
 of mathematically formulating a BQM while adding details on the underlying physical processes.
 
 A D-Wave quantum processing unit (:term:`QPU`) is a chip with interconnected qubits; for example,
-a D-Wave 2000Q has up to 2048 qubits connected in a :term:`Chimera` topology. Programming it
+an Advantage QPU has over 5000 qubits connected in a :term:`Pegasus` topology. Programming it
 consists mostly of setting two inputs:
 
 * Qubit bias weights: control the degree to which a qubit tends to a particular state.
 * Qubit coupling strengths: control the degree to which two qubits tend to the same state.
 
 The biases and couplings define an energy landscape, and the D-Wave quantum computer seeks
-the minimum energy of that landscape. Once you express your problem in a formulation\ [#]_
+the minimum energy of that landscape. Once you express your problem in a formulation\ [#Ising]_
 such that desired outcomes have low energy values and undesired outcomes high energy values,
 the D-Wave system solves your problem by finding the low-energy states.
 
-.. [#] This formulation, called an :term:`objective function`, corresponds to the :term:`Ising`
+.. [#Ising] This formulation, called an :term:`objective function`, corresponds to the :term:`Ising`
        model traditionally used in statistical mechanics: given :math:`N` variables
        :math:`s_1,...,s_N`, corresponding to physical Ising spins, where each variable
        :math:`s_i` can have values :math:`-1` or :math:`+1`, the system energy for
@@ -131,16 +131,17 @@ The line of code below sets the QUBO coefficients for this AND gate.
 
 >>> Q = {('x1', 'x2'): 1, ('x1', 'z'): -2, ('x2', 'z'): -2, ('z', 'z'): 3}
 
-Solve the Problem by Sampling: Automated Minor-Embedding
-========================================================
+.. _and_solve_by_sampling: 
 
-For reference, first solve with the same steps used in the :ref:`not` example
-before solving again while manually controlling additional parameters.
+Solve the Problem by Sampling (Automated Minor-Embedding)
+=========================================================
+
+For reference, first solve with the same steps used in the :ref:`not` example.
 
 Again use sampler :class:`~dwave.system.samplers.DWaveSampler` from Ocean software's
 :doc:`dwave-system </docs_system/sdk_index>` and
 its :class:`~dwave.system.composites.EmbeddingComposite` composite to :term:`minor-embed`
-our unstructured problem (variables x1, x2, and z) on the sampler's graph structure (the
+the unstructured problem (variables :math:`x_1`, :math`x_2`, and :math`z`) on the sampler's graph structure (the
 QPU's numerically indexed qubits).
 
 The next code sets up a D-Wave system as the sampler.
@@ -168,15 +169,15 @@ As before, ask for 5000 samples.
 4  0  1  1    1.0       3      0.0
 ['BINARY', 7 rows, 5000 samples, 3 variables]
 
-All the returned samples from this execution represent valid value assignments for an
-AND gate, and minimize (are low-energy states of) the BQM.
+Almost all the returned samples from this execution represent valid value 
+assignments for an AND gate, and minimize (are low-energy states of) the BQM.
 
 Note that lines 5 and 6 of output from this execution show samples that seem
 identical to lines 1 and 2 (but with non-zero values in the rightmost column,
-:code:`chain_breaks`\ ). The next section addresses that.
+:code:`chain_b.`). The next section addresses that.
 
-Solve the Problem by Sampling: Non-automated Minor-Embedding
-============================================================
+Understanding Minor-Embedding
+=============================
 
 This section looks more closely into :term:`minor-embedding`. Above and in the :ref:`not`
 example, :doc:`dwave-system </docs_system/sdk_index>`
@@ -194,62 +195,87 @@ following coefficients:
 Minor embedding maps the two problem variables x and z to the indexed qubits of the
 D-Wave QPU. Here, do this mapping yourself.
 
-The next line of code looks at properties of the sampler. Select the first node,
-which on a QPU is a qubit, and print its adjacent nodes, i.e., coupled qubits.
+The next line of code looks at the ``nodelist`` property of the sampler. Select 
+the first node, which on a QPU is a qubit, and print its adjacent nodes, which 
+are the qubits it is coupled to.
 
+>>> sampler.nodelist[0]   # doctest: +SKIP
+30
 >>> print(sampler.adjacency[sampler.nodelist[0]])      # doctest: +SKIP
-{128, 4, 5, 6, 7}
+{2985, 2955, 45, 2970, 2940, 31}
 
-For the D-Wave 2000Q system the above code ran on, you see that the first available qubit
-is adjacent to qubit 4 and four others. On an Advantage system with its Pegasus
-topology, you might see an output such as this:
+For the Advantage system the above code ran on in this particular execution, 
+you see that the first available qubit, ``30``, is adjacent to qubit ``31`` 
+and a few others. 
 
->>> print(sampler.adjacency[sampler.nodelist[0]])      # doctest: +SKIP
-{31, 2940, 2955, 2970, 2985}
+You can map the NOT problem's two linear coefficients (coefficients of the 
+:math:`-1x` and :math:`-1z` terms) and single quadratic coefficient (coefficient 
+of the :math:`2xz` term) to :math:`q_1=q_2=-1` biases applied to the  Advantage's 
+qubits ``30`` and ``31`` and a :math:`q_{1,2}=2` coupling strength applied to 
+coupler ``[30, 31]``. The figure below shows this embedding of the NOT gate 
+onto an Advantage QPU.
 
-You can map the NOT problem's two linear coefficients and single quadratic coefficient,
-:math:`q_1=q_2=-1` and :math:`q_{1,2}=2`, to biases on the D-Wave 2000Q's qubits 0 and 4
-and coupling (0, 4). The figure below shows a minor embedding of the NOT gate into
-the D-Wave 2000Q QPU unit cell (four horizontal qubits connected to four vertical qubits
-via couplers).
+.. figure:: ../_images/embedding_pegasus_NOT.png
+    :name: Embedding_Pegasus_NOT
+    :alt: image
+    :align: center
+    :scale: 50 %
 
-.. figure:: ../_images/Embedding_Chimera_NOT.png
-   :name: Embedding_Chimera_NOT
-   :alt: image
-   :align: center
-   :scale: 90 %
+    A NOT gate minor embedded onto an Advantage QPU. Variables :math:`x,z` 
+    (left) are minor-embedded to qubits ``30`` and ``31`` (right). This 
+    visualization is produced by Ocean's :std:doc:`docs_inspector/sdk_index` tool.
+    
+Notice that coupling strength is :code:`BIAS 0.5` above: as explained in the 
+:std:doc:`system documentation <sysdocs_gettingstarted:doc_getting_started>`,
+the QPU can be viewed as minimizing the Ising model (see Ising_ footnote
+above), with linear biases setting the amplitudes of magnetic fields applied 
+to qubits and quadratic biases the strength of coupling between qubits. While
+QUBOs are more convenient to work with for some problems, Ocean converts 
+problems submitted to a QPU to equivalent Ising models, producing the 
+:math:`J_{1,2}` bias of ``0.5`` for the ``[30, 31]`` coupler shown above (and
+, not shown, zero :math:`h_1=h_2` biases on the two qubits):
 
-   A NOT gate minor embedded into the topmost left unit cell of a
-   D-Wave 2000Q QPU. Variables :math:`x_1,x_2` are minor
-   embedded as qubits 0 and 4 (blue circles). Biases :math:`q_1,q_2=-1,-1`
-   and coupling strength :math:`q_{1,2}=2` are also shown.
+>>> dimod.qubo_to_ising(Q_not) 
+({'x': 0.0, 'z': 0.0}, {('x', 'z'): 0.5}, -0.5)
 
-The following code uses the :class:`~dwave.system.composites.FixedEmbeddingComposite` composite
-to manually minor-embed the problem in the D-Wave 2000Q QPU. Its last line prints a confirmation
-that indeed the two selected qubits are adjacent (coupled).
+The following code uses the :class:`~dwave.system.composites.FixedEmbeddingComposite` 
+composite to manually minor-embed the problem on this Advantage QPU.\ [#]_ 
 
 >>> from dwave.system import FixedEmbeddingComposite
->>> sampler_embedded = FixedEmbeddingComposite(sampler, {'x': [0], 'z': [4]})
->>> print(sampler_embedded.adjacency["x"])
+>>> sampler_embedded = FixedEmbeddingComposite(sampler, {"x": [30], "z": [31]})   
+>>> print(sampler_embedded.adjacency["x"])   # doctest: +SKIP
 {'z'}
 
-As before, ask for 5000 samples.
+.. [#]
+    For your selected QPU, use your :code:`sampler.nodelist[0]` qubit for 
+    :math:`x` and any of its adjacent qubits, 
+    :code:`sampler.adjacency[sampler.nodelist[0]]`, for :math:`z`, 
+    as done above. 
+
+As in the :ref:`not` example, most the results from 5000 samples are valid 
+states of a NOT gate, with complementary values for :math:`x` and :math:`z`.
 
 >>> sampleset = sampler_embedded.sample_qubo(Q_not, num_reads=5000,
-...                                          label='SDK Examples - AND Gate')
+...                                          label='SDK Examples - AND Gate') # doctest: +SKIP
 >>> print(sampleset)   # doctest: +SKIP
    x  z energy num_oc. chain_.
-0  0  1   -1.0    2310     0.0
-1  1  0   -1.0    2688     0.0
+0  0  1   -1.0    2264     0.0
+1  1  0   -1.0    2733     0.0
 2  0  0    0.0       2     0.0
-['BINARY', 3 rows, 5000 samples, 2 variables]
+3  1  1    0.0       1     0.0
+['BINARY', 4 rows, 5000 samples, 2 variables]
 
-On an Advantage system, the code above might set an embedding such as:
+The crucial point to understand in this subsection is that you cannot map the 
+set of your problem's variables to a set of arbitrary qubits. Quadratic models 
+have interactions between some pairs of the variables and those require the 
+existence of couplers between the qubits representing such variable pairs; 
+because the graph of a QPU is not fully connected, not all qubits are coupled.
+For interacting variables :math:`x, z` of the NOT gate, the selection of qubit 
+``30`` for variable :math:`x` severely limits the possible choices of qubits 
+that can represent variable :math:`z`. 
 
->>> sampler_embedded = FixedEmbeddingComposite(sampler, {'x': [30], 'z': [31]})
-
-From NOT to AND: an Important Difference
-----------------------------------------
+From NOT to AND to Larger Problems
+----------------------------------
 
 * The BQM for a NOT gate, :math:`-x -z  + 2xz`, can be represented by a fully connected
   :math:`K_2` graph: its linear coefficients are weights of the two connected nodes with
@@ -264,113 +290,182 @@ From NOT to AND: an Important Difference
 
    NOT gate :math:`K_2` complete graph (top) versus AND gate :math:`K_3` complete graph (bottom.)
 
-You saw above how to minor-embed a :math:`K_2` graph on a D-Wave system. To minor-embed a fully connected
-:math:`K_3` graph on a D-Wave 2000Q system requires *chaining* qubits.
+In the previous subsection, to minor-embed a :math:`K_2` graph on a QPU, you selected
+an arbitrary qubit (for simplicity, the first listed) and could then select as 
+the second any of the qubits coupled to the first. Minor-embedding a :math:`K_3` 
+graph on a D-Wave QPU is less straightforward. 
 
-.. note:: Advantage system's topology, Pegasus, can minor-embed a :math:`K_3` graph without chaining
-   qubits. However, this simple example is useful for understanding the concept, which applies to
-   most large problems embedded on either system.
+Consider trying to expand the minor embedding you found for the NOT gate above 
+to the AND gate. On the same QPU, map :math:`x_1` and :math:`x_2` to the qubits 
+used before, ``30`` and ``31``, respectively. For :math:`z` you now need a third 
+qubit coupled to both:
 
-Minor-Embedding an AND Gate
----------------------------
+>>> print(sampler.adjacency[30])    # doctest: +SKIP
+{2985, 2955, 45, 2970, 2940, 31}
+>>> print(sampler.adjacency[31])    # doctest: +SKIP
+{32, 46, 3150, 3120, 3165, 30, 3135}
 
-To understand how a :math:`K_3` graph fits on the :term:`Chimera` topology of the QPU,
-look at the Chimera unit cell structure shown below. You cannot connect 3 qubits in a
-closed loop. However, you can make a closed loop of 4 qubits using,
-say, qubits 0, 1, 4, and 5.
+Qubit ``30`` is coupled to 5 additional qubits and qubit ``31`` is coupled to 6,\ [#]_
+but none common to both. Because each qubit is coupled to a limited set of other 
+qubits, only a minority of coupled qubits are also coupled in common to a 
+third qubit.
 
-.. figure:: ../_images/unit-cell.png
-  :name: unit-cell
-  :scale: 20 %
-  :alt: Unit cell
+.. [#]
+    In the Pegasus topology, most qubits couple to 15 other qubits. The qubits 
+    used here couple to fewer because of their positions at the edge of the 
+    QPU graph. 
 
-  Chimera unit cell illustrated in two layouts.
+In this case, a more successful selection for variables :math:`x_1` and 
+:math:`x_2` is the set of qubits ``30`` and ``2985``:
 
-To fit the 3-qubit loop into a 4-sided structure, create a chain of 2 qubits
-to represent a single variable. For example, chain qubit 0 and qubit 4 to represent variable :math:`z`.
+>>> print(sampler.adjacency[30])    # doctest: +SKIP
+{2985, 2955, 45, 2970, 2940, 31}
+>>> print(sampler.adjacency[2985])    # doctest: +SKIP
+{195, 165, 135, 2986, 45, 180, 150, 120, 2970, 30}
 
-.. figure:: ../_images/embedding_chimera_and.png
-  :name: Embedding_Chimera_AND
-  :scale: 60 %
-  :alt: Embedding a triangular graph into Chimera by using a chain.
+Both these qubits are also coupled to qubit ``45`` and ``2970``. 
 
-  Embedding a :math:`K_3` graph into Chimera by using a chain.
+The figure below shows a minor embedding of the AND gate onto an Advantage QPU.
 
-The strength of the coupler between qubits 0 and 4, which represents
-variable :math:`z`, must be set to correlate the qubits strongly, so that in most
-solutions they have a single value for :math:`z`. (Remember the output in the
-`Solve the Problem by Sampling: Automated Minor-Embedding`_ section with its identical
-two last lines? This was likely due to the qubits in a chain taking different values.)
+.. figure:: ../_images/embedding_pegasus_AND.png
+    :name: Embedding_Pegasus_AND
+    :alt: image
+    :align: center
+    :scale: 50 %
 
-The code below uses Ocean's :doc:`dwave-system </docs_system/sdk_index>`
-:class:`~dwave.system.composites.FixedEmbeddingComposite` composite for manual minor-embedding
-on a D_Wave 2000Q system. Its last line prints a confirmation that indeed all three variables
-are connected (coupled).
+    An AND gate minor embedded onto an Advantage QPU. Variables :math:`x_1, x_2, z` 
+    (left) are minor-embedded to qubits ``30``, ``2985`` and ``45`` (right). 
 
->>> embedding = {'x1': {1}, 'x2': {5}, 'z': {0, 4}}
->>> sampler_embedded = FixedEmbeddingComposite(sampler, embedding)
->>> print(sampler_embedded.adjacency)     # doctest: +SKIP
-{'x1': {'x2', 'z'}, 'x2': {'x1', 'z'}, 'z': {'x1', 'x2'}}
+Can you always make a successful selection of qubits such that all your 
+problem's variables are mapped to qubits with couplings that can represent all 
+the problem's interactions? Such one-to-one embeddings, with each graph node 
+represented by a single qubit, are called *native* embeddings. The largest clique 
+you can embed natively on the Pegasus topology is a :math:`K_4`. Larger cliques 
+such as :math:`K_5`, as well as large, non-clique ("sparse") graphs, require 
+*chaining* qubits.
 
-This submission asks for 5000 samples.
+Chains 
+------
 
->>> Q = {('x1', 'x2'): 1, ('x1', 'z'): -2, ('x2', 'z'): -2, ('z', 'z'): 3}
+To understand how chaining qubits overcomes the problem of sparse connectivity, 
+consider minor embedding the triangular :math:`K_3` graph below into two target graphs, 
+one sparser than the other. The graphic below shows two such embeddings: 
+the :math:`K_3` graph is mapped on the left to a fully-connected graph of four 
+nodes (a :math:`K_4` complete graph ) and on the right to a sparser graph, also 
+of four nodes. 
+For the left-hand embedding, you can choose any mapping between :math:`a, b, c`
+and :math:`0, 1, 2, 3`; here :math:`a, b, c` are mapped to :math:`2, 0, 1`, 
+respectively. For the right-hand embedding, however, no choice of just three 
+target nodes suffices. The same :math:`2, 0, 1` target nodes leaves :math:`b`
+disconnected from :math:`c`. Chaining target nodes :math:`0` and :math:`3` 
+to represent node :math:`b` makes use of both the connection between :math:`0` 
+to :math:`2` and the connection between :math:`3` and :math:`1`.
+
+.. figure:: ../_images/chain_triangle_four_qubits.png
+    :name: chain_Triangle_Four_Qubits
+    :alt: image
+
+    Embedding a triangular graph into fully connected and sparse four-node graphs.
+
+On QPUs, chaining qubits is accomplished by setting the strength of their 
+connecting couplers negative enough to strongly correlate the states of the 
+chained qubits; if at the end of most anneals these qubits are in the same 
+classical state, representing the same binary value in the objective function, 
+they are in effect acting as a single variable.
+
+The strength of the coupler between qubits 0 and 3, which represents variable 
+:math:`b`, must be set to correlate the qubits strongly, so that in most 
+solutions they have a single value for :math:`z`. (Remember the output in the 
+:ref:`and_solve_by_sampling` section with its lines 5 and 6? The ``chain_b.`` 
+column stands for "chain breaks", which is when qubits in a chain take different 
+values.)
+
+The previous subsection showed that if you mapped the AND problem's variables
+:math:`x_1` and :math:`x_2` to  qubits ``30`` and ``31``, respectively, on the 
+QPU used before, you could not find a single qubit coupled to both for variable 
+:math:`z`. But notice, for example, that qubit ``30`` (representing :math:`x_1`) 
+is coupled to qubit ``45`` and qubit ``31`` (representing :math:`x_2`) is coupled 
+to qubit ``46``. You can represent variable :math:`z` as a chain of qubits 
+``45`` and ``46``, which are coupled:
+
+>>> (45, 46) in sampler.edgelist  # doctest: +SKIP
+True
+>>> sampler_embedded = FixedEmbeddingComposite(sampler, {"x1": [30], "x2": [31], "z": [45, 46]})   # doctest: +SKIP
 >>> sampleset = sampler_embedded.sample_qubo(Q, num_reads=5000,
-...                                          label='SDK Examples - AND Gate')
->>> print(sampleset)   # doctest: +SKIP
-  x1 x2  z energy num_oc. chain_.
-0  1  0  0    0.0    2107     0.0
-1  0  1  0    0.0     684     0.0
-2  1  1  1    0.0    1011     0.0
-3  0  0  0    0.0    1193     0.0
-4  1  0  1    1.0       4     0.0
-5  1  1  0    1.0       1     0.0
-['BINARY', 6 rows, 5000 samples, 3 variables]
-
-Optionally, you can use the :doc:`problem-inspector </docs_inspector/sdk_index>`
-to view the solution on the QPU.
-
-.. note:: The next code requires the use of Ocean's problem inspector.
-
->>> import dwave.inspector
->>> dwave.inspector.show(sampleset)   # doctest: +SKIP
-
-.. figure:: ../_static/inspector_AND.png
-  :name: inspector_AND
-  :scale: 50 %
-  :alt: View rendered by Ocean's problem inspector.
-
-  View of the logical and embedded problem rendered by Ocean's problem inspector. The AND gate's original QUBO is represented on the left; its embedded representation, on the right, shows a two-qubit chain of qubits 0 and 4 for variable Z. The current solution displayed, :math:`X1=1, X2=0, Z=0`, is represented by white and gold dots for binary :math:`0, 1` and white and blue dots for spin values :math:`-1, 1`.
-
-For comparison, the following code purposely weakens the
-:ref:`concepts__chain_strength` (strength of the
-coupler between qubits 0 and 4, which represents variable :math:`z`). The first
-line prints the range of values available for the D-Wave system this code is executed
-on. By explicitly setting chain strength to a low value of 0.25, the two qubits are not
-strongly correlated and the result is that many returned samples represent invalid states
-for an AND gate.
-
->>> print(sampler.properties['extended_j_range'])
-[-2.0, 1.0]
->>> sampler_embedded = FixedEmbeddingComposite(sampler, embedding)
->>> sampleset = sampler_embedded.sample_qubo(Q, num_reads=5000,
-...                                          chain_strength=0.25,
-...                                          label='SDK Examples - AND Gate')
+...                                          label='SDK Examples - AND Gate') # doctest: +SKIP
 >>> print(sampleset)   # doctest: +SKIP
   x1 x2  z energy num_oc. chain_b.
-0  1  0  0    0.0     629      0.0
-1  0  1  0    0.0     693      0.0
-3  1  1  1    0.0     660      0.0
-4  0  0  0    0.0     812      0.0
-2  1  0  1    1.0     773 0.333333
-5  0  1  1    1.0    1432 0.333333
-6  0  1  1    1.0       1      0.0
-['BINARY', 7 rows, 5000 samples, 3 variables]
+0  0  1  0    0.0    1522      0.0
+1  1  1  1    0.0    1219      0.0
+2  0  0  0    0.0    1080      0.0
+3  1  0  0    0.0    1163      0.0
+4  1  0  1    1.0       6      0.0
+5  1  1  0    1.0       6      0.0
+6  0  1  1    1.0       2      0.0
+7  0  1  1    1.0       2 0.333333
+['BINARY', 8 rows, 5000 samples, 3 variables]
 
-In this case, you are likely to see broken chains (non-zero values in the
-:code:`chain_breaks` column) and calling the problem inspector shows these:
+The figure below shows this minor embedding of the AND gate onto this 
+Advantage QPU.
 
-.. figure:: ../_static/inspector_AND_broken_chain.png
-  :name: inspector_AND_broken_chain
-  :scale: 50 %
-  :alt: View rendered by Ocean's problem inspector.
+.. figure:: ../_images/embedding_pegasus_AND_chain.png
+    :name: Embedding_Pegasus_AND_Chain
+    :alt: image
+    :align: center
+    :scale: 50 %
+
+    An AND gate minor embedded onto an Advantage QPU. Variables :math:`x_1, x_2, z` 
+    (left) are minor-embedded to qubits ``30``, ``31`` and chain ``[45, 46]`` (right). 
+
+
+Chain Strength 
+--------------
+
+For illustrative purposes, this subsection purposely weakens the
+:ref:`chain strength <concepts__chain_strength>` (strength of the coupling 
+between qubits ``45`` and ``46``, which represent variable :math:`z`). 
+
+In the previous subsection, the chain strength, which by default is set by the 
+:func:`~dwave.embedding.chain_strength.uniform_torque_compensation` function,
+was close to 1. 
+
+>>> print(round(sampleset.info['embedding_context']['chain_strength'], 3))  # doctest: +SKIP
+0.866
+
+The following code explicitly sets chain strength to a lower value of ``0.25``. 
+Consequently, the two qubits are less strongly correlated and the result is that 
+many returned samples represent invalid states for an AND gate.
+
+.. note:: The next code requires the use of Ocean's 
+    :std:doc:`docs_inspector/sdk_index` tool.
+
+>>> import dwave.inspector
+>>> sampleset = sampler_embedded.sample_qubo(Q, num_reads=5000,
+...                                          chain_strength=0.25,
+...                                          label='SDK Examples - AND Gate')   # doctest: +SKIP
+>>> print(sampleset)   # doctest: +SKIP
+  x1 x2  z energy num_oc. chain_b.
+  x1 x2  z energy num_oc. chain_b.
+0  0  1  0    0.0    1046      0.0
+1  1  1  1    0.0     401      0.0
+2  0  0  0    0.0    1108      0.0
+3  1  0  0    0.0     885      0.0
+4  1  0  1    1.0     917 0.333333
+5  0  1  1    1.0     643 0.333333
+['BINARY', 6 rows, 5000 samples, 3 variables]
+
+In this case, as above, you are likely to see many samples with broken chains 
+(these have non-zero values in the :code:`chain_b.` column) and calling the 
+problem inspector shows these:
+
+>>> dwave.inspector.show(sampleset)   # doctest: +SKIP
+
+.. figure:: ../_images/inspector_AND_broken_chain.png
+    :name: inspector_AND_broken_chain
+    :scale: 50 %
+    :alt: View rendered by Ocean's problem inspector.
+
+    An AND gate minor embedded onto an Advantage QPU with a low chain strength. 
+    For the selection of a result with a high energy (right), the broken chain is 
+    highlighted in red (left), with one of the chain's qubits returning 1 and the 
+    other -1.
