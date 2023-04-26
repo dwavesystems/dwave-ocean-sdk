@@ -65,6 +65,7 @@ The minor-embedding above was derived from the hueristic used by
 :class:`~dwave.system.composites.EmbeddingComposite()` on the working graph of 
 an Advantage selected by :class:`~dwave.system.samplers.DWaveSampler()`: 
 
+>>> from dwave.system import DWaveSampler, EmbeddingComposite, FixedEmbeddingComposite
 >>> sampler = EmbeddingComposite(DWaveSampler()) 
 
 Other qubits might have been chosen; for example, 
