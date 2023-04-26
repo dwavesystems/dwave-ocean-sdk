@@ -40,19 +40,18 @@ Chains
 ------
 
 Larger problems often require chains because the 
-:doc:`QPU topology <oceandocs:concepts/topology>` is not fully connected. 
-
-For example, a five-variable :term:`bqm` with a clique (fully-connected) 
-:math:`K_5`  graph, cannot be represented by five qubits in the 
-:term:`Pegasus` topology---a :math:`K_5` graph is not *native* to the Pegasus
-graph. 
+:doc:`QPU topology <oceandocs:concepts/topology>` is not fully connected. For 
+example, a :math:`K_5` graph is not *native* to the :term:`Pegasus` topology, 
+meaning that  the following five-variable :term:`bqm` with a clique 
+(fully-connected) :math:`K_5`  graph cannot be represented by five qubits on an
+Advantage QPU. 
 
 >>> import dimod 
 >>> bqm = dimod.generators.doped(1, 5)
 >>> bqm.add_linear_from({v: 1 for v in bqm.variables})
 
-Instead, a variable is represented by a *chain* of physical qubits:
-
+Instead, at least one variable is represented by a *chain* of physical qubits, 
+as in this minor-embedding:
 
 .. figure:: ../_images/embedding_5var6qubits.png
 	:align: left
@@ -62,20 +61,16 @@ Instead, a variable is represented by a *chain* of physical qubits:
 
 	Five-variable :math:`K_5` fully-connected problem, shown on the left as a graph, is embedded in six qubits on an Advantage, shown on the right against the Pegasus topology. Variable ``0``, highlighted in dark magenta, is represented by two qubits, ``1975`` and ``4840``. 
 
-The embedding above was derived from the hueristic used by 
-:class:`~dwave.system.composites.EmbeddingComposite()`
-on the working graph of an Advantage selected by :class:`~dwave.system.samplers.DWaveSampler()`: 
+The minor-embedding above was derived from the hueristic used by 
+:class:`~dwave.system.composites.EmbeddingComposite()` on the working graph of 
+an Advantage selected by :class:`~dwave.system.samplers.DWaveSampler()`: 
 
-.. code-block:: python
-
-    sampler = EmbeddingComposite(DWaveSampler()) 
+>>> sampler = EmbeddingComposite(DWaveSampler()) 
 
 Other qubits might have been chosen; for example, 
 
-.. code-block:: python
-
-    sampler = FixedEmbeddingComposite(DWaveSampler(), 
-        embedding={0: [4408, 2437], 1: [4333], 2: [4348], 3: [2497], 4: [2512]})    # doctest: +SKIP   
+>>> sampler = FixedEmbeddingComposite(DWaveSampler(), 
+...     embedding={0: [4408, 2437], 1: [4333], 2: [4348], 3: [2497], 4: [2512]})    # doctest: +SKIP   
 
 intentionally sets the embedding shown below to represent this same :math:`K_5` graph:
 
@@ -101,7 +96,7 @@ that influence non-identical outcomes.
 
 The :math:`K_5` BQM has ten ground states (best solutions). These are shown 
 below---solved by brute-force stepping through all possible configurations of 
-values for the variables---with lowest energy of -3.0:
+values for the variables---with ground-state energy -3.0:
 
 >>> print(dimod.ExactSolver().sample(bqm).lowest())     
    0  1  2  3  4 energy num_oc.
@@ -117,10 +112,22 @@ values for the variables---with lowest energy of -3.0:
 9 +1 -1 -1 -1 +1   -3.0       1
 ['SPIN', 10 rows, 10 samples, 5 variables]
 
-** SHOW GRAPH of 2 vs 3 **
+These solutions are states in which two variables are assigned one value and the 
+remaining three variables the complementary value; for example two are 
+:math:`-1` and three :math:`+1` as shown below.
 
-For the previous minor-embedding, solving with the default chain strength in this 
-execution produced all the ground states in over 90% of the samples:
+.. figure:: ../_images/embedding_5var6qubits_groundsolution.png
+	:align: left
+	:name: Embedding3var6qubitsGroundSolution
+	:scale: 50 %
+	:alt: Three-variable fully-connected problem embedded into six qubits.
+
+	Ground state of the five-variable :math:`K_5` fully-connected problem. 
+
+A typical submission of the problem to a quantum computer, using the same 
+minor-embedding as the previous subsection and the default chain strength,
+returned all the ground states, with these solutions constituting over 90% 
+of the returned samples.
 
 >>> sampleset = sampler.sample(bqm, num_reads=1000)     # doctest: +SKIP
 >>> print(sampleset.lowest())       # doctest: +SKIP
@@ -144,8 +151,8 @@ The default chain strength is set by the
 >>> print(round(sampleset.info['embedding_context']['chain_strength'], 3))
 2.828
 
-Rerunning with a much lower chain strength produced less satisfactory results
-(only ~10% of samples are the ground states):
+Resubmitting with a much lower chain strength produced less satisfactory results
+(only ~10% of returned samples are ground states).
 
 >>> sampleset = sampler.sample(bqm, num_reads=1000, chain_strength=1)       # doctest: +SKIP
 >>> print(sampleset.lowest())
@@ -162,7 +169,10 @@ Rerunning with a much lower chain strength produced less satisfactory results
 9 -1 +1 -1 -1 +1   -3.0       7     0.0
 ['SPIN', 10 rows, 121 samples, 5 variables]
 
-
+Many of the remaining ~90% of returned samples have "broken chains", meaning 
+qubits of a chain did not have identical values due to insufficiently strong 
+coupling compared to quadratic coefficients of interactions (of the variable 
+the chain represented) with other variables. 
 
 .. figure:: ../_images/embedding_5var6qubits_broken.png
 	:align: left
