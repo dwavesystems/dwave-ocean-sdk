@@ -104,7 +104,7 @@ minor-embedding.
 >>> import dwave.inspector
 >>> dwave.inspector.show(response)   # doctest: +SKIP
 
-.. figure:: ../_static/inspector_AND2.png
+.. figure:: ../_images/inspector_AND2.png
   :name: inspector_AND2
   :scale: 50 %
   :alt: View rendered by Ocean's problem inspector.

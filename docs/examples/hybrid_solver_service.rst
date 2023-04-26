@@ -20,7 +20,7 @@ are hostile. The measure of *structural imbalance* or *frustration* for a signed
 network, when it cannot be cleanly divided, is the minimum number of edges that violate
 the social rule, “the enemy of my friend is my enemy.”
 
-.. figure:: ../_static/Romeo.png
+.. figure:: ../_images/Romeo.png
    :name: Problem_StructuralImbalance
    :alt: image
    :align: center
@@ -113,7 +113,7 @@ The network has 904 frustrated relationships.
 
 The graphic below visualizes the result of one such run.
 
-.. figure:: ../_static/structural_imbalance_300.png
+.. figure:: ../_images/structural_imbalance_300.png
    :name: structural_imbalance_300
    :alt: image
    :align: center
