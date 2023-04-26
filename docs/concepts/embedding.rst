@@ -149,14 +149,14 @@ of the returned samples.
 The default chain strength is set by the 
 :func:`~dwave.embedding.chain_strength.uniform_torque_compensation` function: 
 
->>> print(round(sampleset.info['embedding_context']['chain_strength'], 3))
+>>> print(round(sampleset.info['embedding_context']['chain_strength'], 3))		# doctest: +SKIP
 2.828
 
 Resubmitting with a much lower chain strength produced less satisfactory results
 (only ~10% of returned samples are ground states).
 
 >>> sampleset = sampler.sample(bqm, num_reads=1000, chain_strength=1)       # doctest: +SKIP
->>> print(sampleset.lowest())
+>>> print(sampleset.lowest())		# doctest: +SKIP
    0  1  2  3  4 energy num_oc. chain_.
 0 -1 +1 +1 -1 -1   -3.0      12     0.0
 1 +1 -1 -1 +1 -1   -3.0      13     0.0
