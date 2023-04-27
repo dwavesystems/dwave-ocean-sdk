@@ -55,7 +55,7 @@ some variables as a pre-processing step before submitting the problem for sampli
 The use of samplers in solving problems is described
 in the following documentation:
 
-* :std:doc:`Solving Problems by Sampling <oceandocs:overview/samplers>`
+*   :std:doc:`Solving Problems by Sampling <oceandocs:overview/samplers>`
 
-   Describes the available types of samplers in Ocean and their use in solving :term:`BQM`\ s.
+    Describes the available types of samplers in Ocean and their use in solving :term:`BQM`\ s.
 

@@ -87,11 +87,13 @@ Glossary
          as Chimera. See a fuller description under :doc:`QPU Topology </concepts/topology>`.
          See also :term:`Pegasus` and :term:`Zephyr`.
 
+      Clique 
       Complete graph
       Fully connected
-          See `complete graph`_. on wikipedia. A fully connected or complete
-          :term:`binary quadratic model` is one that has interactions between
-          all of its variables.
+          See `complete graph`_ on Wikipedia or 
+          :std:doc:`docs_dnx/reference/algorithms/clique`. A fully connected or 
+          complete :term:`binary quadratic model` is one that has interactions 
+          between all of its variables.
 
           .. _complete graph: https://en.wikipedia.org/wiki/Complete_graph
 
@@ -108,6 +110,13 @@ Glossary
           programs without needing to change the underlying sampler implementation.
           We refer to these layers as "composites". A composed sampler includes at least one
           sampler and possibly many composites.
+
+      Connected graph 
+         See `Connected graph <https://xlinux.nist.gov/dads/HTML/connectedGraph.html>`_ 
+         on the US NIST site. A connected graph has some path from any vertex 
+         to any other. A graph that has at least two vertices without a path 
+         between them is disconnected. Any :term:`Complete graph` is connected 
+         (but not all connected graphs are complete).
 
       Constrained quadratic model
       CQM
