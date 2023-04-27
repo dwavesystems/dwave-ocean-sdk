@@ -103,7 +103,7 @@ Solve the Problem by Sampling
 >>> sampler = EmbeddingComposite(DWaveSampler())
 >>> num_reads = 1000
 >>> sampleset = sampler.sample_qubo(Q, num_reads=num_reads, \
-...     label='SDK Examples - Inspector')
+...     label='SDK Examples - Inspector')       # doctest: +SKIP
 
 Check the best returned answer:
 
@@ -162,7 +162,7 @@ code example, the problem is resubmitted using a higher chain strength:
 
 >>> sampleset = sampler.sample_qubo(Q, num_reads=num_reads,
 ...                                 chain_strength=1000,
-...                                 label='SDK Examples - Inspector')
+...                                 label='SDK Examples - Inspector')   # doctest: +SKIP
 
 Check the best returned answer and percentage of samples based on chains with breakage
 rates of over 33 percent. Results will vary due to the probabilistic nature of the
@@ -222,7 +222,7 @@ enables the problem to be represented more accurately on the QPU.
 
 >>> sampleset = sampler.sample_qubo(Q, num_reads=num_reads,
 ...                                 chain_strength=400,
-...                                 label='SDK Examples - Inspector')
+...                                 label='SDK Examples - Inspector')   # doctest: +SKIP
 
 Below is one run of a few iterations of adjusting chain strength. Notice that the
 acceptable rate of chain breaks was set lower, to breakage rates of over 5

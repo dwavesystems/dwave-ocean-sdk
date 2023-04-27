@@ -72,7 +72,7 @@ a :term:`subgraph` of the full :term:`hardware graph`.
 
 >>> qpu_sampler = DWaveSampler(solver=dict(topology__type='pegasus'))
 >>> QPUGraph = nx.Graph(qpu_sampler.edgelist)
->>> all(v in P16.nodes for v in QPUGraph.nodes)
+>>> all(v in P16.nodes for v in QPUGraph.nodes)     # doctest: +SKIP
 True
 >>> all(edge in P16.edges for edge in QPUGraph.edges)      # doctest: +SKIP
 True
@@ -116,7 +116,9 @@ problem with a 300+ node Zephyr graph using
 :doc:`dwave-system </docs_system/sdk_index>`'s
 :func:`~dwave.embedding.zephyr.find_clique_embedding` function
 
+.. dev note: skip doctest until SDK has https://github.com/dwavesystems/dwave-system/pull/490
+
 >>> num_variables = 40
->>> embedding = dwave.embedding.zephyr.find_clique_embedding(num_variables, 3)
->>> max(len(chain) for chain in embedding.values())
+>>> embedding = dwave.embedding.zephyr.find_clique_embedding(num_variables, 3)  # doctest: +SKIP
+>>> max(len(chain) for chain in embedding.values()) # doctest: +SKIP
 4
