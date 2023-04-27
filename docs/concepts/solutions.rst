@@ -52,11 +52,8 @@ to qubits on the quantum processor, which is called by the
 >>> import dimod 
 >>> from dwave.system import DWaveSampler, EmbeddingComposite
 ...
->>> bqm = dimod.BinaryQuadraticModel(
-...           {}, 
-...           {('s0', 's1'): -1, ('s0', 's2'): -1, ('s1', 's2'): 1}, 
-...           0, 
-...           dimod.Vartype.SPIN)  
+>>> s0, s1, s2 = dimod.Spins(['s0', 's1', 's2'])
+>>> bqm = s1*s2 - s0*s1 - s0*s2   
 >>> sampler = EmbeddingComposite(DWaveSampler())     
 >>> sampleset = sampler.sample(bqm, num_reads=1000)                      
 >>> print(sampleset)                                                     # doctest: +SKIP
