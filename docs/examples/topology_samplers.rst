@@ -77,20 +77,18 @@ True
 >>> all(edge in P16.edges for edge in QPUGraph.edges)      # doctest: +SKIP
 True
 
+Creating a Zephyr Sampler
+-------------------------
 
-Creating a Pegasus Sampler
---------------------------
+Another topology of interest is the :term:`Zephyr` topology.
 
-Another topology of interest is the :term:`Pegasus` topology.
+As above, you can use the generator function :func:`dwave_networkx.zephyr_graph` 
+found in :doc:`dwave_networkx </docs_dnx/sdk_index>` and the
+:class:`~dwave.samplers.SimulatedAnnealingSampler` to construct a sampler.
 
-As above, you can use the generator function :func:`dwave_networkx.pegasus_graph` found in
-:doc:`dwave_networkx </docs_dnx/sdk_index>` and the
-:class:`~neal.sampler.SimulatedAnnealingSampler` found in :doc:`dwave_neal </docs_neal/sdk_index>`
-to construct a sampler.
-
->>> P6 = dnx.pegasus_graph(6)
->>> classical_sampler = neal.SimulatedAnnealingSampler()
->>> sampler = dimod.StructureComposite(classical_sampler, P6.nodes, P6.edges)
+>>> Z3 = dnx.zephyr_graph(3)
+>>> classical_sampler = SimulatedAnnealingSampler()
+>>> sampler = dimod.StructureComposite(classical_sampler, Z3.nodes, Z3.edges)
 
 Working With Embeddings
 -----------------------
@@ -100,25 +98,25 @@ hints that you might be interested in trying :term:`embedding` with different
 topologies.
 
 One thing you might be interested in is the :term:`chain length` when embedding
-your problem. Say that you have a :term:`fully connected` problem with 40 variables
-and you want to know the chain length needed to embed it on a 2048 node
-:term:`Chimera` graph.
+your problem. For example, if you have a :term:`fully connected` problem with 40 
+variables and you want to know the chain length needed to embed it on a 5000+ 
+node :term:`Pegasus` graph.
 
 You can use :doc:`dwave-system </docs_system/sdk_index>`'s
-:func:`~dwave.embedding.chimera.find_clique_embedding` function to find the
+:func:`~dwave.embedding.pegasus.find_clique_embedding` function to find the
 embedding and determine the maximum chain length.
 
 >>> num_variables = 40
->>> embedding = dwave.embedding.chimera.find_clique_embedding(num_variables, 16)
->>> max(len(chain) for chain in embedding.values())
-11
-
-Similarly you can explore clique embeddings for a 40-variables fully connected
-problem with a 680 node Pegasus graph using
-:doc:`dwave-system </docs_system/sdk_index>`'s
-:func:`~dwave.embedding.pegasus.find_clique_embedding` function
-
->>> num_variables = 40
->>> embedding = dwave.embedding.pegasus.find_clique_embedding(num_variables, 6)
+>>> embedding = dwave.embedding.pegasus.find_clique_embedding(num_variables, 16)
 >>> max(len(chain) for chain in embedding.values())
 5
+
+Similarly you can explore clique embeddings for a 40-variables fully connected
+problem with a 300+ node Zephyr graph using
+:doc:`dwave-system </docs_system/sdk_index>`'s
+:func:`~dwave.embedding.zephyr.find_clique_embedding` function
+
+>>> num_variables = 40
+>>> embedding = dwave.embedding.zephyr.find_clique_embedding(num_variables, 3)
+>>> max(len(chain) for chain in embedding.values())
+4
