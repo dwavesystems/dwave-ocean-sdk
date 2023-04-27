@@ -8,72 +8,73 @@ The examples below show how to construct software samplers with the same structu
 as the :term:`QPU`, and how to work with :term:`embedding`\s with different
 topologies.
 
-The code examples below will use the following imports:
+The code examples below uses the following imports:
 
->>> import neal
 >>> import dimod
 >>> import dwave_networkx as dnx
 >>> import networkx as nx
 >>> import dwave.embedding
 ...
+>>> from dwave.samplers import SimulatedAnnealingSampler
 >>> from dwave.system import DWaveSampler, EmbeddingComposite
 
-Creating a Chimera Sampler
+Creating a Pegasus Sampler
 --------------------------
 
 As detailed in :ref:`using_cpu`, you might want to use a classical solver while
 developing your code or writing tests. However, it is sometimes useful to
 work with a software solver that behaves more like a quantum computer.
 
-One of the key features of the quantum computer is its :term:`working graph`, which
-defines the connectivity allowed by the :term:`binary quadratic model`.
+One of the key features of the quantum computer is its :term:`working graph`, 
+which defines the connectivity allowed by the :term:`binary quadratic model`.
 
-To create a software solver with the same connectivity as a D-Wave 2000Q quantum computer
-you first need a representation of the :term:`Chimera` graph which can be obtained
-from the :doc:`dwave_networkx </docs_dnx/sdk_index>` project using the
-:func:`~dwave_networkx.chimera_graph` function.
+To create a software solver with the same connectivity as an Advantage quantum 
+computer you first need a representation of the :term:`Pegasus` graph which can 
+be obtained from the :doc:`dwave_networkx </docs_dnx/sdk_index>` project using 
+the :func:`~dwave_networkx.pegasus_graph` function.
 
->>> C16 = dnx.chimera_graph(16)
+>>> P16 = dnx.pegasus_graph(16)
 
-Next, you need a software sampler. Use the
-:class:`~neal.sampler.SimulatedAnnealingSampler` found in :doc:`dwave_neal </docs_neal/sdk_index>`,
-though the :class:`~tabu.sampler.TabuSampler` from :doc:`dwave-tabu </docs_tabu/sdk_index>`
-would work equally well.
+Next, you need a software sampler and can use the 
+:class:`~dwave.samplers.SimulatedAnnealingSampler`  
+(:class:`~dwave.samplers.TabuSampler` works equally well).
 
 .. dev note: we should maybe add a link to somewhere explaining the difference
 .. between tabu/neal
 
->>> classical_sampler = neal.SimulatedAnnealingSampler()
+>>> classical_sampler = SimulatedAnnealingSampler()
 
 Now, with a classical sampler and the desired graph, you can use
-:doc:`dimod </docs_dimod/sdk_index>`'s :class:`~dimod.reference.composites.structure.StructureComposite`
-to create a Chimera-structured sampler.
+:doc:`dimod </docs_dimod/sdk_index>`'s 
+:class:`~dimod.reference.composites.structure.StructureComposite` to create a 
+Pegasus-structured sampler.
 
->>> sampler = dimod.StructureComposite(classical_sampler, C16.nodes, C16.edges)
+>>> sampler = dimod.StructureComposite(classical_sampler, P16.nodes, P16.edges)
 
-This sampler accepts Chimera-structured problems. In this case, create an
+This sampler accepts Pegasus-structured problems. For example, create an
 :term:`Ising` problem.
 
->>> h = {v: 0.0 for v in C16.nodes}
->>> J = {(u, v): 1 for u, v in C16.edges}
+>>> h = {v: 0.0 for v in P16.nodes}
+>>> J = {(u, v): 1 for u, v in P16.edges}
 >>> sampleset = sampler.sample_ising(h, J)
 
 You can even use the sampler with the :class:`~dwave.system.composites.EmbeddingComposite`.
 
 >>> embedding_sampler = EmbeddingComposite(sampler)
 
-Finally, you can confirm that the sampler matches the :class:`~dwave.system.samplers.DWaveSampler`\ 's
+Finally, you can confirm that the sampler matches the 
+:class:`~dwave.system.samplers.DWaveSampler`\ 's
 structure. Make sure that the :term:`QPU` has the same topology you have
 been simulating. Also note that the :term:`working graph` of the QPU is usually
 a :term:`subgraph` of the full :term:`hardware graph`.
 
 .. dev note: maybe in the future we want to talk about different topologies
 
->>> qpu_sampler = DWaveSampler(solver={'num_active_qubits__within': [2000, 2048]})
+>>> qpu_sampler = DWaveSampler(solver=dict(topology__type='pegasus'))
 >>> QPUGraph = nx.Graph(qpu_sampler.edgelist)
->>> all(v in C16.nodes for v in QPUGraph.nodes)
+>>> all(v in P16.nodes for v in QPUGraph.nodes)
 True
->>> all(edge in C16.edges for edge in QPUGraph.edges)      # doctest: +SKIP
+>>> all(edge in P16.edges for edge in QPUGraph.edges)      # doctest: +SKIP
 True
 
 
