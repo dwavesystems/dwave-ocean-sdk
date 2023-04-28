@@ -103,7 +103,7 @@ Solve the Problem by Sampling
 >>> sampler = EmbeddingComposite(DWaveSampler())
 >>> num_reads = 1000
 >>> sampleset = sampler.sample_qubo(Q, num_reads=num_reads, \
-...     label='SDK Examples - Inspector')       # doctest: +SKIP
+...                                 label='SDK Examples - Inspector')  # doctest: +SKIP
 
 Check the best returned answer:
 
