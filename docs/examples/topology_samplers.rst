@@ -71,10 +71,10 @@ a :term:`subgraph` of the full :term:`hardware graph`.
 .. dev note: maybe in the future we want to talk about different topologies
 
 >>> qpu_sampler = DWaveSampler(solver=dict(topology__type='pegasus'))
->>> QPUGraph = nx.Graph(qpu_sampler.edgelist)
->>> all(v in P16.nodes for v in QPUGraph.nodes)     # doctest: +SKIP
+>>> qpu_graph = qpu_sampler.to_networkx_graph()
+>>> qpu_graph.nodes <= P16.nodes     # doctest: +SKIP
 True
->>> all(edge in P16.edges for edge in QPUGraph.edges)      # doctest: +SKIP
+>>> qpu_graph.edges <= P16.edges      # doctest: +SKIP
 True
 
 Creating a Zephyr Sampler
