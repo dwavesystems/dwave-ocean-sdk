@@ -51,7 +51,7 @@ equal sets with a minimum number of edges between the two groups.
     graph_nodes = 16
     G = nx.random_geometric_graph(n=graph_nodes, radius=.5, dim=2)
 
-.. figure:: ../_static/inspector_rand_geom_plot.png
+.. figure:: ../_images/inspector_rand_geom_plot.png
    :name: InspectorRandGeomProblem
    :alt: image
    :align: center
@@ -125,7 +125,7 @@ Check the best returned answer:
 Number of nodes in one set is 8, in the other, 8.
 Energy is -3813.0.
 
-.. figure:: ../_static/inspector_rand_geom_sol_default.png
+.. figure:: ../_images/inspector_rand_geom_sol_default.png
    :name: InspectorRandGeomBrokenChainsSolDefault
    :alt: image
    :align: center
@@ -148,7 +148,7 @@ Use the problem inspector on the returned samples:
 
 >>> dwave.inspector.show(sampleset)       # doctest: +SKIP
 
-.. figure:: ../_static/inspector_rand_geom_broken_chains.png
+.. figure:: ../_images/inspector_rand_geom_broken_chains.png
    :name: InspectorRandGeomBrokenChains
    :alt: image
    :align: center
@@ -159,7 +159,7 @@ Use the problem inspector on the returned samples:
 The problem inspector can also display the embedded problem, showing the qubits chains
 viewed on a background representation of the QPU topology:
 
-.. figure:: ../_static/inspector_rand_geom_broken_chains_target.png
+.. figure:: ../_images/inspector_rand_geom_broken_chains_target.png
    :name: InspectorRandGeomBrokenChains1
    :alt: image
    :align: center
@@ -191,7 +191,7 @@ Energy is -3815.0.
 ...        np.count_nonzero(sampleset.record.chain_break_fraction > 0.33)/num_reads*100))    # doctest: +SKIP
 Percentage of samples with high rates of breaks is 0.0.
 
-.. figure:: ../_static/inspector_rand_geom_sol_1000.png
+.. figure:: ../_images/inspector_rand_geom_sol_1000.png
    :name: InspectorRandGeomBrokenChainsSol1000
    :alt: image
    :align: center
@@ -204,7 +204,7 @@ If you again use the problem inspector on the returned samples, you see the impr
 >>> dwave.inspector.show(sampleset)      # doctest: +SKIP
 
 
-.. figure:: ../_static/inspector_rand_geom_no_broken_chains.png
+.. figure:: ../_images/inspector_rand_geom_no_broken_chains.png
    :name: InspectorRandGeomNoBrokenChains
    :alt: image
    :align: center
@@ -215,7 +215,7 @@ If you again use the problem inspector on the returned samples, you see the impr
 Also of interest is the "spread" of solution energies. For this submission there are
 a few distinct clusters. The problem inspector can zoom in on the lowest:
 
-.. figure:: ../_static/inspector_rand_geom_sol_1000_zoom.png
+.. figure:: ../_images/inspector_rand_geom_sol_1000_zoom.png
    :name: InspectorRandGeomBrokenChainsSol1000Zoom
    :alt: image
    :align: center
@@ -253,7 +253,7 @@ Percentage of samples with >5 percent chain breaks is 1.7000000000000002.
 The result of the shown submission, with a chain strength of :math:`300`, still had
 less than 2% of its samples based on broken chains.
 
-.. figure:: ../_static/inspector_rand_geom_sol_300.png
+.. figure:: ../_images/inspector_rand_geom_sol_300.png
    :name: InspectorRandGeomBrokenChainsSol300
    :alt: image
    :align: center
