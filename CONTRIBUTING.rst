@@ -59,7 +59,7 @@ Coding Conventions
 * Functions should do one thing.
 * Early pull requests and code reviews.
 * Early architecting/design. Code reviews can happen before any code has been written.
-* Use a consistent character width of 120.
+* Use a consistent character width limit of 120.
 * Use 4 spaces instead of tabs.
 * End all files with a newline.
 
@@ -103,10 +103,20 @@ Documentation and Comments
 Python
 ------
 
+Python Version
+~~~~~~~~~~~~~~
+
+Code should be compatible with all `supported versions <https://devguide.python.org/versions/#supported-versions>`_
+of Python.
+
 pep8
 ~~~~
 
 As a baseline, follow the `pep8 <https://www.python.org/dev/peps/pep-0008/>`_ style guide for python.
+
+We do make one exception for `maximum line length <https://peps.python.org/pep-0008/#maximum-line-length>`_.
+In Ocean we maintain a hard limit of 120 characters. It is encouraged but not required to keep lines of code
+to 100 characters or fewer and docstrings/comments to 72 characters or fewer.
 
 Documentation
 ~~~~~~~~~~~~~
@@ -131,18 +141,38 @@ C++
 C++ Version
 ~~~~~~~~~~~
 
-C++ code should be compatible with standard C++11.
+C++ code should be compatible with standard C++17.
+
+See `PyPA's docs <https://cibuildwheel.readthedocs.io/en/stable/cpp_standards/>`_ on C++ standards for a discussion
+on how this interacts with Python wheels.
 
 Format
 ~~~~~~
 
 * Our format is based on `Google C++ style guide <https://google.github.io/styleguide/cppguide.html>`_ with some exceptions:
 
-  - Column width is limited to 120 characters. Best effort should be made to keep to 80 characters, but up to 120 can be used for clarity.
+  - Column width is limited to 100 characters. Best effort should be made to keep to 80 characters, but up to 120 can be used for clarity.
   - The base indent level is 4.
   - Non-const references are allowed.
 
-* When starting a new C++ project, use clang-format with the `.clang-format <.clang-format>`_ file included here.
+* When starting a new C++ project, use a `.clang-format` file
+
+.. code-block::
+
+  ---
+  Language: Cpp
+  BasedOnStyle: Google
+
+  ColumnLimit: 100
+  NamespaceIndentation: None
+
+  # Scaled by a factor of 2 such that the base indent is 4
+  AccessModifierOffset: -3
+  IndentWidth: 4
+  ContinuationIndentWidth: 8
+  ConstructorInitializerIndentWidth: 8
+  ...
+
 
 Versioning Scheme
 -----------------
