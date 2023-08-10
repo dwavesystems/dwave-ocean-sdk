@@ -38,7 +38,7 @@ jobs:
 
     executor:
       name: ocean/macos
-      xcode: "13.2.0"
+      xcode: "14.2.0"
 
     steps:
       - checkout
