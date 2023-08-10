@@ -106,7 +106,7 @@ jobs:
                 pip install -r "$subdir"/requirements_dev.txt
               fi
               done
-            pip install cython wheel cgen
+            pip install 'cython<3' wheel cgen
             pip install .[all]
             dwave install --all --yes
 
