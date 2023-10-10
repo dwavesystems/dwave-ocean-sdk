@@ -13,8 +13,8 @@ help you set up and configure your development environment, communicate with
 D-Wave compute resources, interact with your 
 `Leap <https://cloud.dwavesys.com/leap/>`_ account, and other useful actions.
 
-Run :code:`dwave -- help` for information on all the CLI options. For **SDK
-version 6.6.0** the CLI provided the following commands and options
+Run :code:`dwave -- help` for information on all the CLI options.\ [#]_  For 
+**SDK version 6.6.0** the CLI provided the following commands and options
 (see the output in your installation for the latest):
 
 .. code-block:: bash
@@ -235,3 +235,57 @@ to your account in a particular region (Europe).
     Advantage_system5.1
 
 
+..  [#] Below are some examples of using the :code:`--help` option 
+    to see documentation at different levels of commands and options (produced 
+    on SDK version 6.6.0). 
+    
+    * See all CLI commands:: 
+
+        $ dwave --help
+        Usage: dwave [OPTIONS] COMMAND [ARGS]...
+
+            D-Wave Cloud Client interactive configuration tool.
+
+        Options:
+            --version    Show the version and exit.    
+
+        ... <Snipped above for brevity>
+
+        Commands:
+            auth     Authorize Leap access and fetch Leap/Solver API tokens.
+            config   Create, update or inspect cloud client configuration file(s).
+            install  Install optional non-open-source Ocean packages.
+            leap     Interact with Leap API.
+            ping     Ping the QPU by submitting a single-qubit problem.
+            ... <Snipped here due to length>
+
+    * See help on a particular CLI command:: 
+
+        $ dwave auth --help
+        Usage: dwave auth [OPTIONS] COMMAND [ARGS]...
+
+        Authorize Leap access and fetch Leap/Solver API tokens.
+
+        Options:
+            --help  Show this message and exit.
+
+        Commands:
+            get      Fetch Leap API token.
+            login    Authorize Ocean to access Leap API on user's behalf.
+            refresh  Refresh Leap API access token.    
+
+    * See the options available to a particular CLI command:: 
+
+        $ dwave auth login --help
+        Usage: dwave auth login [OPTIONS]
+
+        Authorize Ocean to access Leap API on user's behalf.
+
+        Options:
+            -p, --profile TEXT      Connection profile (section) name
+            -f, --config-file FILE  Configuration file path
+            --oob                   Run OAuth 2.0 Authorization Code flow out-of-band,
+                                    without the use of locally hosted redirect URL.
+            --help                  Show this message and exit.
+
+ 
