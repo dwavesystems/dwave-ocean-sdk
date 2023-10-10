@@ -10,10 +10,11 @@ a `dwave` executable is installed; for example, in a virtual environment it migh
 be installed as `<virtual_environment>\\Scripts\\dwave.exe`. Running this file from
 your system's console opens an interactive command line interface (CLI) that can
 help you set up and configure your development environment, communicate with
-D-Wave compute resources, and other useful actions.
+D-Wave compute resources, interact with your 
+`Leap <https://cloud.dwavesys.com/leap/>`_ account, and other useful actions.
 
 Run :code:`dwave -- help` for information on all the CLI options. For **SDK
-version 4.0.0** the CLI provided the following commands and options
+version 6.6.0** the CLI provided the following commands and options
 (see the output in your installation for the latest):
 
 .. code-block:: bash
@@ -33,8 +34,10 @@ version 4.0.0** the CLI provided the following commands and options
       --help       Show this message and exit.
 
     Commands:
+      auth     Authorize Leap access and fetch Leap/Solver API tokens.
       config   Create, update or inspect cloud client configuration file(s).
       install  Install optional non-open-source Ocean packages.
+      leap     Interact with Leap API.
       ping     Ping the QPU by submitting a single-qubit problem.
       sample   Submit Ising-formulated problem and return samples.
       setup    Setup optional Ocean packages and configuration file(s).
@@ -56,6 +59,7 @@ Below are shown example sessions for some of the commands:
 * :ref:`cli_example_config`
 * :ref:`cli_example_ping`
 * :ref:`cli_example_solvers`
+* :ref:`cli_example_leap`
 
 .. _cli_example_setup:
 
@@ -195,3 +199,41 @@ to your account in a particular region (Europe).
 
     $ dwave solvers --region eu-central-1 --list --all
     Advantage_system5.1
+
+
+.. _cli_example_auth_leap:
+
+Leap 
+====
+
+The :code:`dwave auth` and :code:`dwave leap` commands enable Ocean to access 
+and interact with your `Leap <https://cloud.dwavesys.com/leap/>`_ account.
+
+For example, in your developer environment (e.g., a Python 
+`virtual environment <https://docs.python.org/3/library/venv.html>`_ or a 
+`GitHub Codespaces <https://docs.github.com/codespaces>`_ *codespace*), 
+you can authorize Ocean's access to your Leap account, using the secure
+`OAuth 2.0 <https://oauth.net/2/>`_ code exchange, by running one of the 
+following Ocean CLI commands from your terminal. 
+    
+-   In an environment such as an **IDE installed on your system**, where you can 
+    access `localhost <https://en.wikipedia.org/wiki/Localhost>`_ addresses 
+    from your browser, initiate the OAuth *redirect* flow::
+
+        dwave auth login
+
+-   In an environment such as a **cloud IDE**, where access to 
+    `localhost <https://en.wikipedia.org/wiki/Localhost>`_ addresses 
+    from your browser might be blocked, you can initiate the alternative OAuth 
+    *out-of-band* flow::
+
+        dwave auth login --oob
+
+With Ocean now authorized to access your Leap account, you can then run the 
+:ref:`cli_example_config` command with the :code:`--auto-token` option 
+to create a :ref:`dwave-cloud-client <sdk_index_cloud>` 
+:ref:`configuration file <configurationFiles>` to manage your SAPI access.
+
+.. code-block:: bash
+
+    $ dwave config create --auto-token
