@@ -55,11 +55,45 @@ version 6.6.0** the CLI provided the following commands and options
 
 Below are shown example sessions for some of the commands:
 
+* :ref:`cli_example_auth_leap`
 * :ref:`cli_example_setup`
 * :ref:`cli_example_config`
 * :ref:`cli_example_ping`
 * :ref:`cli_example_solvers`
-* :ref:`cli_example_leap`
+
+.. _cli_example_auth_leap:
+
+Leap 
+====
+
+The :code:`dwave auth` and :code:`dwave leap` commands enable Ocean to access 
+and interact with your `Leap <https://cloud.dwavesys.com/leap/>`_ account.
+
+For example, in your developer environment (e.g., a Python 
+`virtual environment <https://docs.python.org/3/library/venv.html>`_ or a 
+`GitHub Codespaces <https://docs.github.com/codespaces>`_ *codespace*), 
+you can authorize Ocean's access to your Leap account, using the secure
+`OAuth 2.0 <https://oauth.net/2/>`_ code exchange, by running one of the 
+following Ocean CLI commands from your terminal. 
+    
+-   In an environment such as an **IDE installed on your system**, where you can 
+    access `localhost <https://en.wikipedia.org/wiki/Localhost>`_ addresses 
+    from your browser, initiate the OAuth *redirect* flow::
+
+        dwave auth login
+
+-   In an environment such as a **cloud IDE**, where access to 
+    `localhost <https://en.wikipedia.org/wiki/Localhost>`_ addresses 
+    from your browser might be blocked, you can initiate the alternative OAuth 
+    *out-of-band* flow::
+
+        dwave auth login --oob
+
+With Ocean now authorized to access your Leap account, you can create a 
+:ref:`dwave-cloud-client <sdk_index_cloud>` 
+:ref:`configuration file <configurationFiles>` to manage your SAPI access
+with the SAPI token retrieved from your account as shown in the 
+:ref:`cli_example_config` command.
 
 .. _cli_example_setup:
 
@@ -103,7 +137,6 @@ for a full setup.
     Try 'dwave config create --full' for more options.
 
     Creating new configuration file: /home/jane/.config/dwave/dwave.conf
-    Profile [defaults]: ↵
     Updating existing profile: defaults
     Authentication token [skip]: ABC-1234567890abcdef1234567890abcdef ↵
     Configuration saved.
@@ -117,20 +150,21 @@ Configure
 
 The :code:`dwave config` command configures your environment.
 
-The output shown below includes the interactive prompts and placeholder replies.
+The output shown below is for a development environment where the user has 
+first enabled Ocean's :ref:`Leap access <cli_example_auth_leap>`.
 
 .. cli-example-config-start-marker
 
 .. code-block:: bash
 
-    $ dwave config create
+    $ dwave config create --auto-token
     Using the simplified configuration flow.
     Try 'dwave config create --full' for more options.
 
     Creating new configuration file: /home/jane/.config/dwave/dwave.conf
-    Profile [defaults]: ↵
     Updating existing profile: defaults 
-    Authentication token [skip]: ABC-1234567890abcdef1234567890abcdef ↵
+    Access token expired (or expires soon), refreshing it.
+    Fetched SAPI token for project 'ABC' (ABC) from Leap API.
     Configuration saved.
 
 .. cli-example-config-end-marker
@@ -201,39 +235,3 @@ to your account in a particular region (Europe).
     Advantage_system5.1
 
 
-.. _cli_example_auth_leap:
-
-Leap 
-====
-
-The :code:`dwave auth` and :code:`dwave leap` commands enable Ocean to access 
-and interact with your `Leap <https://cloud.dwavesys.com/leap/>`_ account.
-
-For example, in your developer environment (e.g., a Python 
-`virtual environment <https://docs.python.org/3/library/venv.html>`_ or a 
-`GitHub Codespaces <https://docs.github.com/codespaces>`_ *codespace*), 
-you can authorize Ocean's access to your Leap account, using the secure
-`OAuth 2.0 <https://oauth.net/2/>`_ code exchange, by running one of the 
-following Ocean CLI commands from your terminal. 
-    
--   In an environment such as an **IDE installed on your system**, where you can 
-    access `localhost <https://en.wikipedia.org/wiki/Localhost>`_ addresses 
-    from your browser, initiate the OAuth *redirect* flow::
-
-        dwave auth login
-
--   In an environment such as a **cloud IDE**, where access to 
-    `localhost <https://en.wikipedia.org/wiki/Localhost>`_ addresses 
-    from your browser might be blocked, you can initiate the alternative OAuth 
-    *out-of-band* flow::
-
-        dwave auth login --oob
-
-With Ocean now authorized to access your Leap account, you can then run the 
-:ref:`cli_example_config` command with the :code:`--auto-token` option 
-to create a :ref:`dwave-cloud-client <sdk_index_cloud>` 
-:ref:`configuration file <configurationFiles>` to manage your SAPI access.
-
-.. code-block:: bash
-
-    $ dwave config create --auto-token
