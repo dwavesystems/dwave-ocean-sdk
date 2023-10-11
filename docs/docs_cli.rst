@@ -13,7 +13,7 @@ help you set up and configure your development environment, communicate with
 D-Wave compute resources, interact with your 
 `Leap <https://cloud.dwavesys.com/leap/>`_ account, and other useful actions.
 
-Run :code:`dwave -- help` for information on all the CLI options.\ [#]_  For 
+Run :code:`dwave --help` for information on all the CLI options.\ [#]_  For 
 **SDK version 6.6.0** the CLI provided the following commands and options
 (see the output in your installation for the latest):
 
@@ -91,7 +91,7 @@ following Ocean CLI commands from your terminal.
 
 With Ocean now authorized to access your Leap account, you can create a 
 :ref:`dwave-cloud-client <sdk_index_cloud>` 
-:ref:`configuration file <configurationFiles>` to manage your SAPI access
+:ref:`configuration file <configurationFiles>` to manage your Solver API (SAPI) access
 with the SAPI token retrieved from your account as shown in the 
 :ref:`cli_example_config` command.
 
