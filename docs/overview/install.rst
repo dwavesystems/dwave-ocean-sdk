@@ -15,7 +15,7 @@ versions |python_requires| are supported.
 
 This section explains how to :ref:`install Ocean software<installOceanSoftware>`,
 either the entire suite of tools or particular tools\ [#]_ from the D-Wave GitHub
-repositories listed in the navigation bar.
+repositories listed under the :doc:`packages` tab.
 
 .. [#]
   Although individual Ocean packages accept dependencies within a range of

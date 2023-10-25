@@ -11,24 +11,28 @@ on a D-Wave quantum computer.
 Initial Set Up
 ==============
 
-D-Wave's `Leap <https://cloud.dwavesys.com/leap/>`_ integrated development
-environment (IDE) is the fastest way to get started writing your quantum
-application or just learning to use Ocean tools. This cloud-based IDE---run
-in your browser---is available to all Leap accounts. It provides
-reusable/disposable workspaces (developer environments pre-configured with
-Ocean and other standard libraries as well as D-Wave extensions) for running
-code from your own GitHub repository or a collection of code examples you can
-then modify.
-
-Alternatively, install the tools and configure for running problems on D-Wave
-remote compute resources, including quantum-classical hybrid solvers and the
-D-Wave quantum processing unit (QPU), or locally on your CPU.
+The following steps set up your work environment for Ocean:
 
 .. toctree::
-   :maxdepth: 1
+    :maxdepth: 1
+    :hidden:
 
-   overview/install
-   overview/sapi
+    overview/install
+    overview/sapi
+
+*   :ref:`install`
+
+    Installation is **not needed** if you are using an IDE that implements the 
+    `Development Containers specification <https://containers.dev/supporting>`_
+    (aka "devcontainers"), whether locally on your system (e.g., VS Code) or 
+    cloud-based (e.g., `GitHub Codespaces <https://docs.github.com/codespaces>`_), 
+    and you can work in an updated Ocean environment through the 
+    `Ocean Docker file <https://hub.docker.com/r/dwavesys/ocean>`_. 
+
+*   :ref:`sapi_access`
+
+    Enable the running problems on D-Wave remote compute resources, including 
+    quantum-classical hybrid solvers and the D-Wave quantum processing unit (QPU).
 
 Ocean's Programming Model
 =========================
@@ -205,16 +209,16 @@ Further Learning
   It lists, explains, and demonstrates techniques of problem formulation, minor-embedding,
   and configuring QPU parameters to optimize performance.
 
-* Package introductions
+*   Package introductions
 
     The following Ocean packages have extended introductions:
 
-  * The :ref:`introduction to dimod <intro_dimod>` describes Ocean's supported
-    models (e.g., BQMs), the format of returned solutions, :ref:`intro_symbolic_math`,
-    and :ref:`intro_scaling`.
+    *   The :ref:`introduction to dimod <intro_dimod>` describes Ocean's supported
+        models (e.g., BQMs), the format of returned solutions, :ref:`intro_symbolic_math`,
+        and :ref:`intro_scaling`.
 
-  * The :ref:`introduction to dwave-cloud-client <intro_cloud>` discusses how to
-    configure selection of and communications with solvers.
+    *   The :ref:`introduction to dwave-cloud-client <intro_cloud>` discusses how to
+        configure selection of and communications with solvers.
 
-  * The :ref:`introduction to dwave-hybrid <intro_hybrid>` explains how to use
-    the Python framework for running and building hybrid samplers.
+    *   The :ref:`introduction to dwave-hybrid <intro_hybrid>` explains how to use
+        the Python framework for running and building hybrid samplers.
