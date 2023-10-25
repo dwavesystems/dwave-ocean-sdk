@@ -27,12 +27,6 @@ results from non-deterministic samplers such as quantum computers.
 Example Requirements
 ====================
 
-To run the code in this example, the following is required.
-
-* The requisite information for problem submission through SAPI, as described in :ref:`sapi_access`.
-* Ocean tools :doc:`dwave-system </docs_system/sdk_index>`,  :doc:`dimod </docs_dimod/sdk_index>`, and
-  :doc:`dwave-greedy </docs_greedy/sdk_index>`.
-
 .. include:: hybrid_solver_service.rst
   :start-after: example-requirements-start-marker
   :end-before: example-requirements-end-marker

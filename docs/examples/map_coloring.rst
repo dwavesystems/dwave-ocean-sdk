@@ -29,15 +29,6 @@ The constraints for the map-coloring problem can be expressed as follows:
 Example Requirements
 ====================
 
-To run the code in this example, the following is required.
-
-* The requisite information for problem submission through SAPI, as described in
-  :ref:`sapi_access`\ .
-* Ocean tools
-  :doc:`dimod </docs_dimod/sdk_index>` and
-  :doc:`dwave-system </docs_system/sdk_index>`. For graphics,
-  you will also need `NetworkX <https://networkx.org>`_.
-
 .. include:: hybrid_solver_service.rst
   :start-after: example-requirements-start-marker
   :end-before: example-requirements-end-marker

@@ -8,10 +8,12 @@ New to Ocean? The following sections describe how to install Ocean tools, what t
 and how they fit together, and give examples of using them to solve hard problems
 on a D-Wave quantum computer.
 
+.. _gs_initial_setup:
+
 Initial Set Up
 ==============
 
-The following steps set up your work environment for Ocean:
+The following steps set up your development environment for Ocean:
 
 .. toctree::
     :maxdepth: 1
