@@ -33,7 +33,7 @@ and scheduling for D-Wave solvers. Problem submission through SAPI requires the
 following information, typically provided by your work environment from either
 Ocean's default values or your configuration.
 
-* **API Token** (required\ [#]_\ )
+* **API Token** (required)
 
   An authentication token used to authenticate the client session when you connect
   to the remote environment.
@@ -76,14 +76,7 @@ Ocean's default values or your configuration.
 
      .. note:: For non-Ocean clients, you set your token in the HTTP header; see
        the :std:doc:`sysdocs_gettingstarted:doc_rest_api` guide for information.
-
-  .. [#]
-    D-Wave's `Leap <https://cloud.dwavesys.com/leap/>`_ integrated development
-    environment (IDE) automatically reads your API token from your account.
-    You can use the configuration options of the :ref:`table_token_config` table
-    to substitute an alternative token, for example, if you belong to multiple
-    projects.
-
+  
 * **Solver** (default: feature-based selection)
 
   A D-Wave resource to be used to solve your submitted problems; for example, a

@@ -162,7 +162,7 @@ contains many more code examples:
 * Demos
 
   Typically in the form of short code examples you can open in
-  the Leap IDE or copy (clone) locally and run. For example:
+  a supported cloud-based IDE or copy (clone) locally and run. For example:
 
   * `Nurse scheduling <https://github.com/dwave-examples/nurse-scheduling>`_,
     `maze <https://github.com/dwave-examples/maze>`_,

@@ -44,8 +44,7 @@ Getting Started
 ===============
 
 Sign up for the Leap quantum cloud service here:
-`Leap signup <https://cloud.dwavesys.com/leap/signup>`_. Leap provides a
-browser-based integrated development environment (IDE) with Ocean preinstalled.
+`Leap signup <https://cloud.dwavesys.com/leap/signup>`_. 
 
 Start learning with the following D-Wave resources:
 
