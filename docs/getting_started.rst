@@ -20,18 +20,24 @@ The following steps set up your development environment for Ocean:
     :hidden:
 
     overview/install
+    overview/leap_auth
     overview/sapi
 
-*   :ref:`install`
+1.  :ref:`install`
 
     Installation is **not needed** if you are using an IDE that implements the 
     `Development Containers specification <https://containers.dev/supporting>`_
     (aka "devcontainers"), whether locally on your system (e.g., VS Code) or 
     cloud-based (e.g., `GitHub Codespaces <https://docs.github.com/codespaces>`_), 
-    and you can work in an updated Ocean environment through the 
+    because you can work in an updated Ocean environment through the 
     `Ocean Docker file <https://hub.docker.com/r/dwavesys/ocean>`_. 
 
-*   :ref:`sapi_access`
+2.  :ref:`leap_auth`
+
+    Optionally authorize Ocean to access your Leap account to facilitate  
+    token management.
+
+3.  :ref:`sapi_access`
 
     Enable the running problems on D-Wave remote compute resources, including 
     quantum-classical hybrid solvers and the D-Wave quantum processing unit (QPU).
