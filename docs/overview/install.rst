@@ -98,14 +98,20 @@ Set Up Your Environment
 =======================
 
 For a full and easy development experience it is recommended that before you start
-writing code, you complete the setup of your environment with two last steps:
+writing code, you complete the setup of your environment with these last steps:
 
-* :ref:`setup_install`
+*   :ref:`leap_auth`
 
-  Adds non-open-source tools such as the :ref:`inspector`.
-* :ref:`sapi_access`
+    Optionally authorize Ocean to access your Leap account to facilitate  
+    token management.
 
-  Sets defaults used for accessing D-Wave compute resources.
+*   :ref:`setup_install`
+
+    Adds non-open-source tools such as the :ref:`inspector`.
+
+*   :ref:`sapi_access`
+
+    Sets defaults used for accessing D-Wave compute resources.
 
 The `dwave-ocean-sdk <https://github.com/dwavesystems/dwave-ocean-sdk>`_
 includes an :ref:`interactive CLI <dwave_cli>` that steps you through setup.

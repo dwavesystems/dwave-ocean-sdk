@@ -8,15 +8,15 @@ Authorizing Access to Leap
 
 Ocean's SDK `releases 6.6 <https://github.com/dwavesystems/dwave-ocean-sdk/releases/tag/6.6.0>`_   
 and higher enable Leap\ |TM| authentication using the secure 
-`OAuth 2.0 <https://oauth.net/2/>`_ industry standard. As described in Ocean's 
-:std:doc:`oceandocs:overview/sapi` documentation, you require a Solver API (SAPI) 
+`OAuth 2.0 <https://oauth.net/2/>`_ industry standard. As described in the 
+:std:doc:`oceandocs:overview/sapi` section, you require a Solver API (SAPI) 
 token from your Leap account to submit problems to Leap solvers. 
 
 .. note:: The `OAuth-based <https://oauth.net/2/>`_ authorization is 
     provided for convenience but you also have the option of manually copying 
     your SAPI token from Leap. 
 
-For any new developer environment (For example, a Python 
+For any new developer environment (for example, a Python 
 `virtual environment <https://docs.python.org/3/library/venv.html>`_ or a 
 `GitHub Codespaces <https://docs.github.com/codespaces>`_ *codespace*), 
 authorize Ocean's access to your Leap account, using the secure
