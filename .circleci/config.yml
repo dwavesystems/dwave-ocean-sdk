@@ -211,57 +211,6 @@ jobs:
             twine check dist/*
             twine upload -u "$PYPI_USERNAME" -p "$PYPI_PASSWORD" --skip-existing ./dist/*
 
-  black-duck:
-    parameters:
-      configuration:
-        type: string
-
-    docker:
-      - image: cimg/openjdk:8.0
-
-    steps:
-      - checkout
-
-      - run:
-          name: install python
-          command: |
-            sudo apt-get update
-            sudo apt-get install build-essential
-            sudo apt-get install python3 python3-pip python3-dev python3-virtualenv python3-venv
-
-      - run:
-          name: create virtual env
-          command: |
-            python3 --version
-            python3 -m venv env
-            . env/bin/activate
-            pip install .[all]
-
-      # we have to mangle the pyproject.toml becuase otherwise black duck
-      # decides that we must be using poetry and fails. Luckily we don't
-      # have any important information in there for its purposes
-      - run:
-          name: mangle the pyproject.toml
-          command: |
-            mv pyproject.toml _pyproject.toml
-
-      - run:
-          name: install and run hub-detect
-          command: |
-            . env/bin/activate
-            bash <(curl -s -L https://detect.synopsys.com/detect8.sh) \
-              --blackduck.url="$BLACKDUCK_URL" \
-              --blackduck.api.token="$BLACKDUCK_TOKEN" \
-              --detect.code.location.name=dwave-ocean-sdk-circleci \
-              --detect.project.version.distribution=OPENSOURCE \
-              --detect.tools.excluded=SIGNATURE_SCAN \
-              --logging.level.detect=DEBUG \
-              << parameters.configuration >>
-
-      - store_artifacts:
-          path: ~/blackduck/runs/
-
-
 workflows:
   version: 2
 
@@ -289,14 +238,6 @@ workflows:
               only: /^[0-9]+(\.[0-9]+)*((\.dev|rc)([0-9]+)?)?$/
             branches:
               ignore: /.*/
-      - black-duck:
-          name: black-duck
-          context: blackduck
-          filters: *on-tag-push
-          matrix:
-            parameters:
-              # default name is the version number
-              configuration: [--detect.project.version.phase=RELEASED]
 
   nightly:
     when:
@@ -311,10 +252,3 @@ workflows:
             parameters:
               python-version: *python-versions
       - test-doctest
-      - black-duck:
-          name: black-duck
-          context: blackduck
-          matrix:
-            parameters:
-              # default phase is DEVELOPMENT
-              configuration: [--detect.project.version.name=main-branch]
