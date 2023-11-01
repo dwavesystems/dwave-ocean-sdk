@@ -14,7 +14,7 @@ D-Wave compute resources, interact with your
 `Leap <https://cloud.dwavesys.com/leap/>`_ account, and other useful actions.
 
 Run :code:`dwave --help` for information on all the CLI options.\ [#]_  For 
-**SDK version 6.6.0** the CLI provided the following commands and options
+**SDK version 6.6.1** the CLI provided the following commands and options
 (see the output in your installation for the latest):
 
 .. code-block:: bash
@@ -104,13 +104,14 @@ The :code:`dwave setup` command optionally installs non-open-source packages
 and configures your environment.
 
 The output shown below includes the interactive prompts and placeholder replies
-for a full setup.
+for a full setup. The :code:`--auth` authorizes Ocean to 
+:ref:`access your Leap account <cli_example_auth_leap>` to fetch your SPI token. 
 
 .. cli-example-setup-start-marker
 
 .. code-block:: bash
 
-    $ dwave setup
+    $ dwave setup --auth
 
     Optionally install non-open-source packages and configure your environment.
 
@@ -132,13 +133,16 @@ for a full setup.
     Installing: D-Wave Problem Inspector
     Successfully installed D-Wave Problem Inspector.
 
+    Authorizing Leap access.
+
     Creating the D-Wave configuration file.
+
     Using the simplified configuration flow.
     Try 'dwave config create --full' for more options.
 
     Creating new configuration file: /home/jane/.config/dwave/dwave.conf
     Updating existing profile: defaults
-    Authentication token [skip]: ABC-1234567890abcdef1234567890abcdef ↵
+    Fetched SAPI token for project 'My-Proj' (ABC) from Leap API.
     Configuration saved.
 
 .. cli-example-setup-end-marker
