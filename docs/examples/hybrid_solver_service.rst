@@ -35,17 +35,11 @@ viewed as an expansion of the well-known
 Example Requirements
 ====================
 
-To run the code in this example, the following is required.
-
-* The requisite information for problem submission through SAPI, as described in :ref:`sapi_access`.
-* Ocean tools :doc:`dwave-system </docs_system/sdk_index>` and :doc:`dwave_networkx </docs_dnx/sdk_index>`.
-
 .. example-requirements-start-marker
 
-If you installed `dwave-ocean-sdk <https://github.com/dwavesystems/dwave-ocean-sdk>`_
-and ran :code:`dwave setup`, your installation should meet these requirements.
-In D-Wave's `Leap <https://cloud.dwavesys.com/leap/>`_ IDE, the default workspace
-meets these requirements.
+The code in this example requires that your development environment have 
+`Ocean software <https://github.com/dwavesystems/dwave-ocean-sdk>`_ and be 
+configured to access SAPI, as described in the :ref:`gs_initial_setup` section. 
 
 .. example-requirements-end-marker
 

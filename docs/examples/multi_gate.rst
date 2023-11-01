@@ -74,18 +74,14 @@ embedding.
 Example Requirements
 ====================
 
-To run the code in this example, the following is required.
-
-* The requisite information for problem submission through SAPI, as described in
-  :ref:`sapi_access`
-* Ocean tools :doc:`dimod </docs_dimod/sdk_index>` and
-  :doc:`dwave-system </docs_system/sdk_index>`. For the
-  optional graphics, you will also need
-  :doc:`problem-inspector </docs_inspector/sdk_index>`.
-
 .. include:: hybrid_solver_service.rst
   :start-after: example-requirements-start-marker
   :end-before: example-requirements-end-marker
+
+For the optional graphics, you will also need the non-open-source
+:doc:`problem-inspector </docs_inspector/sdk_index>` Ocean package, 
+which you may have chosen to install in the :ref:`setup_install` 
+section.
 
 Formulating the Problem as a CSP
 ================================

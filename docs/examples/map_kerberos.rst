@@ -33,11 +33,6 @@ problem solving in more detail by explicitly configuring the classical and quant
 Example Requirements
 ====================
 
-To run the code in this example, the following is required.
-
-* The requisite information for problem submission through SAPI, as described in :ref:`sapi_access`
-* Ocean tools :doc:`dwave-hybrid </docs_hybrid/sdk_index>` and :doc:`dwave_networkx </docs_dnx/sdk_index>`.
-
 .. include:: hybrid_solver_service.rst
   :start-after: example-requirements-start-marker
   :end-before: example-requirements-end-marker

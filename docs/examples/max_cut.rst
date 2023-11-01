@@ -26,13 +26,6 @@ between this subset and the remaining vertices is as large as possible.
 Example Requirements
 ====================
 
-To run the code in this example, the following is required.
-
-* The requisite information for problem submission through SAPI, as described in
-  :ref:`sapi_access`.
-* Installation of Ocean tools :doc:`dwave-system </docs_system/sdk_index>` and
-  :doc:`dwave_networkx </docs_dnx/sdk_index>`.
-
 .. include:: hybrid_solver_service.rst
   :start-after: example-requirements-start-marker
   :end-before: example-requirements-end-marker

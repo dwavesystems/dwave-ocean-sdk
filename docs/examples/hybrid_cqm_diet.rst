@@ -17,14 +17,7 @@ keeping to the dieter's budget and daily requirements on macro-nutrients.
 Example Requirements
 ====================
 
-To run the code in this example, the following is required.
-
-* The requisite information for problem submission through SAPI, as described
-  in :ref:`sapi_access`.
-* Ocean tools :doc:`dwave-system </docs_system/sdk_index>` and
-  :doc:`dimod </docs_dimod/sdk_index>`.
-
-	.. include:: hybrid_solver_service.rst
+.. include:: hybrid_solver_service.rst
 	  :start-after: example-requirements-start-marker
 	  :end-before: example-requirements-end-marker
 

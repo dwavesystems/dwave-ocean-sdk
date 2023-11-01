@@ -34,12 +34,6 @@ to combine classical and quantum resources in solving your problem, see the
 Example Requirements
 ====================
 
-To run the code in this example, the following is required.
-
-* The requisite information for problem submission through SAPI, as described in :ref:`sapi_access`.
-* Ocean tools :doc:`dwave-system </docs_system/sdk_index>`,  :doc:`dimod </docs_dimod/sdk_index>`, and
-  :doc:`dwave-hybrid </docs_hybrid/sdk_index>`.
-
 .. include:: hybrid_solver_service.rst
   :start-after: example-requirements-start-marker
   :end-before: example-requirements-end-marker

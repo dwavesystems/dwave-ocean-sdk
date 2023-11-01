@@ -15,7 +15,7 @@ versions |python_requires| are supported.
 
 This section explains how to :ref:`install Ocean software<installOceanSoftware>`,
 either the entire suite of tools or particular tools\ [#]_ from the D-Wave GitHub
-repositories listed in the navigation bar.
+repositories listed under the :doc:`packages` tab.
 
 .. [#]
   Although individual Ocean packages accept dependencies within a range of
@@ -98,14 +98,20 @@ Set Up Your Environment
 =======================
 
 For a full and easy development experience it is recommended that before you start
-writing code, you complete the setup of your environment with two last steps:
+writing code, you complete the setup of your environment with these last steps:
 
-* :ref:`setup_install`
+*   :ref:`leap_auth`
 
-  Adds non-open-source tools such as the :ref:`inspector`.
-* :ref:`sapi_access`
+    Optionally authorize Ocean to access your Leap account to facilitate  
+    token management.
 
-  Sets defaults used for accessing D-Wave compute resources.
+*   :ref:`setup_install`
+
+    Adds non-open-source tools such as the :ref:`inspector`.
+
+*   :ref:`sapi_access`
+
+    Sets defaults used for accessing D-Wave compute resources.
 
 The `dwave-ocean-sdk <https://github.com/dwavesystems/dwave-ocean-sdk>`_
 includes an :ref:`interactive CLI <dwave_cli>` that steps you through setup.
