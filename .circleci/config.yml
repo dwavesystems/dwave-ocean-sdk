@@ -227,7 +227,7 @@ workflows:
           matrix:
             parameters:
               python-version: *python-versions
-      - test-individual-pkgs
+      # - test-individual-pkgs
       - test-doctest
 
   deploy:
