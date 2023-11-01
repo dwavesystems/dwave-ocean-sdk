@@ -30,7 +30,7 @@ The following steps set up your development environment for Ocean:
     (aka "devcontainers"), whether locally on your system (e.g., VS Code) or 
     cloud-based (e.g., `GitHub Codespaces <https://docs.github.com/codespaces>`_), 
     because you can work in an updated Ocean environment through the 
-    `Ocean Docker file <https://hub.docker.com/r/dwavesys/ocean>`_. 
+    `Ocean Docker file <https://hub.docker.com/r/dwavesys/ocean-dev>`_. 
 
 2.  :ref:`leap_auth`
 

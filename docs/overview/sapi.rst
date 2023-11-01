@@ -93,7 +93,7 @@ Ocean's default values or your configuration.
                     variable or explicitly in your code.
             *   -   :std:doc:`Environment variables <oceandocs:docs_cloud/reference/configuration>`
                 -   Configure :code:`DWAVE_API_TOKEN`. For example,
-                    :code:`export DWAVE_API_REGION=ABC-1234 ... 789` in
+                    :code:`export DWAVE_API_TOKEN=ABC-1234 ... 789` in
                     a Unix shell.
                 -   You can override this configuration explicitly in your code.
             *   -   Explicit parameters
@@ -232,9 +232,9 @@ Ocean's default values or your configuration.
         .. note:: Users of on-premises systems should request the SAPI endpoint from
             system administrator.
 
-        .. TODO (need info): For non-Ocean clients, you can retrieve a list of
+        .. note:: For non-Ocean clients, you can retrieve a list of
             supported regions by sending an :code:`HTTP GET` request to the
-            :code:`<Metadata URL>/regions/` endpoint.
+            :code:`https://cloud.dwavesys.com/metadata/v1/regions` endpoint.
 
     For information about using solvers in alternative geographical regions,
     see the :ref:`sapi_intro_multiregion` section below.
