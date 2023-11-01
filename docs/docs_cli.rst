@@ -14,7 +14,7 @@ D-Wave compute resources, interact with your
 `Leap <https://cloud.dwavesys.com/leap/>`_ account, and other useful actions.
 
 Run :code:`dwave --help` for information on all the CLI options.\ [#]_  For 
-**SDK version 6.6.1** the CLI provided the following commands and options
+**SDK version 6.7.0** the CLI provided the following commands and options
 (see the output in your installation for the latest):
 
 .. code-block:: bash
