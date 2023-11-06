@@ -10,10 +10,15 @@
     overflow: visible;
 }
 
-/* subclass Bootstrap4 badges */
-.badge-primary.fr, .badge-secondary.fr {
-  float: right;
-  margin-left: 0.25rem;
+/* Bootstrap badges */
+.sd-badge {
+    float: right;
+    margin-left: 0.25rem;
+}
+
+/* Dropdown titles */
+.sd-summary-title{
+    font-weight:    normal !important; 
 }
 
 :root {

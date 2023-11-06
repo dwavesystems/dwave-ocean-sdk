@@ -50,7 +50,7 @@ extensions = [
     'sphinx.ext.githubpages',
     'sphinx.ext.ifconfig',
     'breathe',
-    'sphinx_panels',
+    'sphinx_design',
     'reno.sphinxext',
     'sphinx_copybutton',
 ]
