@@ -33,7 +33,7 @@ copyright = setup_cfg['metadata']['author']
 project = 'Ocean Documentation'
 
 # Also add our own 'special value', the minimum supported Python version
-rst_prolog = f" .. |python_requires| replace:: {setup_cfg['options']['python_requires']}"
+# rst_prolog = f" .. |python_requires| replace:: {setup_cfg['options']['python_requires']}"
 
 # -- General configuration ------------------------------------------------
 
