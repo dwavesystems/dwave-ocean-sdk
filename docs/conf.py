@@ -160,12 +160,15 @@ html_theme_options = {
     ],
     "collapse_navigation": True,
     "show_prev_next": False,
+    "logo": {
+        "image_light": "_static/DWave-Ocean.svg",
+        "image_dark": "_static/DWave-Ocean.svg",
+    }
 }
 html_sidebars = {
     "**": ["search-field", "sidebar-nav-bs"]  # remove ads
 }
 html_static_path = ['_static']
-
 
 def setup(app):
    app.add_css_file('theme_overrides.css')

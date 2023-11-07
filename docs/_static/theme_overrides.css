@@ -21,19 +21,51 @@
     font-weight:    normal !important; 
 }
 
-:root {
+html[data-theme="light"] {
     /* dwave colors for convenience */
-    --dwave-color-ocean-blue: 42, 125, 225;
-    --dwave-color-dark-blue: 7, 76, 145;
-    --dwave-color-bright-blue: 3, 184, 255;
+    --dwave-color-ocean-blue: rgb(42, 125, 225);
+    --dwave-color-dark-blue: rgb(7, 76, 145);
+    --dwave-color-bright-blue: rgb(3, 184, 255);
 
-    --dwave-color-leap-teal: 23, 190, 187;
-    --dwave-color-dark-teal: 0, 140, 130;
-    --dwave-color-bright-teal: 6, 236, 220;
+    --dwave-color-leap-teal: rgb(23, 190, 187);
+    --dwave-color-dark-teal: rgb(0, 140, 130);
+    --dwave-color-bright-teal: rgb(6, 236, 220);
 
-    --dwave-color-advantage-orange: 243, 120, 32;
-    --dwave-color-dark-orange: 175, 73, 4;
-    --dwave-color-bright-orange: 255, 161, 67;
+    --dwave-color-advantage-orange: rgb(243, 120, 32);
+    --dwave-color-dark-orange: rgb(175, 73, 4);
+    --dwave-color-bright-orange: rgb(255, 161, 67);
+
+    /* theme overrides */
+    --pst-color-primary: rgb(34, 34, 34);
+    --pst-color-link: var(--dwave-color-ocean-blue);
+    --pst-color-link-hover: var(--dwave-color-dark-blue);
+    /*--pst-color-inline-code: var(--dwave-color-advantage-sienna);*/
+    --pst-color-success: var(--dwave-color-leap-teal);
+    --pst-color-info: var(--dwave-color-ocean-blue);
+    --pst-color-warning: var(--dwave-color-advantage-orange);
+    /*--pst-color-danger: 220, 53, 69;*/
+    --pst-color-active-navigation: var(--dwave-color-ocean-blue);
+    --pst-color-navbar-link-hover: var(--dwave-color-ocean-blue);
+    --pst-color-navbar-link-active: var(--dwave-color-ocean-blue);
+    --pst-color-sidebar-link-hover: var(--dwave-color-ocean-blue);
+    --pst-color-sidebar-link-active: var(--dwave-color-ocean-blue);
+    --pst-color-toc-link-hover: var(--dwave-color-ocean-blue);
+    --pst-color-toc-link-active: var(--dwave-color-ocean-blue);
+}
+
+html[data-theme="dark"] {
+    /* dwave colors for convenience */
+    --dwave-color-ocean-blue: rgb(42, 125, 225);
+    --dwave-color-dark-blue: rgb(7, 76, 145);
+    --dwave-color-bright-blue: rgb(3, 184, 255);
+
+    --dwave-color-leap-teal: rgb(23, 190, 187);
+    --dwave-color-dark-teal: rgb(0, 140, 130);
+    --dwave-color-bright-teal: rgb(6, 236, 220);
+
+    --dwave-color-advantage-orange: rgb(243, 120, 32);
+    --dwave-color-dark-orange: rgb(175, 73, 4);
+    --dwave-color-bright-orange: rgb(255, 161, 67);
 
     /* theme overrides */
     --pst-color-primary: 34, 34, 34;
