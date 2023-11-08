@@ -10,15 +10,15 @@
     overflow: visible;
 }
 
-/* Bootstrap badges */
+/* Bootstrap badges NOT YET WORKING*/
 .sd-badge {
-    float: right;
-    margin-left: 0.25rem;
+    float: right !important;
 }
 
-/* Dropdown titles */
+/* Dropdown titles NOT YET WORKING: aligned text*/
 .sd-summary-title{
-    font-weight:    normal !important; 
+    font-weight:    normal !important;
+    text-align: left !important; 
 }
 
 html[data-theme="light"] {
@@ -36,7 +36,8 @@ html[data-theme="light"] {
     --dwave-color-bright-orange: rgb(255, 161, 67);
 
     /* theme overrides */
-    --pst-color-primary: rgb(34, 34, 34);
+    --pst-color-primary: var(--dwave-color-ocean-blue);
+    --pst-color-secondary: grey;
     --pst-color-link: var(--dwave-color-ocean-blue);
     --pst-color-link-hover: var(--dwave-color-dark-blue);
     /*--pst-color-inline-code: var(--dwave-color-advantage-sienna);*/
@@ -68,7 +69,8 @@ html[data-theme="dark"] {
     --dwave-color-bright-orange: rgb(255, 161, 67);
 
     /* theme overrides */
-    --pst-color-primary: 34, 34, 34;
+    --pst-color-primary: var(--dwave-color-ocean-blue);
+    --pst-color-secondary: grey;
     --pst-color-link: var(--dwave-color-ocean-blue);
     --pst-color-link-hover: var(--dwave-color-dark-blue);
     /*--pst-color-inline-code: var(--dwave-color-advantage-sienna);*/
