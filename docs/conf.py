@@ -159,6 +159,8 @@ html_theme_options = {
         },
     ],
     "collapse_navigation": True,
+    "header_links_before_dropdown": 8,
+    "navbar_align": "right",  
     "show_prev_next": False,
     "logo": {
         "image_light": "_static/DWave-Ocean.svg",
