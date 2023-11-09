@@ -131,7 +131,7 @@ jobs:
 
   test-doctest:
     docker:
-      - image: cimg/python:3.8
+      - image: cimg/python:3.10
 
     working_directory: ~/repo
 
