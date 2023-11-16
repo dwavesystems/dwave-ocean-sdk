@@ -138,6 +138,11 @@ if os.environ.get('READTHEDOCS', False):
 html_theme = 'pydata_sphinx_theme'
 html_logo = "_static/DWave-Ocean.svg"
 
+# Temporary for current pydata_sphinx_theme==0.8. Will update per
+# https://pydata-sphinx-theme.readthedocs.io/en/stable/user_guide/branding.html#add-favicons
+# when https://github.com/dwavesystems/dwave-ocean-sdk/pull/274 is merged 
+html_favicon = 'https://www.dwavesys.com/favicon.ico'
+
 html_theme_options = {
     "github_url": "https://github.com/dwavesystems/dwave-ocean-sdk",
     "external_links": [
