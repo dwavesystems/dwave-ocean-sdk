@@ -10,15 +10,14 @@
     overflow: visible;
 }
 
-/* Bootstrap badges NOT YET WORKING*/
+/* Bootstrap badges */
 .sd-badge {
     float: right !important;
 }
 
-/* Dropdown titles NOT YET WORKING: aligned text*/
+/* Dropdown titles */
 .sd-summary-title{
     font-weight:    normal !important;
-    text-align: left !important; 
 }
 
 html[data-theme="light"] {

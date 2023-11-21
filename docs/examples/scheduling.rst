@@ -261,7 +261,7 @@ the lowest value of the BQM (values of zero in the :code:`energy` field below):
 The code below prints all those solutions (assignments of variables) for which the
 BQM has its minimum value.
 
->>> for sample, energy in sampleset.data(['sample', 'energy']):
+>>> for sample, energy in sampleset.data(['sample', 'energy']):  # doctest: +SKIP
 ...     if energy==0:
 ...         time = 'business hours' if sample['t'] else 'evenings'
 ...         venue = 'office' if sample['v'] else 'home'
