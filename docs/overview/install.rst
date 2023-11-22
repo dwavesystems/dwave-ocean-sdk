@@ -48,7 +48,7 @@ Python.
        . ocean/bin/activate
 
    (On Windows operating system, activating a virtual environment might be done
-   with the :code:`Scripts\activate` command instead.)
+   with the :code:`Scripts\\activate` command instead.)
 
 Your machine is now ready to install Ocean software.
 
