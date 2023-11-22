@@ -20,7 +20,7 @@
     font-weight:    normal !important;
 }
 
-html[data-theme="light"] {
+:root {
     /* dwave colors for convenience */
     --dwave-color-ocean-blue: rgb(42, 125, 225);
     --dwave-color-dark-blue: rgb(7, 76, 145);
@@ -33,13 +33,16 @@ html[data-theme="light"] {
     --dwave-color-advantage-orange: rgb(243, 120, 32);
     --dwave-color-dark-orange: rgb(175, 73, 4);
     --dwave-color-bright-orange: rgb(255, 161, 67);
+  }
 
+html[data-theme="light"] {
+ 
     /* theme overrides */
     --pst-color-primary: var(--dwave-color-ocean-blue);
     --pst-color-secondary: grey;
     --pst-color-link: var(--dwave-color-ocean-blue);
     --pst-color-link-hover: var(--dwave-color-dark-blue);
-    /*--pst-color-inline-code: var(--dwave-color-advantage-sienna);*/
+    --pst-color-inline-code: var(--dwave-color-dark-orange);
     --pst-color-success: var(--dwave-color-leap-teal);
     --pst-color-info: var(--dwave-color-ocean-blue);
     --pst-color-warning: var(--dwave-color-advantage-orange);
@@ -54,25 +57,13 @@ html[data-theme="light"] {
 }
 
 html[data-theme="dark"] {
-    /* dwave colors for convenience */
-    --dwave-color-ocean-blue: rgb(42, 125, 225);
-    --dwave-color-dark-blue: rgb(7, 76, 145);
-    --dwave-color-bright-blue: rgb(3, 184, 255);
-
-    --dwave-color-leap-teal: rgb(23, 190, 187);
-    --dwave-color-dark-teal: rgb(0, 140, 130);
-    --dwave-color-bright-teal: rgb(6, 236, 220);
-
-    --dwave-color-advantage-orange: rgb(243, 120, 32);
-    --dwave-color-dark-orange: rgb(175, 73, 4);
-    --dwave-color-bright-orange: rgb(255, 161, 67);
 
     /* theme overrides */
     --pst-color-primary: var(--dwave-color-ocean-blue);
     --pst-color-secondary: grey;
     --pst-color-link: var(--dwave-color-ocean-blue);
     --pst-color-link-hover: var(--dwave-color-dark-blue);
-    /*--pst-color-inline-code: var(--dwave-color-advantage-sienna);*/
+    --pst-color-inline-code: var(--dwave-color-dark-orange);
     --pst-color-success: var(--dwave-color-leap-teal);
     --pst-color-info: var(--dwave-color-ocean-blue);
     --pst-color-warning: var(--dwave-color-advantage-orange);
