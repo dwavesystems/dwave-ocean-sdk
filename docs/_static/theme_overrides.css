@@ -29,6 +29,11 @@
     font-weight:    normal !important;
 }
 
+abbr {
+    border-bottom: none !important;
+    text-decoration : none !important;
+}
+
 :root {
     /* dwave colors for convenience */
     --dwave-color-ocean-blue: rgb(42, 125, 225);

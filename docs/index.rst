@@ -32,14 +32,15 @@ The Ocean SDK includes the :ref:`dwave_cli` and the following packages:
 .. packages-start-marker
 
 .. grid:: 3
+   :gutter: 2
 
    .. grid-item-card::  `dimod <https://docs.ocean.dwavesys.com/en/stable/docs_dimod/sdk_index.html>`_ 
          
       :abbr:`Quadratic models: BQM, CQM. (Shared API for binary quadratic 
       samplers. Provides a binary quadratic model class that contains 
       Ising and quadratic unconstrained binary optimization models used by 
-      samplers such as the D-Wave system. Also provides utilities for constructing 
-      new samplers and composed samplers.)`
+      samplers such as the D-Wave system. Also provides utilities for 
+      constructing new samplers and composed samplers.)`
      
    .. grid-item-card::  :ref:`dwavebinarycsp <index_csp>` 
             
@@ -67,13 +68,13 @@ The Ocean SDK includes the :ref:`dwave_cli` and the following packages:
             
       :abbr:`Visualizer for problems submitted to quantum computers. (A tool 
       for visualizing problems submitted to, and answers received from, a D-Wave
-      structured solver such as a D-Wave 2000Q quantum computer.)`
+      structured solver such as an Advantage quantum computer.)`
 
    .. grid-item-card::  :ref:`dwave-networkx <index_dnx>` 
             
       :abbr:`NetworkX extension. (Extension of NetworkX—a Python language 
-      package for exploration and analysis of networks and network algorithms—for 
-      users of D-Wave Systems.)`
+      package for exploration and analysis of networks and network 
+      algorithms—for users of D-Wave Systems.)`
 
    .. grid-item-card::  :ref:`dwave-ocean-sdk <index>` 
             
