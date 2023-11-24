@@ -24,11 +24,6 @@
     overflow: visible;
 }
 
-/* Bootstrap badges */
-.sd-badge {
-    float: right !important;
-}
-
 /* Dropdown titles */
 .sd-summary-title{
     font-weight:    normal !important;
