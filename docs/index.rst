@@ -33,7 +33,7 @@ The Ocean SDK includes the :ref:`dwave_cli` and the following packages:
 
 .. tab-set::
 
-   .. tab-item:: Top
+   .. tab-item:: Get Started
 
       .. grid:: 2
          :gutter: 2
@@ -75,7 +75,7 @@ The Ocean SDK includes the :ref:`dwave_cli` and the following packages:
             framework for building hybrid asynchronous decomposition samplers for 
             quadratic unconstrained binary optimization (QUBO) problems.)`
 
-   .. tab-item:: All SDK Packages
+   .. tab-item:: All Packages
 
       .. dropdown::  `dimod <https://docs.ocean.dwavesys.com/en/stable/docs_dimod/sdk_index.html>`_: Quadratic models (BQM, CQM). 
 
