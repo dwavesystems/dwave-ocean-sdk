@@ -180,10 +180,6 @@ def setup(app):
    app.add_js_file('cookie_notice.js')
    app.add_config_value('target', 'sdk', 'env')
 
-
-# -- Panels ---------------------------------------------------------------
-panels_add_bootstrap_css = False
-
 # -- Intersphinx ----------------------------------------------------------
 intersphinx_mapping = {
     'python': ('https://docs.python.org/3/', None),
