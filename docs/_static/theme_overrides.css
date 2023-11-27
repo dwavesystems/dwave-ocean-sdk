@@ -24,14 +24,14 @@
     overflow: visible;
 }
 
-/* Bootstrap badges */
-.sd-badge {
-    float: right !important;
-}
-
 /* Dropdown titles */
 .sd-summary-title{
     font-weight:    normal !important;
+}
+
+abbr {
+    border-bottom: none !important;
+    text-decoration : none !important;
 }
 
 :root {
