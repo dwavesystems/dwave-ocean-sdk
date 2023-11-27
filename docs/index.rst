@@ -28,129 +28,175 @@ Packages
 ========
 
 The Ocean SDK includes the :ref:`dwave_cli` and the following packages:
-
+  
 .. packages-start-marker
 
-.. dropdown::  **dimod** --- Quadratic models: BQM, DQM. \
-   :link-badge:`https://docs.ocean.dwavesys.com/en/stable/docs_dimod/sdk_index.html, "docs", cls=badge-primary fr text-white` \
-   :link-badge:`https://github.com/dwavesystems/dimod, "code", cls=badge-secondary fr text-white`
+.. tab-set::
 
-   Shared API for binary quadratic :term:`sampler`\ s. Provides a binary quadratic model (BQM) class
-   that contains :term:`Ising` and quadratic unconstrained binary optimization (:term:`QUBO`) models
-   used by samplers such as the D-Wave system. Also provides utilities for constructing new samplers
-   and composed samplers.
+   .. tab-item:: Get Started
 
-.. dropdown:: **dwavebinarycsp** --- Generates BQMs from constraint satisfaction problems. \
-   :link-badge:`https://docs.ocean.dwavesys.com/en/stable/docs_binarycsp/sdk_index.html,"docs", cls=badge-primary fr text-white` \
-   :link-badge:`https://github.com/dwavesystems/dwavebinarycsp,"code", cls=badge-secondary fr text-white`
+      .. grid:: 2
+         :gutter: 2
 
-   Library to construct a binary quadratic model from a constraint satisfaction
-   problem with small constraints over binary variables.
+         .. grid-item-card::  `dimod <https://docs.ocean.dwavesys.com/en/stable/docs_dimod/sdk_index.html>`_ 
+         
+            :abbr:`Quadratic models: BQM, CQM. (Shared API for binary quadratic 
+            samplers. Provides a binary quadratic model class that contains 
+            Ising and quadratic unconstrained binary optimization models used by 
+            samplers such as the D-Wave system. Also provides utilities for 
+            constructing new samplers and composed samplers.)`
 
-.. dropdown:: **dwave-cloud-client** --- API client to D-Wave solvers. \
-   :link-badge:`https://docs.ocean.dwavesys.com/en/stable/docs_cloud/sdk_index.html, "docs", cls=badge-primary fr text-white` \
-   :link-badge:`https://github.com/dwavesystems/dwave-cloud-client, "code", cls=badge-secondary fr text-white`
+         .. grid-item-card::  :ref:`dwave-samplers <index_dwave_samplers>` 
+                        
+            :abbr:`Classical algorithms for solving binary quadratic models. (A library 
+            that implements the following classical algorithms as samplers for solving
+            binary quadratic models:
+            [Planar]: an exact solver for planar Ising problems with no linear biases.
+            [Random]: a sampler that draws uniform random samples.
+            [Simulated Annealing]: a probabilistic heuristic for optimization and approximate
+            Boltzmann sampling well suited to finding good solutions of large problems.
+            [Steepest Descent]: a discrete analogue of gradient descent, often used in
+            machine learning, that quickly finds a local minimum.
+            [Tabu]: a heuristic that employs local search with methods to escape local minima.
+            [Tree Decomposition]: an exact solver for problems with low treewidth.)`
+         
+         .. grid-item-card::  :ref:`dwave-system <index_system>` 
 
-   Minimal implementation of the REST interface used to communicate with D-Wave
-   :term:`Sampler` API (SAPI) servers.
+            :abbr:`D-Wave samplers and composites. (Basic API for easily incorporating 
+            the D-Wave system as a sampler in the D-Wave Ocean software stack.
+            It includes DWaveSampler, a dimod sampler that accepts and passes system
+            parameters such as system identification and authentication down the stack.
+            It also includes several useful composites—layers of pre- and post-processing—that
+            can be used with DWaveSampler to handle minor-embedding, optimize chain strength, etc.)`
 
-.. dropdown:: **dwave-gate** --- Package for quantum circuits. \
-   :link-badge:`https://docs.ocean.dwavesys.com/en/stable/docs_gate/sdk_index.html, "docs", cls=badge-primary fr text-white` \
-   :link-badge:`https://github.com/dwavesystems/dwave-gate, "code", cls=badge-secondary fr text-white`
+         .. grid-item-card::  :ref:`dwave-hybrid <index_hybrid>` 
+                        
+            :abbr:`Framework for building hybrid samplers. (A general, minimal Python 
+            framework for building hybrid asynchronous decomposition samplers for 
+            quadratic unconstrained binary optimization (QUBO) problems.)`
 
-   A software package for constructing, modifying and running quantum circuits.
+   .. tab-item:: All Packages
 
-.. dropdown:: **dwave-hybrid** --- Framework for building hybrid solvers. \
-   :link-badge:`https://docs.ocean.dwavesys.com/en/stable/docs_hybrid/sdk_index.html, "docs", cls=badge-primary fr text-white` \
-   :link-badge:`https://github.com/dwavesystems/dwave-hybrid, "code", cls=badge-secondary fr text-white`
+      .. dropdown::  `dimod <https://docs.ocean.dwavesys.com/en/stable/docs_dimod/sdk_index.html>`_: Quadratic models (BQM, CQM). 
 
-   A general, minimal Python framework for building hybrid asynchronous decomposition
-   samplers for quadratic unconstrained binary optimization (QUBO) problems.
+         Shared API for binary quadratic :term:`sampler`\ s. Provides a binary quadratic model (BQM) class
+         that contains :term:`Ising` and quadratic unconstrained binary optimization (:term:`QUBO`) models
+         used by samplers such as the D-Wave system. Also provides utilities for constructing new samplers
+         and composed samplers.
 
-.. dropdown:: **dwave-inspector** --- Visualizer for problems submitted to quantum computers. \
-   :link-badge:`https://docs.ocean.dwavesys.com/en/stable/docs_inspector/sdk_index.html, "docs", cls=badge-primary fr text-white` \
-   :link-badge:`https://github.com/dwavesystems/dwave-inspector, "code", cls=badge-secondary fr text-white`
+         :bdg-link-primary:`code <https://github.com/dwavesystems/dimod>`
 
-   A tool for visualizing problems submitted to, and answers received from, a D-Wave
-   structured solver such as a D-Wave 2000Q quantum computer.
+      .. dropdown:: :ref:`dwavebinarycsp <index_csp>`: Generates BQMs from constraint satisfaction problems. 
 
-.. dropdown:: **dwave-networkx** --- NetworkX extension. \
-   :link-badge:`https://docs.ocean.dwavesys.com/en/stable/docs_dnx/sdk_index.html, "docs", cls=badge-primary fr text-white` \
-   :link-badge:`https://github.com/dwavesystems/dwave-networkx, "code", cls=badge-secondary fr text-white`
+         Library to construct a binary quadratic model from a constraint satisfaction
+         problem with small constraints over binary variables.
 
-   Extension of NetworkX—a Python language package for exploration and analysis
-   of networks and network algorithms—for users of D-Wave Systems.
+         :bdg-link-primary:`code <https://github.com/dwavesystems/dwavebinarycsp>`
 
-   dwave-networkx provides tools for working with :term:`Chimera` and :term:`Pegasus`
-   graphs and implementations of graph-theory algorithms on the D-Wave system and other
-   binary quadratic model :term:`sampler`\ s.
+      .. dropdown:: :ref:`dwave-cloud-client <index_cloud>`: API client to D-Wave solvers. 
 
-.. dropdown:: **dwave-ocean-sdk** --- Ocean software development kit. \
-   :link-badge:`https://docs.ocean.dwavesys.com/en/stable/index.html, "docs", cls=badge-primary fr text-white` \
-   :link-badge:`https://github.com/dwavesystems/dwave-ocean-sdk, "code", cls=badge-secondary fr text-white`
+         Minimal implementation of the REST interface used to communicate with D-Wave
+         :term:`Sampler` API (SAPI) servers.
 
-   Installer for D-Wave's Ocean Tools.
+         :bdg-link-primary:`code <https://github.com/dwavesystems/dwave-cloud-client>`
 
-.. dropdown:: **dwave-preprocessing** --- Preprocessing tools for quadratic models. \
-   :link-badge:`https://docs.ocean.dwavesys.com/en/stable/docs_preprocessing/sdk_index.html, "docs", cls=badge-primary fr text-white` \
-   :link-badge:`https://github.com/dwavesystems/dwave-preprocessing, "code", cls=badge-secondary fr text-white`
+      .. dropdown:: :ref:`dwave-gate <index_gate>`: Package for quantum circuits. 
 
-   Library containing common preprocessing tools for quadratic models.
+         A software package for constructing, modifying and running quantum circuits.
 
-.. dropdown:: **dwave-samplers** --- Classical algorithms for solving binary quadratic models. \
-   :link-badge:`https://docs.ocean.dwavesys.com/en/stable/docs_samplers/index.html, "docs", cls=badge-primary fr text-white` \
-   :link-badge:`https://github.com/dwavesystems/dwave-samplers, "code", cls=badge-secondary fr text-white`
+         :bdg-link-primary:`code <https://github.com/dwavesystems/dwave-gate>`
 
-   A library that implements the following classical algorithms as :term:`samplers<sampler>` for solving
-   :term:`binary quadratic models<BQM>` (BQM):
+      .. dropdown:: :ref:`dwave-hybrid <index_hybrid>`: Framework for building hybrid solvers. 
 
-   * Planar: an exact solver for planar Ising problems with no linear biases.
-   * Random: a sampler that draws uniform random samples.
-   * Simulated Annealing: a probabilistic heuristic for optimization and approximate
-     Boltzmann sampling well suited to finding good solutions of large problems.
-   * Steepest Descent: a discrete analogue of gradient descent, often used in
-     machine learning, that quickly finds a local minimum.
-   * Tabu: a heuristic that employs local search with methods to escape local minima.
-   * Tree Decomposition: an exact solver for problems with low treewidth.
+         A general, minimal Python framework for building hybrid asynchronous decomposition
+         samplers for quadratic unconstrained binary optimization (QUBO) problems.
 
-.. dropdown:: **dwave-system** --- D-Wave samplers and composites. \
-   :link-badge:`https://docs.ocean.dwavesys.com/en/stable/docs_system/sdk_index.html, "docs", cls=badge-primary fr text-white` \
-   :link-badge:`https://github.com/dwavesystems/dwave-system, "code", cls=badge-secondary fr text-white`
+         :bdg-link-primary:`code <https://github.com/dwavesystems/dwave-hybrid>`
 
-   Basic API for easily incorporating the D-Wave system as a :term:`sampler` in the
-   D-Wave Ocean software stack.
+      .. dropdown:: :ref:`dwave-inspector <index_inspector>`: Visualizer for problems submitted to quantum computers. 
 
-   It includes DWaveSampler, a dimod sampler that accepts and passes system
-   parameters such as system identification and authentication down the stack.
-   It also includes several useful composites—layers of pre- and post-processing—that
-   can be used with DWaveSampler to handle :term:`minor-embedding`, optimize chain strength, etc.
+         A tool for visualizing problems submitted to, and answers received from, a D-Wave
+         structured solver such as an Advantage quantum computer.
 
-.. dropdown:: **minorminer** --- Minor-embeds graphs. \
-   :link-badge:`https://docs.ocean.dwavesys.com/en/stable/docs_minorminer/source/sdk_index.html, "docs", cls=badge-primary fr text-white` \
-   :link-badge:`https://github.com/dwavesystems/minorminer, "code", cls=badge-secondary fr text-white`
+         :bdg-link-primary:`code <https://github.com/dwavesystems/dwave-inspector>`
 
-   A tool for finding graph :term:`minor-embedding`\ s, developed to embed :term:`Ising` problems onto quantum annealers (QA).
+      .. dropdown:: :ref:`dwave-networkx <index_dnx>`: NetworkX extension. 
 
-   While it can be used to find minors in arbitrary graphs, it is particularly geared
-   towards the state of the art in QA: problem graphs of a few to a few hundred variables,
-   and hardware graphs of a few thousand qubits.
+         Extension of NetworkX—a Python language package for exploration and analysis
+         of networks and network algorithms—for users of D-Wave Systems.
 
-.. dropdown:: **penaltymodel** --- Maps constraints to binary quadratic models. \
-   :link-badge:`https://docs.ocean.dwavesys.com/en/stable/docs_penalty/sdk_index.html, "docs", cls=badge-primary fr text-white` \
-   :link-badge:`https://github.com/dwavesystems/penaltymodel, "code", cls=badge-secondary fr text-white`
+         dwave-networkx provides tools for working with :term:`Chimera` and :term:`Pegasus`
+         graphs and implementations of graph-theory algorithms on the D-Wave system and other
+         binary quadratic model :term:`sampler`\ s.
 
-   An approach to solve a constraint satisfaction problem (CSP) using an :term:`Ising`
-   model or a :term:`QUBO`, is to map each individual constraint in the CSP to a ‘small’
-   Ising model or QUBO.
+         :bdg-link-primary:`code <https://github.com/dwavesystems/dwave-networkx>`
 
-   Includes a local cache for penalty models and a factory that generates penalty models
-   using SMT solvers.
+      .. dropdown:: :ref:`dwave-ocean-sdk <index>`: Ocean software development kit. 
+         
+         Installer for D-Wave's Ocean Tools.
 
-.. dropdown:: **pyqubo** --- Creates quadratic models from mathematical expressions. \
-   :link-badge:`https://pyqubo.readthedocs.io/en/latest, "docs", cls=badge-primary fr text-white` \
-   :link-badge:`https://github.com/recruit-communications/pyqubo, "code", cls=badge-secondary fr text-white`
+         :bdg-link-primary:`code <https://github.com/dwavesystems/dwave-ocean-sdk>`
 
-   A package that helps you create QUBOs and Ising models from flexible mathematical expressions.
+      .. dropdown:: :ref:`dwave-preprocessing <index_preprocessing>`: Preprocessing tools for quadratic models. 
+
+         Library containing common preprocessing tools for quadratic models.
+
+         :bdg-link-primary:`code <https://github.com/dwavesystems/dwave-preprocessing>`
+
+      .. dropdown:: :ref:`dwave-samplers <index_dwave_samplers>`: Classical algorithms for solving binary quadratic models. 
+
+         A library that implements the following classical algorithms as :term:`samplers<sampler>` for solving
+         :term:`binary quadratic models<BQM>` (BQM):
+
+         * Planar: an exact solver for planar Ising problems with no linear biases.
+         * Random: a sampler that draws uniform random samples.
+         * Simulated Annealing: a probabilistic heuristic for optimization and approximate
+         Boltzmann sampling well suited to finding good solutions of large problems.
+         * Steepest Descent: a discrete analogue of gradient descent, often used in
+         machine learning, that quickly finds a local minimum.
+         * Tabu: a heuristic that employs local search with methods to escape local minima.
+         * Tree Decomposition: an exact solver for problems with low treewidth.
+
+         :bdg-link-primary:`code <https://github.com/dwavesystems/dwave-samplers>`
+
+      .. dropdown:: :ref:`dwave-system <index_system>`: D-Wave samplers and composites. 
+
+         Basic API for easily incorporating the D-Wave system as a :term:`sampler` in the
+         D-Wave Ocean software stack.
+
+         It includes DWaveSampler, a dimod sampler that accepts and passes system
+         parameters such as system identification and authentication down the stack.
+         It also includes several useful composites—layers of pre- and post-processing—that
+         can be used with DWaveSampler to handle :term:`minor-embedding`, optimize chain strength, etc.
+
+         :bdg-link-primary:`code <https://github.com/dwavesystems/dwave-system>`
+
+      .. dropdown:: `minorminer <https://docs.ocean.dwavesys.com/en/stable/docs_minorminer/source/sdk_index.html>`_: Minor-embeds graphs. 
+
+         A tool for finding graph :term:`minor-embedding`\ s, developed to embed :term:`Ising` problems onto quantum annealers (QA).
+
+         While it can be used to find minors in arbitrary graphs, it is particularly geared
+         towards the state of the art in QA: problem graphs of a few to a few hundred variables,
+         and hardware graphs of a few thousand qubits.
+
+         :bdg-link-primary:`code <https://github.com/dwavesystems/minorminer>`
+
+      .. dropdown:: :ref:`penaltymodel <index_penalty>`: Maps constraints to binary quadratic models. 
+
+         An approach to solve a constraint satisfaction problem (CSP) using an :term:`Ising`
+         model or a :term:`QUBO`, is to map each individual constraint in the CSP to a ‘small’
+         Ising model or QUBO.
+
+         Includes a local cache for penalty models and a factory that generates penalty models
+         using SMT solvers.
+
+         :bdg-link-primary:`code <https://github.com/dwavesystems/penaltymodel>`
+
+      .. dropdown:: `pyqubo <https://pyqubo.readthedocs.io/en/latest>`_: Creates quadratic models from mathematical expressions. 
+
+         A package that helps you create QUBOs and Ising models from flexible mathematical expressions.
+
+         :bdg-link-primary:`code <https://github.com/recruit-communications/pyqubo>`
 
 .. packages-end-marker
 

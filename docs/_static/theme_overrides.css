@@ -1,3 +1,17 @@
+/*  Copyright 2023 D-Wave Systems Inc.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License. */
+
 /* override table width restrictions */
 /* https://github.com/readthedocs/sphinx_rtd_theme/issues/117 */
 .wy-table-responsive table td, .wy-table-responsive table th {
@@ -10,31 +24,63 @@
     overflow: visible;
 }
 
-/* subclass Bootstrap4 badges */
-.badge-primary.fr, .badge-secondary.fr {
-  float: right;
-  margin-left: 0.25rem;
+/* Dropdown titles */
+.sd-summary-title{
+    font-weight:    normal !important;
+}
+
+abbr {
+    border-bottom: none !important;
+    text-decoration : none !important;
 }
 
 :root {
     /* dwave colors for convenience */
-    --dwave-color-ocean-blue: 42, 125, 225;
-    --dwave-color-dark-blue: 7, 76, 145;
-    --dwave-color-bright-blue: 3, 184, 255;
+    --dwave-color-ocean-blue: rgb(42, 125, 225);
+    --dwave-color-dark-blue: rgb(7, 76, 145);
+    --dwave-color-bright-blue: rgb(3, 184, 255);
 
-    --dwave-color-leap-teal: 23, 190, 187;
-    --dwave-color-dark-teal: 0, 140, 130;
-    --dwave-color-bright-teal: 6, 236, 220;
+    --dwave-color-leap-teal: rgb(23, 190, 187);
+    --dwave-color-dark-teal: rgb(0, 140, 130);
+    --dwave-color-bright-teal: rgb(6, 236, 220);
 
-    --dwave-color-advantage-orange: 243, 120, 32;
-    --dwave-color-dark-orange: 175, 73, 4;
-    --dwave-color-bright-orange: 255, 161, 67;
+    --dwave-color-advantage-orange: rgb(243, 120, 32);
+    --dwave-color-dark-orange: rgb(175, 73, 4);
+    --dwave-color-bright-orange: rgb(255, 161, 67);
+    --inline-code-pink: rgb(232, 62, 140);
+  }
 
+html[data-theme="light"] {
+ 
     /* theme overrides */
-    --pst-color-primary: 34, 34, 34;
+    --pst-color-primary: var(--dwave-color-ocean-blue);
+    --pst-color-secondary: grey;
     --pst-color-link: var(--dwave-color-ocean-blue);
     --pst-color-link-hover: var(--dwave-color-dark-blue);
-    /*--pst-color-inline-code: var(--dwave-color-advantage-sienna);*/
+    --pst-color-inline-code: var(--inline-code-pink);
+    --pst-color-inline-code-links: var(--dwave-color-ocean-blue);
+    --pst-color-success: var(--dwave-color-leap-teal);
+    --pst-color-info: var(--dwave-color-ocean-blue);
+    --pst-color-warning: var(--dwave-color-advantage-orange);
+    /*--pst-color-danger: 220, 53, 69;*/
+    --pst-color-active-navigation: var(--dwave-color-ocean-blue);
+    --pst-color-navbar-link-hover: var(--dwave-color-ocean-blue);
+    --pst-color-navbar-link-active: var(--dwave-color-ocean-blue);
+    --pst-color-sidebar-link-hover: var(--dwave-color-ocean-blue);
+    --pst-color-sidebar-link-active: var(--dwave-color-ocean-blue);
+    --pst-color-toc-link-hover: var(--dwave-color-ocean-blue);
+    --pst-color-toc-link-active: var(--dwave-color-ocean-blue);
+}
+
+html[data-theme="dark"] {
+
+    /* theme overrides */
+    --pst-color-primary: var(--dwave-color-ocean-blue);
+    --pst-color-secondary: grey;
+    --pst-color-link: var(--dwave-color-ocean-blue);
+    --pst-color-link-hover: var(--dwave-color-dark-blue);
+    --pst-color-inline-code: var(--inline-code-pink);
+    --pst-color-inline-code-links: var(--dwave-color-ocean-blue);
     --pst-color-success: var(--dwave-color-leap-teal);
     --pst-color-info: var(--dwave-color-ocean-blue);
     --pst-color-warning: var(--dwave-color-advantage-orange);

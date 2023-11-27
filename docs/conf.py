@@ -33,7 +33,9 @@ copyright = setup_cfg['metadata']['author']
 project = 'Ocean Documentation'
 
 # Also add our own 'special value', the minimum supported Python version
-rst_prolog = f" .. |python_requires| replace:: {setup_cfg['options']['python_requires']}"
+rst_prolog = f"""
+.. |python_requires| replace:: {setup_cfg['options']['python_requires']}
+"""
 
 # -- General configuration ------------------------------------------------
 
@@ -50,7 +52,7 @@ extensions = [
     'sphinx.ext.githubpages',
     'sphinx.ext.ifconfig',
     'breathe',
-    'sphinx_panels',
+    'sphinx_design',
     'reno.sphinxext',
     'sphinx_copybutton',
 ]
@@ -136,7 +138,7 @@ if os.environ.get('READTHEDOCS', False):
 # -- Options for HTML output ----------------------------------------------
 
 html_theme = 'pydata_sphinx_theme'
-html_logo = "_static/DWave-Ocean.svg"
+html_logo = "_static/Ocean.svg"
 
 # Temporary for current pydata_sphinx_theme==0.8. Will update per
 # https://pydata-sphinx-theme.readthedocs.io/en/stable/user_guide/branding.html#add-favicons
@@ -164,23 +166,24 @@ html_theme_options = {
         },
     ],
     "collapse_navigation": True,
+    "header_links_before_dropdown": 8,
+    "navbar_align": "left",  
     "show_prev_next": False,
+    "logo": {
+        "image_light": "_static/Ocean.svg",
+        "image_dark": "_static/Ocean.svg",
+    }
 }
 html_sidebars = {
-    "**": ["search-field", "sidebar-nav-bs"]  # remove ads
+    "**": ["sidebar-nav-bs"]  # remove ads
 }
 html_static_path = ['_static']
-
 
 def setup(app):
    app.add_css_file('theme_overrides.css')
    app.add_css_file('cookie_notice.css')
    app.add_js_file('cookie_notice.js')
    app.add_config_value('target', 'sdk', 'env')
-
-
-# -- Panels ---------------------------------------------------------------
-panels_add_bootstrap_css = False
 
 # -- Intersphinx ----------------------------------------------------------
 intersphinx_mapping = {
