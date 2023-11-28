@@ -8,10 +8,6 @@ Ocean software is a suite of tools `D-Wave Systems <https://www.dwavesys.com>`_ 
 on the `D-Wave GitHub repository <https://github.com/dwavesystems>`_ for solving hard
 problems with quantum computers.
 
-* :ref:`gs` shows how to install and begin using Ocean tools.
-
-* :ref:`concepts_sdk` defines and describes Ocean concepts and terminology.
-
 .. toctree::
    :hidden:
    :maxdepth: 2
@@ -22,60 +18,64 @@ problems with quantum computers.
    packages
    contributing
    licenses
+ 
 
-========
-Packages
-========
-
-The Ocean SDK includes the :ref:`dwave_cli` and the following packages:
-  
-.. packages-start-marker
 
 .. tab-set::
 
-   .. tab-item:: Get Started
+   .. tab-item:: Explore
 
-      .. grid:: 2
-         :gutter: 2
+      .. grid:: 3
+         :gutter: 3
 
-         .. grid-item-card::  `dimod <https://docs.ocean.dwavesys.com/en/stable/docs_dimod/sdk_index.html>`_ 
+         .. grid-item-card:: :ref:`Annealing Model of Quantum Computing <getting_started_qa>` 
          
-            :abbr:`Quadratic models: BQM, CQM. (Shared API for binary quadratic 
-            samplers. Provides a binary quadratic model class that contains 
-            Ising and quadratic unconstrained binary optimization models used by 
-            samplers such as the D-Wave system. Also provides utilities for 
-            constructing new samplers and composed samplers.)`
+            Quantum annealing processors naturally return low-energy 
+            solutions; some applications require the real minimum energy 
+            (optimization problems) and others require good low-energy 
+            samples (probabilistic sampling problems). 
+            :ref:`... <getting_started_qa>` 
 
-         .. grid-item-card::  :ref:`dwave-samplers <index_dwave_samplers>` 
+         .. grid-item-card::  :ref:`Gate Model of Quantum Computing <index_gate>`  
                         
-            :abbr:`Classical algorithms for solving binary quadratic models. (A library 
-            that implements the following classical algorithms as samplers for solving
-            binary quadratic models:
-            [Planar]: an exact solver for planar Ising problems with no linear biases.
-            [Random]: a sampler that draws uniform random samples.
-            [Simulated Annealing]: a probabilistic heuristic for optimization and approximate
-            Boltzmann sampling well suited to finding good solutions of large problems.
-            [Steepest Descent]: a discrete analogue of gradient descent, often used in
-            machine learning, that quickly finds a local minimum.
-            [Tabu]: a heuristic that employs local search with methods to escape local minima.
-            [Tree Decomposition]: an exact solver for problems with low treewidth.)`
+            Ocean's :code:`dwave-gate` is a software package for constructing, 
+            modifying and running quantum circuits on the included simulator.
          
-         .. grid-item-card::  :ref:`dwave-system <index_system>` 
+         .. grid-item-card:: :ref:`Installing Ocean <gs_initial_setup>` 
 
-            :abbr:`D-Wave samplers and composites. (Basic API for easily incorporating 
-            the D-Wave system as a sampler in the D-Wave Ocean software stack.
-            It includes DWaveSampler, a dimod sampler that accepts and passes system
-            parameters such as system identification and authentication down the stack.
-            It also includes several useful composites—layers of pre- and post-processing—that
-            can be used with DWaveSampler to handle minor-embedding, optimize chain strength, etc.)`
+            Installation is **not needed** if you are using an IDE that 
+            implements the 
+            `Development Containers specification <https://containers.dev/supporting>`_
+            (aka "devcontainers").
+            :ref:`... <gs_initial_setup>`
 
-         .. grid-item-card::  :ref:`dwave-hybrid <index_hybrid>` 
+         .. grid-item-card:: :ref:`Quantum-classical hybrid solvers <using_hybrid>` 
                         
-            :abbr:`Framework for building hybrid samplers. (A general, minimal Python 
-            framework for building hybrid asynchronous decomposition samplers for 
-            quadratic unconstrained binary optimization (QUBO) problems.)`
+            :ref:`Leap’s hybrid solvers <doc_leap_hybrid>` 
+            solve arbitrary application problems formulated as 
+            quadratic models. Ocean also provides the
+            :ref:`dwave-hybrid <index_hybrid>` package, a Python framework 
+            for building hybrid asynchronous decomposition samplers. 
 
-   .. tab-item:: All Packages
+         .. grid-item-card:: `Leap <https://cloud.dwavesys.com/leap>`_ 
+            
+            Sign up for Leap quantum cloud service, which gives you 
+            immediate, secure access to D-Wave quantum and hybrid 
+            solvers, as well as a wealth of information to help you get 
+            started creating quantum applications.
+
+         .. grid-item-card:: `System Documentation <https://docs.dwavesys.com/docs/latest/index.html>`_ 
+            
+            Here you will find an :ref:`introduction <doc_gsg>` 
+            to D-Wave's quantum computers, their hardware and how they work;
+            the :ref:`properties and parameters <doc_spp>` for 
+            D-Wave's quantum computers and Leap's quantum-classical 
+            hybrid solvers; :ref:`references <doc_handbook>` on formulating 
+            problems and best practices in quantum computing; and much more.
+
+   .. tab-item:: Packages
+
+      .. packages-start-marker
 
       .. dropdown::  `dimod <https://docs.ocean.dwavesys.com/en/stable/docs_dimod/sdk_index.html>`_: Quadratic models (BQM, CQM). 
 
@@ -198,27 +198,9 @@ The Ocean SDK includes the :ref:`dwave_cli` and the following packages:
 
          :bdg-link-primary:`code <https://github.com/recruit-communications/pyqubo>`
 
-.. packages-end-marker
+      .. packages-end-marker
 
-Index and D-Wave Links
-======================
+Index
+=====
 
-* :ref:`genindex`: Index for this site.
-
-* `Leap <https://cloud.dwavesys.com/leap>`_: Sign up for Leap quantum cloud service,
-  which gives you immediate, secure access to D-Wave quantum and hybrid solvers, as
-  well as a wealth of information to help you get started creating quantum applications.
-
-* `System Documentation <https://docs.dwavesys.com/docs/latest/index.html>`_: Here you will
-  find information such as
-
-  - `Getting Started  with the System <https://docs.dwavesys.com/docs/latest/doc_getting_started.html>`_---An
-    introduction to D-Wave's quantum computers, their hardware and how they work.
-
-  - `Solver Properties and Parameters <https://docs.dwavesys.com/docs/latest/doc_solver_ref.html>`_---Description
-    of properties and parameters for of D-Wave's quantum computers and
-    Leap's quantum-classical hybrid solvers.
-
-  - `Problem-Solving Handbook <https://docs.dwavesys.com/docs/latest/doc_handbook.html>`_---Information
-    and references on formulating problems and best practices in quantum
-    computing.
+:ref:`genindex` is the index for this site.
