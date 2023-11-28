@@ -44,33 +44,37 @@ problems with quantum computers.
          .. grid-item-card:: :ref:`Installing Ocean <gs_initial_setup>` 
 
             Installation is **not needed** if you are using an IDE that 
-            implements the 
-            `Development Containers specification <https://containers.dev/supporting>`_
-            (aka "devcontainers").
+            implements `"devcontainers" <https://containers.dev/supporting>`_.
             :ref:`... <gs_initial_setup>`
 
-         .. grid-item-card:: :ref:`Quantum-classical hybrid solvers <using_hybrid>` 
+            Run D-Wave's many `open-source examples <https://github.com/dwave-examples>`_
+            in GitHub Codespaces with just a mouse click (requires a 
+            `Leap <https://cloud.dwavesys.com/leap>`_ account).
+
+         .. grid-item-card:: :ref:`Hybrid solvers <using_hybrid>` 
                         
-            :ref:`Leap’s hybrid solvers <doc_leap_hybrid>` 
+            :ref:`Leap’s quantum-classical  hybrid solvers <doc_leap_hybrid>` 
             solve arbitrary application problems formulated as 
-            quadratic models. Ocean also provides the
-            :ref:`dwave-hybrid <index_hybrid>` package, a Python framework 
-            for building hybrid asynchronous decomposition samplers. 
+            :ref:`quadratic models <qm_sdk>`. (Try this open-source 
+            `3D bin-packing example <https://github.com/dwave-examples/3d-bin-packing>`_.) 
+            
+            Ocean also provides a Python framework,
+            :ref:`dwave-hybrid <index_hybrid>`, for building hybrid 
+            asynchronous decomposition samplers. 
 
          .. grid-item-card:: `Leap <https://cloud.dwavesys.com/leap>`_ 
             
             Sign up for Leap quantum cloud service, which gives you 
             immediate, secure access to D-Wave quantum and hybrid 
             solvers, as well as a wealth of information to help you get 
-            started creating quantum applications.
+            started :ref:`creating quantum applications <cb_workflow>`.
 
          .. grid-item-card:: `System Documentation <https://docs.dwavesys.com/docs/latest/index.html>`_ 
             
             Here you will find an :ref:`introduction <doc_gsg>` 
             to D-Wave's quantum computers, their hardware and how they work;
             the :ref:`properties and parameters <doc_spp>` for 
-            D-Wave's quantum computers and Leap's quantum-classical 
-            hybrid solvers; :ref:`references <doc_handbook>` on formulating 
+            D-Wave's solvers; :ref:`references <doc_handbook>` on formulating 
             problems and best practices in quantum computing; and much more.
 
    .. tab-item:: Packages
@@ -203,4 +207,4 @@ problems with quantum computers.
 Index
 =====
 
-:ref:`genindex` is the index for this site.
+:ref:`Site index <genindex>`
