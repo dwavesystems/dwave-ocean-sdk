@@ -59,7 +59,7 @@ Coding Conventions
 * Functions should do one thing.
 * Early pull requests and code reviews.
 * Early architecting/design. Code reviews can happen before any code has been written.
-* Use a consistent character width limit of 120.
+* Use a consistent character limit of 100.
 * Use 4 spaces instead of tabs.
 * End all files with a newline.
 
@@ -88,7 +88,8 @@ Documentation and Comments
 
   .. code-block:: python
 
-    # if z is greater than 255, this universe will collapse. See https://url.to.issue.tracker/IS-42
+    # If z is greater than 255, this universe will collapse.
+    # See https://url.to.issue.tracker/IS-42
     if z > 255:
         raise RuntimeError('z must be <= 255!')
 
@@ -106,8 +107,8 @@ Python
 Python Version
 ~~~~~~~~~~~~~~
 
-Code should be compatible with all `supported versions <https://devguide.python.org/versions/#supported-versions>`_
-of Python.
+Code should be compatible with all `supported versions <https://devguide.python.org/versions/>`_
+of Python. Specifically, versions of Python that have "bugfix" or "security" status.
 
 pep8
 ~~~~
@@ -151,7 +152,7 @@ Format
 
 * Our format is based on `Google C++ style guide <https://google.github.io/styleguide/cppguide.html>`_ with some exceptions:
 
-  - Column width is limited to 100 characters. Best effort should be made to keep to 80 characters, but up to 120 can be used for clarity.
+  - Column width is limited to 100 characters. Best effort should be made to keep to 80 characters, but up to 100 can be used for clarity.
   - The base indent level is 4.
   - Non-const references are allowed.
 
