@@ -34,6 +34,14 @@ abbr {
     text-decoration : none !important;
 }
 
+.sd-card-title {
+    font-size: 0.875em;
+}
+
+.sd-card-text {
+    font-size: 0.875em;
+}
+
 :root {
     /* dwave colors for convenience */
     --dwave-color-ocean-blue: rgb(42, 125, 225);
