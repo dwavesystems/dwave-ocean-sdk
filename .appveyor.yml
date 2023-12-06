@@ -8,6 +8,7 @@ environment:
     - PYTHON: "C:\\Python39-x64"
     - PYTHON: "C:\\Python310-x64"
     - PYTHON: "C:\\Python311-x64"
+    - PYTHON: "C:\\Python312-x64"
 
 install:
   - "%PYTHON%\\python.exe --version"
