@@ -178,7 +178,7 @@ jobs:
 
   deploy:
     docker:
-      - image: cimg/python:3.8
+      - image: cimg/python:3.10
 
     working_directory: ~/repo
 
@@ -222,7 +222,7 @@ workflows:
       - test-linux:
           matrix:
             parameters:
-              python-version: &python-versions ["3.8.9", "3.9.4", "3.10.0", "3.11.0"]
+              python-version: &python-versions ["3.8.9", "3.9.4", "3.10.0", "3.11.0", "3.12.0"]
       - test-macos:
           matrix:
             parameters:
