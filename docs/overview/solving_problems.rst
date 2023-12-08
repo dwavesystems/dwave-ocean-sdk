@@ -18,7 +18,7 @@ The two main steps of solving problems on quantum computers are:
    Find good solutions by submitting your quadratic model to one of a variety of
    Ocean's quantum, classical, and hybrid quantum-classical samplers.
 
-.. figure:: ../_images/SolutionOverview.png
+.. figure:: ../_images/SolutionOverview.jpg
    :name: SolutionOverview
    :alt: image
    :align: center
