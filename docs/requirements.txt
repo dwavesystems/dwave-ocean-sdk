@@ -9,3 +9,6 @@ matplotlib
 
 # Needed for minorminer C docs
 breathe
+
+# needed in docs.conf to parse package versions
+packaging

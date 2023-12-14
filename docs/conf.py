@@ -10,7 +10,9 @@ import os
 import sys
 import subprocess
 import inspect
-import pkg_resources
+
+from importlib.metadata import Distribution
+from packaging.requirements import Requirement
 
 sdk_directory = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -213,9 +215,9 @@ github_map = {'dwavebinarycsp': 'dwavebinarycsp',
               'embedding': 'dwave-system',
               'tabu': 'dwave-tabu'}
 
-reqs = pkg_resources.get_distribution('dwave-ocean-sdk').requires(extras=['all'])
-pkgs = [pkg_resources.get_distribution(req) for req in reqs]
-versions = {pkg.project_name: pkg.version for pkg in pkgs}
+reqs = map(Requirement, Distribution.from_name('dwave-ocean-sdk').requires)
+pkgs = [Distribution.from_name(req.name) for req in reqs]
+versions = {pkg.name: pkg.version for pkg in pkgs}
 
 def linkcode_resolve(domain, info):
     """
