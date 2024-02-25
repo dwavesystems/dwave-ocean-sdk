@@ -22,7 +22,7 @@ compute resources (:term:`solver`\ s) of different types:
   quadratic models (:term:`DQM`), ``hybrid_discrete_quadratic_model_version<x>``
 * :ref:`using_cpu` such as :class:`~dimod.reference.samplers.ExactSolver` for
   exact solutions to small problems
-* :ref:`using_qpu` such the Advantage and D-Wave 2000Q systems.
+* :ref:`using_qpu` such as the Advantage and D-Wave 2000Q systems.
 
 .. _submitting:
 
