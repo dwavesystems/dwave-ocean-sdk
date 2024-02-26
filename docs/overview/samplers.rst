@@ -22,7 +22,7 @@ compute resources (:term:`solver`\ s) of different types:
   quadratic models (:term:`DQM`), ``hybrid_discrete_quadratic_model_version<x>``
 * :ref:`using_cpu` such as :class:`~dimod.reference.samplers.ExactSolver` for
   exact solutions to small problems
-* :ref:`using_qpu` such as the Advantage and D-Wave 2000Q systems.
+* :ref:`using_qpu` such as the Advantage system.
 
 .. _submitting:
 
@@ -109,7 +109,7 @@ minor-embedding.
   :scale: 50 %
   :alt: View rendered by Ocean's problem inspector.
 
-  View of the logical and embedded problem rendered by Ocean's problem inspector. The AND gate's original BQM is represented on the left; its embedded representation on a D-Wave 2000Q system, on the right, shows a two-qubit chain (qubits 176 and 180) for variable :math:`x2`. The tool is helpful in visualizing the quality of your embedding.
+  View of the logical and embedded problem rendered by Ocean's problem inspector. The AND gate's original BQM is represented on the left; its embedded representation on a D-Wave system, on the right, shows a two-qubit chain (qubits 176 and 180) for variable :math:`x2`. The tool is helpful in visualizing the quality of your embedding.
 
 Example: Postprocessing
 -----------------------
