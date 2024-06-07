@@ -124,7 +124,7 @@ Nonlinear Models
 
 *   :ref:`example_nl_tsp` solves the renowned traveling salesperson optimization 
     problem using a `Leap <https://cloud.dwavesys.com/leap/>`_ hybrid 
-    :term:`nonlinear <nonlinear model>` solver.
+    :term:`nonlinear-model <nonlinear model>` solver.
 
 .. _examples_qpu:
 

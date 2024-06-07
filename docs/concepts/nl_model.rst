@@ -18,8 +18,7 @@ route being optimized and in a
 variables representing items can be divided into subsets of packed and not 
 packed. 
 
-The :class:`dwave.optimization.model.Model` class can contain this model and 
-its methods provide convenient utilities for working with representations
-of a problem.
+The :class:`~dwave.optimization.model.Model` class encodes this model and 
+its methods provide convenient utilities for constructing such models.
 
 

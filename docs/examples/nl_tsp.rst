@@ -5,7 +5,7 @@ Traveling Salesperson
 =====================
 
 This example demonstrates the use of a `Leap <https://cloud.dwavesys.com/leap/>`_
-hybrid :ref:`nonlinear <nl_model_sdk>` solver on the renowned 
+hybrid :ref:`nonlinear-model <nl_model_sdk>` solver on the renowned 
 `traveling salesperson <https://en.wikipedia.org/wiki/Travelling_salesman_problem>`_ 
 optimization problem. 
 
@@ -36,7 +36,7 @@ Solution Steps
   :end-before: example-steps-end-marker
 
 This example formulates this problem as a :ref:`nonlinear model <nl_model_sdk>`
-and uses the :class:`~dwave.system.samplers.LeapHybridNonlinearSampler` to find good
+and uses the :class:`~dwave.system.samplers.LeapHybridNLSampler` to find good
 solutions.
 
 Formulate the Problem
@@ -61,8 +61,8 @@ distance between Rome to Turin is the same regardless of the direction of
 travel.
 
 This example uses one of Ocean software's model generators to instantiate a 
-:class:`dwave.optimization.Model` class for a traveling-salesperson problem. 
-The :class:`dwave.optimization.Model` class encodes all the information 
+:class:`~dwave.optimization.model.Model` class for a traveling-salesperson problem. 
+The :class:`~dwave.optimization.model.Model` class encodes all the information 
 (:term:`objective function`, constraints, constants, and decision variables) 
 relevant to your models. 
 
@@ -72,8 +72,6 @@ relevant to your models.
 For detailed information on how the traveling-salesperson problem is modelled, 
 see the documentation for the 
 :class:`~dwave.optimization.generators.traveling_salesperson` generator. 
-The :ref:`tsp_model_formulation_general` section provides a general description 
-of one such model formulation. 
 
 Solve the Problem by Sampling
 =============================
@@ -88,16 +86,16 @@ relieve you of the burden of any current and future development and optimization
 of hybrid algorithms that best solve your problem.
 
 Ocean software's :doc:`dwave-system </docs_system/sdk_index>`
-:class:`~dwave.system.samplers.LeapHybridNonlinearSampler` class enables you to
-easily incorporate Leap's hybrid nonlinear solvers into your application:
+:class:`~dwave.system.samplers.LeapHybridNLSampler` class enables you to
+easily incorporate Leap's hybrid nonlinear-model solvers into your application:
 
->>> from dwave.system import LeapHybridNonlinearSampler
+>>> from dwave.system import LeapHybridNLSampler
 >>> sampler = LeapHybridNonlinearSampler()                  # doctest: +SKIP
 
 Submit the model to the selected solver. 
 
->>> sampler.sample(model, time_limit=5)  	# doctest: +SKIP
->>> route, = , = model.iter_decisions()         # doctest: +SKIP
->>> print(route.state(0))                       # doctest: +SKIP
+>>> results = sampler.sample(model, time_limit=5)  	# doctest: +SKIP
+>>> route, = model.iter_decisions()                       # doctest: +SKIP
+>>> print(route.state(0))                               # doctest: +SKIP
 [3. 0. 2. 1. 4.]   
 
