@@ -13,6 +13,7 @@ Below are the open-source licenses for the SDK and its tools:
    licenses/gate
    licenses/hybrid
    licenses/dnx
+   licenses/optimization
    licenses/system
    licenses/minorminer
    licenses/penaltymodel
