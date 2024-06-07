@@ -25,6 +25,8 @@ See the :ref:`ocean_glossary` for short definitions of terminology or learn Ocea
      - quantum-classical hybrid, Leap's hybrid solvers, hybrid workflows
    * - :ref:`embedding_sdk`
      - embedding, mapping logical variables to physical qubits, chains, chain strength
+   * - :ref:`nl_model_sdk`
+     - nonlinear model, non-linear model, NL model
    * - :ref:`penalty_sdk`
      - Penalty Models
    * - :ref:`qm_sdk`
@@ -47,6 +49,7 @@ See the :ref:`ocean_glossary` for short definitions of terminology or learn Ocea
    dqm
    hybrid
    embedding
+   nl_model
    penalty
    qm
    topology
@@ -229,7 +232,13 @@ Glossary
 
       Objective function
          A mathematical expression of the energy of a system as a function of
-         binary variables representing the qubits.
+         its variables.
+         
+      Nonlinear model 
+         A collection of variables with associated biases that constitute an 
+         :term:`objective function` and/or constraints. 
+         Sometimes referred to as a **problem**.
+         See a fuller description under :doc:`Nonlinear Models </concepts/nl_model>`.
 
       Pegasus
          A D-Wave :term:`QPU` is a lattice of interconnected qubits. While some qubits
