@@ -50,8 +50,8 @@ Solution Steps
 
 Section :ref:`solving_problems` describes the problem-solving workflow as
 consisting of two main steps: (1) Formulate the problem as an
-:term:`objective function` in a supported form of :term:`quadratic model` (QM)
-and (2) Solve your QM with a D-Wave :term:`solver`.
+:term:`objective function` in a supported model and (2) Solve your model with
+a D-Wave :term:`solver`.
 
 .. example-steps-end-marker
 
