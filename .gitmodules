@@ -34,3 +34,6 @@
 [submodule "dwave-gate"]
 	path = dwave-gate
 	url = https://github.com/dwavesystems/dwave-gate.git
+[submodule "dwave-optimization"]
+	path = dwave-optimization
+	url = https://github.com/dwavesystems/dwave-optimization.git
