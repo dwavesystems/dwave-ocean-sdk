@@ -1,8 +1,8 @@
 .. _gs_formulation:
 
-============================================
-Formulation: Objectives and Quadratic Models
-============================================
+==================================
+Formulation: Objectives and Models
+==================================
 
 For quantum computing, as for classical, solving a problem requires that it
 be formulated in a way the computer and its software understand.
@@ -51,7 +51,7 @@ objective functions, see the
 :std:doc:`System Documentation <sysdocs_gettingstarted:index>` or the training
 content on the `D-Wave website <https://www.dwavesys.com/>`_.
 
-For code examples that formulate quadratic models for various problems, see
+For code examples that formulate models for various problems, see
 `D-Wave's examples repo <https://github.com/dwave-examples>`_  and many example
 customer applications on the `D-Wave website <https://www.dwavesys.com/>`_.
 
@@ -86,9 +86,16 @@ and submit to samplers for solution:
   Constraints for this model are typically represented by adding
   :ref:`penalty models <penalty_sdk>` to the objective.
 
-.. note:: Ocean also provides support for
-   :ref:`higher order models <oceandocs:higher_order>`, which are typically
-   reduced to quadratic for sampling.
+* :ref:`nl_model_sdk` can be constrained and have different types of variables.
+
+  Nonlinear (NL) models are typically used for applications that optimize over 
+  decision variables that represent a common logic, such as subsets of choices 
+  or permutations of ordering; for example, which of :math:`X` available shifts 
+  should be assigned to each of :math:`Y`` employees, or in which order should 
+  a traveling salesperson visit a list of cities?
+
+  Constraints for this model are represented natively, both explicitly and 
+  implicitly through the variable types.
 
 .. _formulating_cqm:
 
@@ -159,6 +166,6 @@ shows the variable types in this model are binary.
 For more detailed information on the parts of Ocean programming model and how
 they work together, see :ref:`oceanstack`.
 
-Once you have a quadratic model that represents your problem, you sample
+Once you have a model that represents your problem, you sample
 it for solutions. :ref:`samplers_and_solvers` explains how to submit your
 problem for solution.

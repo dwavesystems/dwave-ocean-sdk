@@ -20,7 +20,7 @@ Leap's Hybrid Solvers
 =====================
 
 D-Wave's `Leap <https://cloud.dwavesys.com/leap/>`_ quantum cloud service provides
-cloud-based hybrid solvers to which you can submit arbitrary :term:`quadratic model`\ s. 
+cloud-based hybrid solvers to which you can submit arbitrary models. 
 These solvers, which implement state-of-the-art classical algorithms together 
 with intelligent allocation of the quantum processing unit (QPU) to parts of
 the problem where it benefits most, are designed to accommodate even very large

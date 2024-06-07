@@ -6,10 +6,10 @@ Sampling: Minimizing the Objective
 
 Having formulated an objective function that represents your problem as described
 in the :ref:`gs_formulation` section, you sample this :term:`quadratic model` (QM)
-for solutions. Ocean software provides quantum, classical, and quantum-classical
-hybrid :term:`sampler`\ s that run either remotely (for example, in D-Wave's
-`Leap <https://cloud.dwavesys.com/leap/>`_ environment) or locally on your CPU.
-These compute resources are known as :term:`solver`\ s.
+or :term:`nonlinear model` for solutions. Ocean software provides quantum, classical, 
+and quantum-classical hybrid :term:`sampler`\ s that run either remotely (for example, 
+in D-Wave's `Leap <https://cloud.dwavesys.com/leap/>`_ environment) or locally on 
+your CPU. These compute resources are known as :term:`solver`\ s.
 
 .. note:: Some classical samplers actually brute-force solve small problems rather
     than sample, and these are also referred to as "solvers".
@@ -18,16 +18,16 @@ Ocean's :term:`sampler`\ s enable you to submit your problem to remote or local
 compute resources (:term:`solver`\ s) of different types:
 
 * :ref:`using_hybrid` such as `Leap's <https://cloud.dwavesys.com/leap/>`_
-  ``hybrid_binary_quadratic_model_version<x>`` solver or, for **discrete**
-  quadratic models (:term:`DQM`), ``hybrid_discrete_quadratic_model_version<x>``
+  ``hybrid_binary_quadratic_model_version<x>`` solver or
+  ``hybrid_nonlinear_program_version<x>``.
 * :ref:`using_cpu` such as :class:`~dimod.reference.samplers.ExactSolver` for
   exact solutions to small problems
 * :ref:`using_qpu` such as the Advantage system.
 
 .. _submitting:
 
-Submit the QM to a Solver
-=========================
+Submit the Model to a Solver
+============================
 
 The example code below submits a BQM representing a Boolean AND gate (see also the
 :ref:`formulating_bqm` section) to a Leap hybrid solver.
