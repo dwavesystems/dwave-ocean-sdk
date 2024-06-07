@@ -90,12 +90,14 @@ Ocean software's :doc:`dwave-system </docs_system/sdk_index>`
 easily incorporate Leap's hybrid nonlinear-model solvers into your application:
 
 >>> from dwave.system import LeapHybridNLSampler
->>> sampler = LeapHybridNonlinearSampler()                  # doctest: +SKIP
+>>> sampler = LeapHybridNLSampler()                  # doctest: +SKIP
 
 Submit the model to the selected solver. 
 
->>> results = sampler.sample(model, time_limit=5)  	# doctest: +SKIP
->>> route, = model.iter_decisions()                       # doctest: +SKIP
->>> print(route.state(0))                               # doctest: +SKIP
+>>> results = sampler.sample(
+...     model,
+...     label='SDK Examples - TSP')  	# doctest: +SKIP
+>>> route, = model.iter_decisions()     # doctest: +SKIP
+>>> print(route.state(0))               # doctest: +SKIP
 [3. 0. 2. 1. 4.]   
 

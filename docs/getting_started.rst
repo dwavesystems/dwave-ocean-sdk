@@ -103,7 +103,7 @@ Quadratic Models
     problem using a `Leap <https://cloud.dwavesys.com/leap/>`_ hybrid :term:`CQM`
     solver.
 *   :ref:`example_cqm_binpacking` solves a binary constrained problem using a
-    <https://cloud.dwavesys.com/leap/>`_ hybrid :term:`CQM` solver.
+    `Leap <https://cloud.dwavesys.com/leap/>`_ hybrid :term:`CQM` solver.
 *   :ref:`example_cqm_stock_selling` solves an integer constrained problem using a
     Leap hybrid :term:`CQM` solver.
 *   :ref:`hss` solves an unconstrained problem using a
@@ -116,16 +116,24 @@ Quadratic Models
 Nonlinear Models
 ----------------
 
+These examples solve small instances of known optimization problems using 
+a `Leap <https://cloud.dwavesys.com/leap/>`_ hybrid 
+:term:`nonlinear-model <nonlinear model>` solver.
+
 ..  toctree::
     :maxdepth: 1
     :hidden:
 
     examples/nl_tsp
+    examples/nl_cvrp
 
-*   :ref:`example_nl_tsp` solves the renowned traveling salesperson optimization 
-    problem using a `Leap <https://cloud.dwavesys.com/leap/>`_ hybrid 
-    :term:`nonlinear-model <nonlinear model>` solver.
+*   :ref:`example_nl_tsp` solves the 
+    `traveling salesperson <https://en.wikipedia.org/wiki/Travelling_salesman_problem>`_ 
+    optimization problem. 
 
+*   :ref:`example_nl_cvrp` solves a vehicle-routing optimization 
+    problem.
+    
 .. _examples_qpu:
 
 End-to-End Examples: QPU
