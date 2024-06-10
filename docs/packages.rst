@@ -185,4 +185,4 @@ Packages
     docs_minorminer/source/sdk_index
     docs_penalty/sdk_index
     docs_pyqubo
-    docs_qbsolv
+

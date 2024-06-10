@@ -301,6 +301,7 @@ Glossary
             \begin{equation}
           		\text{E}_{qubo}(a_i, b_{i,j}; q_i) = \sum_{i} a_i q_i + \sum_{i<j} b_{i,j} q_i q_j.
             \end{equation}
+            
          See also `QUBO on Wikipedia <https://en.wikipedia.org/wiki/Quadratic_unconstrained_binary_optimization>`_.
 
       Sampler
