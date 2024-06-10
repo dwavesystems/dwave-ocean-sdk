@@ -53,12 +53,12 @@ from an application with access to an online map. Here a matrix of approximate
 driving distances between five Italian cities is created with the following 
 index order: 0: Rome, 1: Turin, 2: Naples, 3: Milan, and 4: Genoa.
 
->>> DISTANCE_MATRIX = 
-...     [[0, 656, 227, 578, 489],
-...      [656, 0, 889, 141, 170],
-...      [227, 889, 0, 773, 705],
-...      [578, 141, 773, 0, 161],
-...      [489, 170, 705, 161, 0]]
+>>> DISTANCE_MATRIX = [
+...     [0, 656, 227, 578, 489],
+...     [656, 0, 889, 141, 170],
+...     [227, 889, 0, 773, 705],
+...     [578, 141, 773, 0, 161],
+...     [489, 170, 705, 161, 0]]
 
 For example, the distance between Turin (row 1) and Milan (column 3) is about 
 141 kilometers. Note that such a distance matrix is symmetric because the 
