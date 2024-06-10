@@ -10,7 +10,7 @@ estimate the minimum time the solver requires for the model, check that solution
 meet the model's constraints, set initial states, and more. For a simpler example
 usage of the solver, start with the :ref:`example_nl_tsp` example; for information 
 on formulating problems as nonlinear models, see the 
-:ref:`dwave-optimization <intro_optimization>` package..
+:ref:`dwave-optimization <intro_optimization>` package.
 
 The goal of the well-known capacitated vehicle routing problem, 
 `CVRP <https://en.wikipedia.org/wiki/Vehicle_routing_problem>`_, is to find 
@@ -150,5 +150,24 @@ accelerate the solution.
 
 Leap's hybrid nonlinear-model solver supports accepting an initial state
 as part of the submitted model.
+
+As explained in the documentation for the 
+:ref:`dwave-optimization <intro_optimization>` package, you can set 
+states---assign values to decision variables---in your model. The code 
+below sets state 0 to one of the routes found above and resubmits the 
+model to the solver with a shorter runtime (the default runtime). 
+
+>>> model.states.resize(1)
+>>> route.set_state(0, [route1.state(0), route2.state(0)])
+>>> results = sampler.sample(model)  	# doctest: +SKIP
+
+Saving Results
+--------------
+
+You can save the states of a model to a file.
+
+>>> import shutil
+>>> with open("model_states", 'wb') as f:
+...     shutil.copyfileobj(model.states.to_file(), f)
 
 
