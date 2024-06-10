@@ -4,14 +4,19 @@
 Traveling Salesperson
 =====================
 
-This example demonstrates the use of a `Leap <https://cloud.dwavesys.com/leap/>`_
-hybrid :ref:`nonlinear-model <nl_model_sdk>` solver on the renowned 
-`traveling salesperson <https://en.wikipedia.org/wiki/Travelling_salesman_problem>`_ 
-optimization problem. 
+This example demonstrates the most basic use of a 
+`Leap <https://cloud.dwavesys.com/leap/>`_ hybrid solver on a problem formulated 
+as a :ref:`nonlinear model <nl_model_sdk>`. For more advanced solver usage, see 
+the :ref:`example_nl_cvrp` example; for information on formulating problems as
+nonlinear models, see the :ref:`dwave-optimization <intro_optimization>` package.
 
-The goal of this problem is, for a given a list of cities and distances 
+The goal of renowned 
+`traveling salesperson <https://en.wikipedia.org/wiki/Travelling_salesman_problem>`_ 
+optimization problem is, for a given a list of cities and distances 
 between each pair of cities, to find the shortest possible route that visits 
 each city exactly once and returns to the city of origin. 
+
+.. |copy| unicode:: U+000A9 .. COPYRIGHT SIGN
 
 .. figure:: ../_images/problem_tsp.png
     :name: Problem_tsp
@@ -19,7 +24,7 @@ each city exactly once and returns to the city of origin.
     :align: center
     :scale: 60 %
 
-    Traveling-salesperson problem.
+    Traveling-salesperson problem. Map data |copy| 2017 GeoBasis-DE/BKG (|copy| 2009), Google.
 
 Example Requirements
 ====================
@@ -97,7 +102,19 @@ Submit the model to the selected solver.
 >>> results = sampler.sample(
 ...     model,
 ...     label='SDK Examples - TSP')  	# doctest: +SKIP
+
+The 
+:class:`~dwave.optimization.generators.traveling_salesperson` generator
+constructs a model with a single decision variable to represent the 
+itinerary; the code below iterates through the model's decision 
+variables, in effect retrieving the variable used by the model to 
+represent the itinerary. It prints the first state set by the solver,
+which represents an assigned travel order for the five Italian cities
+(Milan, Rome, Naples, Turin, Genoa). 
+
 >>> route, = model.iter_decisions()     # doctest: +SKIP
 >>> print(route.state(0))               # doctest: +SKIP
 [3. 0. 2. 1. 4.]   
 
+For more advanced usage of the results returned by the solver, see 
+the :ref:`example_nl_cvrp` example

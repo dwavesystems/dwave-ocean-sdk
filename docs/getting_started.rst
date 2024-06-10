@@ -127,12 +127,10 @@ a `Leap <https://cloud.dwavesys.com/leap/>`_ hybrid
     examples/nl_tsp
     examples/nl_cvrp
 
-*   :ref:`example_nl_tsp` solves the 
-    `traveling salesperson <https://en.wikipedia.org/wiki/Travelling_salesman_problem>`_ 
-    optimization problem. 
+*   :ref:`example_nl_tsp` helps you start using Leap's hybrid nonlinear-model solver. 
 
-*   :ref:`example_nl_cvrp` solves a vehicle-routing optimization 
-    problem.
+*   :ref:`example_nl_cvrp` demonstrates more advanced usage options for solving
+    nonlinear models.
     
 .. _examples_qpu:
 
