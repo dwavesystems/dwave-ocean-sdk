@@ -158,7 +158,7 @@ below sets state 0 to one of the routes found above and resubmits the
 model to the solver with a shorter runtime (the default runtime). 
 
 >>> model.states.resize(1)
->>> route.set_state(0, [route1.state(0), route2.state(0)])
+>>> route.set_state(0, [route1.state(0), route2.state(0)])   # doctest: +SKIP
 >>> results = sampler.sample(model)  	# doctest: +SKIP
 
 Saving Results
@@ -167,7 +167,7 @@ Saving Results
 You can save the states of a model to a file.
 
 >>> import shutil
->>> with open("model_states", 'wb') as f:
+>>> with open("model_states", 'wb') as f:                    # doctest: +SKIP
 ...     shutil.copyfileobj(model.states.to_file(), f)
 
 
