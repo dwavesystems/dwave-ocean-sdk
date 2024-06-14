@@ -177,7 +177,7 @@ Packages
     docs_inspector/sdk_index
     docs_neal/sdk_index
     docs_dnx/sdk_index
-    docs_optimization/index
+    docs_optimization/sdk_index
     docs_preprocessing/sdk_index
     docs_samplers/index
     docs_system/sdk_index
