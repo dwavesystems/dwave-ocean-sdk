@@ -19,7 +19,7 @@ to parts of the problem where it benefits most, are designed to accommodate even
 Leap's solvers can relieve you of the burden of any current and future development and optimization 
 of hybrid algorithms that best solve your problem. 
 
-:doc:`dwave-hybrid <docs_hybrid/sdk_index>` provides you with a Python framework for building a 
+:ref:`dwave-hybrid <sdk_index_hybrid>` provides you with a Python framework for building a 
 variety of flexible hybrid workflows. These use quantum and classical resources together to find 
 good solutions to your problem. For example, a hybrid workflow might use classical resources to 
 find a problem’s hard core and send that to the QPU, or break a large problem into smaller pieces 
@@ -33,14 +33,14 @@ performance.
 
 For more information on hybrid computing, see the following:
 
-*   :doc:`dwave-hybrid <docs_hybrid/sdk_index>`
+*   :ref:`dwave-hybrid <sdk_index_hybrid>`
 
     Describes how to use reference hybrid solvers, build hybrid workflows, and your own hybrid components.
 *   :std:doc:`Using Leap’s Hybrid Solvers <sysdocs_gettingstarted:doc_leap_hybrid>`
 
     Introduces Leap‘s quantum-classical hybrid solvers and provides references to usage information.
 
-*   :doc:`Getting Started Demonstrations and Jupyter Notebooks <getting_started>` 
+*   :ref:`Getting Started Demonstrations and Jupyter Notebooks <projects-Demonstrations>` 
 
     Provides pointers to a code-examples repository and Jupyter Notebooks, which have relevant content.  
 

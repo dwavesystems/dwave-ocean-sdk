@@ -147,7 +147,7 @@ Plot the best solution.
 The graphic below shows the result of one such run.
 
 .. figure:: ../_images/usa_map_dqm.png
-   :name: USA_MapColoring
+   :name: USAMapColoring
    :alt: image
    :align: center
    :scale: 70 %

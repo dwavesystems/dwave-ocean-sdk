@@ -37,6 +37,8 @@ project = 'Ocean Documentation'
 # Also add our own 'special value', the minimum supported Python version
 rst_prolog = f"""
 .. |python_requires| replace:: {setup_cfg['options']['python_requires']}
+.. |array-like| replace:: array-like
+.. _array-like: https://numpy.org/devdocs/glossary.html#term-array_like
 """
 
 # -- General configuration ------------------------------------------------
@@ -208,6 +210,7 @@ github_map = {'dwavebinarycsp': 'dwavebinarycsp',
               'inspector': 'dwave-inspector',
               'minorminer': 'minorminer',
               'neal': 'dwave-neal',
+              'optimization': 'dwave-optimization',
               'penaltymodel': 'penaltymodel',
               'preprocessing': 'dwave-preprocessing',
               'samplers': 'dwave-samplers',

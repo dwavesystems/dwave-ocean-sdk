@@ -73,6 +73,18 @@ Packages
 
     :bdg-link-primary:`code <https://github.com/dwavesystems/dwave-ocean-sdk>`
 
+.. dropdown:: :ref:`dwave-optimization <index_optimization>`: 
+    Nonlinear models. 
+
+    API for nonlinear models. The package includes:
+
+    *    a class for nonlinear models used by the 
+	 `Leap <https://cloud.dwavesys.com/leap>`_ service's 
+	 quantum-classical hybrid nonlinear-program solver.
+    *    model generators for industrial optimization problems.
+
+    :bdg-link-primary:`code <https://github.com/dwavesystems/dwave-optimization>`
+
 .. dropdown:: :ref:`dwave-preprocessing <index_preprocessing>`: 
     Preprocessing tools for quadratic models. 
 
@@ -165,6 +177,7 @@ Packages
     docs_inspector/sdk_index
     docs_neal/sdk_index
     docs_dnx/sdk_index
+    docs_optimization/sdk_index
     docs_preprocessing/sdk_index
     docs_samplers/index
     docs_system/sdk_index
@@ -172,4 +185,4 @@ Packages
     docs_minorminer/source/sdk_index
     docs_penalty/sdk_index
     docs_pyqubo
-    docs_qbsolv
+

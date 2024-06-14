@@ -52,8 +52,7 @@ problems with quantum computers.
             .. grid-item-card:: :ref:`Hybrid solvers <using_hybrid>` 
                         
                 :ref:`Leap’s quantum-classical  hybrid solvers <doc_leap_hybrid>` 
-                solve arbitrary application problems formulated as 
-                :ref:`quadratic models <qm_sdk>`. (Try this open-source 
+                solve arbitrary application problems. (Try this open-source 
                 `3D bin-packing example <https://github.com/dwave-examples/3d-bin-packing>`_.) 
                 
                 Ocean also provides a Python framework,

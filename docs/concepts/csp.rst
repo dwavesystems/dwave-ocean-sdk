@@ -12,7 +12,7 @@ The map-coloring CSP, for example, is to assign a color to each region of a map 
 any two regions sharing a border have different colors.
 
 .. figure:: ../_images/Problem_MapColoring.png
-    :name: Problem_MapColoring
+    :name: ProblemMapColoringCanada
     :alt: image
     :align: center
     :scale: 70 %

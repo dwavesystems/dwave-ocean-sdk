@@ -13,9 +13,9 @@ Ocean software is supported on the following operating systems:
 Ocean software requires a :ref:`Python environment<pythonEnvironment>`. Python
 versions |python_requires| are supported.
 
-This section explains how to :ref:`install Ocean software<installOceanSoftware>`,
+This section explains how to install Ocean software,
 either the entire suite of tools or particular tools\ [#]_ from the D-Wave GitHub
-repositories listed under the :doc:`packages` tab.
+repositories listed under the :std:doc:`Packages <oceandocs:packages>` tab. 
 
 .. [#]
   Although individual Ocean packages accept dependencies within a range of

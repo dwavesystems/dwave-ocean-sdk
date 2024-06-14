@@ -217,7 +217,7 @@ onto an Advantage QPU.
 
     A NOT gate minor embedded onto an Advantage QPU. Variables :math:`x,z` 
     (left) are minor-embedded to qubits ``30`` and ``31`` (right). This 
-    visualization is produced by Ocean's :std:doc:`docs_inspector/sdk_index` tool.
+    visualization is produced by Ocean's :ref:`sdk_index_inspector` tool.
     
 Notice that coupling strength is :code:`BIAS 0.5` above: as explained in the 
 :std:doc:`system documentation <sysdocs_gettingstarted:doc_getting_started>`,
@@ -431,7 +431,7 @@ Consequently, the two qubits are less strongly correlated and the result is that
 many returned samples represent invalid states for an AND gate.
 
 .. note:: The next code requires the use of Ocean's 
-    :std:doc:`docs_inspector/sdk_index` tool.
+    :ref:`sdk_index_inspector` tool.
 
 >>> import dwave.inspector
 >>> sampleset = sampler_embedded.sample_qubo(Q, num_reads=5000,
