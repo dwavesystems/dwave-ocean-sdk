@@ -1,5 +1,5 @@
 pydata-sphinx-theme==0.14.3
-sphinx==7.2.6
+sphinx==7.3.7
 sphinx-design==0.5.0
 sphinx-copybutton==0.5.0
 reno[sphinx]==3.3.0
