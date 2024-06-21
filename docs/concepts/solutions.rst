@@ -33,7 +33,7 @@ only the lowest-energy sample.
 SampleSets
 ----------
 
-Ocean uses the :doc:`dimod <oceandocs:docs_dimod/sdk_index>` :class:`~.SampleSet`
+Ocean uses the :doc:`dimod <oceandocs:docs_dimod/sdk_index>` :class:`~dimod.SampleSet`
 class to hold samples and some additional information (e.g., timing and 
 :term:`minor-embedding` information from some samplers). 
 
@@ -66,7 +66,7 @@ to qubits on the quantum processor, which is called by the
 5 +1 +1 -1   -1.0     185     0.0
 ['SPIN', 6 rows, 1000 samples, 3 variables]
 
-The returned :class:`~.SampleSet`, in this case, shows six solutions of
+The returned :class:`~dimod.SampleSet`, in this case, shows six solutions of
 equal energy :math:`-1.0`. Solution :math:`s_0=-1, s_1=+1, s_2=-1` on the first 
 line occurred in 183 of the 1000 samples. 
 
