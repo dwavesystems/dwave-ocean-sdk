@@ -10,5 +10,8 @@ matplotlib
 # Needed for minorminer C docs
 breathe
 
+# Needed for dwave-gate
+cgen==2020.1
+
 # needed in docs.conf to parse package versions
 packaging
