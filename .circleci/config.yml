@@ -160,10 +160,8 @@ jobs:
           name: build the docs
           command: |
             . env/bin/activate
+            sudo apt update && sudo apt install doxygen
             make -C docs/ html
-            cd dwave-gate
-            python dwave/gate/simulator/operation_generation.py
-            cd ..
 
       - store_artifacts:
           path: ./docs/_build/html
