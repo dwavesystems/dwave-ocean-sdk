@@ -135,9 +135,9 @@ breathe_default_project = "minorminer"
 
 # we want to build the c++ docs in RTD or CircleCI: 
 if os.environ.get('READTHEDOCS', False) or os.environ.get('CI', False):
-    subprocess.call('cd ../minorminer/docs/; make cpp', shell=True)
-    subprocess.call('cd ../dimod/docs/; make cpp', shell=True)
-    subprocess.call('cd ../dwave-preprocessing/docs/; make cpp', shell=True)
+    subprocess.call('cd ../minorminer/docs/; make cpp > /dev/null 2>&1', shell=True)
+    subprocess.call('cd ../dimod/docs/; make cpp > /dev/null 2>&1', shell=True)
+    subprocess.call('cd ../dwave-preprocessing/docs/; make cpp > /dev/null 2>&1', shell=True)
     subprocess.call('cd ../dwave-gate/; python dwave/gate/simulator/operation_generation.py', shell=True)
 
 # -- Options for HTML output ----------------------------------------------
