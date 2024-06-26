@@ -161,7 +161,7 @@ jobs:
           command: |
             . env/bin/activate
             sudo apt update && sudo apt install doxygen
-            make -C docs/ html
+            make -C docs/ html 2>&1 | grep -v -F 'docs_minorminer/source/cpp'
 
       - store_artifacts:
           path: ./docs/_build/html
