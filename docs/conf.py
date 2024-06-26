@@ -133,11 +133,18 @@ breathe_projects = {"minorminer": os.path.join(
 breathe_default_members = ('members', )
 breathe_default_project = "minorminer"
 
-# we want to build the c++ docs in RTD or CircleCI: 
-if os.environ.get('READTHEDOCS', False) or os.environ.get('CI', False):
-    subprocess.call('cd ../minorminer/docs/; make cpp > /dev/null 2>&1', shell=True)
-    subprocess.call('cd ../dimod/docs/; make cpp > /dev/null 2>&1', shell=True)
-    subprocess.call('cd ../dwave-preprocessing/docs/; make cpp > /dev/null 2>&1', shell=True)
+# we want to build the c++ docs in RTD and CircleCI: 
+if os.environ.get('READTHEDOCS', False):        
+    subprocess.call('cd ../minorminer/docs/; make cpp', shell=True)
+    subprocess.call('cd ../dimod/docs/; make cpp', shell=True)
+    subprocess.call('cd ../dwave-preprocessing/docs/; make cpp', shell=True)
+    subprocess.call('cd ../dwave-gate/; python dwave/gate/simulator/operation_generation.py', shell=True)
+
+# we want to build the c++ docs warningless in CircleCI (TEST: needs updates to Doxyfiles in submodules): 
+if os.environ.get('CI', False):
+    subprocess.call('cd ../minorminer/docs/; ( cat Doxyfile ; echo "WARN_LOGFILE=/dev/null"; echo "QUIET=YES" ) | doxygen -; python -m breathe.apidoc -o source/cpp build-cpp/xml/', shell=True)
+    subprocess.call('cd ../dimod/docs/; ( cat Doxyfile ; echo "WARN_LOGFILE=/dev/null"; echo "QUIET=YES" ) | doxygen -', shell=True)
+    subprocess.call('cd ../dwave-preprocessing/docs/; ( cat Doxyfile ; echo "WARN_LOGFILE=/dev/null"; echo "QUIET=YES" ) | doxygen -', shell=True)
     subprocess.call('cd ../dwave-gate/; python dwave/gate/simulator/operation_generation.py', shell=True)
 
 # -- Options for HTML output ----------------------------------------------
