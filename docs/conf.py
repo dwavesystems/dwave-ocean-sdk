@@ -140,9 +140,12 @@ if os.environ.get('READTHEDOCS', False):
     subprocess.call('cd ../dwave-preprocessing/docs/; make cpp', shell=True)
     subprocess.call('cd ../dwave-gate/; python dwave/gate/simulator/operation_generation.py', shell=True)
 
-# we want to build the c++ docs warningless in CircleCI (TEST: needs updates to Doxyfiles in submodules): 
+# we want to build the c++ docs warningless in CircleCI 
+# temporary hack: needs updates to Doxyfiles in submodules and then here can use `make cpp`:
+# Step 1: dropped minorminer because it generates ~500 warnings. I can suppress those 
+# in doxygen but not in the sphinx Python build (suppress_warnings does not have CPP type)
 if os.environ.get('CI', False):
-    subprocess.call('cd ../minorminer/docs/; ( cat Doxyfile ; echo "WARN_LOGFILE=/dev/null"; echo "QUIET=YES" ) | doxygen -; python -m breathe.apidoc -o source/cpp build-cpp/xml/', shell=True)
+    #subprocess.call('cd ../minorminer/docs/; ( cat Doxyfile ; echo "WARN_LOGFILE=/dev/null"; echo "QUIET=YES" ) | doxygen -; python -m breathe.apidoc -o source/cpp build-cpp/xml/', shell=True)
     subprocess.call('cd ../dimod/docs/; ( cat Doxyfile ; echo "WARN_LOGFILE=/dev/null"; echo "QUIET=YES" ) | doxygen -', shell=True)
     subprocess.call('cd ../dwave-preprocessing/docs/; ( cat Doxyfile ; echo "WARN_LOGFILE=/dev/null"; echo "QUIET=YES" ) | doxygen -', shell=True)
     subprocess.call('cd ../dwave-gate/; python dwave/gate/simulator/operation_generation.py', shell=True)
