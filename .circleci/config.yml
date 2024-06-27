@@ -160,7 +160,8 @@ jobs:
           name: build the docs
           command: |
             . env/bin/activate
-            make -C docs/ html
+            sudo apt update && sudo apt install doxygen graphviz
+            make -C docs/ html 
 
       - store_artifacts:
           path: ./docs/_build/html

@@ -139,6 +139,7 @@ The following graph tools are provided for these topologies:
 * :ref:`drawing <drawing>` visualizes the graphs you create.
 * :ref:`graph generation <generators_dnx>` creates graphs for the
   supported topologies of various sizes.
-* :std:doc:`indexing<docs_dnx/reference/utilities>` helps translate
+* :std:doc:`indexing <oceandocs:docs_dnx/reference/utilities>` helps translate
   coordinates of the supported graphs.
 * :ref:`minorminer <sdk_index_minorminer>` is a heuristic tool for minor embedding.
+
