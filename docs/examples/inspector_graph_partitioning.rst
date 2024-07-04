@@ -4,7 +4,7 @@
 Using the Problem Inspector
 ===========================
 
-This example solves a `graph partitioning <https://en.wikipedia.org/wiki/Graph_partition>`_
+This example solves a `graph partition <https://en.wikipedia.org/wiki/Graph_partition>`_
 problem to show how D-Wave's :ref:`inspector` tool can help
 you evaluate the :term:`minor-embedding` used in your problem submissions to the
 quantum computer.

@@ -134,7 +134,7 @@ breathe_default_members = ('members', )
 breathe_default_project = "minorminer"
 
 # we want to build the c++ docs in RTD and CircleCI: 
-if os.environ.get('READTHEDOCS', False):        
+if os.environ.get('READTHEDOCS', False):
     subprocess.call('cd ../minorminer/docs/; make cpp', shell=True)
     subprocess.call('cd ../dimod/docs/; make cpp', shell=True)
     subprocess.call('cd ../dwave-preprocessing/docs/; make cpp', shell=True)

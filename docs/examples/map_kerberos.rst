@@ -17,7 +17,7 @@ color to each region of a map such that any two regions sharing a border have di
 colors.
 
 .. figure:: ../_images/us_map.png
-   :name: Problem_MapColoring
+   :name: ProblemMapColoringSDKExampleKerberos
    :alt: image
    :align: center
    :scale: 70 %
