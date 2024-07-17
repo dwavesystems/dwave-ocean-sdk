@@ -67,6 +67,8 @@ source_suffix = ['.rst', '.md']
 
 root_doc = 'index'  # before Sphinx 4.0, named master_doc
 
+language = 'en'
+
 add_module_names = False
 
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
