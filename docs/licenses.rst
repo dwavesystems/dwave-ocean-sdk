@@ -7,6 +7,7 @@ Below are the open-source licenses for the SDK and its tools:
 .. toctree::
    :maxdepth: 1
 
+   licenses/dimod
    licenses/sdk
    licenses/binarycsp
    licenses/cloud

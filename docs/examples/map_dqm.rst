@@ -32,7 +32,7 @@ Example Requirements
    solutions are those with the lowest values. This is demonstrated in
    `Leap <https://cloud.dwavesys.com/leap/>`_\ 's *Structural Imbalance* demo,
    introduced in the :ref:`and` example, and comprehensively explained in the
-   :std:doc:`Problem Solving Handbook <sysdocs_gettingstarted:doc_handbook>`_.
+   :std:doc:`Problem Solving Handbook <sysdocs_gettingstarted:doc_handbook>`.
 
 Solution Steps
 ==============

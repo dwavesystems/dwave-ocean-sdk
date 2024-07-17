@@ -94,7 +94,7 @@ Glossary
       Complete graph
       Fully connected
           See `complete graph`_ on Wikipedia or 
-          :std:doc:`docs_dnx/reference/algorithms/clique`. A fully connected or 
+          :std:doc:`oceandocs:docs_dnx/reference/algorithms/clique`. A fully connected or 
           complete :term:`binary quadratic model` is one that has interactions 
           between all of its variables.
 

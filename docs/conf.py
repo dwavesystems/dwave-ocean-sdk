@@ -67,6 +67,8 @@ source_suffix = ['.rst', '.md']
 
 root_doc = 'index'  # before Sphinx 4.0, named master_doc
 
+language = 'en'
+
 add_module_names = False
 
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
@@ -133,11 +135,23 @@ breathe_projects = {"minorminer": os.path.join(
 breathe_default_members = ('members', )
 breathe_default_project = "minorminer"
 
-# we want to build the c++ docs in RTD
+# we want to build the c++ docs in RTD with all warnings: 
 if os.environ.get('READTHEDOCS', False):
     subprocess.call('cd ../minorminer/docs/; make cpp', shell=True)
     subprocess.call('cd ../dimod/docs/; make cpp', shell=True)
     subprocess.call('cd ../dwave-preprocessing/docs/; make cpp', shell=True)
+    subprocess.call('cd ../dwave-gate/; python dwave/gate/simulator/operation_generation.py', shell=True)
+
+# we want to build the c++ docs in CircleCI without warnings 
+# and without minorminer because it generates ~500 warnings 
+if os.environ.get('CI', False):
+    os.environ["DOXYGEN_QUIET"] = "YES"
+    os.environ["DOXYGEN_WARNINGS"] = "NO"
+    os.environ["DOXYGEN_WARN_LOGFILE"] = "/dev/null"
+    #subprocess.call('cd ../minorminer/docs/; make cpp > /dev/null 2>&1', shell=True)
+    subprocess.call('cd ../dimod/docs/; make cpp > /dev/null 2>&1', shell=True)
+    subprocess.call('cd ../dwave-preprocessing/docs/; make cpp > /dev/null 2>&1', shell=True)
+    subprocess.call('cd ../dwave-gate/; python dwave/gate/simulator/operation_generation.py', shell=True)
 
 # -- Options for HTML output ----------------------------------------------
 

@@ -77,7 +77,7 @@ in the :ref:`multi_gate` example.
     A NOT gate is shown in Figure \ref{fig:notGate}.
 
 .. figure:: ../_images/NOT.png
-   :name: Cover
+   :name: CoverSDKExample
    :align: center
    :scale: 70 %
 

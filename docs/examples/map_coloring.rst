@@ -14,7 +14,7 @@ The map-coloring CSP requires that you assign a color to each region of a map su
 that any two regions sharing a border have different colors.
 
 .. figure:: ../_images/Problem_MapColoring.png
-   :name: Problem_MapColoring
+   :name: ProblemMapColoringSDKExampleQPU
    :alt: image
    :align: center
    :scale: 70 %
@@ -305,7 +305,7 @@ for each province.
 >>> plot_map(best.sample)    # doctest: +SKIP
 
 .. figure:: ../_images/map_coloring_CSP4colors.png
-   :name: MapColoring_CSP4colors
+   :name: MapColoring_CSP4colorsSDKExampleQPU
    :alt: image
    :align: center
    :scale: 40 %
