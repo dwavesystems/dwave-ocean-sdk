@@ -135,15 +135,15 @@ breathe_projects = {"minorminer": os.path.join(
 breathe_default_members = ('members', )
 breathe_default_project = "minorminer"
 
-# we want to build the c++ docs in RTD with all warnings: 
+# we want to build the c++ docs in RTD with all warnings:
 if os.environ.get('READTHEDOCS', False):
     subprocess.call('cd ../minorminer/docs/; make cpp', shell=True)
     subprocess.call('cd ../dimod/docs/; make cpp', shell=True)
     subprocess.call('cd ../dwave-preprocessing/docs/; make cpp', shell=True)
     subprocess.call('cd ../dwave-gate/; python dwave/gate/simulator/operation_generation.py', shell=True)
 
-# we want to build the c++ docs in CircleCI without warnings 
-# and without minorminer because it generates ~500 warnings 
+# we want to build the c++ docs in CircleCI without warnings
+# and without minorminer because it generates ~500 warnings
 if os.environ.get('CI', False):
     os.environ["DOXYGEN_QUIET"] = "YES"
     os.environ["DOXYGEN_WARNINGS"] = "NO"
@@ -153,6 +153,10 @@ if os.environ.get('CI', False):
     subprocess.call('cd ../dwave-preprocessing/docs/; make cpp > /dev/null 2>&1', shell=True)
     subprocess.call('cd ../dwave-gate/; python dwave/gate/simulator/operation_generation.py', shell=True)
 
+autodoc_type_aliases = {
+    'numpy.typing.ArrayLike': 'numpy.typing.ArrayLike',
+}
+
 # -- Options for HTML output ----------------------------------------------
 
 html_theme = 'pydata_sphinx_theme'
@@ -160,7 +164,7 @@ html_logo = "_static/Ocean.svg"
 
 # Temporary for current pydata_sphinx_theme==0.8. Will update per
 # https://pydata-sphinx-theme.readthedocs.io/en/stable/user_guide/branding.html#add-favicons
-# when https://github.com/dwavesystems/dwave-ocean-sdk/pull/274 is merged 
+# when https://github.com/dwavesystems/dwave-ocean-sdk/pull/274 is merged
 html_favicon = 'https://www.dwavesys.com/favicon.ico'
 
 html_theme_options = {
@@ -185,7 +189,7 @@ html_theme_options = {
     ],
     "collapse_navigation": True,
     "header_links_before_dropdown": 8,
-    "navbar_align": "left",  
+    "navbar_align": "left",
     "show_prev_next": False,
     "logo": {
         "image_light": "_static/Ocean.svg",
