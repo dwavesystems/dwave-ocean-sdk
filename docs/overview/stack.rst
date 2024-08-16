@@ -180,10 +180,9 @@ each stage of the process to a layer of the Ocean stack.
       * - :doc:`dwave-system </docs_system/sdk_index>` :class:`~dwave.system.composites.TilingComposite`
         - Tiles small problems multiple times to a Chimera-structured sampler.
         - Enables parallel sampling for small problems.
-      * - :doc:`dwave-system </docs_system/sdk_index>` :class:`~dwave.system.composites.VirtualGraphComposite`
-        - Uses the D-Wave virtual graph feature for improved minor-embedding.
-        - Calibrates qubits in chains to compensate for the effects of biases and enables
-          easy creation, optimization, use, and reuse of an embedding for a given working graph.
+      * - :doc:`dimod </docs_dimod/sdk_index>` :class:`~dimod.reference.composites.tracking.TrackingComposite`
+        - Tracks inputs and outputs.
+        - Helps with testing and debugging.
       * - :std:doc:`dwave-preprocessing <oceandocs:docs_preprocessing/sdk_index>`
           :class:`~dwave.preprocessing.composites.SpinReversalTransformComposite`
         - Applies spin reversal transform preprocessing.
