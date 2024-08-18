@@ -115,11 +115,11 @@ each stage of the process to a layer of the Ocean stack.
         - Simulated annealing sampler for testing.
         - For code-development testing.
       * - Classical
-        - :doc:`dwave-greedy </docs_greedy/sdk_index>` :class:`~greedy.sampler.SteepestDescentSolver`.
+        - :doc:`dwave-samplers </docs_samplers/index>` :class:`~dwave.samplers.greedy.sampler.SteepestDescentSolver`.
         - A steepest-descent solver for binary quadratic models.
         - For post-processing and convex problems.
       * - Classical
-        - :doc:`dwave-neal </docs_neal/sdk_index>` :class:`~neal.sampler.SimulatedAnnealingSampler`
+        - :doc:`dwave-samplers </docs_samplers/index>` :class:`~dwave.samplers.sa.sampler.SimulatedAnnealingSampler`
         - Simulated annealing sampler.
         -
       * - Quantum
@@ -139,9 +139,9 @@ each stage of the process to a layer of the Ocean stack.
         - *dimod*-compatible hybrid asynchronous decomposition sampler.
         - For problems of arbitrary structure and size.
       * - Hybrid
-        - `Leap <https://cloud.dwavesys.com/leap/>`_\ 's :class:`~dwave.system.samplers.LeapHybridSampler`
+        - `Leap <https://cloud.dwavesys.com/leap/>`_\ 's :class:`~dwave.system.samplers.LeapHybridNLSampler`
         - Cloud-based quantum-classical hybrid solver.
-        - For problems of arbitrary structure and size, especially large problems.
+        - For application problems formulated as :ref:`nonlinear models <nl_model_sdk>`.
       * - Hybrid
         - `Leap <https://cloud.dwavesys.com/leap/>`_\ 's :class:`~dwave.system.samplers.LeapHybridCQMSampler`
         - Cloud-based quantum-classical hybrid solver.
@@ -180,10 +180,9 @@ each stage of the process to a layer of the Ocean stack.
       * - :doc:`dwave-system </docs_system/sdk_index>` :class:`~dwave.system.composites.TilingComposite`
         - Tiles small problems multiple times to a Chimera-structured sampler.
         - Enables parallel sampling for small problems.
-      * - :doc:`dwave-system </docs_system/sdk_index>` :class:`~dwave.system.composites.VirtualGraphComposite`
-        - Uses the D-Wave virtual graph feature for improved minor-embedding.
-        - Calibrates qubits in chains to compensate for the effects of biases and enables
-          easy creation, optimization, use, and reuse of an embedding for a given working graph.
+      * - :doc:`dimod </docs_dimod/sdk_index>` :class:`~dimod.reference.composites.tracking.TrackingComposite`
+        - Tracks inputs and outputs.
+        - Helps with testing and debugging.
       * - :std:doc:`dwave-preprocessing <oceandocs:docs_preprocessing/sdk_index>`
           :class:`~dwave.preprocessing.composites.SpinReversalTransformComposite`
         - Applies spin reversal transform preprocessing.
