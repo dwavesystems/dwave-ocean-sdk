@@ -1,83 +1,205 @@
 .. _index:
 
-===================================
-D-Wave Ocean Software Documentation
-===================================
+===========================
+|dwave_short| Documentation
+===========================
 
-Ocean software is a suite of tools `D-Wave Systems <https://www.dwavesys.com>`_ provides
-on the `D-Wave GitHub repository <https://github.com/dwavesystems>`_ for solving hard
-problems with quantum computers.
+.. meta::
+    :description: D-Wave documentation
+    :keywords: D-Wave, d-wave documentation, d-wave manuals, quantum computing, quantum annealing, optimization, machine learning, sampling, ising model, qubo, hamiltonian, hybrid, leap, quantum applications, qubits, quantum computing manuals, d-wave user guides, quantum computing howto
 
 .. toctree::
     :hidden:
     :maxdepth: 2
 
-    getting_started
+    industrial_optimization/section_industrial_optimization
+    quantum_research/section_quantum_research
+    section_ocean_api
+    leap_sapi/section_leap_sapi
     concepts/index
-    docs_cli
-    packages
-    contributing
-    licenses
 
-.. tab-set::
+..  tab-set::
 
-    .. tab-item:: Explore
+    ..  tab-item:: Industrial Optimization
+        :name: tab_industrial_optimization
 
-        .. grid:: 3
-            :gutter: 3
+        Use Leap's quantum-classical hybrid solvers to optimize business problems.
 
-            .. grid-item-card:: :ref:`Annealing Model of Quantum Computing <getting_started_qa>` 
-         
-                Quantum annealing processors naturally return low-energy 
-                solutions; some applications require the real minimum energy 
-                (optimization problems) and others require good low-energy 
-                samples (probabilistic sampling problems). 
-                :ref:`... <getting_started_qa>` 
+        .. include:: industrial_optimization/section_industrial_optimization.rst
+            :start-after: sections-start-marker
+            :end-before: sections-end-marker
 
-            .. grid-item-card::  :ref:`Gate Model of Quantum Computing <index_gate>`  
-                        
-                Ocean's :code:`dwave-gate` is a software package for constructing, 
-                modifying and running quantum circuits on the included simulator.
-         
-            .. grid-item-card:: :ref:`Installing Ocean <gs_initial_setup>` 
+    ..  tab-item:: Quantum Research
+        :name: tab_quantum_research
 
-                Installation is **not needed** if you are using an IDE that 
-                implements `"devcontainers" <https://containers.dev/supporting>`_.
-                :ref:`... <gs_initial_setup>`
+        Use D-Wave's quantum computers directly.
 
-                Run D-Wave's many `open-source examples <https://github.com/dwave-examples>`_
-                in GitHub Codespaces with just a mouse click (requires a 
-                `Leap <https://cloud.dwavesys.com/leap>`_ account).
+        .. include:: quantum_research/section_quantum_research.rst
+            :start-after: sections-start-marker
+            :end-before: sections-end-marker
 
-            .. grid-item-card:: :ref:`Hybrid solvers <using_hybrid>` 
-                        
-                :ref:`Leap’s quantum-classical  hybrid solvers <doc_leap_hybrid>` 
-                solve arbitrary application problems. (Try this open-source 
-                `3D bin-packing example <https://github.com/dwave-examples/3d-bin-packing>`_.) 
-                
-                Ocean also provides a Python framework,
-                :ref:`dwave-hybrid <index_hybrid>`, for building hybrid 
-                asynchronous decomposition samplers. 
+    ..  tab-item:: Ocean API
+        :name: tab_ocean_api
 
-            .. grid-item-card:: `Leap <https://cloud.dwavesys.com/leap>`_ 
+        Ocean SDK reference.
+
+        .. include:: section_ocean_api.rst
+            :start-after: sections-start-marker
+            :end-before: sections-end-marker
             
-                Sign up for Leap quantum cloud service, which gives you 
-                immediate, secure access to D-Wave quantum and hybrid 
-                solvers, as well as a wealth of information to help you get 
-                started :ref:`creating quantum applications <cb_workflow>`.
+    ..  tab-item:: Leap Cloud Services (SAPI)
+        :name: tab_leap_sapi
 
-            .. grid-item-card:: `System Documentation <https://docs.dwavesys.com/docs/latest/index.html>`_ 
-            
-                Here you will find an :ref:`introduction <doc_gsg>` 
-                to D-Wave's quantum computers, their hardware and how they work;
-                the :ref:`properties and parameters <doc_spp>` for 
-                D-Wave's solvers; :ref:`references <doc_handbook>` on formulating 
-                problems and best practices in quantum computing; and much more.
+        Use and administer Leap cloud services. 
 
-    .. tab-item:: Packages
+        .. include:: leap_sapi/section_leap_sapi.rst
+            :start-after: sections-start-marker
+            :end-before: sections-end-marker 
 
-        .. include:: packages.rst
-            :start-after: packages-start-marker
-            :end-before: packages-end-marker
+    ..  tab-item:: Concepts
+        :name: tab_concepts
 
-:ref:`Site index <genindex>`
+        Terminology and concepts in quantum computing and optimization. 
+
+        .. include:: section_concepts_glossary.rst
+            :start-after: sections-start-marker
+            :end-before: sections-end-marker
+
+Welcome to |dwave_short|
+========================
+
+.. pull-quote::
+
+    *I'm not happy with all the analyses that go with just the classical theory,*
+    *because Nature isn't classical, dammit, and if you want to make a simulation*
+    *of nature, you'd better make it quantum mechanical, and by golly it's a*
+    *wonderful problem, because it doesn't look so easy.*
+
+    *It's not a Turing machine, but a machine of a different kind.*
+
+    --- Richard Feynman, 1981
+
+.. dropdown:: What We Do
+
+    Despite the incredible power of today's supercomputers, many complex computing
+    problems cannot be addressed by conventional systems. The huge growth of data and
+    our need to better understand everything from the universe to our own DNA leads
+    us to seek new tools that can help provide answers. Quantum computing is the next
+    frontier in computing, providing an entirely new approach to solving the world's
+    most difficult problems.
+
+    While certainly not easy, much progress has been made in the field of quantum
+    computing since 1981, when Feynman gave his famous lecture at the California
+    Institute of Technology. Still a relatively young field, quantum computing is
+    complex and different approaches are being pursued around the world. Today, there
+    are two leading candidate architectures for quantum computers: gate model
+    (also known as circuit model) and quantum annealing.
+
+    `Gate-model quantum computing <https://en.wikipedia.org/wiki/Quantum_circuit>`_
+    implements compute algorithms with quantum gates, analogously to the use of Boolean
+    gates in classical computers.
+
+    With quantum annealers you initialize the system in a low-energy state and
+    gradually introduce the parameters of a problem you wish to solve. The slow change
+    makes it likely that the system ends in a low-energy state of the problem, which
+    corresponds to an optimal solution. This technique is explained in more detail in
+    the :ref:`getting_started_qa` chapter.
+
+    Quantum annealing is implemented in |dwave_short|'s generally available quantum computers,
+    such as the |dwave_5kq_tm|, as a single quantum algorithm, and this
+    scalable approach to quantum computing has enabled us to create quantum processing
+    units (QPUs) with more than 5000 quantum bits (*qubits*)---far beyond the state of
+    the art for gate-model quantum computing.
+
+    |dwave_short| has been developing various generations of our "machine of a different kind,"
+    to use Feynman's words, since 1999. We are the world's first commercial quantum
+    computer company.
+
+.. dropdown:: |dwave_short|'s Quantum Computer Systems
+
+    The |dwave_short| system contains a QPU that must be kept at a temperature near absolute
+    zero and isolated from the surrounding environment in order to behave quantum
+    mechanically. The system achieves these requirements as follows:
+
+    * Cryogenic temperatures, achieved using a closed-loop cryogenic dilution
+      refrigerator system. The QPU operates at temperatures below 20 mK.
+    * Shielding from electromagnetic interference, achieved using a radio frequency
+      (RF)–shielded enclosure and a magnetic shielding subsystem.
+
+    .. figure:: ../../_images/advantage_system.png
+      :name: dwave-components
+      :height: 400 pt
+      :width: 400 pt
+
+      |dwave_5kq_tm| system.
+
+    The |dwave_short| QPU (:numref:`Figure %s <qpu1>`) is a lattice of tiny metal loops,
+    each of which is a qubit or a coupler. Below temperatures of 9.2 kelvin, these
+    loops become superconductors and exhibit quantum-mechanical effects.
+
+    The QPU in |dwave_short|'s |dwave_5kq| system has more than 5,000 qubits and
+    35,000 couplers. To reach this scale, it uses over |max_j_junctions| Josephson
+    junctions, which makes the |dwave_5kq| QPU by far the most complex superconducting
+    integrated circuit ever built.
+
+    For details on the topology of the QPU, see the :ref:`getting_started_topologies` section.
+
+    .. figure:: ../../_images/qpu.png
+      :name: qpu1
+      :scale: 30 %
+
+      |dwave_short| QPU.
+
+    .. note::
+      For more details on the physical system, including specifications and
+      essential safety information required for anyone who accesses the hardware
+      directly, see the |doc_operations| manual, available from |dwave_short|.
+
+
+.. dropdown:: |dwave_short|'s Software Environment
+
+    Users interact with the |dwave_short| quantum computer through a web user interface (UI),
+    and through open-source tools that communicate with the Solver API (SAPI).\ [#]_
+    The SAPI components are responsible for user interaction, user authentication,
+    and work scheduling. In turn, SAPI connects to back-end servers that send problems
+    to and return results from QPUs and additional solvers, which are located in
+    different geographical regions (for example, North America or Europe).\ [#]_
+
+    See :numref:`Figure %s <network-gs>` for a simplified view of the |dwave_short| software
+    environment.
+
+    .. [#]
+      A *solver* is simply a resource that runs a problem.
+      Some solvers interface to the QPU; others leverage CPU and GPU resources.
+
+    .. [#]
+      Solvers are available by region.
+      To view the supported regions and solvers that are available in each one,
+      go to your **Leap Dashboard**.
+
+      .. figure:: ../../_images/network-gs.png
+          :name: network-gs
+
+          D-Wave software environment.
+
+.. dropdown:: |cloud_tm| Quantum Cloud Service
+
+    |cloud_tm| is the quantum cloud service from |dwave_short| Systems.
+    Learn about the types of problems that the |dwave_short| quantum computer can solve,
+    run interactive demos and coding examples on the system, contribute your coding
+    ideas, and join the growing conversation in our community of like-minded users.
+
+    For more information, see
+    `Introduction to Leap <https://docs.dwavesys.com/docs/latest/leap.html>`_.
+
+    Sign up for Leap here: `Leap signup <https://cloud.dwavesys.com/leap>`_.
+
+.. dropdown:: Ocean SDK
+    
+    |dwave_short|'s Python-based open-source software development kit (SDK), Ocean, makes
+    application development for quantum computers rapid and efficient and facilitates
+    collaborative projects.
+    See `Ocean SDK on GitHub <https://github.com/dwavesystems>`_ to access the
+    Ocean SDK, and `Ocean documentation <https://docs.ocean.dwavesys.com>`_ for
+    the associated documentation.
+

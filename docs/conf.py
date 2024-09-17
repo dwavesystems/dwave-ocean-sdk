@@ -169,16 +169,16 @@ html_favicon = 'https://www.dwavesys.com/favicon.ico'
 
 html_theme_options = {
     "github_url": "https://github.com/dwavesystems/dwave-ocean-sdk",
-    "external_links": [
-        {
-            "url": "https://docs.dwavesys.com/docs/latest/index.html",
-            "name": "System Docs",
-        },
-        {
-            "url": "https://docs.dwavesys.com/docs/latest/legal.html",
-            "name": "Legal",
-        },
-    ],
+    # "external_links": [
+    #     {
+    #         "url": "https://docs.dwavesys.com/docs/latest/index.html",
+    #         "name": "System Docs",
+    #     },
+    #     {
+    #         "url": "https://docs.dwavesys.com/docs/latest/legal.html",
+    #         "name": "Legal",
+    #     },
+    # ],
     "icon_links": [
         {
             "name": "Leap",
@@ -301,3 +301,42 @@ def linkcode_resolve(domain, info):
     fn = "https://github.com/dwavesystems/{}/blob/{}{}".format(pm_module, pm_ver, fn)
 
     return fn + linespec
+    
+    #defines global substitutions
+rst_epilog = """
+.. |copy| unicode:: U+000A9 .. COPYRIGHT SIGN
+.. |deg| unicode:: U+00B0
+.. |nbsp| unicode:: 0xA0    .. non-breaking space
+.. |nb-| unicode:: U+2011  .. Non-breaking hyphen (e.g., "D |nb-| Wave")
+    :trim:
+.. |reg| unicode:: U+000AE .. REGISTERED SIGN
+.. |tm| unicode::  U+2122
+.. |Darr| unicode:: U+02193 .. DOWNWARDS ARROW from docutils/parsers/rst/include/isonum.txt
+.. |Uarr| unicode:: U+02191 .. UPWARDS ARROW from docutils/parsers/rst/include/isonum.txt
+.. |check| replace:: Check properties.
+.. |cloud_tm| unicode:: Leap U+2122
+.. |customer| unicode:: U+0020 LANL U+0020
+.. |d_b| replace:: dwave_classical_boltzmann_sampler
+.. |d_qb| replace:: dwave_quantum_boltzmann_sampler
+.. |dwave_system_name| unicode:: D-Wave U+2122 U+0020 Quantum U+0020 Computer
+.. |dwave_2kq| unicode:: D-Wave U+00A0 2000Q
+.. |adv2| unicode:: Advantage2
+.. |dwave_5kq| unicode:: Advantage
+.. |dwave_5kq_tm| unicode:: Advantage U+2122
+.. |dwave_short| unicode:: D-Wave
+.. |dwave_short_tm| unicode:: D-Wave U+2122 U+0020
+.. |dwave_system| unicode:: D-Wave U+00A0 System
+.. |dwave_systems_inc| replace:: D-Wave Systems Inc.
+.. |max_qubits| replace:: 5640
+.. |max_couplers| replace:: 40484
+.. |max_j_junctions| replace:: 1,000,000
+.. |mc| replace:: D-Wave Remote Execution Library
+.. |qc| replace:: D-Wave Quantum Cloud
+.. |support_email| replace:: D-Wave Customer Support
+.. _support_email: support@dwavesys.com
+.. |wspml| replace:: D-Wave Web Services for Probabilistic Machine Learning
+.. |doc_site_prep_europe| replace:: *D-Wave Quantum Computer System Site Preparation (European Requirements)*
+.. |doc_site_prep_na| replace:: *D-Wave Quantum Computer System Site Preparation (North American Requirements)*
+.. |doc_solver_properties| replace:: Solver Properties and Parameters Reference
+.. _doc_solver_properties: https://docs.dwavesys.com/docs/latest/doc_solver_ref.html
+"""
