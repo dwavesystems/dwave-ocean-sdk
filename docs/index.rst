@@ -16,7 +16,7 @@
     quantum_research/section_quantum_research
     section_ocean_api
     leap_sapi/section_leap_sapi
-    concepts/index
+    concepts/section_concepts_glossary
 
 ..  tab-set::
 
@@ -47,7 +47,7 @@
             :start-after: sections-start-marker
             :end-before: sections-end-marker
             
-    ..  tab-item:: Leap Cloud Services (SAPI)
+    ..  tab-item:: Leap/SAPI
         :name: tab_leap_sapi
 
         Use and administer Leap cloud services. 
@@ -59,11 +59,7 @@
     ..  tab-item:: Concepts
         :name: tab_concepts
 
-        Terminology and concepts in quantum computing and optimization. 
-
-        .. include:: section_concepts_glossary.rst
-            :start-after: sections-start-marker
-            :end-before: sections-end-marker
+        .. include:: concepts/section_concepts_glossary.rst
 
 Welcome to |dwave_short|
 ========================

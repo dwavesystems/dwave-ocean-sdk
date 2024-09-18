@@ -192,8 +192,8 @@ html_theme_options = {
     "navbar_align": "left",
     "show_prev_next": False,
     "logo": {
-        "image_light": "_static/Ocean.svg",
-        "image_dark": "_static/Ocean.svg",
+        "image_light": "_static/DWave.svg",
+        "image_dark": "_static/DWaveWhite.svg",
     }
 }
 html_sidebars = {
@@ -313,12 +313,7 @@ rst_epilog = """
 .. |tm| unicode::  U+2122
 .. |Darr| unicode:: U+02193 .. DOWNWARDS ARROW from docutils/parsers/rst/include/isonum.txt
 .. |Uarr| unicode:: U+02191 .. UPWARDS ARROW from docutils/parsers/rst/include/isonum.txt
-.. |check| replace:: Check properties.
 .. |cloud_tm| unicode:: Leap U+2122
-.. |customer| unicode:: U+0020 LANL U+0020
-.. |d_b| replace:: dwave_classical_boltzmann_sampler
-.. |d_qb| replace:: dwave_quantum_boltzmann_sampler
-.. |dwave_system_name| unicode:: D-Wave U+2122 U+0020 Quantum U+0020 Computer
 .. |dwave_2kq| unicode:: D-Wave U+00A0 2000Q
 .. |adv2| unicode:: Advantage2
 .. |dwave_5kq| unicode:: Advantage
@@ -330,13 +325,7 @@ rst_epilog = """
 .. |max_qubits| replace:: 5640
 .. |max_couplers| replace:: 40484
 .. |max_j_junctions| replace:: 1,000,000
-.. |mc| replace:: D-Wave Remote Execution Library
 .. |qc| replace:: D-Wave Quantum Cloud
 .. |support_email| replace:: D-Wave Customer Support
 .. _support_email: support@dwavesys.com
-.. |wspml| replace:: D-Wave Web Services for Probabilistic Machine Learning
-.. |doc_site_prep_europe| replace:: *D-Wave Quantum Computer System Site Preparation (European Requirements)*
-.. |doc_site_prep_na| replace:: *D-Wave Quantum Computer System Site Preparation (North American Requirements)*
-.. |doc_solver_properties| replace:: Solver Properties and Parameters Reference
-.. _doc_solver_properties: https://docs.dwavesys.com/docs/latest/doc_solver_ref.html
 """

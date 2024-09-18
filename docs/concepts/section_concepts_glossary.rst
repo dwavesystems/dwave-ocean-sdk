@@ -1,13 +1,17 @@
-.. _concepts_sdk:
+.. _section_concepts_glossary:
 
-========
+===================
+Concepts & Glossary
+===================
+
+.. _dwave_concepts:
+
 Concepts
 ========
 
+See the :ref:`dwave_glossary` below for short definitions of terminology.
 
-See the :ref:`ocean_glossary` for short definitions of terminology or learn Ocean concepts here:
-
-.. list-table:: Ocean Concepts
+.. list-table:: Concepts
    :widths: auto
    :header-rows: 1
 
@@ -39,6 +43,7 @@ See the :ref:`ocean_glossary` for short definitions of terminology or learn Ocea
      - samples, sampleset, probabilistic, energy
    * - :ref:`variables_sdk`
      - binary, discrete, integer, real variables
+     
 .. toctree::
    :hidden:
    :maxdepth: 1
@@ -57,10 +62,12 @@ See the :ref:`ocean_glossary` for short definitions of terminology or learn Ocea
    solutions
    variables
 
-.. _ocean_glossary:
+.. _dwave_glossary:
 
 Glossary
---------
+========
+
+See the :ref:`dwave_concepts` above for the general concepts. 
 
 .. glossary::
 
