@@ -129,7 +129,7 @@ the model's constraints on maximum capacity.
 >>> for i in range(min(3, num_samples)):
 ...     print(f"Objective value {int(model.objective.state(i))} for \n" \
 ...     f"\t Route 1: {route1.state(i)} \t Route 2: {route2.state(i)} \n" \
-...     f"\t Feasible: {all(model.iter_constraints())}")   # doctest: +SKIP
+...     f"\t Feasible: {all(sym.state(i) for sym in model.iter_constraints())}")   # doctest: +SKIP
 Objective value 484 for 
 	 Route 1: [4. 3. 7. 1. 5.] 	 Route 2: [4. 3. 7. 1. 5.]
 	 Feasible: True
