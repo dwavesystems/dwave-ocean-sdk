@@ -1,6 +1,26 @@
-========
-Packages
-========
+.. _ocean_packages:
+
+==============
+Ocean Packages
+==============
+
+.. toctree::
+    :hidden:
+    :maxdepth: 1
+
+    docs_dimod/sdk_index
+    docs_binarycsp/sdk_index
+    docs_cloud/sdk_index
+    docs_gate/sdk_index
+    docs_hybrid/sdk_index
+    docs_inspector/sdk_index
+    docs_dnx/sdk_index
+    docs_optimization/sdk_index
+    docs_preprocessing/sdk_index
+    docs_samplers/index
+    docs_system/sdk_index
+    docs_minorminer/source/sdk_index
+    docs_penalty/sdk_index
 
 .. packages-start-marker
 
@@ -156,20 +176,3 @@ Packages
 
 .. packages-end-marker
 
-.. toctree::
-    :hidden:
-    :maxdepth: 1
-
-    docs_dimod/sdk_index
-    docs_binarycsp/sdk_index
-    docs_cloud/sdk_index
-    docs_gate/sdk_index
-    docs_hybrid/sdk_index
-    docs_inspector/sdk_index
-    docs_dnx/sdk_index
-    docs_optimization/sdk_index
-    docs_preprocessing/sdk_index
-    docs_samplers/index
-    docs_system/sdk_index
-    docs_minorminer/source/sdk_index
-    docs_penalty/sdk_index

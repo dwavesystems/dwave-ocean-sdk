@@ -14,9 +14,11 @@
 
     industrial_optimization/section_industrial_optimization
     quantum_research/section_quantum_research
-    section_ocean_api
+    ocean/section_ocean_api
     leap_sapi/section_leap_sapi
     concepts/section_concepts_glossary
+    contributing
+    licenses
 
 ..  tab-set::
 
@@ -43,7 +45,7 @@
 
         Ocean SDK reference.
 
-        .. include:: section_ocean_api.rst
+        .. include:: ocean/section_ocean_api.rst
             :start-after: sections-start-marker
             :end-before: sections-end-marker
             
@@ -199,3 +201,12 @@ Welcome to |dwave_short|
     Ocean SDK, and `Ocean documentation <https://docs.ocean.dwavesys.com>`_ for
     the associated documentation.
 
+Contributing 
+============
+
+See :ref:`contributing`.
+
+Licenses
+========
+
+See :ref:`licenses`
