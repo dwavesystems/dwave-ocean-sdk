@@ -1,4 +1,4 @@
-.. _hss:
+.. _opt_example_bqm_structuralimbalance:
 
 ========================================
 Structural Imbalance in a Social Network

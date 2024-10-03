@@ -1,4 +1,4 @@
-.. _example_nl_cvrp:
+.. _opt_example_nl_cvrp:
 
 ===============
 Vehicle Routing

@@ -12,6 +12,7 @@ Industrial Optimization
     opt_section_nl
     opt_section_cqm
     opt_section_bqm
+    opt_section_using
 
 .. sections-start-marker
 
@@ -33,6 +34,10 @@ Industrial Optimization
     .. grid-item-card:: :ref:`opt_section_bqm`
 
         Leap's hybrid binary quadratic model (BQM) solver.
+
+    .. grid-item-card:: :ref:`opt_section_using`
+
+        Configuring hybrid parameters and usage best-practices.
 
 For terminology, see the :ref:`section_concepts_glossary` section;
 to use the QPU directly, see the :ref:`section_quantum_research` 

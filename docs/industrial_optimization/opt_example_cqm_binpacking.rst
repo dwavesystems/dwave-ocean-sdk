@@ -1,4 +1,4 @@
-.. _example_cqm_binpacking:
+.. _opt_example_cqm_binpacking:
 
 ===========
 Bin Packing

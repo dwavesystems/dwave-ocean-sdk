@@ -1,4 +1,4 @@
-.. _example_cqm_stock_selling:
+.. _opt_example_cqm_stockselling:
 
 ===========================================
 Stock-Sales Strategy in a Simplified Market

@@ -1,4 +1,4 @@
-.. _map_kerberos:
+.. _opt_example_kerberos_map:
 
 ==================
 Large Map Coloring

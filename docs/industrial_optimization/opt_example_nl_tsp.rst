@@ -1,4 +1,4 @@
-.. _example_nl_tsp:
+.. _opt_example_nl_tsp:
 
 =====================
 Traveling Salesperson

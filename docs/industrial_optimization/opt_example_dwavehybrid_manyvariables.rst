@@ -1,4 +1,4 @@
-.. _hybrid1:
+.. _opt_example_dwavehybrid_manyvariables:
 
 ===========================
 Problem With Many Variables

@@ -1,4 +1,4 @@
-.. _map_dqm:
+.. _opt_example_dqm_map:
 
 ================================
 Map Coloring: Hybrid DQM Sampler

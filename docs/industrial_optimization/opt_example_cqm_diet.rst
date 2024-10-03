@@ -1,4 +1,4 @@
-.. _example_cqm_diet_reals:
+.. _opt_example_cqm_diet:
 
 =============
 Diet Planning
