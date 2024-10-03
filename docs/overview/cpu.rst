@@ -42,12 +42,12 @@ lower values than the second four, which represent invalid states.
 If you use a classical solver running locally on your CPU, a single sample might provide
 the optimal solution.
 
-This example solves a two-variable problem using the :doc:`dwave_neal </docs_neal/sdk_index>`
+This example solves a two-variable problem using the :ref:`dwave-samplers <index_dwave_samplers>`
 simulated annealing sampler. For such a small problem, :code:`num_reads=10` most likely
 finds the optimal solution.
 
->>> import neal
->>> solver = neal.SimulatedAnnealingSampler()
+>>> from dwave.samplers import SimulatedAnnealingSampler
+>>> solver = SimulatedAnnealingSampler()
 >>> sampleset = solver.sample_ising({'a': -0.5, 'b': 1.0}, {('a', 'b'): -1}, num_reads=10)
 >>> sampleset.first.sample["a"] == sampleset.first.sample["b"] == -1
 True

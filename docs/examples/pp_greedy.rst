@@ -16,7 +16,7 @@ vote: Ocean sets the variable's value based on the state returned from
 the majority of the qubits in the chain. You can often improve results,
 at a low cost of classical processing time, by postprocessing.
 
-:doc:`dwave-greedy </docs_greedy/sdk_index>` provides an implementation of
+:ref:`dwave-samplers <index_dwave_samplers>` provides an implementation of
 a steepest-descent solver,  :class:`~greedy.sampler.SteepestDescentSolver`,
 for binary quadratic models. This example runs this classical algorithm
 initialized from QPU samples to find minima in the samples' neighbourhoods.

@@ -91,8 +91,8 @@ solve the map coloring problem.
 is classical-quantum hybrid asynchronous decomposition sampler, which can decompose large problems
 into smaller pieces that
 it can run both classically (on your local machine) and on the D-Wave system.
-Kerberos finds best samples by running in parallel :doc:`tabu search </docs_tabu/sdk_index>`,
-:doc:`simulated annealing </docs_neal/sdk_index>`, and D-Wave subproblem sampling on
+Kerberos finds best samples by running in parallel :class:`~hybrid.samplers.TabuProblemSampler`,
+:class:`~hybrid.samplers.SimulatedAnnealingProblemSampler`, and D-Wave subproblem sampling on
 problem variables that have high impact. The only optional parameters set here
 are a maximum number of iterations and number of iterations with no improvement that
 terminates sampling. (See the :ref:`hybrid1` example for more details on configuring
