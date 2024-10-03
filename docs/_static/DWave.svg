@@ -1,1 +1,126 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 659.44 84.93"><defs><style>.cls-1{fill:#222;}.cls-2{fill:#2a7de1;}</style></defs><g id="Layer_2" data-name="Layer 2"><g id="Advantage"><g id="DWave"><path id="Dwave_A" data-name="Dwave A" class="cls-1" d="M437.44,78.36a26,26,0,0,1-17.6,6.41H369.78a25.56,25.56,0,0,1-17.45-6.41,21,21,0,0,1-7.28-16.44V57.85a20.38,20.38,0,0,1,7.57-16.15A25,25,0,0,1,369.78,35h31.87V50.13H369.78a9.48,9.48,0,0,0-6,2.19A6.9,6.9,0,0,0,361,57.85v4.07c0,5.1,2.91,7.57,8.72,7.57H419.8c6,0,8.87-2.47,8.87-7.57v-39A6.81,6.81,0,0,0,426,17.55a9.3,9.3,0,0,0-6.11-2.33H346.51V.09h73.33A24.53,24.53,0,0,1,437,6.79c5.1,4.51,7.57,9.89,7.57,16.14v39C444.57,68.62,442.24,74.14,437.44,78.36Z"/><path id="Dwave_V" data-name="Dwave V" class="cls-1" d="M538,61.92c-3.92,15.28-12.07,22.85-24.73,22.85h-21.5c-12.66,0-20.8-7.57-24.73-22.85L451.17.09h17L483.45,59c1.74,7,5.38,10.48,10.62,10.48H511c5.37,0,9.16-3.49,10.91-10.48L537,.09h17Z"/><path id="Dwave_E" data-name="Dwave E" class="cls-1" d="M651.86,43.16a25.08,25.08,0,0,1-17.16,6.68h-32V34.57h32a9.47,9.47,0,0,0,5.82-2.18c1.89-1.6,2.91-3.35,2.91-5.38V22.93c0-5.08-2.91-7.71-8.73-7.71H584.5c-5.82,0-8.73,2.63-8.73,7.71V61.78a6.44,6.44,0,0,0,2.77,5.38,8.89,8.89,0,0,0,6,2.33H658V84.62H584.5a25.6,25.6,0,0,1-17.17-6.55,20.88,20.88,0,0,1-7.57-16.29V22.93a20.78,20.78,0,0,1,7.29-16.44A25.57,25.57,0,0,1,584.5.09h50.2a26.24,26.24,0,0,1,17.46,6.26,21.1,21.1,0,0,1,7.27,16.58V27C659.43,33.3,657,38.64,651.86,43.16Z"/><path id="Dot_2" data-name="Dot 2" class="cls-1" d="M140.1,42.3A10.1,10.1,0,1,1,130,32.21h0a10.09,10.09,0,0,1,10.1,10.08Z"/><path id="Dot_1" data-name="Dot 1" class="cls-1" d="M140.1,10.09A10.1,10.1,0,1,1,130,0h0a10.09,10.09,0,0,1,10.1,10.08Z"/><path id="Dot_4" data-name="Dot 4" class="cls-1" d="M173.66,74.53a10.1,10.1,0,1,1-10.11-10.09h0A10.11,10.11,0,0,1,173.66,74.53Z"/><path id="Dot_3_Blue" data-name="Dot 3 Blue" class="cls-2" d="M173.66,42.3a10.1,10.1,0,1,1-10.1-10.1,10.1,10.1,0,0,1,10.1,10.1Z"/><path id="Dwave_W" data-name="Dwave W" class="cls-1" d="M318,.09,302.93,58.77c-1.75,7-5.51,10.44-10.87,10.44H285.6c-5.22,0-9.28-3.72-10.9-10.45l-.17-.44c-4.06-13-15.89-11.85-15.89-11.85-12,.16-16,12.34-16,12.34-1.74,7-5.51,10.4-10.86,10.4h-6.46c-5.21,0-8.84-3.48-10.58-10.44L199.52.09h-17l15.79,61.58c3.92,15.22,12,22.75,24.63,22.75H234c12.17,0,20.15-7,24.21-21.18l.35-1.45c3.93,15.09,12.08,22.63,24.64,22.63h11.09c12.6,0,20.72-7.53,24.63-22.75L334.89.09Z"/><path id="Dwave_D" data-name="Dwave D" class="cls-1" d="M95.36,78.5a25.45,25.45,0,0,1-17.43,6.42H0V0H77.93a24.64,24.64,0,0,1,17,6.72,21,21,0,0,1,7.49,16.19V62C102.42,68.74,100.11,74.3,95.36,78.5ZM86.58,22.92a6.87,6.87,0,0,0-2.74-5.39,8.7,8.7,0,0,0-5.91-2.34H15.7V69.61H77.93c5.76,0,8.65-2.48,8.65-7.59Z"/></g></g></g></svg>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   viewBox="0 0 659.44 84.93"
+   version="1.1"
+   id="svg18"
+   sodipodi:docname="DWave.svg"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)">
+  <metadata
+     id="metadata22">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1208"
+     inkscape:window-height="858"
+     id="namedview20"
+     showgrid="false"
+     inkscape:zoom="0.43066844"
+     inkscape:cx="320.43211"
+     inkscape:cy="42.465"
+     inkscape:window-x="388"
+     inkscape:window-y="17"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg18" />
+  <defs
+     id="defs4">
+    <style
+       id="style2">.cls-1{fill:#222;}.cls-2{fill:#2a7de1;}</style>
+  </defs>
+  <g
+     id="Layer_2"
+     data-name="Layer 2"
+     transform="matrix(0.7,0,0,0.7,98.915939,12.73879)">
+    <g
+       id="Advantage">
+      <g
+         id="DWave">
+        <path
+           id="Dwave_A"
+           data-name="Dwave A"
+           class="cls-1"
+           d="m 437.44,78.36 a 26,26 0 0 1 -17.6,6.41 H 369.78 A 25.56,25.56 0 0 1 352.33,78.36 21,21 0 0 1 345.05,61.92 V 57.85 A 20.38,20.38 0 0 1 352.62,41.7 25,25 0 0 1 369.78,35 h 31.87 v 15.13 h -31.87 a 9.48,9.48 0 0 0 -6,2.19 6.9,6.9 0 0 0 -2.78,5.53 v 4.07 c 0,5.1 2.91,7.57 8.72,7.57 h 50.08 c 6,0 8.87,-2.47 8.87,-7.57 v -39 A 6.81,6.81 0 0 0 426,17.55 9.3,9.3 0 0 0 419.89,15.22 H 346.51 V 0.09 h 73.33 A 24.53,24.53 0 0 1 437,6.79 c 5.1,4.51 7.57,9.89 7.57,16.14 v 39 c 0,6.69 -2.33,12.21 -7.13,16.43 z"
+           inkscape:connector-curvature="0"
+           style="fill:#222222" />
+        <path
+           id="Dwave_V"
+           data-name="Dwave V"
+           class="cls-1"
+           d="m 538,61.92 c -3.92,15.28 -12.07,22.85 -24.73,22.85 h -21.5 c -12.66,0 -20.8,-7.57 -24.73,-22.85 L 451.17,0.09 h 17 L 483.45,59 c 1.74,7 5.38,10.48 10.62,10.48 H 511 c 5.37,0 9.16,-3.49 10.91,-10.48 L 537,0.09 h 17 z"
+           inkscape:connector-curvature="0"
+           style="fill:#222222" />
+        <path
+           id="Dwave_E"
+           data-name="Dwave E"
+           class="cls-1"
+           d="m 651.86,43.16 a 25.08,25.08 0 0 1 -17.16,6.68 h -32 V 34.57 h 32 a 9.47,9.47 0 0 0 5.82,-2.18 c 1.89,-1.6 2.91,-3.35 2.91,-5.38 v -4.08 c 0,-5.08 -2.91,-7.71 -8.73,-7.71 h -50.2 c -5.82,0 -8.73,2.63 -8.73,7.71 v 38.85 a 6.44,6.44 0 0 0 2.77,5.38 8.89,8.89 0 0 0 6,2.33 H 658 V 84.62 H 584.5 A 25.6,25.6 0 0 1 567.33,78.07 20.88,20.88 0 0 1 559.76,61.78 V 22.93 a 20.78,20.78 0 0 1 7.29,-16.44 25.57,25.57 0 0 1 17.45,-6.4 h 50.2 a 26.24,26.24 0 0 1 17.46,6.26 21.1,21.1 0 0 1 7.27,16.58 V 27 c 0,6.3 -2.43,11.64 -7.57,16.16 z"
+           inkscape:connector-curvature="0"
+           style="fill:#222222" />
+        <path
+           id="Dot_2"
+           data-name="Dot 2"
+           class="cls-1"
+           d="M 140.1,42.3 A 10.1,10.1 0 1 1 130,32.21 v 0 a 10.09,10.09 0 0 1 10.1,10.08 z"
+           inkscape:connector-curvature="0"
+           style="fill:#222222" />
+        <path
+           id="Dot_1"
+           data-name="Dot 1"
+           class="cls-1"
+           d="M 140.1,10.09 A 10.1,10.1 0 1 1 130,0 v 0 a 10.09,10.09 0 0 1 10.1,10.08 z"
+           inkscape:connector-curvature="0"
+           style="fill:#222222" />
+        <path
+           id="Dot_4"
+           data-name="Dot 4"
+           class="cls-1"
+           d="M 173.66,74.53 A 10.1,10.1 0 1 1 163.55,64.44 v 0 a 10.11,10.11 0 0 1 10.11,10.09 z"
+           inkscape:connector-curvature="0"
+           style="fill:#222222" />
+        <path
+           id="Dot_3_Blue"
+           data-name="Dot 3 Blue"
+           class="cls-2"
+           d="m 173.66,42.3 a 10.1,10.1 0 1 1 -10.1,-10.1 10.1,10.1 0 0 1 10.1,10.1 z"
+           inkscape:connector-curvature="0"
+           style="fill:#2a7de1" />
+        <path
+           id="Dwave_W"
+           data-name="Dwave W"
+           class="cls-1"
+           d="m 318,0.09 -15.07,58.68 c -1.75,7 -5.51,10.44 -10.87,10.44 h -6.46 c -5.22,0 -9.28,-3.72 -10.9,-10.45 l -0.17,-0.44 c -4.06,-13 -15.89,-11.85 -15.89,-11.85 -12,0.16 -16,12.34 -16,12.34 -1.74,7 -5.51,10.4 -10.86,10.4 h -6.46 c -5.21,0 -8.84,-3.48 -10.58,-10.44 L 199.52,0.09 h -17 l 15.79,61.58 c 3.92,15.22 12,22.75 24.63,22.75 H 234 c 12.17,0 20.15,-7 24.21,-21.18 l 0.35,-1.45 c 3.93,15.09 12.08,22.63 24.64,22.63 h 11.09 c 12.6,0 20.72,-7.53 24.63,-22.75 L 334.89,0.09 Z"
+           inkscape:connector-curvature="0"
+           style="fill:#222222" />
+        <path
+           id="Dwave_D"
+           data-name="Dwave D"
+           class="cls-1"
+           d="M 95.36,78.5 A 25.45,25.45 0 0 1 77.93,84.92 H 0 V 0 h 77.93 a 24.64,24.64 0 0 1 17,6.72 21,21 0 0 1 7.49,16.19 V 62 c 0,6.74 -2.31,12.3 -7.06,16.5 z M 86.58,22.92 A 6.87,6.87 0 0 0 83.84,17.53 8.7,8.7 0 0 0 77.93,15.19 H 15.7 v 54.42 h 62.23 c 5.76,0 8.65,-2.48 8.65,-7.59 z"
+           inkscape:connector-curvature="0"
+           style="fill:#222222" />
+      </g>
+    </g>
+  </g>
+</svg>
