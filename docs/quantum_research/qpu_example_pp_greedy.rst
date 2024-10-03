@@ -1,4 +1,4 @@
-.. _pp_greedy:
+.. _qpu_example_pp_greedy:
 
 ===================================
 Postprocessing with a Greedy Solver

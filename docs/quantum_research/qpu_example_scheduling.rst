@@ -1,4 +1,4 @@
-.. _scheduling:
+.. _qpu_example_scheduling:
 
 ======================
 Constrained Scheduling

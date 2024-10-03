@@ -1,4 +1,4 @@
-.. _map_coloring:
+.. _qpu_example_mapcoloring:
 
 ============
 Map Coloring
@@ -123,10 +123,10 @@ colors or use different maps). Canada's 13 provinces are denoted by postal codes
    :maxdepth: 1
    :hidden:
 
-   map_coloring_full_code
+   qpu_example_mapcoloring_full_code
 
 .. note:: You can skip directly to the complete code for the problem here:
-    :ref:`map_coloring_full_code`.
+    :ref:`qpu_example_mapcoloring_full_code`.
 
 The example uses :doc:`dimod </docs_dimod/sdk_index>` to set up penalties and
 create a binary quadratic model, :doc:`dwave-system </docs_system/sdk_index>` to

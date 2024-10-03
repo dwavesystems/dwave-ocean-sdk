@@ -1,4 +1,4 @@
-.. _topology_samplers:
+.. _qpu_example_topology_samplers:
 
 =================================
 Working With Different Topologies

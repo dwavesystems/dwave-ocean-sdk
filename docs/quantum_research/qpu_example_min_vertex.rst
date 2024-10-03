@@ -1,4 +1,4 @@
-.. _min_vertex:
+.. _qpu_example_min_vertex:
 
 ============
 Vertex Cover

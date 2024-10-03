@@ -1,4 +1,4 @@
-.. _and:
+.. _qpu_example_and:
 
 ================
 Boolean AND Gate

@@ -1,4 +1,4 @@
-.. _multi_gate:
+.. _qpu_example_multigate:
 
 =====================
 Multiple-Gate Circuit

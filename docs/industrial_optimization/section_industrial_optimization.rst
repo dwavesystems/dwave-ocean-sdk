@@ -11,7 +11,7 @@ Industrial Optimization
     opt_section_intro
     opt_section_nl
     opt_section_cqm
-    opt_section_bqm
+    opt_section_additional
     opt_section_using
 
 .. sections-start-marker
@@ -31,9 +31,9 @@ Industrial Optimization
 
         Leap's hybrid constrained quadratic model (CQM) solver.
 
-    .. grid-item-card:: :ref:`opt_section_bqm`
+    .. grid-item-card:: :ref:`opt_section_additional`
 
-        Leap's hybrid binary quadratic model (BQM) solver.
+        Additional hybrid solvers in Leap.
 
     .. grid-item-card:: :ref:`opt_section_using`
 

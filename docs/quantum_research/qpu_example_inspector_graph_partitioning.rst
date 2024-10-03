@@ -1,4 +1,4 @@
-.. _inspector_graph_partitioning:
+.. _qpu_example_inspector_graph_partitioning:
 
 ===========================
 Using the Problem Inspector

@@ -1,4 +1,4 @@
-.. _not:
+.. _qpu_example_not:
 
 ================
 Boolean NOT Gate

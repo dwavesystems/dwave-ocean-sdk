@@ -1,4 +1,4 @@
-.. _map_coloring_full_code:
+.. _qpu_example_mapcoloring_full_code:
 
 =======================
 Map Coloring: Full Code
