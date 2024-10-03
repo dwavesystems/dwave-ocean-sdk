@@ -10,3 +10,4 @@ Using the QPU
     qpu_section_formulation 
     qpu_section_configuration
     qpu_postprocessing
+    qpu_section_advanced_examples

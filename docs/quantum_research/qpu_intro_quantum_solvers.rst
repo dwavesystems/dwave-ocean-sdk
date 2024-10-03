@@ -1,4 +1,4 @@
-.. _using_qpu:
+.. _qpu_intro_quantum_solvers:
 
 ===============
 Quantum Solvers

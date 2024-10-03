@@ -8,6 +8,7 @@ Ocean API
     :hidden:
     :maxdepth: 1
 
+    ocean_section_intro
     packages
     docs_cli
 
@@ -17,9 +18,13 @@ Ocean software is a suite of tools `D-Wave Systems <https://www.dwavesys.com>`_ 
 on the `D-Wave GitHub repository <https://github.com/dwavesystems>`_ for solving hard
 problems with quantum computers.
 
-.. grid:: 2
+.. grid:: 3
     :gutter: 2
 
+    .. grid-item-card:: :ref:`ocean_section_intro` 
+         
+        Start here if you are a new user.
+        
     .. grid-item-card:: :ref:`ocean_packages` 
          
         Reference documentation for Ocean packages.

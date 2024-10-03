@@ -1,4 +1,4 @@
-.. _install:
+.. _ocean_install:
 
 ======================
 Installing Ocean Tools

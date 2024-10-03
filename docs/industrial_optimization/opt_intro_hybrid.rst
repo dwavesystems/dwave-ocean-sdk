@@ -1,4 +1,4 @@
-.. _using_hybrid:
+.. _opt_intro_hybrid:
 
 ==============
 Hybrid Solvers

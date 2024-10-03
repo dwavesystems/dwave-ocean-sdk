@@ -9,4 +9,6 @@ Quantum Computing: Get Started
 
     qpu_qa_explained
     qpu_workflow
-    qpu_intro_examples
+    qpu_intro_classical
+    qpu_intro_quantum_solvers
+    qpu_section_intro_examples

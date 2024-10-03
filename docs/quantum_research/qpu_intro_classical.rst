@@ -1,4 +1,4 @@
-.. _using_cpu:
+.. _qpu_intro_classical:
 
 =================
 Classical Solvers

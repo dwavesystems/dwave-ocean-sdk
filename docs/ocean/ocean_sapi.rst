@@ -1,4 +1,4 @@
-.. _sapi_access:
+.. _ocean_sapi_access:
 
 ====================================
 Configuring Access to Leap's Solvers
