@@ -8,6 +8,7 @@ Quantum Computing: Get Started
     :maxdepth: 1
 
     qpu_qa_explained
+    qpu_gm_explained
     qpu_workflow
     qpu_intro_classical
     qpu_intro_quantum_solvers

@@ -17,9 +17,9 @@
     ocean/section_ocean_api
     leap_sapi/section_leap_sapi
     concepts/section_concepts_glossary
-    contributing
     licenses
-
+    contributing
+    
 ..  tab-set::
 
     ..  tab-item:: Industrial Optimization
@@ -201,12 +201,12 @@ Welcome to |dwave_short|
     Ocean SDK, and `Ocean documentation <https://docs.ocean.dwavesys.com>`_ for
     the associated documentation.
 
-Contributing 
-============
-
-See :ref:`contributing`.
-
 Licenses
 ========
 
 See :ref:`licenses`
+
+Contributing 
+============
+
+See :ref:`contributing`.
