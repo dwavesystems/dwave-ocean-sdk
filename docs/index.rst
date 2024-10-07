@@ -58,7 +58,7 @@
             :start-after: sections-start-marker
             :end-before: sections-end-marker 
 
-    ..  tab-item:: Concepts
+    ..  tab-item:: What & Where
         :name: tab_concepts
 
         .. include:: concepts/section_concepts_glossary.rst

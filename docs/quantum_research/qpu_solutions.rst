@@ -1,4 +1,4 @@
-.. _solutions_sdk:
+.. _qpu_solutions:
 
 =========
 Solutions

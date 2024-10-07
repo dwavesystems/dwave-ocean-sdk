@@ -1,4 +1,4 @@
-.. _embedding_sdk:
+.. _qpu_embedding_intro:
 
 ===============
 Minor-Embedding 

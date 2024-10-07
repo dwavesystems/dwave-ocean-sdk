@@ -1,4 +1,4 @@
-.. _variables_sdk:
+.. _qpu_variables:
 
 =========
 Variables
