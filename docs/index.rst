@@ -16,7 +16,7 @@
     quantum_research/section_quantum_research
     ocean/section_ocean_api
     leap_sapi/section_leap_sapi
-    concepts/section_concepts_glossary
+    concepts/glossary
     licenses
     contributing
     

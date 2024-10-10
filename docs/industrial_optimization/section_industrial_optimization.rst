@@ -39,7 +39,7 @@ Industrial Optimization
 
         Configuring hybrid parameters and usage best-practices.
 
-For terminology, see the :ref:`section_concepts_glossary` section;
+For terminology, see the :ref:`concepts_glossary` section;
 to use the QPU directly, see the :ref:`section_quantum_research` 
 tab; for account management, see the :ref:`section_leap_sapi` section.
 

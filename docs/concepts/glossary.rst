@@ -5,7 +5,12 @@ Glossary/Index
 
 Find short definitions of terminology and related links here.
 
-See the :ref:`concepts_topics` for foundational concepts to what D-Wave does. 
+.. _terminology_links:
+
+Terminology and Links
+=====================
+
+See the :ref:`fundamental_concepts` for foundational concepts to what D-Wave does. 
 
 .. glossary::
 
@@ -146,7 +151,8 @@ See the :ref:`concepts_topics` for foundational concepts to what D-Wave does.
       Hybrid
          Quantum-classical hybrid is the use of both classical and quantum resources
          to solve problems, exploiting the complementary strengths that each provides.
-         See :ref:`using_hybrid`.
+         
+         :ref:`Learn about hybrid. <concept_hybrid>` 
 
       Ising
          Traditionally used in statistical mechanics. Variables are "spin up"
@@ -174,6 +180,8 @@ See the :ref:`concepts_topics` for foundational concepts to what D-Wave does.
       Model
          A collection of variables with associated biases. Sometimes referred to
          as a **problem**.
+         
+         :ref:`Learn about models. <concept_models>`
 
       Objective function
          A mathematical expression of the energy of a system as a function of
@@ -198,10 +206,13 @@ See the :ref:`concepts_topics` for foundational concepts to what D-Wave does.
          level of a problem’s :term:`objective function` by penalizing non-valid configurations.
          See `Penalty method on Wikipedia <https://en.wikipedia.org/wiki/Penalty_method>`_
 
+      Penalty
       Penalty model
          An approach to solving constraint satisfaction problems (CSP) using an :term:`Ising` model
          or a :term:`QUBO` by mapping each individual constraint in the CSP to a ‘small’ Ising model
          or QUBO.
+         
+         :ref:`Learn about penalty models. <concept_penalty>`
 
       Quadratic model
          A collection of variables with associated linear and quadratic biases.
@@ -255,7 +266,17 @@ See the :ref:`concepts_topics` for foundational concepts to what D-Wave does.
          quadratic model (BQM) sampler samples from low energy states in models such as those
          defined by an :term:`Ising` equation or a :term:`QUBO` problem and returns an iterable
          of samples, in order of increasing energy.
+         
+         :ref:`Learn about samplers. <concept_samplers>`
 
+      Sampleset
+      Samples
+      Solutions
+         Ocean uses a :class:`~dimod.SampleSet` class to hold samples and some 
+         additional information.
+         
+         :ref:`Learn about samplesets. <concept_samplesets>`
+         
       SAPI
          Solver API used by clients to communicate with a :term:`solver`.
 
@@ -278,6 +299,11 @@ See the :ref:`concepts_topics` for foundational concepts to what D-Wave does.
 
          .. _subgraph: https://en.wikipedia.org/wiki/Glossary_of_graph_theory_terms#subgraph
 
+      Symbolic Math
+         :ref:`sdk_index_dimod` supports symbolic math that can simplify your coding of problems.
+         
+         :ref:`Learn about symbolic math. <concept_symbolic_math>`
+         
       Target
       Target graph
          :term:`Embedding` attempts to create a target :term:`model` from a target
@@ -299,3 +325,17 @@ See the :ref:`concepts_topics` for foundational concepts to what D-Wave does.
          interconnect in an architecture known as Zephyr. See a fuller description
          under :doc:`QPU Topology </concepts/topology>`.
          See also :term:`Pegasus` and :term:`Chimera`.
+         
+.. _fundamental_concepts:
+
+Fundamental Concepts
+====================
+
+.. toctree::
+
+    hybrid
+    models
+    penalty
+    samplers
+    samplesets
+    symbolic_math

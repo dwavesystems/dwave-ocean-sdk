@@ -29,7 +29,7 @@ Quantum Research
 
         Configuring QPU parameters and usage best-practices.
 
-For terminology, see the :ref:`section_concepts_glossary` section;
+For terminology, see the :ref:`concepts_glossary` section;
 to optimize arbitrary hard problems, see the :ref:`section_industrial_optimization` 
 section; for account management, see the :ref:`section_leap_sapi` section.
 
