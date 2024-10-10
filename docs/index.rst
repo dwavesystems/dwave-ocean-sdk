@@ -40,38 +40,8 @@
             :start-after: sections-start-marker
             :end-before: sections-end-marker
 
-    ..  tab-item:: Ocean API
-        :name: tab_ocean_api
-
-        Ocean SDK reference.
-
-        .. include:: ocean/section_ocean_api.rst
-            :start-after: sections-start-marker
-            :end-before: sections-end-marker
-            
-    ..  tab-item:: Leap/SAPI
-        :name: tab_leap_sapi
-
-        Use and administer Leap cloud services. 
-
-        .. include:: leap_sapi/section_leap_sapi.rst
-            :start-after: sections-start-marker
-            :end-before: sections-end-marker 
-
-    ..  tab-item:: What & Where
-        :name: tab_concepts
-
-        .. include:: concepts/section_concepts_glossary.rst
-
 Welcome to |dwave_short|
 ========================
-
-.. pull-quote::
-
-    *I'm not happy with all the analyses that go with just the classical theory,*
-    *because Nature isn't classical, dammit, and if you want to make a simulation*
-    *of nature, you'd better make it quantum mechanical, and by golly it's a*
-    *wonderful problem, because it doesn't look so easy.*
 
     *It's not a Turing machine, but a machine of a different kind.*
 
@@ -200,13 +170,3 @@ Welcome to |dwave_short|
     See `Ocean SDK on GitHub <https://github.com/dwavesystems>`_ to access the
     Ocean SDK, and `Ocean documentation <https://docs.ocean.dwavesys.com>`_ for
     the associated documentation.
-
-Licenses
-========
-
-See :ref:`licenses`
-
-Contributing 
-============
-
-See :ref:`contributing`.

@@ -29,10 +29,7 @@ from dwaveoceansdk import __version__ as release
 setup_cfg = configparser.ConfigParser()
 setup_cfg.read(os.path.join(sdk_directory, 'setup.cfg'))
 
-author = setup_cfg['metadata']['author']
-copyright = setup_cfg['metadata']['author']
-
-project = 'Ocean Documentation'
+copyright = 'D-Wave Quantum Inc' #setup_cfg['metadata']['author']
 
 # Also add our own 'special value', the minimum supported Python version
 rst_prolog = f"""
@@ -169,16 +166,8 @@ html_favicon = 'https://www.dwavesys.com/favicon.ico'
 
 html_theme_options = {
     "github_url": "https://github.com/dwavesystems/dwave-ocean-sdk",
-    # "external_links": [
-    #     {
-    #         "url": "https://docs.dwavesys.com/docs/latest/index.html",
-    #         "name": "System Docs",
-    #     },
-    #     {
-    #         "url": "https://docs.dwavesys.com/docs/latest/legal.html",
-    #         "name": "Legal",
-    #     },
-    # ],
+    "footer_start": ["copyright"],
+    "footer_end": ["sphinx-version", "theme-version"],
     "icon_links": [
         {
             "name": "Leap",
@@ -188,13 +177,13 @@ html_theme_options = {
         },
     ],
     "collapse_navigation": True,
-    "header_links_before_dropdown": 8,
+    "header_links_before_dropdown": 5,
     "navbar_align": "left",
     "show_prev_next": False,
     "logo": {
         "image_light": "_static/DWave.svg",
         "image_dark": "_static/DWaveWhite.svg",
-    }
+    },
 }
 html_sidebars = {
     "**": ["sidebar-nav-bs"]  # remove ads
