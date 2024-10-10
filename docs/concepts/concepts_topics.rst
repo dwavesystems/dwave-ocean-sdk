@@ -1,8 +1,19 @@
 .. _concepts_topics:
 
-Foundational Topics
-===================
+Fundamentals
+============
 
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   models
+   hybrid
+   penalty
+   samplers
+   samplesets
+   symbolic_math
+   
 TODO: something like "These topics relate to large parts of what D-Wave does."
 
 See the :ref:`concepts_glossary` below for short definitions of terminology and
@@ -14,22 +25,18 @@ related links.
 
    * - Topic
      - Related Terms
-   * - :ref:`concept_model`
+   * - :ref:`concept_models`
      - BQM, binary quadratic model, CQM, constrained quadratic model, Ising, QUBO, 
        DQM, nonlinear model, non-linear model, NL model, Quadratic Models
-   * - :ref:`hybrid_sdk`
+   * - :ref:`concept_hybrid`
      - quantum-classical hybrid, Leap's hybrid solvers, hybrid workflows
-   * - :ref:`penalty_sdk`
+   * - :ref:`concept_penalty`
      - Penalty Models
-   * - :ref:`samplers_sdk`
+   * - :ref:`concept_samplers`
      - solver, composites
-     
-.. toctree::
-   :hidden:
-   :maxdepth: 1
+   * - :ref:`concept_samplesets`
+     - solutions
+   * - :ref:`concept_symbolic_math`
+     - Performance  
 
-   models
-   hybrid
-   penalty
-   samplers
 

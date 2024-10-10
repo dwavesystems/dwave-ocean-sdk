@@ -11,6 +11,4 @@ Hybrid Computing: Get Started
     opt_leap_hybrid
     opt_dwave_hybrid
     opt_app_dev_workflow
-    opt_variables
-    opt_solutions
     opt_section_intro_examples

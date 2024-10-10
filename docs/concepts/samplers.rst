@@ -1,4 +1,4 @@
-.. _samplers_sdk:
+.. _concepts_samplers:
 
 ====================
 Samplers and Solvers 
@@ -51,6 +51,10 @@ which handle the mapping known as :term:`minor-embedding`,
 and :class:`~dimod.reference.composites.roofduality.RoofDualityComposite()`, which 
 uses `roof duality <https://en.wikipedia.org/wiki/Pseudo-Boolean_function>`_ to assign 
 some variables as a pre-processing step before submitting the problem for sampling.
+
+.. include:: ../ocean/docs_dimod/sdk_content.rst
+  :start-after: start_samplers_composites
+  :end-before: end_samplers_composites
 
 The use of samplers in solving problems is described
 in the following documentation:

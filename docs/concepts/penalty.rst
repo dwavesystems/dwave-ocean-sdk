@@ -1,4 +1,4 @@
-.. _penalty_sdk:
+.. _concept_penalty:
 
 ==============
 Penalty Models

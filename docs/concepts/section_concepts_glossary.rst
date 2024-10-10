@@ -1,8 +1,8 @@
 .. _section_concepts_glossary:
 
-============
-What & Where
-============
+================
+Glossary & Index
+================
 
 Search here for the documentation you are looking for.
 

@@ -1,8 +1,117 @@
-.. _concept_model:
+.. _concept_models:
 
 ======
 Models 
 ======
+
+To express your problem as an objective function and submit to a |dwave_short| 
+sampler for solution, you formulate a model. 
+
+Constrained Versus Unconstrained
+================================
+
+Many real-world problems include constraints. For example, a routing problem
+might limit the number of airplanes on the ground at an airport and a scheduling
+problem might require a minimum interval between shifts.
+
+Constrained models such as :class:`~dimod.ConstrainedQuadraticModel` can support
+constraints by encoding both an objective and its set of constraints, as models
+or in symbolic form.
+
+Unconstrained quadratic models are used to submit problems to :term:`sampler`\ s
+such as D-Wave quantum computers\ [#]_ and some hybrid quantum-classical
+samplers\ [#]_.
+
+When using such samplers to handle problems with constraints, you typically
+formulate the constraints as penalties: see
+:std:doc:`sysdocs_gettingstarted:doc_getting_started`.
+(:ref:`Constrained models <intro_cqm>`, such as the
+:class:`~dimod.ConstrainedQuadraticModel`, can support constraints natively.)
+
+.. [#]
+  D-Wave quantum computers accept unconstrained binary quadratic models, such as
+  quadratic unconstrained binary optimization (\ :term:`QUBO`\ ) models: binary
+  because variables are represented by qubits that return two states and quadratic
+  because polynomial terms of two variables can be represented by pairs of coupled
+  qubits.
+
+.. [#]
+  Some hybrid quantum-classical samplers accept constrained and non-binary models;
+  for example, a quadratic model with an integer variable that must be smaller
+  than some configured value.
+
+Quadratic Versus Nonlinear
+==========================
+
+TODO: add content
+
+.. dropdown:: Quadratic Models
+
+  * Ising 
+
+  * QUBO
+
+  * **Binary Quadratic Models**
+
+    The :term:`binary quadratic model` (BQM) class,
+    :class:`~dimod.binary.binary_quadratic_model.BinaryQuadraticModel`,
+    encodes :term:`Ising` and quadratic unconstrained binary optimization
+    (\ :term:`QUBO`\ ) models used by samplers such as D-Wave's quantum computers.
+
+    For an introduction to BQMs, see
+    :std:doc:`Concepts: Binary Quadratic Models <oceandocs:concepts/bqm>`. For the BQM class,
+    its attributes and methods, see the :ref:`BQM reference documentation <bqm>`.
+
+  .. _intro_cqm:
+
+  * **Constrained Quadratic Model**
+
+    The :term:`constrained quadratic model` (CQM) class, :class:`~dimod.ConstrainedQuadraticModel`,
+    encodes a quadratic objective and possibly one or more quadratic equality and
+    inequality constraints.
+
+    For an introduction to CQMs, see
+    :std:doc:`Constrained Quadratic Models <oceandocs:concepts/cqm>`. For
+    descriptions of the CQM class and its methods, see :ref:`cqm`.
+
+  .. _intro_qm_qm:
+
+  * **Quadratic Models**
+
+    The :term:`quadratic model` (QM) class, :class:`~dimod.QuadraticModel`, encodes
+    polynomials of binary, integer, and discrete variables, with all terms of degree
+    two or less.
+
+    For an introduction to QMs, see
+    :std:doc:`Concepts: Quadratic Models <oceandocs:concepts/qm>`. For the QM class,
+    its attributes and methods, see the :ref:`QM reference documentation <qm>`.
+
+
+  * **Discrete Quadratic Models**
+
+    The :term:`discrete quadratic model` (BQM) class,
+    :class:`~dimod.DiscreteQuadraticModel`, encodes polynomials of discrete variables,
+    with all terms of degree two or less.
+
+    For an introduction to DQMs, see
+    :std:doc:`Concepts: Discrete Quadratic Models <oceandocs:concepts/dqm>`. For the DQM
+    class, its attributes and methods, see :ref:`DQM reference documentation <dqm>`.
+
+  .. _intro_nonquadratic:
+
+  * **Higher-Order Models**
+
+    dimod provides some :ref:`higher_order_composites` and functionality
+    such as reducing higher-order polynomials to BQMs.
+
+.. dropdown:: Nonlinear Models
+
+   TODO
+
+Supported Models
+================
+
+TODO: add summary table of model, package, supported variables 
 
 .. include:: ../shared/models
     :start-after: start_models_intro
@@ -100,13 +209,10 @@ Ocean supports various quadratic models:
 Ocean also provides support for :ref:`higher order models <oceandocs:higher_order>`,
 which are typically reduced to quadratic for sampling.
 
-Other Models
-============
-
 .. _concept_models_bqm:
 
 Binary Quadratic Models 
------------------------
+=======================
 
 The binary quadratic model (BQM) class encodes
 Ising and quadratic unconstrained binary optimization (QUBO) models
@@ -150,6 +256,10 @@ and the nonzero off-diagonal terms the quadratic coefficients.
 The :class:`dimod.BinaryQuadraticModel` class can contain both these models and its methods provide
 convenient utilities for working with, and interworking between, the two representations
 of a problem.
+
+
+Other Models
+============
 
 .. _concept_models_dqm:
 

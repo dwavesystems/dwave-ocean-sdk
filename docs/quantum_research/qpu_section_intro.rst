@@ -13,6 +13,4 @@ Quantum Computing: Get Started
     qpu_intro_classical
     qpu_intro_quantum_solvers
     qpu_embedding_intro
-    qpu_variables
-    qpu_solutions
     qpu_section_intro_examples

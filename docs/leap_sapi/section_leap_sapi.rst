@@ -1,8 +1,8 @@
 .. _section_leap_sapi:
 
-=========
-Leap/SAPI
-=========
+====
+Leap
+====
 
 .. toctree::
   :hidden:

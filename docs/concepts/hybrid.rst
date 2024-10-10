@@ -1,4 +1,4 @@
-.. _hybrid_sdk:
+.. _concept_hybrid:
 
 ======
 Hybrid 
