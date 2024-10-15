@@ -1,4 +1,4 @@
-.. _section_leap_sapi:
+.. _index_leap_sapi:
 
 ====
 Leap
@@ -8,7 +8,7 @@ Leap
   :hidden:
   :maxdepth: 1
 
-  leap_section_rns
+  leap_index_rns
   leap_dev_env
   doc_admin
   doc_rest_api
@@ -18,7 +18,7 @@ Leap
 .. grid:: 3
     :gutter: 2
 
-    .. grid-item-card:: :ref:`leap_section_rns` 
+    .. grid-item-card:: :ref:`leap_index_rns` 
          
         System release notes, fixed and open issues. 
 

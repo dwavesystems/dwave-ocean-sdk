@@ -1,4 +1,4 @@
-.. _qpu_section_formulation:
+.. _qpu_index_formulation:
 
 ===========
 Formulation

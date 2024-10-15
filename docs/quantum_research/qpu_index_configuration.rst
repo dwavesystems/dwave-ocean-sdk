@@ -1,4 +1,4 @@
-.. _qpu_section_configuration:
+.. _qpu_index_configuration:
 
 =============
 Configuration

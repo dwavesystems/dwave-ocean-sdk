@@ -1,4 +1,4 @@
-.. _qpu_section_solver_properties:
+.. _qpu_index_solver_properties:
 
 =====================
 QPU Solver Properties

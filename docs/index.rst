@@ -12,13 +12,40 @@
     :hidden:
     :maxdepth: 2
 
-    industrial_optimization/section_industrial_optimization
-    quantum_research/section_quantum_research
-    ocean/section_ocean_api
-    leap_sapi/section_leap_sapi
+    industrial_optimization/index_industrial_optimization
+    quantum_research/index_quantum_research
+    ocean/index_ocean_api
+    leap_sapi/index_leap_sapi
     concepts/glossary
     licenses
     contributing
+
+.. dropdown:: Navigating the documentation ...
+
+    Pages have three navigation bars: top, left, and right.
+
+    *   Top navigation bar lets you select the following content:
+
+        .. list-table:: 
+
+                *   -   :ref:`Industrial Optimization <index_industrial_optimization>` 
+                    -   Using :ref:`hybrid technology <concept_hybrid>` on large, 
+                        hard commercial optimization problems.
+                *   -   :ref:`Quantum Research <index_quantum_research>` 
+                    -   Using the quantum processing unit (QPU) directly.
+                *   -   :ref:`Ocean API <index_ocean_api>`
+                    -   Software Development Kit (SDK) reference documentation. 
+                *   -   :ref:`index_leap_sapi`
+                    -   Quantum cloud service's account management, release notes, 
+                        IDE support, etc. 
+                *   -   :ref:`Glossary/Index <concepts_glossary>` 
+                    -   Learn the relevant terminology and the fundamental concepts. 
+                        Search for terms here.
+
+    *   Left navigation bar lets you select a subtopic; for example, how to get 
+        started, properties, best practices.
+    
+    *   Right navigation bar displays the topics on your current page. 
     
 ..  tab-set::
 
@@ -27,7 +54,7 @@
 
         Use Leap's quantum-classical hybrid solvers to optimize business problems.
 
-        .. include:: industrial_optimization/section_industrial_optimization.rst
+        .. include:: industrial_optimization/index_industrial_optimization.rst
             :start-after: sections-start-marker
             :end-before: sections-end-marker
 
@@ -36,7 +63,7 @@
 
         Use D-Wave's quantum computers directly.
 
-        .. include:: quantum_research/section_quantum_research.rst
+        .. include:: quantum_research/index_quantum_research.rst
             :start-after: sections-start-marker
             :end-before: sections-end-marker
 

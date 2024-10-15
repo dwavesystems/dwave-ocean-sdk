@@ -1,4 +1,4 @@
-.. _section_ocean_api:
+.. _index_ocean_api:
 
 =========
 Ocean API
@@ -8,7 +8,7 @@ Ocean API
     :hidden:
     :maxdepth: 1
 
-    ocean_section_intro
+    ocean_index_intro
     packages
     docs_cli
 
@@ -21,7 +21,7 @@ problems with quantum computers.
 .. grid:: 3
     :gutter: 2
 
-    .. grid-item-card:: :ref:`ocean_section_intro` 
+    .. grid-item-card:: :ref:`ocean_index_intro` 
          
         Start here if you are a new user.
         
@@ -34,7 +34,3 @@ problems with quantum computers.
         CLI installed as part of Ocean installation.
          
 .. sections-end-marker
-
-:ref:`Site index <genindex>`
-
-

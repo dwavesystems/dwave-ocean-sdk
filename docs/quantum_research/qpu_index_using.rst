@@ -1,4 +1,4 @@
-.. _qpu_section_using:
+.. _qpu_index_using:
 
 =============
 Using the QPU
@@ -7,9 +7,9 @@ Using the QPU
 .. toctree::
     :maxdepth: 1
 
-    qpu_section_formulation 
+    qpu_index_formulation 
     qpu_variables
     qpu_solutions
-    qpu_section_configuration
+    qpu_index_configuration
     qpu_postprocessing
-    qpu_section_advanced_examples
+    qpu_index_advanced_examples

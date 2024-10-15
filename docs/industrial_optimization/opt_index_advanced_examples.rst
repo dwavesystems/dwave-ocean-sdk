@@ -1,4 +1,4 @@
-.. _opt_section_advanced_examples:
+.. _opt_index_advanced_examples:
 
 =====================
 Hybrid Usage Examples

@@ -1,4 +1,4 @@
-.. _opt_section_intro_examples:
+.. _opt_index_intro_examples:
 
 =====================
 Basic Hybrid Examples

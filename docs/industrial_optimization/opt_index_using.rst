@@ -1,4 +1,4 @@
-.. _opt_section_using:
+.. _opt_index_using:
 
 ====================
 Using Hybrid Solvers

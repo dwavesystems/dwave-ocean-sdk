@@ -1,4 +1,4 @@
-.. _ocean_section_intro:
+.. _ocean_index_intro:
 
 ===========================
 Ocean Software: Get Started

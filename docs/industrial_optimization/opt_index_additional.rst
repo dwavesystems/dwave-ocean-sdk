@@ -1,4 +1,4 @@
-.. _opt_section_additional:
+.. _opt_index_additional:
 
 =========================
 Additional Hybrid Solvers

@@ -1,4 +1,4 @@
-.. _opt_section_cqm:
+.. _opt_index_cqm:
 
 ==========
 CQM Solver

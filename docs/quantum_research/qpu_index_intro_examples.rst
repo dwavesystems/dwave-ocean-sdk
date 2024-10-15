@@ -1,4 +1,4 @@
-.. _qpu_section_intro_examples:
+.. _qpu_index_intro_examples:
 
 ==================
 Basic QPU Examples
@@ -32,4 +32,4 @@ Additional Examples
 ===================
 
 For additional and more advanced examples, see the 
-:ref:`qpu_section_advanced_examples` section. 
+:ref:`qpu_index_advanced_examples` section. 

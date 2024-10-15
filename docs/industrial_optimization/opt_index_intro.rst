@@ -1,4 +1,4 @@
-.. _opt_section_intro:
+.. _opt_index_intro:
 
 =============================
 Hybrid Computing: Get Started
@@ -11,4 +11,4 @@ Hybrid Computing: Get Started
     opt_leap_hybrid
     opt_dwave_hybrid
     opt_app_dev_workflow
-    opt_section_intro_examples
+    opt_index_intro_examples

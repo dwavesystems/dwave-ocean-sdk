@@ -1,4 +1,4 @@
-.. _qpu_section_intro:
+.. _qpu_index_intro:
 
 ==============================
 Quantum Computing: Get Started
@@ -13,4 +13,4 @@ Quantum Computing: Get Started
     qpu_intro_classical
     qpu_intro_quantum_solvers
     qpu_embedding_intro
-    qpu_section_intro_examples
+    qpu_index_intro_examples

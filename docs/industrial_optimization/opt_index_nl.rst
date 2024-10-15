@@ -1,4 +1,4 @@
-.. _opt_section_nl:
+.. _opt_index_nl:
 
 ================
 Nonlinear Solver

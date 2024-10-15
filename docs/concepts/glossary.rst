@@ -1,16 +1,24 @@
 .. _concepts_glossary:
 
+==============
 Glossary/Index
 ==============
 
-Find short definitions of terminology and related links here.
+Find what you are looking for here.
+
+.. list-table:: 
+
+    *   -   :ref:`terminology_links` 
+        -   Find short definitions of terminology and related links here.
+    *   -   :ref:`fundamental_concepts` 
+        -   Learn the foundations of quantum computing here.
+    *   -   :ref:`generated_site_index` 
+        -   Search for links to Ocean class and method names here.
 
 .. _terminology_links:
 
 Terminology and Links
 =====================
-
-See the :ref:`fundamental_concepts` for foundational concepts to what D-Wave does. 
 
 .. glossary::
 
@@ -331,6 +339,8 @@ See the :ref:`fundamental_concepts` for foundational concepts to what D-Wave doe
 Fundamental Concepts
 ====================
 
+Learn the foundations of quantum computing here.
+
 .. toctree::
 
     hybrid
@@ -339,3 +349,10 @@ Fundamental Concepts
     samplers
     samplesets
     symbolic_math
+
+.. _generated_site_index:
+
+Generated Ocean Index
+=====================
+
+Search the automatically generated :ref:`Ocean tite index <genindex>`.
