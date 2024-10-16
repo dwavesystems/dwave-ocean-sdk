@@ -355,4 +355,4 @@ Learn the foundations of quantum computing here.
 Generated Ocean Index
 =====================
 
-Search the automatically generated :ref:`Ocean tite index <genindex>`.
+Search the automatically generated :ref:`Ocean site index <genindex>`.

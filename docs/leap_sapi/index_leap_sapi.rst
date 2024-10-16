@@ -13,6 +13,10 @@ Leap
   doc_admin
   doc_rest_api
 
+|cloud_tm|, launched in 2018, is the quantum cloud service from 
+`D-Wave <https://dwavesys.com>`_. Leap brings quantum computing 
+to the real world by providing real-time cloud access to our systems.
+
 .. sections-start-marker
 
 .. grid:: 3
@@ -36,22 +40,12 @@ Leap
         Reference documentation for the :term:`Solver API <SAPI>` (SAPI) 
         REST interface.
 
-For terminology, see the :ref:`section_concepts_glossary` section;
-To optimize arbitrary hard problems, see the :ref:`section_quantum_research` 
-section; to use the QPU directly, see the :ref:`section_industrial_optimization` 
-section.
-
 .. sections-end-marker
 
 
 .. figure:: ../../_images/network-leap-simple.png
   :alt: network diagram showing a laptop connecting to a |dwave_short| quantum computer through the cloud.
   :scale: 50 %
-
-|cloud_tm|, launched in 2018, is the
-quantum cloud service from `D-Wave <https://dwavesys.com>`_.
-Leap brings quantum computing to the real world
-by providing real-time cloud access to our systems.
 
 You use Leap to do the following:
 

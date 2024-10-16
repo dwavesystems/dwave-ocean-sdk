@@ -309,6 +309,24 @@ The :class:`dimod.DiscreteQuadraticModel` class can contain this model and its
 methods provide convenient utilities for working with representations
 of a problem.
 
+Data Structure
+==============
+
+Quadratic models are implemented with an adjacency structure in which each variable
+tracks its own linear bias and its neighborhood. The figure below shows the graph
+and adjacency representations for an example BQM,
+
+.. math::
+
+   E(x) = .5 x_0 - 3 x_1 - x_0 x_1 + x_0 x_2 + 2 x_0 x_3 + x_2 x_3
+
+.. figure:: ../_images/adj-reference.png
+    :align: center
+    :name: Adjacency Structure
+    :alt: Adjacency Structure
+
+    Adjacency structure of a 4-variable binary quadratic model.
+
 
 Where Else to Look
 ==================
