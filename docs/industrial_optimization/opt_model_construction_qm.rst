@@ -1,4 +1,4 @@
-.. _opt_model_construction:
+.. _opt_model_construction_qm:
 
 =====================================
 Model Construction (Quadratic Models)
