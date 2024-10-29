@@ -21,7 +21,7 @@ Industrial Optimization
 
     .. grid-item-card:: :ref:`opt_index_intro`
 
-        Start here if you are a new user.
+        Learn about optimizing with hybrid solvers.
 
     .. grid-item-card:: :ref:`opt_index_nl`
 
@@ -40,3 +40,27 @@ Industrial Optimization
         Configuring hybrid parameters and usage best-practices.
 
 .. sections-end-marker
+
+Example
+=======
+
+The following code solves an illustrative 
+`traveling-salesperson problem <https://en.wikipedia.org/wiki/Travelling_salesman_problem>`_
+using a quantum-classical hybrid solver in the |cloud_tm|_ quantum 
+cloud service. 
+
+>>> from dwave.optimization.generators import traveling_salesperson
+>>> from dwave.system import LeapHybridNLSampler
+...
+>>> DISTANCE_MATRIX = [
+...     [0, 656, 227, 578, 489],
+...     [656, 0, 889, 141, 170],
+...     [227, 889, 0, 773, 705],
+...     [578, 141, 773, 0, 161],
+...     [489, 170, 705, 161, 0]]
+...
+>>> model = traveling_salesperson(distance_matrix=DISTANCE_MATRIX)
+>>> sampler = LeapHybridNLSampler()                  
+>>> results = sampler.sample(
+...     model,
+...     label='SDK Examples - TSP')  	# doctest: +SKIP

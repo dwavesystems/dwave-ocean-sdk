@@ -1,24 +1,32 @@
 .. _concepts_glossary:
 
-==============
-Glossary/Index
-==============
+========
+Concepts
+========
+
+.. toctree::
+    :hidden:
+
+    hybrid
+    models
+    penalty
+    samplers
+    samplesets
+    symbolic_math
 
 Find what you are looking for here.
 
 .. list-table:: 
 
     *   -   :ref:`terminology_links` 
-        -   Find short definitions of terminology and related links here.
-    *   -   :ref:`fundamental_concepts` 
-        -   Learn the foundations of quantum computing here.
+        -   Find definitions of terminology and related links here.
     *   -   :ref:`generated_site_index` 
         -   Search for links to Ocean class and method names here.
 
 .. _terminology_links:
 
-Terminology and Links
-=====================
+Terminology
+===========
 
 .. glossary::
 
@@ -334,22 +342,6 @@ Terminology and Links
          under :doc:`QPU Topology </concepts/topology>`.
          See also :term:`Pegasus` and :term:`Chimera`.
          
-.. _fundamental_concepts:
-
-Fundamental Concepts
-====================
-
-Learn the foundations of quantum computing here.
-
-.. toctree::
-
-    hybrid
-    models
-    penalty
-    samplers
-    samplesets
-    symbolic_math
-
 .. _generated_site_index:
 
 Generated Ocean Index

@@ -23,14 +23,22 @@ problems with quantum computers.
 
     .. grid-item-card:: :ref:`ocean_index_intro` 
          
-        Start here if you are a new user.
+        Install and learn Ocean software.
         
     .. grid-item-card:: :ref:`ocean_packages` 
          
-        Reference documentation for Ocean packages.
+        Reference documentation for the Ocean SDK.
 
     .. grid-item-card:: :ref:`dwave_cli` 
          
-        CLI installed as part of Ocean installation.
+        Command line interface (CLI) installed as part of the Ocean SDK.
          
 .. sections-end-marker
+
+Example
+=======
+
+The ``dwave setup`` command configures an environment on 
+your local machine.
+
+$ dwave setup

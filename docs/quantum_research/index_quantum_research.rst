@@ -19,7 +19,7 @@ Quantum Research
 
     .. grid-item-card:: :ref:`qpu_index_intro` 
          
-        Start here if you are a new user.
+        Learn about quantum computers.
 
     .. grid-item-card:: :ref:`qpu_index_about`
 
@@ -31,3 +31,14 @@ Quantum Research
 
 .. sections-end-marker
 
+Example
+=======
+
+The following code solves a random problem on a quantum computer.
+
+import dimod
+import dwave.system
+
+bqm = dimod.generators.ran_r(1, 20)
+sampler = dwave.system.EmbeddingComposite(dwave.system.DWaveSampler())
+sampleset = sampler.sample(bqm, num_reads=100)

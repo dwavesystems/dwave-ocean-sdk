@@ -20,7 +20,7 @@
     licenses
     contributing
 
-.. dropdown:: Navigating the documentation ...
+.. dropdown:: First time here? Click to learn how to navigate the documentation
 
     Pages have three navigation bars: top, left, and right.
 
@@ -49,17 +49,18 @@
     
 ..  tab-set::
 
-    ..  tab-item:: Industrial Optimization
+    ..  tab-item:: Optimization
         :name: tab_industrial_optimization
 
-        Use Leap's quantum-classical hybrid solvers to optimize business problems.
+        Optimize business problems with Leap's quantum-classical hybrid solvers.
 
         .. include:: industrial_optimization/index_industrial_optimization.rst
             :start-after: sections-start-marker
             :end-before: sections-end-marker
 
-    ..  tab-item:: Quantum Research
+    ..  tab-item:: Quantum
         :name: tab_quantum_research
+        :selected:
 
         Use D-Wave's quantum computers directly.
 

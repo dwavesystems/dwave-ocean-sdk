@@ -1,8 +1,8 @@
 .. _ocean_index_intro:
 
-===========================
-Ocean Software: Get Started
-===========================
+===============================
+Get Started with Ocean Software 
+===============================
 
 New to Ocean? The following sections describe how to install Ocean tools, what they are
 and how they fit together, and give examples of using them to solve hard problems

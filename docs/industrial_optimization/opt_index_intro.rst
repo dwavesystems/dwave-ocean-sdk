@@ -1,7 +1,7 @@
 .. _opt_index_intro:
 
 =============================
-Hybrid Computing: Get Started
+Get Started with Optimization 
 =============================
 
 .. toctree::
@@ -13,3 +13,5 @@ Hybrid Computing: Get Started
     opt_app_dev_workflow
     opt_model_construction
     opt_index_intro_examples
+    
+TODO: Add minimal code example
