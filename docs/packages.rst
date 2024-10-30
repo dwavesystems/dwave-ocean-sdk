@@ -154,14 +154,6 @@ Packages
 
     :bdg-link-primary:`code <https://github.com/dwavesystems/penaltymodel>`
 
-.. dropdown:: `pyqubo <https://pyqubo.readthedocs.io/en/latest>`_: 
-    Creates quadratic models from mathematical expressions. 
-
-    A package that helps you create QUBOs and Ising models from 
-    flexible mathematical expressions.
-
-    :bdg-link-primary:`code <https://github.com/recruit-communications/pyqubo>`
-
 .. packages-end-marker
 
 .. toctree::
@@ -181,5 +173,3 @@ Packages
     docs_system/sdk_index
     docs_minorminer/source/sdk_index
     docs_penalty/sdk_index
-    docs_pyqubo
-
