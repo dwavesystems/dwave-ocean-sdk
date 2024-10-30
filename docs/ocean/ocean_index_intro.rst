@@ -21,7 +21,8 @@ The following steps set up your development environment for Ocean:
 
     ocean_install
     ocean_leap_authorization
-    ocean_sapi
+    ocean_sapi_basic
+    ocean_sapi_advanced
 
 1.  :ref:`install`
 

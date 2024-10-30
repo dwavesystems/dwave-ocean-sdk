@@ -1,8 +1,8 @@
 .. _leap_auth:
 
-==========================
-Authorizing Access to Leap
-==========================
+======================================
+Authorizing Access to the Leap Service
+======================================
 
 .. |TM| replace:: :sup:`TM`
 

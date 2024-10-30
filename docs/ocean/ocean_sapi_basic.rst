@@ -1,8 +1,8 @@
-.. _ocean_sapi_access:
+.. _ocean_sapi_access_basic:
 
-====================================
-Configuring Access to Leap's Solvers
-====================================
+================================================
+Configuring Access to the Leap's Service (Basic)
+================================================
 
 D-Wave's Solver API (SAPI) provides access to the :term:`solver`\ s---compute
 resources for solving problems, such as a D-Wave quantum computers and

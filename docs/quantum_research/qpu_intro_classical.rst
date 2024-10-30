@@ -51,3 +51,8 @@ finds the optimal solution.
 >>> sampleset = solver.sample_ising({'a': -0.5, 'b': 1.0}, {('a', 'b'): -1}, num_reads=10)
 >>> sampleset.first.sample["a"] == sampleset.first.sample["b"] == -1
 True
+
+
+.. include:: ../ocean/docs_samplers/README.rst
+  :start-after: index-start-marker
+  :end-before: index-end-marker

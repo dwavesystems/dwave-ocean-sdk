@@ -1,8 +1,8 @@
 .. _ocean_install:
 
-======================
-Installing Ocean Tools
-======================
+========================
+Installing the Ocean SDK
+========================
 
 Ocean software is supported on the following operating systems:
 
