@@ -1,7 +1,7 @@
-.. _qpu_variables:
+.. _concept_variables:
 
 =========
-Variables
+Variables 
 =========
 
 D-Wave's samplers mostly\ [#]_ solve quadratic models of various sorts. Quadratic

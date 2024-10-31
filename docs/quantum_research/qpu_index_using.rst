@@ -7,10 +7,11 @@ Using the QPU
 .. toctree::
     :maxdepth: 1
 
-    qpu_index_formulation 
-    qpu_variables
-    qpu_solutions
-    qpu_index_configuration
-    qpu_postprocessing
+    qpu_index_formulation
+    qpu_decomposing
+    qpu_embedding
     qpu_problem_inspector
+    qpu_solver_parameters
+    qpu_config
+    qpu_postprocessing
     qpu_index_advanced_examples

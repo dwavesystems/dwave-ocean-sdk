@@ -16,6 +16,9 @@ Industrial Optimization
 
 .. sections-start-marker
 
+Solve optimization problems using quantum-classical hybrid solvers in 
+the Leap service's quantum cloud.
+
 .. grid:: 3
     :gutter: 2
 

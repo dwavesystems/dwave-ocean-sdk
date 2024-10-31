@@ -13,6 +13,7 @@ Concepts
     samplers
     samplesets
     symbolic_math
+    variables
 
 Find what you are looking for here.
 
