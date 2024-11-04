@@ -4,7 +4,7 @@
 Hybrid Usage Examples
 =====================
 
-For beginner examples, see the :ref:`opt_section_intro_examples` section. 
+For beginner examples, see the :ref:`opt_index_intro_examples` section. 
 
 Quadratic Models
 ================

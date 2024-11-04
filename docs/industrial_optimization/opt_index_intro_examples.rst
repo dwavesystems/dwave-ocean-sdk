@@ -52,4 +52,4 @@ Additional Examples
 ===================
 
 For additional and more advanced examples, see the 
-:ref:`opt_section_advanced_examples` section. 
+:ref:`opt_index_advanced_examples` section. 

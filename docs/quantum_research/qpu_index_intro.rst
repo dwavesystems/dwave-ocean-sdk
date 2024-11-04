@@ -18,13 +18,6 @@ Get Started with Quantum Computing
 Example
 =======
 
-The following code solves the known "minimum vertex cover" 
-graph problem using an annealing quantum computer.   
-
->>> import networkx as nx
->>> import dwave_networkx as dnx
->>> from dwave.system import DWaveSampler, EmbeddingComposite
-...
->>> s5 = nx.star_graph(4)
->>> sampler = EmbeddingComposite(DWaveSampler())
->>> min_cover = dnx.min_vertex_cover(s5, sampler)
+.. include:: ../shared/examples.rst
+  :start-after: start_qpu2
+  :end-before: end_qpu2

@@ -34,11 +34,6 @@ Quantum Research
 Example
 =======
 
-The following code solves a random problem on a quantum computer.
-
->>> import dimod
->>> import dwave.system
-...
->>> bqm = dimod.generators.ran_r(1, 20)
->>> sampler = dwave.system.EmbeddingComposite(dwave.system.DWaveSampler())
->>> sampleset = sampler.sample(bqm, num_reads=100)
+.. include:: ../shared/examples.rst
+  :start-after: start_qpu1
+  :end-before: end_qpu1

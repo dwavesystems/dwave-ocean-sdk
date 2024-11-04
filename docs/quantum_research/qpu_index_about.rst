@@ -12,3 +12,10 @@ QPU Hardware and Properties
     qpu_topologies
     qpu_timing
     qpu_errors
+    
+Example
+=======
+
+.. include:: ../shared/examples.rst
+  :start-after: start_qpu2
+  :end-before: end_qpu2

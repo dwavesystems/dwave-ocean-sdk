@@ -15,3 +15,10 @@ Using the QPU
     qpu_config
     qpu_postprocessing
     qpu_index_advanced_examples
+    
+Example
+=======
+
+.. include:: ../shared/examples.rst
+  :start-after: start_qpu2
+  :end-before: end_qpu2

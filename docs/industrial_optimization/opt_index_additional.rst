@@ -1,8 +1,8 @@
 .. _opt_index_additional:
 
-=========================
-Additional Hybrid Solvers
-=========================
+==========================
+Hybrid Solvers: Additional
+==========================
 
 
 BQM Solver
@@ -20,5 +20,5 @@ DQM Solver
 .. toctree::
     :maxdepth: 1
 
-    opt_solver_bqm_properties
-    opt_solver_bqm_parameters
+    opt_solver_dqm_properties
+    opt_solver_dqm_parameters
