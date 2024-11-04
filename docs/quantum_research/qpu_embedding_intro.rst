@@ -4,6 +4,11 @@
 Minor-Embedding 
 ===============
 
+TODO: this is from sources:
+
+* Minor-Embedding 
+  (https://docs.ocean.dwavesys.com/en/stable/concepts/embedding.html)
+
 To solve an arbitrarily posed binary quadratic problem directly on a D-Wave
 system requires mapping, called *minor embedding*, to the :ref:`topology_sdk` 
 of the system's quantum processing unit (QPU). This preprocessing can be done 
