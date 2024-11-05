@@ -14,7 +14,7 @@ Quantum Research
 
 .. sections-start-marker
 
-:ref:`index_quantum_research` documents how to use D-Wave's quantum 
+:ref:`index_quantum_research` documents how to use |dwave_short_tm| quantum 
 processing units (QPUs) directly.
 
 .. grid:: 3

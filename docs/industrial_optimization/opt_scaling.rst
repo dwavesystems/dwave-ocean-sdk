@@ -1,4 +1,4 @@
-.. opt_scaling:
+.. _opt_scaling:
 
 ======================
 Scaling for Production

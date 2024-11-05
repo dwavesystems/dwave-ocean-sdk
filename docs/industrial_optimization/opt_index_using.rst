@@ -4,13 +4,26 @@
 Optimizing with Hybrid Solvers
 ==============================
 
-TODO: add more content on usage here
+Learn best practices for using the |cloud_tm| service's hybrid solvers
+in this section. 
 
 .. toctree::
+    :hidden:
     :maxdepth: 1
     
     opt_scaling
     opt_index_advanced_examples
+
+.. grid:: 3
+    :gutter: 2
+
+    .. grid-item-card:: :ref:`opt_scaling`
+
+        Coding your application for performance on problems of the industrial scale.
+
+    .. grid-item-card:: :ref:`opt_index_advanced_examples`
+
+        Advanced end-to-end examples.
 
 Example
 =======

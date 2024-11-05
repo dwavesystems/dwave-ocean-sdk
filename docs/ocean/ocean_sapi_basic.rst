@@ -5,7 +5,7 @@ Configuring Access to the Leap Service (Basic)
 ==============================================
 
 The D-Wave\ |tm| Solver API (SAPI) provides access to the 
-:term:`solvers`\ s---compute resources for solving problems, such as 
+:term:`solver`\ s---compute resources for solving problems, such as 
 a D-Wave quantum computers and quantum-classical hybrid solvers---hosted in 
 the `Leap <https://cloud.dwavesys.com/leap/>`_ quantum cloud service.\ [#]_
 

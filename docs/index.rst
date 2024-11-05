@@ -14,7 +14,7 @@
 
     industrial_optimization/index_industrial_optimization
     quantum_research/index_quantum_research
-    ocean/index_ocean_api
+    ocean/index_ocean_sdk
     leap_sapi/index_leap_sapi
     concepts/glossary
     licenses
@@ -33,7 +33,7 @@
                 *   -   :ref:`Quantum Research <index_quantum_research>`
                     -   Using the quantum processing unit (QPU) directly on
                         :term:`Ising` problems and :term:`QUBO` models.
-                *   -   :ref:`Ocean API <index_ocean_api>`
+                *   -   :ref:`Ocean SDK <index_ocean_sdk>`
                     -   Reference documentation for  the software development
                         kit (SDK) used with quantum computers.
                 *   -   :ref:`index_leap_sapi`
@@ -68,11 +68,13 @@
 Welcome to |dwave_short|
 ========================
 
+.. TODO: format the following content 
+
     *It's not a Turing machine, but a machine of a different kind.*
 
     --- Richard Feynman, 1981
 
-.. dropdown:: What We Do
+.. dropdown:: What |dwave_short| Does
 
     Despite the incredible power of today's supercomputers, many complex computing
     problems cannot be addressed by conventional systems. The huge growth of data and
@@ -108,7 +110,7 @@ Welcome to |dwave_short|
     to use Feynman's words, since 1999. We are the world's first commercial quantum
     computer company.
 
-.. dropdown:: |dwave_short|'s Quantum Computer Systems
+.. dropdown:: |dwave_short|'s Quantum Computers
 
     The |dwave_short| system contains a QPU that must be kept at a temperature near absolute
     zero and isolated from the surrounding environment in order to behave quantum
@@ -175,7 +177,7 @@ Welcome to |dwave_short|
 
           D-Wave software environment.
 
-.. dropdown:: |cloud_tm| Quantum Cloud Service
+.. dropdown:: Leap Quantum Cloud Service
 
     |cloud_tm| is the quantum cloud service from |dwave_short| Systems.
     Learn about the types of problems that the |dwave_short| quantum computer can solve,

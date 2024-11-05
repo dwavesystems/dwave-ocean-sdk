@@ -1,8 +1,8 @@
 .. _index_leap_sapi:
 
-====
-Leap
-====
+============
+Leap Service
+============
 
 .. toctree::
   :hidden:
@@ -13,9 +13,9 @@ Leap
   doc_admin
   doc_rest_api
 
-|cloud_tm|, launched in 2018, is the quantum cloud service from 
-`D-Wave <https://dwavesys.com>`_. Leap brings quantum computing 
-to the real world by providing real-time cloud access to our systems.
+The |cloud_tm| quantum cloud service from 
+`D-Wave Quantum Inc. <https://dwavesys.com>`_, launched in 2018, provides 
+real-time access to quantum computing.
 
 .. sections-start-marker
 

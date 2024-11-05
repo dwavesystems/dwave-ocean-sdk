@@ -1,7 +1,7 @@
-.. _index_ocean_api:
+.. _index_ocean_sdk:
 
 =========
-Ocean API
+Ocean SDK
 =========
 
 .. toctree::

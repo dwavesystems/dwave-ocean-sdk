@@ -11,13 +11,13 @@ Industrial Optimization
     opt_index_intro
     opt_index_nl
     opt_index_cqm
-    opt_index_additional
+    opt_index_solver_additional
     opt_index_using
 
 .. sections-start-marker
 
 :ref:`index_industrial_optimization` documents how to optimize business
-problems using Leap's quantum-classical :term:`hybrid` solvers.
+problems using the |cloud_tm| service's quantum-classical :term:`hybrid` solvers.
 
 .. grid:: 3
     :gutter: 2
@@ -34,7 +34,7 @@ problems using Leap's quantum-classical :term:`hybrid` solvers.
 
         Leap's hybrid constrained quadratic model (CQM) solver.
 
-    .. grid-item-card:: :ref:`opt_index_additional`
+    .. grid-item-card:: :ref:`opt_index_solver_additional`
 
         Additional hybrid solvers in Leap.
 
