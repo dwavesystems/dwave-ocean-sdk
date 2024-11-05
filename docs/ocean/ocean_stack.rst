@@ -1,4 +1,4 @@
-.. _oceanstack:
+.. _ocean_stack:
 
 ====================
 Ocean Software Stack

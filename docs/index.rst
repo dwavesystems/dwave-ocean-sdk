@@ -18,41 +18,40 @@
     leap_sapi/index_leap_sapi
     concepts/glossary
     licenses
-    contributing
 
 .. dropdown:: First time here? Click to learn how to navigate the documentation
 
     Pages have three navigation bars: top, left, and right.
 
-    *   Top navigation bar lets you select the following content:
+    *   Top navigation bar lets you select the following documentation:
 
         .. list-table:: 
 
-                *   -   :ref:`Industrial Optimization <index_industrial_optimization>` 
-                    -   Using :ref:`hybrid technology <concept_hybrid>` on large, 
-                        hard commercial optimization problems.
-                *   -   :ref:`Quantum Research <index_quantum_research>` 
-                    -   Using the quantum processing unit (QPU) directly.
+                *   -   :ref:`Industrial Optimization <index_industrial_optimization>`
+                    -   Solving hard commercial optimization problems using
+                        :ref:`hybrid solvers <concept_hybrid>`.
+                *   -   :ref:`Quantum Research <index_quantum_research>`
+                    -   Using the quantum processing unit (QPU) directly on
+                        :term:`Ising` problems and :term:`QUBO` models.
                 *   -   :ref:`Ocean API <index_ocean_api>`
-                    -   Software Development Kit (SDK) reference documentation. 
+                    -   Reference documentation for  the software development
+                        kit (SDK) used with quantum computers.
                 *   -   :ref:`index_leap_sapi`
-                    -   Quantum cloud service's account management, release notes, 
-                        IDE support, etc. 
-                *   -   :ref:`Glossary/Index <concepts_glossary>` 
-                    -   Learn the relevant terminology and the fundamental concepts. 
+                    -   Quantum cloud service's account management, release notes,
+                        IDE support, etc.
+                *   -   :ref:`Glossary/Index <concepts_glossary>`
+                    -   Learn the relevant terminology and the fundamental concepts.
                         Search for terms here.
 
-    *   Left navigation bar lets you select a subtopic; for example, how to get 
+    *   Left navigation bar lets you select a subtopic; for example, how to get
         started, properties, best practices.
     
-    *   Right navigation bar displays the topics on your current page. 
+    *   Right navigation bar displays the topics on your current page.
     
 ..  tab-set::
 
     ..  tab-item:: Optimization
         :name: tab_industrial_optimization
-
-        Optimize business problems with Leap's quantum-classical hybrid solvers.
 
         .. include:: industrial_optimization/index_industrial_optimization.rst
             :start-after: sections-start-marker
@@ -61,8 +60,6 @@
     ..  tab-item:: Quantum
         :name: tab_quantum_research
         :selected:
-
-        Use D-Wave's quantum computers directly.
 
         .. include:: quantum_research/index_quantum_research.rst
             :start-after: sections-start-marker

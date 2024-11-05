@@ -4,9 +4,9 @@
 Get Started with Ocean Software 
 ===============================
 
-New to Ocean? The following sections describe how to install Ocean tools, what they are
-and how they fit together, and give examples of using them to solve hard problems
-on a D-Wave quantum computer.
+New to Ocean\ |TM| software? This section describes how to install the Ocean SDK
+and gives an overview of using it to solve hard problems on D-Wave\ |TM| quantum 
+computers.
 
 .. _ocean_initial_setup:
 
@@ -24,7 +24,7 @@ The following steps set up your development environment for Ocean:
     ocean_sapi_basic
     ocean_sapi_advanced
 
-1.  :ref:`install`
+1.  :ref:`ocean_install`
 
     Installation is **not needed** if you are using an IDE that implements the 
     `Development Containers specification <https://containers.dev/supporting>`_
@@ -33,15 +33,15 @@ The following steps set up your development environment for Ocean:
     because you can work in an updated Ocean environment through the 
     `Ocean Docker file <https://hub.docker.com/r/dwavesys/ocean-dev>`_. 
 
-2.  :ref:`leap_auth`
+2.  :ref:`ocean_leap_authorization`
 
-    Optionally authorize Ocean to access your Leap account to facilitate  
-    token management.
+    Optionally authorize Ocean software to access your Leap\ |TM| service account
+    to facilitate token management.
 
-3.  :ref:`sapi_access`
+3.  :ref:`ocean_sapi_access_basic`
 
-    Enable the running problems on D-Wave remote compute resources, including 
-    quantum-classical hybrid solvers and the D-Wave quantum processing unit (QPU).
+    Enable the running of problems in the Leap service, using quantum-classical 
+    :term:`hybrid` solvers and quantum computers.
 
 Ocean's Programming Model
 =========================
@@ -51,27 +51,5 @@ Learn Ocean software's workflow for problem solving.
 ..  toctree::
     :maxdepth: 1
 
-    ocean_solving_problems
-    ocean_formulation
-    ocean_samplers
+    ocean_workflow
     ocean_stack
-
-
-D-Wave Compute Resources
-========================
-
-Use Ocean's :term:`sampler`\ s to solve problems on D-Wave's compute resources (:term:`solver`\ s)
-or locally on your CPU.
-
-..  toctree::
-    :maxdepth: 1
-
-    industrial_optimization/opt_intro_hybrid.rst
-    quantum_research/qpu_intro_classical.rst
-    quantum_research/qpu_intro_classical.rst
-
-Because most industrial problems (large, complex, and hard) are best approached 
-with quantum-classical hybrid solvers, a good place to start is with examples of 
-the :ref:`examples_hybrid` section. If you wish to learn how to work directly with 
-the quantum computer, see the examples of the :ref:`examples_qpu` section.
-

@@ -14,9 +14,8 @@ Ocean API
 
 .. sections-start-marker
 
-Ocean software is a suite of tools `D-Wave Systems <https://www.dwavesys.com>`_ provides
-on the `D-Wave GitHub repository <https://github.com/dwavesystems>`_ for solving hard
-problems with quantum computers.
+Ocean\ |tm| software is a suite of tools for using
+`D-Wave Quantum Inc. <https://www.dwavesys.com>`_ quantum computers.
 
 .. grid:: 3
     :gutter: 2
@@ -27,18 +26,20 @@ problems with quantum computers.
         
     .. grid-item-card:: :ref:`ocean_packages` 
          
-        Reference documentation for the Ocean SDK.
+        Application programming interface (API) documentation.
 
-    .. grid-item-card:: :ref:`dwave_cli` 
+    .. grid-item-card:: :ref:`ocean_dwave_cli` 
          
-        Command line interface (CLI) installed as part of the Ocean SDK.
+        Command line interface (CLI) for installing the Ocean SDK and more.
          
 .. sections-end-marker
 
 Example
 =======
 
-The ``dwave setup`` command configures an environment on 
-your local machine.
+The :ref:`dwave setup <cli_example_setup>` command configures a development 
+environment on your local machine::
 
-$ dwave setup
+    $ dwave setup
+    
+.. include:: ../../CONTRIBUTING.rst

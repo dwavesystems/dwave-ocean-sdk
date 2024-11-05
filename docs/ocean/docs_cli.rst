@@ -1,4 +1,4 @@
-.. _dwave_cli:
+.. _ocean_dwave_cli:
 
 ===
 CLI
@@ -10,8 +10,8 @@ a `dwave` executable is installed; for example, in a virtual environment it migh
 be installed as `<virtual_environment>\\Scripts\\dwave.exe`. Running this file from
 your system's console opens an interactive command line interface (CLI) that can
 help you set up and configure your development environment, communicate with
-D-Wave compute resources, interact with your 
-`Leap <https://cloud.dwavesys.com/leap/>`_ account, and other useful actions.
+D-Wave\ |tm| compute resources, interact with your 
+`Leap service <https://cloud.dwavesys.com/leap/>`_ account, and other useful actions.
 
 Run :code:`dwave --help` for information on all the CLI options.\ [#]_  For 
 **SDK version 6.7.0** the CLI provided the following commands and options

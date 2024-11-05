@@ -1,4 +1,4 @@
-.. _concepts_samplers:
+.. _concept_samplers:
 
 ====================
 Samplers and Solvers 

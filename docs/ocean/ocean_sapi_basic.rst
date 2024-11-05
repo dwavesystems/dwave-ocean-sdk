@@ -1,13 +1,13 @@
 .. _ocean_sapi_access_basic:
 
-================================================
-Configuring Access to the Leap's Service (Basic)
-================================================
+==============================================
+Configuring Access to the Leap Service (Basic)
+==============================================
 
-D-Wave's Solver API (SAPI) provides access to the :term:`solver`\ s---compute
-resources for solving problems, such as a D-Wave quantum computers and
-quantum-classical hybrid solvers---hosted in the `Leap <https://cloud.dwavesys.com/leap/>`_
-quantum cloud.\ [#]_
+The D-Wave\ |tm| Solver API (SAPI) provides access to the 
+:term:`solvers`\ s---compute resources for solving problems, such as 
+a D-Wave quantum computers and quantum-classical hybrid solvers---hosted in 
+the `Leap <https://cloud.dwavesys.com/leap/>`_ quantum cloud service.\ [#]_
 
 .. [#] SAPI is used similarly for on-premises systems. Differences for such systems
     are noted below.

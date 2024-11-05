@@ -16,8 +16,8 @@ Industrial Optimization
 
 .. sections-start-marker
 
-Solve optimization problems using quantum-classical :term:`hybrid` solvers in 
-the Leap quantum cloud service.
+:ref:`index_industrial_optimization` documents how to optimize business
+problems using Leap's quantum-classical :term:`hybrid` solvers.
 
 .. grid:: 3
     :gutter: 2

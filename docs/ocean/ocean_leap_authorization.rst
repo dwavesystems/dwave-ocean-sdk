@@ -1,4 +1,4 @@
-.. _leap_auth:
+.. _ocean_leap_authorization:
 
 ======================================
 Authorizing Access to the Leap Service

@@ -1,8 +1,8 @@
 .. _ocean_packages:
 
-=============
-API Reference
-=============
+=======================
+Reference Documentation
+=======================
 
 .. toctree::
     :hidden:
