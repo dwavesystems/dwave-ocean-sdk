@@ -1,4 +1,4 @@
-.. _qpu_topologies_intro:
+.. _qpu_topologies:
 
 ==========
 Topologies

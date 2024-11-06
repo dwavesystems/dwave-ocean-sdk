@@ -1,4 +1,4 @@
-.. _qpu_basic_workflow:
+.. _qpu_workflow:
 
 ========================================
 Basic Workflow: Formulation and Sampling
