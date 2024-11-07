@@ -1,4 +1,4 @@
-.. _opt_index_intro:
+.. _opt_index_get_started:
 
 =============================
 Get Started with Optimization 
@@ -14,7 +14,7 @@ Get Started with Optimization
     opt_dwave_hybrid
     opt_model_construction_qm
     opt_model_construction_nl
-    opt_index_intro_examples
+    opt_index_examples_beginner
     
 Learn to solve hard optimization problems using quantum-classical :term:`hybrid`
 :term:`solver`\ s hosted in the |cloud_tm| quantum cloud service.

@@ -1,8 +1,19 @@
-.. _ocean_index_intro:
+.. _ocean_index_get_started:
 
 ===============================
 Get Started with Ocean Software 
 ===============================
+
+..  toctree::
+    :maxdepth: 1
+    :hidden:
+
+    ocean_install
+    ocean_leap_authorization
+    ocean_sapi_access_basic
+    ocean_sapi_access_advanced
+    ocean_workflow
+    ocean_stack
 
 New to Ocean\ |TM| software? This section describes how to install the Ocean SDK
 and gives an overview of using it to solve hard problems on D-Wave\ |TM| quantum 
@@ -14,15 +25,6 @@ Initial Set Up
 ==============
 
 The following steps set up your development environment for Ocean:
-
-..  toctree::
-    :maxdepth: 1
-    :hidden:
-
-    ocean_install
-    ocean_leap_authorization
-    ocean_sapi_basic
-    ocean_sapi_advanced
 
 1.  :ref:`ocean_install`
 
@@ -46,10 +48,17 @@ The following steps set up your development environment for Ocean:
 Ocean's Programming Model
 =========================
 
-Learn Ocean software's workflow for problem solving.
+Learn Ocean software's workflow and structure.
 
-..  toctree::
-    :maxdepth: 1
+.. grid:: 3
+    :gutter: 2
 
-    ocean_workflow
-    ocean_stack
+    .. grid-item-card:: :ref:`ocean_workflow`
+
+        The two main steps of solving problems on quantum computers.
+
+    .. grid-item-card:: :ref:`ocean_stack`
+
+        Ocean software stack graphic and description.
+
+    

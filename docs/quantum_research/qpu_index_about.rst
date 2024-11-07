@@ -11,7 +11,7 @@ QPU Hardware and Properties
     qpu_index_solver_properties
     qpu_annealing
     qpu_topologies
-    qpu_timing
+    qpu_operation_timing
     qpu_errors
 
 Technical details on the QPU hardware and features.

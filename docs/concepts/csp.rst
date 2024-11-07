@@ -1,8 +1,8 @@
-.. _csp_sdk:
+.. _concept_constraint_satisfaction_problem:
 
-=======================
-Constraint Satisfaction 
-=======================
+===============================
+Constraint Satisfaction Problem
+===============================
 
 A `constraint satisfaction problem (CSP) <https://en.wikipedia.org/wiki/Constraint_satisfaction_problem>`_
 requires that all the problem's variables be assigned

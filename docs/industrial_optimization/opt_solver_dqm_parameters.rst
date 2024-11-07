@@ -1,4 +1,3 @@
-
 .. _opt_solver_dqm_parameters:
 
 =====================

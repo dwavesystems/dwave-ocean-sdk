@@ -31,8 +31,7 @@ graph problem using an annealing quantum computer.
 
 The following code solves an illustrative 
 `traveling-salesperson problem <https://en.wikipedia.org/wiki/Travelling_salesman_problem>`_
-using a quantum-classical hybrid solver in the |cloud_tm|_ quantum 
-cloud service. 
+using a quantum-classical hybrid solver in the Leap service. 
 
 >>> from dwave.optimization.generators import traveling_salesperson
 >>> from dwave.system import LeapHybridNLSampler
@@ -57,8 +56,7 @@ cloud service.
 
 The following code creates a constrained quadratic model (CQM) representing
 a `knapsack problem <https://en.wikipedia.org/wiki/Knapsack_problem>`_ and
-solves it using a quantum-classical hybrid solver in the |cloud_tm|_ quantum 
-cloud service. 
+solves it using a quantum-classical hybrid solver in the Leap service. 
 
 >>> from dimod.generators import random_knapsack 
 >>> from dwave.system import LeapHybridCQMSampler

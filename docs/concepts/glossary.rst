@@ -7,6 +7,7 @@ Concepts
 .. toctree::
     :hidden:
 
+    csp
     hybrid
     models
     penalty

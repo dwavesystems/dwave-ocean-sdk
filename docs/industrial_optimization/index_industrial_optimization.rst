@@ -8,9 +8,9 @@ Industrial Optimization
     :hidden:
     :maxdepth: 1
 
-    opt_index_intro
-    opt_index_nl
-    opt_index_cqm
+    opt_index_get_started
+    opt_index_solver_nl
+    opt_index_solver_cqm
     opt_index_solver_additional
     opt_index_using
 
@@ -22,21 +22,21 @@ problems using the |cloud_tm| service's quantum-classical :term:`hybrid` solvers
 .. grid:: 3
     :gutter: 2
 
-    .. grid-item-card:: :ref:`opt_index_intro`
+    .. grid-item-card:: :ref:`opt_index_get_started`
 
         Learn about optimizing with hybrid solvers.
 
-    .. grid-item-card:: :ref:`opt_index_nl`
+    .. grid-item-card:: :ref:`opt_index_solver_nl`
 
-        Leap's hybrid nonlinear-program (NL) solver.
+        The Leap service's hybrid nonlinear-program (NL) solver.
 
-    .. grid-item-card:: :ref:`opt_index_cqm`
+    .. grid-item-card:: :ref:`opt_index_solver_cqm`
 
-        Leap's hybrid constrained quadratic model (CQM) solver.
+        The Leap service's hybrid constrained quadratic model (CQM) solver.
 
     .. grid-item-card:: :ref:`opt_index_solver_additional`
 
-        Additional hybrid solvers in Leap.
+        Additional hybrid solvers in the Leap service's.
 
     .. grid-item-card:: :ref:`opt_index_using`
 

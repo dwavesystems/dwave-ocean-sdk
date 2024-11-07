@@ -8,9 +8,9 @@ Ocean SDK
     :hidden:
     :maxdepth: 1
 
-    ocean_index_intro
-    packages
-    docs_cli
+    ocean_index_get_started
+    ocean_packages
+    ocean_dwave_cli
 
 .. sections-start-marker
 
@@ -20,7 +20,7 @@ Ocean\ |tm| software is a suite of tools for using
 .. grid:: 3
     :gutter: 2
 
-    .. grid-item-card:: :ref:`ocean_index_intro` 
+    .. grid-item-card:: :ref:`ocean_index_get_started` 
          
         Install and learn Ocean software.
         

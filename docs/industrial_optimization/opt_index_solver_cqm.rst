@@ -1,4 +1,4 @@
-.. _opt_index_cqm:
+.. _opt_index_solver_cqm:
 
 ====================
  Hybrid Solvers: CQM

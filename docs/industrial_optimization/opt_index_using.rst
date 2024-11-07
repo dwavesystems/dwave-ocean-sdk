@@ -12,7 +12,7 @@ in this section.
     :maxdepth: 1
     
     opt_scaling
-    opt_index_advanced_examples
+    opt_index_examples_advanced
 
 .. grid:: 3
     :gutter: 2
@@ -21,7 +21,7 @@ in this section.
 
         Coding your application for performance on problems of the industrial scale.
 
-    .. grid-item-card:: :ref:`opt_index_advanced_examples`
+    .. grid-item-card:: :ref:`opt_index_examples_advanced`
 
         Advanced end-to-end examples.
 

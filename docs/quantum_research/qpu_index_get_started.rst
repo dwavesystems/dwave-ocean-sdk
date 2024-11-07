@@ -1,4 +1,4 @@
-.. _qpu_index_intro:
+.. _qpu_index_get_started:
 
 ==================================
 Get Started with Quantum Computing 
@@ -8,13 +8,13 @@ Get Started with Quantum Computing
     :hidden:
     :maxdepth: 1
 
-    qpu_qa_explained
-    qpu_gm_explained
+    qpu_quantum_annealing_intro
+    qpu_gate_model_intro
     qpu_workflow
     qpu_intro_classical
     qpu_intro_quantum_solvers
     qpu_embedding_intro
-    qpu_index_intro_examples
+    qpu_index_examples_beginner
     
 Learn to submit problems directly to quantum processing units (QPUs) in 
 the |cloud_tm| quantum cloud service.
@@ -46,7 +46,7 @@ the |cloud_tm| quantum cloud service.
 
         Mapping arbitrary problems to QPU :term:`topology`.
 
-    .. grid-item-card:: :ref:`qpu_index_intro_examples`
+    .. grid-item-card:: :ref:`qpu_index_examples_beginner`
 
         Beginner-level end-to-end examples.
 

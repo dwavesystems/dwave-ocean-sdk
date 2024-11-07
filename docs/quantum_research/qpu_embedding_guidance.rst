@@ -1,4 +1,4 @@
-.. _qpu_embedding:
+.. _qpu_embedding_guidance:
 
 ===============================
 Minor-Embedding: Best Practices

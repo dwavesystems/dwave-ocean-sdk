@@ -8,7 +8,7 @@ Quantum Research
     :hidden:
     :maxdepth: 1
 
-    qpu_index_intro
+    qpu_index_get_started
     qpu_index_about
     qpu_index_using
 
@@ -20,9 +20,9 @@ processing units (QPUs) directly.
 .. grid:: 3
     :gutter: 2
 
-    .. grid-item-card:: :ref:`qpu_index_intro` 
+    .. grid-item-card:: :ref:`qpu_index_get_started` 
          
-        Learn about quantum computers.
+        Learn about |dwave_short| quantum computers.
 
     .. grid-item-card:: :ref:`qpu_index_about`
 

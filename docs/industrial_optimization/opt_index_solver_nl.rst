@@ -1,4 +1,4 @@
-.. _opt_index_nl:
+.. _opt_index_solver_nl:
 
 ==========================
  Hybrid Solvers: Nonlinear
