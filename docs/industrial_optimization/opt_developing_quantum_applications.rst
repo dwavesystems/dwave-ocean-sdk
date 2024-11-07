@@ -1,8 +1,8 @@
-.. _opt_app_dev_workflow:
+.. _opt_developing_quantum_applications:
 
-============================================
-Workflow for Developing Quantum Applications
-============================================
+===============================
+Developing Quantum Applications
+===============================
 
 TODO: this is from sources:
 

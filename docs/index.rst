@@ -52,6 +52,7 @@
 
     ..  tab-item:: Optimization
         :name: tab_industrial_optimization
+        :selected:
 
         .. include:: industrial_optimization/index_industrial_optimization.rst
             :start-after: sections-start-marker
@@ -59,8 +60,7 @@
 
     ..  tab-item:: Quantum
         :name: tab_quantum_research
-        :selected:
-
+        
         .. include:: quantum_research/index_quantum_research.rst
             :start-after: sections-start-marker
             :end-before: sections-end-marker

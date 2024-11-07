@@ -1,18 +1,35 @@
-.. _opt_intro_hybrid:
+.. _opt_index_hybrid:
 
-==============
-Hybrid Solvers
-==============
+========================
+Sampling: Hybrid Solvers
+========================
 
+.. toctree::
+    :hidden:
+    :maxdepth: 1
+
+    opt_leap_hybrid
+    opt_dwave_hybrid
+    
 Quantum-classical hybrid is the use of both classical and quantum resources to solve
 problems, exploiting the complementary strengths that each provides. For an overview of,
 and motivation for, hybrid computing, see:
 `Medium Article on Hybrid Computing <https://medium.com/d-wave/three-truths-and-the-advent-of-hybrid-quantum-computing-1941ba46ff8c>`_.
 
-Ocean software currently supports two types of hybrid solvers:
+.. grid:: 3
+    :gutter: 2
 
-* :ref:`leap_hybrid_solvers` are cloud-based hybrid compute resources.
-* :ref:`dwave_hybrid_solvers` are hybrid solvers developed in Ocean's :doc:`dwave-hybrid </docs_hybrid/sdk_index>` tool.
+    .. grid-item-card:: :ref:`opt_leap_hybrid`
+
+        Hybrid solvers hosted in the Leap service.
+
+    .. grid-item-card:: :ref:`opt_dwave_hybrid`
+
+        Ocean\ |tm| software's general framework for building hybrid
+        samplers.
+
+
+TODO: move the following content lower
 
 .. _leap_hybrid_solvers:
 

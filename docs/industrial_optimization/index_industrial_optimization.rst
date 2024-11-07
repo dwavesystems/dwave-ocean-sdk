@@ -13,6 +13,7 @@ Industrial Optimization
     opt_index_solver_cqm
     opt_index_solver_additional
     opt_index_using
+    opt_developing_quantum_applications
 
 .. sections-start-marker
 
@@ -42,6 +43,11 @@ problems using the |cloud_tm| service's quantum-classical :term:`hybrid` solvers
 
         Scaling and usage best-practices.
 
+    .. grid-item-card:: :ref:`opt_developing_quantum_applications`
+
+        How |dwave_short| and other companies develop successful
+        quantum applications.
+        
 .. sections-end-marker
 
 Example
