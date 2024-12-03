@@ -13,9 +13,7 @@ jobs:
         type: string
 
     docker:
-      - image: cimg/python:<< parameters.python-version >>
-
-    working_directory: ~/repo
+      - image: python:<< parameters.python-version >>
 
     steps:
       - checkout
@@ -23,7 +21,7 @@ jobs:
       - ocean/pip-install:
           requirements: tests/requirements.txt
           cache: true
-          cache-generation: 2
+          cache-generation: 3
 
       - ocean/pip-install:
           packages: .
@@ -38,7 +36,7 @@ jobs:
 
     executor:
       name: ocean/macos
-      xcode: "14.2.0"
+      xcode: "16.2.0"
 
     steps:
       - checkout
@@ -64,9 +62,7 @@ jobs:
 
   test-individual-pkgs:
     docker:
-      - image: cimg/python:3.10
-
-    working_directory: ~/repo
+      - image: python:3.12
 
     steps:
       - checkout
@@ -98,7 +94,7 @@ jobs:
               fi
               done
             pip install 'cython<3' wheel cgen
-            pip install .[all]
+            pip install .
             dwave install --all --yes
 
       - run:
@@ -122,9 +118,7 @@ jobs:
 
   test-doctest:
     docker:
-      - image: cimg/python:3.10
-
-    working_directory: ~/repo
+      - image: python:3.12
 
     steps:
       - checkout
@@ -138,7 +132,7 @@ jobs:
           command: |
             . env/bin/activate
             python --version
-            pip install .[all]
+            pip install .
 
       - run:
           name: install docs requirements
@@ -170,9 +164,7 @@ jobs:
 
   deploy:
     docker:
-      - image: cimg/python:3.10
-
-    working_directory: ~/repo
+      - image: python:3.12
 
     steps:
       - checkout
@@ -183,7 +175,7 @@ jobs:
           name: verify version matches tag
           command: |
             . env/bin/activate
-            pip install .[all]
+            pip install .
             echo $CIRCLE_TAG
             [[ "$(pip show dwave-ocean-sdk 2>/dev/null | grep Version)" == "Version: $CIRCLE_TAG" ]]
 
