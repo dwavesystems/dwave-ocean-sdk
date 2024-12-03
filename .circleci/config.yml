@@ -214,7 +214,7 @@ workflows:
       - test-linux:
           matrix:
             parameters:
-              python-version: &python-versions ["3.8.19", "3.9.19", "3.10.14", "3.11.9", "3.12.3"]
+              python-version: &python-versions ["3.9.19", "3.10.14", "3.11.9", "3.12.3", "3.13.0"]
       - test-macos:
           matrix:
             parameters:
