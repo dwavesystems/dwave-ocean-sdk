@@ -69,7 +69,7 @@ find the closest minima.
 
 .. testcode::
 
-    from greedy import SteepestDescentSolver
+    from dwave.samplers import SteepestDescentSolver
 
     solver_greedy = SteepestDescentSolver()
 
