@@ -73,6 +73,8 @@ penalizing both possible assignments of variables that violate the constraint,
 the BQM based on this penalty function has minimal values (lowest energy states)
 for variable values that meet the constraint.
 
-See the :std:doc:`D-Wave Problem-Solving Handbook <sysdocs_gettingstarted:doc_handbook>`
-for more information about penalty functions in general,
-and penalty functions for representing Boolean operations.
+Related Information
+===================
+
+*   :ref:`qpu_reformulating` describes penalty functions in general,
+    and penalty functions for representing Boolean operations.

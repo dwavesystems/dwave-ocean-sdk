@@ -31,16 +31,9 @@ workflows you can quickly plug into your application code. You can easily experi
 workflows that best solve your problem. You can also develop your own hybrid components to optimize
 performance.  
 
-For more information on hybrid computing, see the following:
+Related Information
+===================
 
-*   :ref:`dwave-hybrid <sdk_index_hybrid>`
-
-    Describes how to use reference hybrid solvers, build hybrid workflows, and your own hybrid components.
-*   :std:doc:`Using Leap’s Hybrid Solvers <sysdocs_gettingstarted:doc_leap_hybrid>`
-
-    Introduces Leap‘s quantum-classical hybrid solvers and provides references to usage information.
-
-*   :ref:`Getting Started Demonstrations and Jupyter Notebooks <projects-Demonstrations>` 
-
-    Provides pointers to a code-examples repository and Jupyter Notebooks, which have relevant content.  
-
+*   :ref:`opt_index_hybrid` gets you started with hybrid samplers.
+*   :ref:`opt_index_hybrid_solvers` describes the supported hybrid solvers in the Leap service.
+*   :ref:`opt_index_using` describes best practices.

@@ -74,14 +74,13 @@ You can use Ocean's :doc:`dwavebinarycsp </docs_binarycsp/sdk_index>` to constru
 a CSP. It maps each individual constraint in the CSP to a ‘small’ Ising model or QUBO, in a mapping 
 called a :doc:`penalty model </docs_penalty/sdk_index>`.
 
-For more information on using the D-Wave system to solve CSPs, see the following documentation:
+Related Information
+===================
 
-*   :std:doc:`Getting Started with the D-Wave System <sysdocs_gettingstarted:doc_getting_started>`
-
-    Introduces the use of QUBOs to represent constraints in some simple examples.
-*   :std:doc:`D-Wave Problem-Solving Handbook <sysdocs_gettingstarted:doc_handbook>`
-
-    Provides a variety of techniques for, and examples of, reformulating CSPs as BQMs.
+*   :ref:`qpu_example_constrained_xnor` introduces the use of QUBOs to represent constraints
+    in some simple examples.
+*   :ref:`qpu_reformulating` provides a variety of techniques for, and examples of, 
+    reformulating CSPs as BQMs.
 
 
 

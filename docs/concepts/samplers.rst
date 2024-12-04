@@ -1,49 +1,53 @@
 .. _concept_samplers:
 
 ====================
-Samplers and Solvers 
+Samplers and Solvers
 ====================
 
-Samplers
-========
-
-*Samplers* are processes that sample from low energy states of a problem’s :term:`objective function`. 
-A BQM sampler samples from low energy states in models such as those
-defined by an Ising equation or a Quadratic Unconstrained Binary Optimization (QUBO) problem
-and returns an iterable of samples, in order of increasing energy.
-
-Ocean software provides a variety of :doc:`dimod </docs_dimod/sdk_index>` samplers, which
-all support ‘sample_qubo’ and ‘sample_ising’ methods as well as the generic BQM sampler method.
-In addition to :class:`~dwave.system.samplers.DWaveSampler()`, classical solvers, which run on CPU or GPU, are available and
-useful for developing code or on a small versions of a problem to verify code.
-
-Hybrid Quantum-Classical Samplers
----------------------------------
-
-Quantum-classical hybrid is the use of both classical and quantum resources to solve problems, exploiting the complementary strengths that each provides.
-
-D-Wave's `Leap Quantum Application Environment <https://cloud.dwavesys.com/leap>`_
-provides state-of-the-art hybrid solvers you can submit arbitrary BQMs to.
-:std:doc:`dwave-hybrid <oceandocs:docs_hybrid/sdk_index>` provides you with a Python framework for
-building a variety of flexible hybrid workflows that use quantum and classical
-resources together to find good solutions to your problem.
-
-Solvers
-=======
-
-Ocean software provides quantum, classical, and quantum-classical hybrid samplers that run either 
-remotely (for example, in D-Wave’s Leap environment) or locally on your CPU. These compute resources 
+*Samplers* are processes that sample from low energy states of a problem’s
+:term:`objective function`. Ocean software provides quantum, classical, and
+quantum-classical hybrid samplers that run either remotely (for example, in
+D-Wave’s Leap environment) or locally on your CPU. These compute resources
 are known as solvers.
 
-.. note:: Some classical samplers actually brute-force solve small problems rather than sample, and 
-   these are also referred to as “solvers”.
+.. note:: Some classical samplers actually brute-force solve small problems
+    rather than sample, and these are also referred to as “solvers”.
+
+QPU and Classical Samplers
+==========================
+
+A BQM sampler samples from low energy states in models such as those defined by
+an Ising equation or a Quadratic Unconstrained Binary Optimization (QUBO)
+problem and returns an iterable of samples, in order of increasing energy.
+
+Ocean software provides a variety of :ref:`sdk_index_dimod` samplers, which
+all support ‘sample_qubo’ and ‘sample_ising’ methods as well as the generic
+BQM sampler method.
+
+In addition to :class:`~dwave.system.samplers.DWaveSampler()`, classical solvers,
+which run on CPUs, are available and useful for developing code or on a small
+versions of a problem to verify code.
+
+Hybrid Quantum-Classical Samplers
+=================================
+
+Quantum-classical hybrid is the use of both classical and quantum resources to
+solve problems, exploiting the complementary strengths that each provides.
+
+The `Leap quantum cloud service <https://cloud.dwavesys.com/leap>`_
+provides state-of-the-art hybrid solvers you can submit large-sized problems to.
+:ref:`sdk_index_hybrid` provides you with a Python framework for
+building a variety of flexible hybrid workflows that use quantum and classical
+resources together to find good solutions to your problem.
 
 Composites
 ==========
 
-Samplers can be composed. The `composite pattern <https://en.wikipedia.org/wiki/Composite_pattern>`_
-allows layers of pre- and post-processing to be applied to binary quadratic programs without needing
-to change the underlying sampler implementation. We refer to these layers as `composites`.
+Samplers can be composed. The 
+`composite pattern <https://en.wikipedia.org/wiki/Composite_pattern>`_
+allows layers of pre- and post-processing to be applied to binary quadratic
+programs without needing to change the underlying sampler implementation.
+These layers are referred to `composites`.
 A composed sampler includes at least one sampler and possibly many composites.
 
 Examples of composites are :class:`~dwave.system.composites.EmbeddingComposite()`,
@@ -56,16 +60,17 @@ dimod includes reference :term:`sampler`\ s and :term:`composite`\ s for process
 quadratic (and higher order) models and refining sampling, and for
 testing your code during development.
 
-Using Samplers
-==============
+Creating Samplers
+=================
 
-For an introduction to samplers and composites, see
-:std:doc:`Concepts: Samplers and Composites <oceandocs:concepts/samplers>`.
-For descriptions of all supported samplers, see
-:ref:`Samplers reference documentation <samplers_index>`.
+dimod provides an :ref:`api` you can use to create your own dimod samplers and
+composed samplers.
 
-Example: Using a Reference Sampler
-----------------------------------
+Examples
+========
+
+Using a Reference Sampler
+-------------------------
 
 To find solutions to the small four-node
 `maximum cut <https://en.wikipedia.org/wiki/Maximum_cut>`_
@@ -101,8 +106,8 @@ Samplers can be composed. The
 layers of pre- and post-processing to be applied to quadratic programs for a
 sampler implementation.
 
-Example: Using a Composed Sampler
----------------------------------
+Using a Composed Sampler
+------------------------
 
 This example uses a composed sampler on the
 :std:doc:`Boolean NOT Gate <oceandocs:examples/not>`
@@ -134,14 +139,8 @@ only want to accept binary quadratic models with nodes labelled ``'x'``,
 ...     print("incorrect structure!")
 incorrect structure!
 
-Creating Samplers
-=================
-
-dimod provides an :ref:`api` you can use to create your own dimod samplers and
-composed samplers.
-
-Example: Creating a Sampler
----------------------------
+Creating a Sampler
+------------------
 
 This example creates a dimod sampler by implementing a single method (in this
 example the :code:`sample_ising` method).
@@ -167,10 +166,10 @@ example the :code:`sample_ising` method).
 The :class:`.Sampler` ABC provides the other sample methods "for free"
 as mixins.
 
-The use of samplers in solving problems is described
-in the following documentation:
+Related Information
+===================
 
 *   :std:doc:`Solving Problems by Sampling <oceandocs:overview/samplers>`
-
-    Describes the available types of samplers in Ocean and their use in solving :term:`BQM`\ s.
+    Describes the available types of samplers in Ocean and their use in solving 
+    :term:`BQM`\ s.
 

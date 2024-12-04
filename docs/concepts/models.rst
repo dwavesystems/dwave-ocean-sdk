@@ -1,11 +1,13 @@
 .. _concept_models:
 
 ======
-Models 
+Models
 ======
 
-To express your problem as an objective function and submit to a |dwave_short| 
-sampler for solution, you formulate a model. 
+To express your problem as an objective function and submit to a |dwave_short|
+sampler for solution, you formulate a model.
+
+.. _concept_models_constrained_vs_unconstrained:
 
 Constrained Versus Unconstrained
 ================================
@@ -20,13 +22,11 @@ or in symbolic form.
 
 Unconstrained quadratic models are used to submit problems to :term:`sampler`\ s
 such as D-Wave quantum computers\ [#]_ and some hybrid quantum-classical
-samplers\ [#]_.
+samplers\ [#]_. When using such samplers to handle problems with constraints, you
+typically formulate the constraints as :ref:`concept_penalty`.
 
-When using such samplers to handle problems with constraints, you typically
-formulate the constraints as penalties: see
-:std:doc:`sysdocs_gettingstarted:doc_getting_started`.
-(:ref:`Constrained models <intro_cqm>`, such as the
-:class:`~dimod.ConstrainedQuadraticModel`, can support constraints natively.)
+The :ref:`concept_models_supported` section below lists constrained and unconstrained
+models.
 
 .. [#]
   D-Wave quantum computers accept unconstrained binary quadratic models, such as
@@ -40,87 +40,26 @@ formulate the constraints as penalties: see
   for example, a quadratic model with an integer variable that must be smaller
   than some configured value.
 
-Quadratic Versus Nonlinear
-==========================
-
-TODO: add content
-
-.. dropdown:: Quadratic Models
-
-  * Ising 
-
-  * QUBO
-
-  * **Binary Quadratic Models**
-
-    The :term:`binary quadratic model` (BQM) class,
-    :class:`~dimod.binary.binary_quadratic_model.BinaryQuadraticModel`,
-    encodes :term:`Ising` and quadratic unconstrained binary optimization
-    (\ :term:`QUBO`\ ) models used by samplers such as D-Wave's quantum computers.
-
-    For an introduction to BQMs, see
-    :std:doc:`Concepts: Binary Quadratic Models <oceandocs:concepts/bqm>`. For the BQM class,
-    its attributes and methods, see the :ref:`BQM reference documentation <bqm>`.
-
-  .. _intro_cqm:
-
-  * **Constrained Quadratic Model**
-
-    The :term:`constrained quadratic model` (CQM) class, :class:`~dimod.ConstrainedQuadraticModel`,
-    encodes a quadratic objective and possibly one or more quadratic equality and
-    inequality constraints.
-
-    For an introduction to CQMs, see
-    :std:doc:`Constrained Quadratic Models <oceandocs:concepts/cqm>`. For
-    descriptions of the CQM class and its methods, see :ref:`cqm`.
-
-  .. _intro_qm_qm:
-
-  * **Quadratic Models**
-
-    The :term:`quadratic model` (QM) class, :class:`~dimod.QuadraticModel`, encodes
-    polynomials of binary, integer, and discrete variables, with all terms of degree
-    two or less.
-
-    For an introduction to QMs, see
-    :std:doc:`Concepts: Quadratic Models <oceandocs:concepts/qm>`. For the QM class,
-    its attributes and methods, see the :ref:`QM reference documentation <qm>`.
-
-
-  * **Discrete Quadratic Models**
-
-    The :term:`discrete quadratic model` (BQM) class,
-    :class:`~dimod.DiscreteQuadraticModel`, encodes polynomials of discrete variables,
-    with all terms of degree two or less.
-
-    For an introduction to DQMs, see
-    :std:doc:`Concepts: Discrete Quadratic Models <oceandocs:concepts/dqm>`. For the DQM
-    class, its attributes and methods, see :ref:`DQM reference documentation <dqm>`.
-
-  .. _intro_nonquadratic:
-
-  * **Higher-Order Models**
-
-    dimod provides some :ref:`higher_order_composites` and functionality
-    such as reducing higher-order polynomials to BQMs.
-
-.. dropdown:: Nonlinear Models
-
-   TODO
+.. _concept_models_supported:
 
 Supported Models
 ================
 
-TODO: add summary table of model, package, supported variables 
+The following table shows the models currently supported by Ocean software,
+the variables you can use with each, and some related classes.
 
-.. include:: ../shared/models
-    :start-after: start_models_intro
-    :end-before: end_models_intro
+.. |models_variables_table| replace:: Supported Models
+
+.. include:: ../shared/models.rst
+  :start-after: start_model_variables_table
+  :end-before: end_model_variables_table 
 
 .. _concept_models_cqm:
 
-Constrained Quadratic Models
-============================
+Constrained Quadratic Model
+===========================
+
+.. start_concept_models_cqm
 
 The constrained quadratic model (CQM) are problems of the form:
 
@@ -134,7 +73,7 @@ The constrained quadratic model (CQM) are problems of the form:
         \quad m=1, \dots, M,
     \end{align}
 
-where :math:`\{ x_i\}_{i=1, \dots, N}` can be binary\ [#]_, integer, or 
+where :math:`\{ x_i\}_{i=1, \dots, N}` can be binary\ [#]_, integer, or
 continuous\ [#]_ variables, :math:`a_{i}, b_{ij}, c` are real values,
 :math:`\circ \in \{ \ge, \le, = \}` and  :math:`M` is the total number of constraints.
 
@@ -144,38 +83,103 @@ continuous\ [#]_ variables, :math:`a_{i}, b_{ij}, c` are real values,
     and :math:`s^2 = 1` for spin values :math:`\{-1, 1\}`.
 
 .. [#] 
-    Real-valued variables are currently not supported in quadratic interactions. 
+    Real-valued variables are currently not supported in quadratic interactions.
 
-The :class:`dimod.ConstrainedQuadraticModel` class can contain this model and its
-methods provide convenient utilities for working with representations
-of a problem.
+CQMs are typically used for applications that optimize problems that might
+include real, integer and/or binary variables and one or more constraints.
+
+.. end_concept_models_cqm
 
 .. _concept_models_nonlinear:
 
-Nonlinear Models
-================
+Nonlinear Model
+===============
 
-The nonlinear model represents a general optimization problem with an 
-:term:`objective function` and/or constraints over variables of various 
+.. start_concept_models_nonlinear
+
+The nonlinear model represents a general optimization problem with an
+:term:`objective function` and/or constraints over variables of various
 types.
 
-This model is especially suited for use with decision variables that represent 
-a common logic, such as subsets of choices or permutations of ordering. For 
-example, in a 
-`traveling salesperson problem <https://en.wikipedia.org/wiki/Travelling_salesman_problem>`_ 
-permutations of the variables representing cities can signify the order of the 
-route being optimized and in a 
-`knapsack problem <https://en.wikipedia.org/wiki/Knapsack_problem>`_ the 
-variables representing items can be divided into subsets of packed and not 
-packed. 
+This model is especially suited for use with decision variables that represent
+a common logic, such as subsets of choices or permutations of ordering. For
+example, in a
+`traveling salesperson problem <https://en.wikipedia.org/wiki/Travelling_salesman_problem>`_
+permutations of the variables representing cities can signify the order of the
+route being optimized and in a
+`knapsack problem <https://en.wikipedia.org/wiki/Knapsack_problem>`_ the
+variables representing items can be divided into subsets of packed and not
+packed.
 
-The :class:`~dwave.optimization.model.Model` class encodes this model and 
-its methods provide convenient utilities for constructing such models.
+.. end_concept_models_nonlinear
+
+.. _concept_models_bqm:
+
+Binary Quadratic Models 
+=======================
+
+.. start_concept_models_quadratic
+
+The binary quadratic model (BQM) class encodes
+Ising and quadratic unconstrained binary optimization (QUBO) models
+used by samplers such as the D-Wave system.
+
+The BQM equation,
+
+.. math::
+
+    E(\bf{v})
+    = \sum_{i=1} a_i v_i
+    + \sum_{i<j} b_{i,j} v_i v_j
+    + c
+    \qquad\qquad v_i \in\{-1,+1\} \text{  or } \{0,1\}
+
+can represent both.
+
+.. _concept_models_ising:
+
+Ising Model
+-----------
+
+The :term:`Ising` model is an objective function of :math:`N` variables
+:math:`s=[s_1,...,s_N]` corresponding to physical Ising spins, where :math:`h_i`
+are the biases and :math:`J_{i,j}` the couplings (interactions) between spins.
+
+.. math::
+
+    \text{Ising:} \qquad
+    E(\bf{s})
+    = \sum_{i=1} h_i s_i +
+    \sum_{i<j} J_{i,j} s_i s_j
+    \qquad\qquad s_i\in\{-1,+1\}
+
+.. _concept_models_qubo:
+
+QUBO
+----
+
+The :term:`QUBO` model is an objective function of :math:`N` binary variables
+represented as an upper-diagonal matrix :math:`Q`, where diagonal terms are the
+linear coefficients and the nonzero off-diagonal terms the quadratic
+coefficients.
+
+.. math::
+
+    \text{QUBO:} \qquad E(\bf{x})
+    =  \sum_{i\le j} x_i Q_{i,j} x_j
+    \qquad\qquad x_i\in \{0,1\}
+
+Other Models
+============
+
+Ocean software also supports these additional models.
 
 .. _concept_models_quadratic:
 
 Quadratic Models
-================
+----------------
+
+.. start_concept_models_quadratic
 
 Quadratic models are polynomials with one or two variables per term. A simple
 example of a quadratic model is,
@@ -193,83 +197,33 @@ Quantum computers solve hard problems by minimizing an objective function.
 Quadratic models are useful objective functions because the quantum processing
 unit (QPU) can represent binary variables as the states of the qubits and
 linear and quadratic coefficients as, respectively, the physical biases and
-couplings applied to these qubits. Hybrid quantum-classical samplers, which minimize
-some parts of the objective function using classical heuristics and some by using
-the QPU, enable the further abstraction of problem representation.
+couplings applied to these qubits. Hybrid quantum-classical samplers, which
+minimize some parts of the objective function using classical heuristics and
+some by using the QPU, enable the further abstraction of problem representation.
 
 Ocean supports various quadratic models:
 
-* :ref:`concept_models_bqm` are unconstrained,  have binary variables, and are contained by
-  the :class:`dimod.BinaryQuadraticModel` class.
-* :ref:`concept_models_cqm` can be constrained,  have real, integer and binary variables,
-  and are contained by the :class:`dimod.ConstrainedQuadraticModel` class.
-* :ref:`concept_models_dqm` are unconstrained, have discrete variables, and are contained by
-  the :class:`dimod.DiscreteQuadraticModel` class.
+*   :ref:`concept_models_ising` and :ref:`concept_models_qubo`
+*   :ref:`concept_models_bqm` are unconstrained and support binary variables.
+*   :ref:`concept_models_cqm` can be constrained and support real, integer 
+    and binary variables.
+*   :ref:`concept_models_dqm` are unconstrained and support discrete variables.
 
 Ocean also provides support for :ref:`higher order models <oceandocs:higher_order>`,
 which are typically reduced to quadratic for sampling.
 
-.. _concept_models_bqm:
+.. end_concept_models_quadratic
 
-Binary Quadratic Models 
-=======================
-
-The binary quadratic model (BQM) class encodes
-Ising and quadratic unconstrained binary optimization (QUBO) models
-used by samplers such as the D-Wave system.
-
-The BQM equation,
-
-.. math::
-
-    E(\bf{v})
-    = \sum_{i=1} a_i v_i
-    + \sum_{i<j} b_{i,j} v_i v_j 
-    + c
-    \qquad\qquad v_i \in\{-1,+1\} \text{  or } \{0,1\}
-
-can represent both. 
-
-The :term:`Ising` model is an objective function of :math:`N` variables
-:math:`s=[s_1,...,s_N]` corresponding to physical Ising spins, where :math:`h_i`
-are the biases and :math:`J_{i,j}` the couplings (interactions) between spins.
-
-.. math::
-
-    \text{Ising:} \qquad  
-    E(\bf{s})
-    = \sum_{i=1} h_i s_i + 
-    \sum_{i<j} J_{i,j} s_i s_j 
-    \qquad\qquad s_i\in\{-1,+1\}
-
-
-The :term:`QUBO` model is an objective function of :math:`N` binary variables represented
-as an upper-diagonal matrix :math:`Q`, where diagonal terms are the linear coefficients
-and the nonzero off-diagonal terms the quadratic coefficients.
-
-.. math::
-
-    \text{QUBO:} \qquad E(\bf{x})  
-    =  \sum_{i\le j} x_i Q_{i,j} x_j
-    \qquad\qquad x_i\in \{0,1\}
-
-The :class:`dimod.BinaryQuadraticModel` class can contain both these models and its methods provide
-convenient utilities for working with, and interworking between, the two representations
-of a problem.
-
-
-Other Models
-============
 
 .. _concept_models_dqm:
 
-Discrete Quadratic Models 
+Discrete Quadratic Models
 -------------------------
 
-The discrete quadratic model (DQM) is a polynomial over *discrete* variables, 
-with all terms of degree two or less, where a discrete variable represents some 
-collection of distinct values, such as ``{red, green, blue, yellow}`` or 
-``{3.2, 67}``, which are called the variable's *cases*.  
+The discrete quadratic model (DQM) is a polynomial over *discrete* variables,
+with all terms of degree two or less, where a discrete variable represents some
+collection of distinct values, such as ``{red, green, blue, yellow}`` or
+``{3.2, 67}``, which are called the variable's *cases*.
 
 A discrete quadratic model may be defined as
 
@@ -277,19 +231,19 @@ A discrete quadratic model may be defined as
 
     H(\bf{d}) = \sum_{i} a_i(\bf{d}_i) + \sum_{i,j} b_{i,j}(\bf{d}_i,\bf{d}_j) + c
 
-where :math:`\bf{d}_i` are the discrete variables, :math:`a_i()` and :math:`b_{i,j}()` 
+where :math:`\bf{d}_i` are the discrete variables, :math:`a_i()` and :math:`b_{i,j}()`
 are real-valued functions, and :math:`c` is a constant (offset).
 
-You can represent any DQM with an equivalent model over **binary** variables 
-by replacing each discrete variable, :math:`\bf{d}_i`, with a vector of binary 
-variables using `one-hot encoding <https://en.wikipedia.org/wiki/One-hot>`_, 
-where exactly one binary variable is True and all others are False: 
-:math:`\sum_a x_{i,a} = 1 \quad \forall i`. 
+You can represent any DQM with an equivalent model over **binary** variables
+by replacing each discrete variable, :math:`\bf{d}_i`, with a vector of binary
+variables using `one-hot encoding <https://en.wikipedia.org/wiki/One-hot>`_,
+where exactly one binary variable is True and all others are False:
+:math:`\sum_a x_{i,a} = 1 \quad \forall i`.
 
-In particular, a discrete quadratic model for :math:`N` discrete variables, 
-:math:`\bf{d}_i`, each with :math:`n_i` cases, is then defined by using a 
-binary variable, :math:`x_{i,u}`, to indicate whether discrete variable 
-:math:`\bf{d}_i` is set to case :math:`u`. The objective function can be 
+In particular, a discrete quadratic model for :math:`N` discrete variables,
+:math:`\bf{d}_i`, each with :math:`n_i` cases, is then defined by using a
+binary variable, :math:`x_{i,u}`, to indicate whether discrete variable
+:math:`\bf{d}_i` is set to case :math:`u`. The objective function can be
 expressed by the equation:
 
 .. math::
@@ -299,22 +253,22 @@ expressed by the equation:
     + \sum_{i=1}^N \sum_{j=i+1}^N \sum_{u=1}^{n_i} \sum_{v=1}^{n_j} b_{i,j,u,v} x_{i,u} x_{j,v}
     + c
 
-Both representations are equivalent over the *feasible space*; that is, the 
+Both representations are equivalent over the *feasible space*; that is, the
 solutions that meet the one-hot-encoding constraints. The second representation
-ascribes energies both to the feasible space (satisfying constraints), and an 
-infeasible space (violating constraints). The second representation is used 
+ascribes energies both to the feasible space (satisfying constraints), and an
+infeasible space (violating constraints). The second representation is used
 by Ocean tools.
 
-The :class:`dimod.DiscreteQuadraticModel` class can contain this model and its 
+The :class:`dimod.DiscreteQuadraticModel` class can contain this model and its
 methods provide convenient utilities for working with representations
 of a problem.
 
 Data Structure
 ==============
 
-Quadratic models are implemented with an adjacency structure in which each variable
-tracks its own linear bias and its neighborhood. The figure below shows the graph
-and adjacency representations for an example BQM,
+Quadratic models are implemented with an adjacency structure in which each
+variable tracks its own linear bias and its neighborhood. The figure below
+shows the graph and adjacency representations for an example BQM,
 
 .. math::
 
@@ -328,45 +282,8 @@ and adjacency representations for an example BQM,
     Adjacency structure of a 4-variable binary quadratic model.
 
 
-Where Else to Look
-==================
+Related Information
+===================
 
-These models and their use in solving problems on the D-Wave system is described
-in the following documentation:
-
-*   :std:doc:`Getting Started with the D-Wave System <sysdocs_gettingstarted:doc_getting_started>`
-
-    Introduces key concepts such as objective functions, Ising models, QUBOs, and graphs, explains
-    how these models are used to represent problems, and provides some simple examples.
-*   :std:doc:`D-Wave Problem-Solving Handbook <sysdocs_gettingstarted:doc_handbook>`
-
-    Provides a variety of techniques for, and examples of, reformulating problems as BQMs.
-*   :std:doc:`Solving Problems on a D-Wave System <oceandocs:overview/solving_problems>`
-
-    Describes and demonstrates the use of BQM in the context of Ocean software.
-
-For more information on models, see the following:
-
-*   :ref:`dwave-hybrid <sdk_index_hybrid>`
-
-    Describes how to use reference hybrid solvers, build hybrid workflows, and your own hybrid components.
-*   :std:doc:`Using Leap’s Hybrid Solvers <sysdocs_gettingstarted:doc_leap_hybrid>`
-
-    Introduces Leap‘s quantum-classical hybrid solvers and provides references to usage information.
-
-*   :ref:`Getting Started Demonstrations and Jupyter Notebooks <projects-Demonstrations>` 
-
-    Provides pointers to a code-examples repository and Jupyter Notebooks, which have relevant content.  
-
-*   Example :ref:`map_dqm`
-
-    Shows an example of using `Leap <https://cloud.dwavesys.com/leap/>`_\ 's hybrid
-    DQM solver, ``hybrid_binary_quadratic_model_version<x>``, to solve a map
-    coloring problem.
-*   :class:`dimod.DiscreteQuadraticModel` class documentation
-
-    Describes the DQM class and its methods.
-*   :class:`~dwave.system.samplers.LeapHybridDQMSampler` class documentation
-
-    Describes Leap's DQM solver API.
-
+*   :ref:`opt_model_construction_nl` describes the construction of nonlinear models.
+*   :ref:`opt_model_construction_qm` describes the construction of quadratic models.

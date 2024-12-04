@@ -21,20 +21,20 @@ system requests many samples, not just one. This not only returns multiple
 answer.
 
 Some classical samplers might return non-probabilistic solutions; for example, 
-the :doc:`dimod <oceandocs:docs_dimod/sdk_index>` :class:`~.ExactSolver` 
+the :ref:`sdk_index_dimod` :class:`~.ExactSolver` 
 deterministically returns the best solution or solutions to small problems by 
 calculating the result for every configuration of variable values. Such samplers 
 are called solvers.
 
 Some Ocean functions might return a single best solution; for example, some 
-:doc:`dwave-networkx <oceandocs:docs_dnx/sdk_index>` graph algorithms return 
+:ref:`sdk_index_dnx` graph algorithms return 
 only the lowest-energy sample.
 
 dimod provides a :class:`~dimod.SampleSet` class that contains, and enables you to
 manipulate, samples.
 
 For an introduction to returned solutions and samples, see
-:std:doc:`Solutions <oceandocs:concepts/solutions>`. For all supported sampleset
+:ref:`concept_solutions`. For all supported sampleset
 methods, see :ref:`sampleset`.
 
 Example: Sampleset Returned from a Sampler
@@ -85,6 +85,8 @@ This example creates a sample set from NumPy arrays.
 ...                                          "BINARY",
 ...                                          energies,
 ...                                          num_occurrences=occurrences)
+
+.. _concept_solutions:
 
 =========
 Solutions

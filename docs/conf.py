@@ -318,4 +318,6 @@ rst_epilog = """
 .. |qc| replace:: D-Wave Quantum Cloud
 .. |support_email| replace:: D-Wave Customer Support
 .. _support_email: support@dwavesys.com
+.. |anneal_time_display_granularity| replace:: with a resolution of 0.01 :math:`\mu s`
+.. |anneal_time_parameter_granularity| replace:: with a resolution of 0.01 :math:`\mu s`
 """
