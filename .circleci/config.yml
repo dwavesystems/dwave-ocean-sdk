@@ -118,7 +118,7 @@ jobs:
 
   test-doctest:
     docker:
-      - image: python:3.12
+      - image: python:3.11
 
     steps:
       - checkout
