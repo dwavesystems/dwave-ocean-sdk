@@ -16,7 +16,7 @@
     quantum_research/index_quantum_research
     ocean/index_ocean_sdk
     leap_sapi/index_leap_sapi
-    concepts/glossary
+    concepts/index_concepts
     licenses
 
 .. dropdown:: First time here? Click to learn how to navigate the documentation
@@ -39,7 +39,7 @@
                 *   -   :ref:`index_leap_sapi`
                     -   Quantum cloud service's account management, release notes,
                         IDE support, etc.
-                *   -   :ref:`Glossary/Index <concepts_glossary>`
+                *   -   :ref:`concepts <index_concepts>`
                     -   Learn the relevant terminology and the fundamental concepts.
                         Search for terms here.
 
