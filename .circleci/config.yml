@@ -145,7 +145,7 @@ jobs:
           name: build the docs
           command: |
             . env/bin/activate
-            sudo apt update && sudo apt install doxygen graphviz
+            apt update && apt install -yq doxygen graphviz
             make -C docs/ html 
 
       - store_artifacts:
