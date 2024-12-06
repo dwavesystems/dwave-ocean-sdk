@@ -2,6 +2,7 @@ version: 2.1
 
 orbs:
   ocean: dwave/ocean@1
+  windows: circleci/windows@5.0
 
 environment:
   PIP_PROGRESS_BAR: 'off'
@@ -53,6 +54,31 @@ jobs:
           requirements: tests/requirements.txt
           cache: true
           cache-generation: 2
+
+      - ocean/pip-install:
+          packages: .
+          cache: false
+
+      - ocean/coverage-run-unittest
+
+  test-windows:
+    parameters:
+      python-version:
+        type: string
+
+    executor:
+      name: windows/default
+
+    steps:
+      - checkout
+
+      - ocean/nuget-install-python:
+          python-version: << parameters.python-version >>
+          cache: true
+
+      - ocean/pip-install:
+          requirements: tests/requirements.txt
+          cache: false
 
       - ocean/pip-install:
           packages: .
@@ -211,6 +237,10 @@ workflows:
           matrix:
             parameters:
               python-version: *python-versions
+      - test-windows:
+          matrix:
+            parameters:
+              python-version: *python-versions
       # - test-individual-pkgs
       - test-doctest
 
@@ -232,6 +262,10 @@ workflows:
             parameters:
               python-version: *python-versions
       - test-macos:
+          matrix:
+            parameters:
+              python-version: *python-versions
+      - test-windows:
           matrix:
             parameters:
               python-version: *python-versions
