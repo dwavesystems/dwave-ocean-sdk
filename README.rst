@@ -9,9 +9,6 @@
 .. image:: https://readthedocs.com/projects/d-wave-systems-dwave-ocean-sdk/badge
     :target: https://docs.ocean.dwavesys.com
 
-.. image:: https://ci.appveyor.com/api/projects/status/c8ofdgyiy4w38lu3?svg=true
-    :target: https://ci.appveyor.com/project/dwave-adtt/dwave-ocean-sdk
-
 .. image:: https://circleci.com/gh/dwavesystems/dwave-ocean-sdk.svg?style=svg
     :target: https://circleci.com/gh/dwavesystems/dwave-ocean-sdk
 
