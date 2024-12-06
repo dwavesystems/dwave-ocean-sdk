@@ -76,12 +76,12 @@ class TestSmokeIndividually(unittest.TestCase):
         self.assertEqual(result.samples.first.energy, -3.0)
 
     def test_neal(self):
-        import neal
+        from dwave.samplers import SimulatedAnnealingSampler
 
         h = {'a': -1, 'b': +1}
         J = {('a', 'b'): -1}
 
-        resp = neal.SimulatedAnnealingSampler().sample_ising(h, J)
+        resp = SimulatedAnnealingSampler().sample_ising(h, J)
 
     def test_preprocessing(self):
         import dimod
