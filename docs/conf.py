@@ -59,6 +59,7 @@ extensions = [
 ]
 
 autosummary_generate = True
+numfig = True
 
 source_suffix = ['.rst', '.md']
 
