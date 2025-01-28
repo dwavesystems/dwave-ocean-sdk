@@ -704,7 +704,9 @@ second, the anneal fraction, :math:`s`, as a value between 0 and 1. This input
 causes the system to produce linear changes in :math:`s` between :math:`s_i` and
 :math:`s_{i+1}`.
 
-.. include:: ../../../chapters/shared_content/shared_anneal_schedule_points_rules.rst
+.. include:: ../shared/anneal.rst
+    :start-after: start_schedule_rules
+    :end-before: end_schedule_rules
 
 The table below gives three valid examples of anneal schedule points, producing
 the varying patterns of :math:`B(t)` that appear in

@@ -81,7 +81,9 @@ physical system and as robust as possible to its control errors\ [#]_.
 Reformulation Steps
 -------------------
 
-.. include:: ../../../chapters/shared_content/reformulation_steps.rst
+.. include:: ../shared/formulation.rst
+    :start-after: start_general_steps
+    :end-before: end_general_steps
 
 Reformulation Considerations
 ----------------------------

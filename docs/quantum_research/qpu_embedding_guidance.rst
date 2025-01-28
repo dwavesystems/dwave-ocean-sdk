@@ -514,7 +514,9 @@ Further Information
 Virtual Graphs
 ==============
 
-.. include:: ../../../chapters/shared_content/deprecation_virtualgraph.rst
+.. include:: ../shared/notes.rst
+    :start-after: start_virtual_graph_deprecation
+    :end-before: end_virtual_graph_deprecation
 
 The |dwave_short| *virtual graph* feature simplifies the process of
 minor-embedding by enabling you to more easily create, optimize, use, and reuse

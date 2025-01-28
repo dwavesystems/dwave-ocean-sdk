@@ -816,7 +816,9 @@ then comparing the values.\ [#]_
     This corresponds to a case where many problems, each requesting only a small
     number of reads, are queued to run on the QPU.
 
-.. include:: ../../../chapters/shared_content/shared_note_ref_to_qpu_specs.rst
+.. include:: ../shared/qpu_specific_specs.rst
+    :start-after: start_call_support
+    :end-before: end_call_support
 
 As a simple illustration of the effect of thermal equilibration, consider a
 single-qubit problem. As shown in :numref:`Figure %s <annealing_functions_5us>`,
@@ -1144,7 +1146,9 @@ QPU.
 Virtual Graphs
 ==============
 
-.. include:: ../../../chapters/shared_content/deprecation_virtualgraph.rst
+.. include:: ../shared/notes.rst
+    :start-after: start_virtual_graph_deprecation
+    :end-before: end_virtual_graph_deprecatio
 
 The |dwave_short| *virtual graph* feature (see the
 :class:`~oceandocs:dwave.system.composites.virtual_graph.VirtualGraphComposite`

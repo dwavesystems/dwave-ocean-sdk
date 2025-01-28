@@ -1,4 +1,6 @@
-.. include:: ../../../chapters/shared_content/admin.rst
+.. include:: ../shared/admin.rst
+    :start-after: start_substitutions
+    :end-before: end_substitutions
 
 .. |set-default-to-unlimited-access| replace::
 
