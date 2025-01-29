@@ -10,8 +10,8 @@ Leap Service
 
   leap_index_rns
   leap_dev_env
-  doc_admin
-  doc_rest_api
+  leap_admin
+  leap_sapi_rest
 
 The |cloud_tm| quantum cloud service from 
 `D-Wave Quantum Inc. <https://dwavesys.com>`_, launched in 2018, provides 
@@ -30,12 +30,12 @@ real-time access to quantum computing.
          
         Description of Leap support for third-party IDEs. 
 
-    .. grid-item-card:: |doc_leap_admin|_ 
+    .. grid-item-card:: :ref:`leap_admin` 
          
         Description of how project administrators manage access
         to projects in Leap.
 
-    .. grid-item-card:: |doc_rest_api|_ 
+    .. grid-item-card:: :ref:`leap_sapi_rest` 
          
         Reference documentation for the :term:`Solver API <SAPI>` (SAPI) 
         REST interface.

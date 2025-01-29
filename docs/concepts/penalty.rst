@@ -10,6 +10,9 @@ the constraint). By adding such models to the :term:`objective function` that
 represents your problem, you make it less likely that solutions that violate
 the constraint are selected by solvers that seek low-energy states.
 
+Descriptive Example
+===================
+
 For example, consider that you are looking for solutions to a problem that is
 represented by a binary quadratic model, :code:`bqm_p`, which has variables
 :math:`v_1, v_2, v_3, v_4, v_5, ...` etc. You wish to constrain the solutions to
@@ -72,6 +75,104 @@ adding a value of :math:`1` to the BQM being minimized, :code:`bqm_p`. By
 penalizing both possible assignments of variables that violate the constraint,
 the BQM based on this penalty function has minimal values (lowest energy states)
 for variable values that meet the constraint.
+
+Example Using Ocean
+===================
+
+Consider an example of mapping an AND clause to a QUBO. To do this, solutions to
+the QUBO (solutions that minimize the energy of the QUBO) must be exactly the
+valid configurations of an AND gate, ``z = AND(x_1, x_2)``.
+
+First, import the required packages.
+
+.. code-block:: python
+
+    import penaltymodel as pm
+    import dimod
+    import networkx as nx
+
+Next, determine the feasible configurations that the QUBO should target by
+minimizing the energy of these configurations. Below is a truth table
+representing an AND clause.
+
+.. table:: AND Gate
+
+    ====================  ====================  ==================
+    ``x_1``               ``x_2``               ``z``
+    ====================  ====================  ==================
+    0                     0                     0
+    0                     1                     0
+    1                     0                     0
+    1                     1                     1
+    ====================  ====================  ==================
+
+The rows of the truth table are exactly the feasible configurations.
+
+.. code-block:: python
+
+    feasible_configurations = [{'x1': 0, 'x2': 0, 'z': 0},
+                               {'x1': 1, 'x2': 0, 'z': 0},
+                               {'x1': 0, 'x2': 1, 'z': 0},
+                               {'x1': 1, 'x2': 1, 'z': 1}]
+
+At this point, you can get a penalty model.
+
+.. code-block:: python
+
+    bqm, gap = pm.get_penalty_model(feasible_configurations)
+
+However, if you know the QUBO, you can build the penalty model yourself. Observe
+that for the equation,
+
+.. code-block::
+
+    E(x_1, x_2, z) = x_1 x_2 - 2(x_1 + x_2) z + 3 z + 0
+
+you get the following energies for each row in the truth table:
+
+.. figure:: ../_images/and_truth_table_colored.png
+    :name: andTruthTableColored
+    :alt: Truth table for AND.
+    :align: center
+    :scale: 70 %
+
+    Truth table for AND.
+
+The energy is minimized on exactly the desired feasible configurations; you can
+encode this energy function as a QUBO. Set the offset to zero because there is
+no constant energy offset.
+
+.. code-block:: python
+
+    qubo = dimod.BinaryQuadraticModel({'x1': 0., 'x2': 0., 'z': 3.},
+                                      {('x1', 'x2'): 1., ('x1', 'z'): 2., ('x2', 'z'): 2.},
+                                      0.0,
+                                      dimod.BINARY)
+
+The table shows a ground energy of ``0``; you can calculate it using the qubo to
+check that this is true for the feasible configuration ``(0, 1, 0)``.
+
+.. code-block:: python
+
+    ground_energy = qubo.energy({'x1': 0, 'x2': 1, 'z': 0})
+
+The last value needed is the classical gap. This is the difference in energy
+between the lowest infeasible state and the ground state.
+
+.. figure:: ../_images/energy_gap.png
+    :name: energyGap
+    :alt: Energy gap.
+    :align: center
+    :scale: 70 %
+
+    Energy gap.
+
+With all of the pieces, you can now build the penalty model.
+
+.. code-block:: python
+
+    classical_gap = 1
+    p_model = pm.PenaltyModel.from_specification(spec, qubo, classical_gap, ground_energy)
 
 Related Information
 ===================
