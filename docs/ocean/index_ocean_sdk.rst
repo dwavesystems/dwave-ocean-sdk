@@ -11,6 +11,8 @@ Ocean SDK
     ocean_index_get_started
     ocean_packages
     ocean_dwave_cli
+    ocean_release_notes
+    ocean_source_code
 
 .. sections-start-marker
 
@@ -38,7 +40,19 @@ Ocean\ |tm| software is a suite of tools for using
 
         Command line interface (CLI) for installing the Ocean SDK and more.
 
-.. sections-end-marker
+    .. grid-item-card:: :ref:`ocean_release_notes`
+        :img-top: /_images/release_notes_icon.svg
+        :link: ocean_release_notes
+        :link-type: ref
+
+        Release notes for Ocean software's packages.
+
+    .. grid-item-card:: :ref:`ocean_source_code`
+        :img-top: /_images/source_code_icon.svg
+        :link: ocean_source_code
+        :link-type: ref
+
+        Links to Ocean software's packages.
 
 Example
 =======

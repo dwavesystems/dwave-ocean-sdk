@@ -13,6 +13,7 @@ Get Started with Quantum Computing
     qpu_workflow
     qpu_intro_classical
     qpu_intro_quantum_solvers
+    qpu_qubo_ising
     qpu_embedding_intro
     qpu_index_examples_beginner
     
@@ -52,6 +53,10 @@ the |cloud_tm| quantum cloud service.
 
         Introduction to Ocean software's quantum solvers.
 
+   .. grid-item-card:: :ref:`qpu_qubo_ising`
+
+        Modeling problems as QUBOs and Ising Models.
+        
     .. grid-item-card:: :ref:`qpu_embedding_intro`
         :link: qpu_embedding_intro
         :link-type: ref
