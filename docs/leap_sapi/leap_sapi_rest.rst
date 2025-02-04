@@ -84,7 +84,7 @@ A problem may have one of the following statuses:
     CANCELLED    Problem was cancelled.
     ============ ========================================================
 
-.. figure:: ../../_images/prob_status.png
+.. figure:: ../_images/prob_status.png
     :name: prob_status
     :alt: Diagram showing how a problem status changes from pending to
         in progress to one of the terminal states. The terminal states are

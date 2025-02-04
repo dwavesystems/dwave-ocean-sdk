@@ -53,7 +53,7 @@ treewidth graphs based on belief propagation on junction trees [Jen1990]_.
 
 .. only:: html
 
-    .. figure:: ../../_images/alg1.png
+    .. figure:: ../_images/alg1.png
         :name: algorithm_1
         :alt: Optimization postprocessing algorithm, showing that the start is
             the set of majority voted samples, S, from the QPU's logical graph
@@ -113,7 +113,7 @@ distribution is expected in postprocessed samples. See
 
 .. only:: html
 
-    .. figure:: ../../_images/alg2.png
+    .. figure:: ../_images/alg2.png
         :name: algorithm_2
         :alt: Sampling postprocessing algorithm, showing that the start is the
             set of majority voted samples, S, from the QPU's logical graph, with
@@ -181,7 +181,7 @@ on and off. As seen in :numref:`Figure %s <residual_line>` and
 improve solutions significantly. Furthermore, the worse the non-postprocessed
 solutions are, the more postprocessing helps.
 
-.. figure:: ../../_images/residual_line.png
+.. figure:: ../_images/residual_line.png
     :name: residual_line
     :alt: Graph showing the mean residual energies (that is, the mean energies
         above the ground-state energy) returned with and without optimization
@@ -201,7 +201,7 @@ solutions are, the more postprocessing helps.
     samples not as good. Error bars indicate 95% confidence intervals over input
     Hamiltonians.
 
-.. figure:: ../../_images/residual_scatter.png
+.. figure:: ../_images/residual_scatter.png
     :name: residual_scatter
     :alt: Graph showing a scatter plot of mean residual energies (that is, the
         mean energies above the ground-state energy) returned with and without
@@ -308,7 +308,7 @@ postprocessing. In the cold case, shown on the left, the mean energy decreases
 dramatically after postprocessing, which is suggestive of successful
 postprocessing.
 
-.. figure:: ../../_images/mean_energy_solutions.png
+.. figure:: ../_images/mean_energy_solutions.png
     :name: mean_energy_solutions
     :alt: Two graphs comparing the mean energy of solutions of 10,000 samples
         received before postprocessing (that is, the raw results) and after, but
@@ -371,7 +371,7 @@ distribution. This later choice of :math:`\beta` allows a fair comparison of the
 two distributions since mean energy is controlled for; otherwise, entropy can
 always be improved by raising the mean energy of the distribution.
 
-.. figure:: ../../_images/entropy_solutions.png
+.. figure:: ../_images/entropy_solutions.png
     :name: entropy_solutions
     :alt: Two graphs comparing the entropy of solutions of 10,000 samples
         received before postprocessing (that is, the raw results) and after, but
@@ -420,7 +420,7 @@ divergence is largely due to decreases in the mean energy. For the local
 temperature postprocessing, the decrease is a result of increased sample
 diversity.
 
-.. figure:: ../../_images/kl_solutions_prime.png
+.. figure:: ../_images/kl_solutions_prime.png
     :name: kl_solutions_prime
     :alt: Two graphs comparing the KL divergence of solutions of 10,000 samples
         received before postprocessing (that is, the raw results) and after, but
@@ -495,7 +495,7 @@ applied with the cold temperature, the average backbone estimate produced by the
 sample improves overall. The trend is similar but less pronounced at the local
 temperature.
 
-.. figure:: ../../_images/dw2x_solutions.png
+.. figure:: ../_images/dw2x_solutions.png
     :name: dw2x_solutions
     :alt: Two graphs comparing the average backbone estimate of solutions of
         10,000 samples received before postprocessing (that is, the raw results)
@@ -554,7 +554,7 @@ not very strong. Trends in this metric are consistent with the backbone result,
 as would be expected because the backbone can be considered to place a limit on
 the FPR.
 
-.. figure:: ../../_images/dw2x_solutions_fpr.png
+.. figure:: ../_images/dw2x_solutions_fpr.png
     :name: dw2x_solutions_fpr
     :alt: Two graphs comparing the relative false positive rate of solutions of
         10,000 samples received before postprocessing (that is, the raw results)

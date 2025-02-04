@@ -4,10 +4,6 @@
 Support for IDEs
 ================
 
-================
-Support for IDEs
-================
-
 The Leap quantum cloud service supports third-party IDEs,
 both local and cloud-based, that implement the
 `Development Containers specification <https://containers.dev/supporting>`_

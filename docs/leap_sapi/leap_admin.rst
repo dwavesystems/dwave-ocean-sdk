@@ -56,7 +56,7 @@ Leap Admin Organization Page
 When you open an organization, the organization page
 is displayed as shown in :numref:`Figure %s <AdminOrgPage>`.
 
-.. figure:: ../../_images/leap_admin_org_admin_org_page.png
+.. figure:: ../_images/leap_admin_org_admin_org_page.png
     :name: AdminOrgPage
     :alt: Leap Admin Organization Page
 
@@ -79,7 +79,7 @@ Leap Admin Project Page
 When you open a project, the project page is displayed
 as shown in :numref:`Figure %s <AdminProjectPage>`.
 
-.. figure:: ../../_images/leap_admin_project_admin_project_page.png
+.. figure:: ../_images/leap_admin_project_admin_project_page.png
     :name: AdminProjectPage
     :alt: Leap Admin Project Page
 
@@ -110,7 +110,7 @@ Tabs that organize tasks into logical groups are as follows:
 Global Search and Profile Avatar Menu
 -------------------------------------
 
-.. figure:: ../../_images/leap_admin_org_proj_pages_common.png
+.. figure:: ../_images/leap_admin_org_proj_pages_common.png
     :name: AdminProjectOrgCommonPage
     :alt: Global Search and Profile Avatar Menu
 
@@ -282,7 +282,7 @@ Logging in to Leap Admin
 
     .. _fig_dashboard_leap_admin_login:
 
-    .. figure:: ../../_images/leap_admin_dashboard_login.png
+    .. figure:: ../_images/leap_admin_dashboard_login.png
         :name: DashboardLeapAdminLogin
         :alt: Leap Admin Login Menu
         :width: 25 %
@@ -692,7 +692,7 @@ illustrates the following:
 *   In the set of records 2, the middle record overlaps
     with the previous record.
 
-.. figure:: ../../../documents/_images/leap_admin_solver_time_alloc_record.png
+.. figure:: ../_images/leap_admin_solver_time_alloc_record.png
     :name: ExampleSolverAccessTimeRecords
     :alt: Example of Solver-Access Time Records
 

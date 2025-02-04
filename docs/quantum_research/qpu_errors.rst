@@ -98,7 +98,7 @@ standard deviation :math:`\sigma.`
 times :math:`s`. See the :ref:`qpu_ice_measure_2spin` section for a description
 of the measurement method.
 
-.. figure:: ../../_images/gaussian_systematic_h.png
+.. figure:: ../_images/gaussian_systematic_h.png
     :name: gaussian_systematic_h
     :alt: Two graphs showing delta h distributions estimated from best fit
         parameters to a thermal model. The left graph shows the standard
@@ -130,7 +130,7 @@ of the measurement method.
     get an estimate of :math:`\delta h` over a range of :math:`s`. Data shown
     are representative of |dwave_short| 2X systems.
 
-.. figure:: ../../_images/gaussian_systematic_j.png
+.. figure:: ../_images/gaussian_systematic_j.png
     :name: gaussian_systematic_j
     :alt: Two graphs showing delta J distributions estimated from best fit
         parameters to a thermal model. The left graph shows the standard
@@ -239,7 +239,7 @@ parameter :math:`\chi`.\ [#]_
     susceptibility.
 
 
-.. figure:: ../../_images/three-spin-updated.png
+.. figure:: ../_images/three-spin-updated.png
     :name: three_spin_chain
     :alt: Three-spin chain to look at the effects of Kai. Diagram showing two
         3-qubit chains, labeled A (top chain) and B (bottom chain). A comprises
@@ -256,7 +256,7 @@ parameter :math:`\chi`.\ [#]_
     **b)** The model for the system showing induced couplings and
     :math:`h`-biases due to qubit susceptibility, :math:`\chi`.
 
-.. figure:: ../../_images/chi_vs_s.png
+.. figure:: ../_images/chi_vs_s.png
     :name: chi_vs_s
     :alt: Graph showing Kai as a function of s (normalized annealing time). It
         shows how Kai typically varies with s, from around -0.04 early in the
@@ -349,7 +349,7 @@ anneal and less later in the anneal.
 :numref:`Figure %s <example_64q_noise_spectrum>` shows typical data for a
 64-qubit system.
 
-.. figure:: ../../_images/example_64q_noise_spectrum.png
+.. figure:: ../_images/example_64q_noise_spectrum.png
     :name: example_64q_noise_spectrum
     :alt: Graph showing the fluctuation spectrum for a 64-qubit cluster. It
         shows the power spectral density of the signal, in effective h units,
@@ -388,7 +388,7 @@ at 0 and having errors :math:`\pm b`. Typical errors for :math:`h` and :math:`J`
 are shown in :numref:`Figure %s <quantization_error>`. Note that these errors
 are smaller than other contributors to ICE.
 
-.. figure:: ../../_images/quantization_error.png
+.. figure:: ../_images/quantization_error.png
     :name: quantization_error
     :alt: Two graphs showing the boundaries of the distributions of errors in h
         and J. The left graph shows the typical quantization step for the DAC
@@ -541,7 +541,7 @@ the blue lines denote the boundaries of the different spin ordering regions for
 the case where :math:`\chi = -0.05`, versus the ideal case shown by the dashed
 lines. (The two-spin system does not have NNN effects.)
 
-.. figure:: ../../_images/2q_chi_diagram.png
+.. figure:: ../_images/2q_chi_diagram.png
     :name: 2q_chi_diagram
     :alt: Graph showing the effect of h ICE on a 2-qubit phase diagram for
         J = -0.5. Along its horizontal axis are values for h 1 from -1 to 1,
@@ -615,7 +615,7 @@ model are:
 *   Additional warping of the phase diagram occurs as :math:`\chi` changes from
     :math:`-0.04` to :math:`-0.015` through anneal time :math:`s`.
 
-.. figure:: ../../_images/2q_misbalancing_diagram.png
+.. figure:: ../_images/2q_misbalancing_diagram.png
     :name: 2q_misbalancing_diagram
     :alt: Graph showing the effect of h ICE on a 2-qubit system with spins of
         different magnitude when there is a difference between specified h and
@@ -842,7 +842,7 @@ As a consequence, even when the temperature of the mixing chamber is constant,
 the effective temperature of the qubits may vary by a few millikelvin, depending
 on usage.
 
-.. figure:: ../../_images/single-qubit-temperature-extraction.png
+.. figure:: ../_images/single-qubit-temperature-extraction.png
     :name: single-qubit-temp
     :width: 80 %
     :alt: Graph showing single qubit temperature extraction.
@@ -1071,7 +1071,7 @@ couplings, and standard chain couplings are all negative, this feature
 effectively doubles the energy scale available for embedded problems; see
 :numref:`Figure %s <extendedJ>`.
 
-.. figure:: ../../_images/extendedJ.png
+.. figure:: ../_images/extendedJ.png
     :name: extendedJ
     :scale: 50 %
     :alt: Schematic diagram of a Chimera graph showing how qubits connect as
@@ -1108,7 +1108,7 @@ offset magnetic field that is potentially :math:`s`-dependent).\ [#]_. These
 effects shift the sigmoid curve of plotted :math:`h` values from its ideal path,
 as shown in :numref:`Figure %s <fb-sigmoid>`.
 
-.. figure:: ../../_images/flux_bias_offset.png
+.. figure:: ../_images/flux_bias_offset.png
     :name: fb-sigmoid
     :width: 80 %
     :alt: Graph showing ideal and offset h sigmoid
@@ -1148,7 +1148,7 @@ Virtual Graphs
 
 .. include:: ../shared/notes.rst
     :start-after: start_virtual_graph_deprecation
-    :end-before: end_virtual_graph_deprecatio
+    :end-before: end_virtual_graph_deprecation
 
 The |dwave_short| *virtual graph* feature (see the
 :class:`~oceandocs:dwave.system.composites.virtual_graph.VirtualGraphComposite`

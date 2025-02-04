@@ -71,7 +71,7 @@ Bibliography
     August 30, 2010. The |dwave_short| website.
 
 .. [Bia2014]
-    Zhengbing Bian, Fabian Chudak, Robert Israel, Brad Lackey,
+    Zhengbing Bian, Fabian Chudak, Robert Israel, Brad Lackey, 
     William G. Macready, and Aidan Roy.
     "Discrete optimization using quantum annealing on sparse Ising models."
     *Frontiers in Physics* 18 September 2014.
@@ -954,8 +954,8 @@ Bibliography
     High Performance Computing. ISC High Performance 2020. Lecture Notes in
     Computer Science (LNCS), vol 12151. Springer, Cham.
     https://doi.org/10.1007/978-3-030-50743-5_10
-
-.. TODO: order the dwave-networkx citations alphabetically
+    
+.. TODO:: order dwave-networkx citations alphabetically
 
 .. [Boo2019]
     Boothby K., P. Bunyk, J. Raymond and A. Roy.

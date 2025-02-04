@@ -77,7 +77,7 @@ such that the classical spin states represent a low-energy solution.
 :numref:`Figure %s <annealing-functions>` shows how :math:`A` and :math:`B`
 change over time for a standard anneal.
 
-.. figure:: ../../_images/annealing-functions.png
+.. figure:: ../_images/annealing-functions.png
     :name: annealing-functions
     :height: 400 pt
     :width: 400 pt
@@ -131,7 +131,7 @@ and :math:`\Phi_{\rm CCJJ}(s)` is an external flux applied to every qubit's
 compound Josephson-junction structures to change the potential energy shape of
 the qubit.
 
-.. figure:: ../../_images/ip_vs_delta.png
+.. figure:: ../_images/ip_vs_delta.png
     :name: ip-delta
     :width: 80 %
     :alt: Graph showing I p plotted against delta q in gigahertz. Along its
@@ -269,7 +269,7 @@ linearly with time, :math:`A(s)` and :math:`B(s)` are produced by the linear
 growth of the signal :math:`c(s)` . A typical plot of :math:`A(c(s))` and
 :math:`B(c(s))` is shown in :numref:`Figure %s <fastAnnealSchedule>`.
 
-.. figure:: ../../_images/fast_anneal_schedule.png
+.. figure:: ../_images/fast_anneal_schedule.png
     :name: fastAnnealSchedule
     :height: 400 pt
     :width: 400 pt
@@ -328,7 +328,7 @@ points for several qubit network sizes. A network of logical qubits is created
 by coupling multiple qubits to a single central qubit using :math:`J = +1`; see
 the :ref:`qpu_ice_measure_2spin` section for more details.
 
-.. figure:: ../../_images/annealing-functions-cluster-annotated-5-us.png
+.. figure:: ../_images/annealing-functions-cluster-annotated-5-us.png
     :name: annealing_functions_5us
     :width: 80 %
     :alt: Graph showing representative annealing schedules with freezeout points
@@ -353,7 +353,7 @@ the :ref:`qpu_ice_measure_2spin` section for more details.
     right to left, respectively. Data shown are representative of |dwave_short|
     2X systems.
 
-.. figure:: ../../_images/annealing-functions-cluster-annotated-100-us.png
+.. figure:: ../_images/annealing-functions-cluster-annotated-100-us.png
     :name: annealing_functions_100us
     :width: 80 %
     :alt: Graph showing representative annealing schedules with freezeout points
@@ -390,7 +390,7 @@ earlier in the anneal, where :math:`I_p` is lower.
     statistics of a simple logical qubit transition can approximately determine
     the relative value of :math:`I_p` at freezeout.
 
-.. figure:: ../../_images/ip-vs-logical-qubit-size.png
+.. figure:: ../_images/ip-vs-logical-qubit-size.png
     :name: ip-vs-logical-qubit-size
     :width: 80 %
     :alt: Graph showing I p as a function of logical qubit cluster size and
@@ -445,7 +445,7 @@ bias :math:`c(s)` versus :math:`s`. Because of the shape of the qubit energy
 potential, :math:`c(s)` is not linear in :math:`s` but is chosen to ensure that
 :math:`I_p(s)` grows linearly with :math:`s`.
 
-.. figure:: ../../_images/anneal-bias-versus-anneal-fraction.png
+.. figure:: ../_images/anneal-bias-versus-anneal-fraction.png
     :name: anneal-bias-versus-anneal-fraction
     :alt: Two graphs. The top graph shows c (anneal control bias) plotted
         against shows s (normalized annealing time). Along its horizontal axis
@@ -472,7 +472,7 @@ example of the annealing control bias with :math:`\delta c_i = 0.05` and
 :math:`\delta c_i = -0.05`. Note that the anneal offset is a *vertical* shift up
 or down in annealing control bias, not a shift in :math:`s`.
 
-.. figure:: ../../_images/anneal-bias-versus-anneal-fraction-with-offsets.png
+.. figure:: ../_images/anneal-bias-versus-anneal-fraction-with-offsets.png
     :name: anneal-bias-versus-anneal-fraction-with-offsets
     :alt: Graph showing c (anneal control bias) plotted against s (normalized
         annealing time). It compares the baseline anneal trajectory with an
@@ -505,7 +505,7 @@ offset :math:`\delta c_i` is that :math:`B(s)\rightarrow B_i(s)`.
 :numref:`Figure %s <delta-versus-anneal-fraction-with-offsets>` also shows
 typical :math:`B_i(s)` versus :math:`s` for the same set of :math:`\delta c_i`.
 
-.. figure:: ../../_images/delta-versus-anneal-fraction-with-offsets.png
+.. figure:: ../_images/delta-versus-anneal-fraction-with-offsets.png
     :name: delta-versus-anneal-fraction-with-offsets
     :alt: Graph showing the energy of A(s) and B(s) with and without positive
         and negative anneal offsets. Along its horizontal axis is s (normalized
@@ -541,7 +541,7 @@ been set without an applied offset, for several values of an offset
 :math:`J_{i,j}(\delta c_i,\delta c_j,s)/J` for several values of offsets
 :math:`\delta c_i, \delta c_j` applied to a pair of coupled qubits.
 
-.. figure:: ../../_images/hamiltonian-distortion-single-q.png
+.. figure:: ../_images/hamiltonian-distortion-single-q.png
     :name: hamiltonian-distortion-single-q
     :alt: Graph showing showing the distortion of the Hamiltonian for three
         different anneal offset values.	Along its horizontal axis is s
@@ -564,7 +564,7 @@ been set without an applied offset, for several values of an offset
     target parameter remains. Data shown are representative of |dwave_2kq|
     systems.
 
-.. figure:: ../../_images/hamiltonian-distortion-two-q.png
+.. figure:: ../_images/hamiltonian-distortion-two-q.png
     :name: hamiltonian-distortion-two-q
     :alt: Graph showing showing the distortion of the Hamiltonian for three
         different anneal offset values. Along its horizontal axis is s
@@ -731,7 +731,7 @@ the varying patterns of :math:`B(t)` that appear in
             :math:`B(t)` is interrupted by a rapid 2-\ :math:`\mu s` quench
             halfway through.
 
-.. figure:: ../../_images/annealing_trajectories.png
+.. figure:: ../_images/annealing_trajectories.png
     :name: annealing_trajectories
     :width: 80 %
     :alt: Annealing trajectories
@@ -750,7 +750,7 @@ instance reported in [Dic2013]_ with a pause inserted. While pauses early or
 late in the anneal have no effect, a pause near the expected perturbative
 anticrossing produces a large increase in the ground-state success rate.
 
-.. figure:: ../../_images/16q-pause.png
+.. figure:: ../_images/16q-pause.png
     :name: 16q-pause
     :alt: Graph plotting ground-state success rate against pause start time. The
         horizontal axis shows the anneal fraction from 0.1 to 0.6, marked in
@@ -778,7 +778,7 @@ same 16-qubit instance with a quench added. The probability of obtaining ground
 state samples depends on when in the anneal the quench occurs, with later
 quenches more likely to obtain samples from the ground state.
 
-.. figure:: ../../_images/16q-quench.png
+.. figure:: ../_images/16q-quench.png
     :name: 16q-quench
     :alt: Graph plotting ground-state success rate against quench time. The
         horizontal axis shows the anneal fraction from 0.2 to 0.65, marked in
@@ -816,7 +816,7 @@ toward :math:`s=0`, and then return back up to :math:`s=1`.
 process where the system reverses to :math:`s = 0.5`, pauses for
 :math:`25  \ \mu s` at :math:`s = 0.5`, and ends at :math:`s=1`.
 
-.. figure:: ../../_images/reverse-annealing-pwl.png
+.. figure:: ../_images/reverse-annealing-pwl.png
     :name: reverse-annealing-pwl
     :width: 80 %
     :alt: Graph plotting a reverse anneal. The horizontal axis shows time in

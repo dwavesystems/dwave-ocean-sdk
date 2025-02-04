@@ -44,7 +44,7 @@ client system.
     `Ocean software <https://docs.ocean.dwavesys.com>`_ provides additional
     client-side postprocessing tools.
 
-.. figure:: ../../_images/highlevel_timing.png
+.. figure:: ../_images/highlevel_timing.png
     :name: highlevel_timing
     :alt: Diagram showing an overview of the execution of a QMI on the system,
         highlighting QPU access and service time.
@@ -93,7 +93,7 @@ conditions.
     your assigned label or its SAPI-assigned identifier) and view those times as
     shown here:
 
-    .. figure:: ../../_images/leap_service_time.png
+    .. figure:: ../_images/leap_service_time.png
         :name: leapServiceTime
         :alt: Snapshot of the Leap service's Problem Parameters for the problem.
 
@@ -122,7 +122,7 @@ computed by the QPU. Server-side postprocessing works in parallel with sampling,
 so that the computation times overlap except for postprocessing the last batch
 of samples.
 
-.. figure:: ../../_images/timing_structure.png
+.. figure:: ../_images/timing_structure.png
     :name: timing_structure
     :width: 80 %
     :alt: Diagram showing the breakdown of timing in the |dwave_short| QPU. The
@@ -170,7 +170,7 @@ single QMI on a QPU, *QPU access* time, is broken into two parts: a one-time
 initialization step to program the QPU (blue) and typically multiple sampling
 times for the actual execution on the QPU (repeated multicolor).
 
-.. figure:: ../../_images/QPU_access_time.png
+.. figure:: ../_images/QPU_access_time.png
     :scale: 50%
     :name: QPU_access_time
     :alt: Diagram showing the breakdown of QPU access time. The implicit
@@ -738,7 +738,7 @@ block repeatedly can yield different runtimes on a classical system, even though
 the instruction execution sequence does not change. Runtime distributions with
 occasional large outliers, as seen here, are not unusual.
 
-.. figure:: ../../_images/plot_distr_sequential_workflow_results.png
+.. figure:: ../_images/plot_distr_sequential_workflow_results.png
     :name: plot_distr_sequential_workflow_results
     :alt: Histogram showing the results of 100 measurements of service time
         plotted against the frequency of their occurrence. Along the horizontal
@@ -856,4 +856,5 @@ see |doc_solver_properties|_.
 
 .. [#]
     Amount of time varies by system.
+
 
