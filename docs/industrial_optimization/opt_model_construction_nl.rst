@@ -41,7 +41,7 @@ The model's symbols---decision variables, intermediate variables, constants,
 and mathematical operations---are represented as nodes in the graph while the 
 flow of operations upon these symbols are represented as the graph's edges.
 
-.. figure:: _images/nonlinear_model_DAG.png
+.. figure:: ../_images/nonlinear_model_DAG.png
     :name: nonlinearModelDAG
     :alt: Illustrative figure of a directed acyclic graph, with circles 
         representing symbols connected by directional lines with arrowheads.
@@ -53,7 +53,7 @@ flow of operations upon these symbols are represented as the graph's edges.
 Consider an illustrative problem of finding the minimum of a function of an 
 integer variable, the polynomial :math:`y = i^2 - 4i`. 
 
-.. figure:: _images/simple_polynomial_minimization.png
+.. figure:: ../_images/simple_polynomial_minimization.png
     :name: simplePolynomialMinimization
     :alt: Plot of :math:`y = i^2 - 4i` with the x-axis from about -2 to +3 and 
         the y-axis from -5 to +5, showing a parabola with its minimum at 
@@ -100,7 +100,7 @@ The code above has the following elements:
 The directed acyclic graph below illustratively represents the model for 
 minimizing polynomial :math:`y = i^2 - 4i`.
 
-.. figure:: _images/simple_polynomial_DAG.png
+.. figure:: ../_images/simple_polynomial_DAG.png
     :name: simplePolynomialDAG
     :alt: Illustrative directed acyclic graph of the model. The bottom two circles 
         are the :math:`i` and :math:`c` symbols, which connect into :math:`i*i` and
@@ -195,7 +195,7 @@ symbol.
 These decision-variable and constant symbols form the "root" of the directed 
 acyclic graph.
 
-.. figure:: _images/primitive_DAG.png
+.. figure:: ../_images/primitive_DAG.png
     :name: PrimitiveDAG
     :alt: Illustrative directed acyclic graph of the model. The single circle 
         is the :math:`i` symbol.  
@@ -213,7 +213,7 @@ symbol, for example, sums the 100 integer elements of the
 
 >>> sum_i = i.sum()
 
-.. figure:: _images/primitive_and_symbol_DAG.png
+.. figure:: ../_images/primitive_and_symbol_DAG.png
     :name: PrimitiveAndSymbolDAG
     :alt: Illustrative directed acyclic graph of the model. The bottom circle 
         is the :math:`i` symbol and the top one is :math:`sum_i`.  
@@ -240,7 +240,7 @@ integer.
 >>> max_i = i.max()
 >>> one_nozero = (sum_i == max_i).sum()
 
-.. figure:: _images/primitive_and_symbols_DAG.png
+.. figure:: ../_images/primitive_and_symbols_DAG.png
     :name: PrimitiveAndSymbolsDAG
     :alt: Illustrative directed acyclic graph of the model. The bottom circle 
         is the :math:`i` symbol, next are MAx and Sum circles, and then Equal, 
@@ -328,7 +328,7 @@ symbols etc. versus a more compact model. The figure below compares the directed
 acyclic graphs for these two formulations.
 
 
-.. figure:: _images/knapsack_simple_matrix.png
+.. figure:: ../_images/knapsack_simple_matrix.png
     :name: knapsackSimpleMatrix
     :alt: Illustrative directed acyclic graph of two models. The left graph has ten 
         nodes while the right one has thirty nodes.  
@@ -439,7 +439,7 @@ The figure below shows four destinations as dots labeled ``0`` to
 ``3``, and plots the least costly (green) and most costly (red) 
 routes.
 
-.. figure:: _images/best_worst_routes.png
+.. figure:: ../_images/best_worst_routes.png
     :name: bestWorstRoutes
     :alt: Plot of two routes between four points, the green one, (3, 2, 1, 0) is 
           the least costly while the red one, (2, 1, 3, 0), is the most costly.  
@@ -469,7 +469,7 @@ destinations is a permutation of values. The figure below compares the directed
 acyclic graphs for these two formulations.
 
 
-.. figure:: _images/route_models.png
+.. figure:: ../_images/route_models.png
     :name: RouteModels
     :alt: Illustrative directed acyclic graph of two models. The left graph has 
         far fewer nodes than that one the right.  

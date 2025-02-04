@@ -87,7 +87,7 @@ for these commands and all their options with the CLI's ``--help`` option.\ [#]_
 
     :numref:`Figure %s <LeapLoginScreen>` shows the login screen.
 
-    .. figure:: ../../_images/leap_login_screen.png
+    .. figure:: ../_images/leap_login_screen.png
         :name: LeapLoginScreen
         :alt: image
         :align: center
@@ -100,7 +100,7 @@ for these commands and all their options with the CLI's ``--help`` option.\ [#]_
 
     :numref:`Figure %s <LeapIdeAuthLogin>` shows the authorization request.
 
-    .. figure:: ../../_images/leap_ide_auth_login.png
+    .. figure:: ../_images/leap_ide_auth_login.png
         :name: LeapIdeAuthLogin
         :alt: image
         :align: center
@@ -127,7 +127,7 @@ for these commands and all their options with the CLI's ``--help`` option.\ [#]_
     :numref:`Figure %s <LeapIdeAuthOobCode>` shows the authorization code
     returned in a browser tab for you to copy to the terminal prompt.
 
-    .. figure:: ../../_images/leap_ide_auth_oob_code.png
+    .. figure:: ../_images/leap_ide_auth_oob_code.png
         :name: LeapIdeAuthOobCode
         :alt: image
         :align: center

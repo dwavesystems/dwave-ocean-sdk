@@ -17,7 +17,7 @@ graph into an Advantage QPU, with its :term:`Pegasus` topology, requires
 representing one of the five variables with a :term:`chain` of two physical 
 qubits:
 
-.. figure:: _images/embedding_5vars_6qubits.png
+.. figure:: ../_images/embedding_5vars_6qubits.png
     :align: center
     :figclass: align-center
 
@@ -77,7 +77,7 @@ True
 
 .. inspecting-embedded-problem-end-marker
 
-.. figure:: _images/physical_qubits.png
+.. figure:: ../_images/physical_qubits.png
     :align: center
     :figclass: align-center
 
@@ -114,7 +114,7 @@ Define a problem and sample it for solutions:
 >>> # Inspect the problem::
 >>> dwave.inspector.show(sampleset)     # doctest: +SKIP
 
-.. figure:: _images/logical_problem.png
+.. figure:: ../_images/logical_problem.png
   :align: center
   :figclass: align-center
 
