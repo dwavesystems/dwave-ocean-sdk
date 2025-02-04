@@ -39,8 +39,8 @@ the energy of a system. When the solver is a QPU, the energy is a function of
 binary variables representing its qubits; for quantum-classical hybrid solvers,
 the objective function might be more abstract.
 
-.. figure:: ../../_images/obj.png
-    :name: |figObjectiveFunction|
+.. figure:: ../_images/obj.png
+    :name: obj
     :scale: 50 %
     :alt: Energy of objective function.
 
@@ -152,7 +152,7 @@ function for the random values of :math:`x` chosen in the execution above. The
 minimum distance between the sides of the original equation, which occurs at
 equality, has the lowest value (energy) of :math:`\text{E}(x)`.
 
-.. figure:: ../../_images/random_sampler_x_e.png
+.. figure:: ../_images/random_sampler_x_e.png
     :name: |figSimpleRandomSampler|
     :scale: 75 %
     :alt: Simple random sampler: E(x) versus x.
@@ -161,3 +161,4 @@ equality, has the lowest value (energy) of :math:`\text{E}(x)`.
     random values of :math:`x` selected by a simple random sampler.
 
 .. end_simple_sampler_example
+

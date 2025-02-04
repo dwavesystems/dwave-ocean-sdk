@@ -4,11 +4,6 @@
 Leap's Hybrid Solvers
 =====================
 
-TODO: this is from sources:
-
-* Using Leap’s Hybrid Solvers 
-  (https://docs.dwavesys.com/docs/latest/doc_leap_hybrid.html)
-  
 Introduces the `Leap service <https://cloud.dwavesys.com/leap/>`_'s
 quantum-classical hybrid solvers and provides references to usage information.
 
@@ -18,9 +13,13 @@ quantum-classical hybrid solvers and provides references to usage information.
 Hybrid Solvers
 --------------
 
-.. include:: ../../../chapters/shared_content/hybrid_intro.rst
+.. include:: ../shared/hybrid.rst
+    :start-after: start_intro
+    :end-before: end_intro
 
-.. include:: ../../../chapters/shared_content/hybrid_generally_available.rst
+.. include:: ../shared/hybrid.rst
+    :start-after: start_generally_available_solvers
+    :end-before: end_generally_available_solvers
 
 Solver Properties and Parameters
 --------------------------------
@@ -141,4 +140,3 @@ You can find more detailed information and usage examples here:
 *   |dwave_short|'s GitHub repository, `dwave-examples <https://github.com/
     dwave-examples>`_\ , which includes Jupyter notebooks and code examples
     for various types of problems, such as the knapsack problem.
-

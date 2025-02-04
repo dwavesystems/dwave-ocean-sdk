@@ -29,7 +29,7 @@ You can easily verify that the solution to this example problem is
 
 .. math::
 
-	x_1 = x_2=0 \quad \rightarrow \qquad (0 \vee 1) \wedge (1 \vee 0) = 1
+    x_1 = x_2=0 \quad \rightarrow \qquad (0 \vee 1) \wedge (1 \vee 0) = 1
     \wedge 1 = 1 \\
     x_1 {=} 0 \ \ne \ x2 {=} 1 \quad \rightarrow \qquad (0 \vee 0)
     \wedge (1 \vee 1) = 0 \wedge 1 = 0
@@ -61,7 +61,7 @@ For two variables, the :ref:`obj_qubo` formulation reduces to,
 
 .. math::
 
-	\text{E}(a_i, b_{i,j}; q_i) = a_1 q_1 + a_2 q_2 + b_{1,2} q_1 q_2,
+    \text{E}(a_i, b_{i,j}; q_i) = a_1 q_1 + a_2 q_2 + b_{1,2} q_1 q_2,
 
 where :math:`a_1` and :math:`a_2`, the linear coefficients, and :math:`b_{1,2}`,
 the quadratic coefficient, are the programmable parameters you need to set so
@@ -109,14 +109,14 @@ objective function so far is
 
 .. math::
 
-	\text{E}(a_i=0.1, b_{i,j}; q_i=1) = 0.2 + b_{1,2},
+    \text{E}(a_i=0.1, b_{i,j}; q_i=1) = 0.2 + b_{1,2},
 
 you can do this by setting the quadratic coefficient :math:`b_{1,2} = -0.2`.
 The resulting objective function is
 
 .. math::
 
-	\text{E}(q_i) = 0.1 q_1 + 0.1 q_2 - 0.2 q_1 q_2,
+    \text{E}(q_i) = 0.1 q_1 + 0.1 q_2 - 0.2 q_1 q_2,
 
 and the table of possible outcomes is shown below.
 
@@ -135,7 +135,7 @@ Minor Embedding
 You can represent this QUBO as the graph shown in
 :numref:`Figure %s <obj-xnor>`.
 
-.. figure:: ../../_images/obj-xnor.png
+.. figure:: ../_images/obj-xnor.png
     :name: obj-xnor
     :scale: 50 %
     :alt: Objective function for XNOR gate.

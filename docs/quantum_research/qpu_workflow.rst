@@ -4,13 +4,6 @@
 Basic Workflow: Formulation and Sampling
 ========================================
 
-TODO: this is from sources:
-
-* Workflow: Formulation and Sampling 
-  (https://docs.dwavesys.com/docs/latest/c_gs_workflow.html)
-  chapter of https://docs.dwavesys.com/docs/latest/doc_getting_started.html
-  
-
 .. include:: ../shared/workflow.rst
     :start-after: start_workflow_intro
     :end-before: end_workflow_intro
@@ -44,7 +37,7 @@ Models
 ======
 
 To express your problem as an objective function and submit to a |dwave_short|
-sampler for solution, you typically use one of the quadratic models\ [#]_ 
+sampler for solution, you typically use one of the quadratic models\ [#]_
 provided by :std:doc:`Ocean software <oceandocs:index>`:
 
 *   :ref:`bqm_sdk` are unconstrained\ [#]_ and have binary variables.
@@ -97,7 +90,7 @@ Simple Sampling Example
 
 .. _qpu_workflow_simple_example:
 
-Simple Workflow Example
-=======================
+.. todo:: add example
 
-TODO: add example
+    Simple Workflow Example
+    =======================

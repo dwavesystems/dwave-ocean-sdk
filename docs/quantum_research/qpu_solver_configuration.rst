@@ -73,7 +73,7 @@ Best solutions are 4.0% of samples.
 :numref:`Figure %s <qpuConfAnnealVsReads>` shows energy histograms from this
 example's two submissions.
 
-.. figure:: ../../_images/qpu_conf_anneal_vs_reads.png
+.. figure:: ../_images/qpu_conf_anneal_vs_reads.png
     :name: qpuConfAnnealVsReads
     :alt: image
     :align: center
@@ -204,7 +204,7 @@ increased from about one second to about four seconds.
 
 *   |doc_processor|_ describes ICE in the |dwave_short| system.
 *   [Ray2016]_ about temperature estimation in quantum annealers also looks at
-    effects of spin-reversal transforms. 
+    effects of spin-reversal transforms.
 
 .. _cb_qpu_postprocessing:
 
@@ -232,7 +232,7 @@ break.
 :numref:`Figure %s <qpuPostprocessingChainBreaks>` shows the problem graph and
 its embedding in an |dwave_5kq| QPU.
 
-.. figure:: ../../_images/qpu_postprocessing_chain_breaks.png
+.. figure:: ../_images/qpu_postprocessing_chain_breaks.png
     :name: qpuPostprocessingChainBreaks
     :alt: image
     :align: center
@@ -307,7 +307,7 @@ minima in the samples’ neighborhoods.
 :numref:`Figure %s <qpuPostprocessingChainBreaks>` compare the results before
 and after the postprocessing.
 
-.. figure:: ../../_images/qpu_postprocessing_greedy.png
+.. figure:: ../_images/qpu_postprocessing_greedy.png
     :name: qpuPostprocessingGreedy
     :alt: image
     :align: center
@@ -386,7 +386,7 @@ extra qubits) by sharing the edge weight across these edges.
 :numref:`Figure %s <qpuImprecisionBiasDivided>` shows the embedded problem with
 the large-biased variable represented by qubit 3999.
 
-.. figure:: ../../_images/qpu_imprecision_bias_large.png
+.. figure:: ../_images/qpu_imprecision_bias_large.png
     :name: qpuImprecisionBiasLarge
     :alt: image
     :align: center
@@ -404,7 +404,7 @@ the large-biased variable represented by qubit 3999.
 :numref:`Figure %s <qpuImprecisionBiasDivided>` shows the embedded problem with
 the large-biased variable represented by four chained qubits.
 
-.. figure:: ../../_images/qpu_imprecision_bias_divided.png
+.. figure:: ../_images/qpu_imprecision_bias_divided.png
     :name: qpuImprecisionBiasDivided
     :alt: image
     :align: center
@@ -486,7 +486,7 @@ coefficients of 0 or 1 except for one variable with a linear coefficient of
 -100. (In practice your problem may have a minority of variables that have
 significantly different values from the majority.)
 
-.. figure:: ../../_images/qpu_scale_p12k44.png
+.. figure:: ../_images/qpu_scale_p12k44.png
     :name: qpuScaleP12k44
     :alt: image
     :align: center
@@ -522,7 +522,7 @@ The two figures below show the energies of returned solutions:
 *   :numref:`Figure %s <qpuScaleP12k44AfterFix>` is the (updated) BQM without
     the outsized bias.
 
-.. figure:: ../../_images/qpu_scale_p12k44_before_fix.png
+.. figure:: ../_images/qpu_scale_p12k44_before_fix.png
     :name: qpuScaleP12K44BeforeFix
     :alt: image
     :align: center
@@ -530,7 +530,7 @@ The two figures below show the energies of returned solutions:
 
     Energies of returned solutions for the original BQM with the outsized bias.
 
-.. figure:: ../../_images/qpu_scale_p12k44_after_fix.png
+.. figure:: ../_images/qpu_scale_p12k44_after_fix.png
     :name: qpuScaleP12k44AfterFix
     :alt: image
     :align: center
@@ -606,7 +606,7 @@ QPU a 16-qubit system, which was studied in a
 `nature article <https://www.nature.com/articles/ncomms2920>`_. It has an energy
 gap of 4 between the classical ground state and excited states.
 
-.. figure:: ../../_images/qpu_anneal_schedule_16qubit.png
+.. figure:: ../_images/qpu_anneal_schedule_16qubit.png
     :name: qpuAnnealSchedule16qubit
     :alt: image
     :align: center
@@ -688,7 +688,7 @@ Print the percentage of ground states for a reverse anneal (of almost 100
     finds an embedding with all chains of length 1. However, a typical embedding
     looks like that of :numref:`Figure %s <qpuAnnealSchedule16qubitTypical>`.
 
-    .. figure:: ../../_images/qpu_anneal_schedule_16qubit_typical.png
+    .. figure:: ../_images/qpu_anneal_schedule_16qubit_typical.png
         :name: qpuAnnealSchedule16qubitTypical
         :alt: image
         :align: center
@@ -774,7 +774,7 @@ two states is dominant early in the anneal.
 :numref:`Figure %s <qpuAnnealOffsets3qubit>` shows the problem and a possible
 embedding in one particular |dwave_5kq| QPU.
 
-.. figure:: ../../_images/qpu_anneal_offsets_3qubit.png
+.. figure:: ../_images/qpu_anneal_offsets_3qubit.png
     :name: qpuAnnealOffsets3qubit
     :alt: image
     :align: center
@@ -900,7 +900,7 @@ following code finds a more visually intuitive embedding such as shown in
 :numref:`Figure %s <qpuAnnealOffsets16qubit>` shows the 16-qubit system embedded
 in an |dwave_5kq| QPU.
 
-.. figure:: ../../_images/qpu_anneal_offsets_16qubit.png
+.. figure:: ../_images/qpu_anneal_offsets_16qubit.png
     :name: qpuAnnealOffsets16qubit
     :alt: image
     :align: center
@@ -998,7 +998,7 @@ As is seen, directly biasing the problem qubit, :math:`q_1`, with  linear bias
 :math:`q_2` with a coupling strength of :math:`J_{1,2}`, as long as the
 magnitude of the flux-bias offset is high enough.
 
-.. figure:: ../../_images/flux_bias_offset_h_vs_j.png
+.. figure:: ../_images/flux_bias_offset_h_vs_j.png
     :name: fluxBiasOffsetsHVsJ
     :alt: image
     :align: center
@@ -1056,7 +1056,7 @@ range :math:`[-1.0, 1.0]`, of these two methods of biasing its outcome:
     :func:`~dwave.system.temperatures.h_to_fluxbias` function on the same range
     of :math:`h`.
 
-.. figure:: ../../_images/flux_bias_offset_h_vs_fb.png
+.. figure:: ../_images/flux_bias_offset_h_vs_fb.png
     :name: fluxBiasOffsetsHVsFB
     :alt: image
     :align: center

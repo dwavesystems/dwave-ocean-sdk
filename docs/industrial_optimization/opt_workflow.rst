@@ -4,16 +4,10 @@
 Basic Workflow: Models and Sampling
 ===================================
 
-TODO: this is from sources:
-
-* Workflow: Formulation and Sampling 
-  (https://docs.dwavesys.com/docs/latest/c_gs_workflow.html)
-  chapter of https://docs.dwavesys.com/docs/latest/doc_getting_started.html
-
 .. include:: ../shared/workflow.rst
     :start-after: start_workflow_intro
     :end-before: end_workflow_intro
-    
+
 .. _opt_workflow_objective_functions:
 
 Objective Functions
@@ -174,3 +168,4 @@ Sample(sample={'i': 2.0, 'j': 2.0}, energy=-4.0, num_occurrences=1,
 The best (lowest-energy) solution found has :math:`i=j=2` as expected, a
 solution that is feasible because all the constraints (one in this example)
 are satisfied.
+

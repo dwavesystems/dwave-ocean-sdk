@@ -72,7 +72,7 @@ solver.
 ...     cqm,
 ...     label="Simple example")     # doctest: +SKIP
 
-.. figure:: ../../_images/leap_problem_label.png
+.. figure:: ../_images/leap_problem_label.png
     :align: center
     :name: LeapProblemLabelCqm
     :alt: Problem labels on dashboard.

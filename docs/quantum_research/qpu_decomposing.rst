@@ -4,6 +4,7 @@
 Decomposing Large Problems
 ==========================
 
+This chapter briefly presents methods of decomposing a large problem into a
 part requiring no more than the number of qubits available on the QPU and,
 optionally for hybrid approaches, parts suited to conventional compute
 platforms. Detailed information is available in the literature and referenced
@@ -24,7 +25,7 @@ subproblem of variables maximally contributing to the problem energy.
 The example illustrated in :numref:`Figure %s <decomposingEnergyImpact>`
 shows a large problem decomposed into smaller subproblems.
 
-.. figure:: ../../_images/decomposing_energy_impact.png
+.. figure:: ../_images/decomposing_energy_impact.png
     :align: center
     :name: decomposingEnergyImpact
     :alt: A large problem decomposed into small subproblems by highest energy.
@@ -39,7 +40,7 @@ Configuring a mode of traversal such as breadth-first (BFS) or priority-first
 selection (PFS) can capture features that represent local structures within a
 problem.
 
-.. figure:: ../../_images/decomposing_energy_impact_bfs_pfs.png
+.. figure:: ../_images/decomposing_energy_impact_bfs_pfs.png
     :align: center
     :name: decomposingEnergyImpactBfsPfs
     :alt: A large problem decomposed into small subproblems by highest energy
@@ -103,7 +104,7 @@ Example
 
 A small example is illustrated in :numref:`Figure %s <beforeadterconditioning>`.
 
-.. figure:: ../../_images/primalGraph-CutSetGraph.png
+.. figure:: ../_images/primalGraph-CutSetGraph.png
     :align: center
     :name: beforeadterconditioning
     :alt: Two diagrams showing an 8 variable graph before and after cutset
@@ -193,7 +194,7 @@ method to provide the tightest possible lower bounds.
 As an example, consider again the small 8-variable problem, shown on the left
 side in :numref:`Figure %s <primalGraph-SplitGraph>`.
 
-.. figure:: ../../_images/primalGraph-SplitGraph.png
+.. figure:: ../_images/primalGraph-SplitGraph.png
     :align: center
     :name: primalGraph-SplitGraph
     :alt: Two diagrams showing an 8 variable graph before and after splitting

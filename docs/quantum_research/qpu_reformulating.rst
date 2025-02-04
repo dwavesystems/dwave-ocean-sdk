@@ -1066,7 +1066,7 @@ is no edge between nodes :math:`y_1 = (1,2)` and :math:`y_2 = (2,1)`, both of
 which have :math:`X_2=2`, or between :math:`y_1 = (3,1)` and
 :math:`y_2 = (1,4)`, both of which have :math:`X_2 = 1`.
 
-.. figure:: ../../_images/dual_conflict_graph.png
+.. figure:: ../_images/dual_conflict_graph.png
     :name: dualGraph
     :alt: image
     :align: center
@@ -1207,7 +1207,7 @@ This simple example solves the problem of finding a
 `maximum independent set (MIS) <https://en.wikipedia.org/wiki/Maximal_independent_set>`_,
 where the graph is a cell in the Chimera topology,
 
-.. figure:: ../../_images/Techniques_LinearEquality_MIS.png
+.. figure:: ../_images/Techniques_LinearEquality_MIS.png
     :name: Techniques_LinearEquality_MIS
     :alt: image
     :align: center
@@ -1721,7 +1721,7 @@ Example Reformulation: Map Coloring
 The map-coloring problem is to assign a color to each region of a map such that
 any two regions sharing a border have different colors.
 
-.. figure:: ../../_images/Problem_MapColoring.png
+.. figure:: ../_images/Problem_MapColoring.png
     :name: Problem_MapColoring
     :alt: image
     :align: center
@@ -2045,7 +2045,7 @@ observation of incorrect outputs given a set of inputs.
 
 .. only:: html
 
-    .. figure:: ../../_images/Problem_CFD_HTML_Circuit_BadInput.png
+    .. figure:: ../_images/Problem_CFD_HTML_Circuit_BadInput.png
         :name: Problem_CFD_HTML_Circuit_BadInput
         :alt: image
         :align: center
@@ -2104,7 +2104,7 @@ configurations, it's helpful to look at an even smaller example.
 
 .. only:: html
 
-    .. figure:: ../../_images/Problem_CFD_HTML_Circuit_ThreeNOTs.png
+    .. figure:: ../_images/Problem_CFD_HTML_Circuit_ThreeNOTs.png
         :name: Problem_CFD_HTML_Circuit_ThreeNOTs
         :alt: image
         :align: center
@@ -2548,7 +2548,7 @@ three types of gates in the example circuit are:
 
 .. only:: html
 
-    .. figure:: ../../_images/Problem_CFD_HTML_Circuit_Outputs.png
+    .. figure:: ../_images/Problem_CFD_HTML_Circuit_Outputs.png
         :name: Problem_CFD_HTML_Circuit_Outputs
         :alt: image
         :align: center
@@ -2768,7 +2768,7 @@ winning against scissors.
 
 :numref:`Figure %s <rpsOneHotPlot>` visualizes the three combined BQMs.
 
-.. figure:: ../../_images/rps_one_hot_plot.png
+.. figure:: ../_images/rps_one_hot_plot.png
     :name: rpsOneHotPlot
     :alt: image
     :align: center
@@ -2785,7 +2785,7 @@ representing a discrete variable be fully connected.
 
 An embedding is shown in :numref:`Figure %s <rpsOneHot>`.
 
-.. figure:: ../../_images/rps_one_hot.png
+.. figure:: ../_images/rps_one_hot.png
     :name: rpsOneHot
     :alt: image
     :align: center
@@ -2861,7 +2861,7 @@ states (lowest energy solutions), shown below for :math:`\kappa=1`:
 possible states of the ferromagnetic chain of qubits that represent the
 constraint of this example.
 
-.. figure:: ../../_images/rps_domain_wall_energy.png
+.. figure:: ../_images/rps_domain_wall_energy.png
     :name: rpsDomainWallEnergy
     :alt: image
     :align: center
@@ -2972,7 +2972,7 @@ Notice that, as expected, three states are ground states:
 
 :numref:`Figure %s <rpsDomainWallPlot>` visualizes the BQM.
 
-.. figure:: ../../_images/rps_domain_wall_plot.png
+.. figure:: ../_images/rps_domain_wall_plot.png
     :name: rpsDomainWallPlot
     :alt: image
     :align: center
@@ -2993,7 +2993,7 @@ constraints and the original problem.
 
 An embedding is shown in :numref:`Figure %s <rpsDomainWall>`.
 
-.. figure:: ../../_images/rps_domain_wall.png
+.. figure:: ../_images/rps_domain_wall.png
     :name: rpsDomainWall
     :alt: image
     :align: center

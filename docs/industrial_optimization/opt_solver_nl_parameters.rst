@@ -24,7 +24,7 @@ This example sets a label on a submitted problem.
 >>> model = bin_packing([3, 5, 1, 3], 7)
 >>> results = LeapHybridNLSampler().sample(model)    # doctest: +SKIP
 
-.. figure:: ../../_images/leap_problem_label.png
+.. figure:: ../_images/leap_problem_label.png
     :align: center
     :name: LeapProblemLabelNl
     :alt: Problem labels on dashboard.

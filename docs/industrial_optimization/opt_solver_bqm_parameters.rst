@@ -117,7 +117,7 @@ This illustrative example sets a label on a submitted problem.
 ...     bqm,
 ...     label="Simple example")  # doctest: +SKIP
 
-.. figure:: ../../_images/leap_problem_label.png
+.. figure:: ../_images/leap_problem_label.png
     :align: center
     :name: LeapProblemLabelBqm
     :alt: Problem labels on dashboard.

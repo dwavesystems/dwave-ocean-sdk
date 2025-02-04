@@ -12,7 +12,7 @@ well-known graph problem,
 
 |dwave_short| provides several resource containing many reference examples:
 
-*   Ocean software's 
+*   Ocean software's
     `collection of code examples <https://github.com/dwave-examples>`_ on
     GitHub.
 *   `D-Wave papers <https://www.dwavesys.com/learn/publications>`_
@@ -448,7 +448,7 @@ used in the sampling postprocessing algorithm, see the |doc_processor|_ guide.
     machine with a symmetrical *bipartite* structure; see
     :numref:`Figure %s <bipartite>`.
 
-    .. figure:: ../../_images/bipartite_new.png
+    .. figure:: ../_images/bipartite_new.png
         :name: bipartite
         :alt: Two-layer neural net comprising a layer of visible units and one
             of hidden units. Visible units are numbered V 0 through V 3. Hidden

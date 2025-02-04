@@ -47,7 +47,7 @@
 
     *   Top navigation bar lets you select the following documentation:
 
-        .. list-table:: 
+        .. list-table::
 
                 *   -   :ref:`Industrial Optimization <index_industrial_optimization>`
                     -   Solving hard commercial optimization problems using
@@ -64,6 +64,10 @@
                 *   -   :ref:`concepts <index_concepts>`
                     -   Learn the relevant terminology and the fundamental
                         concepts. Search for terms here.
+                *   -   **More** > :ref:`Licenses <licenses>`
+                    -   Licensing information for the documentation and SDK.
+                *   -   **More** > :ref:`Bibliography <bibliography>`
+                    -   Cited content.
 
     *   Left navigation bar lets you select a subtopic; for example, how to get
         started, properties, best practices.
@@ -135,7 +139,7 @@ Welcome to |dwave_short|
             frequency (RF)–shielded enclosure and a magnetic shielding
             subsystem.
 
-        .. figure:: ../../_images/advantage_system.png
+        .. figure:: ./_images/advantage_system.png
             :name: dwave-components
             :height: 400 pt
             :width: 400 pt
@@ -155,7 +159,7 @@ Welcome to |dwave_short|
         For details on the topology of the QPU, see the
         :ref:`getting_started_topologies` section.
 
-        .. figure:: ../../_images/qpu.png
+        .. figure:: ./_images/qpu.png
             :name: qpu1
             :scale: 30 %
 
@@ -193,7 +197,7 @@ Welcome to |dwave_short|
             one, go to your dashboard in the
             `Leap service <https://cloud.dwavesys.com/leap/>`_.
 
-        .. figure:: ../../_images/network-gs.png
+        .. figure:: ./_images/network-gs.png
             :name: network-gs
 
             |dwave_short| software environment.
@@ -223,3 +227,4 @@ Welcome to |dwave_short|
         Ocean SDK, and
         `Ocean software documentation <https://docs.ocean.dwavesys.com>`_ for
         the associated documentation.
+

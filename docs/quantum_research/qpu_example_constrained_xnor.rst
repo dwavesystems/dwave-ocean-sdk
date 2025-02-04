@@ -4,12 +4,6 @@
 Constrained Example: Problem Formulation
 ========================================
 
-.. _getting_started_formulation_constraints:
-
-========================================
-Constraints Example: Problem Formulation
-========================================
-
 The example of the :ref:`getting_started_formulation_minimal` chapter
 formulated an objective function for a simple SAT problem. As mentioned, the
 |dwave_short| quantum computer is also well suited to solving optimization
@@ -22,7 +16,7 @@ of cities, you need a constraint forcing the salesperson to be in exactly one
 city at each stage of the trip: a solution that puts the salesperson in two or
 more places at once is invalid.
 
-.. figure:: ../../_images/salesman.png
+.. figure:: ../_images/salesman.png
     :name: salesman
     :scale: 50 %
     :alt: Traveling salesman problem
@@ -47,7 +41,7 @@ The problem-solving process is the same as described in the
     original problem are represented as part of the objective function; this
     technique is known as :ref:`penalty models <sysdocs:cb_techniques>`.
 
-    In addition, some of the 
+    In addition, some of the
     `Leap service <https://cloud.dwavesys.com/leap/>`_'s quantum-classical
     hybrid solvers accept only unconstrained objective functions; for example,
     hybrid BQM solvers. Thus, for these solvers any constraints must be added
@@ -114,9 +108,9 @@ Notice that this objective formula matches the
 
 .. math::
 
-		E_{qubo}(a_i, b_{i,j}; q_i) &= \sum_{i} a_i q_i +
+        E_{qubo}(a_i, b_{i,j}; q_i) &= \sum_{i} a_i q_i +
         \sum_{i<j} b_{i,j} q_i q_j \\
-		E_{qubo}(a_i, b_{i,j}; q_1, q_2, q_3) &= a_1 q_1 + a_2 q_2 + a_3 q_3 +
+        E_{qubo}(a_i, b_{i,j}; q_1, q_2, q_3) &= a_1 q_1 + a_2 q_2 + a_3 q_3 +
         b_{1,2} q_1 q_2 + b_{1,3} q_1 q_3 + b_{2,3} q_2 q_3 ,
 
 where :math:`a_i=-1` and :math:`b_{i,j}=2`, with a difference of the :math:`+1`
@@ -153,11 +147,8 @@ As explained in the :ref:`getting_started_concepts` chapter, to solve a QUBO
 with a |dwave_short| quantum computer, you must map (minor embed) it to the
 QPU. That step is explained in detail in the next chapter.
 
-The :ref:`getting_started_submitting` chapter then shows how the problem is
-submitted for solution to a |dwave_short| quantum computer.
 
-
-TODO: Fix transition 
+.. todo:: Fix transition 
 
 
 This chapter explains how the QUBO created in the previous chapter
@@ -165,7 +156,7 @@ is minor-embedded onto a QPU, in this case, an |dwave_5kq| QPU with its
 :ref:`Pegasus <topology_intro_pegasus>` graph.
 
 |dwave_short| provides automatic minor-embedding tools, and if you are
-submitting your problem to a 
+submitting your problem to a
 `Leap service <https://cloud.dwavesys.com/leap/>`_'s quantum-classical hybrid
 solver, the solver handles all interactions with the QPU.
 
@@ -174,7 +165,7 @@ the :ref:`getting_started_formulation_constraints` chapter,
 :math:`2ab + 2ac + 2bc - a - b - c`, can be represented by the triangular graph
 shown in :numref:`Figure %s <triangle>`.
 
-.. figure:: ../../_images/triangle.png
+.. figure:: ../_images/triangle.png
     :name: triangle
     :scale: 50 %
     :alt: Triangular graph
@@ -188,7 +179,7 @@ qubits on the QPU while edges that represent the objective function's quadratic
 terms such as :math:`ab` are mapped to couplers.
 
 :numref:`Figure %s <triangleEmbeddingPegasus>` shows such a mapping, between
-the graph representing the QUBO  on the left and one particular minor-embedding
+the graph representing the QUBO on the left and one particular minor-embedding
 on the right. (Rerunning Ocean software's
 :std:doc:`minorminer <oceandocs:docs_minorminer/source/sdk_index>` tool, which
 produced this minor embedding, generates embeddings to various qubits across
@@ -201,7 +192,7 @@ the QPU; the particular qubit numbers noted here are unimportant.)
     couplers :math:`[1812, 5619], [1827, 5619], [1812, 1827]` (blue lines in
     the right-hand panel), respectively.
 
-.. figure:: ../../_images/triangle_embedding_pegasus.png
+.. figure:: ../_images/triangle_embedding_pegasus.png
     :name: triangleEmbeddingPegasus
     :scale: 50 %
     :alt: Embedding in the Pegasus topology
@@ -228,8 +219,8 @@ consider minor embedding the triangular graph of :numref:`Figure %s <triangle>`
 into two target graphs, one sparser than the other.
 :numref:`Figure %s <chainTriangleFourQubits>` shows two such embeddings:
 the triangular graph is mapped on the left to a fully-connected graph of four
-nodes (called a :math:`K_4` complete graph ) and on the right to a sparser
-graph, also of four nodes.
+nodes (called a :math:`K_4` complete graph) and on the right to a sparser graph,
+also of four nodes.
 For the left-hand embedding, you can choose any mapping between :math:`a, b, c`
 and :math:`0, 1, 2, 3`; here :math:`a, b, c` are mapped to :math:`2, 0, 1`,
 respectively. For the right-hand embedding, however, no choice of just three
@@ -238,7 +229,7 @@ disconnected from :math:`c`. Chaining target nodes :math:`0` and :math:`3` to
 represent node :math:`b` makes use of both the connection between :math:`0` to
 :math:`2` and the connection between :math:`3` and :math:`1`.
 
-.. figure:: ../../_images/chain_triangle_four_qubits.png
+.. figure:: ../_images/chain_triangle_four_qubits.png
     :name: chainTriangleFourQubits
     :alt: Embedding a triangular graph into the Chimera graph by using a chain.
 
@@ -262,7 +253,7 @@ variable 3 (highlighted magenta) is represented by a two-qubit chain of qubits
 4408 and 2437 (highlighted magenta) while variables 0, 1, 2, and 4 are
 represented by single qubits 4333, 4348, 2497, and 2512.
 
-.. figure:: ../../_images/embedding_k5_pegasus.png
+.. figure:: ../_images/embedding_k5_pegasus.png
     :name: embeddingK5Pegasus
     :scale: 50 %
     :alt: Embedding of a K5 graph in the Pegasus topology
@@ -302,7 +293,7 @@ similar calculations.
     you can make a closed loop of four qubits and their edges using, say,
     qubits 0, 1, 4, and 5.
 
-    .. figure:: ../../_images/unit-cell.png
+    .. figure:: ../_images/unit-cell.png
         :name: unit-cell
         :scale: 35 %
         :alt: Unit cell
@@ -314,7 +305,7 @@ similar calculations.
     with a chain of two qubits. :numref:`Figure %s <embedding-gs>` shows a
     chaining of qubit 0 and qubit 5 to represent variable :math:`b`.
 
-    .. figure:: ../../_images/embedding.png
+    .. figure:: ../_images/embedding.png
         :name: embedding-gs
         :alt: Embedding a triangular graph into the Chimera graph by using a
             chain.
@@ -437,8 +428,7 @@ similar calculations.
         function, :math:`E(a,b,c) = 2ab + 2ac + 2bc - a - b - c + 1`.
 
 
-
-TODO: fix transition
+.. todo:: fix transition
 
 
 This section shows how you submit a problem to a |dwave_short| quantum

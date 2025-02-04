@@ -73,7 +73,7 @@ connected five-node graphs), sparsely interconnected.
     entire BQM is embedded using the
     :class:`~dwave.system.composites.EmbeddingComposite` class.
 
-.. figure:: ../../_images/embedding_three_k5s_local.png
+.. figure:: ../_images/embedding_three_k5s_local.png
     :name: embeddingThreeK5sLocal
     :alt: image
     :align: center
@@ -82,7 +82,7 @@ connected five-node graphs), sparsely interconnected.
     Example of local embedding for a BQM represented by a graph of three
     connected :math:`K_5` cliques.
 
-.. figure:: ../../_images/embedding_three_k5s_global.png
+.. figure:: ../_images/embedding_three_k5s_global.png
     :name: embeddingThreeK5sGlobal
     :alt: image
     :align: center
@@ -194,7 +194,7 @@ the Ocean software's
 :numref:`Figure %s <chainstrengthSsn30Embedding>` shows the BQM embedded in an
 |dwave_5kq| QPU.
 
-.. figure:: ../../_images/chainstrength_ssn30_embedding.png
+.. figure:: ../_images/chainstrength_ssn30_embedding.png
     :name: chainstrengthSsn30Embedding
     :alt: image
     :align: center
@@ -223,7 +223,7 @@ different chains strengths:
     >>> sampleset = sampler.sample(
     ...     bqm, num_reads=num_samples, chain_strength=scaled)  # doctest: +SKIP
 
-.. figure:: ../../_images/chainstrength_ssn30_histogram_auto.png
+.. figure:: ../_images/chainstrength_ssn30_histogram_auto.png
     :name: chainstrengthSsn30HistogramAuto
     :alt: image
     :align: center
@@ -231,7 +231,7 @@ different chains strengths:
 
     Energy histogram for the social-network problem with a chain strength of ~7.
 
-.. figure:: ../../_images/chainstrength_ssn30_histogram_1.png
+.. figure:: ../_images/chainstrength_ssn30_histogram_1.png
     :name: chainstrengthSsn30Histogram1
     :alt: image
     :align: center
@@ -239,7 +239,7 @@ different chains strengths:
 
     Energy histogram for the social-network problem with a chain strength of 1.
 
-.. figure:: ../../_images/chainstrength_ssn30_histogram_14.png
+.. figure:: ../_images/chainstrength_ssn30_histogram_14.png
     :name: chainstrengthSsn30Histogram14
     :alt: image
     :align: center
@@ -334,7 +334,7 @@ the :class:`~dwave.system.composites.EmbeddingComposite` class and (2) using
 a clique embedding found by the
 :class:`~dwave.system.samplers.DWaveCliqueSampler` class.
 
-.. figure:: ../../_images/embedding_sparse_bqm.png
+.. figure:: ../_images/embedding_sparse_bqm.png
     :name: embeddingSparseBqm
     :alt: image
     :align: center
@@ -366,7 +366,7 @@ The following graphs show both embeddings:
 *   :numref:`Figure %s <embeddingSparseBqmClique>` is a clique embedding in
     which the BQM graph is a minor.
 
-.. figure:: ../../_images/embedding_sparse_bqm_not_clique.png
+.. figure:: ../_images/embedding_sparse_bqm_not_clique.png
     :name: embeddingSparseBqmNotClique
     :alt: image
     :align: center
@@ -374,7 +374,7 @@ The following graphs show both embeddings:
 
     Embedding found for the sparse graph of the problem.
 
-.. figure:: ../../_images/embedding_sparse_bqm_clique.png
+.. figure:: ../_images/embedding_sparse_bqm_clique.png
     :name: embeddingSparseBqmClique
     :alt: image
     :align: center
@@ -458,7 +458,7 @@ Example
 
 .. only:: html
 
-    .. figure:: ../../_images/embedding_three_gates.png
+    .. figure:: ../_images/embedding_three_gates.png
         :name: embeddingThreeGatesHTML
         :alt: image
         :align: center
@@ -494,7 +494,7 @@ couplers connecting some horizontal and vertical qubits.
         'in21': [3075], 'out2': [3060], 'in22': [3000], 'in21': [180],
         'out2': [3015]}
 
-.. figure:: ../../_images/embedding_three_gates_preembedding.png
+.. figure:: ../_images/embedding_three_gates_preembedding.png
     :name: embeddingThreeGatesPreembedding
     :alt: image
     :align: center

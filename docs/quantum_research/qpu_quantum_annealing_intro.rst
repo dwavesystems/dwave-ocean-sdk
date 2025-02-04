@@ -70,7 +70,7 @@ also be in a superposition of the 0 state and the 1 state at the same time. At
 the end of the quantum annealing process, each qubit collapses from a
 superposition state into either 0 or 1 (a classical state).
 
-.. figure:: ../../_images/01.png
+.. figure:: ../_images/01.png
     :name: superp
     :scale: 33 %
     :alt: A qubit's state is implemented in a circulating current with a
@@ -91,7 +91,7 @@ of equal energy minima; thus the qubit has a 50/50 chance of being in either
 valley at the end of the anneal---that is, in the classical state of either 0
 or 1.
 
-.. figure:: ../../_images/simple_anneal_one_qubit_without_h.png
+.. figure:: ../_images/simple_anneal_one_qubit_without_h.png
     :name: anneal_one_qubit_no_h
     :alt: Annealing process's energy diagram shows raising the energy barrier
         for a single qubit, resulting in a 50/50 probability of ending
@@ -110,7 +110,7 @@ magnetic field tilts the valleys in a preferred direction, increasing the
 probability of the qubit ending up in the valley with the lower energy
 minimum---here, the classical state of 1.
 
-.. figure:: ../../_images/simple_anneal_one_qubit_with_h.png
+.. figure:: ../_images/simple_anneal_one_qubit_with_h.png
     :name: anneal_one_qubit_with_h
     :alt: Annealing process's energy diagram shows an external magnetic field
         being applied to a single qubit, resulting in a higher probability
@@ -137,7 +137,7 @@ relative energy of each state depends on the biases of qubits and the couplers
 between them. During the anneal, the qubit states are potentially entangled in
 this landscape before finally settling into (1,1) at the end of the anneal.
 
-.. figure:: ../../_images/4states.png
+.. figure:: ../_images/4states.png
     :name: 4states
     :scale: 45 %
     :alt: Energy diagram showing the best answer.
@@ -198,7 +198,7 @@ For the |dwave_short| quantum computer, the Hamiltonian may be represented as
 
 .. math::
 
-	{\cal H}_{ising} = \underbrace{- \frac{A({s})}{2} 
+	{\cal H}_{ising} = \underbrace{- \frac{A({s})}{2}
     \left(\sum_i {\hat\sigma_{x}^{(i)}}\right)}_\text{Initial Hamiltonian} +
     \underbrace{\frac{B({s})}{2} \left(\sum_{i} h_i {\hat\sigma_{z}^{(i)}} +
     \sum_{i>j} J_{i,j} {\hat\sigma_{z}^{(i)}}
@@ -243,7 +243,7 @@ annealing process. The lowest energy state during the anneal---the
 *ground state*---is typically shown at the bottom, and any higher excited states
 are above it; see :numref:`Figure %s <eigenspectrum>`.
 
-.. figure:: ../../_images/eigenspectrum.png
+.. figure:: ../_images/eigenspectrum.png
     :name: eigenspectrum
     :scale: 55 %
     :alt: Eigenspectrum, where the ground state is at the bottom and the higher
@@ -300,7 +300,7 @@ list of qubit states that are either 0 or 1) corresponds to an eigenstate and
 the eigenenergy is the classical energy objective function you have input into
 the system.
 
-.. figure:: ../../_images/annealing-functions.png
+.. figure:: ../_images/annealing-functions.png
     :name: annealing-functions-gsg
     :height: 400 pt
     :width: 400 pt
@@ -326,4 +326,3 @@ the annealing process.
 
 For more information about the available annealing controls, see
 |doc_processor|_.
-

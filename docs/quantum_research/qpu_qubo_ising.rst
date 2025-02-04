@@ -4,7 +4,7 @@
 QUBOs and Ising Models
 ======================
 
-TODO: fix this up
+.. todo:: fix this up
 
 
 how you formulate your objective as the problem Hamiltonian

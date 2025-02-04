@@ -72,7 +72,7 @@ Example
 The example in the :ref:`parameter_dqm_dqm` section above sets the
 :ref:`parameter_dqm_label` property.
 
-.. figure:: ../../_images/leap_problem_label.png
+.. figure:: ../_images/leap_problem_label.png
     :align: center
     :name: LeapProblemLabelDqm
     :alt: Problem labels on dashboard.

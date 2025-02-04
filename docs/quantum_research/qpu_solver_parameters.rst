@@ -875,7 +875,7 @@ labels are displayed on the dashboard.
 >>> print(sampleset.info["problem_label"])
 Test Ising Problem 1
 
-.. figure:: ../../_images/leap_problem_label.png
+.. figure:: ../_images/leap_problem_label.png
     :align: center
     :name: LeapProblemLabelQpu
     :alt: Problem labels on dashboard.

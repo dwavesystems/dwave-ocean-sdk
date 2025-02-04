@@ -71,7 +71,7 @@ Bibliography
     August 30, 2010. The |dwave_short| website.
 
 .. [Bia2014]
-    Zhengbing Bian, Fabian Chudak, Robert Israel, Brad Lackey, 
+    Zhengbing Bian, Fabian Chudak, Robert Israel, Brad Lackey,
     William G. Macready, and Aidan Roy.
     "Discrete optimization using quantum annealing on sparse Ising models."
     *Frontiers in Physics* 18 September 2014.
@@ -991,3 +991,4 @@ Bibliography
     ACM Transactions on Quantum Computing, Volume 4, Issue 3 Article No.: 17,
     Pages 1 - 30. April 8, 2023
     https://arxiv.org/abs/2202.03044
+

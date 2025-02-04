@@ -70,7 +70,7 @@ Qubits on |dwave_short| QPUs are "oriented" vertically
 or horizontally as shown in :numref:`Figure %s <ChimeraQubits3x3>`
 for the Chimera topology.
 
-.. figure:: ../../_images/Chimera_qubits_3x3.*
+.. figure:: ../_images/Chimera_qubits_3x3.*
     :align: center
     :name: ChimeraQubits3x3
     :alt: Qubits in the Chimera topology.
@@ -96,7 +96,7 @@ It is conceptually useful to categorize couplers as follows:
     Internal couplers connect pairs of orthogonal (with opposite orientation)
     qubits as shown in :numref:`Figure %s <ChimeraQubits2x2Internals>`.
 
-    .. figure:: ../../_images/Chimera_qubits_2x2_internals.*
+    .. figure:: ../_images/Chimera_qubits_2x2_internals.*
         :align: center
         :name: ChimeraQubits2x2Internals
         :height: 200 pt
@@ -115,7 +115,7 @@ It is conceptually useful to categorize couplers as follows:
     qubits in the same row or column---as shown in
     :numref:`Figure %s <ChimeraQubits1x3InternalsExternals>`.
 
-    .. figure:: ../../_images/Chimera_qubits_1x3_internals_externals.*
+    .. figure:: ../_images/Chimera_qubits_1x3_internals_externals.*
         :align: center
         :name: ChimeraQubits1x3InternalsExternals
         :height: 170 pt
@@ -145,7 +145,7 @@ to four vertical qubits in a :math:`K_{4,4}` bipartite graph, called a
 *unit cell*. :numref:`Figure %s <ChimeraQubits3x3Examplecoupledqubit>` shows
 three unit cells.
 
-.. figure:: ../../_images/Chimera_qubits_3x3_examplecoupledqubit.*
+.. figure:: ../_images/Chimera_qubits_3x3_examplecoupledqubit.*
     :align: center
     :name: ChimeraQubits3x3Examplecoupledqubit
     :height: 170 pt
@@ -163,7 +163,7 @@ three unit cells.
 A unit cell is typically rendered as either a cross or a column as shown in
 :numref:`Figure %s <ChimeraUnitCell>`.
 
-.. figure:: ../../_images/ChimeraUnitCell.*
+.. figure:: ../_images/ChimeraUnitCell.*
     :align: center
     :name: ChimeraUnitCell
     :height: 180 pt
@@ -183,12 +183,12 @@ external couplers as a lattice: this is the Chimera topology.
 :numref:`Figure %s <chimera2x2UnitCells>` shows two unit cells that form part
 of a larger Chimera graph.
 
-.. figure:: ../../_images/Chimera_2x2_unit_cells.*
+.. figure:: ../_images/Chimera_2x2_unit_cells.*
     :name: chimera2x2UnitCells
     :height: 230 pt
     :width: 200 pt
     :align: center
-    :alt: Chimera graph.  qubits are arranged in unit cells that form bipartite
+    :alt: Chimera graph. Qubits are arranged in unit cells that form bipartite
         connections.
 
     A cropped view of two unit cells of a Chimera graph. Qubits are arranged in
@@ -221,7 +221,7 @@ In |dwave_5kq_tm| QPUs, qubits are “oriented” vertically or horizontally, as
 the Chimera topology, but similarly aligned qubits are also shifted, as
 illustrated in :numref:`Figure %s <PegasusQubits>`.
 
-.. figure:: ../../_images/Pegasus_qubits.*
+.. figure:: ../_images/Pegasus_qubits.*
     :name: PegasusQubits
     :height: 400 pt
     :width: 400 pt
@@ -239,7 +239,7 @@ couplers as internal, external, and odd.
 :numref:`Figure %s <pegasusAllCoupledQubitsRoadway>` show two views of the
 coupling of qubits in this topology.
 
-.. figure:: ../../_images/pegasus_all_coupled_qubits.png
+.. figure:: ../_images/pegasus_all_coupled_qubits.png
     :align: center
     :name: pegasusAllCoupledQubits
     :scale: 100 %
@@ -252,7 +252,7 @@ coupling of qubits in this topology.
     different color, and externally coupled to horizontal qubits 2 and 9, each
     shown in a different color.
 
-.. figure:: ../../_images/pegasus_all_coupled_qubits_roadway.*
+.. figure:: ../_images/pegasus_all_coupled_qubits_roadway.*
     :align: center
     :name: pegasusAllCoupledQubitsRoadway
     :height: 240 pt
@@ -275,7 +275,7 @@ Couplers
     qubits as shown in :numref:`Figure %s <PegasusInternalCoupled>`. Each qubit
     is connected via internal coupling to 12 other qubits.
 
-    .. figure:: ../../_images/Pegasus_internal_coupled.*
+    .. figure:: ../_images/Pegasus_internal_coupled.*
         :align: center
         :name: PegasusInternalCoupled
         :height: 300 pt
@@ -294,7 +294,7 @@ Couplers
     horizontal qubits to adjacent horizontal qubits as shown in
     :numref:`Figure %s <PegasusInternalExternalCoupled>`.
 
-    .. figure:: ../../_images/Pegasus_internal_external_coupled.*
+    .. figure:: ../_images/Pegasus_internal_external_coupled.*
         :align: center
         :name: PegasusInternalExternalCoupled
         :height: 300 pt
@@ -312,7 +312,7 @@ Couplers
     Odd couplers connect similarly aligned pairs of qubits as shown in
     :numref:`Figure %s <PegasusOddCoupled>`.
 
-    .. figure:: ../../_images/Pegasus_odd_coupled.*
+    .. figure:: ../_images/Pegasus_odd_coupled.*
         :align: center
         :name: PegasusOddCoupled
         :height: 300 pt
@@ -337,7 +337,7 @@ the cell and two similarly aligned qubits in adjacent cells, as shown in
 :numref:`Figure %s <P4UnitCells>`. An |dwave_5kq| QPU is a lattice of
 :math:`16x16` such unit cells, denoted as a :math:`P_{16}` Pegasus graph.
 
-.. figure:: ../../_images/p4_unitcells.*
+.. figure:: ../_images/p4_unitcells.*
     :align: center
     :name: P4UnitCells
     :height: 300 pt
@@ -351,7 +351,7 @@ More formally, a unit cell in the Pegasus topology consists of 48 halves of
 qubits that are divided between adjacent such unit cells, as shown in
 :numref:`Figure %s <P4UnitCellsHalfQubits>`.
 
-.. figure:: ../../_images/p4_unitcell_halfqubits.*
+.. figure:: ../_images/p4_unitcell_halfqubits.*
     :align: center
     :name: P4UnitCellsHalfQubits
     :height: 200 pt
@@ -384,7 +384,7 @@ The Zephyr topology enables native :math:`K_4` and :math:`K_{8,8}` subgraphs.
 :numref:`Figure %s <ZephyrCouplersColored>` shows the 20 couplers of a qubit in
 a Zephyr graph.
 
-.. figure:: ../../_images/zephyr_couplers_colored.*
+.. figure:: ../_images/zephyr_couplers_colored.*
     :name: ZephyrCouplersColored
     :height: 600 pt
     :width: 600 pt
@@ -408,7 +408,7 @@ qubit (four :math:`K_{4,4}` complete graphs with their internal and external
 couplings) or to eight oppositely aligned qubits and one similarly aligned qubit
 (a :math:`K_{8,8}` complete graph with its internal and odd couplings).
 
-.. figure:: ../../_images/zephyr_unitcell_halfqubits.*
+.. figure:: ../_images/zephyr_unitcell_halfqubits.*
     :align: center
     :name: ZephyrUnitCellsHalfQubits
     :height: 500 pt
@@ -421,7 +421,7 @@ couplings) or to eight oppositely aligned qubits and one similarly aligned qubit
 :numref:`Figure %s <ZephyrUnitcell>` shows a :math:`Z_1` :math:`3X3` grid of
 unit cells in the Zephyr topology.
 
-.. figure:: ../../_images/zephyr_unitcell.*
+.. figure:: ../_images/zephyr_unitcell.*
     :name: ZephyrUnitcell
     :height: 600 pt
     :width: 600 pt
@@ -453,4 +453,3 @@ following technical reports:
 
 *   Pegasus topology: `14-1026 Next-Generation Topology of D-Wave Quantum Processors <https://www.dwavesys.com/media/jwwj5z3z/14-1026a-c_next-generation-topology-of-dw-quantum-processors.pdf>`_
 *   Zephyr topology: `14-1056 Zephyr Topology of D-Wave Quantum Processors <https://www.dwavesys.com/media/2uznec4s/14-1056a-a_zephyr_topology_of_d-wave_quantum_processors.pdf>`_
-
