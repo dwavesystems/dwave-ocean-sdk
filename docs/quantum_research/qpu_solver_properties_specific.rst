@@ -5,8 +5,5 @@ Per-QPU Solver Properties and Schedules
 =======================================
 
 
-TODO: this is from sources:
-
-* QPU-Specific Characteristics
-  (https://docs.dwavesys.com/docs/latest/doc_physical_properties.html)
+.. todo:: this is awaiting Alex S's update to https://docs.dwavesys.com/docs/latest/doc_physical_properties.html
 

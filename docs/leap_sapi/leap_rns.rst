@@ -6,8 +6,5 @@
 Release Notes
 =============
 
-TODO: this is from sources:
-
-* Release Notes 
-  (https://docs.dwavesys.com/docs/latest/doc_release_notes.html)
+.. todo:: update this is from source https://docs.dwavesys.com/docs/latest/doc_release_notes.html
 

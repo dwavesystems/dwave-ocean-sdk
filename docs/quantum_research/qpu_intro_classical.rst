@@ -4,12 +4,11 @@
 Classical Solvers
 =================
 
-TODO: this is from sources:
-
-* Classical Solvers 
-  (https://docs.ocean.dwavesys.com/en/stable/overview/cpu.html)
-* dwave-samplers
-  (https://docs.ocean.dwavesys.com/en/stable/docs_samplers/index.html)
+.. todo:: update this is from sources:
+	* Classical Solvers 
+	  (https://docs.ocean.dwavesys.com/en/stable/overview/cpu.html)
+	* dwave-samplers
+	  (https://docs.ocean.dwavesys.com/en/stable/docs_samplers/index.html)
 
 
 You might use a classical solver while developing your code or on a small version of

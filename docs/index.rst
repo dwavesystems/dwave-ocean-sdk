@@ -228,3 +228,9 @@ Welcome to |dwave_short|
         `Ocean software documentation <https://docs.ocean.dwavesys.com>`_ for
         the associated documentation.
 
+TODO LIST (TEMPORARY)
+=====================
+
+.. todo:: remove this section later
+
+.. todolist::

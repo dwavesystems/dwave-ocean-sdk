@@ -1,6 +1,6 @@
 .. start_anneal_offset
 
-.. TODO check if needed. I think I flattened this in QPU Solver Params here.
+.. todo:: check if needed. I think I flattened this in QPU Solver Params here.
 
 Provide an array of anneal offset values, in normalized offset units, for all
 qubits, working or not. Use 0 for no offset. Negative values produce a negative
@@ -34,7 +34,7 @@ a maximum resolution of 5%.\ [#]_
 
 .. start_schedule_intro
 
-.. TODO check if needed. I think I flattened this in QPU Solver Params here.
+.. todo:: check if needed. I think I flattened this in QPU Solver Params here.
 
 An anneal schedule variation is defined by a series of pairs of floating-point
 numbers identifying points in the schedule at which to change slope. The first

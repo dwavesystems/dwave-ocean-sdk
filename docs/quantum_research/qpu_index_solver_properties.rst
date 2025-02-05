@@ -11,7 +11,7 @@ QPU Solver Properties
     qpu_solver_properties_all
     qpu_solver_properties_specific
 
-TODO: Fix this up
+.. todo:: Fix this up
 
 Properties that characterize behaviors and supported features of SAPI 
 solvers[1] can be queried through SAPI. Also properties and annealing schedule 

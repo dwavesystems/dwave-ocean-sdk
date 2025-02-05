@@ -4,7 +4,4 @@
 Known Issues
 ============
 
-TODO: this is from sources:
-
-* Known Issues 
-  (https://docs.dwavesys.com/docs/latest/rn_known_issues.html)
+..todo:: update this is from sources https://docs.dwavesys.com/docs/latest/rn_known_issues.html

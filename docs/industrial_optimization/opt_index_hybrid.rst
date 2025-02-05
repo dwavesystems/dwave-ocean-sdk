@@ -33,7 +33,7 @@ and motivation for, hybrid computing, see:
         samplers.
 
 
-TODO: move the following content lower
+.. todo:: move the following content lower
 
 .. _leap_hybrid_solvers:
 

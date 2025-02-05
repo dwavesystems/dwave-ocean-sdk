@@ -39,8 +39,7 @@ Use this document in conjunction with the following other documents:
 
 .. start_pegasus
 
-.. TODO merge this content with the topology content and just reference it from
-    QPU-specific page
+.. todo:: merge this content with the topology content and just reference it from QPU-specific page
 
 The |dwave_5kq| QPU is based on a physical lattice of qubits and couplers known
 as the *Pegasus*\ |tm| topology. This topology comprises a repeated structure
@@ -127,7 +126,7 @@ Gaussian distributed with mean :math:`\mu` and standard deviation
 
 .. start_ocean_properties
 
-.. TODO make this more more generic and move to shared/notes.rst
+.. todo:: make this more more generic and move to shared/notes.rst
 
 .. note::
     In addition to the above list of physical properties, each QPU has a number
@@ -143,7 +142,7 @@ Gaussian distributed with mean :math:`\mu` and standard deviation
 
 .. start_call_support
 
-.. TODO make this more more generic and move to shared/notes.rst
+.. todo:: make this more more generic and move to shared/notes.rst
 
 .. note::
     Contact |support_email|_ to obtain the detailed properties of your system.

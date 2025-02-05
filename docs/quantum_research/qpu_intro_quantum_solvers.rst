@@ -4,11 +4,6 @@
 Quantum Solvers
 ===============
 
-TODO: this is from sources:
-
-* Quantum Solvers 
-  (https://docs.ocean.dwavesys.com/en/stable/overview/qpu.html)
-
 Ocean's :doc:`dwave-system </docs_system/sdk_index>` tool enables
 you to use a D-Wave system as a sampler. In addition to 
 :class:`~dwave.system.samplers.DWaveSampler`, the tool

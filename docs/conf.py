@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 # This file contains function linkcode_resolve, based on
 # https://github.com/numpy/numpy/blob/main/doc/source/conf.py,
 # which is licensed under the BSD 3-Clause "New" or "Revised"
@@ -63,7 +61,7 @@ numfig = True
 
 source_suffix = ['.rst', '.md']
 
-root_doc = 'index'  # before Sphinx 4.0, named master_doc
+root_doc = 'index'
 
 language = 'en'
 
@@ -78,6 +76,17 @@ linkcheck_ignore = [r'.clang-format',                    # would need symlink
                     r'https://epubs.siam.org',           # ignores robots since Feb 2023
                     r'LICENSE',                          # would need symlink, checked by submodule
                     r'CONTRIBUTING',                     # would need symlink, checked by submodule
+                    r'^https?://cloud\.dwavesys\.com/leap(\/.*)?$', # redirects, many checks
+                    r'^https?://(.*\.)?cloud\.dwavesys\.com/sapi(\/.*)?$', # not pingable
+                    r'^https://www\.sciencedirect\.com\/science\/article\/pii(\/.*)?$', # site rejects robots since March 2023
+                    r'^https://onlinelibrary\.wiley\.com(\/.*)?$', # site rejects robots since March 2023
+                    r'^http://science\.sciencemag\.org\/content(\/.*)?$', # site rejects robots since March 2023 
+                    r'^https://iopscience\.iop\.org\/article(\/.*)?$', # site rejects robots since November 2023 
+                    r'^https://journals\.aps\.org(\/.*)?$', # site rejects robots since October 2024
+                    r'^https://doi\.org(\/.*)?PhysRev(.*)?$', # redirects to journals.aps.org above
+                    r'^https://ssrn\.com(\/.*)?$', # site rejects robots since October 2024
+                    r'^https?://dx\.doi\.org(\/.*)?ssrn\.(.*)?$', # redirects to SSRN above
+                    r'^https://support\.dwavesys\.com', # Leap support site rejects robots
                     ]
 
 pygments_style = 'sphinx'
@@ -122,13 +131,11 @@ import dwave.inspector
 # -- Breathe configuration ------------------------------------------------
 
 # Path to the cpp xml files
-breathe_projects = {"minorminer": os.path.join(
-                      sdk_directory, 'minorminer/docs/build-cpp/xml/'),
-                    "dimod": os.path.join(
-                      sdk_directory, 'dimod/docs/build-cpp/xml/'),
-                    "dwave-preprocessing": os.path.join(
-                      sdk_directory, 'dwave-preprocessing/docs/build-cpp/xml/'),
-                    }
+breathe_projects = {
+    "minorminer": os.path.join(sdk_directory, 'minorminer/docs/build-cpp/xml/'),
+    "dimod": os.path.join(sdk_directory, 'dimod/docs/build-cpp/xml/'),
+    "dwave-preprocessing": os.path.join(sdk_directory, 'dwave-preprocessing/docs/build-cpp/xml/'),
+    }
 
 breathe_default_members = ('members', )
 breathe_default_project = "minorminer"
@@ -202,8 +209,8 @@ intersphinx_mapping = {
     'python': ('https://docs.python.org/3/', None),
     'numpy': ('http://numpy.org/doc/stable/', None),
     'networkx': ('https://networkx.org/documentation/stable/', None),
-    'sysdocs_gettingstarted': ('https://docs.dwavesys.com/docs/latest/', None),
-    'oceandocs': ('https://docs.ocean.dwavesys.com/en/stable/', None),
+    # 'sysdocs_gettingstarted': ('https://docs.dwavesys.com/docs/latest/', None),
+    # 'oceandocs': ('https://docs.ocean.dwavesys.com/en/stable/', None),
     }
 
 
@@ -291,8 +298,8 @@ def linkcode_resolve(domain, info):
     fn = "https://github.com/dwavesystems/{}/blob/{}{}".format(pm_module, pm_ver, fn)
 
     return fn + linespec
-    
-    #defines global substitutions
+
+# global substitutions
 rst_epilog = """
 .. |copy| unicode:: U+000A9 .. COPYRIGHT SIGN
 .. |deg| unicode:: U+00B0
@@ -303,22 +310,44 @@ rst_epilog = """
 .. |tm| unicode::  U+2122
 .. |Darr| unicode:: U+02193 .. DOWNWARDS ARROW from docutils/parsers/rst/include/isonum.txt
 .. |Uarr| unicode:: U+02191 .. UPWARDS ARROW from docutils/parsers/rst/include/isonum.txt
+
+.. |adv2| unicode:: Advantage2
 .. |cloud_tm| unicode:: Leap U+2122
 .. _cloud_tm: https://cloud.dwavesys.com/leap
 .. |dwave_2kq| unicode:: D-Wave U+00A0 2000Q
-.. |adv2| unicode:: Advantage2
 .. |dwave_5kq| unicode:: Advantage
 .. |dwave_5kq_tm| unicode:: Advantage U+2122
 .. |dwave_short| unicode:: D-Wave
 .. |dwave_short_tm| unicode:: D-Wave U+2122 U+0020
 .. |dwave_system| unicode:: D-Wave U+00A0 System
 .. |dwave_systems_inc| replace:: D-Wave Systems Inc.
-.. |max_qubits| replace:: 5640
-.. |max_couplers| replace:: 40484
-.. |max_j_junctions| replace:: 1,000,000
 .. |qc| replace:: D-Wave Quantum Cloud
 .. |support_email| replace:: D-Wave Customer Support
 .. _support_email: support@dwavesys.com
+
+.. |doc_operations| replace:: *D-Wave Quantum Computer Operations*
+
+.. |max_qubits| replace:: 5640
+.. |max_couplers| replace:: 40484
+.. |max_j_junctions| replace:: 1,000,000
+
 .. |anneal_time_display_granularity| replace:: with a resolution of 0.01 :math:`\mu s`
 .. |anneal_time_parameter_granularity| replace:: with a resolution of 0.01 :math:`\mu s`
+"""
+
+# TODO: check which of these is used 
+
+latex_preamble = r"""
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{braket}
+\usepackage{siunitx}
+
+\newcommand{\argmin}{\operatornamewithlimits{argmin}}
+\newcommand{\argmax}{\operatornamewithlimits{argmax}}
+\newcommand{\vc}[1]{{\pmb{#1}}}
+\newcommand{\ip}[2]{\langle{#1},{#2}\rangle}
+\newcommand{\sign}{\operatorname{sign}}
+\newcommand {\pauli}[2]{\hat\sigma_{#1}^{(#2)}}
+\newcommand{\tr}{\operatorname{tr}}
 """

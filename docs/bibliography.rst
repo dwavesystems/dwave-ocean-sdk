@@ -955,7 +955,7 @@ Bibliography
     Computer Science (LNCS), vol 12151. Springer, Cham.
     https://doi.org/10.1007/978-3-030-50743-5_10
     
-.. TODO:: order dwave-networkx citations alphabetically
+.. todo:: order dwave-networkx citations alphabetically
 
 .. [Boo2019]
     Boothby K., P. Bunyk, J. Raymond and A. Roy.

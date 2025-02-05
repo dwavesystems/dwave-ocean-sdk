@@ -4,4 +4,4 @@
 What is Gate Model?
 ===================
 
-TODO: Add content from dwave-gate 
+.. todo:: Add content from dwave-gate and a ref to wiki or something 
