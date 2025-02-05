@@ -53,11 +53,12 @@ Formulating an Objective Function
 =================================
 
 The first step in solving problems on QPU solvers is to formulate an
-objective function. Such an objective, usually in Ising or QUBO format,
-represents good solutions to the problem as low-energy states of the system.
-This subsection shows an intuitive approach to formulating such a QUBO.
+:term:`objective function`. Such an objective, usually in :term:`Ising` or
+:term:`QUBO` format, represents good solutions to the problem as low-energy
+states of the system. This subsection shows an intuitive approach to formulating
+such a QUBO.
 
-For two variables, the :ref:`obj_qubo` formulation reduces to,
+For two variables, the :ref:`qpu_qubo_ising_qubo` formulation reduces to,
 
 .. math::
 
@@ -92,8 +93,8 @@ energy.
 First, notice that when :math:`q_1` and :math:`q_2` both equal
 0---state 1---the value of the objective function is 0 for any value of the
 coefficients. To favor this state, you should formulate the objective function
-to have a global minimum energy (the *ground state* energy of the system) equal
-to 0. Doing so ensures that state 1 is a good solution.
+to have a global minimum energy (the :term:`ground state` energy of the system)
+equal to 0. Doing so ensures that state 1 is a good solution.
 
 Second, you penalize states 2 and 3 relative to state 1. One way to do this is
 to set both :math:`a_1` and :math:`a_2` to a positive value such as 0.1\ [#]_.
@@ -101,8 +102,8 @@ Doing so sets the the value of the objective function for those two states to
 :math:`0.1`.
 
 .. [#]
-    Why not :math:`0.2` or :math:`0.5`? The :ref:`getting_started_advanced`
-    chapter looks at scaling the problem values.
+    Why not :math:`0.2` or :math:`0.5`? The :ref:`qpu_basic_config` section
+    looks at scaling the problem values.
 
 Third, you also favor state 4 along with state 1. Given that for state 4, your
 objective function so far is

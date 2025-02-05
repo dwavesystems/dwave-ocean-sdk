@@ -4,6 +4,10 @@
 Basic Workflow: Formulation and Sampling
 ========================================
 
+This section provides a high-level description of how you solve problems using
+quantum computers directly. For solving problems with :term:`hybrid`
+:term:`solver`\ s, see the :ref:`opt_workflow` section.
+
 .. include:: ../shared/workflow.rst
     :start-after: start_workflow_intro
     :end-before: end_workflow_intro
@@ -83,6 +87,7 @@ Simple Sampling Example
 -----------------------
 
 .. |figSimpleRandomSampler| replace:: qpuSimpleRandomSampler
+.. |simple_objective_example_ref| replace:: :ref:`qpu_workflow_simple_obj_example`
 
 .. include:: ../shared/workflow.rst
     :start-after: start_simple_sampler_example
@@ -90,7 +95,7 @@ Simple Sampling Example
 
 .. _qpu_workflow_simple_example:
 
-.. todo:: add example
+.. todo:: add example: Simple Workflow Example
 
     Simple Workflow Example
     =======================

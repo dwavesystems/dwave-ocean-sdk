@@ -23,9 +23,9 @@
     licenses
     bibliography
 
-..  tab-set::
+.. tab-set::
 
-    ..  tab-item:: Optimization
+    .. tab-item:: Optimization
         :name: tab_industrial_optimization
         :selected:
 
@@ -33,7 +33,7 @@
             :start-after: sections-start-marker
             :end-before: sections-end-marker
 
-    ..  tab-item:: Quantum
+    .. tab-item:: Quantum
         :name: tab_quantum_research
 
         .. include:: quantum_research/index_quantum_research.rst
@@ -102,7 +102,7 @@ Welcome to |dwave_short|
         for quantum computers: gate model (also known as circuit model) and
         quantum annealing.
 
-        `Gate-model quantum computing <https://en.wikipedia.org/wiki/Quantum_circuit>`_
+        :ref:`Gate-model quantum computing <qpu_gate_model_intro>`
         implements compute algorithms with quantum gates, analogously to the use
         of Boolean gates in classical computers.
 
@@ -110,8 +110,8 @@ Welcome to |dwave_short|
         and gradually introduce the parameters of a problem you wish to solve.
         The slow change makes it likely that the system ends in a low-energy
         state of the problem, which corresponds to an optimal solution. This
-        technique is explained in more detail in the :ref:`getting_started_qa`
-        chapter.
+        technique is explained in more detail in the
+        ref:`qpu_quantum_annealing_intro` section.
 
         Quantum annealing is implemented in |dwave_short|'s generally available
         quantum computers, such as the |dwave_5kq_tm| system, as a single
@@ -136,7 +136,7 @@ Welcome to |dwave_short|
             dilution refrigerator system. The QPU operates at temperatures below
             20 mK.
         *   Shielding from electromagnetic interference, achieved using a radio
-            frequency (RF)–shielded enclosure and a magnetic shielding
+            frequency (RF)-shielded enclosure and a magnetic shielding
             subsystem.
 
         .. figure:: ./_images/advantage_system.png
@@ -157,7 +157,7 @@ Welcome to |dwave_short|
         complex superconducting integrated circuit ever built.
 
         For details on the topology of the QPU, see the
-        :ref:`getting_started_topologies` section.
+        :ref:`qpu_topologies` section.
 
         .. figure:: ./_images/qpu.png
             :name: qpu1
@@ -211,8 +211,7 @@ Welcome to |dwave_short|
         system, contribute your coding ideas, and join the growing conversation
         in our community of like-minded users.
 
-        For more information, see
-        `Introduction to the Leap service <https://docs.dwavesys.com/docs/latest/leap.html>`_.
+        For more information, see the :ref:`index_leap_sapi` section.
 
         Sign up for the Leap service here:
         `Leap service signup <https://cloud.dwavesys.com/leap>`_.
@@ -222,11 +221,9 @@ Welcome to |dwave_short|
 
         |dwave_short|'s Python-based open-source software development kit (SDK),
         Ocean SDK, makes application development for quantum computers rapid and
-        efficient and facilitates collaborative projects. See
-        `Ocean SDK on GitHub <https://github.com/dwavesystems>`_ to access the
-        Ocean SDK, and
-        `Ocean software documentation <https://docs.ocean.dwavesys.com>`_ for
-        the associated documentation.
+        efficient and facilitates collaborative projects. See the
+        :ref:`index_ocean_sdk` section for the SDK and its reference
+        documentation.
 
 TODO LIST (TEMPORARY)
 =====================

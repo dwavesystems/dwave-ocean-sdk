@@ -4,4 +4,6 @@
 What is Gate Model?
 ===================
 
-.. todo:: Add content from dwave-gate and a ref to wiki or something 
+.. todo:: Add content from dwave-gate and a ref to wiki or something
+
+https://en.wikipedia.org/wiki/Quantum_circuit

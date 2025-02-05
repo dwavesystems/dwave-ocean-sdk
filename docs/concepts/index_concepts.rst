@@ -26,6 +26,13 @@ Concepts and Terminology
 
 .. glossary::
 
+    adiabatic
+        An annealing process that experiences no interference from outside
+        energy sources and evolves the Hamiltonian slowly enough is called an
+        *adiabatic* process.
+
+        Learn more: :ref:`qpu_quantum_annealing_intro`.
+
     binary quadratic model
     BQM
         A collection of binary-valued variables (variables that can be assigned
@@ -46,7 +53,7 @@ Concepts and Terminology
     Chain length
         The number of qubits in a :term:`Chain`.
 
-        Learn more: 
+        Learn more:
 
         *   :ref:`qpu_embedding_intro` for an introduction.
         *   :ref:`qpu_embedding_guidance` for advanced information.
@@ -55,7 +62,7 @@ Concepts and Terminology
         Magnitude of the negative quadratic bias applied between variables to
         form a chain.
 
-        Learn more: 
+        Learn more:
 
         *   :ref:`qpu_embedding_intro` for an introduction.
         *   :ref:`qpu_embedding_guidance` for advanced information.
@@ -69,11 +76,11 @@ Concepts and Terminology
 
         Learn more: :ref:`qpu_topologies`.
 
-    Clique 
+    Clique
     Complete graph
     Fully connected
         See `complete graph <https://en.wikipedia.org/wiki/Complete_graph>`_
-        on Wikipedia or 
+        on Wikipedia or
         :std:doc:`oceandocs:docs_dnx/reference/algorithms/clique`. A fully
         connected or complete :term:`binary quadratic model` is one that has
         interactions between all of its variables.
@@ -97,11 +104,11 @@ Concepts and Terminology
 
         Learn more: :ref:`quadratic_composites`.
 
-    Connected graph 
-        See `connected graph <https://xlinux.nist.gov/dads/HTML/connectedGraph.html>`_ 
-        on the US NIST site. A connected graph has some path from any vertex 
-        to any other. A graph that has at least two vertices without a path 
-        between them is disconnected. Any :term:`Complete graph` is connected 
+    Connected graph
+        See `connected graph <https://xlinux.nist.gov/dads/HTML/connectedGraph.html>`_
+        on the US NIST site. A connected graph has some path from any vertex
+        to any other. A graph that has at least two vertices without a path
+        between them is disconnected. Any :term:`Complete graph` is connected
         (but not all connected graphs are complete).
 
     Constrained quadratic model
@@ -119,6 +126,11 @@ Concepts and Terminology
         finite domain, that result in the satisfying of all constraints.
 
         Learn more: :ref:`concept_constraint_satisfaction_problem`.
+
+    Coupler
+        Couplers can correlate two qubits such that they tend to end up in the
+        same classical state---both 0 or both 1---or in opposite states. The
+        correlation between coupled qubits is controlled programmatically.
 
     discrete quadratic model
     DQM
@@ -177,11 +189,11 @@ Concepts and Terminology
             :nowrap:
 
             \begin{equation}
-                    {\cal H}_{ising} = \underbrace{\frac{A({s})}{2} 
+                    {\cal H}_{ising} = \underbrace{\frac{A({s})}{2}
                     \left(\sum_i {\hat\sigma_{x}^{(i)}}\right)}_\text{Initial Hamiltonian}
-                    + \underbrace{\frac{B({s})}{2} 
+                    + \underbrace{\frac{B({s})}{2}
                     \left(\sum_{i} h_i {\hat\sigma_{z}^{(i)}}
-                    + \sum_{i>j} J_{i,j} {\hat\sigma_{z}^{(i)}} 
+                    + \sum_{i>j} J_{i,j} {\hat\sigma_{z}^{(i)}}
                     {\hat\sigma_{z}^{(j)}}\right)}_\text{Final Hamiltonian}
             \end{equation}
 
@@ -189,13 +201,13 @@ Concepts and Terminology
         a qubit :math:`q_i`, and :math:`h_i` and :math:`J_{i,j}` are the qubit
         biases and coupling strengths.
 
-        Learn more: 
+        Learn more:
 
         *   :ref:`qpu_quantum_annealing_intro` for an introduction.
         *   :ref:`qpu_annealing` for advanced information on implementation.
 
     Hardware graph
-        The hardware graph is the physical lattice of interconnected qubits. 
+        The hardware graph is the physical lattice of interconnected qubits.
         See also :term:`working graph`.
 
         Learn more: :ref:`qpu_topologies`.
@@ -205,8 +217,8 @@ Concepts and Terminology
         resources to solve problems, exploiting the complementary strengths
         that each provides.
 
-        Learn more: 
-        
+        Learn more:
+
         *   :ref:`concept_hybrid` for an introduction.
         *   :ref:`opt_index_hybrid` gets you started with hybrid samplers.
         *   :ref:`opt_index_hybrid_solvers` describes the supported hybrid
@@ -225,7 +237,7 @@ Concepts and Terminology
             :nowrap:
 
             \begin{equation}
-                \text{E}_{ising}(\pmb{s}) = \sum_{i=1}^N h_i s_i + 
+                \text{E}_{ising}(\pmb{s}) = \sum_{i=1}^N h_i s_i +
                 \sum_{i=1}^N \sum_{j=i+1}^N J_{i,j} s_i s_j
             \end{equation}
 
@@ -233,7 +245,7 @@ Concepts and Terminology
         are :math:`h_i`, and the quadratic coefficients corresponding to
         coupling strengths are :math:`J_{i,j}`.
 
-        Learn more: 
+        Learn more:
 
         *   `Ising Model on Wikipedia <https://en.wikipedia.org/wiki/Ising_model>`_.
         *   :ref:`concept_models` on supported models.
@@ -263,7 +275,7 @@ Concepts and Terminology
 
         Learn more: :ref:`qpu_quantum_annealing_intro`.
 
-    Nonlinear model 
+    Nonlinear model
         A collection of variables with associated biases that constitute an
         :term:`objective function` and/or constraints.
         Sometimes referred to as a **problem**.
@@ -282,8 +294,8 @@ Concepts and Terminology
     Penalty function
         An algorithm for solving constrained optimization problems. In the
         context of Ocean tools, penalty functions are typically employed to
-        increase the energy level of a problem’s :term:`objective function` by
-        penalizing non-valid configurations. See 
+        increase the energy level of a problem's :term:`objective function` by
+        penalizing non-valid configurations. See
         `Penalty method on Wikipedia <https://en.wikipedia.org/wiki/Penalty_method>`_.
 
         Learn more: :ref:`concept_penalty`.
@@ -292,7 +304,7 @@ Concepts and Terminology
     Penalty model
         An approach to solving constraint satisfaction problems (CSP) using an
         :term:`Ising` model or a :term:`QUBO` by mapping each individual
-        constraint in the CSP to a ‘small’ Ising model or QUBO.
+        constraint in the CSP to a "small" Ising model or QUBO.
 
         Learn more: :ref:`concept_penalty`.
 
@@ -342,7 +354,7 @@ Concepts and Terminology
             :nowrap:
 
             \begin{equation}
-                \text{E}_{qubo}(a_i, b_{i,j}; q_i) = \sum_{i} a_i q_i + 
+                \text{E}_{qubo}(a_i, b_{i,j}; q_i) = \sum_{i} a_i q_i +
                 \sum_{i<j} b_{i,j} q_i q_j.
             \end{equation}
 
@@ -376,6 +388,15 @@ Concepts and Terminology
         *   :ref:`ocean_sapi_access_basic`.
         *   :ref:`ocean_sapi_access_advanced`
 
+    SAT
+    Satisfiability
+    Boolean satisfiability problem
+        A problem of whether a formula's variables can be consistently replaced
+        by the values TRUE or FALSE to make the formula evaluate to TRUE. See
+        also :term:`CSP`.
+
+        Learn more: `satisfiability (SAT) <https://en.wikipedia.org/wiki/Boolean_satisfiability_problem>`_
+
     Solver
         A resource that runs a problem. Some solvers interface to the
         :term:`QPU`; others leverage CPU and GPU resources.
@@ -399,8 +420,8 @@ Concepts and Terminology
         defined on a specific :term:`graph`.
 
     Subgraph
-        See 
-        `subgraph <https://en.wikipedia.org/wiki/Glossary_of_graph_theory_terms#subgraph>`_ 
+        See
+        `subgraph <https://en.wikipedia.org/wiki/Glossary_of_graph_theory_terms#subgraph>`_
         on Wikipedia.
 
     Symbolic Math

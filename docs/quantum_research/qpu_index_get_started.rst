@@ -1,7 +1,7 @@
 .. _qpu_index_get_started:
 
 ==================================
-Get Started with Quantum Computing 
+Get Started with Quantum Computing
 ==================================
 
 .. toctree::
@@ -15,9 +15,10 @@ Get Started with Quantum Computing
     qpu_intro_quantum_solvers
     qpu_qubo_ising
     qpu_embedding_intro
+    qpu_basic_config
     qpu_index_examples_beginner
-    
-Learn to submit problems directly to quantum processing units (QPUs) in 
+
+Learn to submit problems directly to quantum processing units (QPUs) in
 the |cloud_tm| quantum cloud service.
 
 .. grid:: 3
@@ -53,15 +54,19 @@ the |cloud_tm| quantum cloud service.
 
         Introduction to Ocean software's quantum solvers.
 
-   .. grid-item-card:: :ref:`qpu_qubo_ising`
+    .. grid-item-card:: :ref:`qpu_qubo_ising`
 
         Modeling problems as QUBOs and Ising Models.
-        
+
     .. grid-item-card:: :ref:`qpu_embedding_intro`
         :link: qpu_embedding_intro
         :link-type: ref
 
         Mapping arbitrary problems to QPU :term:`topology`.
+
+    .. grid-item-card:: :ref:`qpu_basic_config`
+
+        Introduction to setting QPU parameters.
 
     .. grid-item-card:: :ref:`qpu_index_examples_beginner`
         :link: qpu_index_examples_beginner

@@ -22,23 +22,23 @@ or in symbolic form.
 
 Unconstrained quadratic models are used to submit problems to :term:`sampler`\ s
 such as D-Wave quantum computers\ [#]_ and some hybrid quantum-classical
-samplers\ [#]_. When using such samplers to handle problems with constraints, you
-typically formulate the constraints as :ref:`concept_penalty`.
+samplers\ [#]_. When using such samplers to handle problems with constraints,
+you typically formulate the constraints as :ref:`concept_penalty`.
 
-The :ref:`concept_models_supported` section below lists constrained and unconstrained
-models.
-
-.. [#]
-  D-Wave quantum computers accept unconstrained binary quadratic models, such as
-  quadratic unconstrained binary optimization (\ :term:`QUBO`\ ) models: binary
-  because variables are represented by qubits that return two states and quadratic
-  because polynomial terms of two variables can be represented by pairs of coupled
-  qubits.
+The :ref:`concept_models_supported` section below lists constrained and
+unconstrained models.
 
 .. [#]
-  Some hybrid quantum-classical samplers accept constrained and non-binary models;
-  for example, a quadratic model with an integer variable that must be smaller
-  than some configured value.
+    D-Wave quantum computers accept unconstrained binary quadratic models, such
+    as quadratic unconstrained binary optimization (\ :term:`QUBO`\ ) models:
+    binary because variables are represented by qubits that return two states
+    and quadratic because polynomial terms of two variables can be represented
+    by pairs of coupled qubits.
+
+.. [#]
+    Some hybrid quantum-classical samplers accept constrained and non-binary
+    models; for example, a quadratic model with an integer variable that must be
+    smaller than some configured value.
 
 .. _concept_models_supported:
 
@@ -51,8 +51,8 @@ the variables you can use with each, and some related classes.
 .. |models_variables_table| replace:: Supported Models
 
 .. include:: ../shared/models.rst
-  :start-after: start_model_variables_table
-  :end-before: end_model_variables_table 
+    :start-after: start_model_variables_table
+    :end-before: end_model_variables_table
 
 .. _concept_models_cqm:
 
@@ -75,14 +75,15 @@ The constrained quadratic model (CQM) are problems of the form:
 
 where :math:`\{ x_i\}_{i=1, \dots, N}` can be binary\ [#]_, integer, or
 continuous\ [#]_ variables, :math:`a_{i}, b_{ij}, c` are real values,
-:math:`\circ \in \{ \ge, \le, = \}` and  :math:`M` is the total number of constraints.
+:math:`\circ \in \{ \ge, \le, = \}` and  :math:`M` is the total number of
+constraints.
 
 .. [#]
     For binary variables, the range of the quadratic-term summation is
     :math:`i < j` because :math:`x^2 = x` for binary values :math:`\{0, 1\}`
     and :math:`s^2 = 1` for spin values :math:`\{-1, 1\}`.
 
-.. [#] 
+.. [#]
     Real-valued variables are currently not supported in quadratic interactions.
 
 CQMs are typically used for applications that optimize problems that might
@@ -115,14 +116,13 @@ packed.
 
 .. _concept_models_bqm:
 
-Binary Quadratic Models 
+Binary Quadratic Models
 =======================
 
 .. start_concept_models_quadratic
 
-The binary quadratic model (BQM) class encodes
-Ising and quadratic unconstrained binary optimization (QUBO) models
-used by samplers such as the D-Wave system.
+The binary quadratic model (BQM) class encodes Ising and quadratic unconstrained
+binary optimization (QUBO) models used by samplers such as the D-Wave system.
 
 The BQM equation,
 
@@ -205,7 +205,7 @@ Ocean supports various quadratic models:
 
 *   :ref:`concept_models_ising` and :ref:`concept_models_qubo`
 *   :ref:`concept_models_bqm` are unconstrained and support binary variables.
-*   :ref:`concept_models_cqm` can be constrained and support real, integer 
+*   :ref:`concept_models_cqm` can be constrained and support real, integer
     and binary variables.
 *   :ref:`concept_models_dqm` are unconstrained and support discrete variables.
 
@@ -231,8 +231,9 @@ A discrete quadratic model may be defined as
 
     H(\bf{d}) = \sum_{i} a_i(\bf{d}_i) + \sum_{i,j} b_{i,j}(\bf{d}_i,\bf{d}_j) + c
 
-where :math:`\bf{d}_i` are the discrete variables, :math:`a_i()` and :math:`b_{i,j}()`
-are real-valued functions, and :math:`c` is a constant (offset).
+where :math:`\bf{d}_i` are the discrete variables, :math:`a_i()` and
+:math:`b_{i,j}()` are real-valued functions, and :math:`c` is a constant
+(offset).
 
 You can represent any DQM with an equivalent model over **binary** variables
 by replacing each discrete variable, :math:`\bf{d}_i`, with a vector of binary

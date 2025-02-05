@@ -1,27 +1,24 @@
 
 .. start_workflow_intro
 
-This section provides a high-level description of how you solve problems using
-quantum computers.
-
 The two main steps of solving problems using quantum computers are:
 
 1.  **Formulate your problem as an objective function**
 
-    :ref:`Objective (cost) functions <concepts_objectives>` are mathematical
-    expressions of the problem to be optimized; for quantum computing, these are
-    :ref:`quadratic and nonlinear models <gs_concepts_qms>` that have lowest
+    An :term:`objective function` (cost function) is a mathematical expression
+    of the problem to be optimized; for quantum computing, these are
+    quadratic and nonlinear :ref:`models <concept_models>` that have lowest
     values (energy) for good solutions to the problems they represent.
 
 2.  **Find good solutions by sampling**
 
-    :ref:`Samplers <gs_concepts_samplers>` are processes that sample from
+    :ref:`Samplers <concept_samplers>` are processes that sample from
     low-energy states of objective functions. Find good solutions by submitting
     your quadratic or nonlinear model to one of a variety of |dwave_short|'s
     quantum, classical, and hybrid quantum-classical samplers.
 
 .. note::
-    Samplers run---either remotely (for example, in |dwave_short|’s Leap
+    Samplers run---either remotely (for example, in |dwave_short|'s Leap
     service) or locally on your CPU---on compute resources known as *solvers*.
     (Note that some classical samplers actually brute-force solve small problems
     rather than sample, and these are also referred to as solvers.)
@@ -34,13 +31,13 @@ The two main steps of solving problems using quantum computers are:
 .. start_objective
 
 To express a problem for a |dwave_short| solver in a form that enables solution
-by minimization, you need an *objective function*, a mathematical expression of
-the energy of a system. When the solver is a QPU, the energy is a function of
-binary variables representing its qubits; for quantum-classical hybrid solvers,
-the objective function might be more abstract.
+by minimization, you need an :term:`objective function`, a mathematical
+expression of the energy of a system. When the solver is a QPU, the energy is a
+function of binary variables representing its qubits; for quantum-classical
+hybrid solvers, the objective function might be more abstract.
 
 .. figure:: ../_images/obj.png
-    :name: obj
+    :name: |figObjectiveFunction|
     :scale: 50 %
     :alt: Energy of objective function.
 
@@ -50,7 +47,7 @@ For most problems, the lower the energy of the objective function, the better
 the solution. Sometimes any low-energy state is an acceptable solution to the
 original problem; for other problems, only optimal solutions are acceptable. The
 best solutions typically correspond to the *global minimum* energy in the
-solution space; see :numref:`Figure %s <obj>`.
+solution space; see the figure above.
 
 .. end_objective
 
@@ -80,22 +77,18 @@ square eliminating negative distance).
 
 .. start_samplers
 
-:ref:`Samplers <gs_concepts_samplers>` are processes that sample from low-energy
-states of objective functions. Having formulated an
-:ref:`objective function <concepts_objectives>` that represents your problem
-(typically as a :ref:`quadratic or nonlinear model <gs_concepts_qms>`), you
-sample it for solutions.
+:ref:`Samplers <concept_samplers>` are processes that sample from low-energy
+states of objective functions. Having formulated an :term:`objective function`
+that represents your problem (typically as a quadratic or nonlinear
+:ref:`model <concept_models>`), you sample it for solutions.
 
 |dwave_short| provides quantum, classical, and quantum-classical hybrid samplers
-that run either remotely (for example, in |dwave_short|’s Leap service) or
+that run either remotely (for example, in |dwave_short|'s Leap service) or
 locally on your CPU.
 
 *   QPU Solvers
 
     |dwave_short| currently supports |dwave_5kq| quantum computers.
-
-    This guide focuses on QPU solvers and provides examples of using quantum
-    computers to solve problems.
 
 *   Quantum-Classical Hybrid Solvers
 
@@ -105,27 +98,28 @@ locally on your CPU.
     `Medium Article on Hybrid Computing <https://medium.com/d-wave/three-truths-and-the-advent-of-hybrid-quantum-computing-1941ba46ff8c>`_.
 
     |dwave_short| provides two types of hybrid solvers:
-    :ref:`Leap service's hybrid solvers <sysdocs:doc_leap_hybrid>`, which are
+    :ref:`Leap service's hybrid solvers <opt_index_hybrid_solvers>`, which are
     cloud-based hybrid compute resources, and hybrid solvers developed in Ocean
-    software's :std:doc:`dwave-hybrid <oceandocs:docs_hybrid/sdk_index>` tool.
+    software's :ref:`dwave-hybrid <index_hybrid>` tool.
 
 *   Classical Solvers
 
     You might use a classical solver while developing your code or on a small
     version of your problem to verify your code.
 
-    For information on classical solvers, see the
-    :std:doc:`Ocean software documentation <oceandocs:index>`.
+    For information on classical solvers, see the :ref:`qpu_intro_classical`
+    section.
 
 .. end_samplers
 
 
 .. |figSimpleRandomSampler| replace:: dummy
+.. |simple_objective_example_ref| replace:: dummy
 
 .. start_simple_sampler_example
 
 As an illustrative example, consider solving by sampling the objective,
-:math:`\text{E}(x) = (1-x)^2` found in the :ref:`gs_simple_obj_example`
+:math:`\text{E}(x) = (1-x)^2` found in the |simple_objective_example_ref|
 example above to represent equation, :math:`x+1=2`.
 
 This example creates a simple sampler that generates 10 random values of the
@@ -147,10 +141,10 @@ e_i = 47.23, 0.63, 74.19, 1.89, 0.10, 15.44, 8.77, 0.09, 23.50, 1.28
 >>> print("Best solution found is {:.2f}".format(best_found))   # doctest: +SKIP
 Best solution found is 1.30
 
-:numref:`Figure %s <simpleRandomSampler>` shows the value of the objective
-function for the random values of :math:`x` chosen in the execution above. The
-minimum distance between the sides of the original equation, which occurs at
-equality, has the lowest value (energy) of :math:`\text{E}(x)`.
+The figure below shows the value of the objective function for the random values
+of :math:`x` chosen in the execution above. The minimum distance between the
+sides of the original equation, which occurs at equality, has the lowest value
+(energy) of :math:`\text{E}(x)`.
 
 .. figure:: ../_images/random_sampler_x_e.png
     :name: |figSimpleRandomSampler|

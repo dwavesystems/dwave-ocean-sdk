@@ -7,7 +7,7 @@ What is Quantum Annealing?
 This section explains what quantum annealing is and how it works, and
 introduces the underlying quantum physics that governs its behavior. For more
 in-depth information on quantum annealing in |dwave_short| quantum computers,
-see |doc_processor|_.
+see the :ref:`qpu_annealing` section.
 
 Applicable Problems
 ===================
@@ -52,10 +52,11 @@ Sampling from energy-based distributions is a computationally intensive task
 that is an excellent match for the way that the |dwave_short| quantum computer
 solves problems; that is, by seeking low-energy states.
 
-You can see a variety of example problems in the |doc_cookbook|_ guide,
-in |dwave_short|'s
+You can see a variety of example problems in the
+:ref:`qpu_index_examples_beginner` and :ref:`qpu_index_examples_advanced`
+sections, in |dwave_short|'s
 `code examples repository <https://github.com/dwave-examples>`_
-on GitHub, and the many user-developed early quantum applications on 
+on GitHub, and the many user-developed early quantum applications on
 |dwave_short| systems shown on the |dwave_short|_ website.
 
 How Quantum Annealing Works in |dwave_short| QPUs
@@ -94,8 +95,8 @@ or 1.
 .. figure:: ../_images/simple_anneal_one_qubit_without_h.png
     :name: anneal_one_qubit_no_h
     :alt: Annealing process's energy diagram shows raising the energy barrier
-        for a single qubit, resulting in a 50/50 probability of ending
-        in a classical state of 0 or 1.
+        for a single qubit, resulting in a 50/50 probability of ending in a
+        classical state of 0 or 1.
 
     Annealing process's energy diagram shows raising the energy barrier for a
     single qubit, resulting in a 50/50 probability of ending in a classical
@@ -171,7 +172,7 @@ Underlying Quantum Physics
 This section discusses some concepts essential to understanding
 the quantum physics that governs the |dwave_short| quantum annealing process.
 
-.. _gs_hamiltonian:
+.. _qpu_quantum_annealing_intro_hamiltonian:
 
 The Hamiltonian and the Eigenspectrum
 -------------------------------------
@@ -198,7 +199,7 @@ For the |dwave_short| quantum computer, the Hamiltonian may be represented as
 
 .. math::
 
-	{\cal H}_{ising} = \underbrace{- \frac{A({s})}{2}
+    {\cal H}_{ising} = \underbrace{- \frac{A({s})}{2}
     \left(\sum_i {\hat\sigma_{x}^{(i)}}\right)}_\text{Initial Hamiltonian} +
     \underbrace{\frac{B({s})}{2} \left(\sum_{i} h_i {\hat\sigma_{z}^{(i)}} +
     \sum_{i>j} J_{i,j} {\hat\sigma_{z}^{(i)}}
@@ -210,7 +211,7 @@ coupling strengths.\ [#]_
 
 .. [#]
     Nonzero values of :math:`h_i` and :math:`J_{i,j}` are limited to those
-    available in the working graph; see the :ref:`getting_started_topologies`
+    available in the working graph; see the :ref:`qpu_topologies`
     chapter.
 
 The Hamiltonian is the sum of two terms, the *initial Hamiltonian* and the
@@ -260,7 +261,7 @@ into one of the excited states. There is a point during the anneal where the
 first excited state---that with the lowest energy apart from the ground
 state---approaches the ground state closely and then diverges away again. The
 minimum distance between the ground state and the first excited state throughout
-any point in the anneal is called the *minimum gap*.
+any point in the anneal is called the :term:`minimum gap`.
 
 Certain factors may cause the system to jump from the ground state into a higher
 energy state. One is thermal fluctuations that exist in any physical system.
@@ -282,7 +283,8 @@ Evolution of Energy States
 --------------------------
 
 :numref:`Figure %s <annealing-functions-gsg>` shows the dependence of the
-:math:`A` and :math:`B` parameters in the :ref:`Hamiltonian <gs_hamiltonian>` on
+:math:`A` and :math:`B` parameters in the
+:ref:`Hamiltonian <qpu_quantum_annealing_intro_hamiltonian>` on
 s, the normalized anneal fraction, an abstract parameter ranging from 0 to 1.
 The :math:`A(s)` curve is the tunneling energy and the :math:`B(s)` curve is the
 problem Hamiltonian energy at :math:`s`. Both are expressed as energies in units
@@ -324,5 +326,5 @@ controls can improve both optimization and sampling performance for certain
 types of problems, and can help investigate what is happening partway through
 the annealing process.
 
-For more information about the available annealing controls, see
-|doc_processor|_.
+For more information about the available annealing controls, see the
+:ref:`qpu_annealing` section.

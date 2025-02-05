@@ -6,11 +6,12 @@ Topologies
 
 The layout of the |dwave_short| quantum processing unit (QPU) is critical to
 formulating an objective function in a format that a |dwave_short| annealing
-quantum computer can solve, as described in the :ref:`getting_started_concepts`
-section. Although Ocean software automates the mapping from the linear and
-quadratic coefficients of a quadratic model to qubit bias and coupling values
-set on the QPU, you should understand it if you are using QPU solvers directly
-because it has implications for the problem-graph size and solution quality.
+quantum computer can solve, as described in the :ref:`qpu_workflow` section.
+Although :ref:`Ocean software <index_ocean_sdk>` automates the mapping from the
+linear and quadratic coefficients of a quadratic model to qubit bias and
+coupling values set on the QPU, you should understand it if you are using QPU
+solvers directly because it has implications for the problem-graph size and
+solution quality.
 
 .. note:: If you are sending your problem to a
     quantum-classical hybrid solver in the
@@ -39,7 +40,7 @@ is the percentage of working qubits that are present.
 
 .. [#]
     Manufacturing variations and the need to prepare the QPU to operate at
-    cryogenic temperatures in a low–magnetic field environment limits the yield.
+    cryogenic temperatures in a low-magnetic field environment limits the yield.
     These variations are minimized through an extensive calibration process that
     attempts to bring all of these analog devices into a consistent parametric
     regime.
@@ -63,12 +64,11 @@ is helpful for understanding the more complex topologies of newer QPUs: in
 addition to shared concepts, the newer topologies are often described in terms
 derived from the Chimera topology.
 
-Qubit Orientation 
+Qubit Orientation
 -----------------
 
-Qubits on |dwave_short| QPUs are "oriented" vertically 
-or horizontally as shown in :numref:`Figure %s <ChimeraQubits3x3>`
-for the Chimera topology.
+Qubits on |dwave_short| QPUs are "oriented" vertically or horizontally as shown
+in :numref:`Figure %s <ChimeraQubits3x3>` for the Chimera topology.
 
 .. figure:: ../_images/Chimera_qubits_3x3.*
     :align: center
@@ -82,10 +82,10 @@ for the Chimera topology.
     for a total of 72 qubits, 36 vertical and 36 horizontal.
 
 Qubits on newer QPUs, such as those with the Zephyr topology, are also oriented
-vertically and horizontally. 
+vertically and horizontally.
 
 Coupler Types
-------------- 
+-------------
 
 It is conceptually useful to categorize couplers as follows:
 
@@ -137,7 +137,7 @@ It is conceptually useful to categorize couplers as follows:
     section. The Chimera topology does not support such couplers but newer
     topologies do.
 
-Unit Cells 
+Unit Cells
 ----------
 
 The Chimera topology has a recurring structure of four horizontal qubits coupled
@@ -195,7 +195,7 @@ of a larger Chimera graph.
     4 unit cells (translucent green squares) interconnected by external couplers
     (blue lines).
 
-Notations 
+Notations
 ---------
 
 Qubits in the Chimera topology are characterized as having:
@@ -439,10 +439,10 @@ Ocean Software's Graph Tools
 
 Ocean software provides for all supported topologies the following graph tools:
 
-*   :ref:`graph generation <oceandocs:generators_dnx>` creates graphs for the
+*   :ref:`graph generation <generators_dnx>` creates graphs for the
     supported topologies of various sizes.
-*   :ref:`drawing <oceandocs:drawing>` visualizes the graphs you create.
-*   :std:doc:`indexing<oceandocs:docs_dnx/reference/utilities>` helps translate
+*   :ref:`drawing <drawing>` visualizes the graphs you create.
+*   :ref:`indexing <index_conversion_classes>` helps translate
     coordinates of the supported graphs.
 
 Further Information: Technical Reports
@@ -451,5 +451,7 @@ Further Information: Technical Reports
 You can learn more about these topologies and their implications in the
 following technical reports:
 
-*   Pegasus topology: `14-1026 Next-Generation Topology of D-Wave Quantum Processors <https://www.dwavesys.com/media/jwwj5z3z/14-1026a-c_next-generation-topology-of-dw-quantum-processors.pdf>`_
-*   Zephyr topology: `14-1056 Zephyr Topology of D-Wave Quantum Processors <https://www.dwavesys.com/media/2uznec4s/14-1056a-a_zephyr_topology_of_d-wave_quantum_processors.pdf>`_
+*   Pegasus topology: 
+    `14-1026 Next-Generation Topology of D-Wave Quantum Processors <https://www.dwavesys.com/media/jwwj5z3z/14-1026a-c_next-generation-topology-of-dw-quantum-processors.pdf>`_
+*   Zephyr topology: 
+    `14-1056 Zephyr Topology of D-Wave Quantum Processors <https://www.dwavesys.com/media/2uznec4s/14-1056a-a_zephyr_topology_of_d-wave_quantum_processors.pdf>`_

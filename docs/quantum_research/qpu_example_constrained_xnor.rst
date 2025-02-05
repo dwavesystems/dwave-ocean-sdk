@@ -430,6 +430,8 @@ similar calculations.
 
 .. todo:: fix transition
 
+Submitting
+==========
 
 This section shows how you submit a problem to a |dwave_short| quantum
 computer. It uses |dwave_short|'s open-source

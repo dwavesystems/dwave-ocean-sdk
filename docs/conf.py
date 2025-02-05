@@ -318,6 +318,7 @@ rst_epilog = """
 .. |dwave_5kq| unicode:: Advantage
 .. |dwave_5kq_tm| unicode:: Advantage U+2122
 .. |dwave_short| unicode:: D-Wave
+.. _dwave_short: https://dwavequantum.com
 .. |dwave_short_tm| unicode:: D-Wave U+2122 U+0020
 .. |dwave_system| unicode:: D-Wave U+00A0 System
 .. |dwave_systems_inc| replace:: D-Wave Systems Inc.
@@ -335,7 +336,7 @@ rst_epilog = """
 .. |anneal_time_parameter_granularity| replace:: with a resolution of 0.01 :math:`\mu s`
 """
 
-# TODO: check which of these is used 
+# TODO: check which of these is used
 
 latex_preamble = r"""
 \usepackage{amsmath}
