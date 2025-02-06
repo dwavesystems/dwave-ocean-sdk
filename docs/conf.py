@@ -331,9 +331,6 @@ rst_epilog = """
 .. |max_qubits| replace:: 5640
 .. |max_couplers| replace:: 40484
 .. |max_j_junctions| replace:: 1,000,000
-
-.. |anneal_time_display_granularity| replace:: with a resolution of 0.01 :math:`\mu s`
-.. |anneal_time_parameter_granularity| replace:: with a resolution of 0.01 :math:`\mu s`
 """
 
 # TODO: check which of these is used

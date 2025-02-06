@@ -44,38 +44,26 @@ To express your problem as an objective function and submit to a |dwave_short|
 sampler for solution, you typically use one of the quadratic models\ [#]_ or
 nonlinear model\ [#]_ provided by :ref:`Ocean software <index_ocean_sdk>`:
 
-*   :ref:`Nonlinear models <concept_models_nonlinear>` can be constrained and
-    have binary and integer variables.
+*   .. include:: ../shared/models.rst
+        :start-after: start_models_nonlinear
+        :end-before: end_models_nonlinear
 
-    This model is especially suited for use with decision variables that
-    represent a common logic, such as subsets of choices or permutations of
-    ordering. For example, in a
-    `traveling salesperson problem <https://en.wikipedia.org/wiki/Travelling_salesman_problem>`_,
-    permutations of the variables representing cities can signify the order of
-    the route being optimized, and in a
-    `knapsack problem <https://en.wikipedia.org/wiki/Knapsack_problem>`_, the
-    variables representing items can be divided into subsets of packed and not
-    packed.
+*   .. include:: ../shared/models.rst
+        :start-after: start_models_cqm
+        :end-before: end_models_cqm
 
-*   :ref:`Constrained quadratic models <concept_models_cqm>` can be constrained
-    and have binary, integer and real variables.
+*   .. include:: ../shared/models.rst
+        :start-after: start_models_bqm
+        :end-before: end_models_bqm
 
-    CQMs are typically used for applications that optimize problems that might
-    include real, integer and/or binary variables and one or more constraints.
+*   .. include:: ../shared/models.rst
+        :start-after: start_models_dqm
+        :end-before: end_models_dqm
 
-*   :ref:`Binary quadratic models <concept_models_bqm>` are unconstrained\ [#]_
-    and have binary variables.
-
-    BQMs are typically used for applications that optimize over decisions that
-    could either be true (or yes) or false (no); for example, should an antenna
-    transmit, or did a network node experience failure?
-
-*   :ref:`Discrete quadratic models <concept_models_dqm>` are unconstrained and
-    have discrete variables.
-
-    DQMs are typically used for applications that optimize over several distinct
-    options; for example, which shift should employee X work, or should the
-    state on a map be colored red, blue, green or yellow?
+.. note::
+    Constraints for unconstrained models are typically represented by adding
+    :ref:`penalty models <concept_penalty>` to the objective, as shown
+    in the :ref:`qpu_example_unconstrained_sat` section.
 
 .. [#]
     Quadratic functions have one or two variables per term. A simple example of
@@ -98,11 +86,6 @@ nonlinear model\ [#]_ provided by :ref:`Ocean software <index_ocean_sdk>`:
     The nonlinear model represents a general optimization problem with an
     :term:`objective function` and/or constraints over variables of various
     types.
-
-.. [#]
-    Constraints for such models are typically represented by adding
-    :ref:`penalty models <concept_penalty>` to the objective, as shown
-    in the :ref:`qpu_example_unconstrained_sat` section.
 
 .. _opt_workflow_samplers:
 

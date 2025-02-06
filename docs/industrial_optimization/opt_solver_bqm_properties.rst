@@ -4,6 +4,11 @@
 BQM Solver Properties
 =====================
 
+This section describes the properties of quantum-classical hybrid
+:ref:`binary quadratic model <concept_models_bqm>` solvers such as the Leap
+service's ``hybrid_binary_quadratic_model_version2``. For the parameters
+you can configure, see the :ref:`opt_solver_bqm_parameters` section.
+
 .. _property_bqm_category:
 
 category
@@ -161,9 +166,11 @@ supported_problem_types
 
 BQM solvers support the following energy-minimization problem types:
 
-*   ``bqm``: Binary quadratic model (BQM) problems; use :math:`0/1`-valued
-    variables and :math:`-1/1`-valued variables; constraints are typically
-    represented as penalty models.
+*   ``bqm``
+
+    .. include:: ../shared/models.rst
+        :start-after: start_models_bqm
+        :end-before: end_models_bqm
 
 Example
 -------

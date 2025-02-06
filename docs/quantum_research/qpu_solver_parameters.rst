@@ -4,6 +4,8 @@
 QPU Solver Parameters
 =====================
 
+.. |anneal_time_parameter_granularity| replace:: with a resolution of 0.01
+    :math:`\mu s`
 
 .. |meet_run_duration| replace:: :ref:`parameter_qpu_anneal_schedule` or
     :ref:`parameter_qpu_annealing_time`,

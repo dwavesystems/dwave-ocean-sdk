@@ -4,6 +4,11 @@
 CQM Solver Properties
 =====================
 
+This section describes the properties of quantum-classical hybrid
+:ref:`constrained quadratic model <concept_models_cqm>` solvers such as the Leap
+service's ``hybrid_constrained_quadratic_model_version1``. For the parameters
+you can configure, see the :ref:`opt_solver_cqm_parameters` section.
+
 .. _property_cqm_category:
 
 category
@@ -167,6 +172,8 @@ minimum_time_limit_s
 Minimum required run time, in seconds, the solver must be allowed to work on any
 given problem.
 
+.. todo:: update this link to the SDK:
+
 For more details, see Ocean software's
 `samplers <https://docs.ocean.dwavesys.com/en/stable/docs_system/reference/samplers.html>`_
 documentation for solver methods that calculate the default runtime of a given
@@ -188,8 +195,8 @@ num_biases_multiplier
 =====================
 
 Multiplier used in the internal calculation of the minimum run time,
-:ref:`property_cqm_minimum_time_limit_s`, the solver must be allowed to work on the given
-problem.
+:ref:`property_cqm_minimum_time_limit_s`, the solver must be allowed to work on
+the given problem.
 
 Example
 -------
@@ -207,8 +214,8 @@ num_constraints_multiplier
 ==========================
 
 Multiplier used in the internal calculation of the minimum run time,
-:ref:`property_cqm_minimum_time_limit_s`, the solver must be allowed to work on the given
-problem.
+:ref:`property_cqm_minimum_time_limit_s`, the solver must be allowed to work on
+the given problem.
 
 Example
 -------
@@ -288,10 +295,11 @@ supported_problem_types
 
 CQM solvers support the following energy-minimization problem types:
 
-*   ``cqm``: Constrained quadratic model (CQM) problems; use both binary-valued
-    variables (both :math:`0/1`-valued variables and :math:`-1/1`-valued
-    variables), integer-valued variables, real variables (also known as
-    *continuous variables*); support constraints natively.
+*   ``cqm``
+
+    .. include:: ../shared/models.rst
+        :start-after: start_models_cqm
+        :end-before: end_models_cqm
 
 Example
 -------

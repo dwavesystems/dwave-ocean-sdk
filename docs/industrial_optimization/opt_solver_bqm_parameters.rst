@@ -4,6 +4,11 @@
 BQM Solver Parameters
 =====================
 
+This section describes the properties of quantum-classical hybrid
+:ref:`binary quadratic model <concept_models_bqm>` solvers such as the Leap
+service's ``hybrid_binary_quadratic_model_version2``. For the parameters
+you can configure, see the :ref:`opt_solver_bqm_parameters` section.
+
 .. _parameter_bqm_bqm:
 
 bqm

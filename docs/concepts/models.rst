@@ -51,15 +51,26 @@ the variables you can use with each, and some related classes.
 .. |models_variables_table| replace:: Supported Models
 
 .. include:: ../shared/models.rst
-    :start-after: start_model_variables_table
-    :end-before: end_model_variables_table
+    :start-after: start_models_variables_table
+    :end-before: end_models_variables_table
+
+.. _concept_models_nonlinear:
+
+Nonlinear Model
+===============
+
+.. include:: ../shared/models.rst
+    :start-after: start_models_nonlinear
+    :end-before: end_models_nonlinear
 
 .. _concept_models_cqm:
 
 Constrained Quadratic Model
 ===========================
 
-.. start_concept_models_cqm
+.. include:: ../shared/models.rst
+    :start-after: start_models_cqm
+    :end-before: end_models_cqm
 
 The constrained quadratic model (CQM) are problems of the form:
 
@@ -86,40 +97,14 @@ constraints.
 .. [#]
     Real-valued variables are currently not supported in quadratic interactions.
 
-CQMs are typically used for applications that optimize problems that might
-include real, integer and/or binary variables and one or more constraints.
-
-.. end_concept_models_cqm
-
-.. _concept_models_nonlinear:
-
-Nonlinear Model
-===============
-
-.. start_concept_models_nonlinear
-
-The nonlinear model represents a general optimization problem with an
-:term:`objective function` and/or constraints over variables of various
-types.
-
-This model is especially suited for use with decision variables that represent
-a common logic, such as subsets of choices or permutations of ordering. For
-example, in a
-`traveling salesperson problem <https://en.wikipedia.org/wiki/Travelling_salesman_problem>`_
-permutations of the variables representing cities can signify the order of the
-route being optimized and in a
-`knapsack problem <https://en.wikipedia.org/wiki/Knapsack_problem>`_ the
-variables representing items can be divided into subsets of packed and not
-packed.
-
-.. end_concept_models_nonlinear
-
 .. _concept_models_bqm:
 
 Binary Quadratic Models
 =======================
 
-.. start_concept_models_quadratic
+.. include:: ../shared/models.rst
+    :start-after: start_models_bqm
+    :end-before: end_models_bqm
 
 The binary quadratic model (BQM) class encodes Ising and quadratic unconstrained
 binary optimization (QUBO) models used by samplers such as the D-Wave system.
@@ -209,7 +194,7 @@ Ocean supports various quadratic models:
     and binary variables.
 *   :ref:`concept_models_dqm` are unconstrained and support discrete variables.
 
-Ocean also provides support for :ref:`higher order models <oceandocs:higher_order>`,
+Ocean also provides support for :ref:`higher order models <higher_order>`,
 which are typically reduced to quadratic for sampling.
 
 .. end_concept_models_quadratic

@@ -42,6 +42,7 @@ Concepts and Terminology
         Learn more: :ref:`concept_models_bqm`.
 
     Chain
+    Chains
         One or more nodes or qubits in a target graph that represent a single
         variable in the source graph. See also :term:`embedding`.
 
@@ -119,6 +120,11 @@ Concepts and Terminology
 
         Learn more: :ref:`concept_models_cqm`.
 
+    Constraint
+        A constraint is a condition of an optimization problem that the solution
+        must satisfy. See
+        `Constraint (mathematics) <https://en.wikipedia.org/wiki/Constraint_(mathematics)>`_.
+
     Constraint satisfaction problem
     CSP
         A `constraint satisfaction problem (CSP) <https://en.wikipedia.org/wiki/Constraint_satisfaction_problem>`_
@@ -128,6 +134,7 @@ Concepts and Terminology
         Learn more: :ref:`concept_constraint_satisfaction_problem`.
 
     Coupler
+    Couplers
         Couplers can correlate two qubits such that they tend to end up in the
         same classical state---both 0 or both 1---or in opposite states. The
         correlation between coupled qubits is controlled programmatically.
@@ -318,6 +325,14 @@ Concepts and Terminology
         Quantum processing unit.
 
         Learn more: :ref:`qpu_quantum_annealing_intro`.
+
+    Qubit
+    Qubits
+        A qubit, short for quantum bit, is a basic unit of quantum information,
+        a two-state (or two-level) quantum-mechanical system; for example, the
+        spin of the electron in which the two levels can be taken as spin up and
+        spin down. See
+        `Qubit on Wikipedia <https://en.wikipedia.org/wiki/Qubit>`_.
 
     QUBO
         Quadratic unconstrained binary optimization.

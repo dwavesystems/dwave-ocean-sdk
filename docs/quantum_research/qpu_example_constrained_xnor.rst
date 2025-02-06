@@ -4,11 +4,11 @@
 Constrained Example: Problem Formulation
 ========================================
 
-The example of the :ref:`getting_started_formulation_minimal` chapter
-formulated an objective function for a simple SAT problem. As mentioned, the
-|dwave_short| quantum computer is also well suited to solving optimization
-problems with binary variables. Real-world optimization problems often come
-with *constraints*: conditions of the problem that any valid solution must
+The example of the :ref:`qpu_example_unconstrained_sat` section formulates an
+:term:`objective function` for a simple :term:`SAT` problem. The |dwave_short|
+quantum computer is also well suited to solving optimization problems with
+binary variables. Real-world optimization problems often come with
+:term:`constraint`\ s: conditions of the problem that any valid solution must
 satisfy.
 
 For example, when optimizing a traveling salesperson's route through a series
@@ -25,21 +25,21 @@ more places at once is invalid.
     solved using exactly-one-true constraints. Map data |copy| 2017
     GeoBasis-DE/BKG (|copy| 2009), Google.
 
-In fact, the example of the :ref:`getting_started_formulation_minimal` chapter
-is actually also an example of a simple constraint, the equality (or XNOR)
+In fact, the example of the :ref:`qpu_example_unconstrained_sat` section is
+actually also an example of a simple constraint, the equality (or XNOR)
 constraint. The example of this section is slightly more complex. The
 *exactly-one-true* constraint is the Boolean satisfiability problem of finding,
 given a set of variables, when exactly one variable is TRUE (equals 1). This
-chapter looks at an exactly-one-true constraint for three variables.
+example looks at an exactly-one-true constraint for three variables.
 
 The problem-solving process is the same as described in the
-:ref:`getting_started_concepts` chapter.
+:ref:`qpu_qubo_ising` section.
 
 .. note:: Quantum samplers optimize objective functions that represent problems
     in formats that are *unconstrained* (e.g., QUBOs, or unconstrained binary
-    optimization problems). As is shown in this chapter, any constraints in the
+    optimization problems). As is shown in this section, any constraints in the
     original problem are represented as part of the objective function; this
-    technique is known as :ref:`penalty models <sysdocs:cb_techniques>`.
+    technique is known as :ref:`penalty models <concept_penalty>`.
 
     In addition, some of the
     `Leap service <https://cloud.dwavesys.com/leap/>`_'s quantum-classical
@@ -47,8 +47,10 @@ The problem-solving process is the same as described in the
     hybrid BQM solvers. Thus, for these solvers any constraints must be added
     to the objective function, typically as a penalty. However, some of the
     Leap service's hybrid solvers can handle constraints natively, as shown in
-    the :ref:`gs_simple_wf_example` example. For more information, see the
-    :ref:`sysdocs:doc_leap_hybrid` section.
+    the :ref:`opt_index_examples_beginner` examples. For more information, see
+    the :ref:`opt_index_get_started` section.
+
+.. _qpu_example_constrained_xnor_formulation:
 
 Formulating an Objective Function
 =================================
@@ -79,18 +81,19 @@ constraint mathematically as the equation,
 
     a + b + c = 1.
 
-As noted in the :ref:`getting_started_workflow` chapter, you can solve some
-equations by minimization if you formulate an objective function that takes the
-square\ [#]_ of the subtraction of one side from another:
+As noted in the :ref:`qpu_qubo_ising` section, you can solve some equations by
+minimization if you formulate an objective function that takes the square\ [#]_
+of the subtraction of one side from another:
 
 .. math::
 
     E(a,b,c) = (a + b + c - 1)^2.
 
 .. [#]
-  If you do not square, the minimum for :math:`\tilde{E}(a,b,c) = a + b + c - 1`
-  is :math:`\tilde{E}(a=b=c=0) = -1` which is lower than for any of the three
-  constraint-satisfying states, such as :math:`\tilde{E}(a=b=0;c=1)=0`.
+    If you do not square, the minimum for
+    :math:`\tilde{E}(a,b,c) = a + b + c - 1` is :math:`\tilde{E}(a=b=c=0) = -1`
+    which is lower than for any of the three constraint-satisfying states, such
+    as :math:`\tilde{E}(a=b=0;c=1)=0`.
 
 Expanding the squared term---while remembering that for binary variables with
 values 0 or 1 the square of a variable is itself, :math:`X^2 = X`---shows in
@@ -100,11 +103,11 @@ explicit form the objective function's quadratic and linear terms.
 
     E(a,b,c) &= a^2 + ab + ac -a + ba + b^2 + bc -b + ca + cb + c^2
     - c - a - b - c +1 \\
-        &= a^2 + b^2 + c^2 + 2ab + 2ac + 2bc - 2a - 2b - 2c + 1 \\
-        &= 2ab + 2ac + 2bc - a - b - c + 1,
+    &= a^2 + b^2 + c^2 + 2ab + 2ac + 2bc - 2a - 2b - 2c + 1 \\
+    &= 2ab + 2ac + 2bc - a - b - c + 1,
 
 Notice that this objective formula matches the
-:ref:`QUBO format <getting_started_concepts>` for three variables,
+:ref:`QUBO format <qpu_qubo_ising>` for three variables,
 
 .. math::
 
@@ -143,17 +146,16 @@ Clearly, a solver minimizing the objective function
 of variables :math:`a, b, c`) that satisfy the original problem of an
 *exactly-one-true* constraint.
 
-As explained in the :ref:`getting_started_concepts` chapter, to solve a QUBO
-with a |dwave_short| quantum computer, you must map (minor embed) it to the
-QPU. That step is explained in detail in the next chapter.
+As explained in the :ref:`qpu_example_unconstrained_sat` example, to solve a
+QUBO with a |dwave_short| quantum computer, you must map (minor embed) it to the
+QPU. That step is explained in detail in the next section.
 
+Minor Embedding
+===============
 
-.. todo:: Fix transition 
-
-
-This chapter explains how the QUBO created in the previous chapter
-is minor-embedded onto a QPU, in this case, an |dwave_5kq| QPU with its
-:ref:`Pegasus <topology_intro_pegasus>` graph.
+This section explains how the QUBO created in the previous section is
+minor-embedded onto a QPU, in this case, an |dwave_5kq| QPU with its
+:ref:`Pegasus <qpu_topologies>` graph.
 
 |dwave_short| provides automatic minor-embedding tools, and if you are
 submitting your problem to a
@@ -161,9 +163,8 @@ submitting your problem to a
 solver, the solver handles all interactions with the QPU.
 
 The QUBO developed for an exactly-one-true constraint with three variables in
-the :ref:`getting_started_formulation_constraints` chapter,
-:math:`2ab + 2ac + 2bc - a - b - c`, can be represented by the triangular graph
-shown in :numref:`Figure %s <triangle>`.
+the previous section, :math:`2ab + 2ac + 2bc - a - b - c`, can be represented by
+the triangular graph shown in :numref:`Figure %s <triangle>`.
 
 .. figure:: ../_images/triangle.png
     :name: triangle
@@ -173,17 +174,17 @@ shown in :numref:`Figure %s <triangle>`.
     Triangular graph for an exactly-one-true constraint with its biased nodes
     and edges.
 
-As explained in the :ref:`getting_started_concepts` chapter, nodes that
-represent the objective function's variables such as :math:`a` are mapped to
-qubits on the QPU while edges that represent the objective function's quadratic
-terms such as :math:`ab` are mapped to couplers.
+As explained in the :ref:`qpu_embedding_intro` section, nodes that represent the
+objective function's variables such as :math:`a` are mapped to :term:`qubits` on
+the QPU while edges that represent the objective function's quadratic terms such
+as :math:`ab` are mapped to :term:`couplers`.
 
 :numref:`Figure %s <triangleEmbeddingPegasus>` shows such a mapping, between
 the graph representing the QUBO on the left and one particular minor-embedding
 on the right. (Rerunning Ocean software's
-:std:doc:`minorminer <oceandocs:docs_minorminer/source/sdk_index>` tool, which
-produced this minor embedding, generates embeddings to various qubits across
-the QPU; the particular qubit numbers noted here are unimportant.)
+:std:doc:`minorminer <index_minorminer>` tool, which produced this minor
+embedding, generates embeddings to various qubits across the QPU; the particular
+qubit numbers noted here are unimportant.)
 
 *   Nodes :math:`a, b, c` (grey circles in the left-hand panel) map to qubits
     :math:`1812, 5169, 1827` (blue circles in the right-hand panel),
@@ -201,18 +202,18 @@ the QPU; the particular qubit numbers noted here are unimportant.)
     rendered by Ocean software's problem inspector. The original QUBO is
     represented on the left and its embedded representation on the right.
 
-But, as the :ref:`getting_started_topologies` chapter notes, |dwave_short| QPUs
-are not fully connected. For larger graphs than the example above, you may not
-always be able to map each node to a qubit and find connecting couplers to
-represent all edges.
+But, as the :ref:`qpu_topologies` section notes, |dwave_short| QPUs are not
+fully connected. For larger graphs than the example above, you may not always be
+able to map each node to a qubit and find connecting couplers to represent all
+edges.
 
 How are more complex graphs minor-embedded? Minor embedding often requires
-*chains*.
+:term:`chains`.
 
-.. _getting_started_chains:
+.. _qpu_example_constrained_xnor_chains:
 
 Chains
-======
+------
 
 To understand how chaining qubits overcomes the problem of sparse connectivity,
 consider minor embedding the triangular graph of :numref:`Figure %s <triangle>`
@@ -263,8 +264,10 @@ represented by single qubits 4333, 4348, 2497, and 2512.
     represented on the left and its embedded representation, with its two-qubit
     chain, on the right.
 
+.. _qpu_example_constrained_xnor_manual_embedding:
+
 Manual Minor-Embedding
-======================
+----------------------
 
 Manually minor-embedding a problem is typically undertaken only for problems
 that have either very few variables or a repetitive structure that maps to unit
@@ -274,14 +277,13 @@ software. You are unlikely to manually embed a random 100-variable problem.
 
 This section provides an example of how you can calculate the biases needed for
 minor-embedding on a simple problem. Ocean software's minor-embedding tools,
-such as :std:doc:`minorminer <oceandocs:docs_minorminer/source/sdk_index>`, do
-similar calculations.
+such as :std:doc:`minorminer <index_minorminer>`, do similar calculations.
 
 .. dropdown:: Example of Manual Minor Embedding
 
     This example returns to the QUBO developed for an exactly-one-true
     constraint with three variables in the
-    :ref:`getting_started_formulation_constraints` chapter,
+    :ref:`qpu_example_constrained_xnor_formulation` section above,
     :math:`2ab + 2ac + 2bc - a - b - c`, as represented by the triangular graph
     shown in :numref:`Figure %s <triangle>` above. For simplicity, it is
     minor-embedded into a :ref:`Chimera <topology_intro_chimera>` graph.
@@ -300,10 +302,10 @@ similar calculations.
 
         Unit cell in the Chimera topology.
 
-    As in the example of the :ref:`getting_started_chains` section, make a
-    three-node loop of a four-node structure by representing a single variable
-    with a chain of two qubits. :numref:`Figure %s <embedding-gs>` shows a
-    chaining of qubit 0 and qubit 5 to represent variable :math:`b`.
+    As in the example of the :ref:`qpu_example_constrained_xnor_chains` section,
+    make a three-node loop of a four-node structure by representing a single
+    variable with a chain of two qubits. :numref:`Figure %s <embedding-gs>`
+    shows a chaining of qubit 0 and qubit 5 to represent variable :math:`b`.
 
     .. figure:: ../_images/embedding.png
         :name: embedding-gs
@@ -341,7 +343,7 @@ similar calculations.
     .. [#]
 
         Setting chain strengths is further discussed in the
-        :ref:`getting_started_advanced` chapter.
+        :ref:`qpu_basic_config_chain_strength` section.
 
     The resulting minor-embedding values are shown in the tables below.
 
@@ -407,7 +409,7 @@ similar calculations.
 
     For this simple example with its single chain, unembedding consists of
     mapping qubits 4, 1 to variables :math:`a, c`, and qubits 0, 5 to variable
-    :math:`b`. The results in the table above unembed to:
+    :math:`b`. The results in the table above unembedded to:
 
     *   Row 1: Solution :math:`(a, b, c) = (1, 0, 0)` with energy :math:`-1`
         was found 206 times.
@@ -423,20 +425,18 @@ similar calculations.
 
         Notice also that the energy of the valid solutions, the ground-state
         energy, is :math:`-1`, not the zero calculated in the
-        :ref:`getting_started_formulation_constraints` chapter's truth table.
+        :ref:`qpu_example_constrained_xnor_formulation` section's truth table.
         This is because of the constant :math:`+1` dropped from the objective
         function, :math:`E(a,b,c) = 2ab + 2ac + 2bc - a - b - c + 1`.
 
-
-.. todo:: fix transition
+The next section shows how you submit a problem to a |dwave_short| quantum
+computer.
 
 Submitting
 ==========
 
-This section shows how you submit a problem to a |dwave_short| quantum
-computer. It uses |dwave_short|'s open-source
-`Ocean SDK <https://github.com/dwavesystems/dwave-ocean-sdk>`_ to submit the
-exactly-one-true problem formulated in the previous chapters.
+This section uses |dwave_short|'s open-source :ref:`Ocean SDK <index_ocean_sdk>`
+to submit the exactly-one-true problem formulated in the previous subsections.
 
 Before you can submit a problem to |dwave_short| solvers, you must have an
 account and an API token; visit the
@@ -446,16 +446,17 @@ and get your token.
 .. note::
     To run the following steps yourself requires prior configuration of some
     requisite information for problem submission through SAPI. If you have
-    installed the Ocean SDK or are using a
-    :ref:`supported IDE <doc_leap_dev_env>`, this is typically done as a first
-    step.
+    installed the Ocean SDK or are using a :ref:`supported IDE <leap_dev_env>`,
+    this is typically done as a first step.
 
 For more information, including on Ocean SDK installation instructions and
 detailed examples, see the
-`Ocean software documentation <https://docs.ocean.dwavesys.com>`_.
+:ref:`Ocean software documentation <index_ocean_sdk>`.
 
 The Ocean software can heuristically find minor-embeddings for your QUBO or
 Ising objective functions, as shown here.
+
+.. todo:: fix ref to FBSS below:
 
 First, select a quantum computer. Ocean software provides
 :std:doc:`feature-based solver selection <oceandocs:docs_cloud/reference/resources>`,

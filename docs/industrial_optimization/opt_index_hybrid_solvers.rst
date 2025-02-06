@@ -8,10 +8,10 @@ Hybrid Solvers
     :hidden:
     :maxdepth: 1
 
-    opt_solver_cqm_properties
-    opt_solver_cqm_parameters
     opt_solver_nl_properties
     opt_solver_nl_parameters
+    opt_solver_cqm_properties
+    opt_solver_cqm_parameters
     opt_solver_bqm_properties
     opt_solver_bqm_parameters
     opt_solver_dqm_properties
@@ -19,32 +19,6 @@ Hybrid Solvers
 
 The |cloud_tm| service provides these :term:`hybrid` :term:`solver`\ s.
 
-CQM Solver 
-===========
-
-Large optimization problems can be formulated as 
-:ref:`constrained quadratic models <concept_models_cqm>`, as described 
-in the :ref:`opt_model_construction_qm` section. You can then use 
-the CQM hybrid :term:`solver` hosted in the |cloud_tm| service 
-to find good solutions. 
-
-.. grid:: 3
-    :gutter: 2
-
-
-    .. grid-item-card:: :ref:`opt_solver_cqm_properties`
-        :link: opt_solver_cqm_properties
-        :link-type: ref
-
-        Properties of the CQM solver.
-
-
-    .. grid-item-card:: :ref:`opt_solver_cqm_parameters`
-        :link: opt_solver_cqm_parameters
-        :link-type: ref
-
-        Parameters of the CQM solver.
-        
 Nonlinear Solver
 ================
 
@@ -74,6 +48,31 @@ to find good solutions.
         :link-type: ref
 
         Parameters of the nonlinear solver.
+
+CQM Solver 
+==========
+
+Large optimization problems can be formulated as 
+:ref:`constrained quadratic models <concept_models_cqm>`, as described 
+in the :ref:`opt_model_construction_qm` section. You can then use 
+the CQM hybrid :term:`solver` hosted in the |cloud_tm| service 
+to find good solutions. 
+
+.. grid:: 3
+    :gutter: 2
+
+    .. grid-item-card:: :ref:`opt_solver_cqm_properties`
+        :link: opt_solver_cqm_properties
+        :link-type: ref
+
+        Properties of the CQM solver.
+
+
+    .. grid-item-card:: :ref:`opt_solver_cqm_parameters`
+        :link: opt_solver_cqm_parameters
+        :link-type: ref
+
+        Parameters of the CQM solver.
 
 Additional Solvers
 ==================

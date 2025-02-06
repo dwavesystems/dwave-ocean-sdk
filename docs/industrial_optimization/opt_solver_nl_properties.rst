@@ -4,6 +4,10 @@
 Nonlinear Solver Properties
 ===========================
 
+This section describes the properties of quantum-classical hybrid
+:ref:`nonlinear-model <concept_models_nonlinear>` solvers such as the Leap
+service's ``hybrid_nonlinear_program_version1``. For the parameters you can
+configure, see the :ref:`opt_solver_nl_parameters` section.
 
 .. _property_nl_category:
 
@@ -73,7 +77,7 @@ maximum_number_of_states
 Maximum number of initialized states\ [#]_,
 :meth:`~dwave.optimization.model.States.size`, accepted by the solver.
 
-.. [#] 
+.. [#]
     Submitted models can include states, typically to provide initial
     decision-variable assignments that might accelerate solutions. Such
     included states, with values initialized or not, are counted by
@@ -131,7 +135,7 @@ Example
 num_nodes_multiplier
 ====================
 
-Multiplier applied to a problem's total number of 
+Multiplier applied to a problem's total number of
 :ref:`nodes <oceandocs:intro_optimization>`, the product of which is used
 in the internal estimate of the problem's minimum runtime.
 
@@ -151,8 +155,8 @@ num_nodes_state_size_multiplier
 ===============================
 
 Multiplier applied to the totals of a problem's state sizes and number of
-:ref:`nodes <oceandocs:intro_optimization>`, the product of which is used
-in the internal estimate of the problem's minimum runtime.
+:ref:`nodes <opt_model_construction_nl>`, the product of which is used in the
+internal estimate of the problem's minimum runtime.
 
 Example
 -------
@@ -208,7 +212,7 @@ state_size_multiplier
 =====================
 
 Multiplier applied to a problem's
-:ref:`state <oceandocs:intro_optimization>`-size total, the product of which is
+:ref:`state <opt_model_construction_nl>`-size total, the product of which is
 used in the internal estimate of the problem's minimum runtime.
 
 Example
@@ -232,8 +236,11 @@ supported_problem_types
 
 Nonlinear solvers support the following energy-minimization problem types:
 
-*   ``nl``: Nonlinear-model problems; use with integer and binary variables;
-    support constraints natively.
+*   ``nl``
+
+    .. include:: ../shared/models.rst
+        :start-after: start_models_nonlinear
+        :end-before: end_models_nonlinear
 
 Example
 -------

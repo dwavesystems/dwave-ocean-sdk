@@ -4,6 +4,17 @@
 General QPU Solver Properties
 =============================
 
+.. |anneal_time_display_granularity| replace:: with a resolution of 0.01
+    :math:`\mu s`
+
+This section describes the properties of all QPU solvers, such as the Leap
+service's ``Advantage_system4.1``; for properties specific to a particular QPU,
+such as the quantum critical point, see the
+:ref:`qpu_solver_properties_specific` section.
+
+For the parameters you can configure, see the :ref:`qpu_solver_parameters`
+section.
+
 .. _property_qpu_anneal_offset_ranges:
 
 anneal_offset_ranges
@@ -80,6 +91,8 @@ Default annealing time is specified by the
 
 Example
 -------
+
+.. todo:: verify we can enable this test
 
 .. skip test until SDK>6.7.0 (https://github.com/dwavesystems/dwave-system/pull/503)
 
@@ -223,13 +236,13 @@ Extended range of values possible for the coupling strengths (quadratic
 coefficients), :math:`J`, for this solver. Strong negative couplings may be
 necessary for some embeddings; however, such chains may require additional
 calibration through the :ref:`parameter_qpu_flux_biases` parameter to
-compensate for biases introduced by strong negative couplings. See also 
-:ref:`property_qpu_per_qubit_coupling_range` and 
+compensate for biases introduced by strong negative couplings. See also
+:ref:`property_qpu_per_qubit_coupling_range` and
 :ref:`property_qpu_per_group_coupling_range`.
 
 The :ref:`parameter_qpu_auto_scale` parameter, which rescales :math:`h` and
 :math:`J` values in the problem to use as much of the range of :math:`h`
-(:ref:`property_qpu_h_range`) and the range of :math:`J` 
+(:ref:`property_qpu_h_range`) and the range of :math:`J`
 (:ref:`property_qpu_extended_j_range`) as possible, enables you to submit
 problems with values outside these ranges and have the system automatically
 scale them to fit.
@@ -250,8 +263,8 @@ fast_anneal_time_range
 ======================
 
 Range of time, in microseconds with a resolution of up to picoseconds,\ [#]_
-possible for one anneal (read). The lower limit in this range is 
-the fastest quench possible for this solver.
+possible for one anneal (read). The lower limit in this range is the fastest
+quench possible for this solver.
 
 Default annealing time is specified by the
 :ref:`property_qpu_default_annealing_time` property.
@@ -260,10 +273,12 @@ Default annealing time is specified by the
     The :ref:`fast-anneal protocol <qpu_annealprotocol_fast>` supports a time
     granularity of about 0.05% of the anneal time. For annealing times of about
     10 ns, the granularity is about 5 ps; for anneals of about 20 :math:`\mu s`,
-    it is reduced to around 10 ns. 
+    it is reduced to around 10 ns.
 
 Example
 -------
+
+.. todo:: verify we can enable this test
 
 .. skip test until SDK>6.7.0 (https://github.com/dwavesystems/dwave-system/pull/503)
 
@@ -349,6 +364,8 @@ number given in the :ref:`property_qpu_max_anneal_schedule_points` property.
 
 Example
 -------
+
+.. todo:: verify we can enable this test
 
 .. skip test until SDK>6.7.0 (https://github.com/dwavesystems/dwave-system/pull/503)
 
@@ -460,7 +477,7 @@ values such that the total :math:`J` values of the couplers for a group of
 qubits is within the range specified by this property.
 
 For more information, Ocean software's
-:std:doc:`coupling_groups <oceandocs:docs_system/reference/generated/dwave.system.coupling_groups.coupling_groups>`
+:std:doc:`coupling_groups <docs_system/reference/generated/dwave.system.coupling_groups.coupling_groups>`
 function.
 
 Example
@@ -511,7 +528,7 @@ problem_run_duration_range
 Range of time, in microseconds |anneal_time_display_granularity|, that a
 submitted problem is allowed to run.
 
-For details about how the run-duration limit is calculated, see 
+For details about how the run-duration limit is calculated, see
 :ref:`qpu_timing_runtime_limits`.
 
 Example
@@ -554,7 +571,7 @@ The key-value pairs are the following:
 *   ``default_programming_thermalization``: See the
     :ref:`property_qpu_default_programming_thermalization` solver property.
 
-*   ``default_readout_thermalization``: See the 
+*   ``default_readout_thermalization``: See the
     :ref:`property_qpu_default_readout_thermalization` solver property.
 
 *   ``qpu_delay_time_per_sample``: Default for the per-sample delay time
@@ -779,8 +796,7 @@ Example
 -------
 
 The topology seen in this example is a P16 Pegasus graph. See the
-:ref:`getting_started_topologies` section of the |doc_getting_started|_ guide
-for a description of QPU topologies.
+:ref:`qpu_topologies` section for a description of QPU topologies.
 
 >>> from dwave.system import DWaveSampler
 ...

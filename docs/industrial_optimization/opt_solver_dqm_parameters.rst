@@ -4,6 +4,11 @@
 DQM Solver Parameters
 =====================
 
+This section describes the properties of quantum-classical hybrid
+:ref:`discrete quadratic model <concept_models_dqm>` solvers such as the Leap
+service's ``hybrid_discrete_quadratic_model_version1``. For the parameters
+you can configure, see the :ref:`opt_solver_dqm_parameters` section.
+
 .. _parameter_dqm_dqm:
 
 dqm

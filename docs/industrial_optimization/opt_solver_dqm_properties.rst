@@ -4,6 +4,11 @@
 DQM Solver Properties
 =====================
 
+This section describes the properties of quantum-classical hybrid
+:ref:`discrete quadratic model <concept_models_dqm>` solvers such as the Leap
+service's ``hybrid_discrete_quadratic_model_version1``. For the parameters
+you can configure, see the :ref:`opt_solver_dqm_parameters` section.
+
 .. _property_dqm_category:
 
 category
@@ -53,9 +58,8 @@ maximum_number_of_cases
 
 Maximum number of cases accepted by the solver.
 
-For more details about cases and their role in DQMs, see the section on the
-:std:doc:`DQM concept <oceandocs:concepts/dqm>` in the Ocean software
-documentation.
+For more details about cases and their role in DQMs, see the
+:ref:`concept_models_dqm`section.
 
 Example
 -------
@@ -185,9 +189,11 @@ supported_problem_types
 
 DQM solvers support the following energy-minimization problem types:
 
-*   ``dqm``: Discrete quadratic model (DQM) problems; use variables that can
-    represent a set of values such as ``{red, green, blue, yellow}`` or
-    ``{3.2, 67}``; constraints are typically represented as penalty models.
+*   ``dqm``
+
+    .. include:: ../shared/models.rst
+        :start-after: start_models_dqm
+        :end-before: end_models_dqm
 
 Example
 -------

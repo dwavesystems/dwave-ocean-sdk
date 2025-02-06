@@ -4,6 +4,12 @@
 Nonlinear Solver Parameters
 ===========================
 
+This section describes the parameters of quantum-classical hybrid
+:ref:`nonlinear-model <concept_models_nonlinear>` solvers such as the Leap
+service's ``hybrid_nonlinear_program_version1``. For the properties that
+inform and restrict your use of the solver, see the
+:ref:`opt_solver_nl_properties` section.
+
 .. _parameter_nl_label:
 
 label
