@@ -356,7 +356,7 @@ limit. For example, if a QPU has a runtime limit of 1,000,000 microseconds (1
 second) and a problem has an estimated runtime of 3,750,000 microseconds for
 1000 reads, the problem could be divided into four submissions of 250 reads
 each. (With
-:ref:`spin-reversal transforms (SRTs) <cb_qpu_gauge_transformations>`, you
+:ref:`spin-reversal transforms (SRTs) <qpu_config_srt>`, you
 similarly divide your samples into such batches; consider using
 `Ocean software <https://docs.ocean.dwavesys.com>`_'s
 :class:`~dwave.preprocessing.composites.SpinReversalTransformComposite`

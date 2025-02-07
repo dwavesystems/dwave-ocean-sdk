@@ -131,7 +131,7 @@ The following considerations and recommendations apply to chains.
     of the search space. An effective procedure	incrementally updates weights
     until the equality constraints are satisfied.
 
-    See also the :ref:`cb_qpu_precision` section.
+    See also the :ref:`qpu_config_precision` section.
 
 Example
 -------

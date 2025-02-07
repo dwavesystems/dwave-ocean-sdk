@@ -236,7 +236,7 @@ problems with no linear biases (:math:`h=0`).
     to an ancillary qubit to which a :ref:`flux-bias offset <qpu_error_fix_fbo>`
     is applied.
 
-    See :ref:`an example <cb_qpu_flux_biases>` in the |doc_cookbook|_.
+    See :ref:`an example <qpu_config_emulate_with_fbo>` in the |doc_cookbook|_.
 
 .. _qpu_energy_scales:
 
@@ -641,7 +641,7 @@ parameter remains.
             \frac{\delta c_i + \delta c_j}{2}
         ] J_{i,j}
 
-        h_i(s,\delta c_i) &\approx 
+        h_i(s,\delta c_i) &\approx
         [1 + \frac{d B(s)}{ds} (\frac{dc(s)}{ds})^{-1} \delta c_i] h_{i,j}.
 
 Anneal offsets may improve results for problems in which the qubits have

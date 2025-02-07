@@ -210,7 +210,7 @@ Papers
     computational algebraic geometry, specifically Grobner bases.
 *   [Dwave3]_ discusses integer factoring in the context of using the
     |dwave_short| Anneal Offsets feature; see also the
-    :ref:`cb_qpu_anneal_offset` section.
+    :ref:`qpu_config_anneal_offset` section.
 *   [Bur2002]_ discusses factoring as optimization.
 *   [Jia2018]_ develops a framework to convert an arbitrary integer
     factorization problem to an executable Ising model.

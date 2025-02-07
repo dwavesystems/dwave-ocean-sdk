@@ -225,7 +225,7 @@ performance on some problems.
 Notice that the results shown in the :ref:`qpu_basic_config_auto_scale` section
 above tend to display some asymmetry between the two valid solutions. Qubits on
 a QPU can be biased to some small degree in one direction or another. The
-:ref:`cb_qpu_gauge_transformations` section guide, explains how spin-reversal
+:ref:`qpu_config_srt` section guide, explains how spin-reversal
 transforms can improve results by reducing the impact of analog errors that may
 exist on the QPU.
 

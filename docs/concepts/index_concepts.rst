@@ -232,6 +232,15 @@ Concepts and Terminology
             solvers in the :term:`Leap service`.
         *   :ref:`opt_index_using` describes best practices.
 
+    ICE
+    Integrated control errors
+        The dynamic range of :ref:`param_qpu_h` and :ref:`_parameter_qpu_j`
+        values may be limited by *integrated control errors* (ICE). The term
+        *ICE* refers collectively to these sources of infidelity in problem
+        representation.
+
+        Learn more: :ref:`qpu_errors`.
+
     Ising
         Traditionally used in statistical mechanics. Variables are "spin up"
         (:math:`\uparrow`) and "spin down" (:math:`\downarrow`), states that

@@ -15,7 +15,7 @@ This chapter presents guidance on the following topics:
     :local:
     :backlinks: none
 
-.. _cb_qpu_reads:
+.. _qpu_config_qpu_reads:
 
 Read-Anneal Cycles
 ==================
@@ -86,7 +86,7 @@ For this particular example, it makes sense to increase the anneal time at the
 expense of fewer anneal cycles (number of reads). That might not be true of
 other problems.
 
-.. _cb_qpu_gauge_transformations:
+.. _qpu_config_srt:
 
 Spin-Reversal (Gauge) Transforms
 ================================
@@ -206,7 +206,7 @@ increased from about one second to about four seconds.
 *   [Ray2016]_ about temperature estimation in quantum annealers also looks at
     effects of spin-reversal transforms.
 
-.. _cb_qpu_postprocessing:
+.. _qpu_config_postprocessing:
 
 Postprocessing
 ==============
@@ -324,7 +324,7 @@ Further Information
     example in the :std:doc:`Ocean software documentation <oceandocs:index>` is
     a similar example of using ``dwave-greedy``, but on a native problem.
 
-.. _cb_qpu_precision:
+.. _qpu_config_precision:
 
 Imprecision of Biases
 =====================
@@ -463,7 +463,7 @@ Further Information
 *   |doc_processor|_ describes integrated control errors (ICE), measurement, and
     effects; for example, quantization of digital to analog converters.
 
-.. _cb_qpu_problem_scale:
+.. _qpu_config_problem_scale:
 
 Problem Scale
 =============
@@ -560,7 +560,7 @@ the fixed variable.
 >>> print(bqm.linear.max()/max(qpu.properties["h_range"])) # doctest: +SKIP
 0.5
 
-.. _cb_qpu_anneal_schedule:
+.. _qpu_config_anneal_schedule:
 
 Annealing Schedule
 ==================
@@ -732,7 +732,7 @@ Further Information
 *   [Izq2022]_ shows the efficacy of mid-anneal pauses.
 *   The |doc_processor|_ guide describes varying the anneal schedule.
 
-.. _cb_qpu_anneal_offset:
+.. _qpu_config_anneal_offset:
 
 Anneal Offsets
 ==============
@@ -847,7 +847,7 @@ and the ground state is found much more frequently.
 Example: 16-Qubit System
 ------------------------
 
-The example problem of the :ref:`cb_qpu_anneal_schedule` section improved
+The example problem of the :ref:`qpu_config_anneal_schedule` section improved
 solutions for a 16-qubit system, shown in
 :numref:`Figure %s <qpuAnnealSchedule16qubit>` embedded in an |dwave_5kq| QPU,
 which was studied in a
@@ -859,7 +859,7 @@ small-gap anticrossings), reducing the likelihood of finding the ground state.
 
 First, the problem is embedded onto a QPU such that each problem qubit is
 represented by a single qubit on the QPU. As explained in the
-:ref:`cb_qpu_anneal_schedule` section, on most executions, the
+:ref:`qpu_config_anneal_schedule` section, on most executions, the
 :std:doc:`minorminer <oceandocs:docs_minorminer/source/sdk_index>` package finds
 an  embedding with all chains of length 1. However, a typical embedding looks
 like that of :numref:`Figure %s <qpuAnnealSchedule16qubitTypical>`. The
@@ -958,7 +958,7 @@ Further Information
 *   [Lan2017]_ shows the use of anneal offsets on several problems.
 *   [Tin2018]_ systematically applies anneal offsets to SAT problems.
 
-.. _cb_qpu_flux_biases:
+.. _qpu_config_emulate_with_fbo:
 
 Emulate Linear Biases with Flux-Bias Offsets
 ============================================
@@ -1096,7 +1096,7 @@ For QPU-specific parameters such as the quantum crossing point and the maximum
 mutual inductance between qubits, :math:`M_{AFM}`, see the
 :ref:`doc_qpu_characteristics` page.
 
-.. _cb_qpu_anneal_gap:
+.. _qpu_config_anneal_gap:
 
 Energy Gap
 ==========
@@ -1189,7 +1189,7 @@ Further Information
 *   [Pud2014]_ and [Pud2015]_ discuss error suppression techniques using
     auxiliary qubits and the energy gap.
 
-.. _cb_qpu_neighbors:
+.. _qpu_config_neighbor_interactions:
 
 Neighbor Interactions
 =====================

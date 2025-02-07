@@ -75,15 +75,18 @@ steps.
     variables, this can often be done with truth tables if you can break the
     problem down into two- or three-variable relationships. For other variables
     and non-quadratic degrees, you can try techniques such as
-    :ref:`sysdocs:cb_techs_higher_order` and Ocean tools such as
+    :ref:`qpu_reformulating_higher_degree` and Ocean tools such as
+
+    .. todo:: update this hyperlink
+
     `Higher-Order Models <https://docs.ocean.dwavesys.com/en/stable/docs_dimod/reference/models.html#higher-order-models>`_.
 
 3.  Reformulate as a model.
 
     Different types of expressions require different strategies. Expressions
     derived from truth tables may not need any adjustments. The
-    |doc_cookbook|_ provides a variety of reformulation techniques; some common
-    reformulations are:
+    :ref:`qpu_reformulating` section provides a variety of reformulation
+    techniques; some common reformulations are:
 
     *   **Squared terms:** QUBO and Ising models do not have squared binary
         variables. In QUBO format, its 0 and 1 values remain unchanged when
@@ -112,9 +115,8 @@ steps.
         (selection of exactly :math:`k` of :math:`n` variables), where you
         disfavor selections of greater or fewer than :math:`k` variables with
         the penalty :math:`P = \alpha (\sum_{i=1}^n x_i - k)^2`, where
-        :math:`\alpha` is a weighting coefficient (see
-        `penalty method <https://en.wikipedia.org/wiki/Penalty_method>`_) used
-        to set the penalty's strength.
+        :math:`\alpha` is a weighting coefficient (see the
+        :ref:`concept_penalty` section) used to set the penalty's strength.
 
 4.  Combine expressions.\ [#]_
 
@@ -125,7 +127,8 @@ steps.
     requirements of your problem. You may need to tune these multipliers through
     experimentation to achieve good results. You can see examples in Ocean
     software's
-    `collection of code examples <https://github.com/dwave-examples>`_ on GitHub.
+    `collection of code examples <https://github.com/dwave-examples>`_ on
+    GitHub.
 
 .. [#]
     For maximization see step 3.

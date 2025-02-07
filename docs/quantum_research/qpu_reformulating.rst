@@ -148,7 +148,7 @@ represents the same constraint using a single ancillary variable.\ [#]_
 .. [#]
     In fact, this representation is commonly used to reduce 3-SAT to MAX-2-SAT.
 
-Section :ref:`cb_qpu_anneal_gap` shows a small example of two formulations of
+Section :ref:`qpu_config_anneal_gap` shows a small example of two formulations of
 the same penalty function with different numbers of ancillary variables.
 
 Scale of Biases
@@ -165,7 +165,7 @@ bias is effectively zero.
 Pay attention to the scale of biases in your selected formulation---sometimes
 small formulation changes can produce much lower scales.
 
-Section :ref:`cb_qpu_problem_scale` shows a code example.
+Section :ref:`qpu_config_problem_scale` shows a code example.
 
 Clearer Representations
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -684,7 +684,7 @@ Further Information
     problem instances which cannot be solved in polynomial time.)
 *   [Wat2006]_ discusses the average-case complexity of the MAX-2SAT problem.
 
-.. _cb_techs_higher_order:
+.. _qpu_reformulating_higher_degree:
 
 Non-Quadratic (Higher-Degree) Polynomials
 =========================================
@@ -1704,7 +1704,7 @@ Examples
 *   Section :ref:`cb_techs_native_formats` above derives a QUBO for a NOT gate
     as a constraint.
 *   The :ref:`cb_techs_example_cfd` example derives AND and XOR gates.
-*   The :ref:`cb_techs_higher_order` also derives an AND gate.
+*   The :ref:`qpu_reformulating_higher_degree` also derives an AND gate.
 
 Further Information
 -------------------
@@ -1855,7 +1855,7 @@ is selected (only one variable is :math:`1`), where either color (variable
 .. [#]
     |doc_getting_started|_ discusses the effects of different choices of values
     in the section on :ref:`problem scaling<sysdocs:gsg_auto_scale>`. See also
-    the considerations discussed in the :ref:`cb_qpu_precision` section.
+    the considerations discussed in the :ref:`qpu_config_precision` section.
 
 The two-color formulation above can be easily expanded to a three-color problem:
 :math:`C=3` possible colors are encoded as :math:`q_B,q_G,q_R`. The constraint
@@ -2270,7 +2270,7 @@ gates.
         4(x_1+x_2)a + 4az + x_1 + x_2 + z + 4a,
 
     where :math:`a` is an ancillary variable as described in the
-    :ref:`cb_techs_higher_order` section (and shown below).
+    :ref:`qpu_reformulating_higher_degree` section (and shown below).
 
     :numref:`Table %s <BooleanXORAsPenaltyFunctioning>` shows that no penalty is
     applied to a functioning gate when this penalty function is minimized (when
@@ -2422,8 +2422,8 @@ formulations used by the |dwave_short| system.
 Typically, you use a tool such as :func:`dimod.higherorder.utils.make_quadratic`
 to reduce the degree of your penalty function. This example reformulates the
 normalizing penalty function using the technique of reduction by minimum
-selection, as described in section :ref:`cb_techs_higher_order`, with the
-substitution,
+selection, as described in section :ref:`qpu_reformulating_higher_degree`, with
+the substitution,
 
 .. math::
 

@@ -14,8 +14,8 @@ The following code solves a random problem on a quantum computer.
 
 .. start_qpu2
 
-The following code solves the known "minimum vertex cover" 
-graph problem using an annealing quantum computer.   
+The following code solves the known "minimum vertex cover"
+graph problem using an annealing quantum computer.
 
 >>> import networkx as nx
 >>> import dwave_networkx as dnx
@@ -29,9 +29,9 @@ graph problem using an annealing quantum computer.
 
 .. start_nl1
 
-The following code solves an illustrative 
+The following code solves an illustrative
 `traveling-salesperson problem <https://en.wikipedia.org/wiki/Travelling_salesman_problem>`_
-using a quantum-classical hybrid solver in the Leap service. 
+using a quantum-classical hybrid solver in the Leap service.
 
 >>> from dwave.optimization.generators import traveling_salesperson
 >>> from dwave.system import LeapHybridNLSampler
@@ -44,11 +44,11 @@ using a quantum-classical hybrid solver in the Leap service.
 ...     [489, 170, 705, 161, 0]]
 ...
 >>> model = traveling_salesperson(distance_matrix=DISTANCE_MATRIX)
->>> sampler = LeapHybridNLSampler()                  
+>>> sampler = LeapHybridNLSampler()
 >>> results = sampler.sample(
 ...     model,
 ...     label='SDK Examples - TSP')  	# doctest: +SKIP
-    
+
 .. end_nl1
 
 
@@ -56,9 +56,9 @@ using a quantum-classical hybrid solver in the Leap service.
 
 The following code creates a constrained quadratic model (CQM) representing
 a `knapsack problem <https://en.wikipedia.org/wiki/Knapsack_problem>`_ and
-solves it using a quantum-classical hybrid solver in the Leap service. 
+solves it using a quantum-classical hybrid solver in the Leap service.
 
->>> from dimod.generators import random_knapsack 
+>>> from dimod.generators import random_knapsack
 >>> from dwave.system import LeapHybridCQMSampler
 ...
 >>> cqm = random_knapsack(10)

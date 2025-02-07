@@ -35,7 +35,7 @@ Relevant Properties
 
 *   :ref:`property_qpu_anneal_offset_ranges` defines the ranges of valid anneal
     offset values.
-*   :ref:`property_qpu_anneal_offset_step` and 
+*   :ref:`property_qpu_anneal_offset_step` and
     :ref:`property_qpu_anneal_offset_step_phi0` define the quantization steps.
 
 Example
@@ -56,8 +56,8 @@ Ising problem.
 >>> sampleset = FixedEmbeddingComposite(qpu, embedding).sample_ising(
 ...     {}, J, num_reads=1000, anneal_offsets=offset)   # doctest: +SKIP
 
-The |dwave_short| system used for this example is an |dwave_5kq| QPU that has 
-couplers between active qubits 30 and 2940. Select a suitable embedding for the 
+The |dwave_short| system used for this example is an |dwave_5kq| QPU that has
+couplers between active qubits 30 and 2940. Select a suitable embedding for the
 QPU you run examples on.
 
 
@@ -77,20 +77,20 @@ For the :ref:`fast-anneal protocol <qpu_annealprotocol_fast>`, set the
 
 An anneal schedule variation is defined by a series of pairs of floating-point
 numbers identifying points in the schedule at which to change slope. The first
-element in the pair is time :math:`t` and the second is anneal fraction :math:`s`
-in the range [0,1]. The resulting schedule is the piecewise-linear curve that
-connects the provided points.
+element in the pair is time :math:`t` and the second is anneal fraction
+:math:`s` in the range [0,1]. The resulting schedule is the piecewise-linear
+curve that connects the provided points.
 
 .. include:: ../shared/parameters.rst
     :start-after: start_time_granularity
     :end-before: end_time_granularity
 
-.. include:: ../shared/parameters.rst
-    :start-after: start_anneal_schedule_rules
-    :end-before: end_anneal_schedule_rules
+.. include:: ../shared/anneal.rst
+    :start-after: start_schedule_rules
+    :end-before: end_schedule_rules
 
 Default anneal schedules are described in the
-:ref:`QPU-specific anneal schedules <sysdocs:doc_qpu_characteristics>` documents.
+:ref:`QPU-specific anneal schedules <qpu_solver_properties_specific>` section.
 
 Relevant Properties
 -------------------
@@ -99,7 +99,7 @@ Relevant Properties
     points permitted in an anneal schedule.
 *   :ref:`property_qpu_default_annealing_time` shows the default annealing time
     for the solver.
-*   :ref:`property_qpu_annealing_time_range` and 
+*   :ref:`property_qpu_annealing_time_range` and
     :ref:`property_qpu_fast_anneal_time_range` define the limits of the allowable
     time range for the anneal schedule.
 
@@ -109,8 +109,8 @@ Interacts with Parameters
 *   :ref:`parameter_qpu_annealing_time` and :ref:`parameter_qpu_anneal_schedule`
     parameters are mutually exclusive.
 *   |meet_run_duration|
-*   :ref:`parameter_qpu_anneal_schedule` can have only two points for the 
-    :ref:`fast-anneal protocol <qpu_annealprotocol_fast>` (when 
+*   :ref:`parameter_qpu_anneal_schedule` can have only two points for the
+    :ref:`fast-anneal protocol <qpu_annealprotocol_fast>` (when
     :ref:`parameter_qpu_fast_anneal` is set to ``True``).
 
 Example
@@ -170,7 +170,7 @@ Interacts with Parameters
     :code:`anneal_schedule=[[0, 0], [T, 1]]`.
 *   |meet_run_duration|
 *   :ref:`parameter_qpu_fast_anneal` switches the allowable range between
-    :ref:`property_qpu_annealing_time_range` (default) and 
+    :ref:`property_qpu_annealing_time_range` (default) and
     :ref:`property_qpu_fast_anneal_time_range` ranges.
 
 Example
@@ -196,7 +196,7 @@ answer_mode
 Indicates how answers are returned from the solver\ [#]_. Supported values are,
 
 *   ``raw``: Answers returned individually in the order they were read from the
-    solver. Use this setting if the returned time sequences are an important 
+    solver. Use this setting if the returned time sequences are an important
     part of the solution data.
 
     The answer contains two fields, *solutions* and *energies*. The *solutions*
@@ -213,7 +213,7 @@ Indicates how answers are returned from the solver\ [#]_. Supported values are,
     how many times each solution appeared.
 
 .. [#]
-    Ocean tools receive these answers from SAPI and process them. For example, 
+    Ocean tools receive these answers from SAPI and process them. For example,
     if you submit a problem using Ocean software's
     :class:`~dwave.system.composites.EmbeddingComposite` class, the answer is
     mapped from qubits to the logical variables of your problem.
@@ -251,13 +251,13 @@ Indicates whether :math:`h` and :math:`J` values are rescaled:
 *   ``True``: :math:`h` and :math:`J` values in the problem are rescaled
     to use as much of the range of :math:`h` (:ref:`property_qpu_h_range`) and
     the range of extended :math:`J` (:ref:`property_qpu_extended_j_range`) as
-    possible; furthermore, the :math:`h` and :math:`J` values need not lie within
-    the solver's range of :math:`h` and extended :math:`J`, but must still be
-    finite.
+    possible; furthermore, the :math:`h` and :math:`J` values need not lie
+    within the solver's range of :math:`h` and extended :math:`J`, but must
+    still be finite.
 
 *   ``False``: :math:`h` and :math:`J` values in the problem are used as is. If
     the :math:`h` and :math:`J` values are outside the ranges of :math:`h`
-    (:ref:`property_qpu_h_range`) and the extended :math:`J` 
+    (:ref:`property_qpu_h_range`) and the extended :math:`J`
     (:ref:`property_qpu_extended_j_range`) of the solver, problem submission
     fails.
 
@@ -283,11 +283,11 @@ defined as follows:
 
         & \max \left( \frac{\max(J)}{\max(extended\_J\_range)}, 0 \right),
 
-        & \max \left( \frac{\min(J)}{\min(extended\_J\_range)}, 0 \right), 
+        & \max \left( \frac{\min(J)}{\min(extended\_J\_range)}, 0 \right),
 
         & coupling\_limit\bigr\}
 
-The `coupling_limit` element takes into consideration the 
+The `coupling_limit` element takes into consideration the
 :ref:`property_qpu_per_qubit_coupling_range` (for |dwave_5kq| QPU solvers) and
 :ref:`property_qpu_per_group_coupling_range` (for |adv2| QPU solvers) properties
 as follows:
@@ -300,7 +300,7 @@ as follows:
             \frac{\max (total\_J\_per\_qubit)}{\max (per\_qubit\_coupling\_range)},
             0 \right),
 
-            & \max \left( 
+            & \max \left(
                 \frac{\min (total\_J\_per\_qubit)}{\min (per\_qubit\_coupling\_range)},
                 0 \right) \bigr\}
 
@@ -324,7 +324,10 @@ Ocean software's samplers often have a *chain strength* parameter: because the
 QPU's qubits are sparsely connected, problem variables might be represented by
 more than one physical qubit (a "chain" of qubits), strongly coupled so as to
 return the same value. Typically, chains are generated by minor-embedding tools
-such as the :std:doc:`minorminer <oceandocs:docs_minorminer/source/sdk_index>`
+such as the :std:doc:`minorminer <index_minorminer>`
+
+.. todo:: verify the link to minorminer above works
+
 package. Setting a value for chain strength determines the values set for the
 couplers used in forming these chains. When using auto-scaling, the :math:`J`
 values of chain couplers are scaled together with the given or converted
@@ -357,14 +360,15 @@ when converted to an Ising model, has a bias with a value greater than 2.0,
 Interacts with Parameters
 -------------------------
 
-*   :ref:`parameter_qpu_auto_scale` cannot be used with :ref:`parameter_qpu_flux_biases`.
+*   :ref:`parameter_qpu_auto_scale` cannot be used with
+    :ref:`parameter_qpu_flux_biases`.
 
 Example
 -------
 
 The example checks a QPU's range of :math:`h` and :math:`J` before submitting a
 two-variable Ising problem to a QPU. The :ref:`parameter_qpu_auto_scale`
-parameter is implicitly `True` for the 
+parameter is implicitly `True` for the
 :class:`~dwave.system.samplers.DWaveSampler` class, so the :math:`h` and
 :math:`J` values are automatically rescaled by :math:`\frac{-7.2}{-4} = 1.8`.
 
@@ -464,8 +468,8 @@ result in some asymmetry. This asymmetry typically increases under strong
 coupling (such as when the :ref:`property_qpu_extended_j_range` is used) for
 chains. While the effect may be minor for many optimization problems, for
 others, such as material simulation, it may be significant. Flux biases can be
-used to refine the standard calibration as described in section
-:ref:`qpu_error_fix_fbo` of the |doc_processor|_ guide.
+used to refine the standard calibration as described in :ref:`qpu_error_fix_fbo`
+section.
 
 Flux biases are also useful as a way of biasing qubits indirectly when you
 cannot set a bias on the qubit, as in the case of
@@ -481,18 +485,21 @@ flux-bias offsets: :func:`~dwave.system.temperatures.fluxbias_to_h` and
 Default is no flux-bias offsets.
 
 The applied flux bias appears in Hamiltonian equation
-:math:numref:`qpu_equation_rfsquid_hamiltonian` as a term
-:math:`I_p \phi_{\rm flux bias} \sigma_z` that grows with the applied problem
-energy as :math:`\sqrt{B(s)}`.
+:math:numref:`qpu_equation_rfsquid_hamiltonian` of the :ref:`qpu_annealing`
+section as a term :math:`I_p \phi_{\rm flux bias} \sigma_z` that grows with the
+applied problem energy as :math:`\sqrt{B(s)}`.
 Although the dynamics of :ref:`parameter_qpu_h` and flux bias (constant in
 time) differ, equivalence at a specific point in the anneal is valid under some
-assumptions. 
-`Ocean software <https://docs.ocean.dwavesys.com/en/stable/index.html>`_ 
-provides :std:doc:`conversion functions <oceandocs:docs_system/reference/utilities>`
+assumptions.
+:ref:`Ocean software <index_ocean_sdk>` provides
+
+.. todo:: fix the link below
+
+:std:doc:`conversion functions <oceandocs:docs_system/reference/utilities>`
 between :ref:`parameter_qpu_h` and flux biases.
 
-See :ref:`this example <cb_qpu_flux_biases>` in the |doc_cookbook|_ for
-more-detailed usage information.
+See :ref:`this example <qpu_config_emulate_with_fbo>` in the
+:ref:`qpu_solver_configuration` section for more-detailed usage information.
 
 Relevant Properties
 -------------------
@@ -540,7 +547,8 @@ Ising problem.
 [3461 2546 1987    2    1    3]
 
 The |dwave_short| system used for this example is an |dwave_5kq| QPU that has
-particular couplers. Select a suitable embedding for the QPU you run examples on.
+particular couplers. Select a suitable embedding for the QPU you run examples
+on.
 
 
 .. _parameter_qpu_flux_drift_compensation:
@@ -550,7 +558,7 @@ flux_drift_compensation
 
 Boolean flag indicating whether the |dwave_short| system compensates for flux
 drift. The procedure it follows to do so is described in detail in the
-:ref:`qpu_error_correction` section of the |doc_processor|_ guide.
+:ref:`qpu_error_fix_drift` subsection of the :ref:`qpu_errors` section.
 
 * ``flux_drift_compensation=True``: Compensate for flux drift.
 * ``flux_drift_compensation=False``: Do not compensate for flux drift.
@@ -591,7 +599,7 @@ h
     the specified :math:`Q` values of a given QUBO problem). However, since QPU
     precision is limited, the :math:`h` and :math:`J` values realized on the
     solver may deviate slightly from the requested (or derived) values. For more
-    information, see the |doc_processor|_ guide.
+    information, see the :ref:`qpu_errors` section.
 
 Relevant Properties
 -------------------
@@ -605,7 +613,7 @@ Interacts with Parameters
 -------------------------
 
 *   :ref:`parameter_qpu_auto_scale` enables you to submit problems to QPU
-    solvers with values outside :ref:`property_qpu_h_range` and 
+    solvers with values outside :ref:`property_qpu_h_range` and
     :ref:`property_qpu_extended_j_range` and have the system automatically scale
     them to fit.
 *   :ref:`parameter_qpu_fast_anneal` cannot be used with :ref:`parameter_qpu_h`
@@ -637,14 +645,14 @@ This parameter enables you to specify the :math:`g(t)` function in the
 Hamiltonian,
 
 .. math::
-	:nowrap:
+    :nowrap:
 
-	\begin{equation}
-		{\cal H}_{ising} = - \frac{A({s})}{2} 
+    \begin{equation}
+        {\cal H}_{ising} = - \frac{A({s})}{2}
         \left(\sum_i {\hat\sigma_{x}^{(i)}}\right)
         + \frac{B({s})}{2} \left(g(t) \sum_{i} h_i {\hat\sigma_{z}^{(i)}}
         + \sum_{i>j} J_{i,j} {\hat\sigma_{z}^{(i)}} {\hat\sigma_{z}^{(j)}}\right)
-	\end{equation}
+    \end{equation}
 
 where :math:`{\hat\sigma_{x,z}^{(i)}}` are Pauli matrices operating on a qubit
 :math:`q_i` and :math:`h_i` and :math:`J_{i,j}` are the qubit biases and
@@ -657,7 +665,7 @@ the gain applied to :ref:`parameter_qpu_h`. The first element in the pair is
 time, :math:`t` in microseconds |anneal_time_parameter_granularity|; the second,
 the unitless :math:`g` in the range :ref:`property_qpu_h_gain_schedule_range`.
 The resulting time-dependent gain is the piecewise-linear curve that connects
-the provided points over the same range of times as the 
+the provided points over the same range of times as the
 :ref:`parameter_qpu_anneal_schedule`.
 
 The following rules apply to the set of gain points provided:
@@ -674,11 +682,11 @@ The following rules apply to the set of gain points provided:
     supported by the selected QPU.\ [#]_  Note that the I/O system that delivers
     the :ref:`parameter_qpu_h`-controlling waveform---the :math:`\Phi^x_i(s)`
     term of equation :math:numref:`qpu_equation_rfsquid_hamiltonian` in the
-    |doc_processor|_ guide---to a QPU limits bandwidth using a low-pass filter
-    with a cutoff frequency of 3 MHz for |dwave_5kq| systems and 30 MHz for
-    |adv2| systems; if you configure a too-rapidly changing curve, even within
-    the supported bounds, expect distorted values of :ref:`parameter_qpu_h` for
-    your problem.
+    :ref:`qpu_annealing` section---to a QPU limits bandwidth using a low-pass
+    filter with a cutoff frequency of 3 MHz for |dwave_5kq| systems and 30 MHz
+    for |adv2| systems; if you configure a too-rapidly changing curve, even
+    within the supported bounds, expect distorted values of
+    :ref:`parameter_qpu_h` for your problem.
 
 .. [#]
     To see the supported slope for a particular QPU, submit a test problem with
@@ -778,8 +786,9 @@ Interacts with Parameters
 *   :ref:`parameter_qpu_answer_mode` is ``raw`` by default for reverse anneals.
 *   :ref:`parameter_qpu_reinitialize_state` reinitializes for each anneal. Note
     that this impacts timing.
-*   Cannot be used with the :ref:`fast-anneal protocol <qpu_annealprotocol_fast>` 
-    (activated by the :ref:`parameter_qpu_fast_anneal` parameter).
+*   Cannot be used with the
+    :ref:`fast-anneal protocol <qpu_annealprotocol_fast>` (activated by the
+    :ref:`parameter_qpu_fast_anneal` parameter).
 
 Example
 -------
@@ -816,7 +825,7 @@ J
     the specified :math:`Q` values of a given QUBO problem). However, since QPU
     precision is limited, the :math:`h` and :math:`J` values realized on the
     solver may deviate slightly from the requested (or derived) values. For more
-    information, see the |doc_processor|_ guide.
+    information, see the :ref:`qpu_errors` section.
 
 Relevant Properties
 -------------------
@@ -975,10 +984,10 @@ This illustrative example requests 1250 samples.
 num_spin_reversal_transforms
 ============================
 
-This parameter is obsolete. 
+This parameter is obsolete.
 
-For :ref:`cb_qpu_gauge_transformations`, use
-`Ocean software's <https://docs.ocean.dwavesys.com>`_
+For :ref:`qpu_config_srt`, use the
+:ref:`Ocean software's <index_ocean_sdk>`
 :class:`~dwave.preprocessing.composites.SpinReversalTransformComposite`
 composite instead.
 
@@ -1047,7 +1056,7 @@ Q
         specified :math:`Q` values of a given QUBO problem). However, since QPU
         precision is limited, the :math:`h` and :math:`J` values realized on the
         solver may deviate slightly from the requested (or derived) values. For
-        more information, see the |doc_processor|_ guide.
+        more information, see the :ref:`qpu_errors` section.
 
 Relevant Properties
 -------------------
@@ -1057,8 +1066,8 @@ Relevant Properties
     outside the supported range are, by default, scaled to fit within the
     supported range; see the :ref:`parameter_qpu_auto_scale` parameter for more
     information.
-*   :ref:`property_qpu_qubits` and :ref:`property_qpu_couplers` define the working graph 
-    of QPU solvers.
+*   :ref:`property_qpu_qubits` and :ref:`property_qpu_couplers` define the
+    :term:`working graph` of QPU solvers.
 
 Interacts with Parameters
 -------------------------
@@ -1098,7 +1107,7 @@ after each state is read from the QPU for it to cool back to base temperature
 :ref:`timing <qpu_sapi_qpu_timing>` structure. Supported values are positive
 floating-point numbers.
 
-Default value for a solver is given in the 
+Default value for a solver is given in the
 :ref:`property_qpu_default_readout_thermalization` property.
 
 Relevant Properties
@@ -1136,7 +1145,8 @@ effect\ [#]_ by adding a delay between reads.
 
 .. [#]
 
-    See the |doc_processor|_ for more information on this effect.
+    See the :ref:`qpu_errors_spinbath_polarization` section for more information
+    on this effect.
 
 Boolean flag indicating whether the system adds a delay.
 
@@ -1147,7 +1157,7 @@ Boolean flag indicating whether the system adds a delay.
     Enabling this parameter drastically increases problem run times. To avoid
     exceeding the maximum problem run time configured for your system, limit the
     number of reads when using this feature. For more information on timing,
-    see the |doc_processor|_ guide.
+    see the :ref:`qpu_operation_timing` section.
 
 Default is to not add delay between reads.
 
@@ -1217,4 +1227,3 @@ problem with each anneal initialized from the final state of the previous cycle.
 ...                              reinitialize_state=False)
 >>> sampleset = qpu.sample_ising({}, J, num_reads=1000,
 ...                              **reverse_anneal_params)   # doctest: +SKIP
-   

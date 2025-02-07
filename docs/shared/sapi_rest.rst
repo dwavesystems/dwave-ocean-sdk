@@ -17,7 +17,7 @@ where:
     Adds (``+``) or removes (``-``) a solver field to or from the list. The
     fields are evaluated left to right; for example, if a field is both added
     and removed, the last action prevails. To specify the
-    :ref:`solver properties <properties_solver_properties>` in a solver's
+    :ref:`solver properties <qpu_solver_properties_all>` in a solver's
     ``properties`` dict, use dot notation as follows::
 
         properties.property[.property]... [.property]
@@ -71,8 +71,9 @@ The serialized file may look like this:
     solved_on       If this problem is in terminal state (``COMPLETED``,
                     ``CANCELLED`` or ``FAILED``), time when problem was solved
                     or cancelled.
-    type            One of the supported
-                    :ref:`problem types<sysdocs:property_spt>`.
+    type            One of the supported values for the
+                    ``supported_problem_types`` property; see, for example, the
+                    :ref:`property_qpu_supported_problem_types` for QPUs.
     =============== ===========================
 
 .. end_problem_resource_fields
@@ -90,7 +91,7 @@ The serialized file may look like this:
     avg_load       Average current load for the solver.
     description    Description of the solver.
     id             Unique ID (name) of the solver.
-    properties     :ref:`Solver properties <properties_solver_properties>`
+    properties     :ref:`Solver properties <qpu_solver_properties_all>`
                    that reside in the ``properties`` dict; for example,
                    supported problem types, active qubits, active couplers,
                    total number of qubits, and so on.
@@ -128,7 +129,7 @@ The following table describes the ``answer`` field for a QPU solver.
                       active variables. The indices are 4-byte little-endian
                       integers.
     num_occurrences   Base-64--encoded string of the number of occurrences of
-                      each solution when :ref:`param_answer_mode` is
+                      each solution when :ref:`parameter_qpu_answer_mode` is
                       ``histogram``. The numbers are 4-byte little-endian
                       integers. Ordered by the values of ``energies``.
     timing            Solver-specific JSON object reporting the time that the
