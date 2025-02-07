@@ -26,14 +26,15 @@ Relevant Properties
     variables for hybrid solvers.
 *   :ref:`property_bqm_maximum_number_of_biases` defines the maximum number of
     problem biases for hybrid solvers.
-*   :ref:`property_bqm_minimum_time_limit` and 
+*   :ref:`property_bqm_minimum_time_limit` and
     :ref:`property_bqm_maximum_time_limit_hrs` define the runtime duration for
     hybrid solvers.
 
 Example
 -------
 
-This illustrative example submits a BQM created from a QUBO to a hybrid BQM solver.
+This illustrative example submits a BQM created from a QUBO to a hybrid BQM
+solver.
 
 >>> from dwave.system import LeapHybridBQMSampler
 ...
@@ -54,10 +55,10 @@ h
 Relevant Properties
 -------------------
 
-*   :ref:`property_bqm_maximum_number_of_variables` defines the maximum number of problem
-    variables for hybrid solvers.
-*   :ref:`property_bqm_maximum_number_of_biases` defines the maximum number of problem
-    biases for hybrid solvers.
+*   :ref:`property_bqm_maximum_number_of_variables` defines the maximum number
+    of problem variables for hybrid solvers.
+*   :ref:`property_bqm_maximum_number_of_biases` defines the maximum number of
+    problem biases for hybrid solvers.
 
 Example
 -------
@@ -186,4 +187,3 @@ This illustrative example configures a time limit of 6 seconds.
 >>> sampleset = LeapHybridBQMSampler().sample_qubo(
 ...     Q,
 ...     time_limit=6) # doctest: +SKIP
-   

@@ -11,7 +11,7 @@ provides a :class:`~dwave.system.composites.EmbeddingComposite` composite
 that maps unstructured problems to the graph
 structure of the selected sampler, a process known as :term:`minor-embedding`.
 
-For a BQM representing a Boolean AND gate (see also the :ref:`formulating_bqm` 
+For a BQM representing a Boolean AND gate (see also the :ref:`ocean_workflow_formulating_bqm` 
 section) the problem is defined on alphanumeric variables :math:`in1, in2, out` 
 that must be mapped to the QPU's numerically indexed qubits.
 

@@ -9,16 +9,18 @@ other companies to develop successful quantum applications.
 
 Application development typically advances through the following steps.
 
-#.  :ref:`cb_workflow_discovery` identifies problems in your company's processes
-    that can benefit from quantum technology.
-#.  :ref:`cb_workflow_description` describes a problem in a way that enables
-    developers to model it.
-#.  :ref:`cb_workflow_formulation` develops mathematical models of a problem.
-#.  :ref:`cb_workflow_implementation` implements a mathematical model in code.
-#.  :ref:`cb_workflow_testing` iteratively evaluates and improves the
+#.  :ref:`app_dev_workflow_discovery` identifies problems in your company's
+    processes that can benefit from quantum technology.
+#.  :ref:`app_dev_workflow_description` describes a problem in a way that
+    enables developers to model it.
+#.  :ref:`app_dev_workflow_formulation` develops mathematical models of a
+    problem.
+#.  :ref:`app_dev_workflow_implementation` implements a mathematical model in
+    code.
+#.  :ref:`app_dev_workflow_testing` iteratively evaluates and improves the
     application.
 
-.. _cb_workflow_discovery:
+.. _app_dev_workflow_discovery:
 
 Problem Discovery
 =================
@@ -45,7 +47,7 @@ can help.
 
     Typically, good candidates are optimization problems of the type described
     in the
-    :ref:`Characteristics of candidate problems <cb_workflow_good_problems_description>`
+    :ref:`Characteristics of candidate problems <app_dev_workflow_good_problems>`
     section below.
 
     Shortlist only the most promising problems, which should have these
@@ -72,7 +74,7 @@ can help.
     any changes to its solutions. Consider the following steps when selecting a
     problem:
 
-    a.  Prepare an :ref:`elevator pitch <cb_workflow_candidate_elevator_pitch>`
+    a.  Prepare an :ref:`elevator pitch <app_dev_workflow_elevator_pitch>`
         (see a possible format described below) for each candidate problem
         identified in the previous step.
     #.  Identify a problem owner for each candidate problem; support from such
@@ -86,7 +88,7 @@ can help.
 Examples of Problem Discovery
 -----------------------------
 
-.. _cb_workflow_problem_discovery_scheduling:
+.. _app_dev_workflow_discovery_scheduling:
 
 * .. dropdown:: Problem Discovery for a Large Retailer
 
@@ -117,7 +119,7 @@ Examples of Problem Discovery
         the time of multiple managers on both generating an initial schedule and
         then on making adjustments during the week. Employees are often
         unsatisfied by the resulting schedules that fail to account for their
-        preferences on shift times.   
+        preferences on shift times.
 
         You set up meetings with some of these managers, and they provide some
         very rough figures to help you estimate the business cost of remaining
@@ -153,7 +155,7 @@ Examples of Problem Discovery
 * .. dropdown:: Elevator pitch for scheduling candidate problem.
 
     As an illustration example, the
-    :ref:`elevator pitch <cb_workflow_candidate_elevator_pitch>` worksheet was
+    :ref:`elevator pitch <app_dev_workflow_elevator_pitch>` worksheet was
     used to create the following pitch points for the large retailer's
     employee-scheduling problem.
 
@@ -231,7 +233,7 @@ Examples of Problem Discovery
 Resources for Problem Discovery
 -------------------------------
 
-.. _cb_workflow_good_problems_description:
+.. _app_dev_workflow_good_problems:
 
 * .. dropdown:: Characteristics of candidate problems.
 
@@ -283,7 +285,7 @@ Resources for Problem Discovery
 
     *Quadratic interactions* represent relationships and correlations between
     the inputs of a problem. For example,
-    
+
     *   Scheduling: A missed deadline affects other tasks, preventing gaps
         between consecutive machine usages saves costs.
     *   Networks: A failed network node changes the load on other nodes.
@@ -317,13 +319,13 @@ Resources for Problem Discovery
 
     .. [#]
         |dwave_short|'s hybrid
-        :ref:`constrained quadratic model <oceandocs:cqm_sdk>`
+        :ref:`constrained quadratic model <concept_models_cqm>`
         solver also performs well on problems with some real variables. Problems
         with real variables optimize over an uncountable set. For example, in a
         gaspipe-maintenance problem, you might ask, Where should the sensor be
         installed? And the answer might be 2.46 meters along some axis.
 
-.. _cb_workflow_candidate_elevator_pitch:
+.. _app_dev_workflow_elevator_pitch:
 
 * .. dropdown::  Elevator pitch for a candidate problem.
 
@@ -386,10 +388,10 @@ Resources for Problem Discovery
           -
           -
 
-*   The :ref:`cb_problems` chapter provides examples of good problems in many
-    industries and verticals, as well as links to further examples.
+*   The :ref:`qpu_stating_problems` section provides examples of good problems
+    in many industries and verticals, as well as links to further examples.
 
-.. _cb_workflow_description:
+.. _app_dev_workflow_description:
 
 Problem Description
 ===================
@@ -419,7 +421,7 @@ A good description specifies the following elements\ [#]_ of the problem:
 
 .. [#]
     This initial set of variables and their definitions often develops and
-    changes during the :ref:`cb_workflow_formulation` step.
+    changes during the :ref:`app_dev_workflow_formulation` step.
 
 .. [#]
     Constraints are often categorized as either “hard” or “soft”. Any hard
@@ -451,7 +453,7 @@ The following steps can help guide you.
         For example, minimizing the
         `makespan <https://en.wikipedia.org/wiki/Makespan>`_ of a scheduling
         problem or selection of some number :math:`k` of features in a
-        machine-learning problem. 
+        machine-learning problem.
 
 #. .. dropdown:: In collaboration with the problem owner, revise your initial
     description.
@@ -478,8 +480,8 @@ Examples of Problem Description
     *   Candidate Problem
 
         You are tasked with developing a new solution to the
-        :ref:`scheduling problem <cb_workflow_problem_discovery_scheduling>` 
-        of the :ref:`cb_workflow_discovery` section.
+        :ref:`scheduling problem <app_dev_workflow_discovery_scheduling>`
+        of the :ref:`app_dev_workflow_discovery` section.
 
     *   Plain-Language Description
 
@@ -623,7 +625,7 @@ Resources for Problem Description
         to the solver returning the lowest possible energy) versus finding a
         good, feasible solution.
 
-.. _cb_workflow_formulation:
+.. _app_dev_workflow_formulation:
 
 Problem Formulation
 ===================
@@ -656,9 +658,10 @@ The model you develop in this stage typically has the following elements:
 *   Constraints: linear and quadratic relationships between variables that must
     or should\ [#]_ be satisfied
 
-Such a model is called a :ref:`constrained quadratic model <oceandocs:cqm_sdk>`,
-a :ref:`nonlinear model <oceandocs:nl_model_sdk>`, or sometimes a
-:ref:`binary quadratic model <oceandocs:bqm_sdk>`.
+Such a model is called a
+:ref:`constrained quadratic model <concept_models_cqm>`,a
+:ref:`nonlinear model <concept_models_nonlinear>`, or sometimes a
+:ref:`binary quadratic model <concept_models_bqm>`.
 
 Performance is sensitive to the model. As you develop your model consider
 various formulations: developing a few different models can be beneficial in
@@ -700,15 +703,14 @@ Examples of Problem Formulation
 Resources for Problem Formulation
 ---------------------------------
 
-*   The |doc_getting_started|_ guide walks you through some basic examples of
-    mathematical formulation, using very simple objectives and constraints,
-    which can be a gentle introduction to the concepts. Likewise, the
-    :std:doc:`Ocean software documentation <oceandocs:getting_started>`
-    documentation provides a series of code examples, for different levels of
-    experience, which include such formulations.
-*   The :ref:`cb_problems` chapter of this guide provides references to examples
-    categorized by field and the :ref:`cb_techniques` chapter describes various
-    techniques to mathematically formulate parts of your problem.
+*   The :ref:`qpu_index_examples_beginner` section walks you through some basic
+    examples of mathematical formulation, using very simple objectives and
+    constraints, which can be a gentle introduction to the concepts and a series
+    of code examples, for different levels of experience, which include such
+    formulations.
+*   The :ref:`qpu_stating_problems` section provides references to examples
+    categorized by field and the :ref:`qpu_reformulating` section describes
+    various techniques to mathematically formulate parts of your problem.
 *   The |dwave_short|_ website provides links to user applications.
 *   `Building a Quantum Hybrid Application <https://www.youtube.com/watch?v=UzTIsoXPnek>`_
     is a video recording of an August 2023 |dwave_short| webinar.
@@ -719,7 +721,7 @@ Resources for Problem Formulation
     which works with customers to accelerate their progress from getting started
     through production implementation.
 
-.. _cb_workflow_implementation:
+.. _app_dev_workflow_implementation:
 
 Software Implementation
 =======================
@@ -730,10 +732,10 @@ Your application will likely have multiple parts, including the following:
 
     This is the part that implements your formulation of the problem and submits
     it to a |dwave_short| solver for solution. It is recommended that you
-    implement the :ref:`model <oceandocs:intro_models>` representing your
+    implement the :ref:`model <concept_models>` representing your
     problem, formulated as described in the previous section, and manage the
     submission using the
-    `Ocean SDK <https://docs.ocean.dwavesys.com/en/stable/index.html>`_.
+    `Ocean SDK <index_ocean_sdk>`.
 
 *   Handling inputs and presenting results
 
@@ -752,7 +754,7 @@ It is recommended that you manage and schedule your application development over
 multiple iterations of learning and improvement, as described in the next
 section.
 
-.. _cb_workflow_testing:
+.. _app_dev_workflow_testing:
 
 Test and Iterate
 ================
@@ -773,7 +775,7 @@ application includes the following steps of iterative development:
 1. .. dropdown:: Build an initial prototype
 
     For your initial prototype, start with small problem inputs and use
-    :ref:`symbolic math <oceandocs:intro_symbolic_math>`, simple loops, etc to
+    :ref:`symbolic math <concept_symbolic_math>`, simple loops, etc to
     build a model without worrying much about construction performance.
 
     This prototype, which may also be considered a
@@ -803,7 +805,7 @@ application includes the following steps of iterative development:
         also the time and memory usage required to build the model. As your
         model's size increases, so does the importance of optimally building the
         model.
-    *   Consider various :ref:`decomposition techniques <cb_decomposing>` when
+    *   Consider various :ref:`decomposition techniques <qpu_decomposing>` when
         dealing with extremely large problems.
     *   Consider various techniques to reduce problem size:
         :class:`presolve techniques <oceandocs:dwave.preprocessing.presolve.pypresolve.Presolver>`,
@@ -816,9 +818,9 @@ application includes the following steps of iterative development:
 
     *   Comparisons with the current solution, between constrained and
         unconstrained models (i.e. representing one or more constraints as
-        :ref:`penalty models <oceandocs:penalty_sdk>` in the objective), between
+        :ref:`penalty models <concept_penalty>` in the objective), between
         different solvers, and for varying solver
-        :ref:`runtimes <cb_hybrid_runtimes>`.
+        :ref:`runtimes <opt_best_practices_runtimes>`.
     *   Various inputs, preferably inputs similar to those expected in your
         production environment.
     *   Multiple runs: results from heuristic solvers vary over executions for
@@ -844,17 +846,16 @@ application includes the following steps of iterative development:
         you might represent the
         `satisfiability (SAT) <https://en.wikipedia.org/wiki/Boolean_satisfiability_problem>`_
         problem :math:`(x_1 \vee \overline{x}_2 ) \wedge (\overline{x}_1 \vee x_2)`
-        of the |doc_getting_started|_ guide as either an objective to be
-        minimized, :math:`0.1 x_1 + 0.1 x_2 - 0.2 x_1 x_2`, or a constraint to
-        be met, :math:`x_1=x_2`.
+        of the :ref:`qpu_example_unconstrained_sat` section as either an
+        objective to be minimized, :math:`0.1 x_1 + 0.1 x_2 - 0.2 x_1 x_2`, or a
+        constraint to be met, :math:`x_1=x_2`.
 
 Resources for Test Iterations
 -----------------------------
 
 *   `Model Validation and Scaling <https://youtu.be/MNdhUtmsbus?t=2180>`_
     tutorial video from |dwave_short|'s Qubits 2023 conference.
-*   The Ocean SDK documentation's
-    :ref:`Scaling guide <oceandocs:intro_scaling>`.
+*   The :ref:`opt_scaling` section.
 *   |dwave_short| provides the |dwave_launch|_ program to accelerate
     enterprises' path from problem discovery through production implementation.
 *   The `Leap <https://cloud.dwavesys.com/leap>`_ service hosts a community

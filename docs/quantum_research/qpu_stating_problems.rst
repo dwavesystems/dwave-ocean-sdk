@@ -4,13 +4,10 @@
 Stating the Problem
 ===================
 
-Once properly stated, a problem can be formulated as an objective function
-to be solved on a |dwave_short| solver. The example in the
-:ref:`cb_introduction` chapter states a communication-networks problem as the
-well-known graph problem,
-`vertex cover <https://en.wikipedia.org/wiki/Vertex_cover>`_.
+Once properly stated, a problem can be formulated as an objective function to be
+solved on a |dwave_short| solver.
 
-|dwave_short| provides several resource containing many reference examples:
+|dwave_short| provides several resources containing many reference examples:
 
 *   Ocean software's
     `collection of code examples <https://github.com/dwave-examples>`_ on
@@ -19,12 +16,7 @@ well-known graph problem,
     (for example, [dwave2]_) and links to
     `user applications <https://www.dwavesys.com/learn/featured-applications/>`_.
 
-For beginners,
-:std:doc:`Ocean software documentation <oceandocs:getting_started>` provides a
-series of code examples, for different levels of experience, that explain
-various aspects of quantum computing in solving problems.
-
-This chapter provides a sample of problems in various fields, and the available
+This section provides a sample of problems in various fields, and the available
 resources for each (at the time of writing); having a relevant reference problem
 may enable you to use similar solution steps when solving your own problems on
 |dwave_short| solvers.
@@ -34,9 +26,9 @@ optimization, which is the optimization of an objective function defined over a
 set of discrete values such as Booleans.
 
 Keep in mind that there are different ways to model a given problem; for
-example, a constraint satisfaction problem (CSP) can have various domains,
-variables, and constraints. Model selection can affect solution performance, so
-it may be useful to consider various approaches.
+example, a :term:`constraint satisfaction problem` (CSP) can have various
+domains, variables, and constraints. :term:`Model` selection can affect solution
+performance, so it may be useful to consider various approaches.
 
 .. list-table:: A Sample of Reference Problems in |dwave_short|'s Resources
     :widths: 40 20 20 20
@@ -46,47 +38,47 @@ it may be useful to consider various approaches.
         - **Beginner Content Available?**
         - **Solvers**
         - **Content**
-    *   - :ref:`cb_probs_fault_diagnosis`
+    *   - :ref:`qpu_stating_problems_fault_diagnosis`
         -
         - QPU, hybrid
         - Code, papers
-    *   - :ref:`cb_probs_computer_vision`
+    *   - :ref:`qpu_stating_problems_computer_vision`
         -
         - QPU
         - Papers
-    *   - :ref:`cb_probs_database_queries`
+    *   - :ref:`qpu_stating_problems_database_queries`
         -
         - QPU
         - Papers
-    *   - :ref:`cb_probs_factoring`
+    *   - :ref:`cqpu_stating_problems_factoring`
         - Yes
         - QPU
         - Code, papers
-    *   - :ref:`cb_probs_finance`
+    *   - :ref:`qpu_stating_problems_finance`
         -
         - QPU, hybrid
         - Papers
-    *   - :ref:`cb_probs_graph_partitioning`
+    *   - :ref:`qpu_stating_problems_graph_partitioning`
         - Yes
         - QPU, hybrid
         - Code, papers
-    *   - :ref:`cb_probs_machine_learning`
+    *   - :ref:`qpu_stating_problems_machine_learning`
         -
         - QPU
         - Papers
-    *   - :ref:`cb_probs_map_coloring`
+    *   - :ref:`qpu_stating_problems_map_coloring`
         - Yes
         - QPU, hybrid
         - Code, paper
-    *   - :ref:`cb_probs_protein_folding`
+    *   - :ref:`qpu_stating_problems_protein_folding`
         -
         - QPU
         - Papers
-    *   - :ref:`cb_probs_scheduling`
+    *   - :ref:`qpu_stating_problems_scheduling`
         - Yes
         - QPU, hybrid
         - Code, papers
-    *   - :ref:`cb_probs_traffic_flow`
+    *   - :ref:`qpu_stating_problems_traffic_flow`
         -
         - QPU, hybrid
         - Papers
@@ -97,7 +89,7 @@ the examples in |dwave_short|'s
 `corporate website <https://www.dwavesys.com>`_ for the latest examples of
 problems from all fields of study and industry.
 
-.. _cb_probs_fault_diagnosis:
+.. _qpu_stating_problems_fault_diagnosis:
 
 Circuits & Fault Diagnosis
 ==========================
@@ -109,14 +101,14 @@ manufacturing, under the assumption that gate failure is rare enough that the
 minimum number of gates failing is the most likely cause of the detected
 problem.
 
-The :ref:`cb_techs_example_cfd` section in the :ref:`cb_techniques` chapter
-shows the steps of solving a circuit fault diagnosis problem on a |dwave_short|
-QPU.
+The :ref:`qpu_reformulating_example_cfd` section in the :ref:`qpu_reformulating`
+chapter shows the steps of solving a circuit fault diagnosis problem on a
+|dwave_short| QPU.
 
 Code Examples
 -------------
 
-*   :std:doc:`Multiple-Gate Circuit <oceandocs:examples/multi_gate>`
+*   :ref:`qpu_example_multigate`
 
     Solves a logic circuit problem using Ocean tools to demonstrate solving a
     CSP on a |dwave_short| QPU solver.
@@ -140,7 +132,7 @@ Papers
     generating tests for digital-faults detection.
 *   [Per2015]_ maps fault diagnosis to a QUBO and embeds onto a QPU.
 
-.. _cb_probs_computer_vision:
+.. _qpu_stating_problems_computer_vision:
 
 Computer Vision
 ===============
@@ -165,7 +157,7 @@ Papers
     algorithm for a lattice quantum chromodynamics simulation data using a
     |dwave_2kq_tm| system.
 
-.. _cb_probs_database_queries:
+.. _qpu_stating_problems_database_queries:
 
 Database Queries (SAT Filters)
 ==============================
@@ -182,7 +174,7 @@ Papers
 *   [Jue2016]_ discusses quantum annealing for Boolean satisfiability problems.
 *   [Wea2014]_ describes the SAT filter.
 
-.. _cb_probs_factoring:
+.. _qpu_stating_problems_factoring:
 
 Factoring
 =========
@@ -217,7 +209,7 @@ Papers
 *   [Lin2021]_ applies deep reinforcement learning to configure adiabatic
     quantum computing on prime factoring problems.
 
-.. _cb_probs_finance:
+.. _qpu_stating_problems_finance:
 
 Finance
 =======
@@ -256,7 +248,7 @@ Papers
 *   [Ven2019]_ investigates a hybrid quantum-classical solution method to the
     mean-variance portfolio optimization problems.
 
-.. _cb_probs_graph_partitioning:
+.. _qpu_stating_problems_graph_partitioning:
 
 Graph Partitioning
 ==================
@@ -300,7 +292,7 @@ Papers
 *   [Zah2019]_ proposes an algorithm to detect multiple communities in a signed
     graph.
 
-.. _cb_probs_machine_learning:
+.. _qpu_stating_problems_machine_learning:
 
 Machine Learning
 ================
@@ -440,7 +432,8 @@ target a Boltzmann distribution characterized by :math:`\beta`, which is
 represented by a floating point number without units. When choosing a value for
 :math:`\beta`, be aware that lower values result in samples less constrained to
 the lowest energy states. For more information on :math:`\beta` and how it is
-used in the sampling postprocessing algorithm, see the |doc_processor|_ guide.
+used in the sampling postprocessing algorithm, see the :ref:`qpu_postprocessing`
+section.
 
 *   Probabilistic Sampling: RBM
 
@@ -561,7 +554,7 @@ used in the sampling postprocessing algorithm, see the |doc_processor|_ guide.
     For an RBM as a generative model, for example, where the gradient needed to
     maximize log-likelihood of data is intractable (due to the partition
     function for the energy objective function), instead of using the standard
-    Gibbs’s sampling, use samples from the |dwave_short| system. The training
+    Gibbs's sampling, use samples from the |dwave_short| system. The training
     will have steps like these: a. Initialize variables. b. Teach visible nodes
     with training samples. c. Sample from the |dwave_short| system. d. Update
     and repeat as needed.
@@ -632,33 +625,32 @@ Boosting:
 
 *   [Nev2012]_ describes the Qboost formulation.
 
-.. _cb_probs_map_coloring:
+.. _qpu_stating_problems_map_coloring:
 
 Map Coloring
 ============
 
-Map coloring is an example of a
-:std:doc:`constraint satisfaction problem (CSP) <oceandocs:concepts/csp>`.
-CSPs require that all a problem’s variables be assigned values, out of a finite
-domain, that result in the satisfying of all constraints. The map-coloring CSP
-is to assign a color to each region of a map such that any two regions sharing a
-border have different colors.
+Map coloring is an example of a :ref:`concept_constraint_satisfaction_problem`
+(CSP). CSPs require that all a problem’s variables be assigned values, out of a
+finite domain, that result in the satisfying of all constraints. The
+map-coloring CSP is to assign a color to each region of a map such that any two
+regions sharing a border have different colors.
 
-The :ref:`cb_techs_example_map` section in the :ref:`cb_techniques` chapter is
-an example of map coloring on the |dwave_short| system.
+The :ref:`qpu_reformulating_example_map` section in the :ref:`qpu_reformulating`
+section is an example of map coloring on the |dwave_short| system.
 
 Code Examples
 -------------
 
-*   :std:doc:`Large Map Coloring <oceandocs:examples/map_kerberos>`
+*   :ref:`opt_example_kerberos_map`
 
     Demonstrates an out-of-the-box use of a hybrid sampler solving a problem of
     arbitrary structure and size.
-*   :std:doc:`Map Coloring: Hybrid DQM Sampler <oceandocs:examples/map_dqm>`
+*   :ref:`opt_example_dqm_map`
 
     Demonstrates the hybrid discrete quadratic model (DQM) solver available in
     the Leap service.
-*   :std:doc:`Map Coloring <oceandocs:examples/map_coloring>`
+*   :ref:`qpu_example_mapcoloring`
 
     Demonstrates solving a map-coloring CSP on a QPU.
 *   `Map-Coloring CSP <https://github.com/dwave-examples/map-coloring>`_
@@ -671,7 +663,7 @@ Papers
 
 [Dwave4]_ describes solving a map coloring problem on a QPU.
 
-.. _cb_probs_protein_folding:
+.. _qpu_stating_problems_protein_folding:
 
 Material Simulation
 ===================
@@ -702,9 +694,9 @@ Papers
     `qbsolv <https://docs.ocean.dwavesys.com/projects/qbsolv>`_ package, which
     has since been discontinued in favor of the hybrid solvers available in the
     Leap service and the
-    :std:doc:`dwave-hybrid <oceandocs:docs_hybrid/sdk_index>` package.
+    :ref:`dwave-hybrid <index_hybrid>` package.
 
-.. _cb_probs_scheduling:
+.. _qpu_stating_problems_scheduling:
 
 Scheduling
 ==========
@@ -720,7 +712,7 @@ machine executes one task at a time and must complete started tasks.
 Code Examples
 -------------
 
-*   :std:doc:`Constrained Scheduling <oceandocs:examples/scheduling>`
+*   :std:doc:`Constrained Scheduling <qpu_example_scheduling>`
 
     Shows new users how to formulate a constraint satisfaction problem (CSP)
     using Ocean tools and solve it on a |dwave_short| QPU solver.
@@ -749,7 +741,7 @@ Papers
     QUBO, and applying variable reduction techniques. It also talks about direct
     embedding of local constraints.
 
-.. _cb_probs_traffic_flow:
+.. _qpu_stating_problems_traffic_flow:
 
 Traffic Flow
 ============

@@ -47,7 +47,7 @@ model
 
 Ocean software's :class:`~dwave.optimization.model.Model` contains symbols
 and states for problems formulated as a
-:ref:`nonlinear model <oceandocs:intro_optimization>`.
+:ref:`nonlinear model <concept_models_nonlinear>`.
 
 Relevant Properties
 -------------------
@@ -63,8 +63,8 @@ Relevant Properties
 *   :ref:`property_nl_max_state_size` defines the maximum size of all states
     in a problem accepted by the solver.
 *   :ref:`property_nl_state_size_multiplier`,
-    :ref:`property_nl_num_nodes_multiplier`, 
-    :ref:`property_nl_num_nodes_state_size_multiplier`, and 
+    :ref:`property_nl_num_nodes_multiplier`,
+    :ref:`property_nl_num_nodes_state_size_multiplier`, and
     :ref:`property_nl_time_constant` are used in the internal estimate of the
     problem's minimum runtime.
 
@@ -103,8 +103,8 @@ Relevant Properties
 -------------------
 
 *   :ref:`property_nl_state_size_multiplier`,
-    :ref:`property_nl_num_nodes_multiplier`, 
-    :ref:`property_nl_num_nodes_state_size_multiplier`, and 
+    :ref:`property_nl_num_nodes_multiplier`,
+    :ref:`property_nl_num_nodes_state_size_multiplier`, and
     :ref:`property_nl_time_constant` are used in the internal estimate of the
     problem's minimum runtime.
 
@@ -120,4 +120,3 @@ This illustrative example configures a time limit of 6 seconds.
 >>> results = LeapHybridNLSampler().sample(
 ...     model,
 ...     time_limit=6)   # doctest: +SKIP
-   

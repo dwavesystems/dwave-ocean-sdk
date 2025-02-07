@@ -63,6 +63,9 @@ Nonlinear Model
     :start-after: start_models_nonlinear
     :end-before: end_models_nonlinear
 
+For an introduction to Ocean software's nonlinear model, see the
+:ref:`opt_model_construction_nl` section.
+
 .. _concept_models_cqm:
 
 Constrained Quadratic Model
@@ -96,6 +99,9 @@ constraints.
 
 .. [#]
     Real-valued variables are currently not supported in quadratic interactions.
+
+For constructing quadratic models in  Ocean software, see the
+:ref:`opt_model_construction_qm` section.
 
 .. _concept_models_bqm:
 

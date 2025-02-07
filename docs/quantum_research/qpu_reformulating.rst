@@ -4,12 +4,12 @@
 Reformulating a Problem
 =======================
 
-As explained in the |doc_getting_started|_ guide, the **first** step of solving
+As noted in the :ref:`qpu_workflow` section, the **first** step of solving
 your problem is to state it; for example:
 
 *   How do I assign a color to each region of a map such that any two regions
     sharing a border have different colors? (This is the well-known
-    :ref:`cb_probs_map_coloring` problem.)
+    :ref:`qpu_stating_problems_map_coloring` problem.)
 *   How do I find values of the binary variables that satisfy the
     `satisfiability (SAT) <https://en.wikipedia.org/wiki/Boolean_satisfiability_problem>`_
     problem,
@@ -19,36 +19,34 @@ your problem is to state it; for example:
 *   How do I place routers in a communications network for maximum coverage of
     all network nodes? (This can be posed as the
     `vertex cover <https://en.wikipedia.org/wiki/Vertex_cover>`_ problem as
-    done in the :std:doc:`vertex cover <oceandocs:examples/min_vertex>`
-    example.)
+    done in the :ref:`vertex cover <qpu_example_min_vertex>` example.)
 
-The **next** step is to map the problem to an
-:ref:`objective function <sysdocs:concepts_objectives>`, usually in
-:ref:`Ising <sysdocs:obj_ising>` or :ref:`QUBO <sysdocs:obj_qubo>`
-formats\ [#]_ if you are submitting to a quantum sampler, known as the quantum
-computer's *native formulations*. Low-energy states of the objective function
-represent good solutions to the problem.
+The **next** step is to map the problem to an :term:`objective function`,
+usually in :ref:`Ising <concept_models_ising>` or
+:ref:`QUBO <concept_models_qubo>` formats\ [#]_ if you are submitting to a
+quantum sampler, known as the quantum computer's
+:ref:`native formulations <qpu_reformulating_native_formats>`. Low-energy states
+of the objective function represent good solutions to the problem.
 
 .. [#]
     These belong to the category of
-    :std:doc:`binary quadratic models (BQM) <oceandocs:concepts/bqm>`.
-    The quantum-classical
-    :std:doc:`hybrid solvers <oceandocs:concepts/hybrid>` available in the Leap
+    :ref:`binary quadratic models (BQM) <concept_models_bqm>`. The
+    quantum-classical :ref:`hybrid solvers <index_hybrid>` available in the Leap
     service can accept problems formulated at a higher level of abstraction; for
     example,
-    :std:doc:`discrete quadratic models (DQM) <oceandocs:concepts/dqm>`,
-    where variables can have more than two possible cases.
+    :ref:`discrete quadratic models (DQM) <concept_models_dqm>`, where variables
+    can have more than two possible cases.
 
 This chapter presents some
-:ref:`general guidance <cb_tech_general_guidance>`, the following reformulation
-techniques\ [#]_, and some extended reformulation examples:
+:ref:`general guidance <qpu_reformulating_general_guidance>`, the following
+reformulation techniques\ [#]_, and some extended reformulation examples:
 
 .. [#]
     Some of these techniques are intended for use with quantum samplers and the
     hybrid solvers in the Leap service that accept binary quadratic models; for
     example, if you are using a constrained quadratic model
-    (:std:doc:`CQM <oceandocs:concepts/cqm>`) solver, you can state
-    constraints in a straightforward manner.
+    (:ref:`CQM <concept_models_cqm>`) solver, you can state constraints in a
+    straightforward manner.
 
 .. contents::
     :depth: 1
@@ -63,20 +61,20 @@ understanding and implementation.
     which might be abstract, but those typically also provide simple examples
     for users looking for practical guidance.
 
-.. _cb_tech_general_guidance:
+.. _qpu_reformulating_general_guidance:
 
 General Guidance on Reformulating
 =================================
 
 While the `Leap service <https://cloud.dwavesys.com/leap/>`_'s
-:std:doc:`hybrid solvers <oceandocs:concepts/hybrid>` can accept arbitrarily
+:ref:`hybrid solvers <opt_index_hybrid_solvers>` can accept arbitrarily
 structured BQMs of huge size, problems submitted directly to the quantum
 computer must be formulated to be compatible with the constraints of the
 physical system and as robust as possible to its control errors\ [#]_.
 
 .. [#]
-    The |doc_processor|_ guide provides details on the physical system and its
-    integrated control errors (ICE).
+    The :ref:`qpu_errors` section provides details on the physical system and
+    its :term:`integrated control errors` (ICE).
 
 Reformulation Steps
 -------------------
@@ -98,10 +96,11 @@ Compare Approaches
 Start with the simplest possible method you can find to formulate your problem
 in the supported format of your chosen solver (BQM, CQM, etc). If your
 formulation does not provide good solutions (with the solver properly
-:ref:`configured <cb_qpu>`), consider alternative formulations. A formulation
-that has the disadvantage of increasing the number of variables might compensate
-by being more amenable to :ref:`minor-embedding <cb_embedding>`; a different
-formulation might produce a smaller range of bias values.
+:ref:`configured <qpu_solver_configuration>`), consider alternative
+formulations. A formulation that has the disadvantage of increasing the number
+of variables might compensate by being more amenable to
+:ref:`minor-embedding <qpu_embedding_guidance>`; a different formulation might
+produce a smaller range of bias values.
 
 Variable Proliferation
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -111,12 +110,12 @@ integer-to-binary-variables conversion typically does. There may be alternative
 formulations that require fewer variables.
 
 For example, although you may be able to derive a penalty by
-:ref:`conversion to a linear equality <cb_techs_constraints_linear_equality>`
+:ref:`conversion to a linear equality <qpu_reformulating_constraints_linear_equality>`
 or by
-:ref:`conversion to a linear inequality <cb_techs_constraints_linear_inequality>`,
+:ref:`conversion to a linear inequality <qpu_reformulating_constraints_linear_inequality>`,
 it may produce better solutions to apply the techniques of the
-:ref:`non-linear constraints <cb_techs_constraints_nonlinear>` section to
-construct a penalty with fewer ancillary variables. [#]_
+:ref:`non-linear constraints <qpu_reformulating_constraints_nonlinear>` section
+to construct a penalty with fewer ancillary variables. [#]_
 
 .. [#]
     Equality constraints, :math:`\sum_{i=0}^N a_ix_i == b`, standardly
@@ -159,7 +158,7 @@ in your BQM---can affect performance. For QPU solvers, your BQM's linear and
 quadratic coefficients translate in the end to qubit and coupler biases; if your
 problem results in, for example, a smallest bias of :math:`h_{12}=-0.032` and a
 largest bias of :math:`h_{36}=3405`, when these biases are scaled down to the
-range of biases supported on the QPU, :ref:`sysdocs:property_h_range`, the small
+range of biases supported on the QPU, :ref:`property_qpu_h_range`, the small
 bias is effectively zero.
 
 Pay attention to the scale of biases in your selected formulation---sometimes
@@ -194,7 +193,7 @@ Further Information
     ones for use in representing unconstrained integer quadratic programming
     problems in QUBO format.
 
-.. _cb_tech_available_algorithms:
+.. _qpu_reformulating_available_algorithms:
 
 Algorithms Implemented in Ocean Software
 ========================================
@@ -227,10 +226,9 @@ Example: Constraints
 
 Ocean software provides generic quadratic-model generators.
 
-This example shows how you can use a
-:std:doc:`dimod <oceandocs:docs_dimod/sdk_index>` BQM generator for a problem
-that includes a constraint :math:`n \choose k`, which requires that exactly
-:math:`k` of :math:`n` variables be selected. The
+This example shows how you can use a :ref:`dimod <index_dimod>` BQM generator
+for a problem that includes a constraint :math:`n \choose k`, which requires
+that exactly :math:`k` of :math:`n` variables be selected. The
 :func:`dimod.generators.combinations` function builds a BQM that is minimized
 when exactly :math:`k` of its variables equal 1.
 
@@ -249,16 +247,16 @@ Sample(sample={'x1': 1, 'x2': 1, 'x3': 0, 'x4': 0}, energy=0.0, num_occurrences=
 Further Information
 -------------------
 
-*   See the :std:doc:`Ocean software documentation <oceandocs:index>` for
-    available BQM-generating functionality.
+*   See the :ref:`Ocean software <index_ocean_sdk>` section for available
+    BQM-generating functionality.
 
-.. _cb_techs_native_formats:
+.. _qpu_reformulating_native_formats:
 
 Native QPU Formulations: Ising and QUBO
 =======================================
 
 You may be able to formulate some problems directly as binary quadratic models,
-as shown in the examples of the |doc_getting_started|_ guide.
+as shown in the examples of the :ref:`qpu_index_examples_beginner` section.
 
 .. sidebar:: Reminder: Ising and QUBO formulations
 
@@ -274,7 +272,7 @@ as shown in the examples of the |doc_getting_started|_ guide.
 
     .. math::
 
-        \begin{array}{lll} 
+        \begin{array}{lll}
         E(\vc{s} | \vc{h}, \vc{J}) = & & \\
         \sum_{i=1}^N h_i s_i & & \\
         + \sum_{i<j}^N J_{i,j} s_i s_j  & &
@@ -301,8 +299,8 @@ simple penalty models.
 Example: Truth-Table Formulation
 --------------------------------
 
-As shown in the |doc_getting_started|_ guide, you can formulate a QUBO in the
-following steps:
+As shown in the :ref:`qpu_index_examples_beginner` section, you can formulate a
+QUBO in the following steps:
 
 a.  Tabulate all the problem's possible states in a
     `truth table <https://en.wikipedia.org/wiki/Truth_table>`_.
@@ -357,7 +355,7 @@ Giving the following four equations with four variables:
 
 Solving these equations by simple substitution gives
 :math:`E(q_1, q_2) = -q_1 - q_2 +2 q_1 q_2`, which is equivalent to the QUBO
-given in :numref:`Table %s <logicalTable>` of the :ref:`cb_techs_boolean_ops`
+given in :numref:`Table %s <logicalTable>` of the :ref:`qpu_reformulating_boolean_ops`
 section, with an offset of 1 (this formulation has a ground-state energy of -1
 versus the other formulation's ground-state energy of 0).
 
@@ -420,7 +418,7 @@ expresses the constraints of a CSP with Boolean logic. The approach used in that
 example is to express :math:`P=ab` as a CSP with a binary multiplication
 circuit.
 
-Section :ref:`cb_techs_boolean_ops` below shows QUBO formulation for a number of
+Section :ref:`qpu_reformulating_boolean_ops` below shows QUBO formulation for a number of
 common Boolean operators.
 
 Ising or QUBO?
@@ -455,7 +453,7 @@ Thus,
 Example
 -------
 
-The :ref:`cb_techs_example_map` section develops an objective function, in QUBO
+The :ref:`qpu_reformulating_example_map` section develops an objective function, in QUBO
 formulation,
 
 .. math::
@@ -555,7 +553,7 @@ Further Information
     minimized by graph cuts.
 *   [Luc2013]_ and [Lod2020]_ describe Ising formulations of many NP problems.
 
-.. _cb_techs_weighted_max2sat:
+.. _qpu_reformulating_weighted_max2sat:
 
 Weighted MAX-2-SAT
 ==================
@@ -805,11 +803,11 @@ quadratic---the lefthand term, :math:`z x_3`, multiplies two variables,
 quadratic penalty function---and has lowest values for configurations of
 variables where :math:`z x_3 = x_1 x_2 x_3`.
 
-Example :ref:`cb_techs_reduction_sub_bool` shows such a reduction for
-binary-valued variables while :ref:`cb_techs_reduction_sub_spin` shows it for
+Example :ref:`qpu_reformulating_reduction_sub_bool` shows such a reduction for
+binary-valued variables while :ref:`qpu_reformulating_reduction_sub_spin` shows it for
 spin-valued variables.
 
-.. _cb_techs_reduction_sub_bool:
+.. _qpu_reformulating_reduction_sub_bool:
 
 Example: Boolean Variables
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -818,7 +816,7 @@ This example of reduction by substitution represents the multiplication
 :math:`x_1 x_2` as Boolean\ [#]_ constraint
 :math:`z\Leftrightarrow x_1\wedge x_2` (AND operation) using the quadratic
 penalty function given in the :numref:`Table %s <logicalTable>` table of the
-:ref:`cb_techs_boolean_ops` section,
+:ref:`qpu_reformulating_boolean_ops` section,
 
 .. math::
     P(x_1,x_2;z) = x_1 x_2 - 2(x_1+x_2)z + 3z.
@@ -869,7 +867,7 @@ column.
     +-----------------------+---------------------+------------------+--------------------+------------------+--------------------+---------------------------------------------+
 
 
-.. _cb_techs_reduction_sub_spin:
+.. _qpu_reformulating_reduction_sub_spin:
 
 Example: Spin Variables
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -952,7 +950,7 @@ substitute quadratic formulation.
 Example
 -------
 
-*   The :ref:`cb_techs_example_cfd` example demonstrates the technique.
+*   The :ref:`qpu_reformulating_example_cfd` example demonstrates the technique.
 
 Further Information
 -------------------
@@ -971,7 +969,7 @@ Further Information
 *   [Wan2020]_ provides a triplet-reduction formulation in the context of
     factoring.
 
-.. _cb_techs_constraints_conflictgraph:
+.. _qpu_reformulating_constraints_conflictgraph:
 
 Constraints (Conflict-Graph Technique)
 ======================================
@@ -1016,7 +1014,7 @@ each :math:`y_\alpha` in the independent set, which defines values for all the
 problem.
 
 The maximum independent set (MIS) is easily represented as a QUBO, as shown in
-:ref:`cb_techs_native_formats`.
+:ref:`qpu_reformulating_native_formats`.
 
 Example
 -------
@@ -1119,7 +1117,7 @@ Further Information
     discusses two methods of converting between these formulations through
     dual and hidden transformations.
 
-.. _cb_techs_constraints_soft:
+.. _qpu_reformulating_constraints_soft:
 
 Constraints: Soft/Hard (Conflict-Graph Technique)
 =================================================
@@ -1132,7 +1130,7 @@ Many CSPs used in applications are formulated with two types of constraints:
 You can represent hard and soft constraints by choosing two weights :math:`w_H`
 (large magnitude) and :math:`w_S` (small magnitude) to assign to the respective
 constraints. You then use the technique of
-:ref:`cb_techs_constraints_conflictgraph` but in the resulting graph find a
+:ref:`qpu_reformulating_constraints_conflictgraph` but in the resulting graph find a
 maximum independent set of minimum weight: a weighted MIS.
 
 The QUBO representation of weighted MIS for a graph :math:`G=(V,E)` is simply
@@ -1141,7 +1139,7 @@ where :math:`w_v` is the weight of vertex :math:`v`.
 
 The :std:doc:`dwave_networkx <oceandocs:docs_dnx/sdk_index>` package lets you
 set a ``weight`` attribute in the example of
-:ref:`cb_techs_constraints_conflictgraph`, as shown here:
+:ref:`qpu_reformulating_constraints_conflictgraph`, as shown here:
 
 >>> import dwave_networkx as dnx
 >>> import networkx as nx
@@ -1180,7 +1178,7 @@ probabilistic solvers, such as |dwave_short| quantum computers, results in a
 higher likelihood of finding solutions that at least meet the more heavily
 weighted, "hard" constraints.
 
-.. _cb_techs_constraints_linear_equality:
+.. _qpu_reformulating_constraints_linear_equality:
 
 Constraints: Linear Equality (Penalty Functions)
 ================================================
@@ -1217,7 +1215,7 @@ where the graph is a cell in the Chimera topology,
 
 but with an added constraint that requires that either node 0 or node 1, but not
 both, be selected. (The example in the
-:ref:`cb_techs_constraints_inverse_verification` solves it by reformulating the
+:ref:`qpu_reformulating_constraints_inverse_verification` solves it by reformulating the
 constraint as a Boolean gate.)
 
 You can express this :math:`m=1` constraint as :math:`x_0 + x_1 = 1`, an
@@ -1306,14 +1304,14 @@ Further Information
     algorithm for solving quadratic, linearly-constrained, binary optimization
     problems.
 
-.. _cb_techs_constraints_linear_inequality:
+.. _qpu_reformulating_constraints_linear_inequality:
 
 Constraints: Linear Inequality (Penalty Functions)
 ==================================================
 
 For inequality constraints of the form :math:`\vc{D}\vc{x}\le \vc{d}`, which are
 slightly more complex than
-:ref:`linear equality constraints <cb_techs_constraints_linear_equality>` you
+:ref:`linear equality constraints <qpu_reformulating_constraints_linear_equality>` you
 can reduce the inequalities to equalities by introducing
 `slack variables <https://en.wikipedia.org/wiki/Slack_variable>`_.
 
@@ -1360,7 +1358,7 @@ best solution.
 Example
 -------
 
-The example of :ref:`cb_techs_constraints_linear_equality` solved the problem of
+The example of :ref:`qpu_reformulating_constraints_linear_equality` solved the problem of
 finding a
 `maximum independent set (MIS) <https://en.wikipedia.org/wiki/Maximal_independent_set>`_,
 where the graph is a cell in the Chimera topology, with an equality constraint,
@@ -1461,7 +1459,7 @@ The four best solutions meet the constrained MIS problem,
 
 while the next two, with higher energy, solve the unconstrained MIS problem.
 
-.. _cb_techs_constraints_nonlinear:
+.. _qpu_reformulating_constraints_nonlinear:
 
 Constraints: Nonlinear (Penalty Functions)
 ==========================================
@@ -1536,7 +1534,7 @@ Further Information
     constraints stated as (1) linear constraints and (2) nonlinear equality
     constraints.
 
-.. _cb_techs_constraints_inverse_verification:
+.. _qpu_reformulating_constraints_inverse_verification:
 
 CSP (Inverse Verification Technique)
 ====================================
@@ -1551,7 +1549,7 @@ polynomial in the number of Boolean input variables. The Boolean circuit
 :math:`z\Leftrightarrow C(\vc{x})` can be converted to an optimization objective
 using Boolean operations formulated as QUBO penalty functions, with each gate
 contributing the corresponding penalty function---see
-:ref:`cb_techs_boolean_ops`.
+:ref:`qpu_reformulating_boolean_ops`.
 
 The resulting optimization objective---which also has a polynomial number of
 variables and at a feasible solution :math:`\vc{x}^\star`, :math:`z_\star=1`
@@ -1570,7 +1568,7 @@ the objective evaluates to 0, you have a feasible solution to the CSP.
 Example
 -------
 
-The example of :ref:`cb_techs_constraints_linear_equality` solved the problem of
+The example of :ref:`qpu_reformulating_constraints_linear_equality` solved the problem of
 finding a
 `maximum independent set (MIS) <https://en.wikipedia.org/wiki/Maximal_independent_set>`_,
 where the graph is a cell in the Chimera topology, with an equality constraint,
@@ -1585,7 +1583,7 @@ This example solves the same problem but converts the constraint into a Boolean
 gate, in this case, the `XOR <https://en.wikipedia.org/wiki/XOR_gate>`_ gate.
 
 You can mathematically formulate a QUBO for the XOR gate as shown in
-:ref:`cb_techs_boolean_ops`; this example use the
+:ref:`qpu_reformulating_boolean_ops`; this example use the
 :std:doc:`dimod <oceandocs:docs_dimod/sdk_index>` package for the XOR QUBO. The
 code below combines the MIS and penalty QUBOs, weighting the XOR constraint at
 1.5 so the penalty for breaking this (hard) constraint is a bit higher than
@@ -1626,15 +1624,15 @@ Further Information
     example uses this technique to solve a factoring problem as QUBOs. It shows
     that this formulation yields low requirements on both connectivity and
     precision constraints, making it suitable for the |dwave_short| system.
-*   The :ref:`cb_techs_example_cfd` example may also benefit from this
+*   The :ref:`qpu_reformulating_example_cfd` example may also benefit from this
     technique.
 
-.. _cb_techs_boolean_ops:
+.. _qpu_reformulating_boolean_ops:
 
 Elementary Boolean Operations
 =============================
 
-As demonstrated in the :ref:`cb_techs_constraints_inverse_verification` section,
+As demonstrated in the :ref:`qpu_reformulating_constraints_inverse_verification` section,
 an often useful approach to consider it to reformulate your problem using BQMs
 derived from Boolean operations.
 
@@ -1701,9 +1699,9 @@ adding an energy cost of :math:`3` to the solution that violates the constraint.
 Examples
 --------
 
-*   Section :ref:`cb_techs_native_formats` above derives a QUBO for a NOT gate
+*   Section :ref:`qpu_reformulating_native_formats` above derives a QUBO for a NOT gate
     as a constraint.
-*   The :ref:`cb_techs_example_cfd` example derives AND and XOR gates.
+*   The :ref:`qpu_reformulating_example_cfd` example derives AND and XOR gates.
 *   The :ref:`qpu_reformulating_higher_degree` also derives an AND gate.
 
 Further Information
@@ -1711,9 +1709,9 @@ Further Information
 
 *   [Jue2016]_ provides numerous Boolean operations in the Ising model. These
     can be converted to QUBO penalty functions as shown in
-    :ref:`cb_techs_native_formats`.
+    :ref:`qpu_reformulating_native_formats`.
 
-.. _cb_techs_example_map:
+.. _qpu_reformulating_example_map:
 
 Example Reformulation: Map Coloring
 ===================================
@@ -1746,7 +1744,7 @@ repo also demonstrates solutions to the map-coloring problem.
 Step 1: State the Objectives and Constraints
 --------------------------------------------
 
-As noted in the :ref:`cb_tech_general_guidance` section, the first step in
+As noted in the :ref:`qpu_reformulating_general_guidance` section, the first step in
 solving a problem is to state objectives and constraints. For this problem, the
 colors selected must meet two constraints:
 
@@ -1799,7 +1797,7 @@ Step 3: Formulate Constraints (Constraint 1)
 
 The first constraint is that each region is assigned one color only, of
 :math:`C` possible colors. It is formulated here using the truth-table approach
-of the :ref:`cb_techs_native_formats` section.
+of the :ref:`qpu_reformulating_native_formats` section.
 
 Simplify the problem by first considering a two-color problem. Given :math:`C=2`
 colors that are unary encoded as :math:`q_B,q_G`, the constraint is reduced to
@@ -1981,7 +1979,7 @@ The sum of QUBOs for both types of constraints has lowest energy when
 simultaneously each region is assigned a single color and adjacent regions do
 not select the same colors.
 
-.. _cb_techs_example_cfd:
+.. _qpu_reformulating_example_cfd:
 
 Example Reformulation: Circuit Fault Diagnosis
 ==============================================
@@ -2056,7 +2054,7 @@ observation of incorrect outputs given a set of inputs.
 
 This example is intended to demonstrate the use of the reformulations
 techniques of this chapter. In practice, you could use Ocean software's
-:ref:`Boolean constraints <cb_techs_boolean_ops>` as in the
+:ref:`Boolean constraints <qpu_reformulating_boolean_ops>` as in the
 :std:doc:`Multiple-Gate Circuit <oceandocs:examples/multi_gate>` example.
 
 A Short Digression: An Intuitive Explanation of the CFD Solution
@@ -2158,7 +2156,7 @@ rows 2--7. These have the lowest non-zero energy for the serial NOT circuit.
 Step 1: State the Objectives and Constraints
 --------------------------------------------
 
-As noted in the :ref:`cb_tech_general_guidance` section, the first step in
+As noted in the :ref:`qpu_reformulating_general_guidance` section, the first step in
 solving a problem is to state objectives and constraints. For this problem, the
 Boolean gates constrain outputs based on gates' inputs; for example, the output
 of AND gate 1 should be :math:`x_1 \wedge x_2`.
@@ -2179,7 +2177,7 @@ Step 3: Formulate Constraints
 -----------------------------
 
 This example maps the circuit's gates to penalty functions using the
-formulations of the :ref:`cb_techs_boolean_ops` section. These penalty functions
+formulations of the :ref:`qpu_reformulating_boolean_ops` section. These penalty functions
 increase the energy level of the problem's objective function by penalizing
 non-valid states of the Boolean operations, which represent malfunctioning
 gates.

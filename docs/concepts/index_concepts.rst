@@ -86,6 +86,11 @@ Concepts and Terminology
         connected or complete :term:`binary quadratic model` is one that has
         interactions between all of its variables.
 
+    Combinatorial optimization
+    Discrete optimization
+        The optimization of an :term:`objective function` defined over a set of
+        discrete values such as Booleans.
+
     Composed sampler
         Samplers that apply pre- and/or post-processing to binary quadratic
         programs without changing the underlying :term:`sampler` implementation

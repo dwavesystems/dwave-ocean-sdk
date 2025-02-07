@@ -160,7 +160,7 @@ perimeter .
 >>> cqm.add_constraint(2*i+2*j <= 8, "Max perimeter")
 'Max perimeter'
 
-.. _formulating_bqm:
+.. _ocean_workflow_formulating_bqm:
 
 Example: BQM for a Boolean Circuit
 ----------------------------------
@@ -237,7 +237,7 @@ Submit the Model to a Solver
 ----------------------------
 
 The example code below submits a BQM representing a Boolean AND gate (see also the
-:ref:`formulating_bqm` section) to a Leap hybrid solver.
+:ref:`ocean_workflow_formulating_bqm` section) to a Leap hybrid solver.
 In this case, :doc:`dwave-system </docs_system/sdk_index>`'s
 :class:`~dwave.system.samplers.LeapHybridSampler` is the Ocean sampler and the
 remote compute resource selected might be Leap hybrid solver
