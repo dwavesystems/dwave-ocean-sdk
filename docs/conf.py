@@ -312,6 +312,7 @@ rst_epilog = """
 .. |Uarr| unicode:: U+02191 .. UPWARDS ARROW from docutils/parsers/rst/include/isonum.txt
 
 .. |adv2| unicode:: Advantage2
+.. |adv2_tm| unicode:: Advantage2 U+2122
 .. |cloud_tm| unicode:: Leap U+2122
 .. _cloud_tm: https://cloud.dwavesys.com/leap
 .. |dwave_2kq| unicode:: D-Wave U+00A0 2000Q

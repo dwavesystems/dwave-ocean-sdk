@@ -41,7 +41,7 @@ client system.
 .. [#]
     Server-side :ref:`postprocessing <qpu_postprocessing>` for |dwave_5kq|
     systems is limited to computing the energies of returned samples.
-    `Ocean software <https://docs.ocean.dwavesys.com>`_ provides additional
+    :ref:`Ocean software <index_ocean_sdk>` provides additional
     client-side postprocessing tools.
 
 .. figure:: ../_images/highlevel_timing.png
@@ -101,7 +101,7 @@ conditions.
 
     Alternatively, you can retrieve this same information from SAPI in various
     ways, as demonstrated in the :ref:`qpu_sapi_qpu_timing` section and in
-    examples in the |doc_rest_api|_.
+    examples in the :ref:`leap_sapi_rest` section.
 
 Postprocessing Time
 -------------------
@@ -109,8 +109,8 @@ Postprocessing Time
 Server-side postprocessing for |dwave_5kq| systems is limited to computing the
 energies of returned samples.\ [#]_ As shown in the :ref:`qpu_postprocessing`
 section, more complex postprocessing can provide performance benefits at low
-timing cost. `Ocean software <https://docs.ocean.dwavesys.com>`_ provides such
-additional client-side postprocessing tools.
+timing cost. :ref:`Ocean software <index_ocean_sdk>` provides such additional
+client-side postprocessing tools.
 
 .. [#]
     Earlier |dwave_short| systems, such as the |dwave_2kq| system, optionally
@@ -219,8 +219,8 @@ components\ [#]_\ :
 
 .. [#]
     See descriptions of these components under
-    :ref:`sysdocs:properties_solver_parameters`. The
-    :ref:`param_reinitialize_state` parameter is used only for reverse
+    :ref:`qpu_solver_parameters`. The
+    :ref:`parameter_qpu_reinitialize_state` parameter is used only for reverse
     annealing.
 
 Programming Cycle

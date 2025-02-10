@@ -1,21 +1,21 @@
 .. _qpu_errors:
 
 ===========================
-Errors and Error Correction 
+Errors and Error Correction
 ===========================
 
-* Error Sources for Problem Representation 
-  (https://docs.dwavesys.com/docs/latest/c_qpu_ice.html)
-  chapter of https://docs.dwavesys.com/docs/latest/doc_qpu.html
-* Other Error Sources 
-  (https://docs.dwavesys.com/docs/latest/c_qpu_errors.html)
-  chapter of https://docs.dwavesys.com/docs/latest/doc_qpu.html
-* Error-Correction Features 
-  (https://docs.dwavesys.com/docs/latest/c_qpu_error_correction.html)
-  chapter of https://docs.dwavesys.com/docs/latest/doc_qpu.html
+This section presents the following topics.
 
-Error Sources for Problem Representation
-========================================
+*   :ref:`qpu_errors_ice` describes *integrated control errors* (ICE) as a
+    source of errors.
+*   :ref:`qpu_errors_other_sources` describes additional sources of errors.
+*   :ref:`qpu_errors_correction` describes measures to correct these errors.
+
+
+.. _qpu_errors_ice:
+
+ICE
+===
 
 The dynamic range of :math:`h` and :math:`J` values may be limited by
 *integrated control errors* (ICE). The term *ICE* refers collectively to these
@@ -29,7 +29,7 @@ guidance on measuring its effects.
 .. _qpu_ice_overview:
 
 Overview of ICE
-===============
+---------------
 
 Although :math:`h` and :math:`J` may be specified as double-precision floats,
 some loss of fidelity occurs in implementing these values in the |dwave_short|
@@ -165,7 +165,7 @@ of the measurement method.
 .. _qpu_ice_sources:
 
 Sources of ICE
-==============
+--------------
 
 The Ising spins on the |dwave_short| QPU are intrinsically analog, controlled
 through spatially local magnetic fields. The controls are a combination of the
@@ -212,7 +212,7 @@ that follow give additional details.
 .. _qpu_ice_background_susceptibility:
 
 Background Susceptibility
--------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 During the annealing process, every Ising spin has a coupler-like effect on its
 neighbors (that is, the spins to which it is connected by couplings) that is not
@@ -313,7 +313,7 @@ anneal, at which point single-spin dynamics freeze out.
 .. _qpu_ice_flux_noise_qubits:
 
 Flux Noise of the Qubits
-------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 As another component of ICE, each :math:`h_i` is subject to an independent (but
 time-dependent) error term that comes from the :math:`1/f` flux noise of the
@@ -323,9 +323,9 @@ have correlated contributions from flux noise. By default, flux drift is
 automatically corrected every hour by the |dwave_short| system so that it is
 bounded and approximately Gaussian when averaged across all times; see the
 :ref:`qpu_error_fix_drift` section for the procedure. You can disable this
-automatic correction by setting the :ref:`sysdocs:param_fdc` solver parameter to
-``False``. If you do so, apply flux-bias offsets manually; see the
-:ref:`qpu_error_fix_fbo` section.
+automatic correction by setting the :ref:`parameter_qpu_flux_drift_compensation`
+solver parameter to ``False``. If you do so, apply flux-bias offsets manually;
+see the :ref:`qpu_error_fix_fbo` section.
 
 .. [#]
     Couplers also have :math:`1/f` flux noise, but this effect is insignificant
@@ -376,7 +376,7 @@ anneal and less later in the anneal.
 .. _qpu_ice_dac_quantization:
 
 DAC Quantization
-----------------
+~~~~~~~~~~~~~~~~
 
 The DACs that provide the user-specified :math:`h` and :math:`J` values have a
 finite quantization step size. That step size depends on the value of the
@@ -416,7 +416,7 @@ are smaller than other contributors to ICE.
 .. _qpu_ice_io:
 
 I/O System Effects
-------------------
+~~~~~~~~~~~~~~~~~~
 
 Several time-dependent analog signals are applied to the QPU during the
 annealing process. Because the I/O system that delivers these signals has finite
@@ -426,10 +426,10 @@ result, the ratio of :math:`h/J` may vary slightly with :math:`t_f` and with
 scaled anneal fraction :math:`s`.
 
 .. [#]
-    The anneal and :ref:`param_h`-controlling
+    The anneal and :ref:`parameter_qpu_h`-controlling
     waveforms---:math:`\Phi_{\rm CCJJ}(s)` and :math:`\Phi^x_i(s)` terms,
     respectively, of equation :math:numref:`qpu_equation_rfsquid_hamiltonian` in
-    the |doc_processor|_ guide---pass through low-pass filters with the
+    the :ref:`qpu_annealing` section---pass through low-pass filters with the
     following cutoff frequencies:
 
     *   For :math:`\Phi_{\rm CCJJ}(s)`: 30 MHz on both |dwave_5kq| and |adv2_tm|
@@ -440,7 +440,7 @@ scaled anneal fraction :math:`s`.
 .. _qpu_ice_error_h_scale_interqubits:
 
 Distribution of :math:`h` Scale Across Qubits
----------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Assuming a fixed temperature of the system, and :math:`J=0`, the expected graph
 of the relationship between user-specified :math:`h` and QPU-realized :math:`h`
@@ -465,7 +465,7 @@ from differences in the magnitude of each spin :math:`s_i`; see the
 .. _qpu_ice_measuring:
 
 Measuring ICE
-=============
+-------------
 
 This section describes how to measure the effects of :math:`1/f` noise as well
 as how to harness effective two-spin systems to measure the effects of ICE.
@@ -473,7 +473,7 @@ as how to harness effective two-spin systems to measure the effects of ICE.
 .. _qpu_ice_measure_f_noise:
 
 Measuring :math:`1/f` Noise
----------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 A straightforward way to look at the :math:`1/f` noise in the :math:`h`
 parameter is to set all :math:`h` and :math:`J` values equal to 0 on the full
@@ -488,7 +488,7 @@ next section.
 .. _qpu_ice_measure_2spin:
 
 Using Two-Spin Systems to Measure ICE
--------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You can use the results of problems defined on pairs of Ising spins scattered
 over the topological graph to help to characterize ICE effects.
@@ -639,10 +639,10 @@ model are:
 .. _qpu_characterize_flux_noise:
 
 Characterizing the Effect of Flux Noise
-=======================================
+---------------------------------------
 
 This section characterizes the effects of flux noise on the quantum annealing
-process. The :ref:`qpu_error_correction` chapter describes the procedure that
+process. The :ref:`qpu_errors_correction` section describes the procedure that
 |dwave_short| uses to correct for drift.
 
 Let there be a flux qubit biased at degeneracy :math:`h=0` with tunneling energy
@@ -733,9 +733,9 @@ The relative error in the dimensionless parameter :math:`h_i` is then
 .. _qpu_ice_example_effects_quality:
 
 Example of ICE Effects on Solution Quality
-============================================
+------------------------------------------
 
-As discussed in the :ref:`qpu_ice_sources` section, the distributions
+As discussed in the :ref:`qpu_errors_ice` section, the distributions
 :math:`\delta h` and :math:`\delta J` depend on annealing time :math:`t_f` and
 vary with anneal fraction :math:`s` during the anneal. Because :math:`\delta h`
 and :math:`\delta J` may vary with :math:`s` (as well as with any errors in the
@@ -763,20 +763,22 @@ contributing to a variation in the anneal path on the way to the final classical
 Hamiltonian. Depending on problem details, either of these effects may
 dominate---exchanging roles earlier, later, or at multiple times in the anneal.
 
+.. _qpu_errors_other_sources:
+
 Other Error Sources
 ===================
 
-As well as the ICE effects discussed at length in the :ref:`qpu_ice_ranges`
-chapter, a number of other factors may affect system performance, including
+As well as the ICE effects discussed at length in the :ref:`qpu_errors_ice`
+section, a number of other factors may affect system performance, including
 temperature, high-energy photon flux, readout fidelity, programming errors, and
-spin-bath polarization. This chapter looks at each of these in turn. For
+spin-bath polarization. This section looks at each of these in turn. For
 guidance on how to work around some of these factors to get improved
-performance, see the |doc_cookbook|_ guide.
+performance, see the :ref:`qpu_solver_configuration` section.
 
 .. _qpu_errors_temperature:
 
 Temperature
-===========
+-----------
 
 In a formal sense, temperature is defined for a system in thermodynamic
 equilibrium. In a practical sense, however, if the equilibrium time of a given
@@ -860,7 +862,7 @@ on usage.
 .. _qpu_errors_high_energy_photon:
 
 High-Energy Photon Flux
-=======================
+-----------------------
 
 The presence of relatively high-energy photons also plays a role. *High-energy*,
 in this context, means that photon energy and population exceed what would be
@@ -887,7 +889,7 @@ effect grows with longer anneal times.
 .. _qpu_errors_readout_fidelity:
 
 Readout Fidelity
-================
+----------------
 
 Readout fidelity is not typically a significant factor in the |dwave_short|
 quantum computer. Averaged over an ensemble of randomized bit strings, the
@@ -896,12 +898,12 @@ every 100 reads of a given problem may report a solution that is different from
 that found by the QPU by one or more bit flips.
 
 For guidelines on how to use multiple reads to identify readout errors and make
-the best use of QPU time, see the |doc_cookbook|_ guide.
+the best use of QPU time, see the :ref:`qpu_solver_configuration` section.
 
 .. _qpu_errors_programming:
 
 Programming Errors
-==================
+------------------
 
 A problem that uses all available qubits and couplers has a greater than 90%
 chance of being programmed without error. Occasionally, however, programming (or
@@ -914,12 +916,12 @@ submit the problem at least twice.
 .. note::
     Spin-reversal transforms reprogram the system and thereby offer another way
     to reduce the impact of these errors; for more information on this
-    technique, see the |doc_cookbook|_ guide.
+    technique, see the :ref:`qpu_solver_configuration` section.
 
 .. _qpu_errors_spinbath_polarization:
 
 Spin-Bath Polarization Effect
-=============================
+-----------------------------
 
 One of the main sources of environmental noise affecting the qubit is magnetic
 fluctuations from an ensemble of spins local to the qubit wiring. This produces
@@ -938,11 +940,12 @@ sample-to-sample correlations, biasing the QPU towards previously achieved spin
 configurations.
 
 To reduce these sample-to-sample correlations, enable the
-:ref:`sysdocs:param_reduce_intersample` solver parameter. This setting adds
-optimal delay times before each anneal, giving the spin bath time to depolarize
-and thereby lose the effects from the previous read. It adds a delay that varies
-(approximately) between :math:`200` microseconds and :math:`10` milliseconds,
-increasing linearly with increasing length of the schedule:
+:ref:`parameter_qpu_reduce_intersample_correlation` solver parameter. This
+setting adds optimal delay times before each anneal, giving the spin bath time
+to depolarize and thereby lose the effects from the previous read. It adds a
+delay that varies (approximately) between :math:`200` microseconds and
+:math:`10` milliseconds, increasing linearly with increasing length of the
+schedule:
 
 .. math::
     :nowrap:
@@ -965,28 +968,30 @@ at intermediate points in the quantum annealing process may increase the degree
 of polarization of the spin environment and thus the size of the bias back on
 the body of the qubit.
 
+.. _qpu_errors_correction:
 
 Error-Correction Features
 =========================
 
 |dwave_short| quantum computers provide some features to alleviate the effects
 of the errors described in previous chapters. Additionally, you can mitigate
-some effects through the techniques described in the |doc_cookbook|_ guide.
+some effects through the techniques described in the :ref:`qpu_index_using`
+sections.
 
 .. _qpu_error_fix_drift:
 
 Drift Correction
-================
+----------------
 
 Flux noise is described and its effects characterized in the
-:ref:`qpu_ice_flux_noise_qubits` and :ref:`qpu_characterize_flux_noise` sections
-of the :ref:`qpu_ice_ranges` chapter.
+:ref:`qpu_ice_flux_noise_qubits` and :ref:`qpu_characterize_flux_noise`
+subsections of the :ref:`qpu_errors` section.
 
 By default, the |dwave_short| system uses the following procedure to measure and
 correct for the longest drifts once an hour. You can disable the application of
-any correction by setting the :ref:`sysdocs:param_fdc` solver parameter to
-``False``. If you do so, you should apply flux-bias offsets manually; see the
-:ref:`qpu_error_fix_fbo` section.
+any correction by setting the :ref:`parameter_qpu_flux_drift_compensation`
+solver parameter to ``False``. If you do so, you should apply flux-bias offsets
+manually; see the :ref:`qpu_error_fix_fbo` section.
 
 1.  The number of reads for a given measurement, :math:`N_\mathrm{reads}`, is
     set to 2000.
@@ -1023,14 +1028,14 @@ smaller than the root mean square (RMS) flux noise, which is on the order of 10
 .. _qpu_extended_j_range:
 
 Extended :math:`J` Range
-========================
+------------------------
 
 Ising minimization problems that the |dwave_short| system solves may require
 that the model representing a problem be minor-embedded on the working graph, a
 process that involves creating qubit chains to represent logical variables, as
-introduced in the :ref:`minor-embedding <sysdocs:getting_started_embedding>`
-chapter of the |doc_getting_started|_ guide. In an embedding, intra-chain qubit
-couplings must be strong compared to the input couplings between the chains.
+introduced in the :ref:`qpu_embedding_intro` section. In an embedding,
+intra-chain qubit couplings must be strong compared to the input couplings
+between the chains.
 
 Most discussions of chain strength involve the ratio of two absolute values:
 
@@ -1055,8 +1060,8 @@ problem has :math:`J` values of :math:`- \frac{1}{2}` to :math:`+ \frac{1}{2}`,
 again you say that the chain strength is :math:`4`.
 
 .. [#]
-    See the description of the :ref:`sysdocs:param_autoscale` solver parameter
-    in the |doc_solver_properties|_ guide.
+    See the description of the :ref:`parameter_qpu_auto_scale` solver parameter
+    in the :ref:`qpu_solver_parameters` section.
 
 Because the range of coupling strengths available is finite, chaining is
 typically accomplished by setting the coupling strength to the largest allowed
@@ -1065,7 +1070,7 @@ reduced energy scale for the input couplings may make it harder for the QPU to
 find global optima for a problem.
 
 To address this issue, some solvers support stronger chain couplings through an
-:ref:`sysdocs:property_extended_j` solver property. Because embedded problems
+:ref:`property_qpu_extended_j_range` solver property. Because embedded problems
 typically have chain couplings that are at least twice as strong as the other
 couplings, and standard chain couplings are all negative, this feature
 effectively doubles the energy scale available for embedded problems; see
@@ -1095,7 +1100,7 @@ section for more information.
 .. _qpu_error_fix_fbo:
 
 Calibration Refinement
-======================
+----------------------
 
 In an optimal QPU calibration, annealing unbiased qubits produces spin-state
 statistics that are equally split between spin-up and spin-down. When plotted
@@ -1103,10 +1108,10 @@ against the :math:`h` values, this even distribution results in a sigmoid curve
 that passes through the point of origin (0,0). However, non-idealities in QPU
 calibration and coupling to its environment result in some asymmetry. This
 asymmetry typically increases under strong coupling (such as when the
-:ref:`property_extended_j` is used for chains): a :math:`J`-induced bias (an
-offset magnetic field that is potentially :math:`s`-dependent).\ [#]_. These
-effects shift the sigmoid curve of plotted :math:`h` values from its ideal path,
-as shown in :numref:`Figure %s <fb-sigmoid>`.
+:ref:`property_qpu_extended_j_range` is used for chains): a :math:`J`-induced
+bias (an offset magnetic field that is potentially :math:`s`-dependent).\ [#]_.
+hese effects shift the sigmoid curve of plotted :math:`h` values from its ideal
+path, as shown in :numref:`Figure %s <fb-sigmoid>`.
 
 .. figure:: ../_images/flux_bias_offset.png
     :name: fb-sigmoid
@@ -1125,8 +1130,8 @@ as shown in :numref:`Figure %s <fb-sigmoid>`.
 
 While the effect may be minor for many optimization problems, for others, such
 as material simulation, it may be significant. You can compensate by refining
-the calibration, applying per-qubit :ref:`param_flux_biases` to nudge the
-plotted :math:`h` sigmoid to its ideal position.
+the calibration, applying per-qubit :ref:`parameter_qpu_flux_biases` to nudge
+the plotted :math:`h` sigmoid to its ideal position.
 
 Flux biases can be used to refine the standard calibration. [Che2023]_ describes
 (and links to code) techniques that tune the Hamiltonian to reduce the
@@ -1144,7 +1149,7 @@ QPU.
 .. _qpu_error_fix_virtualgraph:
 
 Virtual Graphs
-==============
+--------------
 
 .. include:: ../shared/notes.rst
     :start-after: start_virtual_graph_deprecation
@@ -1172,14 +1177,14 @@ embedded sampling and optimization problems.
     |dwave_short|'s virtual full-yield chip (VFYC) solver.
 
 Whether virtual graph features are available may vary by solver; check for the
-:ref:`sysdocs:property_extended_j` property to see if it is present and what the
-range is. (The :ref:`sysdocs:property_j_range` property is unchanged.) When
+:ref:`property_qpu_extended_j_range` property to see if it is present and what
+the range is. (The :ref:`property_qpu_j_range` property is unchanged.) When
 using an extended :math:`J` range, be aware that there are additional limits on
 the total coupling per qubit: the sum of the :math:`J` values for each qubit
-must be in the range specified by the :ref:`sysdocs:property_pqcr` solver
-property.
+must be in the range specified by the
+:ref:`property_qpu_per_qubit_coupling_range` solver property.
 
-Flux-biases are set through the :ref:`sysdocs:param_flux_biases` parameter,
+Flux-biases are set through the :ref:`parameter_qpu_flux_biases` parameter,
 which takes a list of doubles (floating-point numbers) of length equal to the
 number of working qubits. Flux-bias units are :math:`\Phi_0`; typical values
 needed are :math:`< 10^{-4} \ \Phi_0`. Maximum allowed values are typically
@@ -1191,7 +1196,7 @@ levels of intrinsic :math:`1/f` noise; see the
     By default, the |dwave_short| system automatically compensates for flux
     drift as described in the :ref:`qpu_characterize_flux_noise` section. If you
     choose to disable this behavior, you should apply flux-bias offsets manually
-    through the :ref:`sysdocs:param_flux_biases` parameter.
+    through the :ref:`parameter_qpu_flux_biases` parameter.
 
 Be aware of the following points when using virtual graph features:
 
@@ -1199,11 +1204,11 @@ Be aware of the following points when using virtual graph features:
     feature, autoscaling is automatically disabled by default, unlike in the
     usual system behavior.
 *   The :math:`J` value of every coupler must fall within the range advertised
-    by the :ref:`sysdocs:property_extended_j` property.
+    by the :ref:`property_qpu_extended_j_range` property.
 *   The sum of all the :math:`J` values of the couplers connected to a qubit
-    must fall within the :ref:`sysdocs:property_pqcr` property. For example, if
-    this property is ``[-9.0 6.0]``, the following :math:`J` values for a
-    six-coupler qubit are permissible:
+    must fall within the :ref:`property_qpu_per_qubit_coupling_range` property.
+    For example, if this property is ``[-9.0 6.0]``, the following :math:`J`
+    values for a six-coupler qubit are permissible:
 
     .. math::
 
@@ -1233,7 +1238,7 @@ Be aware of the following points when using virtual graph features:
 
         \begin{equation}
         \begin{array}{rcl}
-            D &=& {\rm floor} \bigg[ 
+            D &=& {\rm floor} \bigg[
             \frac{\min(per\_qubit\_coupling\_range)}{\min(extended\_j\_range)
             - \min(j\_range)} \\
             & & -\frac{num\_couplers\_per\_qubit  \times \min(j\_range)}
@@ -1242,8 +1247,4 @@ Be aware of the following points when using virtual graph features:
         \end{equation}
 
     where :math:`num\_couplers\_per\_qubit = 5` for the |dwave_5kq_tm| QPU; see
-    the :ref:`QPU Architecture <sysdocs:getting_started_topologies>` section of
-    the |doc_getting_started|_ guide.
-
-
-
+    the :ref:`QPU Architecture <qpu_topologies>` section.

@@ -7,18 +7,19 @@ Annealing Implementation and Controls
 This section describes how quantum annealing (QA) is implemented and features
 that allow you to control the annealing process\ [#]_.
 
-*   Per-qubit :ref:`anneal offsets<qpu_qa_anneal_offsets>`: adjust the standard
+*   Per-qubit :ref:`anneal offsets <qpu_qa_anneal_offsets>`: adjust the standard
     annealing path per qubit.
 *   :ref:`Global anneal schedule <qpu_qa_anneal_sched>`: enable mid-anneal
     :ref:`quench and pause <qpu_qa_anneal_sched_pause>`,
-    :ref:`reverse annealing<qpu_qa_anneal_sched_reverse>`, and
+    :ref:`reverse annealing <qpu_qa_anneal_sched_reverse>`, and
     :ref:`fast annealing <qpu_annealprotocol_fast>`.
 
 .. [#]
     Another feature that enables control of the annealing process, the
-    time-dependent gain applied to linear coefficients (biases), :math:`h_i`,
-    described in the |doc_solver_properties|_ guide, is currently used only
-    experimentally and not described here.
+    time-dependent gain, :ref:`parameter_qpu_h_gain_schedule`, applied to linear
+    coefficients (biases), :math:`h_i`, described in the
+    :ref:`qpu_solver_parameters` section, is currently used only experimentally
+    and not described here.
 
 .. _qpu_qa_implementation:
 
@@ -44,13 +45,12 @@ control required by the quantum Hamiltonian:
 where :math:`{\hat\sigma_{x,z}^{(i)}}` are Pauli matrices operating on a qubit
 :math:`q_i` (the quantum one-dimensional Ising spin), and nonzero values of
 :math:`h_i` and :math:`J_{i,j}` are limited to those available in the QPU graph;
-see the :ref:`QPU Architecture <sysdocs:getting_started_topologies>` section of
-the |doc_getting_started|_ guide.
+see the :ref:`QPU Architecture <qpu_topologies>` section.
 
 The quantum annealing process occurs between time :math:`t=0` and time
-:math:`t_f`, which users specify via the :ref:`sysdocs:param_anneal_time`
+:math:`t_f`, which users specify via the :ref:`parameter_qpu_annealing_time`
 parameter or according to a schedule set with the
-:ref:`sysdocs:param_anneal_sched` parameter. For simplicity, this is
+:ref:`parameter_qpu_anneal_schedule` parameter. For simplicity, this is
 parameterized as :math:`s`, the normalized anneal fraction, which ranges from 0
 to 1.
 
@@ -236,7 +236,8 @@ problems with no linear biases (:math:`h=0`).
     to an ancillary qubit to which a :ref:`flux-bias offset <qpu_error_fix_fbo>`
     is applied.
 
-    See :ref:`an example <qpu_config_emulate_with_fbo>` in the |doc_cookbook|_.
+    See :ref:`an example <qpu_config_emulate_with_fbo>` in the
+    :ref:`qpu_solver_configuration` section.
 
 .. _qpu_energy_scales:
 
@@ -291,7 +292,7 @@ growth of the signal :math:`c(s)` . A typical plot of :math:`A(c(s))` and
 
     If you are using the Leap quantum cloud service from |dwave_short|, you can
     find the :math:`A(s)` and :math:`B(s)` and :math:`c(s)` values for the QPUs
-    here: :ref:`sysdocs:doc_qpu_characteristics`. If you have an on-premises
+    here: :ref:`qpu_solver_properties_specific`. If you have an on-premises
     system, contact |dwave_short| to obtain the values for your system.
 
 .. _qpu_qa_freezeout:
@@ -438,8 +439,8 @@ is controlled via a global, time-dependent bias signal :math:`c(s)` that
 simultaneously modifies both :math:`A(s)` and :math:`B(s)`.
 :numref:`Figure %s <annealing-functions>` shows typical :math:`A(s)` and
 :math:`B(s)` across the annealing algorithm; values of :math:`A(s)`,
-:math:`B(s)`, and :math:`c(s)` for QPUs can be found on the
-:ref:`sysdocs:doc_qpu_characteristics` page.
+:math:`B(s)`, and :math:`c(s)` for QPUs can be found in the
+:ref:`qpu_solver_properties_specific` section.
 :numref:`Figure %s <anneal-bias-versus-anneal-fraction>` plots the annealing
 bias :math:`c(s)` versus :math:`s`. Because of the shape of the qubit energy
 potential, :math:`c(s)` is not linear in :math:`s` but is chosen to ensure that
@@ -615,8 +616,8 @@ parameter remains.
     :ref:`normalized annealing bias <qpu_annealprotocol_standard>` and its
     inverse. You can determine all values of :math:`c(s)` and :math:`c^{-1}` by
     smoothly approximating (e.g. linear interpolation) the discretized form of
-    :math:`c(s)` available for QPUs on the
-    :ref:`sysdocs:doc_qpu_characteristics` page.
+    :math:`c(s)` available for QPUs in the :ref:`qpu_solver_properties_specific`
+    section.
 
     The impact of offsets can be interpreted as perturbations of :math:`J` and
     :math:`h` values relative to a fixed schedule,
@@ -691,8 +692,8 @@ Pause and Quench
     the point specified.
 
 .. [#]
-    The :ref:`sysdocs:param_anneal_time` and :ref:`sysdocs:param_anneal_sched`
-    parameters are mutually exclusive.
+    The :ref:`parameter_qpu_annealing_time` and
+    :ref:`parameter_qpu_anneal_schedule` parameters are mutually exclusive.
 
 Unlike the :ref:`anneal offsets <qpu_qa_anneal_offsets>` feature---which allows
 you to control the annealing path of individual qubits separately---anneal
@@ -851,8 +852,8 @@ Examples of how you might use reverse annealing include:
     Solutions*, |dwave_short| White Paper Series, no. 14-1018A-A, 2017.
 
 The reverse annealing interface uses three parameters:
-:ref:`sysdocs:param_anneal_sched` defines the waveform, :math:`s(t)`, and
-:ref:`sysdocs:param_initial_state` and :ref:`sysdocs:param_reinitialize_state`
+:ref:`parameter_qpu_anneal_schedule` defines the waveform, :math:`s(t)`, and
+:ref:`parameter_qpu_initial_state` and :ref:`parameter_qpu_reinitialize_state`
 control the system state at the start of an anneal.
 
 As for pause and quench, the reverse annealing schedule is controlled by a PWL
@@ -880,14 +881,14 @@ The following table shows the tuples that you submit to get the pattern in
     +-------------------------------+------------------------------------------+
 
 When supplying a reverse annealing waveform through
-:ref:`sysdocs:param_anneal_sched`, you must also supply the initial state to
+:ref:`parameter_qpu_anneal_schedule`, you must also supply the initial state to
 which the system is set. When multiple reads are requested in a single call to
 SAPI, you have two options for the starting state of the system. These are
-controlled by the :ref:`sysdocs:param_reinitialize_state` Boolean parameter:
+controlled by the :ref:`parameter_qpu_reinitialize_state` Boolean parameter:
 
 *   ``reinitialize_state=true`` (default)---Reinitialize the initial state for
     every anneal-readout cycle. Each anneal begins from the state given in the
-    :ref:`sysdocs:param_initial_state` parameter. Initialization time is
+    :ref:`parameter_qpu_initial_state` parameter. Initialization time is
     required before every anneal-readout cycle. The amount of time required to
     reinitialize varies by system.
 *   ``reinitialize_state=false``---Initialize only at the beginning, before the
@@ -895,7 +896,7 @@ controlled by the :ref:`sysdocs:param_reinitialize_state` Boolean parameter:
     final state of the qubits after the preceding cycle. Initialization time is
     required only once.
 
-The :ref:`sysdocs:param_reinitialize_state` parameter affects timing. See the
+The :ref:`parameter_qpu_reinitialize_state` parameter affects timing. See the
 :ref:`qpu_operation_timing` section for more information.
 
 .. _qpu_qa_anneal_sched_fast:
@@ -909,10 +910,11 @@ execute an anneal within the coherent regime; for example,
 :math:`0 \le t \le t_f=7~\text{ns}`. This is the anneal protocol used in
 experiments such as [Kin2022]_.
 
-Access this expanded range of annealing times by setting the :ref:`param_fast`
-parameter to ``True``. Provide the annealing timespan in either the
-:ref:`param_anneal_time` or the :ref:`param_anneal_sched` parameter. Anneal
-times must be within the range specified by the :ref:`property_fatr` property
+Access this expanded range of annealing times by setting the
+:ref:`parameter_qpu_fast_anneal` parameter to ``True``. Provide the annealing
+timespan in either the :ref:`parameter_qpu_annealing_time` or the
+:ref:`parameter_qpu_anneal_schedule` parameter. Anneal times must be within the
+range specified by the :ref:`property_qpu_fast_anneal_time_range` property
 for the selected QPU.
 
 See the :ref:`qpu_annealprotocol_fast` section for further details.

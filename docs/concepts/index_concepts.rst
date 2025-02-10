@@ -155,7 +155,9 @@ Concepts and Terminology
 
     Embed
     Embedding
+    Minor embed
     Minor-embed
+    Minor embedding
     Minor-embedding
         Nodes and edges on the graph that represents an objective function
         translate to qubits and couplers in the QPU :term:`topology`. Each

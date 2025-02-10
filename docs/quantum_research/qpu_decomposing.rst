@@ -4,16 +4,15 @@
 Decomposing Large Problems
 ==========================
 
-This chapter briefly presents methods of decomposing a large problem into a
+This section briefly presents methods of decomposing a large problem into a
 part requiring no more than the number of qubits available on the QPU and,
 optionally for hybrid approaches, parts suited to conventional compute
 platforms. Detailed information is available in the literature and referenced
 papers to guide actual implementation.
 
-The :std:doc:`dwave-hybrid <oceandocs:docs_hybrid/sdk_index>` package
-provides decomposition tools.
+The :ref:`dwave-hybrid <index_hybrid>` package provides decomposition tools.
 
-.. _cb_decomposing_energy_impact:
+.. _qpu_decomposing_energy_impact:
 
 Energy-Impact Decomposing
 =========================
@@ -68,11 +67,11 @@ subproblem.
 Further Information
 -------------------
 
-*   The :std:doc:`dwave-hybrid <oceandocs:docs_hybrid/sdk_index>` package
-    explains energy-impact decomposition and shows implementation examples.
+*   The :ref:`dwave-hybrid <index_hybrid>` package explains energy-impact
+    decomposition and shows implementation examples.
 *   `Hybrid Computing Jupyter Notebooks <https://github.com/dwave-examples/hybrid-computing-notebook>`_.
 
-.. _cb__decomposing_cutset:
+.. _qpu__decomposing_cutset:
 
 Cutset Conditioning
 ===================
@@ -130,7 +129,7 @@ Further Information
     applications.
 *   [Bas2020]_ explores multiple approaches to solving benchmark problems.
 
-.. _cb_decomposing_branch_bound:
+.. _qpu_decomposing_branch_bound:
 
 Branch-and-Bound Algorithms
 ===========================
@@ -239,7 +238,7 @@ Further Information
 *   [Ros2016]_ discusses branch-and-bound heuristics in the context of the
     |dwave_short| Chimera architecture.
 
-.. _cb_decomposing_large_neighborhood:
+.. _qpu_decomposing_large_neighborhood:
 
 Large-Neighborhood Local Search Algorithms
 ==========================================
@@ -270,9 +269,9 @@ Further Information
     of size :math:`d\le 4`.
 *   [Mar2018]_ proposes a variable neighbourhood search heuristic for the
     conformational problem, the three-dimensional spatial arrangements of
-    constituent atoms of molecules. 
+    constituent atoms of molecules.
 
-.. _cb_decomposing_belief_propagation:
+.. _qpu_decomposing_belief_propagation:
 
 Belief Propagation
 ==================

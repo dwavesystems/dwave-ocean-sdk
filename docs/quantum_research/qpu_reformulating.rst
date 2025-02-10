@@ -4,6 +4,9 @@
 Reformulating a Problem
 =======================
 
+.. todo:: We should move multiple tables in this file over to list-table format
+    so we don't have all the >80 char violations
+
 As noted in the :ref:`qpu_workflow` section, the **first** step of solving
 your problem is to state it; for example:
 
@@ -278,7 +281,8 @@ as shown in the examples of the :ref:`qpu_index_examples_beginner` section.
         + \sum_{i<j}^N J_{i,j} s_i s_j  & &
         \end{array}
 
-    It is straightforward to translate between Ising and QUBO representations.
+    It is straightforward to
+    :ref:`translate between Ising and QUBO representations <qpu_qubo_ising_transformations>`.
     In QUBO formulation, :math:`N` binary variables are represented as an
     upper-diagonal matrix :math:`\vc{Q}`, where diagonal terms are the linear
     coefficients and the nonzero off-diagonal terms are the quadratic
@@ -382,8 +386,8 @@ and only positive coupling strengths :math:`J_{i,j}` (represented by penalties
 :math:`M_{i,j} > 1`).
 
 You can formulate such problems as BQMs yourself but Ocean software's
-:std:doc:`dwave_networkx <oceandocs:docs_dnx/sdk_index>` package provides
-functions for these graph problems and more.
+:ref:`dwave_networkx <index_dnx>` package provides functions for these graph
+problems and more.
 
 Example: Formulation with Boolean Logic
 ---------------------------------------
@@ -394,8 +398,8 @@ immense.
 
 To express a constraint that variable :math:`z` should be 1 if either or both of
 variables :math:`x1` or :math:`x2` are one, you can use an OR gate. Ocean
-software's :std:doc:`dimod <oceandocs:docs_dimod/sdk_index>` package provides
-functionality for creating BQMs from Boolean logic:
+software's :ref:`dimod <index_dimod>` package provides functionality for
+creating BQMs from Boolean logic:
 
 >>> from dimod.generators import or_gate
 >>> from dimod import ExactSolver
@@ -453,8 +457,8 @@ Thus,
 Example
 -------
 
-The :ref:`qpu_reformulating_example_map` section develops an objective function, in QUBO
-formulation,
+The :ref:`qpu_reformulating_example_map` section develops an objective function,
+in QUBO formulation,
 
 .. math::
 
@@ -574,9 +578,10 @@ SAT is satisfied only if all its clauses are satisfied.
         i.e., (clause 1) :math:`\wedge` (clause 2).
 
 The
-:ref:`Simple Satisfiability (SAT) Example <sysdocs:getting_started_formulation_minimal>`
-of the |doc_getting_started|_ guide demonstrated an intuitive formulation of a
-small SAT as a BQM. This section provides a more methodological approach.
+:ref:`Simple Satisfiability (SAT) Example <qpu_example_unconstrained_sat>`
+of the :ref:`qpu_index_examples_beginner` section demonstrates an intuitive
+formulation of a small SAT as a BQM. This section provides a more methodological
+approach.
 
 A 2-SAT has :math:`m` clauses of 2 literals each. A MAX-2-SAT is the problem of
 assigning values that maximize the number of satisfied clauses (an optimization
@@ -589,7 +594,7 @@ maximize the weight of satisfied clauses
 
     \text{MAX-2-SAT:} \qquad
     \underbrace{(\ell_{c1,1} \vee \ell_{c1,2} ; w_{c1})}_{\text{clause 1}}
-    \wedge \underbrace{(\ell_{c2,1} \vee \ell_{c2,2} ; 
+    \wedge \underbrace{(\ell_{c2,1} \vee \ell_{c2,2} ;
     w_{c2})}_{\text{clause 2}}
     \wedge ...
     \wedge \underbrace{(\ell_{cm,1} \vee \ell_{cm,2} ;
@@ -804,8 +809,8 @@ quadratic penalty function---and has lowest values for configurations of
 variables where :math:`z x_3 = x_1 x_2 x_3`.
 
 Example :ref:`qpu_reformulating_reduction_sub_bool` shows such a reduction for
-binary-valued variables while :ref:`qpu_reformulating_reduction_sub_spin` shows it for
-spin-valued variables.
+binary-valued variables while :ref:`qpu_reformulating_reduction_sub_spin` shows
+it for spin-valued variables.
 
 .. _qpu_reformulating_reduction_sub_bool:
 
@@ -902,8 +907,8 @@ with auxiliary variables :math:`z, a_0, a_1`.
 
 .. note::
     There are many ways to derive such a penalty function. For example, you can
-    find a penalty function for XNOR using the
-    :std:doc:`dimod <oceandocs:docs_dimod/sdk_index>` package as follows:
+    find a penalty function for XNOR using the :ref:`dimod <index_dimod>`
+    package as follows:
 
     >>> from dimod.generators import xor_gate
     ...
@@ -975,12 +980,12 @@ Constraints (Conflict-Graph Technique)
 ======================================
 
 Many real-world problems include constraints. For example, you might have a
-:std:doc:`map-coloring problem <oceandocs:examples/map_dqm>` that constrains
-adjacent states to select different colors or a delivery problem with
-constraints on the weights different vehicles can transport.
+:ref:`map-coloring problem <opt_example_dqm_map>` that constrains adjacent
+states to select different colors or a delivery problem with constraints on the
+weights different vehicles can transport.
 
 One standard approach of several that converts a
-:std:doc:`constraint satisfaction problem (CSP) <oceandocs:concepts/csp>`
+:ref:`constraint satisfaction problem (CSP) <concept_constraint_satisfaction_problem>`
 into a QUBO uses a conflict graph. Mathematically, given a set of constraints
 :math:`\mathcal{C} = \{C_\alpha(\vc{x}_\alpha)\}_{\alpha=1}^{|\mathcal{C}|}`,
 this reformulation seeks a solution :math:`\vc{x}` that satisfies all
@@ -1075,8 +1080,8 @@ which have :math:`X_2=2`, or between :math:`y_1 = (3,1)` and
     constraints :math:`C_1(X_1,X_2)`, :math:`C_2(X_2,X_3)` having scopes
     :math:`\{X_1, X_2\}` and :math:`\{X_2, X_3\}` respectively.
 
-You can use the :std:doc:`dwave_networkx <oceandocs:docs_dnx/sdk_index>` package
-to create a QUBO from the maximum independent set of the conflict graph:
+You can use the :ref:`dwave_networkx <index_dnx>` package to create a QUBO from
+the maximum independent set of the conflict graph:
 
 >>> import dwave_networkx as dnx
 >>> import networkx as nx
@@ -1130,16 +1135,16 @@ Many CSPs used in applications are formulated with two types of constraints:
 You can represent hard and soft constraints by choosing two weights :math:`w_H`
 (large magnitude) and :math:`w_S` (small magnitude) to assign to the respective
 constraints. You then use the technique of
-:ref:`qpu_reformulating_constraints_conflictgraph` but in the resulting graph find a
-maximum independent set of minimum weight: a weighted MIS.
+:ref:`qpu_reformulating_constraints_conflictgraph` but in the resulting graph
+find a maximum independent set of minimum weight: a weighted MIS.
 
 The QUBO representation of weighted MIS for a graph :math:`G=(V,E)` is simply
 :math:`\min_\vc{x} \bigl\{ \sum_v w_v x_v + M\sum_{(v,v')\in E} x_v x_{v'} \bigr\}`
 where :math:`w_v` is the weight of vertex :math:`v`.
 
-The :std:doc:`dwave_networkx <oceandocs:docs_dnx/sdk_index>` package lets you
-set a ``weight`` attribute in the example of
-:ref:`qpu_reformulating_constraints_conflictgraph`, as shown here:
+The :ref:`dwave_networkx <index_dnx>` package lets you set a ``weight``
+attribute in the example of :ref:`qpu_reformulating_constraints_conflictgraph`,
+as shown here:
 
 >>> import dwave_networkx as dnx
 >>> import networkx as nx
@@ -1215,8 +1220,8 @@ where the graph is a cell in the Chimera topology,
 
 but with an added constraint that requires that either node 0 or node 1, but not
 both, be selected. (The example in the
-:ref:`qpu_reformulating_constraints_inverse_verification` solves it by reformulating the
-constraint as a Boolean gate.)
+:ref:`qpu_reformulating_constraints_inverse_verification` solves it by
+reformulating the constraint as a Boolean gate.)
 
 You can express this :math:`m=1` constraint as :math:`x_0 + x_1 = 1`, an
 equality that holds only if either but not both of its variables
@@ -1256,10 +1261,10 @@ states where one and only one of the two nodes are selected:
 1, 1               0
 ================   =======
 
-You can use the :std:doc:`dwave_networkx <oceandocs:docs_dnx/sdk_index>` package
-for the MIS QUBO. The code below combines the MIS and penalty QUBOs, weighting
-the constraint at 1.5 so the penalty for breaking this (hard) constraint is a
-bit higher than flipping a variable.
+You can use the :ref:`dwave_networkx <index_dnx>` package for the MIS QUBO. The
+code below combines the MIS and penalty QUBOs, weighting the constraint at 1.5
+so the penalty for breaking this (hard) constraint is a bit higher than flipping
+a variable.
 
 >>> import dwave_networkx as dnx
 >>> import dimod
@@ -1284,8 +1289,8 @@ bit higher than flipping a variable.
 ['BINARY', 4 rows, 4 samples, 8 variables]
 
 .. graphic code
-    >>> dnx.draw_chimera(G, with_labels=True, 
-        node_color=['r', 'y', 'y', 'y', 'y', 'r', 'r', 'r'], 
+    >>> dnx.draw_chimera(G, with_labels=True,
+        node_color=['r', 'y', 'y', 'y', 'y', 'r', 'r', 'r'],
         node_size=[500, 500, 500, 500, 500, 500, 500, 500])
 
 The two best solutions meet the constrained MIS problem while the next two, with
@@ -1311,8 +1316,8 @@ Constraints: Linear Inequality (Penalty Functions)
 
 For inequality constraints of the form :math:`\vc{D}\vc{x}\le \vc{d}`, which are
 slightly more complex than
-:ref:`linear equality constraints <qpu_reformulating_constraints_linear_equality>` you
-can reduce the inequalities to equalities by introducing
+:ref:`linear equality constraints <qpu_reformulating_constraints_linear_equality>`
+you can reduce the inequalities to equalities by introducing
 `slack variables <https://en.wikipedia.org/wiki/Slack_variable>`_.
 
 The inequality constraint :math:`\ip{\vc{D}_i}{\vc{x}}-d_i \le 0`, where
@@ -1342,8 +1347,8 @@ independent weights :math:`m_i^\le` as
 
 where :math:`\vc{a}` is the vector collecting all binary slack variables.
 
-:std:doc:`dimod <oceandocs:docs_dimod/sdk_index>` can automate such reduction
-for you. For example, the
+The :ref:`dimod <index_dimod>` package can automate such reduction for you. For
+example, the
 :meth:`~dimod.binary.BinaryQuadraticModel.add_linear_inequality_constraint`
 method below adds a constraint, :math:`1 \le \sum_{i=0}^{1} x_i \le 2`, that at
 least one of its two binary variables :math:`x_0, x_1` take value one in the
@@ -1352,20 +1357,20 @@ best solution.
 >>> import dimod
 ...
 >>> bqm = dimod.BinaryQuadraticModel("BINARY")
->>> slacks = bqm.add_linear_inequality_constraint([(f"x{i}", 1) for i in range(2)], 
+>>> slacks = bqm.add_linear_inequality_constraint([(f"x{i}", 1) for i in range(2)],
 ...     lagrange_multiplier=1, label="min1", lb=1, ub=2)
 
 Example
 -------
 
-The example of :ref:`qpu_reformulating_constraints_linear_equality` solved the problem of
-finding a
+The example of :ref:`qpu_reformulating_constraints_linear_equality` solved the
+problem of finding a
 `maximum independent set (MIS) <https://en.wikipedia.org/wiki/Maximal_independent_set>`_,
-where the graph is a cell in the Chimera topology, with an equality constraint,
-:math:`x_0 + x_1 = 1`, which requires that either node 0 or node 1, but not
-both, be selected. Because one of those two nodes *had* to be selected, the
-equality constraint forces a selection of the MIS :math:`0/1, 2, 3` (either 0 or
-1, and both of 2 and 3) and not the alternative MIS :math:`4, 5, 6, 7`.
+where the graph is a cell in the :term:`Chimera` topology, with an equality
+constraint, :math:`x_0 + x_1 = 1`, which requires that either node 0 or node 1,
+but not both, be selected. Because one of those two nodes *had* to be selected,
+the equality constraint forces a selection of the MIS :math:`0/1, 2, 3` (either
+0 or 1, and both of 2 and 3) and not the alternative MIS :math:`4, 5, 6, 7`.
 
 This example uses :math:`m=2` inequality constraints to select either one of two
 nodes *or neither*:
@@ -1415,10 +1420,10 @@ minimized BQM (the minimum penalty of :math:`\mathbf{P_{a=0}}` or
     ==============  ========================  =========================  =========================
 
 As in the previous section, you can use the
-:std:doc:`dwave_networkx <oceandocs:docs_dnx/sdk_index>` package for the MIS
-QUBO. The code below combines the MIS and penalty QUBOs, weighting the
-constraint at 1.5 so the penalty for breaking these (hard) constraints is a bit
-higher than flipping a variable.
+:ref:`dwave_networkx <index_dnx>` package for the MIS QUBO. The code below
+combines the MIS and penalty QUBOs, weighting the constraint at 1.5 so the
+penalty for breaking these (hard) constraints is a bit higher than flipping a
+variable.
 
 >>> import dwave_networkx as dnx
 >>> import dimod
@@ -1540,7 +1545,7 @@ CSP (Inverse Verification Technique)
 ====================================
 
 One approach to solving a
-:std:doc:`constraint satisfaction problem (CSP) <oceandocs:concepts/csp>`,
+:ref:`constraint satisfaction problem (CSP) <concept_constraint_satisfaction_problem>`,
 :math:`C(\vc{x}) \equiv \bigwedge_{\alpha=1}^{|\mathcal{C}|} C_\alpha(\vc{x}_\alpha)`,
 exploits the fact that NP-hard decision problems can be verified in polynomial
 time. If the CSP corresponding to :math:`C(\vc{x})` is in NP, you can write the
@@ -1568,27 +1573,27 @@ the objective evaluates to 0, you have a feasible solution to the CSP.
 Example
 -------
 
-The example of :ref:`qpu_reformulating_constraints_linear_equality` solved the problem of
-finding a
+The example of :ref:`qpu_reformulating_constraints_linear_equality` solved the
+problem of finding a
 `maximum independent set (MIS) <https://en.wikipedia.org/wiki/Maximal_independent_set>`_,
-where the graph is a cell in the Chimera topology, with an equality constraint,
-:math:`x_0 + x_1 = 1`, which requires that either node 0 or node 1, but not
-both, be selected. (Because one of those two nodes has to be selected, the
-equality constraint forces a selection of the constrained MIS :math:`0, 2, 3` or
-:math:`1, 2, 3` and not the unconstrained MIS :math:`4, 5, 6, 7`.) That example
-converted the constraint into a QUBO by squaring the subtraction of the
-equation's right side from the left.
+where the graph is a cell in the :term:`Chimera` topology, with an equality
+constraint, :math:`x_0 + x_1 = 1`, which requires that either node 0 or node 1,
+but not both, be selected. (Because one of those two nodes has to be selected,
+the equality constraint forces a selection of the constrained MIS
+:math:`0, 2, 3` or :math:`1, 2, 3` and not the unconstrained MIS
+:math:`4, 5, 6, 7`.) That example converted the constraint into a QUBO by
+squaring the subtraction of the equation's right side from the left.
 
 This example solves the same problem but converts the constraint into a Boolean
 gate, in this case, the `XOR <https://en.wikipedia.org/wiki/XOR_gate>`_ gate.
 
 You can mathematically formulate a QUBO for the XOR gate as shown in
 :ref:`qpu_reformulating_boolean_ops`; this example use the
-:std:doc:`dimod <oceandocs:docs_dimod/sdk_index>` package for the XOR QUBO. The
-code below combines the MIS and penalty QUBOs, weighting the XOR constraint at
-1.5 so the penalty for breaking this (hard) constraint is a bit higher than
-flipping a variable, and setting :math:`z` to a negative value substantially
-lower than other linear biases.
+:ref:`dimod <index_dimod>` package for the XOR QUBO. The code below combines the
+MIS and penalty QUBOs, weighting the XOR constraint at 1.5 so the penalty for
+breaking this (hard) constraint is a bit higher than flipping a variable, and
+setting :math:`z` to a negative value substantially lower than other linear
+biases.
 
 >>> import dwave_networkx as dnx
 >>> import dimod
@@ -1632,9 +1637,9 @@ Further Information
 Elementary Boolean Operations
 =============================
 
-As demonstrated in the :ref:`qpu_reformulating_constraints_inverse_verification` section,
-an often useful approach to consider it to reformulate your problem using BQMs
-derived from Boolean operations.
+As demonstrated in the :ref:`qpu_reformulating_constraints_inverse_verification`
+section, an often useful approach to consider it to reformulate your problem
+using BQMs derived from Boolean operations.
 
 :numref:`Table %s <logicalTable>` shows several constraints useful in building
 Boolean circuits.
@@ -1699,8 +1704,8 @@ adding an energy cost of :math:`3` to the solution that violates the constraint.
 Examples
 --------
 
-*   Section :ref:`qpu_reformulating_native_formats` above derives a QUBO for a NOT gate
-    as a constraint.
+*   Section :ref:`qpu_reformulating_native_formats` above derives a QUBO for a
+    NOT gate as a constraint.
 *   The :ref:`qpu_reformulating_example_cfd` example derives AND and XOR gates.
 *   The :ref:`qpu_reformulating_higher_degree` also derives an AND gate.
 
@@ -1733,20 +1738,19 @@ shown in :numref:`Figure %s <Problem_MapColoring>`.
 **This example is intended to demonstrate the use of the reformulations**
 **techniques of this chapter.** In practice, you could simply use the
 :func:`~dwave_networkx.algorithms.coloring.min_vertex_color` function to solve
-the problem. :std:doc:`Ocean software documentation <oceandocs:index>`
-demonstrates solutions to the map-coloring problem in the
-:std:doc:`Large Map Coloring <oceandocs:examples/map_kerberos>` and
-:std:doc:`Map Coloring: Hybrid DQM Sampler <oceandocs:examples/map_dqm>`
-examples. The `dwave-examples <https://github.com/dwave-examples>`_ GitHub
-repo also demonstrates solutions to the map-coloring problem.
-[Dwave4]_ describes this procedure.
+the problem. The
+:ref:`Large Map Coloring <opt_example_kerberos_map>`,
+:ref:`Map Coloring: Hybrid DQM Sampler <opt_example_dqm_map>`, and
+`dwave-examples <https://github.com/dwave-examples>`_ GitHub repo examples
+demonstrate solutions to the map-coloring problem. [Dwave4]_ describes this
+procedure.
 
 Step 1: State the Objectives and Constraints
 --------------------------------------------
 
-As noted in the :ref:`qpu_reformulating_general_guidance` section, the first step in
-solving a problem is to state objectives and constraints. For this problem, the
-colors selected must meet two constraints:
+As noted in the :ref:`qpu_reformulating_general_guidance` section, the first
+step in solving a problem is to state objectives and constraints. For this
+problem, the colors selected must meet two constraints:
 
 *   Each region is assigned one color only, of :math:`C` possible colors.
 *   The color assigned to one region cannot be assigned to adjacent regions.
@@ -1766,9 +1770,9 @@ these variables represent?
 
 To represent a set of values such as :code:`[blue, green, red, yellow]` you
 can use various numerical schemes: integer, discrete, and binary variables.
-The :std:doc:`Map Coloring: Hybrid DQM Sampler <oceandocs:examples/map_dqm>`
-example uses discrete variables and the DQM solver in the Leap service; this
-example uses binary variables to enable solution directly on a QPU solver.
+The :ref:`Map Coloring: Hybrid DQM Sampler <opt_example_dqm_map>` example uses
+discrete variables and the DQM solver in the Leap service; this example uses
+binary variables to enable solution directly on a QPU solver.
 
 More specifically, this example maps the :math:`C` possible colors to a unary
 encoding: represent each region by :math:`C` binary variables, one for each
@@ -1851,9 +1855,10 @@ is selected (only one variable is :math:`1`), where either color (variable
 :math:`q_B` or :math:`q_G`) has an equal probability of selection.
 
 .. [#]
-    |doc_getting_started|_ discusses the effects of different choices of values
-    in the section on :ref:`problem scaling<sysdocs:gsg_auto_scale>`. See also
-    the considerations discussed in the :ref:`qpu_config_precision` section.
+    The :ref:`qpu_basic_config` section discusses the effects of different
+    choices of values in the :ref:`qpu_basic_config_auto_scale` subsection. See
+    also the considerations discussed in the :ref:`qpu_config_precision`
+    section.
 
 The two-color formulation above can be easily expanded to a three-color problem:
 :math:`C=3` possible colors are encoded as :math:`q_B,q_G,q_R`. The constraint
@@ -1989,7 +1994,7 @@ soon as they are detected in systems. Circuit fault diagnosis (CFD) is the
 problem of identifying a minimum-sized set of gates that, if faulty, explains an
 observation of incorrect outputs given a set of inputs.
 
-.. raw:: latex
+.. circuitikz code to build the circuit for the next graphic
 
     \begin{figure}
     \begin{centering}
@@ -2033,29 +2038,27 @@ observation of incorrect outputs given a set of inputs.
     \end{centering}
 
     \caption{The correct output of this circuit
-    for  inputs $x_1,x_2,x_3=1,1,1$ is $z_1,z_2=0,0$. The circuit fault diagnosis
-    problem is to find a minimum number of faulty gates that explains an incorrect
-    output such as $z_1,z_2=1,0$.  }
+    for  inputs $x_1,x_2,x_3=1,1,1$ is $z_1,z_2=0,0$. The circuit fault
+    diagnosis problem is to find a minimum number of faulty gates that explains
+    an incorrect output such as $z_1,z_2=1,0$.  }
     \label{fig:circuitFaultDetection}
     \end{figure}
 
     A simple circuit is shown in Figure \ref{fig:circuitFaultDetection}.
 
-.. only:: html
+.. figure:: ../_images/Problem_CFD_HTML_Circuit_BadInput.png
+    :name: Problem_CFD_HTML_Circuit_BadInput
+    :alt: image
+    :align: center
+    :scale: 90 %
 
-    .. figure:: ../_images/Problem_CFD_HTML_Circuit_BadInput.png
-        :name: Problem_CFD_HTML_Circuit_BadInput
-        :alt: image
-        :align: center
-        :scale: 90 %
-
-        A simple circuit is shown in
-        :numref:`Figure %s <Problem_CFD_HTML_Circuit_BadInput>`.
+    A simple circuit is shown in
+    :numref:`Figure %s <Problem_CFD_HTML_Circuit_BadInput>`.
 
 This example is intended to demonstrate the use of the reformulations
 techniques of this chapter. In practice, you could use Ocean software's
 :ref:`Boolean constraints <qpu_reformulating_boolean_ops>` as in the
-:std:doc:`Multiple-Gate Circuit <oceandocs:examples/multi_gate>` example.
+:ref:`Multiple-Gate Circuit <qpu_example_multigate>` example.
 
 A Short Digression: An Intuitive Explanation of the CFD Solution
 ----------------------------------------------------------------
@@ -2063,7 +2066,7 @@ A Short Digression: An Intuitive Explanation of the CFD Solution
 To understand the relationship between the CFD solutions and low-energy
 configurations, it's helpful to look at an even smaller example.
 
-.. raw:: latex
+.. circuitikz code to build the circuit for the next graphic
 
     \begin{figure}
     \begin{centering}
@@ -2100,17 +2103,15 @@ configurations, it's helpful to look at an even smaller example.
     series, with an input $q_0$, an output $q_3$, and intermediate input/outputs
     $q_1$ and $q_2$.
 
-.. only:: html
+.. figure:: ../_images/Problem_CFD_HTML_Circuit_ThreeNOTs.png
+    :name: Problem_CFD_HTML_Circuit_ThreeNOTs
+    :alt: image
+    :align: center
+    :scale: 90 %
 
-    .. figure:: ../_images/Problem_CFD_HTML_Circuit_ThreeNOTs.png
-        :name: Problem_CFD_HTML_Circuit_ThreeNOTs
-        :alt: image
-        :align: center
-        :scale: 90 %
-
-        The circuit in :numref:`Figure %s <Problem_CFD_HTML_Circuit_ThreeNOTs>`
-        has three NOT gates in series, with an input :math:`q_0`, an output
-        :math:`q_3`, and intermediate input/outputs :math:`q_1` and :math:`q_2`.
+    The circuit in :numref:`Figure %s <Problem_CFD_HTML_Circuit_ThreeNOTs>`
+    has three NOT gates in series, with an input :math:`q_0`, an output
+    :math:`q_3`, and intermediate input/outputs :math:`q_1` and :math:`q_2`.
 
 :numref:`Table %s <SerialNOTenergyLevels>` shows energy levels for all possible
 circuit states with an incorrect output for an objective function that penalizes
@@ -2156,10 +2157,10 @@ rows 2--7. These have the lowest non-zero energy for the serial NOT circuit.
 Step 1: State the Objectives and Constraints
 --------------------------------------------
 
-As noted in the :ref:`qpu_reformulating_general_guidance` section, the first step in
-solving a problem is to state objectives and constraints. For this problem, the
-Boolean gates constrain outputs based on gates' inputs; for example, the output
-of AND gate 1 should be :math:`x_1 \wedge x_2`.
+As noted in the :ref:`qpu_reformulating_general_guidance` section, the first
+step in solving a problem is to state objectives and constraints. For this
+problem, the Boolean gates constrain outputs based on gates' inputs; for
+example, the output of AND gate 1 should be :math:`x_1 \wedge x_2`.
 
 The objective to be minimized is the number of faulty gates given the circuit
 inputs and outputs.
@@ -2177,10 +2178,10 @@ Step 3: Formulate Constraints
 -----------------------------
 
 This example maps the circuit's gates to penalty functions using the
-formulations of the :ref:`qpu_reformulating_boolean_ops` section. These penalty functions
-increase the energy level of the problem's objective function by penalizing
-non-valid states of the Boolean operations, which represent malfunctioning
-gates.
+formulations of the :ref:`qpu_reformulating_boolean_ops` section. These penalty
+functions increase the energy level of the problem's objective function by
+penalizing non-valid states of the Boolean operations, which represent
+malfunctioning gates.
 
 1.  The NOT gate
 
@@ -2452,7 +2453,7 @@ and quadratic formulations of the normalizing penalty function produce identical
 results. In this table, column  :math:`\mathbf{in_1,in_2,out}` is all possible
 states of the gate's inputs and output; column  :math:`\mathbf{P^*}` is the
 corresponding values of the cubic normalizing penalty function,
-:math:`P^*= -2\overline{in}_1\overline{in}_2out`; column 
+:math:`P^*= -2\overline{in}_1\overline{in}_2out`; column
 :math:`\mathbf{P^q|_{b=0}}` the values of the quadratic substitute if the
 ancillary variable :math:`b=0` and column  :math:`\mathbf{P^q|_{b=1}}` the
 values if :math:`b=1`; column :math:`\mathbf{\min_{b}P^q}` is the value the
@@ -2491,7 +2492,7 @@ three types of gates in the example circuit are:
     P_{\text{XOR}} &= 2x_1x_2 -2(x_1+x_2)z - 4(x_1+x_2)a
     +4az +x_1+x_2+z + 4a
 
-.. raw:: latex
+.. circuitikz code to build the circuit for the next graphic
 
     \begin{figure}
     \begin{centering}
@@ -2544,17 +2545,15 @@ three types of gates in the example circuit are:
     The circuit for this example is shown again in Figure \ref{fig:exampleCircuit}
     with the output formulas of all gates also shown.
 
-.. only:: html
+.. figure:: ../_images/Problem_CFD_HTML_Circuit_Outputs.png
+    :name: Problem_CFD_HTML_Circuit_Outputs
+    :alt: image
+    :align: center
+    :scale: 90 %
 
-    .. figure:: ../_images/Problem_CFD_HTML_Circuit_Outputs.png
-        :name: Problem_CFD_HTML_Circuit_Outputs
-        :alt: image
-        :align: center
-        :scale: 90 %
-
-        The circuit for this example is shown again in
-        :numref:`Figure %s <Problem_CFD_HTML_Circuit_Outputs>` with the output
-        formulas of all gates also shown.
+    The circuit for this example is shown again in
+    :numref:`Figure %s <Problem_CFD_HTML_Circuit_Outputs>` with the output
+    formulas of all gates also shown.
 
 The CFD objective function is built by summing the penalty functions of all
 gates in the circuit:
@@ -2659,7 +2658,7 @@ class and the `Leap service's <https://cloud.dwavesys.com>`_
 :class:`~dwave.system.samplers.LeapHybridDQMSampler` solver.
 
 This formulation creates a
-:std:doc:`discrete quadratic model <oceandocs:concepts/dqm>` with two variables,
+:ref:`discrete quadratic model <concept_models_dqm>` with two variables,
 ``me`` and ``you``, representing two hands, each with cases rock ("R"), paper
 ("P"), and scissors ("S"). Negative quadratic biases are set to produce a lower
 value of the DQM for cases of ``me`` winning over cases of ``you``; for example,
@@ -2706,7 +2705,7 @@ the equation, :math:`x=1`. This same approach is used for :math:`n \choose k`
 constraints (selection of exactly :math:`k` of :math:`n` variables), where you
 disfavor selections of greater or fewer than :math:`k` variables with the
 penalty :math:`P = \alpha (\sum_{i=1}^n x_i - k)^2`, where :math:`\alpha` is a
-weighting coefficient (see 
+weighting coefficient (see
 `penalty method <https://en.wikipedia.org/wiki/Penalty_method>`_) used to set
 the penalty's strength.
 
