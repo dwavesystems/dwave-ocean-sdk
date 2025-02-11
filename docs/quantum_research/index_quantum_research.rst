@@ -20,15 +20,24 @@ processing units (QPUs) directly.
 .. grid:: 3
     :gutter: 2
 
-    .. grid-item-card:: :ref:`qpu_index_get_started` 
+    .. grid-item-card:: :ref:`qpu_index_get_started`
+        :img-top: /_images/rocket_icon.svg
+        :link: qpu_index_get_started
+        :link-type: ref
          
         Learn about |dwave_short| quantum computers.
 
     .. grid-item-card:: :ref:`qpu_index_about`
+        :img-top: /_images/hardware_icon.svg
+        :link: qpu_index_about
+        :link-type: ref
 
         QPU architecture, properties, errors, timing, etc.
 
     .. grid-item-card:: :ref:`qpu_index_using`
+        :img-top: /_images/bipartite_icon.svg
+        :link: qpu_index_using
+        :link-type: ref
 
         Configuring QPU parameters and usage best-practices.
 
