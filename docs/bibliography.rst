@@ -71,7 +71,7 @@ Bibliography
     August 30, 2010. The |dwave_short| website.
 
 .. [Bia2014]
-    Zhengbing Bian, Fabian Chudak, Robert Israel, Brad Lackey, 
+    Zhengbing Bian, Fabian Chudak, Robert Israel, Brad Lackey,
     William G. Macready, and Aidan Roy.
     "Discrete optimization using quantum annealing on sparse Ising models."
     *Frontiers in Physics* 18 September 2014.
@@ -116,7 +116,7 @@ Bibliography
 .. [Bon2007]
     María Luisa Bonet, Jordi Levy, and Felip Manyà.
     "Resolution for Max-SAT"
-    Artificial Intelligence, Volume 171, Issues 8–9, Pages 606-618.
+    Artificial Intelligence, Volume 171, Issues 8-9, Pages 606-618.
     June 2007.
     https://www.sciencedirect.com/science/article/pii/S0004370207000422
 
@@ -232,7 +232,7 @@ Bibliography
     R. Dechter and J. Pearl.
     “The cycle-cutset method for improving search performance
     in AI applications.” Proceedings of the Third IEEE
-    on Artificial Intelligence Applications, pp. 224–230. 1987.
+    on Artificial Intelligence Applications, pp. 224-230. 1987.
 
 .. [Dec2003]
     Rina Dechter.
@@ -351,7 +351,7 @@ Bibliography
 .. [Gra2021]
     Erica Grant, Travis S. Humble, and Benjamin Stump
     "Benchmarking Quantum Annealing Controls with Portfolio Optimization"
-    Phys. Rev. Applied 15, 014012 – Published 8 January 2021
+    Phys. Rev. Applied 15, 014012 - Published 8 January 2021
     https://arxiv.org/pdf/2007.03005.pdf
 
 .. [Gra2008]
@@ -669,7 +669,7 @@ Bibliography
     Samuel Mugel, Mario Abad, Miguel Bermejo, Javier Sanchez, Enrique Lizaso &
     Roman Orus
     "Hybrid quantum investment optimization with minimal holding period."
-    Nature Scientific Reports, 2021
+    Nature Scientific Reports, 2021
     https://www.nature.com/articles/s41598-021-98297-x
 
 .. [Nar2017]
@@ -954,7 +954,7 @@ Bibliography
     High Performance Computing. ISC High Performance 2020. Lecture Notes in
     Computer Science (LNCS), vol 12151. Springer, Cham.
     https://doi.org/10.1007/978-3-030-50743-5_10
-    
+
 .. todo:: order dwave-networkx citations alphabetically
 
 .. [Boo2019]
@@ -991,4 +991,3 @@ Bibliography
     ACM Transactions on Quantum Computing, Volume 4, Issue 3 Article No.: 17,
     Pages 1 - 30. April 8, 2023
     https://arxiv.org/abs/2202.03044
-

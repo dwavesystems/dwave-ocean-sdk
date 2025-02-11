@@ -9,10 +9,9 @@ with minimal overhead to solutions obtained from the quantum processing unit
 (QPU).
 
 Server-side postprocessing for |dwave_5kq| systems is limited to computing the
-energies of returned samples\ [#]_ but
-`Ocean software <https://docs.ocean.dwavesys.com>`_ provides additional
-client-side postprocessing tools (see, for example, the 
-:ref:`Postprocessing with a Greedy Solver <oceandocs:pp_greedy>` documentation).
+energies of returned samples\ [#]_ but :ref:`Ocean software <index_ocean_sdk>`
+provides additional client-side postprocessing tools (see, for example, the
+:ref:`Postprocessing with a Greedy Solver <qpu_example_pp_greedy>` section).
 
 .. [#]
     Earlier |dwave_short| systems, such as the |dwave_2kq| system, optionally
@@ -51,17 +50,15 @@ function is then used to update the solution on each subgraph to obtain a
 locally optimal solution :math:`s'`. *SolveSubgraph* is an exact solver for low
 treewidth graphs based on belief propagation on junction trees [Jen1990]_.
 
-.. only:: html
+.. figure:: ../_images/alg1.png
+    :name: algorithm_1
+    :alt: Optimization postprocessing algorithm, showing that the start is
+        the set of majority voted samples, S, from the QPU's logical graph
+        and the result is postprocessed results for S prime.
 
-    .. figure:: ../_images/alg1.png
-        :name: algorithm_1
-        :alt: Optimization postprocessing algorithm, showing that the start is
-            the set of majority voted samples, S, from the QPU's logical graph
-            and the result is postprocessed results for S prime.
+    Optimization postprocessing algorithm.
 
-        Optimization postprocessing algorithm.
-
-.. only:: latex
+.. the latex code
 
     |nbsp|
 
@@ -111,18 +108,16 @@ corresponding to raw QPU samples. Some variation from a classical Boltzmann
 distribution is expected in postprocessed samples. See
 :ref:`qpu_pp_tests_sampling` for discussion.
 
-.. only:: html
+.. figure:: ../_images/alg2.png
+    :name: algorithm_2
+    :alt: Sampling postprocessing algorithm, showing that the start is the
+        set of majority voted samples, S, from the QPU's logical graph, with
+        inverse temperature beta, and iteration number N. The result is
+        postprocessed results for S prime.
 
-    .. figure:: ../_images/alg2.png
-        :name: algorithm_2
-        :alt: Sampling postprocessing algorithm, showing that the start is the
-            set of majority voted samples, S, from the QPU's logical graph, with
-            inverse temperature beta, and iteration number N. The result is
-            postprocessed results for S prime.
+    Sampling postprocessing algorithm.
 
-        Sampling postprocessing algorithm.
-
-.. only:: latex
+.. the latex code
 
     |nbsp|
 
@@ -150,8 +145,6 @@ distribution is expected in postprocessed samples. See
         \caption{Sampling post-processing algorithm}
         \label{alg_sampling}
         \end{algorithm}
-
-.. _qpu_pp_timing:
 
 .. _qpu_pp_tests_optimization:
 
@@ -595,4 +588,3 @@ the FPR.
 .. [#]
     A uniform distribution is expected to be close to optimal for many
     Hamiltonians, though it is not optimal in general.
-

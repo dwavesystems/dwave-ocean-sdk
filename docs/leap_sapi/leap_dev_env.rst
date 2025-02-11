@@ -4,34 +4,32 @@
 Support for IDEs
 ================
 
-The Leap quantum cloud service supports third-party IDEs,
-both local and cloud-based, that implement the
+The Leap quantum cloud service supports third-party IDEs, both local and
+cloud-based, that implement the
 `Development Containers specification <https://containers.dev/supporting>`_
 (aka "devcontainers"). Although any IDE that implements devcontainers
 is supported, |dwave_short| recommends
 `GitHub Codespaces <https://docs.github.com/codespaces>`_.
 
 The Ocean SDK
-`releases 6.6 <https://github.com/dwavesystems/dwave-ocean-sdk/releases/tag/
-6.6.0>`_
+`releases 6.6 <https://github.com/dwavesystems/dwave-ocean-sdk/releases/tag/6.6.0>`_
 and higher enable authentication using the secure
-`OAuth 2.0 <https://oauth.net/2/>`_ industry standard.
-The :ref:`leap_dev_env_authorization` procedure described here simplifies
-the retrieval and storage of your Solver API (SAPI) token for use in submitting
+`OAuth 2.0 <https://oauth.net/2/>`_ industry standard. The
+:ref:`leap_dev_env_authorization` procedure described here simplifies the
+retrieval and storage of your Solver API (SAPI) token for use in submitting
 problems to solvers in the Leap service from the third-party IDE of your choice.
 
-For an overview about developing quantum applications, see :ref:`cb_workflow`;
-for a beginner's introduction, see the |doc_getting_started|_ guide.
-Also see end-to-end
-`examples of D-Wave quantum applications in GitHub
-<https://github.com/dwave-examples>`_.
+For an overview about developing quantum applications, see the
+:ref:`opt_developing_quantum_applications` section; for a beginner's
+introduction, see the :ref:`opt_index_get_started` section. Also see end-to-end
+`examples of D-Wave quantum applications in GitHub <https://github.com/dwave-examples>`_.
 
 Requirements
-------------
+============
 
 *   Ocean SDK
-    `releases 6.6 <https://github.com/dwavesystems/dwave-ocean-sdk/releases/tag/
-    6.6.0>`_ or higher.
+    `releases 6.6 <https://github.com/dwavesystems/dwave-ocean-sdk/releases/tag/6.6.0>`_
+    or higher.
 
 If you configure your IDE to use
 `Ocean-Dev Docker Images <https://github.com/dwavesystems/ocean-dev-docker>`_,
@@ -41,49 +39,46 @@ You can see an example `here <https://github.com/dwave-examples/sudoku>`_.
 .. _leap_dev_env_authorization:
 
 Authorizing Access to the Leap Service
---------------------------------------
+======================================
 
-As described in the Ocean software's :std:doc:`oceandocs:overview/sapi`
-documentation, you require a SAPI token to submit problems to solvers in
-the Leap service. The following procedure authorizes the Ocean software access
-to your account in the Leap service and enables storing your SAPI token
-in your development environment. Ocean software authorization to access
-the Leap service persists across subsequent development sessions
-for this development environment.
+As described in the :ref:`ocean_sapi_access_basic` section for Ocean software,
+you require a SAPI token to submit problems to solvers in the Leap service. The
+following procedure authorizes the Ocean software access to your account in the
+Leap service and enables storing your SAPI token in your development
+environment. Ocean software authorization to access the Leap service persists
+across subsequent development sessions for this development environment.
 
 .. note:: The following `OAuth-based <https://oauth.net/2/>`_ procedure is
     provided for convenience but you also have the option of manually copying
-    your SAPI token from the dashboard in the Leap service. The Ocean software's
-    :std:doc:`oceandocs:overview/sapi` documentation provides more information.
+    your SAPI token from the dashboard in the Leap service. The
+    :ref:`ocean_sapi_access_basic` section provides more information.
 
-This procedure uses the
-`Ocean software CLI <https://docs.ocean.dwavesys.com/en/stable/docs_cli.html>`_
-commands that you enter into your terminal. You can see help documentation
-for these commands and all their options with the CLI's ``--help`` option.\ [#]_
+This procedure uses the :ref:`Ocean software CLI <ocean_dwave_cli>` commands
+that you enter into your terminal. You can see help documentation for these
+commands and all their options with the CLI's ``--help`` option.\ [#]_
 
 #.  For any new developer environment (for example, a Python
     `virtual environment <https://docs.python.org/3/library/venv.html>`_
     or a `GitHub Codespaces <https://docs.github.com/codespaces>`_ *codespace*),
     authorize the Ocean software access to your account in the Leap service,
-    using the secure `OAuth 2.0 <https://oauth.net/2/>`_ code exchange,
-    by running one of the following commands from your terminal.
+    using the secure `OAuth 2.0 <https://oauth.net/2/>`_ code exchange, by
+    running one of the following commands from your terminal.
 
-    -   In an environment such as an **IDE installed on your system**,
-        where you can access
-        `localhost <https://en.wikipedia.org/wiki/Localhost>`_ addresses
-        from your browser, initiate the OAuth *redirect* flow::
+    -   In an environment such as an **IDE installed on your system**, where you
+        can access `localhost <https://en.wikipedia.org/wiki/Localhost>`_
+        addresses from your browser, initiate the OAuth *redirect* flow::
 
             dwave auth login
 
-    -   In an environment such as a **cloud IDE**, where access
-        to `localhost <https://en.wikipedia.org/wiki/Localhost>`_ addresses
-        from your browser might be blocked, you can initiate
-        the alternative OAuth *out-of-band* flow::
+    -   In an environment such as a **cloud IDE**, where access to
+        `localhost <https://en.wikipedia.org/wiki/Localhost>`_ addresses from
+        your browser might be blocked, you can initiate the alternative OAuth
+        *out-of-band* flow::
 
             dwave auth login --oob
 
-#.  If you are not currently logged into the Leap service, you are asked
-    to enter your credentials.
+#.  If you are not currently logged into the Leap service, you are asked to
+    enter your credentials.
 
     :numref:`Figure %s <LeapLoginScreen>` shows the login screen.
 
@@ -135,24 +130,23 @@ for these commands and all their options with the CLI's ``--help`` option.\ [#]_
 
         Authorization code screen
 
-#.  Create a :ref:`dwave-cloud-client <sdk_index_cloud>`
+#.  Create a :ref:`dwave-cloud-client <index_cloud>`
     :ref:`configuration file <configurationFiles>` to manage your SAPI access
     by running the following command from your terminal::
 
         dwave config create --auto-token
 
-#.  Validate the configuration by running the following command in
-    your terminal::
+#.  Validate the configuration by running the following command in your
+    terminal::
 
         dwave ping
 
 If you cloned a |dwave_short| example, you can now run it.
 
 .. [#] Below are some examples of displaying commands, options, and help
-    documentation for the :ref:`dwave-cloud-client <sdk_index_cloud>` CLI
-    (produced on version ``0.11.0``). For more information, see the
-    `Ocean software CLI <https://docs.ocean.dwavesys.com/en/stable/
-    docs_cli.html>`_ documentation.
+    documentation for the :ref:`dwave-cloud-client <index_cloud>` CLI (produced
+    on version ``0.11.0``). For more information, see the
+    :ref:`Ocean software CLI <ocean_dwave_cli>` section.
 
     *   Display all commands::
 

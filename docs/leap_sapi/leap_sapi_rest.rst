@@ -4,24 +4,36 @@
 SAPI REST Interface
 ===================
 
+This section includes the following information:
+
+*   :ref:`sapi_rest_intro` introduces HTTP codes, problem lifecycle, SAPI
+    versioning, etc.
+*   :ref:`sapi_rest_resources` describes the Solver Application Programming
+    Interface (SAPI) resources and provides example usages.
+*   :ref:`sapi_rest_full_examples` demonstrates using the RESTful interface,
+    without Ocean software, on problems to a quantum computer and to a hybrid
+    solver.
+
+.. _sapi_rest_intro:
+
 Introduction
 ============
 
 The Solver API (SAPI) is an interface to |dwave_short| quantum computers
-and hybrid and classical :std:doc:`solvers <oceandocs:concepts/samplers>`
-in the Leap service. This document describes the SAPI interface,
-including the calls you may use to submit and manage problems and access
-the available solvers.
+and hybrid and classical :term:`solvers <solver>` in the Leap service. This
+section describes the SAPI interface, including the calls you may use to submit
+and manage problems and access the available solvers.
 
-A `REST <https://en.wikipedia.org/wiki/Representational_state_transfer>`_\ -based
-web services API, SAPI is fairly simple to use; it exposes only a
-few basic calls. Most of the work for you will be restructuring your problem
-into a format that the API can answer, and then parsing results.
+A
+`REST <https://en.wikipedia.org/wiki/Representational_state_transfer>`_\ -based
+web services API, SAPI is fairly simple to use; it exposes only a few basic
+calls. Most of the work for you will be restructuring your problem into a format
+that the API can answer, and then parsing results.
 
 .. note::
 
     |dwave_short| provides a full-stack open-source Software Development Kit
-    (SDK), :std:doc:`Ocean SDK <oceandocs:index>`. It is recommended that you
+    (SDK), :ref:`Ocean SDK <index_ocean_sdk>`. It is recommended that you
     develop your applications on top of that.
 
 This document is intended for developers who want to build their own
@@ -86,8 +98,8 @@ A problem may have one of the following statuses:
 
 .. figure:: ../_images/prob_status.png
     :name: prob_status
-    :alt: Diagram showing how a problem status changes from pending to
-        in progress to one of the terminal states. The terminal states are
+    :alt: Diagram showing how a problem status changes from pending to in
+        progress to one of the terminal states. The terminal states are
         cancelled, completed, or failed.
 
     Initially a problem is in the PENDING state. When a solver starts to process
@@ -107,7 +119,7 @@ in your code. You can see the version number in the response header sent from
 SAPI.
 
 The base URL and authorization token used in the following example are
-explained in the :ref:`sapi_rest_url_token_setup` section.
+explained in the :ref:`sapi_rest_url_token_setup` subsection.
 
 .. testsetup:: rest_live
 
@@ -128,11 +140,12 @@ explained in the :ref:`sapi_rest_url_token_setup` section.
     >>> print(r.headers["Content-Type"])   # doctest: +SKIP
     application/vnd.dwave.sapi.problems+json; version=2.1.0; charset=utf-8
 
-.. _sapi_rest_resources:
 
 .. |general error responses| replace:: In addition to generic client and server
     :ref:`error responses <sapi_rest_general_response_codes>`, SAPI may return
     particular error codes.
+
+.. _sapi_rest_resources:
 
 Resources
 =========
@@ -178,8 +191,8 @@ The examples below use the following setup:
         For some examples of uploading problems to the Leap service's
         quantum-classical hybrid solvers, a serialized binary quadratic model
         (:math:`\text{E} = -ab`) is also used. The following code uses
-        :std:doc:`Ocean software <oceandocs:index>` to serialize the problem
-        to the required format.\ [#]_
+        :ref:`Ocean software <index_ocean_sdk>` to serialize the problem to the
+        required format.\ [#]_
 
         .. doctest:: rest_live
             :skipif: False
@@ -209,9 +222,8 @@ The examples below use the following setup:
         For some examples of uploading problems to the Leap service's
         quantum-classical hybrid solvers, a serialized binary quadratic model
         (:math:`\text{E} = -ab`) is also used.
-        The :std:doc:`dimod <oceandocs:docs_dimod/sdk_index>`
-        :meth:`~dimod.QuadraticModel.to_file` method is used to serialize
-        the problem, which is saved to a file.
+        The :ref:`dimod <index_dimod>` :meth:`~dimod.QuadraticModel.to_file`
+        method is used to serialize the problem, which is saved to a file.
 
         .. dropdown:: Example serialized file
 
@@ -250,15 +262,14 @@ SAPI provides the following resources and methods.
 Initiate Upload of Problem Data
 -------------------------------
 
-For quantum-classical hybrid solvers in the Leap service, you must upload
-your problem using the ``$SAPI_HOME/bqm/multipart/*`` endpoints before
-submitting a SAPI request to run the problem. For large problems
-(starting from several megabytes and higher), upload the problem data
-in multiple parts.
+For quantum-classical hybrid solvers in the Leap service, you must upload your
+problem using the ``$SAPI_HOME/bqm/multipart/*`` endpoints before submitting a
+SAPI request to run the problem. For large problems (starting from several
+megabytes and higher), upload the problem data in multiple parts.
 
 *   Maximum problem size currently supported is 50 GB.
-*   Size of all parts must be 5M (5242880 bytes), except the last,
-    which may be smaller.
+*   Size of all parts must be 5M (5242880 bytes), except the last, which may be
+    smaller.
 
 To initiate the uploading of a problem, in a single part for small problems or
 multiple parts for problems of several megabytes and higher, send an HTTP POST
@@ -295,9 +306,9 @@ uploaded problem.
 
     .. tab-item:: cURL
 
-        This example sets the size of the uploaded problem, ``size``,
-        to the number of bytes of the serialized BQM of
-        the :ref:`sapi_rest_resources_setup` section.
+        This example sets the size of the uploaded problem, ``size``, to the
+        number of bytes of the serialized BQM of the
+        :ref:`sapi_rest_resources_setup` section.
 
         .. code-block:: bash
 
@@ -338,12 +349,12 @@ uploaded problem.
 Upload Problem Data
 -------------------
 
-To upload a problem, or parts of a large problem, send an HTTP PUT
-request to ``bqm/multipart/<problem_data_id>/part/<part>`` (for each part, where
-``<part>`` is an integer beginning at 1).
+To upload a problem, or parts of a large problem, send an HTTP PUT request to
+``bqm/multipart/<problem_data_id>/part/<part>`` (for each part, where ``<part>``
+is an integer beginning at 1).
 
 The POST request body should contain the data for (one part of) the problem,
-encoded as described in the :std:doc:`dimod <oceandocs:docs_dimod/sdk_index>`
+encoded as described in the :ref:`dimod <index_dimod>`
 :meth:`~dimod.QuadraticModel.to_file` method, and the header should contain the
 MD5 checksum.
 
@@ -410,11 +421,10 @@ except for the last part, which may be smaller.
     .. tab-item:: cURL
 
         This example sets the identifier, ``problem_data_id``, of the problem
-        data to be uploaded to the value returned from
-        the :ref:`sapi_rest_get_multi_id` example, the MD5 checksum, ``md5``,
-        to the value calculated above, and the uploaded data to the BQM of
-        the :ref:`sapi_rest_resources_setup` section saved to file
-        ``my_bqm.txt``.
+        data to be uploaded to the value returned from the
+        :ref:`sapi_rest_get_multi_id` example, the MD5 checksum, ``md5``, to the
+        value calculated above, and the uploaded data to the BQM of the
+        :ref:`sapi_rest_resources_setup` section saved to file ``my_bqm.txt``.
 
         .. code-block:: bash
 
@@ -470,21 +480,21 @@ Submit a Checksum for a Problem Upload
 To complete an upload of problem data, send an HTTP POST request to
 ``bqm/multipart/<problem_data_id>/combine``.
 
-The POST request body should contain the checksum for the entire problem,
-as a string.
+The POST request body should contain the checksum for the entire problem, as a
+string.
 
 .. dropdown:: Calculating the Checksum
 
-    The Leap service calculates the checksum of the combined file in
-    a particular way: it concatenates all the checksums of the parts and then
+    The Leap service calculates the checksum of the combined file in a
+    particular way: it concatenates all the checksums of the parts and then
     calculates the checksum of that concatenation. Your checksum must follow
     this same format.
 
-    The checksum can be found, for example, using the Python
-    :py:mod:`hashlib` library. The examples below find the concatenated checksum
-    for the problem of the :ref:`sapi_rest_resources_setup` section and for an
-    artificial problem that reuses that same problem to represent two parts
-    for the sole purpose of constructing a combined checksum.
+    The checksum can be found, for example, using the Python :py:mod:`hashlib`
+    library. The examples below find the concatenated checksum for the problem
+    of the :ref:`sapi_rest_resources_setup` section and for an artificial
+    problem that reuses that same problem to represent two parts for the sole
+    purpose of constructing a combined checksum.
 
     .. doctest:: md5
         :skipif: False
@@ -531,9 +541,9 @@ as a string.
     .. tab-item:: cURL
 
         This example sets the identifier, ``problem_data_id``, of the problem
-        data to be uploaded to the value returned from
-        the :ref:`sapi_rest_get_multi_id` example and the checksum,
-        ``checksum``, to the value calculated above.
+        data to be uploaded to the value returned from the
+        :ref:`sapi_rest_get_multi_id` example and the checksum, ``checksum``, to
+        the value calculated above.
 
         .. code-block:: bash
 
@@ -574,8 +584,8 @@ as a string.
 Status of a Problem Upload
 --------------------------
 
-To query the status of an in-progress problem upload, send an HTTP GET
-request to ``bqm/multipart/<problem_data_id>/status``.
+To query the status of an in-progress problem upload, send an HTTP GET request
+to ``bqm/multipart/<problem_data_id>/status``.
 
 The GET request should contain no body.
 
@@ -595,9 +605,9 @@ SAPI returns the status as a string with parts and checksums.
 
     .. tab-item:: cURL
 
-        This example sets the identifier, ``problem_data_id``,
-        of the problem data being uploaded to the value returned from
-        the :ref:`sapi_rest_get_multi_id` example.
+        This example sets the identifier, ``problem_data_id``, of the problem
+        data being uploaded to the value returned from the
+        :ref:`sapi_rest_get_multi_id` example.
 
         .. code-block:: bash
 
@@ -642,8 +652,8 @@ query.\ [#]_
 
 .. dropdown:: Fields in Request Body
 
-    The JSON data for the submitted problem includes the following
-    key-value pairs:
+    The JSON data for the submitted problem includes the following key-value
+    pairs:
 
     .. tabularcolumns:: |p{4cm}|p{8cm}|
 
@@ -655,10 +665,13 @@ query.\ [#]_
         data            Encoded problem data; see below.
         label           Optional user-defined string to label the problem.
         params          Solver-specific
-                        :ref:`parameters <properties_solver_parameters>`.
+                        :ref:`hybrid parameters <opt_index_hybrid_solvers>` or
+                        :ref:`QPU parameters <qpu_solver_parameters>`.
         solver          Solver to be used.
         type            One of the supported
-                        :ref:`problem types<sysdocs:property_spt>`.
+                        :ref:`problem types <property_qpu_supported_problem_types>`
+                        (on QPUs, see the equivalent property for hybrid solvers
+                        :ref:`here <opt_index_hybrid_solvers>`).
         =============== ===========================
 
     .. tabularcolumns:: |p{3.5cm}|p{10cm}|
@@ -676,7 +689,7 @@ query.\ [#]_
                            *    ``ref`` for submissions that use
                                 :ref:`uploaded problem data <sapi_rest_get_multi_id>`,
                                 encoded as described in the
-                                :std:doc:`dimod <oceandocs:docs_dimod/sdk_index>`
+                                :ref:`dimod <index_dimod>`
                                 :meth:`~dimod.QuadraticModel.to_file` method.
 
         lin                For ``data`` with ``format="qp"``, linear
@@ -685,8 +698,7 @@ query.\ [#]_
                            Set values for all qubits of the QPU's
                            :ref:`working graph <topologies_working_graph>`
                            in the same order as the
-                           :ref:`qubits <sysdocs:property_qubits>` solver
-                           property.
+                           :ref:`qubits <property_qpu_qubits>` solver property.
 
                            *    For qubits used to represent your problem
                                 (*active qubits*), set to the corresponding
@@ -700,19 +712,20 @@ query.\ [#]_
                            ``(-0.5, 0.5, nan, nan, ...)`` representing biases
                            only on qubits ``30`` and ``31``
                            on an |dwave_5kq_tm| QPU for which the
-                           :ref:`qubits <sysdocs:property_qubits>` property
-                           has a value starting as ``[30, 31, 32, 33, ...`` and
-                           a length of 5627 (a working graph of 5627 qubits).
+                           :ref:`qubits <property_qpu_qubits>` property has a
+                           value starting as ``[30, 31, 32, 33, ...`` and a
+                           length of 5627 (a working graph of 5627 qubits).
                            After encoding, it might look like
                            ``AAAAAAAA4L8AAAAAAADgPw ... D4fw==``.
 
                            Not used for ``data`` with ``format="ref"``.
+
         quad               For ``data`` with ``format="qp"``, quadratic
                            coefficients as base64-encoded little-endian
                            doubles.
 
                            Set one value per active coupler in the same order
-                           as the :ref:`couplers <sysdocs:property_couplers>`
+                           as the :ref:`couplers <property_qpu_couplers>`
                            solver property. An *active coupler* means that both
                            qubits the coupler is incident to are active.
                            `NaN <https://en.wikipedia.org/wiki/NaN>`_ values
@@ -722,8 +735,8 @@ query.\ [#]_
                            1 might have a value ``(-1.0)`` representing a
                            single interaction between qubits ``30`` and ``31``
                            on an |dwave_5kq| QPU for which the
-                           :ref:`couplers <sysdocs:property_couplers>` property
-                           has a value starting as
+                           :ref:`couplers <property_qpu_couplers>` property has
+                           a value starting As
                            ``[[30, 31], [31, 32], [32, 33], ...`` and a length
                            of 40279. After encoding, it might look like
                            ``AAAAAAAA8L8=``.
@@ -769,11 +782,11 @@ sampler,see the :ref:`sapi_rest_full_examples` section.
 
     .. tab-item:: cURL
 
-        This example sets the identifier, ``problem_data_id``,
-        of the problem data being uploaded to the value returned from
-        the :ref:`sapi_rest_get_multi_id` example and sets the requested solver
-        to ``hybrid_binary_quadratic_model_version2p``, a solver available
-        to the user account that executed this example.
+        This example sets the identifier, ``problem_data_id``, of the problem
+        data being uploaded to the value returned from the
+        :ref:`sapi_rest_get_multi_id` example and sets the requested solver to
+        ``hybrid_binary_quadratic_model_version2p``, a solver available to the
+        user account that executed this example.
 
         .. code-block:: bash
 
@@ -861,11 +874,11 @@ Cancel Multiple Problems
 To cancel pending problems (problems with status ``PENDING``), send an HTTP
 DELETE request to ``problems``.
 
-The request body should be a JSON-encoded list of problem IDs;
-if the request body is empty, the request has no effect.
+The request body should be a JSON-encoded list of problem IDs; if the request
+body is empty, the request has no effect.
 
-When possible, if you have more than one problem to cancel, submit them
-in a single query.
+When possible, if you have more than one problem to cancel, submit them in a
+single query.
 
 .. tab-set::
 
@@ -1274,9 +1287,8 @@ Retrieve an Answer
 ------------------
 
 To retrieve an answer for a problem, send an HTTP GET request to
-``problems/<problem_id>/answer``. The answer consists of solution data
-in binary format or a URL to such solution data as well as additional problem
-information.
+``problems/<problem_id>/answer``. The answer consists of solution data in binary
+format or a URL to such solution data as well as additional problem information.
 
 The request should contain no body.
 
@@ -1426,19 +1438,19 @@ The request should contain no body.
 Retrieve Available Solvers
 --------------------------
 
-To retrieve a list of available solvers from the Leap service,
-send an HTTP GET request to ``solvers/remote``.
+To retrieve a list of available solvers from the Leap service, send an HTTP GET
+request to ``solvers/remote``.
 
 The request should contain no body.
 
-The request supports the use of the ``If-None-Match`` request header.
-If the ``ETag`` (entity tag) value in the request header matches the one
-on the server, a ``304 (Not Modified)`` response is returned;
-otherwise, the list of solvers is returned. You can use this feature to manage
-downloading and caching of this content.
+The request supports the use of the ``If-None-Match`` request header. If the
+``ETag`` (entity tag) value in the request header matches the one on the server,
+a ``304 (Not Modified)`` response is returned; otherwise, the list of solvers is
+returned. You can use this feature to manage downloading and caching of this
+content.
 
-By default, all solver fields are returned. You can use the ``filter``
-parameter to get a subset of solver fields.
+By default, all solver fields are returned. You can use the ``filter`` parameter
+to get a subset of solver fields.
 
 .. dropdown:: Filtering Solver Fields with the ``filter`` Parameter
 
@@ -1475,14 +1487,13 @@ parameter to get a subset of solver fields.
     *   ``private``
 
     *   ``max-age``: Specifies the time, in seconds, that the returned solver
-        fields should be cached; the time depends on the expected longevity
-        of the solver field values. Solver fields with values that
-        change more frequently (e.g., ``avg_load``) should probably be cached
-        for a shorter time than fields with values that change infrequently
-        (e.g., ``description`` and ``id``). The value for this directive is
-        based on the shortest cache-refresh time of the returned fields.
-        (Use the ``filter`` parameter to return the desired subset of solver
-        fields.)
+        fields should be cached; the time depends on the expected longevity of
+        the solver field values. Solver fields with values that change more
+        frequently (e.g., ``avg_load``) should probably be cached for a shorter
+        time than fields with values that change infrequently (e.g.,
+        ``description`` and ``id``). The value for this directive is based on
+        the shortest cache-refresh time of the returned fields. (Use the
+        ``filter`` parameter to return the desired subset of solver fields.)
 
     .. doctest:: rest_live
         :skipif: test_api_token_set == False
@@ -1523,17 +1534,17 @@ parameter to get a subset of solver fields.
 Retrieve Solver Fields
 ----------------------
 
-To retrieve the fields of a solver, send an HTTP GET request
-to ``solvers/remote/<solver_id>``.
+To retrieve the fields of a solver, send an HTTP GET request to
+``solvers/remote/<solver_id>``.
 
-The request supports the ``If-None-Match`` request header.
-If the ``ETag`` (entity tag) value in the request header matches the one
-on the server, a ``304 (Not Modified)`` response is returned;
-otherwise, the solver fields and values are returned. You can use this feature
-to manage downloading and caching of this content.
+The request supports the ``If-None-Match`` request header. If the ``ETag``
+(entity tag) value in the request header matches the one on the server, a
+``304 (Not Modified)`` response is returned; otherwise, the solver fields and
+values are returned. You can use this feature to manage downloading and caching
+of this content.
 
-By default, all solver fields are returned.
-You can use the ``filter`` parameter to get a subset of solver fields.
+By default, all solver fields are returned. You can use the ``filter`` parameter
+to get a subset of solver fields.
 
 .. dropdown:: Filtering Solver Fields with the ``filter`` Parameter
 
@@ -1570,13 +1581,13 @@ You can use the ``filter`` parameter to get a subset of solver fields.
     *   ``private``
 
     *   ``max-age``: Specifies the time, in seconds, that the returned solver
-        fields should be cached; the time depends on the expected longevity
-        of the solver field values. Solver fields with values that
-        change more frequently (e.g., ``avg_load``) should probably be cached
-        for a shorter time than fields with values that change infrequently
-        (e.g., ``description`` and ``id``). The value for this directive is
-        based on the shortest cache-refresh time of the returned fields. (Use
-        the ``filter`` parameter to return the desired subset of solver fields.)
+        fields should be cached; the time depends on the expected longevity of
+        the solver field values. Solver fields with values that change more
+        frequently (e.g., ``avg_load``) should probably be cached for a shorter
+        time than fields with values that change infrequently (e.g.,
+        ``description`` and ``id``). The value for this directive is based on
+        the shortest cache-refresh time of the returned fields. (Use the
+        ``filter`` parameter to return the desired subset of solver fields.)
 
     .. doctest:: rest_live
         :skipif: test_api_token_set == False
@@ -1606,15 +1617,14 @@ End-to-End Examples
     SAPI_TOKEN = os.environ["SAPI_TOKEN"]   # https://git.dwavesys.local/projects/SAPI/repos/documentation/pull-requests/528/overview
 
 This chapter demonstrates using the RESTful Solver Application Programming
-Interface (SAPI) directly---without :std:doc:`Ocean software <oceandocs:index>`
-providing the client---with two simple examples: submitting a problem
-to a quantum processing unit (QPU) and to a quantum-classical hybrid
-solver.
+Interface (SAPI) directly---without :ref:`Ocean software <index_ocean_sdk>`
+providing the client---with two simple examples: submitting a problem to a
+quantum processing unit (QPU) and to a quantum-classical hybrid solver.
 
 .. ATTENTION::
-    The examples in this guide are pedagogical: errors are not handled,
-    for example. For a production-code implementation, see Ocean software's
-    :std:doc:`cloud client <oceandocs:docs_cloud/sdk_index>` package.
+    The examples in this guide are pedagogical: errors are not handled, for
+    example. For a production-code implementation, see Ocean software's
+    :ref:`cloud client <index_cloud>` package.
 
 Import Python Packages Used in Examples
 ---------------------------------------
@@ -1640,10 +1650,9 @@ The examples in this chapter use Python with the following packages:
 Set Up the Session
 ------------------
 
-Ocean software documentation's
-:std:doc:`Configuring Access <oceandocs:overview/sapi>` section explains
-how you can find your base URL and API token. Start by setting
-up the base URL and authentication token used for all SAPI requests.
+The :ref:`ocean_sapi_access_basic` section explains how you can find your base
+URL and API token. Start by setting up the base URL and authentication token
+used for all SAPI requests.
 
 *   SAPI endpoints are specific to a region. Examples in this document use the
     https://na-west-1.cloud.dwavesys.com/sapi/v2 base, for North America.
@@ -1680,8 +1689,8 @@ quantity of retrieved information, can be omitted.
     >>> print(r1.status_code)
     200
 
-The response contains all the solvers available to the API token.
-The code below lists the solver names, statuses, and current usage loads.
+The response contains all the solvers available to the API token. The code below
+lists the solver names, statuses, and current usage loads.
 
 .. doctest:: rest_live
     :skipif: test_api_token_set == False
@@ -1709,7 +1718,7 @@ The code below lists the solver names, statuses, and current usage loads.
 Submit a Problem to a QPU Sampler
 ---------------------------------
 
-This example of submitting a problem in :ref:`Ising format <obj_ising>`,
+This example of submitting a problem in :term:`Ising format <Ising>`,
 :math:`\text{E}_{ising}(\vc s) = \sum_{i=1}^N h_i s_i + \sum_{i=1}^N \sum_{j=i+1}^N J_{i,j} s_i s_j`,
 to a quantum computer uses the following simple problem with a single quadratic
 interaction:
@@ -1753,8 +1762,8 @@ resource.\ [#]_
 
     The response from the previous request using the ``GET`` method to the
     :ref:`/solvers/remote <sapi_rest_list_remote_solvers>` resource can include
-    all the information acquired here
-    if the :ref:`filter <sapi_rest_list_remote_solvers>` parameter is omitted.
+    all the information acquired here if the
+    :ref:`filter <sapi_rest_list_remote_solvers>` parameter is omitted.
 
 .. doctest:: rest_live
     :skipif: test_api_token_set == False
@@ -1765,9 +1774,8 @@ resource.\ [#]_
 Format Your Problem for the Selected Solver
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Typically you map (:std:doc:`minor-embed <oceandocs:concepts/embedding>`) your
-variables to a QPU's qubits using a heuristic tool such as
-:std:doc:`minorminor <oceandocs:docs_minorminer/source/sdk_index>`. This example
+Typically you map (:term:`minor-embed`) your variables to a QPU's qubits using a
+heuristic tool such as :ref:`minorminor <index_minorminer>`. This example
 is simple enough to just select the first coupler and the two qubits it couples.
 
 .. doctest:: rest_live
@@ -1781,9 +1789,8 @@ is simple enough to just select the first coupler and the two qubits it couples.
     Variable x is embedded as qubit 30 and y as 31.
 
 Next, format the biases as shown in the :ref:`sapi_rest_submit_problem` section.
-For less simple examples you will likely need to develop encoding
-functions similar to those of Ocean software's
-:std:doc:`cloud client <oceandocs:docs_cloud/sdk_index>` package.
+For less simple examples you will likely need to develop encoding functions
+similar to those of Ocean software's :ref:`cloud client <index_cloud>` package.
 
 .. doctest:: rest_live
     :skipif: test_api_token_set == False
@@ -1801,11 +1808,11 @@ functions similar to those of Ocean software's
 Submit Your SAPI Request
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-Send a ``POST`` request method to
-the :ref:`/problems <sapi_rest_submit_problem>` resource with your configured
+Send a ``POST`` request method to the
+:ref:`/problems <sapi_rest_submit_problem>` resource with your configured
 request body, including the problem and solver parameters described in
-the |doc_solver_properties|_ guide. This example sets the number of required
-reads (anneals) and a problem label.
+the :ref:`qpu_solver_properties_all` section. This example sets the number of
+required reads (anneals) and a problem label.
 
 You should get a valid problem identifier in the response.
 
@@ -1838,9 +1845,9 @@ Decode the Response
 ~~~~~~~~~~~~~~~~~~~
 
 As shown in the :ref:`sapi_rest_get_problem_info` section, some fields of the
-response are binary encoded. Here too, less simple examples will likely
-require decoding functions similar to those of Ocean software's
-:std:doc:`cloud client <oceandocs:docs_cloud/sdk_index>` package.
+response are binary encoded. Here too, less simple examples will likely require
+decoding functions similar to those of Ocean software's
+:ref:`cloud client <index_cloud>` package.
 
 .. testsetup:: rest_live
 
@@ -1869,7 +1876,7 @@ Submit a Problem to a Quantum-Classical Hybrid Solver
 -----------------------------------------------------
 
 This example submits a binary quadratic model (BQM) problem, in
-:ref:`Ising format <obj_ising>`,
+:term:`Ising format <Ising>`,
 :math:`\text{E}_{ising}(\vc s) = \sum_{i=1}^N h_i s_i + \sum_{i=1}^N \sum_{j=i+1}^N J_{i,j} s_i s_j`,
 to a quantum-classical hybrid BQM solver in the Leap service. The following
 simple problem with a single quadratic interaction is used:
@@ -1883,9 +1890,8 @@ simple problem with a single quadratic interaction is used:
 Upload Problem to the Leap Service
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Here, :std:doc:`Ocean software <oceandocs:index>` is used to serialize
-the problem to the format described in
-the :std:doc:`dimod <oceandocs:docs_dimod/sdk_index>`
+Here, :ref:`Ocean software <index_ocean_sdk>` is used to serialize the problem
+to the format described in the :ref:`dimod <index_dimod>`
 :meth:`~dimod.QuadraticModel.to_file` method.
 
 .. doctest:: rest_live
@@ -1969,9 +1975,9 @@ Submit Your SAPI Request
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 Format the request body as shown in the :ref:`sapi_rest_submit_problem` section.
-Also set the problem and solver parameters described in
-the |doc_solver_properties|_ guide. This example sets a value for
-the maximum solver runtime and a problem label.
+Also set the problem and solver parameters described in the
+:ref:`qpu_solver_properties_all` section. This example sets a value for the
+maximum solver runtime and a problem label.
 
 Send a ``POST`` request method to
 the :ref:`/problems <sapi_rest_submit_problem>` resource. You should get
@@ -2010,4 +2016,3 @@ section.
     ... else:
     ...   print("Not completed")
     Run time was 9987459 microseconds.
-

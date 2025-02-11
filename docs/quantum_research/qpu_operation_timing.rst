@@ -226,8 +226,8 @@ components\ [#]_\ :
 Programming Cycle
 -----------------
 
-When an Ising problem is provided as a set of :ref:`sysdocs:param_h` and
-:ref:`sysdocs:param_j` values,\ [#]_ the |dwave_short| system conveys those
+When an Ising problem is provided as a set of :ref:`parameter_qpu_h` and
+:ref:`parameter_qpu_j` values,\ [#]_ the |dwave_short| system conveys those
 values to the DACs located on the QPU. Room-temperature electronics generate the
 raw signals that are sent via wires into the refrigerator to program the DACs.
 The DACs then apply static magnetic-control signals locally to the qubits and
@@ -238,8 +238,8 @@ section for more details about this cooling time.
 
 .. [#]
     Several other instructions to the system are provided by the user: for
-    example, an :ref:`sysdocs:param_anneal_time` over which the quantum
-    annealing process is to occur. See |doc_solver_properties|_ for details.
+    example, an :ref:`parameter_qpu_annealing_time` over which the quantum
+    annealing process is to occur. See the :ref:`qpu_solver_parameters` section.
 
 .. [#]
     In some descriptions, the programming cycle is subdivided into a reset step
@@ -255,23 +255,24 @@ Anneal-Read Cycle
 After the programming cycle, the system switches to the annealing phase during
 which the QPU is repeatedly annealed and read out. Annealing is performed using
 the analog lines over a time specified by the user as
-:ref:`sysdocs:param_anneal_time` and reported by the QPU as
+:ref:`parameter_qpu_annealing_time` and reported by the QPU as
 *qpu_anneal_time_per_sample.* Afterward, the digital readout system of the QPU
 reads and returns the spin states of the qubits. The system is then allowed to
 cool for a time returned by the QPU as *qpu_delay_time_per_sample*---an interval
 comprising a constant value plus any additional time optionally specified by the
-user via the :ref:`sysdocs:param_readout_therm` parameter. During
+user via the :ref:`parameter_qpu_readout_thermalization` parameter. During
 *qpu_delay_time_per_sample*, the QPU returns to the superposition state; that
 is, the ground state of the initial Hamiltonion.\ [#]_
 
 The anneal-read cycle is also referred to as a *sample.* The cycle repeats for
-some number of samples specified by the user in the :ref:`param_num_reads`
-parameter, and returns one solution per sample. The total time to complete the
-requested number of samples is returned by the QPU as *qpu_sampling_time.*
+some number of samples specified by the user in the
+:ref:`parameter_qpu_num_reads` parameter, and returns one solution per sample.
+The total time to complete the requested number of samples is returned by the
+QPU as *qpu_sampling_time.*
 
 .. [#] For :ref:`reverse annealing <qpu_qa_anneal_sched_reverse>`,
-    see the :ref:`param_initial_state` and
-    :ref:`param_reinitialize_state` solver parameters.
+    see the :ref:`parameter_qpu_initial_state` and
+    :ref:`parameter_qpu_reinitialize_state` solver parameters.
 
 .. _qpu_qpu_usage_charges:
 
@@ -281,7 +282,7 @@ Usage Charge Time
 |dwave_short| charges you for time that solvers run your problems, with rates
 depending on QPU usage. You can see the rate at which your account's quota is
 consumed for a particular solver in the solver's
-:ref:`sysdocs:property_quota_rate` property.
+:ref:`property_qpu_quota_conversion_rate` property.
 
 You can see the time you are charged for in the responses returned for your
 submitted problems. The relevant field in the response is
@@ -290,9 +291,9 @@ shows :code:`'qpu_access_time': 9687` in the returned response, meaning almost
 10 milliseconds are being charged.
 
 For example, for a QPU solver with a
-:ref:`quota conversion rate <sysdocs:property_quota_rate>` of 1, a problem that
-results in a :code:`'qpu_access_time': 1500`, deducts 1.5 milliseconds seconds
-from your account's quota.
+:ref:`quota conversion rate <property_qpu_quota_conversion_rate>` of 1, a
+problem that results in a :code:`'qpu_access_time': 1500`, deducts
+1.5 milliseconds seconds from your account's quota.
 
 .. _qpu_admin_stats_total_time:
 
@@ -315,7 +316,8 @@ QMI Runtime Limit
 
 The |dwave_short| system limits your ability to submit a long-running QMI to
 prevent you from inadvertently monopolizing QPU time. This limit varies by
-system; check the :ref:`property_prdr` property for your solver.
+system; check the :ref:`property_qpu_problem_run_duration_range` property for
+your solver.
 
 The limit is calculated according to the following formula:
 
@@ -327,9 +329,10 @@ The limit is calculated according to the following formula:
     \end{equation}
 
 where :math:`P_1`, :math:`P_2`, :math:`P_3`, and :math:`P_4` are the values
-specified for the :ref:`sysdocs:param_anneal_time`, :ref:`param_readout_therm`,
-:ref:`param_num_reads` (samples), and :ref:`param_prog_therm` parameters,
-respectively.
+specified for the :ref:`parameter_qpu_annealing_time`,
+:ref:`parameter_qpu_readout_thermalization`,
+:ref:`parameter_qpu_num_reads` (samples), and
+:ref:`parameter_qpu_programming_thermalization` parameters, respectively.
 
 If you attempt to submit a QMI whose execution time would exceed the limit for
 your system, an error is returned showing the values in microseconds. For
@@ -358,7 +361,7 @@ second) and a problem has an estimated runtime of 3,750,000 microseconds for
 each. (With
 :ref:`spin-reversal transforms (SRTs) <qpu_config_srt>`, you
 similarly divide your samples into such batches; consider using
-`Ocean software <https://docs.ocean.dwavesys.com>`_'s
+:ref:`Ocean software <index_ocean_sdk`'s
 :class:`~dwave.preprocessing.composites.SpinReversalTransformComposite`
 composite to also benefit from potential reduction in QPU biases.)
 
@@ -366,7 +369,7 @@ For a detailed breakdown of the QPU access-time estimates
 for your problem submission, see the :ref:`qpu_runtime_estimating` section.
 
 .. [#] You could also adjust timing-related solver parameters. For information
-    about solver parameters, see the :ref:`properties_solver_parameters`
+    about solver parameters, see the :ref:`qpu_solver_parameters` section.
     section.
 
 .. _qpu_runtime_estimating:
@@ -375,8 +378,9 @@ Estimating Access Time
 ======================
 
 You can estimate a problem's QPU access time from the parameter values you
-specify, timing data provided in the :ref:`property_ptd` solver property, and
-the number of qubits used to embed\ [#]_ the problem on the selected QPU.
+specify, timing data provided in the :ref:`property_qpu_problem_timing_data`
+solver property, and the number of qubits used to embed\ [#]_ the problem on the
+selected QPU.
 
 Ocean software's
 :meth:`~oceandocs:dwave.cloud.solver.StructuredSolver.estimate_qpu_access_time`
@@ -429,7 +433,7 @@ Estimate of 75005us on Advantage_system4.1
 
 The following table provides a procedure for collecting the required information
 and calculating the runtime estimation for versions 1.0.x\ [#]_ of the
-:ref:`timing model <property_ptd>`.
+:ref:`timing model <property_qpu_problem_timing_data>`.
 
 .. list-table:: Estimating the QPU Access Time for Problems
     :widths: 10 20 70
@@ -441,98 +445,111 @@ and calculating the runtime estimation for versions 1.0.x\ [#]_ of the
     *   -   1
         -   Typical programming time
         -   Take the value from the
-            :ref:`typical_programming_time <property_ptd>` field.
+            :ref:`typical_programming_time <property_qpu_problem_timing_data>`
+            field.
     *   -   2
         -   Reverse annealing programming time
         -   If reverse annealing is used, take the value from one of the the
-            fields of the :ref:`property_ptd` solver property as follows:
+            fields of the :ref:`property_qpu_problem_timing_data` solver
+            property as follows:
 
-            *   If the :ref:`param_reinitialize_state` parameter is specified as
-                true, then take the value from
+            *   If the :ref:`parameter_qpu_reinitialize_state` parameter is
+                specified as true, then take the value from
                 ``reverse_annealing_with_reinit_prog_time_delta``.
-            *   If the :ref:`param_reinitialize_state` parameter is specified as
-                false, then take the value from
+            *   If the :ref:`parameter_qpu_reinitialize_state` parameter is
+                specified as false, then take the value from
                 ``reverse_annealing_without_reinit_prog_time_delta``.
 
             Otherwise, the value is 0.
     *   -   3
         -   Programming thermalization time
-        -   Take the value from either the :ref:`param_prog_therm` solver
-            parameter, if specified, or the
-            :ref:`default_programming_thermalization <property_ptd>` field.
+        -   Take the value from either the
+            :ref:`parameter_qpu_programming_thermalization` solver parameter, if
+            specified, or the
+            :ref:`default_programming_thermalization <property_qpu_problem_timing_data>`
+            field.
     *   -   4
         -   Total programming time
         -   Add rows 1--3.
     *   -   5
         -   Anneal time
-        -   Take the anneal time specified in the :ref:`param_anneal_sched` or
-            :ref:`param_anneal_time` solver parameter; otherwise, take the value
-            from the :ref:`default_annealing_time <property_ptd>` field.
+        -   Take the anneal time specified in the
+            :ref:`parameter_qpu_anneal_schedule` or
+            :ref:`parameter_qpu_annealing_time` solver parameter; otherwise,
+            take the value from the
+            :ref:`default_annealing_time <property_qpu_problem_timing_data>`
+            field.
     *   -   6
         -   Readout time
         -   Calculate this value using the :mod:`numpy` functions
             :func:`numpy.interp` and :func:`numpy.emath.log10` and the Python
             function :func:`pow` as follows:
 
-            *   If :ref:`readout_time_model <property_ptd>` is ``pwl_log_log``,
-                then the following Python code can be used:
+            *   If :ref:`readout_time_model <property_qpu_problem_timing_data>`
+                is ``pwl_log_log``, then the following Python code can be used:
 
                 ``pow(10, interp(log10(m), q, t))``
 
-            *   If :ref:`readout_time_model <property_ptd>` is ``pwl_linear``,
-                then the following Python code can be used:
+            *   If :ref:`readout_time_model <property_qpu_problem_timing_data>`
+                is ``pwl_linear``, then the following Python code can be used:
 
                 ``interp(m, q, t)``
 
             where ``m`` is the number of qubits in the
-            :ref:`embedded <getting_started_embedding>` problem and
+            :term:`embedded <embed>` problem and
             ``q = readout_time_model_parameters[0:N]`` and
             ``t = readout_time_model_parameters[N:2N]`` are the first ``N`` and
             last ``N`` elements of the
             ``2N = len(readout_time_model_parameters)`` elements of the
-            :ref:`property_ptd` solver property's
+            :ref:`property_qpu_problem_timing_data` solver property's
             ``readout_time_model_parameters`` field.
     *   -   7
         -   Delay time
         -   Take the value from the
-            :ref:`qpu_delay_time_per_sample <property_ptd>` field.
+            :ref:`qpu_delay_time_per_sample <property_qpu_problem_timing_data>`
+            field.
     *   -   8
         -   Reverse annealing delay time
         -   If reverse annealing is used, take the value from one of the
-            following fields of the :ref:`property_ptd` solver property:
+            following fields of the :ref:`property_qpu_problem_timing_data`
+            solver property:
 
-            *   If the :ref:`param_reinitialize_state` parameter is specified as
-                true, then take the value from
+            *   If the :ref:`parameter_qpu_reinitialize_state` parameter is
+                specified as true, then take the value from
                 ``reverse_annealing_with_reinit_delay_time_delta``.
 
-            *   If the :ref:`param_reinitialize_state` parameter is specified as
-                false, then take the value from
+            *   If the :ref:`parameter_qpu_reinitialize_state` parameter is
+                specified as false, then take the value from
                 ``reverse_annealing_without_reinit_delay_time_delta``.
     *   -   9
         -   Readout thermalization time
-        -   Take the value from either the :ref:`param_readout_therm` solver
-            parameter, if specified, or the :ref:`property_drt` solver property.
+        -   Take the value from either the
+            :ref:`parameter_qpu_readout_thermalization` solver parameter, if
+            specified, or the :ref:`property_qpu_default_readout_thermalization`
+            solver property.
     *   -   10
         -   Decorrelation time
-        -   If the :ref:`param_reduce_intersample` solver parameter is specified
-            as true, then the following Python code can be used to calculate the
-            decorrelation time:
+        -   If the :ref:`parameter_qpu_reduce_intersample_correlation` solver
+            parameter is specified as true, then the following Python code can
+            be used to calculate the decorrelation time:
 
             ``a / m * (r[1] - r[0]) + r[0]``
 
             where ``a`` is the anneal time (row 5), ``m`` is the
-            :ref:`decorrelation_max_nominal_anneal_time <property_ptd>` field,
-            ``r[0]`` and ``r[1]`` are the first and last elements of the
-            :ref:`decorrelation_time_range <property_ptd>` field.
+            :ref:`decorrelation_max_nominal_anneal_time <property_qpu_problem_timing_data>`
+            field, ``r[0]`` and ``r[1]`` are the first and last elements of the
+            :ref:`decorrelation_time_range <property_qpu_problem_timing_data>`
+            field.
 
-            If the :ref:`param_reduce_intersample` solver parameter is false,
-            the value is 0.
+            If the :ref:`parameter_qpu_reduce_intersample_correlation` solver
+            parameter is false, the value is 0.
     *   -   11
         -   Sampling time per read
         -   Add rows 5--8 and the larger of either row 9 or 10.
     *   -   12
         -   Number of reads
-        -   Take the value from the :ref:`param_num_reads` solver parameter.
+        -   Take the value from the :ref:`parameter_qpu_num_reads` solver
+            parameter.
     *   -   13
         -   Total sampling time
         -   Multiply row 11 by row 12.
@@ -543,23 +560,24 @@ and calculating the runtime estimation for versions 1.0.x\ [#]_ of the
 .. [#]
     Embedding is typically heuristic and the number of required qubits can vary
     between executions. If you are using a heuristic embedding tool such as
-    :std:doc:`minorminor <oceandocs:docs_minorminer/source/sdk_index>`
-    indirectly through your sampler (e.g., by using Ocean’s
+    :ref:`minorminor <index_minorminer>` indirectly through your sampler (e.g.,
+    by using Ocean’s
     :class:`~oceandocs:dwave.system.composites.EmbeddingComposite` or
     :class:`~oceandocs:dwave.system.samplers.DWaveCliqueSampler`), you can use
     the same tool on your problem to estimate the expected number of qubits: for
     large, complex problems you might run the tool several times and take the
     number of qubits from the produced average or worst-case embedding; for
     small, simple problems even a single run might be sufficient. If you are
-    using such a tool directly (e.g., in conjunction with Ocean’s
+    using such a tool directly (e.g., in conjunction with Ocean's
     :class:`~oceandocs:dwave.system.composites.FixedEmbeddingComposite`) or
     otherwise generating a heuristic or non-heuristic embedding, take the
     required number of qubits from your embedding. Because embedding depends on
-    a QPU’s working graph, such embeddings should be for the particular QPU for
+    a QPU's working graph, such embeddings should be for the particular QPU for
     which you are estimating the access time.
 
 .. [#]
-    The version is specified in the :ref:`property_ptd` solver property.
+    The version is specified in the :ref:`property_qpu_problem_timing_data`
+    solver property.
 
 .. _qpu_sapi_qpu_timing:
 
@@ -567,10 +585,10 @@ SAPI Timing Fields
 ==================
 
 The table below lists the timing-related fields available in |dwave_short|'s
-`Ocean SDK <https://docs.ocean.dwavesys.com>`_ and which you can access from
-the ``info`` field in the `dimod <https://github.com/dwavesystems/dimod>`_
-``sampleset`` class, as in the example below. Note that the time is given in
-microseconds with a resolution of at least 0.01 :math:`\mu s`.\ [#]_
+:ref:`Ocean SDK <index_ocean_sdk>` and which you can access from
+the ``info`` field in the :ref:`dimod <index_dimod>` ``sampleset`` class, as in
+the example below. Note that the time is given in microseconds with a resolution
+of at least 0.01 :math:`\mu s`.\ [#]_
 
 .. [#] Time resolution is higher for some fields, such as
     ``qpu_anneal_time_per_sample``, which can be meaningful when the
@@ -796,7 +814,7 @@ configuration and with system load.
 
 .. [#]
     Randal E. Bryant and David R. O'Hallaron,
-    *Computer Systems: A Programmer’s Perspective (2nd Edition)*, Pearson, 2010.
+    *Computer Systems: A Programmer's Perspective (2nd Edition)*, Pearson, 2010.
 
 .. [#]
     Paulo Eduardo Nogueira, Rivalino Matias, Jr., and Elder Vicente,
@@ -806,8 +824,8 @@ configuration and with system load.
 Internet Latency
 ----------------
 
-If you are running your program on a client system geographically remotefrom the
-|dwave_short| system on which you're executing, you will likely encounter
+If you are running your program on a client system geographically remote from
+the |dwave_short| system on which you're executing, you will likely encounter
 latency and variability from the internet connection itself (see
 :numref:`Fig. %s <highlevel_timing>`).
 
@@ -816,43 +834,45 @@ Settings of User-Specified Parameters
 
 The following user-specified parameters can cause timing to change, but should
 not affect the variability of timing. For more information on these parameters,
-see |doc_solver_properties|_.
+see the :ref:`qpu_solver_parameters` section.
 
-*   :ref:`sysdocs:param_anneal_sched`---User-provided anneal schedule. Specifies
-    the points at which to change the default schedule. Each point is a pair of
-    values representing time :math:`t` in microseconds and normalized anneal
-    fraction :math:`s`. The system connects the points with piecewise-linear
-    ramps to construct the new schedule. If :ref:`sysdocs:param_anneal_sched` is
-    specified, :math:`T_a`, *qpu_anneal_time_per_sample* is populated with the
-    total time specified by the piecewise-linear schedule.
-*   :ref:`sysdocs:param_anneal_time`---Duration, in microseconds, of quantum
+*   :ref:`parameter_qpu_anneal_schedule`---User-provided anneal schedule.
+    Specifies the points at which to change the default schedule. Each point is
+    a pair of values representing time :math:`t` in microseconds and normalized
+    anneal fraction :math:`s`. The system connects the points with
+    piecewise-linear ramps to construct the new schedule. If
+    :ref:`parameter_qpu_anneal_schedule` is specified, :math:`T_a`,
+    *qpu_anneal_time_per_sample* is populated with the total time specified by
+    the piecewise-linear schedule.
+*   :ref:`parameter_qpu_annealing_time`---Duration, in microseconds, of quantum
     annealing time. This value populates :math:`T_a`,
     *qpu_anneal_time_per_sample*.
-*   :ref:`param_num_reads`---Number of samples to read from the solver per QMI.
-*   :ref:`param_prog_therm`---Number of microseconds to wait after programming
-    the QPU to allow it to cool; i.e., *post-programming thermalization time*.
-    Values lower than the default accelerate solving at the expense of solution
-    quality. This value contributes to the total :math:`T_p`,
-    *qpu_programming_time*.
-*   :ref:`param_readout_therm`---Number of microseconds to wait after each
-    sample is read from the QPU to allow it to cool to base temperature; i.e.,
-    *post-readout thermalization time*.
-    This optional value contributes to :math:`T_d`, *qpu_delay_time_per_sample*.
-*   :ref:`param_reduce_intersample`---Used to reduce sample-to-sample
-    correlations. When true, adds to :math:`T_d`, *qpu_delay_time_per_sample*.
-    Amount of time added increases linearly with increasing length of the anneal
-    schedule.
-*   :ref:`param_reinitialize_state`---Used in reverse annealing. When ``True``
-    (the default setting), reinitializes the initial qubit state for every
-    anneal-readout cycle, adding between 100 and 600 microseconds to
+*   :ref:`parameter_qpu_num_reads`---Number of samples to read from the solver
+    per QMI.
+*   :ref:`parameter_qpu_programming_thermalization`---Number of microseconds to
+    wait after programming the QPU to allow it to cool; i.e.,
+    *post-programming thermalization time*. Values lower than the default
+    accelerate solving at the expense of solution quality. This value
+    contributes to the total :math:`T_p`, *qpu_programming_time*.
+*   :ref:`parameter_qpu_readout_thermalization`---Number of microseconds to wait
+    after each sample is read from the QPU to allow it to cool to base
+    temperature; i.e., *post-readout thermalization time*. This optional value
+    contributes to :math:`T_d`, *qpu_delay_time_per_sample*.
+*   :ref:`parameter_qpu_reduce_intersample_correlation`---Used to reduce
+    sample-to-sample correlations. When true, adds to :math:`T_d`,
+    *qpu_delay_time_per_sample*. Amount of time added increases linearly with
+    increasing length of the anneal schedule.
+*   :ref:`parameter_qpu_reinitialize_state`---Used in reverse annealing. When
+    ``True`` (the default setting), reinitializes the initial qubit state for
+    every anneal-readout cycle, adding between 100 and 600 microseconds to
     :math:`T_d`, *qpu_delay_time_per_sample*. When ``False``, adds approximately
     10 microseconds to :math:`T_d`.\ [#]_
 
 .. note::
     Depending on the parameters chosen for a QMI, QPU access time may be a large
     or small fraction of service time. E.g., a QMI requesting a single sample
-    with short :ref:`sysdocs:param_anneal_time` would see programming time as a
-    large fraction of service time and QPU access time as a small fraction.
+    with short :ref:`parameter_qpu_annealing_time` would see programming time as
+    a large fraction of service time and QPU access time as a small fraction.
 
 .. [#]
     Amount of time varies by system.
