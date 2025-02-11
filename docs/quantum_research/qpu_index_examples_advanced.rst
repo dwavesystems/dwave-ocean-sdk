@@ -18,15 +18,21 @@ For beginner examples, see the :ref:`qpu_index_intro_examples` section.
     :gutter: 2
 
     .. grid-item-card:: :ref:`qpu_example_pp_greedy`
+        :link: qpu_example_pp_greedy
+        :link-type: ref
 
         Improves samples returned from a QPU by post-processing with a classical 
         greedy algorithm.
 
     .. grid-item-card:: :ref:`qpu_example_inspector_graph_partitioning`
+        :link: qpu_example_inspector_graph_partitioning
+        :link-type: ref
 
         Improves :term:`minor-embedding` on a graph partition problem.
 
     .. grid-item-card:: :ref:`qpu_example_topology_samplers`
+        :link: qpu_example_topology_samplers
+        :link-type: ref
 
         Runs your code on software samplers with different :term:`QPU`-inspired topologies.
 

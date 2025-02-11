@@ -18,10 +18,14 @@ in this section.
     :gutter: 2
 
     .. grid-item-card:: :ref:`opt_scaling`
+        :link: opt_scaling
+        :link-type: ref
 
         Coding your application for performance on problems of the industrial scale.
 
     .. grid-item-card:: :ref:`opt_index_examples_advanced`
+        :link: opt_index_examples_advanced
+        :link-type: ref
 
         Advanced end-to-end examples.
 

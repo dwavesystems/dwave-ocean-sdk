@@ -23,30 +23,44 @@ the |cloud_tm| quantum cloud service.
     :gutter: 2
 
     .. grid-item-card:: :ref:`qpu_quantum_annealing_intro`
+        :link: qpu_quantum_annealing_intro
+        :link-type: ref
 
         What quantum annealing is and how it works.
 
     .. grid-item-card:: :ref:`qpu_gate_model_intro`
+        :link: qpu_gate_model_intro
+        :link-type: ref
 
         The gate-model architecture for quantum computing.
 
     .. grid-item-card:: :ref:`qpu_workflow`
+        :link: qpu_workflow
+        :link-type: ref
 
         How quantum computers are used to solve problems.
 
     .. grid-item-card:: :ref:`qpu_intro_classical`
+        :link: qpu_intro_classical
+        :link-type: ref
 
         Classical solvers for developing code.
 
     .. grid-item-card:: :ref:`qpu_intro_quantum_solvers`
+        :link: qpu_intro_quantum_solvers
+        :link-type: ref
 
         Introduction to Ocean software's quantum solvers.
 
     .. grid-item-card:: :ref:`qpu_embedding_intro`
+        :link: qpu_embedding_intro
+        :link-type: ref
 
         Mapping arbitrary problems to QPU :term:`topology`.
 
     .. grid-item-card:: :ref:`qpu_index_examples_beginner`
+        :link: qpu_index_examples_beginner
+        :link-type: ref
 
         Beginner-level end-to-end examples.
 

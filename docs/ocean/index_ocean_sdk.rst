@@ -20,18 +20,24 @@ Ocean\ |tm| software is a suite of tools for using
 .. grid:: 3
     :gutter: 2
 
-    .. grid-item-card:: :ref:`ocean_index_get_started` 
-         
+    .. grid-item-card:: :ref:`ocean_index_get_started`
+        :link: ocean_index_get_started
+        :link-type: ref
+
         Install and learn Ocean software.
-        
-    .. grid-item-card:: :ref:`ocean_packages` 
-         
+
+    .. grid-item-card:: :ref:`ocean_packages`
+        :link: ocean_packages
+        :link-type: ref
+
         Application programming interface (API) documentation.
 
-    .. grid-item-card:: :ref:`ocean_dwave_cli` 
-         
+    .. grid-item-card:: :ref:`ocean_dwave_cli`
+        :link: ocean_dwave_cli
+        :link-type: ref
+
         Command line interface (CLI) for installing the Ocean SDK and more.
-         
+
 .. sections-end-marker
 
 Example

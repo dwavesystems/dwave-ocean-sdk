@@ -54,10 +54,14 @@ Learn Ocean software's workflow and structure.
     :gutter: 2
 
     .. grid-item-card:: :ref:`ocean_workflow`
+        :link: ocean_workflow
+        :link-type: ref
 
         The two main steps of solving problems on quantum computers.
 
     .. grid-item-card:: :ref:`ocean_stack`
+        :link: ocean_stack
+        :link-type: ref
 
         Ocean software stack graphic and description.
 

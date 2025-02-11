@@ -21,10 +21,14 @@ of particular QPUs.
     :gutter: 2
 
     .. grid-item-card:: :ref:`qpu_solver_properties_all`
+        :link: qpu_solver_properties_all
+        :link-type: ref
 
         Properties that characterize behaviors and features of all QPU solvers.
 
     .. grid-item-card:: :ref:`qpu_solver_properties_specific`
+        :link: qpu_solver_properties_specific
+        :link-type: ref
 
         Physical properties of particular QPUs.
 

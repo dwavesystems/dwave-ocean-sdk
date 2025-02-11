@@ -22,19 +22,27 @@ Quadratic Models
     :gutter: 2
 
     .. grid-item-card:: :ref:`opt_example_bqm_structuralimbalance`
+        :link: opt_example_bqm_structuralimbalance
+        :link-type: ref
 
         Solves an unconstrained problem using a Leap hybrid :term:`BQM` solver.
 
     .. grid-item-card:: :ref:`opt_example_kerberos_map`
+        :link: opt_example_kerberos_map
+        :link-type: ref
 
         Demonstrates using an out-of-the-box Ocean hybrid solver.
 
     .. grid-item-card:: :ref:`opt_example_dqm_map`
+        :link: opt_example_dqm_map
+        :link-type: ref
 
         Solves a discrete quadratic model (:term:`DQM`) using a
     	Leap hybrid DQM solver.
 
     .. grid-item-card:: :ref:`opt_example_dwavehybrid_manyvariables`
+        :link: opt_example_dwavehybrid_manyvariables
+        :link-type: ref
 
         Builds a hybrid workflow and solver for a large graph problem.
 

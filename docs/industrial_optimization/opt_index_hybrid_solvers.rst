@@ -33,12 +33,15 @@ to find good solutions.
 
 
     .. grid-item-card:: :ref:`opt_solver_cqm_properties`
-
+        :link: opt_solver_cqm_properties
+        :link-type: ref
 
         Properties of the CQM solver.
 
 
     .. grid-item-card:: :ref:`opt_solver_cqm_parameters`
+        :link: opt_solver_cqm_parameters
+        :link-type: ref
 
         Parameters of the CQM solver.
         
@@ -61,10 +64,14 @@ to find good solutions.
     :gutter: 2
 
     .. grid-item-card:: :ref:`opt_solver_nl_properties`
+        :link: opt_solver_nl_properties
+        :link-type: ref
 
         Properties of the nonlinear solver.
 
     .. grid-item-card:: :ref:`opt_solver_nl_parameters`
+        :link: opt_solver_nl_parameters
+        :link-type: ref
 
         Parameters of the nonlinear solver.
 
@@ -78,10 +85,14 @@ BQM Solver
     :gutter: 2
 
     .. grid-item-card:: :ref:`opt_solver_bqm_properties`
+        :link: opt_solver_bqm_properties
+        :link-type: ref
 
         Properties of the binary quadratic model (BQM) solver.
 
     .. grid-item-card:: :ref:`opt_solver_bqm_parameters`
+        :link: opt_solver_bqm_parameters
+        :link-type: ref
 
         Parameters of the BQM solver.
 
@@ -92,10 +103,14 @@ DQM Solver
     :gutter: 2
 
     .. grid-item-card:: :ref:`opt_solver_dqm_properties`
+        :link: opt_solver_dqm_properties
+        :link-type: ref
 
         Properties of the discrete quadratic model (DQM) solver.
 
     .. grid-item-card:: :ref:`opt_solver_dqm_parameters`
+        :link: opt_solver_dqm_parameters
+        :link-type: ref
 
         Parameters of the DQM solver.
 

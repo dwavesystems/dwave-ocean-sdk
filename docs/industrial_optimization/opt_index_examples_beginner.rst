@@ -27,16 +27,22 @@ Quadratic Models
     :gutter: 2
 
     .. grid-item-card:: :ref:`opt_example_cqm_diet`
+        :link: opt_example_cqm_diet
+        :link-type: ref
 
         Solves a mixed-integer linear-programming (MILP) problem using a 
         `Leap <https://cloud.dwavesys.com/leap/>`_ hybrid :term:`CQM` solver.
 
     .. grid-item-card:: :ref:`opt_example_cqm_binpacking`
+        :link: opt_example_cqm_binpacking
+        :link-type: ref
 
         Solves a binary constrained problem using a
     	`Leap <https://cloud.dwavesys.com/leap/>`_ hybrid :term:`CQM` solver.
 
     .. grid-item-card:: :ref:`opt_example_cqm_stockselling`
+        :link: opt_example_cqm_stockselling
+        :link-type: ref
 
         Solves an integer constrained problem using a
     	Leap hybrid :term:`CQM` solver.
@@ -52,10 +58,14 @@ a `Leap <https://cloud.dwavesys.com/leap/>`_ hybrid
     :gutter: 2
 
     .. grid-item-card:: :ref:`opt_example_nl_tsp`
+        :link: opt_example_nl_tsp
+        :link-type: ref
 
         Helps you start using Leap's hybrid nonlinear-model solver.
 
     .. grid-item-card:: :ref:`opt_example_nl_cvrp`
+        :link: opt_example_nl_cvrp
+        :link-type: ref
 
         Demonstrates more advanced usage options for solving nonlinear models.
 

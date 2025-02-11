@@ -22,21 +22,29 @@ real-time access to quantum computing.
 .. grid:: 3
     :gutter: 2
 
-    .. grid-item-card:: :ref:`leap_index_rns` 
-         
-        System release notes, fixed and open issues. 
+    .. grid-item-card:: :ref:`leap_index_rns`
+        :link: leap_index_rns
+        :link-type: ref
 
-    .. grid-item-card:: :ref:`leap_dev_env` 
-         
+        System release notes, fixed and open issues.
+
+    .. grid-item-card:: :ref:`leap_dev_env`
+        :link: leap_dev_env
+        :link-type: ref
+
         Description of Leap support for third-party IDEs. 
 
-    .. grid-item-card:: :ref:`leap_admin` 
-         
+    .. grid-item-card:: :ref:`leap_admin`
+        :link: leap_admin
+        :link-type: ref
+
         Description of how project administrators manage access
         to projects in Leap.
 
-    .. grid-item-card:: :ref:`leap_sapi_rest` 
-         
+    .. grid-item-card:: :ref:`leap_sapi_rest`
+        :link: leap_sapi_rest
+        :link-type: ref
+
         Reference documentation for the :term:`Solver API <SAPI>` (SAPI) 
         REST interface.
 

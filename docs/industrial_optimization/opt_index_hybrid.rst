@@ -20,10 +20,14 @@ and motivation for, hybrid computing, see:
     :gutter: 2
 
     .. grid-item-card:: :ref:`opt_leap_hybrid`
+        :link: opt_leap_hybrid
+        :link-type: ref
 
         Hybrid solvers hosted in the Leap service.
 
     .. grid-item-card:: :ref:`opt_dwave_hybrid`
+        :link: opt_dwave_hybrid
+        :link-type: ref
 
         Ocean\ |tm| software's general framework for building hybrid
         samplers.
