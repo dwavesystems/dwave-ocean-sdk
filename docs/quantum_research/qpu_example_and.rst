@@ -142,9 +142,9 @@ QPU's numerically indexed qubits).
 
 The next code sets up a D-Wave system as the sampler.
 
-.. include:: min_vertex.rst
-   :start-after: default-config-start-marker
-   :end-before: default-config-end-marker
+.. include:: ../shared/examples.rst
+    :start-after: start_default_solver_config
+    :end-before: end_default_solver_config
 
 >>> from dwave.system import DWaveSampler, EmbeddingComposite
 >>> sampler = DWaveSampler()

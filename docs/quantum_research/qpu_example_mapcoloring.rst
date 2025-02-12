@@ -264,9 +264,9 @@ Sample the BQM
 
 Set up a D-Wave quantum computer as the sampler and request 1000 samples.
 
-.. include:: min_vertex.rst
-   :start-after: default-config-start-marker
-   :end-before: default-config-end-marker
+.. include:: ../shared/examples.rst
+    :start-after: start_default_solver_config
+    :end-before: end_default_solver_config
 
 >>> sampler = EmbeddingComposite(DWaveSampler())       # doctest: +SKIP
 >>> sampleset = sampler.sample(bqm, num_reads=1000,

@@ -19,6 +19,17 @@ main steps: (1) Formulate the problem as an :term:`objective function` in a
 .. end_standard_steps
 
 
+.. start_default_solver_config
+
+.. note:: The following code sets a sampler without specifying :term:`SAPI`
+    parameters. Configure a default :term:`solver`, as described in the
+    :ref:`ocean_sapi_access_basic` section, to run the code as is, or see the
+    :ref:`dwave-cloud-client <index_cloud>` tool on how to access a particular
+    solver by setting explicit parameters in your code or environment variables.
+
+.. end_default_solver_config
+
+
 .. start_qpu1
 
 The following code solves a random problem on a quantum computer.

@@ -4,11 +4,11 @@
 Boolean NOT Gate
 ================
 
-This example solves a simple problem of a Boolean NOT gate to demonstrate the mathematical formulation
-of a problem as a :term:`binary quadratic model` (BQM) and using Ocean tools to solve such problems
-on a D-Wave system.
-Other examples demonstrate the more
-advanced steps that are typically needed for solving actual problems.
+This example solves a simple problem of a Boolean NOT gate to demonstrate the
+mathematical formulation of a problem as a :term:`binary quadratic model` (BQM)
+and using :ref:`Ocean software <index_ocean_sdk>` to solve such problems on a
+|dwave_short| quantum computer. Other examples demonstrate the more-advanced
+steps that are typically needed for solving actual problems.
 
 Example Requirements
 ====================
@@ -26,33 +26,35 @@ Solution Steps
     :start-after: start_standard_steps
     :end-before: end_standard_steps
 
-This example mathematically formulates the BQM and uses Ocean tools to solve it 
-on a D-Wave quantum computer.
+This example mathematically formulates the BQM and uses Ocean tools to solve it
+on a |dwave_short| quantum computer.
 
 Formulate the NOT Gate as a BQM
 ===============================
 
-You use a :term:`sampler` like the D-Wave system to solve binary quadratic models (BQM)\ [#]_\:
-given :math:`M` variables :math:`x_1,...,x_N`, where each variable :math:`x_i` can
-have binary values :math:`0` or :math:`1`, the system tries to find assignments of values
+You use a :term:`sampler` like the |dwave_short| quantum computer to solve
+binary quadratic models (BQM)\ [#]_\: given :math:`M` variables
+:math:`x_1,...,x_N`, where each variable :math:`x_i` can have binary values
+:math:`0` or :math:`1`, the quantum computer tries to find assignments of values
 that minimize
 
 .. math::
 
     \sum_i^N q_ix_i + \sum_{i<j}^N q_{i,j}x_i  x_j,
 
-where :math:`q_i` and :math:`q_{i,j}` are configurable (linear and quadratic) coefficients.
-To formulate a problem for the D-Wave system is to program :math:`q_i` and :math:`q_{i,j}` so
-that assignments of :math:`x_1,...,x_N` also represent solutions to the problem.
+where :math:`q_i` and :math:`q_{i,j}` are configurable (linear and quadratic)
+coefficients. To formulate a problem for a |dwave_short| quantum computer is to
+program :math:`q_i` and :math:`q_{i,j}` so that assignments of
+:math:`x_1,...,x_N` also represent solutions to the problem.
 
-.. [#] The "native" forms of BQM programmed into a D-Wave system are the :term:`Ising` model
-       traditionally used in statistical mechanics and its computer-science equivalent,
-       shown here, the :term:`QUBO`.
+.. [#] The "native" forms of BQM programmed into a |dwave_short| quantum
+    computer are the :term:`Ising` model traditionally used in statistical
+    mechanics and its computer-science equivalent, shown here, the :term:`QUBO`.
 
-Ocean tools can automate the representation of logic gates as a BQM, as demonstrated
-in the :ref:`multi_gate` example.
+Ocean tools can automate the representation of logic gates as a BQM, as
+demonstrated in the example of the :ref:`qpu_example_multigate` section.
 
-.. raw::  latex
+.. latex code for the following graphic
 
     \begin{figure}
     \begin{centering}
@@ -79,19 +81,19 @@ in the :ref:`multi_gate` example.
     A NOT gate is shown in Figure \ref{fig:notGate}.
 
 .. figure:: ../_images/NOT.png
-   :name: CoverSDKExample
-   :align: center
-   :scale: 70 %
+    :name: CoverSDKExample
+    :align: center
+    :scale: 70 %
 
-   A NOT gate.
+    A NOT gate.
 
 Representing the Problem With a Penalty Function
 ------------------------------------------------
 
-This example demonstrates a mathematical formulation of the BQM.
-As shown in :ref:`penalty_sdk`, you can represent a NOT gate,
-:math:`z \Leftrightarrow \neg x`, where :math:`x` is the gate's input and :math:`z`
-its output, using a :term:`penalty function`:
+This example demonstrates a mathematical formulation of the BQM. As explained in
+the :ref:`concept_penalty` section, you can represent a NOT gate,
+:math:`z \Leftrightarrow \neg x`, where :math:`x` is the gate's input and
+:math:`z` its output, using a :term:`penalty function`:
 
 .. math::
 
@@ -99,9 +101,9 @@ its output, using a :term:`penalty function`:
 
 This penalty function represents the NOT gate in that for assignments of
 variables that match valid states of the gate, the function evaluates at a lower
-value than assignments that would be invalid for the gate.\ [1]_ Therefore, when the
-D-Wave system minimizes a BQM based on this penalty function, it finds those
-assignments of variables that match valid gate states.
+value than assignments that would be invalid for the gate.\ [1]_ Therefore, when
+the |dwave_short| quantum computer minimizes a BQM based on this penalty
+function, it finds those assignments of variables that match valid gate states.
 
 Formulating the Problem as a QUBO
 ---------------------------------
@@ -109,9 +111,9 @@ Formulating the Problem as a QUBO
 Sometimes penalty functions are of cubic or higher degree and must be
 reformulated as quadratic to be mapped to a binary quadratic model. For this
 penalty function you just need to drop the freestanding constant: the function's
-values are simply shifted by :math:`-1` but still those representing valid states of
-the NOT gate are lower than those representing invalid states.
-The remaining terms of the penalty function,
+values are simply shifted by :math:`-1` but still those representing valid
+states of the NOT gate are lower than those representing invalid states. The
+remaining terms of the penalty function,
 
 .. math::
 
@@ -124,32 +126,35 @@ are easily reordered in standard :term:`QUBO` formulation:
     -x_1 -x_2  + 2x_1x_2
 
 where :math:`z=x_2` is the NOT gate's output, :math:`x=x_1` the input, linear
-coefficients are :math:`q_1=q_2=-1`, and quadratic coefficient is :math:`q_{1,2}=2`.
-These are the coefficients used to program a D-Wave system.
+coefficients are :math:`q_1=q_2=-1`, and quadratic coefficient is
+:math:`q_{1,2}=2`. These are the coefficients used to program a |dwave_short|
+quantum computer.
 
 Often it is convenient to format the coefficients as an upper-triangular matrix:
 
 .. math::
 
-     Q = \begin{bmatrix} -1 & 2 \\ 0 & -1 \end{bmatrix}
+    Q = \begin{bmatrix} -1 & 2 \\ 0 & -1 \end{bmatrix}
 
-See the :std:doc:`D-Wave Problem-Solving Handbook <sysdocs_gettingstarted:doc_handbook>`
-for more information about formulating problems as QUBOs.
+See the :ref:`qpu_reformulating` section for more information about formulating
+problems as QUBOs.
 
 Solve the Problem by Sampling
 =============================
 
-Now solve on a D-Wave system using sampler :class:`~dwave.system.samplers.DWaveSampler`
-from Ocean software's :doc:`dwave-system </docs_system/sdk_index>`. Also use
-its :class:`~dwave.system.composites.EmbeddingComposite` composite to map the
-unstructured problem (variables such as :math:`x_2` etc.) to the sampler's graph structure
-(the QPU's numerically indexed qubits) in a process known as :term:`minor-embedding`.
+Now solve on a |dwave_short| quantum computer using the
+:class:`~dwave.system.samplers.DWaveSampler` sampler from Ocean software's
+:ref:`index_system` package. Also use its
+:class:`~dwave.system.composites.EmbeddingComposite` composite to map the
+unstructured problem (variables such as :math:`x_2` etc.) to the sampler's
+:ref:`graph structure <qpu_topologies>` (the QPU's numerically indexed qubits)
+in a process known as :term:`minor-embedding`.
 
 The next code sets up a D-Wave system as the sampler.
 
-.. include:: min_vertex.rst
-   :start-after: default-config-start-marker
-   :end-before: default-config-end-marker
+.. include:: ../shared/examples.rst
+    :start-after: start_default_solver_config
+    :end-before: end_default_solver_config
 
 >>> from dwave.system import DWaveSampler, EmbeddingComposite
 >>> sampler = EmbeddingComposite(DWaveSampler())
