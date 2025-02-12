@@ -21,9 +21,9 @@ problem solving in more detail by explicitly configuring the classical and quant
 Example Requirements
 ====================
 
-.. include:: hybrid_solver_service.rst
-  :start-after: example-requirements-start-marker
-  :end-before: example-requirements-end-marker
+.. include:: ../shared/examples.rst
+    :start-after: start_requirements
+    :end-before: end_requirements
 
 .. note:: This example requires a minimal understanding of the :term:`penalty model`
    approach to solving problems by minimizing penalties. In short, you formulate
@@ -37,9 +37,11 @@ Example Requirements
 Solution Steps
 ==============
 
-.. include:: hybrid_solver_service.rst
-  :start-after: example-steps-start-marker
-  :end-before: example-steps-end-marker
+.. |workflow_section| replace:: :ref:`opt_workflow`
+
+.. include:: ../shared/examples.rst
+    :start-after: start_standard_steps
+    :end-before: end_standard_steps
 
 In this example, a DQM is created to formulate the problem and submitted to the
 `Leap <https://cloud.dwavesys.com/leap/>`_ hybrid DQM solver,

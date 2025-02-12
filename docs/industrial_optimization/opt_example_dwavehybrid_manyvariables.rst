@@ -34,16 +34,18 @@ to combine classical and quantum resources in solving your problem, see the
 Example Requirements
 ====================
 
-.. include:: hybrid_solver_service.rst
-  :start-after: example-requirements-start-marker
-  :end-before: example-requirements-end-marker
+.. include:: ../shared/examples.rst
+    :start-after: start_requirements
+    :end-before: end_requirements
 
 Solution Steps
 ==============
 
-.. include:: hybrid_solver_service.rst
-  :start-after: example-steps-start-marker
-  :end-before: example-steps-end-marker
+.. |workflow_section| replace:: :ref:`opt_workflow`
+
+.. include:: ../shared/examples.rst
+    :start-after: start_standard_steps
+    :end-before: end_standard_steps
 
 This example uses :doc:`dwave-hybrid </docs_hybrid/sdk_index>` to combine a tabu
 search on a CPU with the submission of parts of the (large) problem to a D-Wave

@@ -679,6 +679,11 @@ Bibliography
     https://1qbit.com/our-thinking/research-papers
     arXiv:1708.03439
 
+.. [Nel2010]
+    Nielsen, Michael A. and Isaac Chuang.
+    "Quantum Computation and Quantum Information."
+    Cambridge University Press. 2010. 
+
 .. [Nev2012]
     Neven, H., Denchev, V. S., Rose, G., and Macready, W. G.
     "QBoost: Large Scale Classifier Training with

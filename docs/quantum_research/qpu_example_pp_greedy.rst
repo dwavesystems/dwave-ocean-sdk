@@ -27,16 +27,18 @@ results from non-deterministic samplers such as quantum computers.
 Example Requirements
 ====================
 
-.. include:: hybrid_solver_service.rst
-  :start-after: example-requirements-start-marker
-  :end-before: example-requirements-end-marker
+.. include:: ../shared/examples.rst
+    :start-after: start_requirements
+    :end-before: end_requirements
 
 Solution Steps
 ==============
 
-.. include:: hybrid_solver_service.rst
-  :start-after: example-steps-start-marker
-  :end-before: example-steps-end-marker
+.. |workflow_section| replace:: :ref:`qpu_workflow`
+
+.. include:: ../shared/examples.rst
+    :start-after: start_standard_steps
+    :end-before: end_standard_steps
 
 This example adds an optional step of postprocessing the returned solution.
 

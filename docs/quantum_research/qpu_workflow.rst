@@ -44,7 +44,7 @@ To express your problem as an objective function and submit to a |dwave_short|
 sampler for solution, you typically use one of the quadratic models\ [#]_
 provided by :std:doc:`Ocean software <oceandocs:index>`:
 
-*   :ref:`bqm_sdk` are unconstrained\ [#]_ and have binary variables.
+*   :ref:`concept_models_bqm` are unconstrained\ [#]_ and have binary variables.
 
     BQMs are typically used for applications that optimize over decisions that
     could either be true (or yes) or false (no); for example, should an antenna

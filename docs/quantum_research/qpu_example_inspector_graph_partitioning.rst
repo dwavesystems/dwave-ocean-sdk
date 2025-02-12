@@ -12,16 +12,18 @@ quantum computer.
 Example Requirements
 ====================
 
-.. include:: hybrid_solver_service.rst
-    :start-after: example-requirements-start-marker
-    :end-before: example-requirements-end-marker
+.. include:: ../shared/examples.rst
+    :start-after: start_requirements
+    :end-before: end_requirements
 
 Solution Steps
 ==============
 
-.. include:: hybrid_solver_service.rst
-    :start-after: example-steps-start-marker
-    :end-before: example-steps-end-marker
+.. |workflow_section| replace:: :ref:`qpu_workflow`
+
+.. include:: ../shared/examples.rst
+    :start-after: start_standard_steps
+    :end-before: end_standard_steps
 
 In this example, a :term:`QUBO` is formulated with simple math, the problem is
 submitted naively to the QPU, its minor embedding examined using the problem

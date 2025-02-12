@@ -4,37 +4,29 @@
 Classical Solvers
 =================
 
-.. todo:: update this is from sources:
-	* Classical Solvers 
-	  (https://docs.ocean.dwavesys.com/en/stable/overview/cpu.html)
-	* dwave-samplers
-	  (https://docs.ocean.dwavesys.com/en/stable/docs_samplers/index.html)
+.. todo:: add the README info from dwave-samplers
+    (https://docs.ocean.dwavesys.com/en/stable/docs_samplers/index.html)
 
-|dwave_short|'s quantum-classical hybrid solvers are designed to simplify the
-incorporation of quantum computing into problem-solving applications and
-:ref:`Ocean software <index_ocean_sdk>`\ 's classical solvers often require
-fewer or simpler steps to use than directly using quantum computers. Both make
-good starting points in developing your application code, and this section
-provides some usage guidance.
-
+:ref:`Ocean software <index_ocean_sdk>` provides a variety of classical solvers.
 You might use a classical solver while developing your code or on a small
-version of your problem to verify your code. To solve a problem classically on
-your local machine, you configure a classical solver, either one of those
-included in the Ocean tools or your own.
-
-Classical solvers are useful for testing code during development but might not
-be sufficiently performant on the hard problems of a production application. At
-that point in your code development you might incorporate either a QPU solver or
-a hybrid solver.
-
-Classical solvers may be :ref:`determinstic <qpu_intro_classical_deterministic>`
-or :ref:`heuristic <qpu_intro_classical_heuristic>`. Typically such solvers are
-unstructured, meaning you do not have to map the connectivity of your problem's
-variables to a working graph of the solver (as you would :term:`minor-embed`
-problems for a quantum computer). Ocean software provides a variety of classical
-solvers that run locally on your CPU. Some are designed to help with code
+version of your problem to verify your code. Some are designed to help with code
 development and debugging by deterministically solving small problems, others
 can performantly provide good solutions to a wide range of problems.
+
+Such solvers often require fewer or simpler steps to use than directly using
+quantum computers and can make a good starting points in developing your
+application code. For example, such solvers are unstructured, meaning you do not
+have to map the connectivity of your problem's variables to a
+:term:`working graph` of the solver (as you would :term:`minor-embed` problems
+for a quantum computer).
+
+Although classical solvers are useful for testing code during development, they
+might not be sufficiently performant on the hard problems of a production
+application. At that point in your code development you might incorporate either
+a QPU solver or a hybrid solver.
+
+Classical solvers may be :ref:`determinstic <qpu_intro_classical_deterministic>`
+or :ref:`heuristic <qpu_intro_classical_heuristic>`.
 
 .. _qpu_intro_classical_deterministic:
 
@@ -98,7 +90,8 @@ problems and can often do so performantly.
 that implement various algorithms, such as simulated annealing, tabu search,
 and steepest descent (see the :ref:`index_samplers` section).
 
-.. todo:: verify the link above to https://docs.ocean.dwavesys.com/en/stable/docs_samplers/index.html
+.. todo:: verify the link above and below to
+    https://docs.ocean.dwavesys.com/en/stable/docs_samplers/index.html
 
 Examples
 --------

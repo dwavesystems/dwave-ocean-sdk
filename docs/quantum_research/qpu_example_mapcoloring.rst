@@ -29,16 +29,18 @@ The constraints for the map-coloring problem can be expressed as follows:
 Example Requirements
 ====================
 
-.. include:: hybrid_solver_service.rst
-  :start-after: example-requirements-start-marker
-  :end-before: example-requirements-end-marker
+.. include:: ../shared/examples.rst
+    :start-after: start_requirements
+    :end-before: end_requirements
 
 Solution Steps
 ==============
 
-.. include:: hybrid_solver_service.rst
-  :start-after: example-steps-start-marker
-  :end-before: example-steps-end-marker
+.. |workflow_section| replace:: :ref:`qpu_workflow`
+
+.. include:: ../shared/examples.rst
+    :start-after: start_standard_steps
+    :end-before: end_standard_steps
 
 This example formulates the problem as a :term:`binary quadratic model` (BQM) by
 using unary encoding to represent the :math:`C` colors: each region is represented

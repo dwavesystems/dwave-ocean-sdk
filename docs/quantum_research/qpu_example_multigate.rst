@@ -74,9 +74,9 @@ embedding.
 Example Requirements
 ====================
 
-.. include:: hybrid_solver_service.rst
-  :start-after: example-requirements-start-marker
-  :end-before: example-requirements-end-marker
+.. include:: ../shared/examples.rst
+    :start-after: start_requirements
+    :end-before: end_requirements
 
 For the optional graphics, you will also need the non-open-source
 :doc:`problem-inspector </docs_inspector/sdk_index>` Ocean package, 

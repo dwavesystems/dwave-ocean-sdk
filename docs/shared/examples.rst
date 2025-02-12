@@ -1,3 +1,23 @@
+.. start_requirements
+
+The code in this example requires that your development environment have
+:ref:`Ocean software <index_ocean_sdk>` and be configured to access SAPI, as
+described in the :ref:`ocean_sapi_access_basic` section.
+
+.. end_requirements
+
+
+.. |workflow_section| replace:: The :ref:`qpu_workflow` section
+
+.. start_standard_steps
+
+|workflow_section| describes the problem-solving workflow as consisting of two
+main steps: (1) Formulate the problem as an :term:`objective function` in a
+:ref:`supported model <concept_models>` and (2) Solve your model with a
+|dwave_short| :term:`solver`.
+
+.. end_standard_steps
+
 
 .. start_qpu1
 
@@ -11,6 +31,7 @@ The following code solves a random problem on a quantum computer.
 >>> sampleset = sampler.sample(bqm, num_reads=100)
 
 .. end_qpu1
+
 
 .. start_qpu2
 
@@ -26,6 +47,7 @@ graph problem using an annealing quantum computer.
 >>> min_cover = dnx.min_vertex_cover(s5, sampler)
 
 .. end_qpu2
+
 
 .. start_nl1
 

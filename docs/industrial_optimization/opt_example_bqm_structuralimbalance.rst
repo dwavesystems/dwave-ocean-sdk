@@ -35,25 +35,18 @@ viewed as an expansion of the well-known
 Example Requirements
 ====================
 
-.. example-requirements-start-marker
-
-The code in this example requires that your development environment have 
-`Ocean software <https://github.com/dwavesystems/dwave-ocean-sdk>`_ and be 
-configured to access SAPI, as described in the :ref:`gs_initial_setup` section. 
-
-.. example-requirements-end-marker
+.. include:: ../shared/examples.rst
+    :start-after: start_requirements
+    :end-before: end_requirements
 
 Solution Steps
 ==============
 
-.. example-steps-start-marker
+.. |workflow_section| replace:: :ref:`opt_workflow`
 
-Section :ref:`solving_problems` describes the problem-solving workflow as
-consisting of two main steps: (1) Formulate the problem as an
-:term:`objective function` in a supported model and (2) Solve your model with
-a D-Wave :term:`solver`.
-
-.. example-steps-end-marker
+.. include:: ../shared/examples.rst
+    :start-after: start_standard_steps
+    :end-before: end_standard_steps
 
 In this example, a function in Ocean software handles both steps. Our task is
 mainly to select the :term:`sampler` used to solve the problem.

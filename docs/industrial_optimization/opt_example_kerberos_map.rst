@@ -33,16 +33,18 @@ problem solving in more detail by explicitly configuring the classical and quant
 Example Requirements
 ====================
 
-.. include:: hybrid_solver_service.rst
-  :start-after: example-requirements-start-marker
-  :end-before: example-requirements-end-marker
+.. include:: ../shared/examples.rst
+    :start-after: start_requirements
+    :end-before: end_requirements
 
 Solution Steps
 ==============
 
-.. include:: hybrid_solver_service.rst
-  :start-after: example-steps-start-marker
-  :end-before: example-steps-end-marker
+.. |workflow_section| replace:: :ref:`opt_workflow`
+
+.. include:: ../shared/examples.rst
+    :start-after: start_standard_steps
+    :end-before: end_standard_steps
 
 In this example, a function in Ocean software handles both steps. Our task is
 mainly to select the sampler used to solve the problem.

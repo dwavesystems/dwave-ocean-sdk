@@ -4,29 +4,32 @@
 Vertex Cover
 ============
 
-This example solves a few small examples of a known graph problem, *minimum vertex cover*.
-A `vertex cover <https://en.wikipedia.org/wiki/Vertex_cover>`_ is a set of vertices
-such that each edge of the graph is incident with at least one vertex in the set.
-A minimum vertex cover is the vertex cover of smallest size.
+This example solves a few small examples of a known graph problem,
+*minimum vertex cover*. A
+`vertex cover <https://en.wikipedia.org/wiki/Vertex_cover>`_ is a set of
+vertices such that each edge of the graph is incident with at least one vertex
+in the set. A minimum vertex cover is the vertex cover of smallest size.
 
 The purpose of this example is to help a new user to submit a problem to a
-D-Wave system using Ocean tools with little configuration or coding.
-Other examples demonstrate more advanced steps that might be needed for
-complex problems.
+|dwave_short| quantum computer using :ref:`Ocean software <index_ocean_sdk>`
+with little configuration or coding. Other examples demonstrate more advanced
+steps that might be needed for complex problems.
 
 Example Requirements
 ====================
 
-.. include:: hybrid_solver_service.rst
-  :start-after: example-requirements-start-marker
-  :end-before: example-requirements-end-marker
+.. include:: ../shared/examples.rst
+    :start-after: start_requirements
+    :end-before: end_requirements
 
 Solution Steps
 ==============
 
-.. include:: hybrid_solver_service.rst
-  :start-after: example-steps-start-marker
-  :end-before: example-steps-end-marker
+.. |workflow_section| replace:: :ref:`qpu_workflow`
+
+.. include:: ../shared/examples.rst
+    :start-after: start_standard_steps
+    :end-before: end_standard_steps
 
 In this example, a function in Ocean software handles both steps. Our task is
 mainly to select the sampler used to solve the problem.

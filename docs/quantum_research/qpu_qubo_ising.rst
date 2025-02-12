@@ -15,7 +15,9 @@ This section describes the objective functions (the problem Hamiltonians) for
 the |dwave_short| quantum computer. The linear and quadratic coefficients of
 these models map to values of the qubits and couplers of the QPU.
 
-Finally, the :ref:`qpu_qubo_ising_example` section gives a simple example.
+Finally, the :ref:`qpu_qubo_ising_example` subsection gives a simple example and
+the :ref:`qpu_qubo_ising_transformations` subsection shows how to convert
+between :term:`Ising` models and :term:`QUBOs <QUBO>`.
 
 .. todo:: consider consolidating and importing the ising & qubo definitions from
     concepts/models
@@ -228,8 +230,8 @@ The transformation between these formats is trivial:
 
     s = 2x - 1.
 
-Example of Transforming a QUBO to Ising Format
-----------------------------------------------
+Example: QUBO to Ising
+----------------------
 
 Use :math:`x_i \mapsto \frac{s_i +1}{2}` to translate a QUBO model to an Ising
 model, as here:
@@ -255,8 +257,8 @@ Ocean software can automate such conversion for you:
 ...                      offset=9)
 ({'x1': 1.0, 'x2': 2.0, 'x3': 0.0}, {('x1', 'x2'): 5.0, ('x1', 'x3'): 7.0}, 0.0)
 
-Example of Transforming a Ising to QUBO Format
-----------------------------------------------
+Example:Ising to QUBO
+---------------------
 
 Use :math:`s_i \mapsto 2x_i -1` to translate an Ising model to a QUBO model, as
 here:
