@@ -6,12 +6,12 @@ Installing the Ocean SDK
 
 Ocean software is supported on the following operating systems:
 
-* **Linux:** tested on 64-bit OS
-* **Windows:** tested on 64-bit Windows 8, 10
-* **Mac:** tested on macOS 10.15.5 (Xcode 12.2)
+*   **Linux:** tested on 64-bit OS
+*   **Windows:** tested on 64-bit Windows 8, 10
+*   **Mac:** tested on macOS 10.15.5 (Xcode 12.2)
 
-Ocean software requires a :ref:`Python environment<pythonEnvironment>`. Python
-versions |python_requires| are supported.
+Ocean software requires a :ref:`Python environment<ocean_install_python_env>`.
+Python versions |python_requires| are supported.
 
 This section explains how to install Ocean software,
 either the entire suite of tools or particular tools\ [#]_ from the D-Wave GitHub
@@ -23,7 +23,7 @@ repositories listed under the :std:doc:`Packages <oceandocs:packages>` tab.
   tools that form part of an official release of the Ocean SDK are guaranteed to
   work together.
 
-.. _pythonEnvironment:
+.. _ocean_install_python_env:
 
 Python Virtual Environment
 ==========================
@@ -52,7 +52,7 @@ Python.
 
 Your machine is now ready to install Ocean software.
 
-.. _installOceanSoftware:
+.. _ocean_install_software:
 
 Install Ocean Software
 ======================
@@ -92,7 +92,7 @@ Note: To install a particular tool within the SDK only, follow the link to the
 GitHub repository for the tool, as listed in the navigation bar, and follow the
 installation instructions on the README file.
 
-.. _dwave_setup:
+.. _ocean_install_setup_env:
 
 Set Up Your Environment
 =======================
@@ -102,10 +102,10 @@ writing code, you complete the setup of your environment with these last steps:
 
 *   :ref:`leap_auth`
 
-    Optionally authorize Ocean to access your Leap account to facilitate  
+    Optionally authorize Ocean to access your Leap account to facilitate
     token management.
 
-*   :ref:`setup_install`
+*   :ref:`ocean_install_contrib`
 
     Adds non-open-source tools such as the :ref:`inspector`.
 
@@ -130,7 +130,7 @@ prompts and placeholder replies for a full setup.
   :start-after: cli-example-setup-start-marker
   :end-before: cli-example-setup-end-marker
 
-.. _setup_install:
+.. _ocean_install_contrib:
 
 Install Contributor Ocean Tools
 -------------------------------
@@ -140,7 +140,7 @@ the `dwave-ocean-sdk <https://github.com/dwavesystems/dwave-ocean-sdk>`_ step
 you through installation of non-open-source ("contrib") tools.
 
 If you did not install contributor packages with the :code:`dwave setup` command
-in the :ref:`dwave_setup` section, or want to add packages at a later time, you
+in the :ref:`ocean_install_setup_env` section, or want to add packages at a later time, you
 can use it again then or use the :code:`dwave install` command.
 
 .. code-block:: bash

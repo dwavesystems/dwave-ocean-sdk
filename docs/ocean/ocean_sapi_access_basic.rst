@@ -249,7 +249,7 @@ The simplest way to configure solver access is to use the
 `dwave-ocean-sdk <https://github.com/dwavesystems/dwave-ocean-sdk>`_ installation.
 
 If you did not already do so with the :ref:`dwave setup <cli_example_setup>` command
-in the :ref:`dwave_setup` section, or want to make changes at a later time, you
+in the :ref:`ocean_install_setup_env` section, or want to make changes at a later time, you
 can use the :ref:`dwave config <cli_example_config>` command.
 
 .. code-block:: bash
@@ -268,7 +268,7 @@ can use the :ref:`dwave config <cli_example_config>` command.
       ls       List configuration files detected (and/or examined paths).
 
 Creating a configuration file using the :ref:`dwave config <cli_example_config>` is done
-as follows (the :ref:`dwave setup <cli_example_setup>` command of the :ref:`dwave_setup` section
+as follows (the :ref:`dwave setup <cli_example_setup>` command of the :ref:`ocean_install_setup_env` section
 runs these same configuration steps):
 
 1. In the virtual environment you created as part of :ref:`install`, run the

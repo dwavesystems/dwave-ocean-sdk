@@ -4,7 +4,7 @@
 Map Coloring: Full Code
 =======================
 
-See :ref:`map_coloring` for a description of the following code.
+See :ref:`qpu_example_mapcoloring` for a description of the following code.
 
 .. code-block:: python
 

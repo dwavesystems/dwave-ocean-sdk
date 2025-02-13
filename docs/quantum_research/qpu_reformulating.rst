@@ -2635,6 +2635,8 @@ gates that, if faulty, explains the observation of incorrect outputs, this
 objective function must be minimized while holding constant the input values
 :math:`x_1,x_2,x_3=1,1,1` and incorrect output values :math:`z_1,z_2=1,0`.
 
+.. _qpu_reformulating_onehot_domainwall:
+
 Example Constraints: One-Hot, Domain-Wall, :math:`n \choose k`
 ==============================================================
 

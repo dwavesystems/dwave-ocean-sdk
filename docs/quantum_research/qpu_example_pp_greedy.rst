@@ -4,22 +4,26 @@
 Postprocessing with a Greedy Solver
 ===================================
 
-This example uses explicit postprocessing to improve results returned
-from a quantum computer.
+This example uses explicit postprocessing to improve results returned from a
+|dwave_short| quantum computer.
 
-Typically, Ocean tools do some minimal, implicit postprocessing; for
-example, when you use
+Typically, :ref:`Ocean <index_ocean_sdk>` tools do some minimal, implicit
+postprocessing; for example, when you use
+
+.. todo:: update this link to an xref:
+
 `embedding tools <https://docs.ocean.dwavesys.com/en/stable/docs_system/reference/embedding.html>`_
-to map problem variables to qubits, *broken* :term:`chain`\ s (differing
-states of the qubits representing a variable) may be resolved by majority
-vote: Ocean sets the variable's value based on the state returned from
-the majority of the qubits in the chain. You can often improve results,
-at a low cost of classical processing time, by postprocessing.
+to map problem variables to qubits, *broken* :term:`chains` (differing states of
+the qubits representing a variable) may be resolved by majority vote: Ocean sets
+the variable's value based on the state returned from the majority of the qubits
+in the chain. You can often improve results, at a low cost of classical
+processing time, by postprocessing.
 
-:ref:`dwave-samplers <index_dwave_samplers>` provides an implementation of
-a steepest-descent solver,  :class:`~greedy.sampler.SteepestDescentSolver`,
-for binary quadratic models. This example runs this classical algorithm
-initialized from QPU samples to find minima in the samples' neighbourhoods.
+the :ref:`dwave-samplers <index_dwave_samplers>` package provides an
+implementation of a steepest-descent solver,
+:class:`~dwave.samplers.SteepestDescentSolver`,for binary quadratic models.
+This example runs this classical algorithm initialized from QPU samples to find
+minima in the samples' neighbourhoods.
 
 The purpose of this example is to illustrate the benefit of postprocessing
 results from non-deterministic samplers such as quantum computers.
@@ -65,9 +69,10 @@ Solve the Problem and Run Postprocessing
 Because the problem sets values of the Ising problem based on the qubits
 and couplers of a selected QPU (a *native* problem), you can submit it directly
 to that QPU without :term:`embedding`. The :class:`~dimod.SampleSet` returned
-from the QPU is used to initialize :class:`~greedy.sampler.SteepestDescentSolver`:
-for each sample, this classical solver runs its steepest-descent algorithm to
-find the closest minima.
+from the QPU is used to initialize
+:class:`~dwave.samplers.greedy.sampler.SteepestDescentSolver`: for each sample,
+this classical solver runs its steepest-descent algorithm to find the closest
+minima.
 
 .. testcode::
 
@@ -98,16 +103,16 @@ You can graphically compare the results before and after the postprocessing.
 The image below shows the result of one particular execution on an Advantage QPU.
 
 .. figure:: ../_images/postprocessing_greedy1.png
-   :name: PostprocessingGreedy1
-   :alt: image
-   :align: center
-   :scale: 70 %
+    :name: PostprocessingGreedy1
+    :alt: image
+    :align: center
+    :scale: 70 %
 
-   QPU samples before and after postprocessing with a steepest-descent solver.
+    QPU samples before and after postprocessing with a steepest-descent solver.
 
-For reference, this execution had the following median energies
-before and after postprocessing, and for a running the classical solver directly on
-the problem, in which case it uses random samples to initiate its local searches.
+For reference, this execution had the following median energies before and after
+postprocessing, and for a running the classical solver directly on the problem,
+in which case it uses random samples to initiate its local searches.
 
 .. testcode::
 

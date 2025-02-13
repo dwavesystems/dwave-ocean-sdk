@@ -49,7 +49,7 @@ Concepts and Terminology
         Learn more:
 
         *   :ref:`qpu_embedding_intro` for an introduction.
-        *   :ref:`_qpu_example_and` for an example.
+        *   :ref:`qpu_example_and` for an example.
         *   :ref:`qpu_embedding_guidance` for advanced information.
 
     Chain length
@@ -67,7 +67,7 @@ Concepts and Terminology
         Learn more:
 
         *   :ref:`qpu_embedding_intro` for an introduction.
-        *   :ref:`_qpu_example_and` for an example.
+        *   :ref:`qpu_example_and` for an example.
         *   :ref:`qpu_embedding_guidance` for advanced information.
 
     Chimera
@@ -175,6 +175,8 @@ Concepts and Terminology
         *   :ref:`qpu_embedding_intro` for an introduction.
         *   :ref:`qpu_embedding_guidance` for advanced information.
         *   :ref:`qpu_topologies` on QPU topologies.
+        *   :ref:`qpu_example_not`, :ref:`qpu_example_and`, and
+            :ref:`qpu_example_multigate` for examples and more information.
 
     Excited state
         States of a quantum system that have higher energy than the
@@ -302,6 +304,14 @@ Concepts and Terminology
         its variables.
 
         Learn more: :ref:`qpu_quantum_annealing_intro`.
+
+    One-hot
+        For one-hot variables, the only valid values are those in which a single
+        bit is 1 and the others are all zero. See
+        `one-hot on Wikipedia <https://en.wikipedia.org/wiki/One-hot>` for
+        details.
+
+        Learn more: :ref:`qpu_reformulating_onehot_domainwall`
 
     Nonlinear model
         A collection of variables with associated biases that constitute an
@@ -479,6 +489,15 @@ Concepts and Terminology
         *   :ref:`qpu_embedding_intro` for an introduction.
         *   :ref:`qpu_embedding_guidance` for advanced information.
         *   :ref:`qpu_topologies` on QPU topologies.
+
+    Topology
+        The layout of the |dwave_short| quantum processing unit (:term:`QPU`):
+        The QPU is a lattice of interconnected :term:`qubits>`. While some
+        qubits connect to others via :term:`couplers`, the QPU is not fully
+        connected. Instead, the qubits of |dwave_short| annealing quantum
+        computers interconnect in a topology such as :term:`Pegasus`.
+
+        Learn more: :ref:`qpu_topologies`
 
     Working graph
         In a D-Wave QPU, the set of qubits and couplers that are available for
