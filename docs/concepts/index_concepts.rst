@@ -49,6 +49,7 @@ Concepts and Terminology
         Learn more:
 
         *   :ref:`qpu_embedding_intro` for an introduction.
+        *   :ref:`_qpu_example_and` for an example.
         *   :ref:`qpu_embedding_guidance` for advanced information.
 
     Chain length
@@ -66,6 +67,7 @@ Concepts and Terminology
         Learn more:
 
         *   :ref:`qpu_embedding_intro` for an introduction.
+        *   :ref:`_qpu_example_and` for an example.
         *   :ref:`qpu_embedding_guidance` for advanced information.
 
     Chimera
