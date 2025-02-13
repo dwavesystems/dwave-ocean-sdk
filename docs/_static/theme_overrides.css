@@ -14,33 +14,6 @@
 
 /* override table width restrictions */
 /* https://github.com/readthedocs/sphinx_rtd_theme/issues/117 */
-.wy-table-responsive table td, .wy-table-responsive table th {
-    white-space: normal;
-}
-
-.wy-table-responsive {
-    margin-bottom: 24px;
-    max-width: 100%;
-    overflow: visible;
-}
-
-/* Dropdown titles */
-.sd-summary-title{
-    font-weight:    normal !important;
-}
-
-abbr {
-    border-bottom: none !important;
-    text-decoration : none !important;
-}
-
-.sd-card-title {
-    font-size: 0.875em;
-}
-
-.sd-card-text {
-    font-size: 0.875em;
-}
 
 :root {
     /* dwave colors for convenience */
@@ -56,6 +29,10 @@ abbr {
     --dwave-color-dark-orange: rgb(175, 73, 4);
     --dwave-color-bright-orange: rgb(255, 161, 67);
     --inline-code-pink: rgb(232, 62, 140);
+
+    --dwave-color-leap-bg: #f5f7fb; /* rgba(47, 100, 190, 0.05) */
+    --dwave-color-leap-bg-dark: #1a2438; /* rgba(47, 100, 190, 0.16) */
+    --dwave-shadow-leap: 0 10px 18px 0 rgba(66, 82, 121, 0.09);
   }
 
 html[data-theme="light"] {
@@ -78,6 +55,9 @@ html[data-theme="light"] {
     --pst-color-sidebar-link-active: var(--dwave-color-ocean-blue);
     --pst-color-toc-link-hover: var(--dwave-color-ocean-blue);
     --pst-color-toc-link-active: var(--dwave-color-ocean-blue);
+    --sd-color-card-border-hover: var(--dwave-color-ocean-blue);
+    --dwave-bg: var(--dwave-color-leap-bg);
+    --pst-color-info-bg: rgba(42, 125, 225, 0.1);
 }
 
 html[data-theme="dark"] {
@@ -85,8 +65,8 @@ html[data-theme="dark"] {
     /* theme overrides */
     --pst-color-primary: var(--dwave-color-ocean-blue);
     --pst-color-secondary: grey;
-    --pst-color-link: var(--dwave-color-ocean-blue);
-    --pst-color-link-hover: var(--dwave-color-dark-blue);
+    --pst-color-link: var(--dwave-color-bright-blue);
+    --pst-color-link-hover: var(--dwave-color-ocean-blue);
     --pst-color-inline-code: var(--inline-code-pink);
     --pst-color-inline-code-links: var(--dwave-color-ocean-blue);
     --pst-color-success: var(--dwave-color-leap-teal);
@@ -100,4 +80,214 @@ html[data-theme="dark"] {
     --pst-color-sidebar-link-active: var(--dwave-color-ocean-blue);
     --pst-color-toc-link-hover: var(--dwave-color-ocean-blue);
     --pst-color-toc-link-active: var(--dwave-color-ocean-blue);
+    --sd-color-card-border-hover: var(--dwave-color-bright-blue);
+    --dwave-bg: var(--dwave-color-leap-bg-dark);
+    --pst-color-info-bg: var(--dwave-bg);
+}
+
+.wy-table-responsive table td, .wy-table-responsive table th {
+    white-space: normal;
+}
+
+.wy-table-responsive {
+    margin-bottom: 24px;
+    max-width: 100%;
+    overflow: visible;
+}
+
+/* Dropdown titles */
+.sd-summary-title{
+    font-weight: normal !important;
+}
+
+abbr {
+    border-bottom: none !important;
+    text-decoration : none !important;
+}
+
+.sd-card-title {
+    font-size: 0.875em;
+}
+
+.sd-card-text {
+    font-size: 0.875em;
+}
+
+/* General */
+a {
+    transition: color 0.2s ease-in;
+    text-underline-offset: .2em;
+}
+
+a:hover {
+    transition: color 0.2s ease-in;
+    text-underline-offset: .2em;
+    text-decoration-thickness: 2px;
+}
+
+/* Nav */
+.bd-header .navbar-nav,
+.bd-header .navbar-nav .bd-navbar-elements.navbar-nav,
+.bd-header .navbar-nav .bd-navbar-elements.navbar-nav .nav-item,
+.bd-header .navbar-nav .bd-navbar-elements.navbar-nav button {
+    height: 100%;
+}
+
+.bd-header .navbar-nav .dropdown .dropdown-menu {
+    top: 75%;
+}
+
+.navbar-header-items__start {
+    padding-right: 1rem;
+}
+
+.logo .logo__image {
+    height: 1.4rem;
+}
+
+.bd-header .navbar-nav>.current>.nav-link {
+    pointer-events: none;
+    border: none;
+    position: relative;
+    color: var(--pst-color-link);
+}
+
+.bd-header .navbar-nav>.current>.nav-link::after {
+    height: 5px;
+    background-color: var(--pst-color-link);
+    border-radius: 2.5px;
+    width: 100%;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.bd-header .navbar-nav li a.nav-link,
+.bd-header .navbar-nav .dropdown button {
+    transition: opacity 0.2s ease-in, color 0.2s ease-in;
+}
+
+.bd-header .navbar-nav li a.nav-link:hover,
+.bd-header .navbar-nav .dropdown button:hover {
+    text-decoration: none;
+    color: var(--pst-color-link);
+}
+
+/* tab-set */
+.bd-content div.sd-tab-content {
+    padding: 1rem 1.6rem 2rem;
+    background-color: var(--dwave-bg);
+    box-shadow: var(--dwave-shadow-leap);
+    border-bottom-left-radius: 1.2rem;
+    border-bottom-right-radius: 1.2rem;
+    border: 1px solid var(--pst-color-border);
+}
+
+.bd-content .sd-tab-set>input+label {
+    border: none;
+}
+
+.bd-content .sd-tab-set>input:checked+label {
+    pointer-events: none;
+    background-color: var(--dwave-bg);
+    color: var(--pst-color-text-muted);
+    margin-bottom: -1px;
+    border: 1px solid var(--pst-color-border);
+    border-bottom: none;
+    border-top-left-radius: 1.2rem;
+    border-top-right-radius: 1.2rem;
+}
+
+div.sd-tab-set {
+    margin-bottom: 2em;
+}
+
+/* grid-item-card */
+img.sd-card-img-top {
+    height: 5rem;
+    width: fit-content;
+    margin: 1.4rem auto 0.4rem;
+    background: none !important;
+}
+
+.sd-card-body .sd-card-title a {
+    font-size: 1rem;
+}
+
+div.sd-card.sd-card-hover .sd-card-body .sd-card-title a {
+    text-decoration: none;
+}
+
+div.sd-card .sd-card-body.docutils {
+    text-align: center;
+}
+
+.sd-tab-set div.sd-card.sd-card-hover.docutils:not(:hover) {
+    border-color: var(--pst-color-background);
+}
+
+div.sd-card:not(.sd-card-hover).docutils {
+    border-color: var(--pst-color-border);
+}
+
+div.sd-card.docutils {
+    border-radius: 1.2rem;
+    border-width: 1px;
+    background-color: var(--pst-color-background);
+    transition: all 0.2s ease-in;
+}
+
+/* Dropdown */
+details.sd-dropdown summary.sd-card-header span.sd-summary-icon {
+    font-size: 1.3rem;
+    color: var(--pst-color-link)
+}
+
+details.sd-dropdown.sd-sphinx-override summary.sd-card-header,
+details.sd-dropdown summary.sd-card-header+div.sd-summary-content {
+    border: 1px solid var(--pst-color-border) !important;
+}
+
+details.sd-dropdown summary.sd-card-header+div.sd-summary-content {
+    border-top: 0 !important;
+    border-radius: 0 0 0.6rem 0.6rem;
+}
+
+details.sd-dropdown.sd-sphinx-override summary.sd-card-header {
+    background-color: var(--dwave-bg) !important;
+    transition: border-color 0.2s ease-in;
+    overflow: hidden;
+}
+
+details.sd-dropdown.sd-sphinx-override summary.sd-card-header:hover {
+    border-color: var(--pst-color-link) !important;
+}
+
+details.sd-dropdown {
+    box-shadow: var(--dwave-shadow-leap) !important;
+}
+
+details.sd-dropdown svg {
+    fill: var(--pst-color-link);
+    transition: opacity 0.2s ease-in, transform 0.2s ease-in;
+}
+
+details.sd-dropdown:not([open])>.sd-card-header,
+details.sd-dropdown {
+    border-radius: 0.6rem !important;
+}
+
+details.sd-dropdown[open]>.sd-card-header {
+    border-radius: 0.6rem 0.6rem 0 0;
+}
+
+/* Note */
+.admonition, div.admonition {
+    border-left: none;
+    border-radius: 0.6rem;
+}
+
+.admonition>.admonition-title:before, div.admonition>.admonition-title:before {
+    border-bottom: 1px solid var(--pst-color-border);
 }

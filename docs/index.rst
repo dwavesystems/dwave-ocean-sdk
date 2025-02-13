@@ -40,14 +40,8 @@
             :start-after: sections-start-marker
             :end-before: sections-end-marker
 
-Welcome to |dwave_short|
-========================
-
-*It's not a Turing machine, but a machine of a different kind.*
-
---- Richard Feynman, 1981
-
 .. dropdown:: First time here? Click to learn how to navigate the documentation
+    :icon: info
 
     Pages have three navigation bars: top, left, and right.
 
@@ -75,6 +69,13 @@ Welcome to |dwave_short|
         started, properties, best practices.
 
     *   Right navigation bar displays the topics on your current page.
+
+Welcome to |dwave_short|
+========================
+
+*It's not a Turing machine, but a machine of a different kind.*
+
+--- Richard Feynman, 1981
 
 ..  tab-set::
 
