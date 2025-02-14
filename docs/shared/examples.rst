@@ -30,6 +30,20 @@ main steps: (1) Formulate the problem as an :term:`objective function` in a
 .. end_default_solver_config
 
 
+.. start_hybrid_advantage
+
+The `Leap <https://cloud.dwavesys.com/leap/>`_ quantum cloud service provides
+:ref:`hybrid solvers <opt_index_hybrid_solvers>` you can submit your
+:ref:`models <concept_models>` to. These solvers, which implement
+state-of-the-art classical algorithms together with intelligent allocation of
+the quantum processing unit (:term:`QPU`) to parts of the problem where it
+benefits most, are designed to accommodate even very large problems. The Leap
+services'solvers can relieve you of the burden of any current and future
+development and optimization of hybrid algorithms that best solve your problem.
+
+.. end_hybrid_advantage
+
+
 .. start_qpu1
 
 The following code solves a random problem on a quantum computer.

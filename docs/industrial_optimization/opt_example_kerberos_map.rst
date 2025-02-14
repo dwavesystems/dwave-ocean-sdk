@@ -4,31 +4,34 @@
 Large Map Coloring
 ==================
 
-This example solves a map coloring problem to demonstrate an out-of-the-box use of
-Ocean's classical-quantum hybrid sampler, :doc:`dwave-hybrid </docs_hybrid/sdk_index>`
-:class:`~hybrid.reference.kerberos.KerberosSampler`, that enables you to solve problems
-of arbitrary structure and size.
+This example solves a map-coloring problem to demonstrate an out-of-the-box use
+of :ref:`Ocean <index_ocean_sdk>` software's :term:`hybrid` :term:`sampler`,
+:class:`~hybrid.reference.kerberos.KerberosSampler`,
+which is part of the :ref:`dwave-hybrid <index_hybrid>` package, a general,
+minimal Python framework for building hybrid asynchronous decomposition samplers
+that enable you to solve problems of arbitrary structure and size.
 
-Map coloring is an example of a
-:doc:`constraint satisfaction problem </concepts/csp>` (CSP). CSPs require
-that all a problem's variables be assigned values, out of a finite domain, that result
-in the satisfying of all constraints. The map-coloring CSP is to assign a
-color to each region of a map such that any two regions sharing a border have different
-colors.
+Map coloring is an example of a constraint satisfaction problem (:term:`CSP`).
+CSPs require that all a problem's variables be assigned values, out of a finite
+domain, that result in the satisfying of all constraints. The map-coloring CSP
+is to assign a color to each region of a map such that any two regions sharing a
+border have different colors.
 
 .. figure:: ../_images/us_map.png
-   :name: ProblemMapColoringSDKExampleKerberos
-   :alt: image
-   :align: center
-   :scale: 70 %
+    :name: ProblemMapColoringSDKExampleKerberos
+    :alt: image
+    :align: center
+    :scale: 70 %
 
-   Coloring a map of the USA.
+    Coloring a map of the USA.
 
-The :ref:`map_coloring` advanced example demonstrates lower-level coding of a similar
-problem, which gives the user more control over the solution procedure but requires
-the knowledge of some system parameters (e.g., knowing the maximum number of supported
-variables for the problem). Example :ref:`hybrid1` demonstrates the hybrid approach to
-problem solving in more detail by explicitly configuring the classical and quantum workflows.
+The :ref:`qpu_example_mapcoloring` advanced example demonstrates lower-level
+coding of a similar problem, which gives the user more control over the solution
+procedure but requires the knowledge of some system parameters (e.g., knowing
+the maximum number of supported variables for the problem). The
+:ref:`opt_example_dwavehybrid_manyvariables` example demonstrates the hybrid
+approach to problem solving in more detail by explicitly configuring the
+classical and quantum workflows.
 
 Example Requirements
 ====================
@@ -47,12 +50,12 @@ Solution Steps
     :end-before: end_standard_steps
 
 In this example, a function in Ocean software handles both steps. Our task is
-mainly to select the sampler used to solve the problem.
+mainly to select the :term:`sampler` used to solve the problem.
 
 Formulate the Problem
 =====================
 
-This example uses the `NetworkX <https://networkx.org>`_
+This example uses the :std:doc:`NetworkX <networkx:index>`
 :func:`~networkx.readwrite.adjlist.read_adjlist` function to read a text file,
 ``usa.adj``, containing the states of the USA and their adjacencies (states with
 a shared border) into a graph. The original map information was found on
@@ -70,35 +73,39 @@ a shared border) into a graph. The original map information was found on
 
     # Snipped here for brevity
 
-You can see in the first non-comment line that the state of Alaska ("AK") has Hawaii
-("HI") as an adjacency and that Alabama ("AL") shares borders with four states.
+You can see in the first non-comment line that the state of Alaska ("AK") has
+Hawaii ("HI") as an adjacency and that Alabama ("AL") shares borders with four
+states.
 
 >>> import networkx as nx
 >>> G = nx.read_adjlist('usa.adj', delimiter = ',')   # doctest: +SKIP
 
-Graph G now represents states as vertices and each state's neighbors as shared edges.
+Graph G now represents states as vertices and each state's neighbors as shared
+edges.
 
 Solve the Problem by Sampling
 =============================
 
-Ocean's :doc:`dwave_networkx </docs_dnx/sdk_index>` can return a
-`minimum vertex coloring <https://en.wikipedia.org/wiki/Graph_coloring>`_ for a graph,
-which assigns a color to the vertices of a graph in a way that no adjacent vertices
-have the same color, using the minimum number of colors. Given a graph representing a
-map and a :term:`sampler`, the
-:func:`~dwave_networkx.algorithms.coloring.min_vertex_coloring` function tries to
-solve the map coloring problem.
+Ocean's :doc:`dwave_networkx <index_dnx>` can return a
+`minimum vertex coloring <https://en.wikipedia.org/wiki/Graph_coloring>`_ for a
+graph, which assigns a color to the vertices of a graph in a way that no
+adjacent vertices have the same color, using the minimum number of colors. Given
+a graph representing a map and a :term:`sampler`, the
+:func:`~dwave_networkx.algorithms.coloring.min_vertex_coloring` function tries
+to solve the map-coloring problem.
 
-:doc:`dwave-hybrid </docs_hybrid/sdk_index>` :class:`~hybrid.reference.kerberos.KerberosSampler`
-is classical-quantum hybrid asynchronous decomposition sampler, which can decompose large problems
-into smaller pieces that
-it can run both classically (on your local machine) and on the D-Wave system.
-Kerberos finds best samples by running in parallel :class:`~hybrid.samplers.TabuProblemSampler`,
-:class:`~hybrid.samplers.SimulatedAnnealingProblemSampler`, and D-Wave subproblem sampling on
-problem variables that have high impact. The only optional parameters set here
-are a maximum number of iterations and number of iterations with no improvement that
-terminates sampling. (See the :ref:`hybrid1` example for more details on configuring
-the classical and quantum workflows.)
+The :ref:`dwave-hybrid <index_hybrid>` package's
+:class:`~hybrid.reference.kerberos.KerberosSampler` is classical-quantum hybrid
+asynchronous decomposition sampler, which can decompose large problems into
+smaller pieces that it can run both classically (on your local machine) and on
+the |dwave_short| quantum computer. Kerberos finds best samples by running in
+parallel :class:`~hybrid.samplers.TabuProblemSampler`,
+:class:`~hybrid.samplers.SimulatedAnnealingProblemSampler`, and |dwave_short|
+subproblem sampling on problem variables that have high impact. The only
+optional parameters set here are a maximum number of iterations and number of
+iterations with no improvement that terminates sampling. (See the
+:ref:`opt_example_dwavehybrid_manyvariables` example for more details on
+configuring the classical and quantum workflows.)
 
 >>> import dwave_networkx as dnx
 >>> from hybrid.reference.kerberos import KerberosSampler
@@ -111,7 +118,7 @@ the classical and quantum workflows.)
 Plot the solution, if valid.
 
 >>> import matplotlib.pyplot as plt       # doctest: +SKIP
->>> node_colors = [coloring.get(node) for node in G.nodes()]           # doctest: +SKIP
+>>> node_colors = [coloring.get(node) for node in G.nodes()]    # doctest: +SKIP
 # Adjust the next line if using a different map
 >>> if dnx.is_vertex_coloring(G, coloring):  # doctest: +SKIP
 ...    nx.draw(G, pos=nx.shell_layout(G, nlist = [list(G.nodes)[x:x+10] for x in range(0, 50, 10)] + [[list(G.nodes)[50]]]), with_labels=True, node_color=node_colors, node_size=400, cmap=plt.cm.rainbow)
@@ -120,9 +127,9 @@ Plot the solution, if valid.
 The graphic below shows the result of one such run.
 
 .. figure:: ../_images/map_coloring_usa.png
-   :name: USA_MapColoring
-   :alt: image
-   :align: center
-   :scale: 70 %
+    :name: USA_MapColoring
+    :alt: image
+    :align: center
+    :scale: 70 %
 
-   One solution found for the USA map-coloring problem.
+    One solution found for the USA map-coloring problem.

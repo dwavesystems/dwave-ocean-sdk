@@ -10,26 +10,32 @@ This example solves a structural-imbalance problem, similar to the
 to demonstrate using Leap's hybrid solver service on a problem of arbitrary
 structure and size.
 
-*Social networks* map relationships between people or organizations onto graphs, with
-the people/organizations as nodes and relationships as edges; for example,
-Facebook friends form a social network. *Signed social networks* map both friendly and
-hostile relationships by assigning to edges either positive or negative values. Such
-networks are said to be *structurally balanced* when they can be cleanly divided into
-two sets, with each set containing only friends, and all relations between these sets
-are hostile. The measure of *structural imbalance* or *frustration* for a signed social
-network, when it cannot be cleanly divided, is the minimum number of edges that violate
-the social rule, “the enemy of my friend is my enemy.”
+*Social networks* map relationships between people or organizations onto graphs,
+with the people/organizations as nodes and relationships as edges; for example,
+Facebook friends form a social network. *Signed social networks* map both
+friendly and hostile relationships by assigning to edges either positive or
+negative values. Such networks are said to be *structurally balanced* when they
+can be cleanly divided into two sets, with each set containing only friends, and
+all relations between these sets are hostile. The measure of
+*structural imbalance* or *frustration* for a signed social network, when it
+cannot be cleanly divided, is the minimum number of edges that violate the
+social rule, “the enemy of my friend is my enemy.”
 
 .. figure:: ../_images/Romeo.png
-   :name: Problem_StructuralImbalance
-   :alt: image
-   :align: center
-   :scale: 70 %
+    :name: Problem_StructuralImbalance
+    :alt: image
+    :align: center
+    :scale: 70 %
 
-   Juliet’s new love of Romeo introduces imbalance into the social network of Verona. Green edges represent friendly relationships (Juliet & Romeo and Juliet & Lord Capulet) while red edges represent hostile relationships (Romeo and Lord Capulet). The black vertical line dividing the set with Romeo from the set with Lord Capulet crosses the friendly edge between Juliet and Lord Capulet.
+    Juliet's new love of Romeo introduces imbalance into the social network of
+    Verona. Green edges represent friendly relationships (Juliet & Romeo and
+    Juliet & Lord Capulet) while red edges represent hostile relationships
+    (Romeo and Lord Capulet). The black vertical line dividing the set with
+    Romeo from the set with Lord Capulet crosses the friendly edge between
+    Juliet and Lord Capulet.
 
-Finding a division that minimizes frustration is an NP-hard graph problem (it can be
-viewed as an expansion of the well-known
+Finding a division that minimizes frustration is an NP-hard graph problem (it
+can be viewed as an expansion of the well-known
 `maximum cut <https://en.wikipedia.org/wiki/Maximum_cut>`_ problem).
 
 Example Requirements
@@ -48,17 +54,19 @@ Solution Steps
     :start-after: start_standard_steps
     :end-before: end_standard_steps
 
-In this example, a function in Ocean software handles both steps. Our task is
+In this example, a function in Ocean software handles both steps. The task is
 mainly to select the :term:`sampler` used to solve the problem.
 
 Formulate the Problem
 =====================
 
-For a social graph, `G`, this example simply builds a random sparse graph---using the
-`NetworkX <https://networkx.org>`_ :func:`~networkx.generators.geometric.random_geometric_graph()`
-function, which places uniformly at random a specified number of nodes, `problem_node_count`,
-in a unit cube, joining edges of any two if the distance is below a given radius---and randomly
-assigns :math:`-1, 1` signs to represent friendly and hostile relationships.
+For a social graph, `G`, this example simply builds a random sparse
+graph---using the :std:doc:`NetworkX <networkx:index>`
+:func:`~networkx.generators.geometric.random_geometric_graph()` function, which
+places uniformly at random a specified number of nodes, ``problem_node_count``,
+in a unit cube, joining edges of any two if the distance is below a given
+radius---and randomly assigns :math:`-1, 1` signs to represent friendly and
+hostile relationships.
 
 >>> import networkx as nx
 >>> import random
@@ -69,26 +77,24 @@ assigns :math:`-1, 1` signs to represent friendly and hostile relationships.
 Solve the Problem by Sampling
 =============================
 
-As mentioned above, this example uses Ocean's :doc:`dwave_networkx </docs_dnx/sdk_index>`
-function, :func:`~dwave_networkx.algorithms.social.structural_imbalance`, to create the
-appropriate BQM to represent
-the problem graph and return a solution. It requires just the selection of a :term:`sampler`.
+As mentioned above, this example uses Ocean's :ref:`dwave_networkx <index_dnx>`
+function, :func:`~dwave_networkx.algorithms.social.structural_imbalance`, to
+create the appropriate :term:`BQM` to represent the problem graph and return a
+solution. It requires just the selection of a :term:`sampler`.
 
-D-Wave's quantum cloud service provides cloud-based hybrid solvers you can submit arbitrary
-BQMs to. These solvers, which implement state-of-the-art classical algorithms together
-with intelligent allocation of the quantum processing unit (QPU) to parts of the problem
-where it benefits most, are designed to accommodate even very large problems. Leap's
-solvers can relieve you of the burden of any current and future development and optimization
-of hybrid algorithms that best solve your problem.
+.. include:: ../shared/examples.rst
+    :start-after: start_hybrid_advantage
+    :end-before: end_hybrid_advantage
 
-Ocean software's :doc:`dwave-system </docs_system/sdk_index>`
-:class:`~dwave.system.samplers.LeapHybridSampler` class enables you to easily incorporate
-Leap's hybrid solvers into your application:
+Ocean software's :ref:`dwave-system <index_system>`
+:class:`~dwave.system.samplers.LeapHybridSampler` class enables you to easily
+incorporate Leap's hybrid solvers into your application:
 
 >>> from dwave.system import LeapHybridSampler
 >>> sampler = LeapHybridSampler()     # doctest: +SKIP
 
-Finally, the returned set of frustrated edges and a bicoloring are counted and printed.
+Finally, the returned set of frustrated edges and a bicoloring are counted and
+printed.
 
 >>> import dwave_networkx as dnx
 >>> imbalance, bicoloring = dnx.structural_imbalance(G, sampler)    # doctest: +SKIP
@@ -101,9 +107,13 @@ The network has 904 frustrated relationships.
 The graphic below visualizes the result of one such run.
 
 .. figure:: ../_images/structural_imbalance_300.png
-   :name: structural_imbalance_300
-   :alt: image
-   :align: center
-   :scale: 60 %
+    :name: structural_imbalance_300
+    :alt: image
+    :align: center
+    :scale: 60 %
 
-   One solution found for a 300-node problem. Two circular sets, of blue or yellow nodes, are internally connected by solid green edges representing friendly relationships while red edges representing hostile relationships and dashed green edges representing frustrated relationships are stretched out between these.
+    One solution found for a 300-node problem. Two circular sets, of blue or
+    yellow nodes, are internally connected by solid green edges representing
+    friendly relationships while red edges representing hostile relationships
+    and dashed green edges representing frustrated relationships are stretched
+    out between these.

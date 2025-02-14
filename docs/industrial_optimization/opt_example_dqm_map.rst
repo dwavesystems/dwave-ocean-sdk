@@ -4,9 +4,10 @@
 Map Coloring: Hybrid DQM Sampler
 ================================
 
-This example solves the same map coloring problem of :ref:`map_kerberos` to
-demonstrate `Leap <https://cloud.dwavesys.com/leap/>`_\ 's hybrid discrete
-quadratic model (:term:`DQM`) solver, which enables you to solve problems
+This example solves the same map coloring problem of the
+:ref:`opt_example_kerberos_map` example to demonstrate the
+`Leap <https://cloud.dwavesys.com/leap/>`_ service's hybrid discrete quadratic
+model (:term:`DQM`) solver, which enables you to solve problems
 of arbitrary structure and size for variables with **discrete** values.
 
 See :ref:`map_kerberos` for a description of the map coloring

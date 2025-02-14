@@ -39,7 +39,7 @@ points as the following:
 *   Problems can be formulated with more performant software structures such as
     BQMs or models built from NumPy arrays rather than Python lists.
 
-    See :std:doc:`dimod <oceandocs:docs_dimod/sdk_index>` for examples.
+    See :ref:`dimod <index_dimod>` for examples.
 
 *   Uploading huge problems to the Leap service can take time and may require
     significant bandwidth from your Internet link. Consider using compression
@@ -59,7 +59,7 @@ and expensive for many problems. Hybrid solvers in the Leap service set as the
 default runtime a minimum time based on the number of problem variables (and
 possibly additional measures of the problem's complexity, such as connectivity).
 
-**Running a hybrid solver with the default** :ref:`sysdocs:param_time_limit`
+**Running a hybrid solver with the default** :ref:`parameter_nl_time_limit`
 **parameter does not guarantee a good solution.**
 
 Depending on the size and complexity of your problem, there are a number of
@@ -80,8 +80,7 @@ Further Information
 
 *   [Dwave7]_ gives a performance evaluation of the hybrid solvers in the
     `Leap <https://cloud.dwavesys.com/leap/>`_ service.
-*   For documentation, see the
-    :std:doc:`dwave-hybrid documentation<oceandocs:docs_hybrid/sdk_index>`.
+*   For documentation, see the :ref:`dwave-hybrid <index_hybrid>` section.
 *   The
     `Hybrid Computing <https://github.com/dwave-examples/hybrid-computing-notebook>`_
     Jupyter Notebooks explain and demonstrate how to develop and use the
