@@ -11,7 +11,7 @@ Hybrid Usage Examples
     opt_example_bqm_structuralimbalance
     opt_example_dqm_map
     opt_example_kerberos_map
-    opt_example_dwavehybrid_manyvariables
+    opt_example_dwavehybrid_workflow
 
 For beginner examples, see the :ref:`opt_index_examples_beginner` section.
 

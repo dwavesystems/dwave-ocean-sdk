@@ -29,7 +29,7 @@ The :ref:`qpu_example_mapcoloring` advanced example demonstrates lower-level
 coding of a similar problem, which gives the user more control over the solution
 procedure but requires the knowledge of some system parameters (e.g., knowing
 the maximum number of supported variables for the problem). The
-:ref:`opt_example_dwavehybrid_manyvariables` example demonstrates the hybrid
+:ref:`opt_example_dwavehybrid_workflow` example demonstrates the hybrid
 approach to problem solving in more detail by explicitly configuring the
 classical and quantum workflows.
 
@@ -104,7 +104,7 @@ parallel :class:`~hybrid.samplers.TabuProblemSampler`,
 subproblem sampling on problem variables that have high impact. The only
 optional parameters set here are a maximum number of iterations and number of
 iterations with no improvement that terminates sampling. (See the
-:ref:`opt_example_dwavehybrid_manyvariables` example for more details on
+:ref:`opt_example_dwavehybrid_workflow` example for more details on
 configuring the classical and quantum workflows.)
 
 >>> import dwave_networkx as dnx
