@@ -1,8 +1,8 @@
 .. _opt_example_dwavehybrid_manyvariables:
 
-===========================
-Problem With Many Variables
-===========================
+=======================================
+Big Random Graph: dwave-hybrid Workflow
+=======================================
 
 This example solves a graph problem with too many variables to fit onto the QPU.
 

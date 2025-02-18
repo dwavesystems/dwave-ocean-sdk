@@ -1,8 +1,8 @@
 .. _opt_example_bqm_structuralimbalance:
 
-========================================
-Structural Imbalance in a Social Network
-========================================
+================================
+Structural Imbalance: BQM Solver
+================================
 
 This example solves a structural-imbalance problem, similar to the
 `Leap <https://cloud.dwavesys.com/leap/>`_ demo and

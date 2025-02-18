@@ -1,8 +1,8 @@
 .. _opt_example_nl_cvrp:
 
-===============
-Vehicle Routing
-===============
+========================================
+Vehicle Routing: Using a Nonlinear Model
+========================================
 
 This example demonstrates the use of a
 `Leap <https://cloud.dwavesys.com/leap/>`_ :term:`hybrid` :term:`solver` on a

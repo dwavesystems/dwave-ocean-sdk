@@ -1,8 +1,8 @@
 .. _opt_example_cqm_binpacking:
 
-===========
-Bin Packing
-===========
+=======================
+Bin Packing: Binary CQM
+=======================
 
 This example solves the known hard problem of
 `bin packing <https://en.wikipedia.org/wiki/Bin_packing_problem>`_ to

@@ -1,8 +1,8 @@
 .. _opt_example_nl_tsp:
 
-=====================
-Traveling Salesperson
-=====================
+=============================================
+Traveling Salesperson: Simple Nonlinear Model
+=============================================
 
 This example demonstrates the most basic use of a
 `Leap <https://cloud.dwavesys.com/leap/>`_ :term:`hybrid` :term:`solver` on a

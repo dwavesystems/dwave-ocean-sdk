@@ -1,8 +1,8 @@
 .. _opt_example_dqm_map:
 
-================================
-Map Coloring: Hybrid DQM Sampler
-================================
+========================
+Map Coloring: DQM Solver
+========================
 
 This example solves the same map coloring problem of the
 :ref:`opt_example_kerberos_map` example to demonstrate the

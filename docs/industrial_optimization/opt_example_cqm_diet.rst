@@ -1,8 +1,8 @@
 .. _opt_example_cqm_diet:
 
-=============
-Diet Planning
-=============
+===========================
+Diet Planning: CQM for MILP
+===========================
 
 This example demonstrates the use of a
 `Leap <https://cloud.dwavesys.com/leap/>`_ hybrid constrained quadratic model

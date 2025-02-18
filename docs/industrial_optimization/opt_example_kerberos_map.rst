@@ -1,8 +1,8 @@
 .. _opt_example_kerberos_map:
 
-==================
-Large Map Coloring
-==================
+=================================
+Map Coloring: dwave-hybrid Solver
+=================================
 
 This example solves a map-coloring problem to demonstrate an out-of-the-box use
 of :ref:`Ocean <index_ocean_sdk>` software's :term:`hybrid` :term:`sampler`,

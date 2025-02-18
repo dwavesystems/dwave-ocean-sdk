@@ -1,8 +1,8 @@
 .. _opt_example_cqm_stockselling:
 
-===========
-Stock Sales
-===========
+========================
+Stock Sales: Integer CQM
+========================
 
 This example finds a stock-selling strategy for a simplified market model to
 demonstrate using a `Leap <https://cloud.dwavesys.com/leap/>`_ :term:`hybrid`
