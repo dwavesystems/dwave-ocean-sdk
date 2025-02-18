@@ -1,8 +1,8 @@
 .. _qpu_example_scheduling:
 
-======================
-Constrained Scheduling
-======================
+=======================
+Scheduling: Constraints
+=======================
 
 This example solves a binary *constraint satisfaction problem* (:term:`CSP`).
 CSPs require that all a problem's variables be assigned values that result in

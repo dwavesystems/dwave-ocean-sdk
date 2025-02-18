@@ -1,8 +1,8 @@
 .. _qpu_example_min_vertex:
 
-============
-Vertex Cover
-============
+===================================
+Vertex Cover: Preformulated Problem
+===================================
 
 This example solves a few small examples of a known graph problem,
 *minimum vertex cover*. A

@@ -846,7 +846,7 @@ application includes the following steps of iterative development:
         you might represent the
         `satisfiability (SAT) <https://en.wikipedia.org/wiki/Boolean_satisfiability_problem>`_
         problem :math:`(x_1 \vee \overline{x}_2 ) \wedge (\overline{x}_1 \vee x_2)`
-        of the :ref:`qpu_example_unconstrained_sat` section as either an
+        of the :ref:`qpu_example_sat_unconstrained` section as either an
         objective to be minimized, :math:`0.1 x_1 + 0.1 x_2 - 0.2 x_1 x_2`, or a
         constraint to be met, :math:`x_1=x_2`.
 

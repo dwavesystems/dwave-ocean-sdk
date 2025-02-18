@@ -77,7 +77,7 @@ called a :doc:`penalty model </docs_penalty/sdk_index>`.
 Related Information
 ===================
 
-*   :ref:`qpu_example_constrained_xnor` introduces the use of QUBOs to represent constraints
+*   :ref:`qpu_example_sat_constrained` introduces the use of QUBOs to represent constraints
     in some simple examples.
 *   :ref:`qpu_reformulating` provides a variety of techniques for, and examples of, 
     reformulating CSPs as BQMs.

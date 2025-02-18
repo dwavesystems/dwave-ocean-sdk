@@ -7,17 +7,14 @@ Map Coloring: Hybrid DQM Sampler
 This example solves the same map coloring problem of the
 :ref:`opt_example_kerberos_map` example to demonstrate the
 `Leap <https://cloud.dwavesys.com/leap/>`_ service's hybrid discrete quadratic
-model (:term:`DQM`) solver, which enables you to solve problems
-of arbitrary structure and size for variables with **discrete** values.
+model (:term:`DQM`) solver, which enables you to solve problems of arbitrary
+structure and size for variables with **discrete** values.
 
-See :ref:`map_kerberos` for a description of the map coloring
-:doc:`constraint satisfaction problem </concepts/csp>` (CSP).
+See the :ref:`opt_example_kerberos_map` section for a description of the
+map-coloring constraint satisfaction problem (:term:`CSP`).
 
-The :ref:`map_coloring` advanced example demonstrates lower-level coding of a similar
-problem, which gives the user more control over the solution procedure but requires
-the knowledge of some system parameters (e.g., knowing the maximum number of supported
-variables for the problem). Example :ref:`hybrid1` demonstrates the hybrid approach to
-problem solving in more detail by explicitly configuring the classical and quantum workflows.
+The example of the :ref:`qpu_example_mapcoloring` section demonstrates direct
+usage of the quantum computer.
 
 Example Requirements
 ====================
@@ -26,14 +23,15 @@ Example Requirements
     :start-after: start_requirements
     :end-before: end_requirements
 
-.. note:: This example requires a minimal understanding of the :term:`penalty model`
-   approach to solving problems by minimizing penalties. In short, you formulate
-   the problem using positive values to penalize undesirable outcomes; that is,
-   the problem is formulated as an :term:`objective function` where desirable
-   solutions are those with the lowest values. This is demonstrated in
-   `Leap <https://cloud.dwavesys.com/leap/>`_\ 's *Structural Imbalance* demo,
-   introduced in the :ref:`and` example, and comprehensively explained in the
-   :std:doc:`Problem Solving Handbook <sysdocs_gettingstarted:doc_handbook>`.
+.. note:: This example requires a minimal understanding of the
+    :term:`penalty model` approach to solving problems by minimizing penalties.
+    In short, you formulate the problem using positive values to penalize
+    undesirable outcomes; that is, the problem is formulated as an
+    :term:`objective function` where desirable solutions are those with the
+    lowest values. This is demonstrated in the
+    `Leap <https://cloud.dwavesys.com/leap/>`_ service's *Structural Imbalance*
+    demo, introduced in the :ref:`qpu_example_and` section, and comprehensively
+    explained in the :ref:`qpu_reformulating` section.
 
 Solution Steps
 ==============
@@ -46,12 +44,12 @@ Solution Steps
 
 In this example, a DQM is created to formulate the problem and submitted to the
 `Leap <https://cloud.dwavesys.com/leap/>`_ hybrid DQM solver,
-``hybrid_binary_quadratic_model_version<x>``.
+``hybrid_discrete_quadratic_model_version<x>``.
 
 Formulate the Problem
 =====================
 
-This example uses the `NetworkX <https://networkx.org>`_
+This example uses the :std:doc:`NetworkX <networkx:index>`
 :func:`~networkx.readwrite.adjlist.read_adjlist` function to read a text file,
 ``usa.adj``, containing the states of the USA and their adjacencies (states with
 a shared border) into a graph. The original map information was found on
@@ -69,13 +67,15 @@ a shared border) into a graph. The original map information was found on
 
     # Snipped here for brevity
 
-You can see in the first non-comment line that the state of Alaska ("AK") has Hawaii
-("HI") as an adjacency and that Alabama ("AL") shares borders with four states.
+You can see in the first non-comment line that the state of Alaska ("AK") has
+Hawaii ("HI") as an adjacency and that Alabama ("AL") shares borders with four
+states.
 
 >>> import networkx as nx
 >>> G = nx.read_adjlist('usa.adj', delimiter = ',')   # doctest: +SKIP
 
-Graph G now represents states as vertices and each state's neighbors as shared edges.
+Graph G now represents states as vertices and each state's neighbors as shared
+edges.
 
 >>> states = G.nodes        # doctest: +SKIP
 >>> borders = G.edges       # doctest: +SKIP
@@ -89,9 +89,9 @@ number of cases).
 For every pair of states that share a border, set a quadratic bias of :math:`1`
 between the variables' identical cases and :math:`0` between all different cases
 (by default, the quadratic bias is zero). Such as :term:`penalty model` adds
-a value of :math:`1` to solutions of the DQM for every pair of neighboring states
-with the same color. Optimal solutions are those with the fewest such neighboring
-states.
+a value of :math:`1` to solutions of the DQM for every pair of neighboring
+states with the same color. Optimal solutions are those with the fewest such
+neighboring states.
 
 >>> import dimod
 ...
@@ -106,18 +106,14 @@ states.
 Solve the Problem by Sampling
 =============================
 
-D-Wave's quantum cloud service provides cloud-based hybrid solvers you can submit
-arbitrary BQMs and DQMs to. These solvers, which implement state-of-the-art
-classical algorithms together with intelligent allocation of the quantum
-processing unit (QPU) to parts of the problem where it benefits most, are designed
-to accommodate even very large problems. Leap's solvers can relieve you of the
-burden of any current and future development and optimization of hybrid
-algorithms that best solve your problem.
+.. include:: ../shared/examples.rst
+    :start-after: start_hybrid_advantage
+    :end-before: end_hybrid_advantage
 
-Ocean software's :doc:`dwave-system </docs_system/sdk_index>`
+Ocean software's :doc:`dwave-system <index_system>`
 :class:`~dwave.system.samplers.LeapHybridDQMSampler` class enables you to easily
-incorporate Leap's hybrid DQM solvers into your application.
-The solution printed below is truncated.
+incorporate Leap's hybrid DQM solvers into your application. The solution
+printed below is truncated.
 
 >>> from dwave.system import LeapHybridDQMSampler
 ...
@@ -150,9 +146,10 @@ Plot the best solution.
 The graphic below shows the result of one such run.
 
 .. figure:: ../_images/usa_map_dqm.png
-   :name: USAMapColoring
-   :alt: image
-   :align: center
-   :scale: 70 %
+    :name: USAMapColoring
+    :alt: image
+    :align: center
+    :scale: 70 %
 
-   One solution ``hybrid_binary_quadratic_model_version1`` found for the USA map-coloring problem.
+    One solution ``hybrid_discrete_quadratic_model_version1`` found for the USA
+    map-coloring problem.

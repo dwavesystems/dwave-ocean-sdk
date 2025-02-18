@@ -1,8 +1,8 @@
 .. _qpu_example_multigate:
 
-=====================
-Multiple-Gate Circuit
-=====================
+================================
+Logic Circuit: Embedding Effects
+================================
 
 This example solves a logic-circuit problem on a |dwave_short| quantum computer.
 It expands on the discussion in the :ref:`qpu_example_and` example about the

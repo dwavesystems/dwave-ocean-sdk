@@ -1,8 +1,8 @@
 .. _qpu_example_and:
 
-================
-Boolean AND Gate
-================
+=========================
+AND Gate: Minor-Embedding
+=========================
 
 This example solves a simple problem of a Boolean AND gate on a |dwave_short|
 quantum computer to demonstrate programming the underlying hardware more

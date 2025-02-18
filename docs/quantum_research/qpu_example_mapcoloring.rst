@@ -1,8 +1,8 @@
 .. _qpu_example_mapcoloring:
 
-============
-Map Coloring
-============
+=================================
+Map Coloring: Complex Constraints
+=================================
 
 This example solves a map-coloring problem. It demonstrates using a
 |dwave_short| quantum computer to solve a more complex constraint satisfaction

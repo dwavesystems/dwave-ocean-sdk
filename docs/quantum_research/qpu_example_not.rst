@@ -1,8 +1,8 @@
 .. _qpu_example_not:
 
-================
-Boolean NOT Gate
-================
+=====================
+NOT Gate: Simple QUBO
+=====================
 
 This example solves a simple problem of a Boolean NOT gate to demonstrate the
 mathematical formulation of a problem as a :term:`binary quadratic model` (BQM)

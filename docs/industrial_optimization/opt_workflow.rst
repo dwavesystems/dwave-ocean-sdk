@@ -63,7 +63,7 @@ nonlinear model\ [#]_ provided by :ref:`Ocean software <index_ocean_sdk>`:
 .. note::
     Constraints for unconstrained models are typically represented by adding
     :ref:`penalty models <concept_penalty>` to the objective, as shown
-    in the :ref:`qpu_example_unconstrained_sat` section.
+    in the :ref:`qpu_example_sat_unconstrained` section.
 
 .. [#]
     Quadratic functions have one or two variables per term. A simple example of

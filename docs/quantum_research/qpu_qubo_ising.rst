@@ -201,7 +201,7 @@ Solving these equations\ [#]_ gives :math:`E(s_1, s_2) = -0.5 s_1 s_2`.
     these now-known values, produces :math:`h_1 = h_2 = 0`.
 
 Submitting for solution on a |dwave_short| quantum computer is similar
-to the submission shown in the :ref:`qpu_example_constrained_xnor` section,
+to the submission shown in the :ref:`qpu_example_sat_constrained` section,
 where it is done for QUBOs:
 
 >>> from dwave.system import DWaveSampler, EmbeddingComposite
@@ -217,7 +217,7 @@ where it is done for QUBOs:
 ['SPIN', 2 rows, 1000 samples, 2 variables]
 
 See also an alternative way of looking at this example as a simple :term:`CSP`
-in the :ref:`qpu_example_unconstrained_sat` section.
+in the :ref:`qpu_example_sat_unconstrained` section.
 
 .. _qpu_qubo_ising_transformations:
 

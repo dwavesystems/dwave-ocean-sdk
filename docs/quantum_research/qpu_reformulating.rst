@@ -578,7 +578,7 @@ SAT is satisfied only if all its clauses are satisfied.
         i.e., (clause 1) :math:`\wedge` (clause 2).
 
 The
-:ref:`Simple Satisfiability (SAT) Example <qpu_example_unconstrained_sat>`
+:ref:`Simple Satisfiability (SAT) Example <qpu_example_sat_unconstrained>`
 of the :ref:`qpu_index_examples_beginner` section demonstrates an intuitive
 formulation of a small SAT as a BQM. This section provides a more methodological
 approach.

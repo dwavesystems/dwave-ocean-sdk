@@ -17,7 +17,7 @@ num_reads
 =========
 
 Consider the outcome of submitting the *exactly-one-true* constraint of the
-:ref:`qpu_example_constrained_xnor` section without specifying the number of
+:ref:`qpu_example_sat_constrained` section without specifying the number of
 anneals.
 
 .. testcode::
@@ -44,7 +44,7 @@ or not you see correct or good solutions at all.
 auto_scale
 ==========
 
-In the :ref:`qpu_example_unconstrained_sat` section, you develop a QUBO for a
+In the :ref:`qpu_example_sat_unconstrained` section, you develop a QUBO for a
 simple SAT problem,
 
 .. math::
@@ -150,7 +150,7 @@ Although not a parameter of |dwave_short| solvers, :code:`chain_strength`---a
 parameter used by some Ocean tools submitting problems to quantum
 samplers---may also be crucial to successfully solving some problems.
 
-The :ref:`qpu_example_constrained_xnor` section explains that for a chain of
+The :ref:`qpu_example_sat_constrained` section explains that for a chain of
 qubits to represent a variable, all its constituent qubits must return the same
 value for a sample, and that this is accomplished by setting a strong coupling
 to the edges connecting these qubits. It set a value that was a bit stronger
@@ -160,7 +160,7 @@ The last statement might have raised the question, Why not simply maximize the
 coupling strength for all qubits in all chains? Now, having learnt about the
 :ref:`qpu_basic_config_auto_scale` parameter, you can understand the answer.
 
-In the problem of the :ref:`qpu_example_constrained_xnor` section, the values
+In the problem of the :ref:`qpu_example_sat_constrained` section, the values
 set for the problem are:
 
 *   qubit biases: -1 and 1,
