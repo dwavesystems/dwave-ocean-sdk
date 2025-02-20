@@ -4,13 +4,14 @@
 Ocean Software Stack
 ====================
 
-The Ocean software stack provides a chain of tools that implements the steps
-needed to solve your problem on a CPU/GPU or a D-Wave system.
-As described in the :ref:`solving_problems` section, these steps include formulating
-the problem in a way the quantum computer understands (as
-a :term:`binary quadratic model`) and solving the formulated problem by submitting it
-to a D-Wave system or classical :term:`sampler` (the component used to minimize a BQM
-and therefore solve the original problem).
+The :ref:`Ocean <index_ocean_sdk>` software stack provides a chain of tools that
+implements the steps needed to solve your problem on a CPU, a |dwave_short|
+quantum computer, or a quantum-classical :term:`hybrid` :term:`solver`. As
+described in the :ref:`ocean_workflow` section, these steps include formulating
+the problem in a way the :term:`solver` understands (as a
+:ref:`supported model <concept_models>`) and solving the formulated problem by
+submitting it to a |dwave_short| quantum computer, a
+:ref:`classical sampler <qpu_intro_classical>`, or a :term:`hybrid` solver.
 
 It's helpful to visualize the tool chain as layers of abstraction, each of which
 handles one part of the solution procedure.
@@ -21,139 +22,168 @@ Abstraction Layers
 .. _fig_stack:
 
 .. figure:: ../_images/ocean_stack.png
-  :name: stack
-  :scale: 100 %
-  :alt: Overview of the software stack.
-  :height: 400 pt
-  :width: 400 pt
+    :name: stack
+    :scale: 100 %
+    :alt: Overview of the software stack.
+    :height: 400 pt
+    :width: 400 pt
 
-  Ocean Software Stack
+    Ocean Software Stack
 
-The :ref:`fig_stack` graphic above divides Ocean software and its context
-into the following layers of functionality:
+The :ref:`fig_stack` graphic above divides Ocean software and its context into
+the following layers of functionality:
 
-* Compute Resources
+*   Compute Resources
 
-  The hardware on which the problem is solved. This might be a D-Wave quantum processor but
-  it can also be the CPU of your laptop computer.
-* Samplers
+    The hardware on which the problem is solved. This might be a |dwave_short|
+    quantum computer but it can also be the CPU of your laptop computer or one
+    of the `Leap <https://cloud.dwavesys.com/leap/>`_ service's :term:`hybrid`
+    solvers.
+*   Samplers
 
-  Abstraction layer of the :term:`sampler` functionality. Ocean tools implement several samplers
-  that use the D-Wave system and classical compute resources. You can use the Ocean tools to
-  customize a D-Wave sampler, create your own sampler, or use existing (classical) samplers to
-  your code as you develop it.
-* Sampler API
+    Abstraction layer of the :term:`sampler` functionality.
+    :ref:`Ocean <index_ocean_sdk>` tools implement several samplers that use the
+    |dwave_short| quantum computer and classical compute resources. You can use
+    the Ocean tools to customize a sampler, create your own sampler, or use
+    existing (classical) samplers to test your code as you develop it.
+*   Sampler API
 
-  Abstraction layer that represents the problem in a form that can access the selected sampler;
-  for example, a :doc:`dimod </docs_dimod/sdk_index>` binary quadratic
-  model (BQM) class representing your problem wrapped in a :term:`minor-embedding` composite
-  that handles the mapping between your problem's variables and the sampler's graph.
-* Methods
+    Abstraction layer that represents the problem in a form that can access the
+    selected sampler; for example, a :ref:`dimod <index_dimod>` binary quadratic
+    model (:term:`BQM`) class representing your problem wrapped in a
+    :term:`minor-embedding` composite that handles the mapping between your
+    problem's variables and the sampler's :term:`topology`.
+*   Methods
 
-  Tools that help formulate a problem as binary quadratic models; for example
-  :doc:`dwave_networkx </docs_dnx/sdk_index>`
-  (`repo <https://github.com/dwavesystems/dwave-networkx>`_\ ) for graph-related problems.
-* Application
+    Tools that help formulate a problem as
+    :ref:`supported models <concept_models>`; for example the
+    :ref:`dwave_networkx <index_dnx>`package for graph-related problems.
+*   Application
 
-  Original problem in its context ("problem space"); for example, circuit fault diagnosis
-  attempts to identify failed logic gates during chip manufacturing.
+    Original problem in its context ("problem space"); for example, circuit
+    fault diagnosis attempts to identify failed logic gates during chip
+    manufacturing.
 
 Problem-to-Solution Tool Chain
 ==============================
 
-As described in the :ref:`solving_problems` section, problems can be posed in a variety of
-formulations; the D-Wave system solves binary quadratic models. Ocean tools assist you in converting
-the problem from its original form to a form native to the D-Wave system and sending the
-compatible problem for solving.
+As described in the :ref:`ocean_workflow` section, problems can be posed in a
+variety of formulations; the |dwave_short| quantum computer solves binary
+quadratic models (term:`BQM`) and other :term:`hybrid` solvers handle more
+abstract :ref:`models <concept_models>`. :ref:`Ocean <index_ocean_sdk>` tools
+assist you in converting the problem from its original form to a form native to
+the solver and sending the compatible problem for solving.
 
-This section will familiarize you with the different tools and how you can fit them together
-to solve your problem.
+This section will familiarize you with the different tools and how you can fit
+them together to solve your problem.
 
 Bottom-Up Approach
 ------------------
 
-One approach to envisioning how you can map your problem-solving process to Ocean software
-is to start from the bottom---the hardware doing the computations---and work your way
-up the Ocean stack to see the complete picture. This section shows how you might map
-each stage of the process to a layer of the Ocean stack.
+One approach to envisioning how you can map your problem-solving process to
+Ocean software is to start from the bottom---the hardware doing the
+computations---and work your way up the Ocean stack to see the complete picture.
+This subsection shows how you might map each stage of the process to a layer of
+the Ocean stack.
 
-1. **Compute resource**
+1.  **Compute resource**
 
-   You will likely use some combination of both local classical resources and a D-Wave system
-   in your work with Ocean software. When would you use which?
+    You will likely use some combination of both local classical resources and a
+    |dwave_short| quantum computer in your work with Ocean software. When would
+    you use which?
 
-   * CPU/GPU: for offline testing, small problems that can be solved exactly or heuristically in
-     a reasonable amount of time.
-   * QPU: hard problems or for learning how to use quantum resources to solve such problems.
-   * Hybrid of both QPU and CPU/GPU: large, complex problems that need to run classically
-     but may benefit from having some parts allocated to a quantum computer for solution.
+    *   CPU: For offline testing, small problems that can be solved exactly or
+        heuristically in a reasonable amount of time.
+    *   QPU: Hard problems or for learning how to use quantum resources to solve
+        such problems.
+    *   Hybrid of both QPU and CPU/GPU: Large, complex problems that need to run
+        classically but may benefit from having some parts allocated to a
+        quantum computer for solution.
 
-2. **Sampler**
+2.  **Sampler**
 
-   Your sampler provides access to the compute resource that solves your problem.
+    Your :term:`sampler` provides access to the compute resource that solves
+    your problem.
 
-   The table below shows some Ocean samplers and considerations for selecting one or another.
+    The table below shows some Ocean samplers and considerations for selecting
+    one or another.
 
-   .. list-table:: Ocean Samplers
-      :widths: 10 20 50 40
-      :header-rows: 1
+    .. list-table:: Ocean Samplers
+        :widths: 10 20 50 40
+        :header-rows: 1
 
-      * - Computation
-        - Tool & Sampler
-        - Usage
-        - Notes
-      * - Classical
-        - :doc:`dimod </docs_dimod/sdk_index>` :class:`~dimod.reference.samplers.ExactSolver`
-        - Find all states for small (<20 variables) problems.
-        - For code-development testing.
-      * - Classical
-        - :doc:`dimod </docs_dimod/sdk_index>` :class:`~dimod.reference.samplers.random_sampler.RandomSampler`
-        - Random sampler for testing.
-        - For code-development testing.
-      * - Classical
-        - :doc:`dimod </docs_dimod/sdk_index>` :class:`~dimod.reference.samplers.simulated_annealing.SimulatedAnnealingSampler`
-        - Simulated annealing sampler for testing.
-        - For code-development testing.
-      * - Classical
-        - :doc:`dwave-samplers </docs_samplers/index>` :class:`~dwave.samplers.greedy.sampler.SteepestDescentSolver`.
-        - A steepest-descent solver for binary quadratic models.
-        - For post-processing and convex problems.
-      * - Classical
-        - :doc:`dwave-samplers </docs_samplers/index>` :class:`~dwave.samplers.sa.sampler.SimulatedAnnealingSampler`
-        - Simulated annealing sampler.
-        -
-      * - Quantum
-        - :doc:`dwave-system </docs_system/sdk_index>` :class:`~dwave.system.samplers.DWaveSampler`
-        - Quick incorporation of the D-Wave system as a sampler.
-        - Typically part of a composite that handles :term:`minor-embedding`.
-      * - Quantum
-        - :doc:`dwave-system </docs_system/sdk_index>` :class:`~dwave.system.samplers.DWaveCliqueSampler`
-        - Quick incorporation of the D-Wave system as a sampler.
-        - Handles :term:`minor-embedding` for clique (:term:`complete graph`) problems.
-      * - Quantum
-        - :doc:`dwave-cloud-client </docs_cloud/sdk_index>` :code:`Solver()`
-        - D-Wave system as a sampler.\ [#]_
-        - For low-level control of problem submission.
-      * - Hybrid
-        - :doc:`dwave-hybrid </docs_hybrid/sdk_index>` :class:`~hybrid.reference.kerberos.KerberosSampler`
-        - *dimod*-compatible hybrid asynchronous decomposition sampler.
-        - For problems of arbitrary structure and size.
-      * - Hybrid
-        - `Leap <https://cloud.dwavesys.com/leap/>`_\ 's :class:`~dwave.system.samplers.LeapHybridNLSampler`
-        - Cloud-based quantum-classical hybrid solver.
-        - For application problems formulated as :ref:`nonlinear models <nl_model_sdk>`.
-      * - Hybrid
-        - `Leap <https://cloud.dwavesys.com/leap/>`_\ 's :class:`~dwave.system.samplers.LeapHybridCQMSampler`
-        - Cloud-based quantum-classical hybrid solver.
-        - For constrained quadratic models (:term:`CQM`) of arbitrary structure
-          and size.
-      * -
-        - :doc:`dimod </docs_dimod/sdk_index>` custom
-        - Write a custom sampler for special cases.
-        - See examples in :doc:`dimod </docs_dimod/sdk_index>`.
+        *   - Computation
+            - Tool & Sampler
+            - Usage
+            - Notes
+        *   - Classical
+            - :ref:`dimod <index_dimod>`
+              :class:`~dimod.reference.samplers.ExactSolver`
+            - Find all states for small (<20 variables) problems.
+            - For code-development testing.
+        *   - Classical
+            - :ref:`dimod <index_dimod>`
+              :class:`~dimod.reference.samplers.random_sampler.RandomSampler`
+            - Random sampler for testing.
+            - For code-development testing.
+        *   - Classical
+            - :ref:`dimod <index_dimod>`
+              :class:`~dimod.reference.samplers.simulated_annealing.SimulatedAnnealingSampler`
+            - Simulated annealing sampler for testing.
+            - For code-development testing.
+        *   - Classical
+            - :ref:`dwave-samplers <index_samplers>`
+              :class:`~dwave.samplers.greedy.sampler.SteepestDescentSolver`.
+            - A steepest-descent solver for binary quadratic models.
+            - For post-processing and convex problems.
+        *   - Classical
+            - :ref:`dwave-samplers <index_samplers>`
+              :class:`~dwave.samplers.sa.sampler.SimulatedAnnealingSampler`
+            - Simulated annealing sampler.
+            -
+        *   - Quantum
+            - :doc:`dwave-system <index_system>`
+              :class:`~dwave.system.samplers.DWaveSampler`
+            - Quick incorporation of the |dwave_short| quantum computer as a
+              sampler.
+            - Typically part of a composite that handles
+              :term:`minor-embedding`.
+        *   - Quantum
+            - :doc:`dwave-system <index_system>`
+              :class:`~dwave.system.samplers.DWaveCliqueSampler`
+            - Quick incorporation of the |dwave_short| quantum computer as a
+              sampler.
+            - Handles :term:`minor-embedding` for clique
+              (:term:`complete graph`) problems.
+        *   - Quantum
+            - :doc:`dwave-cloud-client <index_cloud>` :code:`Solver()`
+            - |dwave_short| quantum computer as a sampler.\ [#]_
+            - For low-level control of problem submission.
+        *   - Hybrid
+            - :doc:`dwave-hybrid <index_hybrid>`
+              :class:`~hybrid.reference.kerberos.KerberosSampler`
+            - *dimod*-compatible hybrid asynchronous decomposition sampler.
+            - For problems of arbitrary structure and size.
+        *   - Hybrid
+            - `Leap <https://cloud.dwavesys.com/leap/>`_ service's
+              :class:`~dwave.system.samplers.LeapHybridNLSampler`
+            - Cloud-based quantum-classical hybrid solver.
+            - For application problems formulated as
+              :ref:`nonlinear models <nl_model_sdk>`.
+        *   - Hybrid
+            - `Leap <https://cloud.dwavesys.com/leap/>`_ service's
+              :class:`~dwave.system.samplers.LeapHybridCQMSampler`
+            - Cloud-based quantum-classical hybrid solver.
+            - For constrained quadratic models (:term:`CQM`) of arbitrary
+              structure and size.
+        *   -
+            - :ref:`dimod <index_dimod>` custom
+            - Write a custom sampler for special cases.
+            - See examples in the :ref:`dimod <index_dimod>` reference
+              documentation.
 
 .. [#] This sampler is for low-level work on communicating with SAPI and is not
-       a dimod sampler.
+    a dimod sampler.
 
 3. **Pre- and Post-Processing**
 

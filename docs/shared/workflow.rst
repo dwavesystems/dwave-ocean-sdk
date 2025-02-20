@@ -1,27 +1,52 @@
+.. |figSolutionOverview| replace:: dummy
 
 .. start_workflow_intro
 
 The two main steps of solving problems using quantum computers are:
 
-1.  **Formulate your problem as an objective function**
+1.  **Formulate**\ [#]_ **your problem as an objective function**
 
     An :term:`objective function` (cost function) is a mathematical expression
     of the problem to be optimized; for quantum computing, these are
-    quadratic and nonlinear :ref:`models <concept_models>` that have lowest
-    values (energy) for good solutions to the problems they represent.
+    quadratic and (for some :term:`hybrid` :term:`solvers <solver>`) nonlinear
+    :ref:`models <concept_models>` that have lowest values (energy) for good
+    solutions to the problems they represent.
 
 2.  **Find good solutions by sampling**
 
-    :ref:`Samplers <concept_samplers>` are processes that sample from
-    low-energy states of objective functions. Find good solutions by submitting
-    your quadratic or nonlinear model to one of a variety of |dwave_short|'s
-    quantum, classical, and hybrid quantum-classical samplers.
+    :ref:`Samplers <concept_samplers>` are processes that sample from low-energy
+    states of objective functions. Find good solutions by submitting your model
+    to one of a variety of |dwave_short|'s quantum, classical, and hybrid
+    quantum-classical samplers.
+
+.. todo:: Ask Michael to refresh this graphic
+
+.. figure:: ../_images/SolutionOverview.svg
+    :name: |figSolutionOverview|
+    :alt: image
+    :align: center
+    :width: 100%
+
+    Solution steps: (1) a problem known in "problem space" (a circuit of Boolean
+    gates, a graph, a network, etc) is formulated as a model, mathematically or
+    using Ocean functionality, and (2) the model is sampled for solutions.
 
 .. note::
-    Samplers run---either remotely (for example, in |dwave_short|'s Leap
-    service) or locally on your CPU---on compute resources known as *solvers*.
-    (Note that some classical samplers actually brute-force solve small problems
-    rather than sample, and these are also referred to as solvers.)
+    Samplers run---either remotely (for example, in the
+    `Leap <https://cloud.dwavesys.com/leap/>`_ service) or locally on your
+    CPU---on compute resources known as :term:`solvers <solver>`. (Note that
+    some classical samplers actually brute-force solve small problems rather
+    than sample, and these are also referred to as solvers.)
+
+.. [#]
+    For quantum computing, as for classical, solving a problem requires that it
+    be formulated in a way the computer and its software understand. For
+    example, if you want your laptop to calculate the area of a $1 coin, you
+    might express the problem as an equation, :math:`A=\pi r^2`, that you
+    program as :code:`math.pi*13.245**2` in your Python terminal. For a laptop
+    with Python software, this formulation---a particular string of alphanumeric
+    symbols---causes the manipulation of bits in a CPU and memory chips that
+    produces the correct result.
 
 .. end_workflow_intro
 
@@ -30,11 +55,12 @@ The two main steps of solving problems using quantum computers are:
 
 .. start_objective
 
-To express a problem for a |dwave_short| solver in a form that enables solution
-by minimization, you need an :term:`objective function`, a mathematical
-expression of the energy of a system. When the solver is a QPU, the energy is a
-function of binary variables representing its qubits; for quantum-classical
-hybrid solvers, the objective function might be more abstract.
+To express a problem for a |dwave_short| :term:`solver` in a form that enables
+solution by minimization, you need an *objective function*, a mathematical
+expression of the energy of a system. When the solver is a :term:`QPU`, the
+energy is a function of binary :ref:`variables <concept_variables>` representing
+its qubits\ [#]_\ ; for quantum-classical :term:`hybrid` solvers, the objective
+function might be more abstract\ [#]_\ .
 
 .. figure:: ../_images/obj.png
     :name: |figObjectiveFunction|
@@ -48,6 +74,39 @@ the solution. Sometimes any low-energy state is an acceptable solution to the
 original problem; for other problems, only optimal solutions are acceptable. The
 best solutions typically correspond to the *global minimum* energy in the
 solution space; see the figure above.
+
+There are many ways of mapping between a problem---chains of amino acids forming
+3D structures of folded proteins, traffic in the streets of Beijing, circuits of
+binary gates---and an objective function to be solved (by sampling) with a
+|dwave_short| quantum computer, :term:`hybrid` solver, or locally on your CPU.
+The :ref:`qpu_index_examples_beginner` and :ref:`opt_index_examples_beginner`
+show some simple objective functions to help you begin.
+
+For more detailed information on objective functions, how |dwave_short| quantum
+computers minimize objective functions, see the
+:ref:`qpu_quantum_annealing_intro` section; for techniques for reformulating
+problems as objective functions, see the :ref:`qpu_reformulating` section.
+
+For code examples that formulate models for various problems, see
+`D-Wave's examples repo <https://github.com/dwave-examples>`_  and many example
+customer applications on the `D-Wave website <https://www.dwavesys.com/>`_.
+
+.. [#]
+    If you are solving your problem directly on a |dwave_short| quantum
+    computer, the system is the qubits of a quantum processing unit
+    (:term:`QPU`) and your objective function represents the states of the
+    qubits as binary variables, and the physical biases and couplings applied to
+    these qubits as, respectively, linear and quadratic coefficients. By
+    formulating an objective function such that lowest energy states represent
+    good solutions to your problem, you can solve your problem by minimizing the
+    objective function. In the case of a |dwave_short| quantum computer, the QPU
+    uses :term:`quantum annealing` to seek the minimum of the energy landscape
+    for its qubits with the biases and couplings applied by your objective
+    function.
+
+.. [#]
+    For hybrid solvers, some parts of the objective function are minimized using
+    classical heuristics and some by the QPU.
 
 .. end_objective
 

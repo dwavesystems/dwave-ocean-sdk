@@ -59,7 +59,7 @@ maximum_number_of_cases
 Maximum number of cases accepted by the solver.
 
 For more details about cases and their role in DQMs, see the
-:ref:`concept_models_dqm`section.
+:ref:`concept_models_dqm` section.
 
 Example
 -------

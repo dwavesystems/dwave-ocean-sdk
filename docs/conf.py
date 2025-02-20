@@ -209,6 +209,8 @@ intersphinx_mapping = {
     'python': ('https://docs.python.org/3/', None),
     'numpy': ('http://numpy.org/doc/stable/', None),
     'networkx': ('https://networkx.org/documentation/stable/', None),
+    'urllib3': ('https://urllib3.readthedocs.io/en/stable/', None),
+    'requests': ('https://requests.readthedocs.io/en/stable/', None),
     # 'sysdocs_gettingstarted': ('https://docs.dwavesys.com/docs/latest/', None),
     # 'oceandocs': ('https://docs.ocean.dwavesys.com/en/stable/', None),
     }

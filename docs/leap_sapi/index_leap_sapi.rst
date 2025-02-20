@@ -104,10 +104,8 @@ region.
 
 .. note::
 
-    *   If you have only a Trial or Developer plan, you have only one project.
-
-    *   You can make a different project active by selecting
-        *your_user_name* > **Projects** > *project*.
+    You can make a different project active by selecting
+    *your_user_name* > **Projects** > *project*.
 
 Solvers
 =======
@@ -124,7 +122,8 @@ Problem Submission and API Tokens
 To submit a problem, an API token is required. Instead of a user name and
 password, an API token is used to authenticate your client session when it
 connects to the Leap service. A unique and secure API token is generated
-for each of your projects and is available on the dashboard.
+for each of your projects, excluding those with the **Trial Plan** account
+type,\ [#]_ and is available on the dashboard.
 
 To learn about authorizing the Ocean software access to your account
 in the Leap service and enabling it to store your API token in your development
@@ -133,31 +132,28 @@ environment, see the :ref:`leap_dev_env` section.
 If your API token is shared or compromised in any way, you should reset it via
 the dashboard.
 
+.. [#]  Projects with the **Trial Plan** account type do not include the use of
+    API tokens required to submit arbitrary problems to solvers and thus users
+    in those projects can only run some demos.
+
 Customer Plans and Access to Solvers
 ====================================
 
-Your customer plan\ [#]_ and :ref:`seat type <admin_def_seat_type>` in a project, together
-with your customer contract (where applicable), determine your degree of access
-to solvers; for example, you may not have access to all solvers that are
-available in the Leap service.\ [#]_
-You can view your solver access and usage for a project on the dashboard.
+Your customer plan\ [#]_ and :ref:`seat type <admin_def_seat_type>` in a
+project, together with your customer contract (where applicable), determine your
+degree of access to solvers; for example, you may not have access to all solvers
+that are available in the Leap service. You can view your solver access and
+usage for a project on the dashboard.
 
-Users with :ref:`limited solver access <admin_def_solver_access_limit>` can submit
-problems to the solvers in a project while their remaining solver-access
+Users with :ref:`limited solver access <admin_def_solver_access_limit>` can
+submit problems to the solvers in a project while their remaining solver-access
 time\ [#]_ for that project is sufficient.
 
-.. [#]  For information about customer plans, see the
-        `Leap Customer Plans <https://cloud.dwavesys.com/leap/plans>`_ page.
+.. [#] For information about customer plans, see the
+    `Leap Customer Plans <https://cloud.dwavesys.com/leap/plans>`_ page.
 
-.. [#]  Some customer plans, such as the Trial or Developer plans, do not
-        include the use of API tokens required to submit arbitrary problems to
-        solvers and instead allow only running some demos.
-
-.. [#]  Solver access for the Trial plan expires on the date displayed in the
-        **Access Expiry** field; for upgrade options, click
-        **Expand Your Access**. For all other plans, a user's solver-access time
-        for a project is renewed monthly, subject to the customer contract; the
-        renewal date is displayed on the dashboard.
+.. [#] A user's solver-access time for a project is renewed monthly, subject to
+    the customer contract; the renewal date is displayed on the dashboard.
 
 .. _leap_support_for_dev_env:
 

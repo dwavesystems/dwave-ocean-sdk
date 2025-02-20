@@ -8,6 +8,8 @@ This section provides a high-level description of how you solve problems using
 :term:`hybrid` :term:`solver`\ s. For solving problems directly on quantum
 computers, see the :ref:`qpu_workflow` section.
 
+.. |figSolutionOverview| replace:: optSolutionOverview
+
 .. include:: ../shared/workflow.rst
     :start-after: start_workflow_intro
     :end-before: end_workflow_intro
@@ -37,12 +39,14 @@ solution by sampling.
 
 .. _opt_workflow_models:
 
-Models
-======
+Supported Models
+----------------
 
 To express your problem as an objective function and submit to a |dwave_short|
-sampler for solution, you typically use one of the quadratic models\ [#]_ or
-nonlinear model\ [#]_ provided by :ref:`Ocean software <index_ocean_sdk>`:
+:term:`hybrid` sampler for solution, you typically use one of the
+:ref:`Ocean software <index_ocean_sdk>` quadratic\ [#]_ models or
+nonlinear\ [#]_ :ref:`model <concept_models>` supported by the
+`Leap <https://cloud.dwavesys.com/leap/>`_ service's hybrid solvers:
 
 *   .. include:: ../shared/models.rst
         :start-after: start_models_nonlinear

@@ -94,3 +94,29 @@ values such as ``{red, green, blue, yellow}`` or ``{3.2, 67}``; constraints are
 typically represented as :ref:`penalty models <concept_penalty>`.
 
 .. end_models_dqm
+
+
+.. start_models_ising
+
+.. todo:: replace the example here
+
+:ref:`Ising models <concept_models_ising>` are unconstrained and typically
+represent problems of decisions that could either be true (or yes) or
+false (no); for example, should an antenna transmit, or did a network node fail?
+The model uses :math:`-1/1`-valued variables; constraints are typically
+represented as :ref:`penalty models <concept_penalty>`.
+
+.. end_models_ising
+
+
+.. start_models_qubo
+
+.. todo:: replace the example here
+
+:ref:`QUBOs <concept_models_qubo>` are unconstrained and typically represent
+problems of decisions that could either be true (or yes) or false (no); for
+example, should an antenna transmit, or did a network node fail? The model uses
+:math:`0/1`-valued variables; constraints are typically represented as
+:ref:`penalty models <concept_penalty>`.
+
+.. end_models_qubo

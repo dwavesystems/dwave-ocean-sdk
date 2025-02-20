@@ -277,5 +277,7 @@ shows the graph and adjacency representations for an example BQM,
 Related Information
 ===================
 
-*   :ref:`opt_model_construction_nl` describes the construction of nonlinear models.
-*   :ref:`opt_model_construction_qm` describes the construction of quadratic models.
+*   :ref:`opt_model_construction_nl` describes the construction of nonlinear
+    models.
+*   :ref:`opt_model_construction_qm` describes the construction of quadratic
+    models.

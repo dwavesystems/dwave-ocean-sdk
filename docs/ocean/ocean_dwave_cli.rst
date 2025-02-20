@@ -91,7 +91,7 @@ following Ocean CLI commands from your terminal.
 
 With Ocean now authorized to access your Leap account, you can create a 
 :ref:`dwave-cloud-client <sdk_index_cloud>` 
-:ref:`configuration file <configurationFiles>` to manage your Solver API (SAPI) access
+:ref:`configuration file <sapi_access_config_files>` to manage your Solver API (SAPI) access
 with the SAPI token retrieved from your account as shown in the 
 :ref:`cli_example_config` command.
 

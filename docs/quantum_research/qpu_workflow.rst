@@ -8,6 +8,8 @@ This section provides a high-level description of how you solve problems using
 quantum computers directly. For solving problems with :term:`hybrid`
 :term:`solver`\ s, see the :ref:`opt_workflow` section.
 
+.. |figSolutionOverview| replace:: qpuSolutionOverview
+
 .. include:: ../shared/workflow.rst
     :start-after: start_workflow_intro
     :end-before: end_workflow_intro
@@ -37,18 +39,23 @@ solution by sampling.
 
 .. _qpu_workflow_models:
 
-Models
-======
+Supported Models
+----------------
 
 To express your problem as an objective function and submit to a |dwave_short|
-sampler for solution, you typically use one of the quadratic models\ [#]_
-provided by :std:doc:`Ocean software <oceandocs:index>`:
+sampler for solution, you typically use one of the
+:ref:`Ocean software <index_ocean_sdk>` quadratic\ [#]_
+:ref:`models <concept_models>` supported by |dwave_short| quantum computers:
 
-*   :ref:`concept_models_bqm` are unconstrained\ [#]_ and have binary variables.
-
-    BQMs are typically used for applications that optimize over decisions that
-    could either be true (or yes) or false (no); for example, should an antenna
-    transmit, or did a network node experience failure?
+*   .. include:: ../shared/models.rst
+        :start-after: start_models_bqm
+        :end-before: end_models_bqm
+*   .. include:: ../shared/models.rst
+        :start-after: start_models_ising
+        :end-before: end_models_ising
+*   .. include:: ../shared/models.rst
+        :start-after: start_models_qubo
+        :end-before: end_models_qubo
 
 .. [#]
     Quadratic functions have one or two variables per term. A simple example of
@@ -64,13 +71,11 @@ provided by :std:doc:`Ocean software <oceandocs:index>`:
     quadratic with a relationship between the variables.
 
     Ocean software also provides support for
+
+    .. todo:: update this link
+
     :ref:`higher order models <oceandocs:higher_order>`, which are typically
     reduced to quadratic for sampling.
-
-.. [#]
-    Constraints for such models are typically represented by adding
-    :ref:`penalty models <sysdocs:cb_techniques>` to the objective, as shown
-    in the :ref:`getting_started_formulation_constraints` section.
 
 .. _qpu_workflow_samplers:
 

@@ -14,8 +14,6 @@ Ocean SDK
     ocean_release_notes
     ocean_source_code
 
-.. sections-start-marker
-
 Ocean\ |tm| software is a suite of tools for using
 `D-Wave Quantum Inc. <https://www.dwavesys.com>`_ quantum computers.
 
@@ -60,9 +58,9 @@ Ocean\ |tm| software is a suite of tools for using
 Example
 =======
 
-The :ref:`dwave setup <cli_example_setup>` command configures a development 
+The :ref:`dwave setup <cli_example_setup>` command configures a development
 environment on your local machine::
 
     $ dwave setup
-    
+
 .. include:: ../../CONTRIBUTING.rst

@@ -26,14 +26,28 @@ Concepts and Terminology
 
 .. glossary::
 
-    adiabatic
+    Adiabatic
         An annealing process that experiences no interference from outside
         energy sources and evolves the Hamiltonian slowly enough is called an
         *adiabatic* process.
 
         Learn more: :ref:`qpu_quantum_annealing_intro`.
 
-    binary quadratic model
+    Advantage
+        The |dwave_5kq_tm| quantum computer is the first quantum system
+        designed for business and is the most powerful and connected commercial
+        quantum computer in the world, with more than 5000 qubits and 35,000
+        couplers. |dwave_5kq| :term:`QPUs <QPU>` are named
+        :code:`Advantage_system<x.y>`, with ``x`` numbering :term:`solver`
+        (|dwave_short| system) resources and ``y`` possibly incrementing on
+        updates such as newer calibrations; for example, the first online QPU
+        was :code:`Advantage_system1.1`.
+
+    Advantage2
+        The |adv2_tm| is |dwave_short|'s D-Wave's next-generation :term:`QPU`,
+        after the :term:`Advantage` quantum computer.
+
+    Binary quadratic model
     BQM
         A collection of binary-valued variables (variables that can be assigned
         two values, for example -1, 1) with associated linear and quadratic
@@ -69,6 +83,13 @@ Concepts and Terminology
         *   :ref:`qpu_embedding_intro` for an introduction.
         *   :ref:`qpu_example_and` for an example.
         *   :ref:`qpu_embedding_guidance` for advanced information.
+
+    charge_time
+        Time charged to your `Leap service <https://cloud.dwavesys.com/leap/>`_
+        account.
+
+        Learn more: :ref`opt_leap_hybrid_timing` describes the timing
+        for hybrid solvers.
 
     Chimera
         A D-Wave :term:`QPU` is a lattice of interconnected qubits. While some
@@ -149,7 +170,7 @@ Concepts and Terminology
         same classical state---both 0 or both 1---or in opposite states. The
         correlation between coupled qubits is controlled programmatically.
 
-    discrete quadratic model
+    Discrete quadratic model
     DQM
         A collection of discrete-valued variables  (variables that can be
         assigned the values specified by a set such as
@@ -346,16 +367,32 @@ Concepts and Terminology
 
         Learn more: :ref:`concept_penalty`.
 
+    QPU
+        Quantum processing unit.
+
+        Learn more: :ref:`qpu_quantum_annealing_intro`.
+
+    qpu_access_time
+        :term:`QPU` time used by a :term:`hybrid` solver.
+
+        Learn more: :ref`opt_leap_hybrid_timing` describes the timing
+        for hybrid solvers.
+
     Quadratic model
         A collection of variables with associated linear and quadratic biases.
         Sometimes referred to as a **problem**.
 
         Learn more: :ref:`concept_models_quadratic`.
 
-    QPU
-        Quantum processing unit.
+    Quantum annealing
+    Quantum annealer
+        Quantum annealers are quantum computers that you initialize in a
+        low-energy state and gradually introduce the parameters of a problem you
+        wish to solve. The slow change makes it likely that the system ends in a
+        low-energy state of the problem, which corresponds to an optimal
+        solution.
 
-        Learn more: :ref:`qpu_quantum_annealing_intro`.
+        Learn more: ref:`qpu_quantum_annealing_intro`.
 
     Qubit
     Qubits
@@ -407,6 +444,12 @@ Concepts and Terminology
         See also `QUBO on Wikipedia <https://en.wikipedia.org/wiki/Quadratic_unconstrained_binary_optimization>`_.
 
         Learn more: :ref:`concept_models_qubo`.
+
+    run_time
+        Time a :term:`hybrid` solver spent working on your problem.
+
+        Learn more: :ref`opt_leap_hybrid_timing` describes the timing
+        for hybrid solvers.
 
     Sampler
         Samplers are processes that sample from low energy states of a problem's

@@ -113,7 +113,7 @@ your account's quota is consumed for a particular solver in the solver's
 You can see the time you are charged for in the responses returned for your
 submitted problems. The relevant field in the response is :code:`'charge_time'`.
 The example in the :ref:`opt_leap_hybrid_timing` section shows
-:code:`'charge_time': 2991424` in the returned response, meaning almost 3
+:code:`'charge_time': 2991424'` in the returned response, meaning almost 3
 seconds are being charged.
 
 Instantiating the needed compute resources for your problem can introduce
