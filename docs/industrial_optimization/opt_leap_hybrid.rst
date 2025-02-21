@@ -1,11 +1,11 @@
 .. _opt_leap_hybrid:
 
-=====================
-Leap's Hybrid Solvers
-=====================
+=============================
+Leap Service's Hybrid Solvers
+=============================
 
-This section introduces the `Leap service <https://cloud.dwavesys.com/leap/>`_'s
-quantum-classical hybrid solvers and provides references to usage information.
+This section introduces the |cloud_tm|_ service's quantum-classical
+:term:`hybrid` :term:`solvers` and provides references to usage information.
 
 .. note::
     Not all accounts have access to this type of solver.
@@ -16,8 +16,8 @@ Supported Solvers
 =================
 
 .. include:: ../shared/hybrid.rst
-    :start-after: start_intro
-    :end-before: end_intro
+    :start-after: start_leap_intro
+    :end-before: end_leap_intro
 
 .. include:: ../shared/hybrid.rst
     :start-after: start_generally_available_solvers
@@ -56,7 +56,7 @@ Solver Timing
 =============
 
 The table below lists the timing information returned from quantum-classical
-hybrid solvers in the `Leap service <https://cloud.dwavesys.com/leap/>`_.
+hybrid solvers in the |cloud|_ service.
 
 .. tabularcolumns:: |p{3cm}|p{10cm}|
 

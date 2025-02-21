@@ -181,10 +181,9 @@ as :math:`ab` are mapped to :term:`couplers`.
 
 :numref:`Figure %s <triangleEmbeddingPegasus>` shows such a mapping, between
 the graph representing the QUBO on the left and one particular minor-embedding
-on the right. (Rerunning Ocean software's
-:std:doc:`minorminer <index_minorminer>` tool, which produced this minor
-embedding, generates embeddings to various qubits across the QPU; the particular
-qubit numbers noted here are unimportant.)
+on the right. (Rerunning Ocean software's :ref:`minorminer <index_minorminer>`
+tool, which produced this minor embedding, generates embeddings to various
+qubits across the QPU; the particular qubit numbers noted here are unimportant.)
 
 *   Nodes :math:`a, b, c` (grey circles in the left-hand panel) map to qubits
     :math:`1812, 5169, 1827` (blue circles in the right-hand panel),
@@ -277,7 +276,7 @@ software. You are unlikely to manually embed a random 100-variable problem.
 
 This section provides an example of how you can calculate the biases needed for
 minor-embedding on a simple problem. Ocean software's minor-embedding tools,
-such as :std:doc:`minorminer <index_minorminer>`, do similar calculations.
+such as :ref:`minorminer <index_minorminer>`, do similar calculations.
 
 .. dropdown:: Example of Manual Minor Embedding
 
@@ -459,6 +458,9 @@ Ising objective functions, as shown here.
 .. todo:: fix ref to FBSS below:
 
 First, select a quantum computer. Ocean software provides
+
+.. todo:: update this link:
+
 :std:doc:`feature-based solver selection <oceandocs:docs_cloud/reference/resources>`,
 enabling you to select a quantum computer that meets your requirements on its
 number of qubits, topology, particular features, etc. This example, uses the

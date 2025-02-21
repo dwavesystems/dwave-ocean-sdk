@@ -403,7 +403,7 @@ nontrivial for some advanced flow-control runnables.
 
 The :ref:`conversion_hybrid` section describes the :class:`~hybrid.core.HybridRunnable`
 class you can use to produce a :class:`~hybrid.core.Runnable` sampler based on
-a :std:doc:`dimod <oceandocs:docs_dimod/sdk_index>` sampler.
+a :ref:`dimod <index_dimod>` sampler.
 
 The :ref:`utilities_hybrid` section provides a list of useful utility methods.
 

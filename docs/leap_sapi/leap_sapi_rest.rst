@@ -203,8 +203,8 @@ The examples below use the following setup:
 
         .. [#]
             For details of the required format, see the
-            :std:doc:`dimod <oceandocs:docs_dimod/sdk_index>`
-            :meth:`~dimod.QuadraticModel.to_file` method.
+            :ref:`dimod <index_dimod>` :meth:`~dimod.QuadraticModel.to_file`
+            method.
 
             .. dropdown:: Example serialized file
 

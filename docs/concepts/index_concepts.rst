@@ -152,8 +152,11 @@ Concepts and Terminology
         Learn more: :ref:`concept_models_cqm`.
 
     Constraint
+    Hard constraint
+    Soft constraint
         A constraint is a condition of an optimization problem that the solution
-        must satisfy. See
+        must satisfy ("hard" constraint) or is preferred to satisfy ("soft"
+        constraint). See
         `Constraint (mathematics) <https://en.wikipedia.org/wiki/Constraint_(mathematics)>`_.
 
     Constraint satisfaction problem
@@ -206,6 +209,10 @@ Concepts and Terminology
         configurations for problems represented by a :term:`penalty model`.
 
         Learn more: :ref:`qpu_quantum_annealing_intro`.
+
+    Feasible state
+        A state in which the values of variables do not violate any hard
+        :term:`constraint`.
 
     Graph
         A collection of nodes and edges. A graph can be derived from a
@@ -276,6 +283,9 @@ Concepts and Terminology
 
         Learn more: :ref:`qpu_errors`.
 
+    Infeasible state
+        A state in which the values of variables violate a :term:`constraint`.
+
     Ising
         Traditionally used in statistical mechanics. Variables are "spin up"
         (:math:`\uparrow`) and "spin down" (:math:`\downarrow`), states that
@@ -321,6 +331,7 @@ Concepts and Terminology
         Learn more: :ref:`concept_models`
 
     Objective function
+    Objective
         A mathematical expression of the energy of a system as a function of
         its variables.
 

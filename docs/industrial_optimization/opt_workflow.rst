@@ -117,7 +117,7 @@ Simple Sampling Example
 Simple Workflow Example
 =======================
 
-This example uses :std:doc:`Ocean software <oceandocs:index>` tools to
+This example uses :ref:`Ocean software <index_ocean_sdk>` tools to
 demonstrate the solution workflow described in this section on a simple problem
 of finding the rectangle with the greatest area when the perimeter is limited.
 

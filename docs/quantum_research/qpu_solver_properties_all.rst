@@ -476,6 +476,8 @@ The :ref:`parameter_qpu_auto_scale` parameter scales a problem's :math:`J`
 values such that the total :math:`J` values of the couplers for a group of
 qubits is within the range specified by this property.
 
+.. todo:: update the link below:
+
 For more information, Ocean software's
 :std:doc:`coupling_groups <docs_system/reference/generated/dwave.system.coupling_groups.coupling_groups>`
 function.

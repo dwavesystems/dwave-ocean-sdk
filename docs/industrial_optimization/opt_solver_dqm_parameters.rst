@@ -14,9 +14,9 @@ you can configure, see the :ref:`opt_solver_dqm_parameters` section.
 dqm
 ===
 
-Ocean software's :class:`dimod.DiscreteQuadraticModel` contains linear and
+Ocean software's :class:`dimod.DiscreteQuadraticModel` class contains linear and
 quadratic biases for problems formulated as
-:std:doc:`discrete binary models <oceandocs:concepts/dqm>` as well as additional
+:ref:`discrete binary models <concept_models_dqm>` as well as additional
 information such as variable labels.
 
 Relevant Properties

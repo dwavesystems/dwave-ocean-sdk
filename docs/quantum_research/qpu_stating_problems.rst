@@ -712,7 +712,7 @@ machine executes one task at a time and must complete started tasks.
 Code Examples
 -------------
 
-*   :std:doc:`Constrained Scheduling <qpu_example_scheduling>`
+*   :ref:`Constrained Scheduling <qpu_example_scheduling>`
 
     Shows new users how to formulate a constraint satisfaction problem (CSP)
     using Ocean tools and solve it on a |dwave_short| QPU solver.

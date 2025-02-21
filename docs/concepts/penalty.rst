@@ -4,11 +4,13 @@
 Penalty Models
 ==============
 
-Penalty models represent constraints as small models such as :ref:`bqm_sdk`\ s
+Penalty models represent :term:`constraints <constraint>` as small
+:ref:`models <concept_models>`, such as binary quadratic models (:term:`BQM`),
 that have higher values for infeasible states (values of variables that violate
 the constraint). By adding such models to the :term:`objective function` that
 represents your problem, you make it less likely that solutions that violate
-the constraint are selected by solvers that seek low-energy states.
+the constraint are selected by :term:`solvers <solver>` that seek low-energy
+states.
 
 Descriptive Example
 ===================
@@ -29,12 +31,12 @@ You can represent such a constraint with the :term:`penalty function`:
 
     2v_2v_4 - v_2 - v_4 + 1.
 
-This penalty function represents the constraint in that for assignments of variables that
-match valid states (:math:`v_2 \ne v_4`), the function evaluates at a lower value
-than assignments that violate the constraint. Therefore, when you minimize the
-sum of your objective function (:code:`bqm_p`) and a BQM representing this
-penalty function, those assignments of variables that meet the constraint have
-lower values.
+This penalty function represents the constraint in that for assignments of
+variables that match valid states (:math:`v_2 \ne v_4`), the function evaluates
+at a lower value than assignments that violate the constraint. Therefore, when
+you minimize the sum of your objective function (:code:`bqm_p`) and a BQM
+representing this penalty function, those assignments of variables that meet the
+constraint have lower values.
 
 The table below shows that this function penalizes states that violate the
 constraint while no penalty is applied to assignments of variables that
@@ -45,19 +47,19 @@ constraint; column :math:`\mathbf{P}` shows the value of the penalty for all
 possible assignments of variables.
 
 .. table:: Boolean NOT Constraint Represented by a Penalty Function.
-   :name: BooleanNOTConstraint
+    :name: BooleanNOTConstraint
 
-   ======================  ====================  ==========  ===================
-   :math:`\mathbf{v_2}`    :math:`\mathbf{v_4}`  **Valid?**  :math:`\mathbf{P}`
-   ======================  ====================  ==========  ===================
-   :math:`0`               :math:`1`             Yes         :math:`0`
-   :math:`1`               :math:`0`             Yes         :math:`0`
-   :math:`0`               :math:`0`             No          :math:`1`
-   :math:`1`               :math:`1`             No          :math:`1`
-   ======================  ====================  ==========  ===================
+    ======================  ====================  ==========  ==================
+    :math:`\mathbf{v_2}`    :math:`\mathbf{v_4}`  **Valid?**  :math:`\mathbf{P}`
+    ======================  ====================  ==========  ==================
+    :math:`0`               :math:`1`             Yes         :math:`0`
+    :math:`1`               :math:`0`             Yes         :math:`0`
+    :math:`0`               :math:`0`             No          :math:`1`
+    :math:`1`               :math:`1`             No          :math:`1`
+    ======================  ====================  ==========  ==================
 
-For example, the state :math:`v_2, v_4 = 0,1` of the first row represents
-valid assignments, and the value of :math:`P` is
+For example, the state :math:`v_2, v_4 = 0,1` of the first row represents valid
+assignments, and the value of :math:`P` is
 
 .. math::
 
@@ -76,12 +78,12 @@ penalizing both possible assignments of variables that violate the constraint,
 the BQM based on this penalty function has minimal values (lowest energy states)
 for variable values that meet the constraint.
 
-Example Using Ocean
-===================
+Code Example
+============
 
-Consider an example of mapping an AND clause to a QUBO. To do this, solutions to
-the QUBO (solutions that minimize the energy of the QUBO) must be exactly the
-valid configurations of an AND gate, ``z = AND(x_1, x_2)``.
+Consider an example of mapping an AND clause to a :term:`QUBO`. To do this,
+solutions to the QUBO (solutions that minimize the energy of the QUBO) must be
+exactly the valid configurations of an AND gate, ``z = AND(x_1, x_2)``.
 
 First, import the required packages.
 

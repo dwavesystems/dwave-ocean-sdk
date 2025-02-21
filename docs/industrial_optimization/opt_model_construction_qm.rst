@@ -7,14 +7,14 @@ Model Construction (Quadratic Models)
 dimod provides a variety of model generators. These are especially useful for testing
 code and learning.
 
-See examples of using QPU solvers and `Leap <https://cloud.dwavesys.com/leap>`_
-hybrid solvers on these models in Ocean documentation's
-:std:doc:`Getting Started examples <oceandocs:getting_started>` and the
+See examples of using QPU solvers and |cloud|_ service :term:`hybrid`
+:term:`solvers <solver>` on these models in the
+:ref:`qpu_index_examples_beginner` and :ref:`opt_index_examples_beginner`
+sections and the
 `dwave-examples GitHub repository <https://github.com/dwave-examples>`_.
 
 Typically you construct a model when reformulating your problem, using such
-techniques as those presented in D-Wave's system documentation's
-:std:doc:`sysdocs_gettingstarted:doc_handbook`.
+techniques as those presented in the :ref:`qpu_reformulating`section.
 
 CQM Example: Using a dimod Generator
 ------------------------------------

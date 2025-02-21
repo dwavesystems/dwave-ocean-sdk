@@ -12,33 +12,36 @@ sampler for solution, you formulate a model.
 Constrained Versus Unconstrained
 ================================
 
-Many real-world problems include constraints. For example, a routing problem
-might limit the number of airplanes on the ground at an airport and a scheduling
-problem might require a minimum interval between shifts.
+Many real-world problems include :term:`constraints <constraint>`. For example,
+a routing problem might limit the number of airplanes on the ground at an
+airport and a scheduling problem might require a minimum interval between
+shifts.
 
-Constrained models such as :class:`~dimod.ConstrainedQuadraticModel` can support
-constraints by encoding both an objective and its set of constraints, as models
-or in symbolic form.
+Constrained models such as the :class:`~dimod.ConstrainedQuadraticModel` model
+can support constraints by encoding both an :term:`objective` and its set of
+constraints, as models or in symbolic form.
 
-Unconstrained quadratic models are used to submit problems to :term:`sampler`\ s
-such as D-Wave quantum computers\ [#]_ and some hybrid quantum-classical
-samplers\ [#]_. When using such samplers to handle problems with constraints,
-you typically formulate the constraints as :ref:`concept_penalty`.
+Unconstrained quadratic models are used to submit problems to
+:term:`samplers <sampler>` such as |dwave_short| quantum computers\ [#]_ and
+some quantum-classical :term:`hybrid` samplers\ [#]_. When using such samplers
+to handle problems with constraints, you typically formulate the constraints as
+:ref:`penalty models <concept_penalty>`.
 
 The :ref:`concept_models_supported` section below lists constrained and
 unconstrained models.
 
 .. [#]
-    D-Wave quantum computers accept unconstrained binary quadratic models, such
-    as quadratic unconstrained binary optimization (\ :term:`QUBO`\ ) models:
-    binary because variables are represented by qubits that return two states
-    and quadratic because polynomial terms of two variables can be represented
-    by pairs of coupled qubits.
+    |dwave_short| quantum computers accept unconstrained binary quadratic
+    models, such as quadratic unconstrained binary optimization (:term:`QUBO`)
+    models: binary because variables are represented by qubits that return two
+    states and quadratic because polynomial terms of two variables can be
+    represented by pairs of coupled qubits.
 
 .. [#]
-    Some hybrid quantum-classical samplers accept constrained and non-binary
-    models; for example, a quadratic model with an integer variable that must be
-    smaller than some configured value.
+    Some hybrid samplers accept constrained and non-binary models; for example,
+    a quadratic model with an integer variable that must be smaller than some
+    configured value. See the :ref:`opt_index_hybrid_solvers` section for the
+    available hybrid solvers and their capabilities.
 
 .. _concept_models_supported:
 
@@ -113,7 +116,8 @@ Binary Quadratic Models
     :end-before: end_models_bqm
 
 The binary quadratic model (BQM) class encodes Ising and quadratic unconstrained
-binary optimization (QUBO) models used by samplers such as the D-Wave system.
+binary optimization (QUBO) models used by samplers such as the |dwave_short|
+quantum computer.
 
 The BQM equation,
 
@@ -132,7 +136,7 @@ can represent both.
 Ising Model
 -----------
 
-The :term:`Ising` model is an objective function of :math:`N` variables
+The :term:`Ising` model is an :term:`objective function` of :math:`N` variables
 :math:`s=[s_1,...,s_N]` corresponding to physical Ising spins, where :math:`h_i`
 are the biases and :math:`J_{i,j}` the couplings (interactions) between spins.
 
@@ -170,8 +174,6 @@ Ocean software also supports these additional models.
 Quadratic Models
 ----------------
 
-.. start_concept_models_quadratic
-
 Quadratic models are polynomials with one or two variables per term. A simple
 example of a quadratic model is,
 
@@ -186,8 +188,8 @@ a relationship between the variables.
 
 Quantum computers solve hard problems by minimizing an objective function.
 Quadratic models are useful objective functions because the quantum processing
-unit (QPU) can represent binary variables as the states of the qubits and
-linear and quadratic coefficients as, respectively, the physical biases and
+unit (:term:`QPU`) can represent binary variables as the states of the qubits
+and linear and quadratic coefficients as, respectively, the physical biases and
 couplings applied to these qubits. Hybrid quantum-classical samplers, which
 minimize some parts of the objective function using classical heuristics and
 some by using the QPU, enable the further abstraction of problem representation.
@@ -202,9 +204,6 @@ Ocean supports various quadratic models:
 
 Ocean also provides support for :ref:`higher order models <higher_order>`,
 which are typically reduced to quadratic for sampling.
-
-.. end_concept_models_quadratic
-
 
 .. _concept_models_dqm:
 
