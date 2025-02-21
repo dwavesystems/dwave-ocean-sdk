@@ -119,8 +119,8 @@ interactive prompts and placeholder replies for a full setup.
     update your work environment's configuration at any time.
 
 .. include:: ocean_dwave_cli.rst
-    :start-after: cli-example-setup-start-marker
-    :end-before: cli-example-setup-end-marker
+    :start-after: cli_example_setup_start
+    :end-before: cli_example_setup_start_end
 
 .. _ocean_install_contrib:
 

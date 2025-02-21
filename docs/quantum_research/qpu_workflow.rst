@@ -102,5 +102,4 @@ Simple Sampling Example
 
 .. todo:: add example: Simple Workflow Example
 
-    Simple Workflow Example
-    =======================
+    Simple Workflow Example (title)

@@ -291,8 +291,8 @@ is done as follows (the :ref:`dwave setup <cli_example_setup>` command of the
     shown below includes the interactive prompts and placeholder replies).
 
 .. include:: ocean_dwave_cli.rst
-    :start-after: cli-example-config-start-marker
-    :end-before: cli-example-config-end-marker
+    :start-after: cli_example_config_start
+    :end-before: cli_example_config_end
 
 .. [#] You can use the :code:`--auto-token` option if you have authorized
     :ref:`Leap access <ocean_leap_authorization>`.

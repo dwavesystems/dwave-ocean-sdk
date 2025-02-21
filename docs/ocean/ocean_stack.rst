@@ -4,14 +4,16 @@
 Ocean Software Stack
 ====================
 
+.. todo:: this page needs a refresh for hybrid solvers
+
 The :ref:`Ocean <index_ocean_sdk>` software stack provides a chain of tools that
 implements the steps needed to solve your problem on a CPU, a |dwave_short|
 quantum computer, or a quantum-classical :term:`hybrid` :term:`solver`. As
 described in the :ref:`ocean_workflow` section, these steps include formulating
-the problem in a way the :term:`solver` understands (as a
+the problem in a way the solver understands (as a
 :ref:`supported model <concept_models>`) and solving the formulated problem by
 submitting it to a |dwave_short| quantum computer, a
-:ref:`classical sampler <qpu_intro_classical>`, or a :term:`hybrid` solver.
+:ref:`classical sampler <qpu_intro_classical>`, or a hybrid solver.
 
 It's helpful to visualize the tool chain as layers of abstraction, each of which
 handles one part of the solution procedure.
@@ -57,7 +59,7 @@ the following layers of functionality:
 
     Tools that help formulate a problem as
     :ref:`supported models <concept_models>`; for example the
-    :ref:`dwave_networkx <index_dnx>`package for graph-related problems.
+    :ref:`dwave_networkx <index_dnx>` package for graph-related problems.
 *   Application
 
     Original problem in its context ("problem space"); for example, circuit
@@ -185,143 +187,170 @@ the Ocean stack.
 .. [#] This sampler is for low-level work on communicating with SAPI and is not
     a dimod sampler.
 
-3. **Pre- and Post-Processing**
+3.  **Pre- and Post-Processing**
 
-   Samplers can be composed of `composite patterns <https://en.wikipedia.org/wiki/Composite_pattern>`_
-   that layer pre- and post-processing to binary quadratic programs without changing the
-   underlying sampler.
+    Samplers can be composed of
+    `composite patterns <https://en.wikipedia.org/wiki/Composite_pattern>`_ that
+    layer pre- and post-processing to binary quadratic programs without changing
+    the underlying sampler.
 
-   The table below shows some Ocean composites and considerations for selecting one or another.
+    The table below shows some Ocean composites and considerations for selecting
+    one or another.
 
-   .. list-table:: Ocean Composites
-      :widths: 10 50 50
-      :header-rows: 1
+    .. list-table:: Ocean Composites
+        :widths: 10 50 50
+        :header-rows: 1
 
-      * - Tool & Composite
-        - Usage
-        - Notes
-      * - :doc:`dwave-system </docs_system/sdk_index>` :class:`~dwave.system.composites.EmbeddingComposite`
-        - Maps unstructured problems to a structured sampler.
-        - Enables quick incorporation of the D-Wave system as a sampler by handling the :term:`minor-embedding`
-          to the QPU's :term:`Chimera` topology of qubits.
-      * - :doc:`dwave-system </docs_system/sdk_index>` :class:`~dwave.system.composites.FixedEmbeddingComposite`
-        - Maps unstructured problems to a structured sampler.
-        - Uses a pre-calculated minor-embedding for improved performance.
-      * - :doc:`dwave-system </docs_system/sdk_index>` :class:`~dwave.system.composites.TilingComposite`
-        - Tiles small problems multiple times to a Chimera-structured sampler.
-        - Enables parallel sampling for small problems.
-      * - :doc:`dimod </docs_dimod/sdk_index>` :class:`~dimod.reference.composites.tracking.TrackingComposite`
-        - Tracks inputs and outputs.
-        - Helps with testing and debugging.
-      * - :std:doc:`dwave-preprocessing <oceandocs:docs_preprocessing/sdk_index>`
-          :class:`~dwave.preprocessing.composites.SpinReversalTransformComposite`
-        - Applies spin reversal transform preprocessing.
-        - Improves QPU results by reducing the impact of possible analog and systematic errors.
-      * - :doc:`dimod </docs_dimod/sdk_index>` :class:`~dimod.reference.composites.structure.StructureComposite`
-        - Creates a structured composed sampler from an unstructured sampler.
-        - Maps from a problem graph (e.g., a square graph) to a sampler's graph.
+        *   - Tool & Composite
+            - Usage
+            - Notes
+        *   - :ref:`dwave-system <index_system>` package's
+              :class:`~dwave.system.composites.EmbeddingComposite` class
+            - Maps unstructured problems to a structured sampler.
+            - Enables quick incorporation of the |dwave_short| quantum computers
+              as a sampler by handling the :term:`minor-embedding` to the QPU's
+              :term:`topology` of qubits.
+        *   - :ref:`dwave-system <index_system>` package's
+              :class:`~dwave.system.composites.FixedEmbeddingComposite` class
+            - Maps unstructured problems to a structured sampler.
+            - Uses a pre-calculated minor-embedding for improved performance.
+        *   - :ref:`dwave-system <index_system>` package's
+              :class:`~dwave.system.composites.TilingComposite` class
+            - Tiles small problems multiple times to a structured sampler.
+            - Enables parallel sampling for small problems.
+        *   - :ref:`dimod <index_dimod>` package's
+              :class:`~dimod.reference.composites.tracking.TrackingComposite`
+              class
+            - Tracks inputs and outputs.
+            - Helps with testing and debugging.
+        *   - :ref:`dwave-preprocessing <index_preprocessing>` package's
+              :class:`~dwave.preprocessing.composites.SpinReversalTransformComposite`
+              class
+            - Applies spin reversal transform preprocessing.
+            - Improves QPU results by reducing the impact of possible analog and
+              systematic errors.
+        *   - :ref:`dimod <index_dimod>` package's
+              :class:`~dimod.reference.composites.structure.StructureComposite`
+              class
+            - Creates a structured composed sampler from an unstructured
+              sampler.
+            - Maps from a problem graph (e.g., a square graph) to a sampler's
+              graph.
 
-   In addition to composites that provide pre- and post-processing, Ocean also provides
-   stand-alone tools to handle complex or large problems. For example:
+    In addition to composites that provide pre- and post-processing, Ocean also
+    provides stand-alone tools to handle complex or large problems. For example:
 
-   * :doc:`minorminer </docs_minorminer/source/sdk_index>` for :term:`minor-embedding`
-     might be used to improve solutions by fine tuning parameters or incorporating problem
-     knowledge into the embedding.
-   * :ref:`dwave-samplers <index_dwave_samplers>` provides a steepest-descent solver
-     for binary quadratic models that can be run on the samples returned from solvers such
-     as :class:`~dwave.system.samplers.DWaveSampler` to find local minima in the neighbourhoods
-   * :doc:`dwave-hybrid </docs_hybrid/sdk_index>` splits problems too large for the QPU into
-     pieces solved either via a D-Wave system or a classical solver.
+    *   :ref:`minorminer <index_minorminer>` for :term:`minor-embedding` might
+        be used to improve solutions by fine tuning parameters or incorporating
+        problem knowledge into the embedding.
+    *   :ref:`dwave-samplers <index_samplers>` provides a steepest-descent
+        solver for binary quadratic models that can be run on the samples
+        returned from solvers such as the
+        :class:`~dwave.system.samplers.DWaveSampler` sampler to find local
+        minima in the neighbourhoods
+    *   :ref:`dwave-hybrid <index_hybrid>` splits problems too large for the QPU
+        into pieces solved either via a |dwave_short| quantum computer or a
+        classical solver.
 
-4. **Map to a Supported Format**
+4.  **Map to a Supported Format**
 
-    Typically, you formulate your problem as a binary quadratic model (BQM), which you solve
-    by submitting to the sampler (with its pre- and post-processing composite layers) you
-    select based on the considerations listed above.
+    Typically, you formulate your problem as a binary quadratic model
+    (:term:`BQM`), which you solve by submitting to the sampler (with its pre-
+    and post-processing composite layers) you select based on the considerations
+    listed above.
 
     Ocean provides tools for formulating the BQM:
 
-    * :doc:`dwavebinarycsp </docs_binarycsp/sdk_index>` for constraint
-      satisfaction problems with small constraints over binary variables. For example, many
-      problems can be posed as satisfiability problems or with Boolean logic.
-    * :doc:`dwave_networkx </docs_dnx/sdk_index>` for
-      implementing graph-theory algorithms of the D-Wave system. Many problems can be
-      posed in a form of graphs---this tool handles the construction of BQMs for several
-      standard graph algorithms such as maximum cut, cover, and coloring.
+    *   :ref:`dwavebinarycsp <index_binarycsp>` for constraint satisfaction
+        problems with small constraints over binary variables. For example, many
+        problems can be posed as satisfiability problems or with Boolean logic.
+    *   :ref:`dwave_networkx <index_dnx>` for implementing graph-theory
+        algorithms of the |dwave_short| quantum computer. Many problems can be
+        posed in a form of graphs---this tool handles the construction of BQMs
+        for several standard graph algorithms such as maximum cut, cover, and
+        coloring.
 
-    You might formulate a BQM mathematically; see :ref:`not` for a mathematical formulation
-    for a two-variable problem.
+    You might formulate a BQM mathematically; see the :ref:`qpu_example_not`
+    section for a mathematical formulation for a two-variable problem.
 
-    See the :std:doc:`system documents <sysdocs_gettingstarted:index>` for more information on techniques for formulating problems
-    as BQMs.
+    See the :ref:`qpu_reformulating` section for more information on techniques
+    for formulating problems as BQMs.
 
-5. **Formulate**
+5.  **Formulate**
 
-   The first step in solving a problem is to express it in a mathematical formulation.
-   For example, the :ref:`map_coloring` problem is to assign a color to each region of a map
-   such that any two regions sharing a border have different colors. To begin solving
-   this problem on any computer, classical or quantum, it must be concretely defined;
-   an intuitive approach, for the map problem, is to think of the regions as variables
-   representing the possible set of colors, the values of which must be selected from
-   some numerical scheme, such as natural numbers.
+    The first step in solving a problem is to express it in a mathematical
+    formulation. For example, the :ref:`qpu_example_mapcoloring` problem is to
+    assign a color to each region of a map such that any two regions sharing a
+    border have different colors. To begin solving this problem on any computer,
+    classical or quantum, it must be concretely defined; an intuitive approach,
+    for the map problem, is to think of the regions as variables representing
+    the possible set of colors, the values of which must be selected from some
+    numerical scheme, such as natural numbers.
 
-   The selection function must express the problem’s constraints:
+    The selection function must express the problem's constraints:
 
-   * Each region is assigned one color only, of C possible colors.
-   * The color assigned to one region cannot be assigned to adjacent regions.
+    *   Each region is assigned one color only, of C possible colors.
+    *   The color assigned to one region cannot be assigned to adjacent regions.
 
-   Now solving the problem means finding a permissible value for each of the variables.
+    Now solving the problem means finding a permissible value for each of the
+    variables.
 
-   When formulating a problem for the D-Wave system, bear in mind a few considerations:
+    When formulating a problem for the |dwave_short| quantum computer, bear in
+    mind a few considerations:
 
-   * Mathematical formulations must use binary variables because the solution is implemented
-     physically with qubits, and so must translate to spins :math:`s_i \in {−1, +1}` or
-     equivalent binary values :math:`x_i \in {0, 1}`.
-   * Relationships between variables must be reducible to quadratic (e.g., a QUBO)
-     because the problem’s parameters are represented by qubits’ weights and couplers’
-     strengths on a QPU.
-   * Formulations should be sparing in its number of variables because a QPU has a
-     limited number of qubits and couplers.
-   * Alternative formulations may have different implications for performance.
+    *   Mathematical formulations must use binary variables because the solution
+        is implemented physically with qubits, and so must translate to spins
+        :math:`s_i \in {−1, +1}` or equivalent binary values
+        :math:`x_i \in {0, 1}`.
+    *   Relationships between variables must be reducible to quadratic (e.g., a
+        :term:`QUBO`) because the problem's parameters are represented by
+        qubits' weights and couplers' strengths on a QPU.
+    *   Formulations should be sparing in its number of variables because a QPU
+        has a limited number of qubits and couplers.
+    *   Alternative formulations may have different implications for
+        performance.
 
-   Ocean demo applications, which formulate known problems, include:
+    Ocean demo applications, which formulate known problems, include:
 
-   * `Structural Imbalance <https://github.com/dwave-examples/structural-imbalance>`_.
-   * `Circuit-Fault Diagnosis <https://github.com/dwave-examples/circuit-fault-diagnosis>`_.
-
+    * `Structural Imbalance <https://github.com/dwave-examples/structural-imbalance>`_.
+    * `Circuit-Fault Diagnosis <https://github.com/dwave-examples/circuit-fault-diagnosis>`_.
 
 Top-Down Approach
 -----------------
-Another approach to envisioning how you can map your problem-solving process to Ocean
-software is to start from the top---your (possibly abstractly defined) problem---and
-work your way down the Ocean stack.
+
+Another approach to envisioning how you can map your problem-solving process to
+Ocean software is to start from the top---your (possibly abstractly defined)
+problem---and work your way down the Ocean stack.
 
 .. list-table:: Ocean Software
-   :widths: 10 120
-   :header-rows: 1
+    :widths: 10 120
+    :header-rows: 1
 
-   * - Step
-     - Description
-   * - State the Problem
-     - Define your problem concretely/mathematically; for example, as a constraint satisfaction
-       problem or a graph problem.
-   * - Formulate as a BQM
-     - Reformulate an integer problem to use binary variables, for example, or convert a
-       nonquadratic (high-order) polynomial to a QUBO.
+    *   - Step
+        - Description
+    *   - State the Problem
+        - Define your problem concretely/mathematically; for example, as a
+          constraint satisfaction problem (term:`CSP`) or a graph problem.
+    *   - Formulate as a :term:`BQM`
+        - Reformulate an integer problem to use binary variables, for example,
+          or convert a nonquadratic (high-order) polynomial to a :term:`QUBO`.
 
-       Ocean's :doc:`dwavebinarycsp </docs_binarycsp/sdk_index>` and :doc:`dwave_networkx </docs_dnx/sdk_index>`
-       can be helpful for some problems.
-   * - Decompose
-     - Allocate large problems to classical and quantum resources.
+          Ocean's :ref:`dwavebinarycsp <indedx_binarycsp>` and
+          :ref:`dwave_networkx <index_dnx>` packages can be helpful for some
+          problems.
+    *   - Decompose
+        - Allocate large problems to classical and quantum resources.
 
-       Ocean's :doc:`dwave-hybrid </docs_hybrid/sdk_index>` provides a framework and building
-       blocks to help you create hybrid workflows.
-   * - Embed
-     - Consider whether your problem has repeated elements, such as logic gates, when
-       deciding what tool to use to :term:`minor-embed` your BQM on the QPU. You might
-       start with fully automated embedding (using :class:`~dwave.system.composites.EmbeddingComposite` for example)
-       and then seek performance improvements through :doc:`minorminer </docs_minorminer/source/sdk_index>`.
-   * - Configure the QPU
-     - Use spin-reversal transforms to reduce errors, for example, or examine the annealing
-       with reverse anneal. See the :std:doc:`system documents <sysdocs_gettingstarted:index>` for more information of features
-       that improve performance.
+          Ocean's :ref:`dwave-hybrid <index_hybrid>` package provides a
+          framework and building blocks to help you create hybrid workflows.
+    *   - Embed
+        - Consider whether your problem has repeated elements, such as logic
+          gates, when deciding what tool to use to :term:`minor-embed` your BQM
+          on the QPU. You might start with fully automated embedding (using
+          the :class:`~dwave.system.composites.EmbeddingComposite` class for
+          example) and then seek performance improvements through the
+          :ref:`minorminer <index_minorminer>` tool.
+    *   - Configure the QPU
+        - Use spin-reversal transforms to reduce errors, for example, or examine
+          the annealing with reverse anneal. See the :ref:`qpu_basic_config`
+          section for more information.
