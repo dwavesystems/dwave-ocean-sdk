@@ -14,7 +14,7 @@ sections and the
 `dwave-examples GitHub repository <https://github.com/dwave-examples>`_.
 
 Typically you construct a model when reformulating your problem, using such
-techniques as those presented in the :ref:`qpu_reformulating`section.
+techniques as those presented in the :ref:`qpu_reformulating` section.
 
 CQM Example: Using a dimod Generator
 ------------------------------------

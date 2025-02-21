@@ -65,7 +65,8 @@ The serialized file may look like this:
     id              Unique identifier of the problem. Can be used to retrieve
                     problem information, solutions, and messages.
     label           Optional user-defined string (label) for a problem.
-    status          One of the problem states as defined in :ref:`lifecycle`.
+    status          One of the problem states as defined in
+                    :ref:`sapi_rest_lifecycle`.
                     For example, ``CANCELLED`` for cancelled problems.
     submitted_on    Time when problem was submitted.
     solved_on       If this problem is in terminal state (``COMPLETED``,

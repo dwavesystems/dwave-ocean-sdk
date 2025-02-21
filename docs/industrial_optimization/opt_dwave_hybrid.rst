@@ -358,8 +358,8 @@ The previous example above might output something like the following:
     2018-12-10 15:18:35,889 hybrid.flow INFO Loop Iteration(iterno=2, best_state_quality=-3.0)
     2018-12-10 15:18:37,377 hybrid.flow INFO Loop Iteration(iterno=3, best_state_quality=-3.0)
     Solution: sample=Sample(sample={'a': 1, 'b': -1, 'c': -1}, energy=-3.0, num_occurrences=1)
-    
-    Developing New Components
+
+Developing New Components
 =========================
 
 The *dwave-hybrid* framework enables you to build your own components to incorporate into your

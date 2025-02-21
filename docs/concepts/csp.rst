@@ -84,7 +84,7 @@ Related Information
     and examples of, reformulating CSPs as BQMs.
 *   The :ref:`qpu_example_mapcoloring` section solves a map-coloring problem on
     a |dwave_short| quantum computer.
-*   The :ref:`opt_example_dqm_map`and :ref:`opt_example_kerberos_map` sections
+*   The :ref:`opt_example_dqm_map` and :ref:`opt_example_kerberos_map` sections
     formulate and solve the problem on :term:`hybrid` solvers.
 
 

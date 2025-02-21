@@ -32,7 +32,7 @@ Simple Example Application
         nicely with intersphinx, etc.
 
     You can run the following code by downloading the `Jupyter <https://jupyter.org/>`_
-    :download:`Notebook <scaling_for_production.ipynb>`.
+    :download:`Notebook <../downloadables/scaling_for_production.ipynb>`.
 
 The code below formulates a simple `bin packing <https://w.wiki/3jz4>`_ problem,
 as explained in the Ocean SDK's :doc:`oceandocs:examples/hybrid_cqm_binpacking`

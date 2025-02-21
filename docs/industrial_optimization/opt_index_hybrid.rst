@@ -43,7 +43,8 @@ Leap's Hybrid Solvers
     :start-after: start_leap_intro
     :end-before: end_leap_intro
 
-:ref:`hss` is an example of submitting a problem for solution on a Leap hybrid solver.
+The :ref:`opt_example_nl_tsp` section provides an example of submitting a
+problem for solution on a |cloud|_ hybrid solver.
 
 
 .. _dwave_hybrid_solvers:
@@ -55,5 +56,6 @@ dwave-hybrid Hybrid Solvers
     :start-after: start_dwave_hybrid_intro
     :end-before: end_dwave_hybrid_intro
 
-:ref:`map_kerberos` and :ref:`hybrid1` are examples of solving problems using
-*dwave-hybrid* samplers.
+The :ref:`opt_example_kerberos_map` and :ref:`opt_example_dwavehybrid_workflow`
+sections provide examples of solving problems using
+:ref:`dwave-hybrid <index_hybrid>` samplers.

@@ -5,7 +5,8 @@ Leap Service's Hybrid Solvers
 =============================
 
 This section introduces the |cloud_tm|_ service's quantum-classical
-:term:`hybrid` :term:`solvers` and provides references to usage information.
+:term:`hybrid` :term:`solvers <solver>` and provides references to usage
+information.
 
 .. note::
     Not all accounts have access to this type of solver.
@@ -87,7 +88,7 @@ hybrid solvers in the |cloud|_ service.
     to contribute to the solution. On the large, complex problems for which
     hybrid solvers are intended, this is unlikely to occur.
 
-You can access this information via the :ref:`dimod <index_dimod>`_
+You can access this information via the :ref:`dimod <index_dimod>`
 :class:`~dimod.SampleSet` class, as in the example below.
 
 >>> import dimod

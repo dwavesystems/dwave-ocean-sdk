@@ -1,7 +1,7 @@
 .. _opt_index_get_started:
 
 =============================
-Get Started with Optimization 
+Get Started with Optimization
 =============================
 
 .. toctree::
@@ -13,7 +13,7 @@ Get Started with Optimization
     opt_model_construction_nl
     opt_index_hybrid
     opt_index_examples_beginner
-    
+
 Learn to solve hard optimization problems using quantum-classical :term:`hybrid`
 :term:`solver`\ s hosted in the |cloud_tm| quantum cloud service.
 
@@ -43,9 +43,9 @@ Learn to solve hard optimization problems using quantum-classical :term:`hybrid`
         :link-type: ref
 
         Hybrid solvers.
-        
-    .. grid-item-card:: :ref:`opt_index_intro_examples`
-        :link: opt_index_intro_examples
+
+    .. grid-item-card:: :ref:`opt_index_examples_beginner`
+        :link: opt_index_examples_beginner
         :link-type: ref
 
         Beginner-level end-to-end examples.

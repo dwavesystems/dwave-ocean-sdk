@@ -120,7 +120,7 @@ interactive prompts and placeholder replies for a full setup.
 
 .. include:: ocean_dwave_cli.rst
     :start-after: cli_example_setup_start
-    :end-before: cli_example_setup_start_end
+    :end-before: cli_example_setup_end
 
 .. _ocean_install_contrib:
 

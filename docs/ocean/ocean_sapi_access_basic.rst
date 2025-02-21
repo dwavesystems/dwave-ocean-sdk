@@ -150,8 +150,8 @@ environment from either Ocean's default values or your configuration.
         illustrative only).
 
         .. include:: ocean_dwave_cli.rst
-            :start-after: cli-example-solvers-start-marker
-            :end-before: cli-example-solvers-end-marker
+            :start-after: cli_example_solvers_start
+            :end-before: cli_example_solvers_end
 
         Example: using :doc:`dwave-cloud-client <index_cloud>` to query for
         hybrid solvers.
@@ -328,8 +328,8 @@ You can test that your solver access is configured correctly with the
     command (the output shown below is illustrative only).
 
 .. include:: ocean_dwave_cli.rst
-    :start-after: cli-example-ping-start-marker
-    :end-before: cli-example-ping-end-marker
+    :start-after: cli_example_ping_start
+    :end-before: cli_example_ping_end
 
 2.  **Optionally**, run the :code:`dwave sample --random-problem` command to
     submit a random problem to a remote solver (the output shown below is

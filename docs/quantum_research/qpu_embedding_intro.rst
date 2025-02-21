@@ -222,7 +222,7 @@ For information on handling embedding and chains, see the following sections:
     some simple examples how to embed and set chain strength.
 
 *   The :ref:`minorminer <index_minorminer>` tool is the hueristic used by common
-    Ocean embedding :term:`composites <composites>`.
+    Ocean embedding :term:`composites <composite>`.
 
 *   The :ref:`problem inspector <index_inspector>` tool visualizes embeddings.
 

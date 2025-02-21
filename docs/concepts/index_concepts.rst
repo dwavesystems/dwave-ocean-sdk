@@ -276,7 +276,7 @@ Concepts and Terminology
 
     ICE
     Integrated control errors
-        The dynamic range of :ref:`param_qpu_h` and :ref:`_parameter_qpu_j`
+        The dynamic range of :ref:`parameter_qpu_h` and :ref:`parameter_qpu_j`
         values may be limited by *integrated control errors* (ICE). The term
         *ICE* refers collectively to these sources of infidelity in problem
         representation.
@@ -546,7 +546,7 @@ Concepts and Terminology
 
     Topology
         The layout of the |dwave_short| quantum processing unit (:term:`QPU`):
-        The QPU is a lattice of interconnected :term:`qubits>`. While some
+        The QPU is a lattice of interconnected :term:`qubits`. While some
         qubits connect to others via :term:`couplers`, the QPU is not fully
         connected. Instead, the qubits of |dwave_short| annealing quantum
         computers interconnect in a topology such as :term:`Pegasus`.
