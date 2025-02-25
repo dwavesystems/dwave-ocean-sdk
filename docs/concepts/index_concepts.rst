@@ -47,6 +47,11 @@ Concepts and Terminology
         The |adv2_tm| is |dwave_short|'s next-generation :term:`QPU`, after the
         :term:`Advantage` quantum computer.
 
+    Anneal
+    Annealing
+
+        See :term:`quantum annealing`.
+
     Binary quadratic model
     BQM
         A collection of binary-valued variables (variables that can be assigned

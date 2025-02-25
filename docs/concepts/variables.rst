@@ -1,12 +1,16 @@
 .. _concept_variables:
 
 =========
-Variables 
+Variables
 =========
 
-D-Wave's samplers mostly\ [#]_ solve quadratic models of various sorts. Quadratic
-models are characterized by having one or two variables per term. A simple example
-of a quadratic model is,
+.. todo:: this section and do with some work, especially related to nonlinear
+    models
+
+|dwave_short|'s :term:`samplers <sampler>` mostly\ [#]_ solve
+:term:`quadratic models <concept_models_quadratic>` of various sorts. Quadratic
+models are characterized by having one or two variables per term. A simple
+example of a quadratic model is,
 
 .. math::
 
@@ -22,12 +26,12 @@ The variables in these models may be of the following types.
 .. |variables_table| replace:: Supported Variables
 
 .. include:: ../shared/variables.rst
-  :start-after: start_variables_table
-  :end-before: end_variables_table 
+    :start-after: start_variables_table
+    :end-before: end_variables_table
 
-.. [#] Ocean also provides some higher-order tools for developing and testing
-    your code; for example, the :class:`~dimod.reference.samplers.ExactPolySolver`
-    class.
+.. [#] :ref:`Ocean <index_ocean_sdk>` software also provides some higher-order
+    tools for developing and testing your code; for example, the
+    :class:`~dimod.reference.samplers.ExactPolySolver` class.
 
 Variable Representations and Labels
 ===================================
@@ -50,15 +54,17 @@ bias of `1`,
 >>> x[0]
 BinaryQuadraticModel({'x0': 1.0}, {}, 0.0, 'BINARY')
 
-with its single variable having a specified label; e.g., :code:`x0` for the first
-model in :code:`x`.
+with its single variable having a specified label; e.g., :code:`x0` for the
+first model in :code:`x`.
 
-The code below adds two variables to a :class:`~dimod.ConstrainedQuadraticModel`.
-The first, using the :meth:`~dimod.ConstrainedQuadraticModel.add_variable` method,
-adds a variable by specifying a label, ``"b"``, and the type of required variable,
-``"REAL"``. The second, using the
-:meth:`~dimod.ConstrainedQuadraticModel.add_constraint_from_model` method, specifies
-the variable ``i`` instantiated above as a :class:`~dimod.QuadraticModel` object.
+The code below adds two variables to a
+:class:`~dimod.ConstrainedQuadraticModel`. The first, using the
+:meth:`~dimod.ConstrainedQuadraticModel.add_variable` method, adds a variable by
+specifying a label, ``"b"``, and the type of required variable, ``"REAL"``. The
+second, using the
+:meth:`~dimod.ConstrainedQuadraticModel.add_constraint_from_model` method,
+specifies the variable ``i`` instantiated above as a
+:class:`~dimod.QuadraticModel` object.
 
 >>> cqm = dimod.ConstrainedQuadraticModel()
 >>> cqm.add_variable("b", "REAL")
@@ -71,5 +77,7 @@ Variables(['b', 'i'])
 Related Information
 ===================
 
-*   :ref:`opt_model_construction_nl` describes the construction of nonlinear models.
-*   :ref:`opt_model_construction_qm` describes the construction of quadratic models.
+*   The :ref:`opt_model_construction_nl` section describes the construction of
+    nonlinear models.
+*   The :ref:`opt_model_construction_qm` section describes the construction of
+    quadratic models.

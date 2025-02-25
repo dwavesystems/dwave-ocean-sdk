@@ -439,7 +439,7 @@ Ocean Software's Graph Tools
 
 Ocean software provides for all supported topologies the following graph tools:
 
-*   :ref:`graph generation <generators_dnx>` creates graphs for the
+*   :ref:`graph generation <dnx_generators>` creates graphs for the
     supported topologies of various sizes.
 *   :ref:`drawing <drawing>` visualizes the graphs you create.
 *   :ref:`indexing <index_conversion_classes>` helps translate
