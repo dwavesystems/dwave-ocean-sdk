@@ -326,8 +326,16 @@ rst_epilog = """
 .. _dwave_short: https://dwavequantum.com
 .. |dwave_short_tm| unicode:: D-Wave U+2122 U+0020
 .. |dwave_system| unicode:: D-Wave U+00A0 System
-.. |dwave_systems_inc| replace:: D-Wave Systems Inc.
-.. |qc| replace:: D-Wave Quantum Cloud
+
+.. |dwave_launch_tm| unicode:: D U+2011 Wave U+00A0 Launch U+2122
+.. _dwave_launch_tm: https://www.dwavesys.com/solutions-and-products/professional-services
+.. |dwave_launch| unicode:: D U+2011 Wave U+00A0 Launch
+.. _dwave_launch: https://www.dwavesys.com/solutions-and-products/professional-services
+.. |dwave_learn_tm| unicode:: D U+2011 Wave U+00A0 Learn U+2122
+.. _dwave_learn_tm: https://training.dwavequantum.com
+.. |dwave_learn| unicode:: D U+2011 Wave U+00A0 Learn
+.. _dwave_learn: https://training.dwavequantum.com
+
 .. |support_email| replace:: D-Wave Customer Support
 .. _support_email: support@dwavesys.com
 

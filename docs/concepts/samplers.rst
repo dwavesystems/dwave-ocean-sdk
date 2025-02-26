@@ -44,7 +44,7 @@ provides you with a Python framework for building a variety of flexible hybrid
 workflows that use quantum and classical resources together to find good
 solutions to your problem.
 
-.. _concept_samplers_composites
+.. _concept_samplers_composites:
 
 Composites
 ==========

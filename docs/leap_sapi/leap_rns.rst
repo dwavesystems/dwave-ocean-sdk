@@ -1,5 +1,3 @@
-.. include:: ../../../chapters/shared_content/admin_refs.rst
-
 .. _leap_rns:
 
 =============

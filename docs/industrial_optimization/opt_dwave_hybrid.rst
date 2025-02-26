@@ -172,7 +172,9 @@ branches.
 
     Racing Branches
 
-.. include:: ../README.rst
+.. todo:: consider modifying this pulled-in example (markers will change)
+
+.. include:: ../ocean/docs_hybrid/README.rst
     :start-after: example-start-marker
     :end-before: example-end-marker
 
