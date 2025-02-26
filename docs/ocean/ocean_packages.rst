@@ -13,14 +13,14 @@ Reference Documentation
     docs_cloud/sdk_index
     docs_gate/sdk_index
     docs_hybrid/sdk_index
-    docs_inspector/sdk_index
-    docs_dnx/sdk_index
+    docs_inspector/index
+    docs_dnx/index
     docs_optimization/sdk_index
-    docs_preprocessing/sdk_index
+    docs_preprocessing/index
     docs_samplers/index
-    docs_system/sdk_index
+    docs_system/index
     docs_minorminer/source/sdk_index
-    docs_penalty/sdk_index
+    docs_penalty/index
 
 .. packages-start-marker
 
@@ -114,7 +114,7 @@ Reference Documentation
 
     :bdg-link-primary:`code <https://github.com/dwavesystems/dwave-preprocessing>`
 
-.. dropdown:: :ref:`dwave-samplers <>`: Classical algorithms for solving binary
+.. dropdown:: :ref:`dwave-samplers <index_samplers>`: Classical algorithms for solving binary
     quadratic models.
 
     A library that implements the following classical algorithms as
