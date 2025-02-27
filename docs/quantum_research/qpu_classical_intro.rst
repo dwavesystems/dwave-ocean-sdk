@@ -1,4 +1,4 @@
-.. _qpu_intro_classical:
+.. _qpu_classical_intro:
 
 =================
 Classical Solvers
@@ -25,10 +25,10 @@ might not be sufficiently performant on the hard problems of a production
 application. At that point in your code development you might incorporate either
 a QPU solver or a hybrid solver.
 
-Classical solvers may be :ref:`determinstic <qpu_intro_classical_deterministic>`
-or :ref:`heuristic <qpu_intro_classical_heuristic>`.
+Classical solvers may be :ref:`determinstic <qpu_classical_deterministic>`
+or :ref:`heuristic <qpu_classical_heuristic>`.
 
-.. _qpu_intro_classical_deterministic:
+.. _qpu_classical_deterministic:
 
 Deterministic Classical Solvers
 ===============================
@@ -76,7 +76,7 @@ lower values than the second four, which represent invalid states.
 If you use a classical solver running locally on your CPU, a single sample might
 provide the optimal solution.
 
-.. _qpu_intro_classical_heuristic:
+.. _qpu_classical_heuristic:
 
 Heuristic Classical Solvers
 ===========================

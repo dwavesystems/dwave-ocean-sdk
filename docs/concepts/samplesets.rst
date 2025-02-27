@@ -19,7 +19,7 @@ standard way of submitting a problem to the system requests many samples, not
 just one. This not only returns multiple “best” answers but also reduces the
 probability of settling on a suboptimal answer.
 
-Some :ref:`classical <qpu_intro_classical>` samplers might return
+Some :ref:`classical <qpu_classical_intro>` samplers might return
 non-probabilistic solutions; for example, the :ref:`dimod <index_dimod>`
 package's :class:`~dimod.ExactSolver` class deterministically returns the best
 solution or solutions to small problems by calculating the result for every

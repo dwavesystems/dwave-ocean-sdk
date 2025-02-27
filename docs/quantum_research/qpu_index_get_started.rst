@@ -11,8 +11,8 @@ Get Started with Quantum Computing
     qpu_quantum_annealing_intro
     qpu_gate_model_intro
     qpu_workflow
-    qpu_intro_classical
-    qpu_intro_quantum_solvers
+    qpu_classical_intro
+    qpu_quantum_solvers_intro
     qpu_qubo_ising
     qpu_embedding_intro
     qpu_basic_config
@@ -42,14 +42,14 @@ the |cloud_tm| quantum cloud service.
 
         How quantum computers are used to solve problems.
 
-    .. grid-item-card:: :ref:`qpu_intro_classical`
-        :link: qpu_intro_classical
+    .. grid-item-card:: :ref:`qpu_classical_intro`
+        :link: qpu_classical_intro
         :link-type: ref
 
         Classical solvers for developing code.
 
-    .. grid-item-card:: :ref:`qpu_intro_quantum_solvers`
-        :link: qpu_intro_quantum_solvers
+    .. grid-item-card:: :ref:`qpu_quantum_solvers_intro`
+        :link: qpu_quantum_solvers_intro
         :link-type: ref
 
         Introduction to Ocean software's quantum solvers.

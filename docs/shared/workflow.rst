@@ -166,7 +166,7 @@ locally on your CPU.
     You might use a classical solver while developing your code or on a small
     version of your problem to verify your code.
 
-    For information on classical solvers, see the :ref:`qpu_intro_classical`
+    For information on classical solvers, see the :ref:`qpu_classical_intro`
     section.
 
 .. end_samplers

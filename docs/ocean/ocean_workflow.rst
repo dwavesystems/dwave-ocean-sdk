@@ -171,10 +171,10 @@ resources (solvers) of different types:
     `Leap's <https://cloud.dwavesys.com/leap/>`_ service's
     ``hybrid_nonlinear_program_version<x>`` and
     ``hybrid_binary_quadratic_model_version<x>`` solvers.
-*   :ref:`qpu_intro_classical` such as the
+*   :ref:`qpu_classical_intro` such as the
     :class:`~dimod.reference.samplers.ExactSolver` class for exact solutions to
     small problems
-*   :ref:`qpu_intro_quantum_solvers` such as the :term:`Advantage` system.
+*   :ref:`qpu_quantum_solvers_intro` such as the :term:`Advantage` system.
 
 .. _ocean_simple_sampling_example:
 

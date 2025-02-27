@@ -13,7 +13,7 @@ described in the :ref:`ocean_workflow` section, these steps include formulating
 the problem in a way the solver understands (as a
 :ref:`supported model <concept_models>`) and solving the formulated problem by
 submitting it to a |dwave_short| quantum computer, a
-:ref:`classical sampler <qpu_intro_classical>`, or a hybrid solver.
+:ref:`classical sampler <qpu_classical_intro>`, or a hybrid solver.
 
 It's helpful to visualize the tool chain as layers of abstraction, each of which
 handles one part of the solution procedure.

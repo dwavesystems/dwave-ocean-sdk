@@ -21,7 +21,7 @@ The code examples below uses the following imports:
 Creating a Pegasus Sampler
 ==========================
 
-As detailed in the :ref:`qpu_intro_classical` section, you might want to use a
+As detailed in the :ref:`qpu_classical_intro` section, you might want to use a
 classical solver while developing your code or writing tests. However, it is
 sometimes useful to work with a software solver that behaves more like a
 quantum computer.

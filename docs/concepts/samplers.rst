@@ -6,8 +6,8 @@ Samplers and Solvers
 
 *Samplers* are processes that sample from low energy states of a problem's
 :term:`objective function`. Ocean software provides
-:ref:`quantum <qpu_intro_quantum_solvers>`,
-:ref:`classical <qpu_intro_classical>`, and quantum-classical
+:ref:`quantum <qpu_quantum_solvers_intro>`,
+:ref:`classical <qpu_classical_intro>`, and quantum-classical
 :ref:`hybrid <opt_index_hybrid_solvers>` samplers that run either remotely (for
 example, in the |cloud|_ service) or locally on your CPU. These compute
 resources are known as solvers.
