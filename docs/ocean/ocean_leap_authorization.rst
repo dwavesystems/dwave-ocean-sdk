@@ -4,11 +4,9 @@
 Authorizing Access to the Leap Service
 ======================================
 
-.. |TM| replace:: :sup:`TM`
-
 Ocean's SDK
 `releases 6.6 <https://github.com/dwavesystems/dwave-ocean-sdk/releases/tag/6.6.0>`_
-and higher enable Leap\ |TM| authentication using the secure
+and higher enable Leap\ |tm| authentication using the secure
 `OAuth 2.0 <https://oauth.net/2/>`_ industry standard. As described in the
 :ref:`ocean_sapi_access_basic` section, you require a Solver API (:term:`SAPI`)
 token from your Leap account to submit problems to Leap

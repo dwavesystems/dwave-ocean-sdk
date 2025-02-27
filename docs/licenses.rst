@@ -7,7 +7,7 @@ Licenses
 D-Wave Documentation
 ====================
 
-Copyright |copy| |dwave_systems_inc|
+Copyright |copy| D-Wave Systems Inc.
 
 D-Wave Systems Inc. (|dwave_short|), its subsidiaries and affiliates, makes
 commercially reasonable efforts to ensure that the information in this document
@@ -105,7 +105,7 @@ dwave-system
 minorminer
 ----------
 
-.. include:: ..minorminer/LICENSE
+.. include:: ../minorminer/LICENSE
 
 penaltymodel
 ------------
