@@ -8,7 +8,7 @@ Variables
     models
 
 |dwave_short|'s :term:`samplers <sampler>` mostly\ [#]_ solve
-:term:`quadratic models <concept_models_quadratic>` of various sorts. Quadratic
+:ref:`quadratic models <concept_models_quadratic>` of various sorts. Quadratic
 models are characterized by having one or two variables per term. A simple
 example of a quadratic model is,
 

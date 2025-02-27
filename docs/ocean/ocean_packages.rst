@@ -8,19 +8,19 @@ Reference Documentation
     :hidden:
     :maxdepth: 1
 
-    docs_dimod/sdk_index
-    docs_binarycsp/sdk_index
-    docs_cloud/sdk_index
-    docs_gate/sdk_index
-    docs_hybrid/sdk_index
-    docs_inspector/index
-    docs_dnx/index
-    docs_optimization/sdk_index
-    docs_preprocessing/index
-    docs_samplers/index
-    docs_system/index
-    docs_minorminer/source/sdk_index
-    docs_penalty/index
+    api_ref_dimod/sdk_index
+    api_ref_binarycsp/sdk_index
+    api_ref_cloud/sdk_index
+    api_ref_gate/sdk_index
+    api_ref_hybrid/sdk_index
+    api_ref_inspector/index
+    api_ref_dnx/index
+    api_ref_optimization/sdk_index
+    api_ref_preprocessing/index
+    api_ref_samplers/index
+    api_ref_system/index
+    api_ref_minorminer/source/sdk_index
+    api_ref_penaltymodel/index
 
 .. packages-start-marker
 
@@ -89,7 +89,7 @@ Reference Documentation
 
     :bdg-link-primary:`code <https://github.com/dwavesystems/dwave-networkx>`
 
-.. dropdown:: :ref:`dwave-ocean-sdk <ocean-source_code>`: Ocean software
+.. dropdown:: :ref:`dwave-ocean-sdk <ocean_source_code>`: Ocean software
     development kit.
 
     Installer for D-Wave's Ocean Tools.

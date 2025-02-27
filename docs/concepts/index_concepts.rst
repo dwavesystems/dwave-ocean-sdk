@@ -410,6 +410,19 @@ Concepts and Terminology
 
         Learn more: ref:`qpu_quantum_annealing_intro`.
 
+    Quantum computing
+    Quantum computer
+
+        A `quantum computer <https://en.wikipedia.org/wiki/Quantum_computing>`_
+        is a computer that exploits
+        `quantum mechanical <https://en.wikipedia.org/wiki/Quantum_mechanics>`_
+        phenomena. Today, there are two leading candidate architectures for
+        quantum computers: :ref:`gate model <qpu_gate_model_intro>` (also known
+        as `circuit model <https://en.wikipedia.org/wiki/Quantum_circuit>`) and
+        :term:`quantum annealing`.
+
+        Learn more: :ref:`qpu_quantum_annealing_intro`
+
     Qubit
     Qubits
         A qubit, short for quantum bit, is a basic unit of quantum information,
