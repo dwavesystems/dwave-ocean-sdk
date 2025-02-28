@@ -203,7 +203,7 @@ original problem through the following layers:
     penalty for all possible assignments of variables.
 
     .. table:: Boolean NOT Operation Represented by a Penalty Function.
-        :name: BooleanNOTAsPenalty
+        :name: BooleanNOTAsPenaltyFunction
 
         ===========  ===================  ==========  ===================
         **x**        :math:`\mathbf{z}`   **Valid?**  :math:`\mathbf{P}`

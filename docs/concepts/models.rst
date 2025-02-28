@@ -202,7 +202,7 @@ Ocean supports various quadratic models:
     and binary variables.
 *   :ref:`concept_models_dqm` are unconstrained and support discrete variables.
 
-Ocean also provides support for :ref:`higher order models <higher_order>`,
+Ocean also provides support for :ref:`higher order models <dimod_higher_order_models>`,
 which are typically reduced to quadratic for sampling.
 
 .. _concept_models_dqm:

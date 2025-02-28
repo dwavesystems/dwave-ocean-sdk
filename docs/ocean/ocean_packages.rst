@@ -15,7 +15,7 @@ Reference Documentation
     api_ref_hybrid/index
     api_ref_inspector/index
     api_ref_dnx/index
-    api_ref_optimization/sdk_index
+    api_ref_optimization/index
     api_ref_preprocessing/index
     api_ref_samplers/index
     api_ref_system/index

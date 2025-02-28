@@ -818,9 +818,8 @@ then comparing the values.\ [#]_
     This corresponds to a case where many problems, each requesting only a small
     number of reads, are queued to run on the QPU.
 
-.. include:: ../shared/qpu_specific_specs.rst
-    :start-after: start_call_support
-    :end-before: end_call_support
+.. note::
+    Contact |support_email|_ to obtain the detailed properties of your system.
 
 As a simple illustration of the effect of thermal equilibration, consider a
 single-qubit problem. As shown in :numref:`Figure %s <annealing_functions_5us>`,

@@ -9,16 +9,16 @@ on problems of the industrial scale supported by
 `Leap's <https://cloud.dwavesys.com/leap>`_ quantum-classical hybrid solvers.
 
 While the code examples below focus on
-:ref:`constrained quadratic models (CQMs) <intro_cqm>`, most the guidance is also
-applicable to :ref:`binary quadratic models (BQMs) <intro_qm_bqm>` and
-:ref:`quadratic models (QMs) <intro_qm_qm>`.
+:ref:`constrained quadratic models (CQMs) <concept_models_cqm>`, most the guidance is also
+applicable to :ref:`binary quadratic models (BQMs) <concept_models_bqm>` and
+:ref:`quadratic models (QMs) <concept_models_qm>`.
 
 This section does not discuss
 `algorithmic complexity <https://en.wikipedia.org/wiki/Computational_complexity_theory>`_
 or problem formulation.
 For information about problem formulation, the
-:doc:`sysdocs_gettingstarted:doc_getting_started` guide provides an introduction
-and the :doc:`sysdocs_gettingstarted:doc_handbook` guide describes more advanced
+:ref:`opt_workflow` section provides an introduction
+and the :ref:`qpu_reformulating` section describes more advanced
 techniques.
 
 Simple Example Application
@@ -35,7 +35,7 @@ Simple Example Application
     :download:`Notebook <../downloadables/scaling_for_production.ipynb>`.
 
 The code below formulates a simple `bin packing <https://w.wiki/3jz4>`_ problem,
-as explained in the Ocean SDK's :doc:`oceandocs:examples/hybrid_cqm_binpacking`
+as explained in the Ocean SDK's :ref:`opt_example_cqm_binpacking`
 example.
 
 For simplicity, assume that each bin has a capacity of `1` and start by
@@ -166,8 +166,8 @@ Construct Models Directly
 You can achieve an even bigger improvement by skipping symbolic construction
 altogether, working directly with variable labels and a single BQM object.
 
-The following small example demonstrates the performance difference. See
-:ref:`Symbolic Math <intro_symbolic_math>` for a discussion of the difference
+The following small example demonstrates the performance difference. See the
+:ref:`concept_symbolic_math` section for a discussion of the difference
 between variables and labels.
 
 .. testcode::

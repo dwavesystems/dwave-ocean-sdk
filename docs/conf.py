@@ -331,6 +331,9 @@ rst_epilog = """
 .. |Darr| unicode:: U+02193 .. DOWNWARDS ARROW from docutils/parsers/rst/include/isonum.txt
 .. |Uarr| unicode:: U+02191 .. UPWARDS ARROW from docutils/parsers/rst/include/isonum.txt
 
+.. |array-like| replace:: array-like    .. used in dwave-optimization
+.. _array-like: https://numpy.org/devdocs/glossary.html#term-array_like
+
 .. |adv2| unicode:: Advantage2
 .. |adv2_tm| unicode:: Advantage2 U+2122
 .. |cloud| unicode:: Leap

@@ -83,7 +83,7 @@ nonlinear\ [#]_ :ref:`model <concept_models>` supported by the
     quadratic with a relationship between the variables.
 
     Ocean software also provides support for
-    :ref:`higher order models <higher_order>`, which are typically reduced to
+    :ref:`higher order models <dimod_higher_order_models>`, which are typically reduced to
     quadratic for sampling.
 
 .. [#]

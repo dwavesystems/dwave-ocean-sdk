@@ -21,7 +21,7 @@
     url = https://github.com/JoelPasvolsky/dwave_networkx
 [submodule "dwave-optimization"]
     path = dwave-optimization
-    url = https://github.com/dwavesystems/dwave-optimization.git
+    url = https://github.com/JoelPasvolsky/dwave-optimization.git
 [submodule "dwave-preprocessing"]
     path = dwave-preprocessing
     url = https://github.com/JoelPasvolsky/dwave-preprocessing.git

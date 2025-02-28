@@ -155,7 +155,7 @@ Papers
     detections.
 *   [Ngu2019]_ demonstrates good prediction performance of a regression
     algorithm for a lattice quantum chromodynamics simulation data using a
-    |dwave_2kq_tm| system.
+    |dwave_2kq| system.
 
 .. _qpu_stating_problems_database_queries:
 

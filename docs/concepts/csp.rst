@@ -59,7 +59,7 @@ to satisfy, :math:`y=x_1x_2`, can be expressed as a set of valid configurations:
 :math:`(x_1, x_2, y)`.
 
 .. table:: Boolean AND Operation
-    :name: BooleanANDAsPenalty
+    :name: BooleanANDOperation
 
     ===============  ============================
     :math:`x_1,x_2`  :math:`y`

@@ -464,7 +464,7 @@ potential, :math:`c(s)` is not linear in :math:`s` but is chosen to ensure that
     Annealing control bias :math:`c` versus anneal fraction :math:`s`. At
     :math:`c=0, s=0,` :math:`A(s) \gg B(s)`, and at
     :math:`c=1, s=1, A(s) \ll B(s).` Data shown are representative of
-    |dwave_2kq_tm| systems.
+    |dwave_2kq| systems.
 
 On-QPU DACs allow adjustments of static annealing offsets :math:`\delta c_i` per
 qubit, thereby advancing or delaying the annealing signal locally for each.

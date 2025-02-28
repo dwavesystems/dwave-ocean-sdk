@@ -59,7 +59,7 @@ Topology Concepts and the Chimera Topology
 
 This section introduces concepts in topology by describing elements of the
 Chimera\ |tm| topology used on |dwave_short|'s previous generation of quantum
-computer, the |dwave_2kq_tm| system. The Chimera topology's relative simplicity
+computer, the |dwave_2kq| system. The Chimera topology's relative simplicity
 is helpful for understanding the more complex topologies of newer QPUs: in
 addition to shared concepts, the newer topologies are often described in terms
 derived from the Chimera topology.

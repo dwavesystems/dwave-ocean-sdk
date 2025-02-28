@@ -11,23 +11,25 @@ Introduction
 samples through parallel solvers to find an optimal solution.
 
 For the documentation of a particular code element, see the 
-:ref:`reference_hybrid` section. This introduction gives an overview of the 
+:ref:`hybrid_reference` section. This introduction gives an overview of the 
 package; steps you through using it, starting with running a provided hybrid
 solver that handles arbitrary-sized QUBOs; and points out the way to developing 
 your own components in the framework.
 
-*   :ref:`overview_hybrid` presents the framework and explains key concepts.
+*   :ref:`opt_dwave_hybrid_overview` presents the framework and explains key concepts.
 
-*   :ref:`using_framework` shows how to use the framework. You can quickly get 
+*   :ref:`opt_dwave_hybrid_using_framework` shows how to use the framework. You can quickly get 
     started by using a provided reference sampler built with this framework, 
     :class:`Kerberos <oceandocs:hybrid.reference.kerberos.KerberosSampler>`, to 
     solve a problem too large to :term:`minor-embed` on a D-Wave system. Next, 
     use the framework to build (hybrid) workflows; for example, a workflow for 
     larger-than-QPU lattice-structured problems.
 
-*   :ref:`developing_hybrid` guides you to developing your own hybrid components.
+*   :ref:`opt_dwave_hybrid_dev_components` guides you to developing your own hybrid components.
 
-*   :ref:`reference_examples_hybrid` describes some workflow examples included in the code.
+*   :ref:`opt_dwave_hybrid_ref_examples` describes some workflow examples included in the code.
+
+.. _opt_dwave_hybrid_overview:
 
 Overview
 ========
@@ -58,6 +60,8 @@ provided components such as tabu samplers and energy-based decomposers.
 
 You can also use the framework to build your own components to incorporate into your
 workflow.
+
+.. _opt_dwave_hybrid_using_framework:
 
 Using the Framework
 ===================
@@ -90,7 +94,7 @@ The example below uses Kerberos to solve a large QUBO.
 Building Workflows
 ==================
 
-As shown in the :ref:`overview_hybrid` section, you build hybrid solvers by 
+As shown in the :ref:`opt_dwave_hybrid_overview` section, you build hybrid solvers by 
 arranging components such as samplers in a workflow.
 
 Building Blocks
@@ -127,7 +131,7 @@ Flow Structuring
 ----------------
 
 The framework provides classes for structuring workflows that use the 
-"building-block" components. As shown in the :ref:`overview_hybrid` section, 
+"building-block" components. As shown in the :ref:`opt_dwave_hybrid_overview` section, 
 you can create a *branch* of :class:`Runnable` classes; for example 
 :code:`decomposer | sampler | composer`, which delegates part of a problem to a 
 sampler such as a D-Wave quantum computer.
@@ -174,9 +178,9 @@ branches.
 
 .. todo:: consider modifying this pulled-in example (markers will change)
 
-.. include:: ../ocean/docs_hybrid/README.rst
-    :start-after: example-start-marker
-    :end-before: example-end-marker
+.. include:: ../ocean/api_ref_hybrid/README.rst
+    :start-after: start_hybid_example
+    :end-before: end_hybrid_example
 
 Flow Refining
 -------------
@@ -361,6 +365,8 @@ The previous example above might output something like the following:
     2018-12-10 15:18:37,377 hybrid.flow INFO Loop Iteration(iterno=3, best_state_quality=-3.0)
     Solution: sample=Sample(sample={'a': 1, 'b': -1, 'c': -1}, energy=-3.0, num_occurrences=1)
 
+.. _opt_dwave_hybrid_dev_components:
+
 Developing New Components
 =========================
 
@@ -373,7 +379,7 @@ from this class. A :class:`~hybrid.core.Runnable` is run for an iteration in whi
 the :class:`~hybrid.core.State` it receives. Typical methods are `run` or `next` to execute an
 iteration and `stop` to terminate the :class:`~hybrid.core.Runnable`.
 
-The :ref:`core_hybrid` and :ref:`flow_hybrid` sections describe, respectively, the basic :class:`~hybrid.core.Runnable`
+The :ref:`hybrid_core` and :ref:`hybrid_flow` sections describe, respectively, the basic :class:`~hybrid.core.Runnable`
 classes (building blocks) and flow-structuring ones and their methods. If you are
 implementing these methods for your own :class:`~hybrid.core.Runnable` class, see comments in
 the code.
@@ -387,27 +393,18 @@ The :ref:`racingBranches1` graphic below shows the top-down composition (tree st
 
   Top-Down Composition
 
-.. traits-start-marker
 
-State traits are verified for all :class:`~hybrid.core.Runnable` objects that inherit
-from :class:`~hybrid.traits.StateTraits` or its subclasses. Verification includes:
+.. include:: ../ocean/api_ref_hybrid/reference/traits.rst
+     :start-after: start_hybrid_traits
+     :end-before: end_hybrid_traits
 
-(1) Minimal checks of workflow construction (composition of :class:`~hybrid.core.Runnable` classes)
-(2) Runtime checks
-
-All built-in :class:`~hybrid.core.Runnable` classes declare state traits requirements that are
-either independent (for simple ones) or derived from a child workflow. Traits of a new
-:class:`~hybrid.core.Runnable` must be expressed and modified at construction time by its parent.
-When developing new :class:`~hybrid.core.Runnable` classes, constructing composite traits can be
-nontrivial for some advanced flow-control runnables.
-
-.. traits-end-marker
-
-The :ref:`conversion_hybrid` section describes the :class:`~hybrid.core.HybridRunnable`
+The :ref:`hybrid_conversion` section describes the :class:`~hybrid.core.HybridRunnable`
 class you can use to produce a :class:`~hybrid.core.Runnable` sampler based on
 a :ref:`dimod <index_dimod>` sampler.
 
-The :ref:`utilities_hybrid` section provides a list of useful utility methods.
+The :ref:`hybrid_utilities` section provides a list of useful utility methods.
+
+.. _opt_dwave_hybrid_ref_examples:
 
 Reference Examples
 ==================
@@ -418,10 +415,10 @@ you can incorporate as provided into your application and also use to jumpstart
 your development of custom workflows.
 
 A typical first use of dwave-hybrid might be to simply use the Kerberos reference
-sampler to solve a QUBO, as shown in :ref:`using_framework`. Next, you might tune its configurable
+sampler to solve a QUBO, as shown in :ref:`opt_dwave_hybrid_using_framework`. Next, you might tune its configurable
 parameters, described under :ref:`reference_workflows`.
 
 To further improve performance, you can step up from using a generic
 workflow to one tailored for your application and its problem. As a first step you can
 modify a reference workflow with existing components. After that, you can implement your
-own components as described in :ref:`developing_hybrid`.
+own components as described in :ref:`opt_dwave_hybrid_dev_components`.

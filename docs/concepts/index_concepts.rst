@@ -129,7 +129,7 @@ Concepts and Terminology
         sampler might add spin transformations when sampling from a D-Wave
         quantum computer.
 
-        Learn more: :ref:`quadratic_composites`.
+        Learn more: :ref:`dimod_quadratic_composites`.
 
     Composite
         A :term:`sampler` can be composed. The
@@ -139,7 +139,7 @@ Concepts and Terminology
         implementation. We refer to these layers as "composites". A composed
         sampler includes at least one sampler and possibly many composites.
 
-        Learn more: :ref:`quadratic_composites`.
+        Learn more: :ref:`dimod_quadratic_composites`.
 
     Connected graph
         See `connected graph <https://xlinux.nist.gov/dads/HTML/connectedGraph.html>`_
@@ -543,7 +543,7 @@ Concepts and Terminology
         on Wikipedia.
 
     Symbolic Math
-        :ref:`sdk_index_dimod` supports symbolic math that can simplify your
+        :ref:`index_dimod` supports symbolic math that can simplify your
         coding of problems.
 
         Learn more: :ref:`concept_symbolic_math`.

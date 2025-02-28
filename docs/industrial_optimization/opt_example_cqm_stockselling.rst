@@ -117,7 +117,7 @@ negative of that same revenue:
 
 .. note::
 
-    As noted in the :ref:`example_cqm_binpacking` example, keep in mind that
+    As noted in the :ref:`opt_example_cqm_binpacking` example, keep in mind that
     these "variables" are actually class :class:`dimod.QuadraticModel` objects,
 
     >>> price[0]

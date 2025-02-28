@@ -89,7 +89,7 @@ To find solutions to the small four-node
 
 .. todo:: fix this up once ocean packages are updated
 
-:term:`BQM` generated in the :ref:`intro_models` section, shown again in the figure below,
+:term:`BQM` generated in the :ref:`concept_models` section, shown again in the figure below,
 you can use one of dimod's reference samplers: its
 :class:`~dimod.reference.samplers.ExactSolver` test sampler, for example,
 calculates the energy of all possible samples.
