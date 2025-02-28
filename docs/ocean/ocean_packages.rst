@@ -8,11 +8,11 @@ Reference Documentation
     :hidden:
     :maxdepth: 1
 
-    api_ref_dimod/sdk_index
+    api_ref_dimod/index
     api_ref_binarycsp/sdk_index
     api_ref_cloud/sdk_index
-    api_ref_gate/sdk_index
-    api_ref_hybrid/sdk_index
+    api_ref_gate/index
+    api_ref_hybrid/index
     api_ref_inspector/index
     api_ref_dnx/index
     api_ref_optimization/sdk_index

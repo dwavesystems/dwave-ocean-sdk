@@ -67,7 +67,7 @@ language = 'en'
 
 add_module_names = False
 
-exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
+exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', 'shared/*.rst']
 
 linkcheck_ignore = [r'.clang-format',                    # would need symlink
                     r'setup.cfg',                        # would need symlink (for dimod)
@@ -140,12 +140,32 @@ breathe_projects = {
 breathe_default_members = ('members', )
 breathe_default_project = "minorminer"
 
-# we want to build the c++ docs in RTD with all warnings:
+
+
+
+# TESTING WITHOUT BUILD WARNINGS
 if os.environ.get('READTHEDOCS', False):
-    subprocess.call('cd ../minorminer/docs/; make cpp', shell=True)
-    subprocess.call('cd ../dimod/docs/; make cpp', shell=True)
-    subprocess.call('cd ../dwave-preprocessing/docs/; make cpp', shell=True)
+    os.environ["DOXYGEN_QUIET"] = "YES"
+    os.environ["DOXYGEN_WARNINGS"] = "NO"
+    os.environ["DOXYGEN_WARN_LOGFILE"] = "/dev/null"
+    #subprocess.call('cd ../minorminer/docs/; make cpp > /dev/null 2>&1', shell=True)
+    subprocess.call('cd ../dimod/docs/; make cpp > /dev/null 2>&1', shell=True)
+    subprocess.call('cd ../dwave-preprocessing/docs/; make cpp > /dev/null 2>&1', shell=True)
     subprocess.call('cd ../dwave-gate/; python dwave/gate/simulator/operation_generation.py', shell=True)
+
+
+
+
+
+
+# TODO restore this:
+
+# we want to build the c++ docs in RTD with all warnings:
+# if os.environ.get('READTHEDOCS', False):
+#     subprocess.call('cd ../minorminer/docs/; make cpp', shell=True)
+#     subprocess.call('cd ../dimod/docs/; make cpp', shell=True)
+#     subprocess.call('cd ../dwave-preprocessing/docs/; make cpp', shell=True)
+#     subprocess.call('cd ../dwave-gate/; python dwave/gate/simulator/operation_generation.py', shell=True)
 
 # we want to build the c++ docs in CircleCI without warnings
 # and without minorminer because it generates ~500 warnings
@@ -211,8 +231,6 @@ intersphinx_mapping = {
     'networkx': ('https://networkx.org/documentation/stable/', None),
     'urllib3': ('https://urllib3.readthedocs.io/en/stable/', None),
     'requests': ('https://requests.readthedocs.io/en/stable/', None),
-    # 'sysdocs_gettingstarted': ('https://docs.dwavesys.com/docs/latest/', None),
-    # 'oceandocs': ('https://docs.ocean.dwavesys.com/en/stable/', None),
     }
 
 

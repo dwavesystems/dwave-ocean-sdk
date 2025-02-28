@@ -1,39 +1,39 @@
-[submodule "dwave-system"]
-	path = dwave-system
-	url = https://github.com/JoelPasvolsky/dwave-system
-[submodule "dwave-networkx"]
-	path = dwave-networkx
-	url = https://github.com/JoelPasvolsky/dwave_networkx
-[submodule "dwave-hybrid"]
-	path = dwave-hybrid
-	url = https://github.com/dwavesystems/dwave-hybrid
 [submodule "dimod"]
-	path = dimod
-	url = https://github.com/dwavesystems/dimod
+    path = dimod
+    url = https://github.com/JoelPasvolsky/dimod
 [submodule "dwavebinarycsp"]
-	path = dwavebinarycsp
-	url = https://github.com/dwavesystems/dwavebinarycsp
+    path = dwavebinarycsp
+    url = https://github.com/dwavesystems/dwavebinarycsp
 [submodule "dwave-cloud-client"]
-	path = dwave-cloud-client
-	url = https://github.com/dwavesystems/dwave-cloud-client
-[submodule "minorminer"]
-	path = minorminer
-	url = https://github.com/dwavesystems/minorminer
-[submodule "penaltymodel"]
-	path = penaltymodel
-	url = https://github.com/JoelPasvolsky/penaltymodel
-[submodule "dwave-inspector"]
-	path = dwave-inspector
-	url = https://github.com/JoelPasvolsky/dwave-inspector.git
-[submodule "dwave-preprocessing"]
-	path = dwave-preprocessing
-	url = https://github.com/JoelPasvolsky/dwave-preprocessing.git
-[submodule "dwave-samplers"]
-	path = dwave-samplers
-	url = https://github.com/JoelPasvolsky/dwave-samplers.git
+    path = dwave-cloud-client
+    url = https://github.com/dwavesystems/dwave-cloud-client
 [submodule "dwave-gate"]
-	path = dwave-gate
-	url = https://github.com/dwavesystems/dwave-gate.git
+    path = dwave-gate
+    url = https://github.com/JoelPasvolsky/dwave-gate.git
+[submodule "dwave-hybrid"]
+    path = dwave-hybrid
+    url = https://github.com/JoelPasvolsky/dwave-hybrid
+[submodule "dwave-inspector"]
+    path = dwave-inspector
+    url = https://github.com/JoelPasvolsky/dwave-inspector.git
+[submodule "dwave-networkx"]
+    path = dwave-networkx
+    url = https://github.com/JoelPasvolsky/dwave_networkx
 [submodule "dwave-optimization"]
-	path = dwave-optimization
-	url = https://github.com/dwavesystems/dwave-optimization.git
+    path = dwave-optimization
+    url = https://github.com/dwavesystems/dwave-optimization.git
+[submodule "dwave-preprocessing"]
+    path = dwave-preprocessing
+    url = https://github.com/JoelPasvolsky/dwave-preprocessing.git
+[submodule "dwave-samplers"]
+    path = dwave-samplers
+    url = https://github.com/JoelPasvolsky/dwave-samplers.git
+[submodule "dwave-system"]
+    path = dwave-system
+    url = https://github.com/JoelPasvolsky/dwave-system
+[submodule "minorminer"]
+    path = minorminer
+    url = https://github.com/dwavesystems/minorminer
+[submodule "penaltymodel"]
+    path = penaltymodel
+    url = https://github.com/JoelPasvolsky/penaltymodel
