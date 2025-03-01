@@ -32,8 +32,6 @@ copyright = 'D-Wave Quantum Inc' #setup_cfg['metadata']['author']
 # Also add our own 'special value', the minimum supported Python version
 rst_prolog = f"""
 .. |python_requires| replace:: {setup_cfg['options']['python_requires']}
-.. |array-like| replace:: array-like
-.. _array-like: https://numpy.org/devdocs/glossary.html#term-array_like
 """
 
 # -- General configuration ------------------------------------------------
@@ -67,7 +65,7 @@ language = 'en'
 
 add_module_names = False
 
-exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', 'shared/*.rst']
+exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', '*/shared/*.rst',]
 
 linkcheck_ignore = [r'.clang-format',                    # would need symlink
                     r'setup.cfg',                        # would need symlink (for dimod)
