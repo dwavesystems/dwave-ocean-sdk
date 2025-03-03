@@ -32,6 +32,7 @@ copyright = 'D-Wave Quantum Inc' #setup_cfg['metadata']['author']
 # Also add our own 'special value', the minimum supported Python version
 rst_prolog = f"""
 .. |python_requires| replace:: {setup_cfg['options']['python_requires']}
+
 """
 
 # -- General configuration ------------------------------------------------

@@ -1,8 +1,8 @@
 .. _leap_release_notes:
 
-==========================
-Leap Service Release Notes
-==========================
+=============
+Release Notes
+=============
 
 .. todo:: update this is from source https://docs.dwavesys.com/docs/latest/doc_release_notes.html
 

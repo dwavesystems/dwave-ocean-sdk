@@ -1,14 +1,14 @@
-.. _leap_index_rns:
+.. _leap_index_release_notes:
 
-=============
-Release notes
-=============
+==========================
+Leap Service Release Notes 
+==========================
 
 .. toctree::
     :hidden:
     :maxdepth: 1
 
-    leap_rns
+    leap_release_notes
     leap_fixed_issues
     leap_known_issues
 

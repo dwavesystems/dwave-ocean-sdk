@@ -54,8 +54,7 @@ All data presented in this section are specific to the
 **Advantage2_prototype2.6** solver, which is an experimental prototype of
 |dwave_short|'s next-generation QPU. The |adv2_tm| prototype QPU is based on
 a physical lattice of qubits and couplers known as the *Zephyr*\ |tm| topology.
-For information, see the :ref:`topology_intro_zephyr` section in
-|doc_getting_started|_.
+For information, see the :ref:`topology_intro_zephyr` section.
 
 Physical Properties
 -------------------
@@ -159,7 +158,7 @@ Advantage_system7.1
 All data presented in this section are specific to the **Advantage_system7.1**
 solver. The |dwave_5kq| QPU is based on a physical lattice of qubits and
 couplers known as the *Pegasus*\ |tm| topology. For information,
-see the :ref:`topology_intro_pegasus` section in |doc_getting_started|_.
+see the :ref:`topology_intro_pegasus` section.
 
 Physical Properties
 -------------------
@@ -291,7 +290,7 @@ Advantage_system6.4
 All data presented in this section are specific to the **Advantage_system6.4**
 solver. The |dwave_5kq| QPU is based on a physical lattice of qubits and
 couplers known as the *Pegasus*\ |tm| topology. For information,
-see the :ref:`topology_intro_pegasus` section in |doc_getting_started|_.
+see the :ref:`topology_intro_pegasus` section.
 
 Physical Characteristics
 ------------------------
@@ -423,7 +422,7 @@ Advantage_system5.4
 All data presented in this section are specific to the **Advantage_system5.4**
 solver. The |dwave_5kq| QPU is based on a physical lattice of qubits and
 couplers known as the *Pegasus*\ |tm| topology. For information,
-see the :ref:`topology_intro_pegasus` section in |doc_getting_started|_.
+see the :ref:`topology_intro_pegasus` section.
 
 Physical Characteristics
 ------------------------
@@ -555,7 +554,7 @@ Advantage_system4.1
 All data presented in this section are specific to the **Advantage_system4.1**
 solver. The |dwave_5kq| QPU is based on a physical lattice of qubits and
 couplers known as the *Pegasus*\ |tm| topology. For information,
-see the :ref:`topology_intro_pegasus` section in |doc_getting_started|_.
+see the :ref:`topology_intro_pegasus` section.
 
 Physical Properties
 -------------------

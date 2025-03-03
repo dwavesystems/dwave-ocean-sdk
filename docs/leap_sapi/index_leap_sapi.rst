@@ -11,7 +11,7 @@ Leap Service
     leap_dev_env
     leap_admin
     leap_sapi_rest
-    leap_index_rns
+    leap_index_release_notes
 
 Launched in 2018, the |cloud_tm| quantum cloud service from |dwave_short|_
 brings quantum computing to the real world by providing real-time cloud access
@@ -45,9 +45,9 @@ to our systems.
         Reference documentation for the :term:`Solver API <SAPI>` (SAPI)
         REST interface.
 
-    .. grid-item-card:: :ref:`leap_index_rns`
+    .. grid-item-card:: :ref:`leap_index_release_notes`
         :img-top: /_images/release_notes_icon.svg
-        :link: leap_index_rns
+        :link: leap_index_release_notes
         :link-type: ref
 
         Leap service release notes, fixed and open issues.

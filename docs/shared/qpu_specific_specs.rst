@@ -12,7 +12,7 @@
 *   Qubit temperature: Some qubits in this QPU are affected
     by high-frequency photon flux and may have a higher temperature than
     what is reported here. For more information, see the discussion of
-    high-energy photon flux in |doc_processor|_\.
+    high-energy photon flux in the :ref:`qpu_errors` section.
 
 .. end_qpu_adv_only_prop_notes
 
