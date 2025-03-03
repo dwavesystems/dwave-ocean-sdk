@@ -845,7 +845,7 @@ available in a project are determined by the customer contract.
 
 To view a solver's properties and parameters, click its name in the
 **Solver Name** column. For more information on solver properties and
-parameters, see the :ref:`opt_index_hybrid_solvers` and
+parameters, see the :ref:`opt_index_properties_parameters` and
 :ref:`index_quantum_research` sections.
 
 .. _admin_proj_status_viewing:
@@ -1588,7 +1588,7 @@ To view a problem's details, click a problem ID or problem label on the
     *   -   **Problem Parameters**
         -   Displays the problem's parameters, ID, solver, problem type, status,
             and embedded problem data. For more information, see the
-            :ref:`opt_index_hybrid_solvers` and :ref:`index_quantum_research`
+            :ref:`opt_index_properties_parameters` and :ref:`index_quantum_research`
             sections.
 
     *   -   **Solution**

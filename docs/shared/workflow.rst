@@ -157,9 +157,9 @@ locally on your CPU.
     `Medium Article on Hybrid Computing <https://medium.com/d-wave/three-truths-and-the-advent-of-hybrid-quantum-computing-1941ba46ff8c>`_.
 
     |dwave_short| provides two types of hybrid solvers:
-    :ref:`Leap service's hybrid solvers <opt_index_hybrid_solvers>`, which are
-    cloud-based hybrid compute resources, and hybrid solvers developed in Ocean
-    software's :ref:`dwave-hybrid <index_hybrid>` tool.
+    :ref:`Leap service's hybrid solvers <opt_index_properties_parameters>`,
+    which are cloud-based hybrid compute resources, and hybrid solvers developed
+    in Ocean software's :ref:`dwave-hybrid <index_hybrid>` tool.
 
 *   Classical Solvers
 

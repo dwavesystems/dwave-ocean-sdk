@@ -167,14 +167,15 @@ services) or locally on your CPU. These compute resources are known as
 Ocean's samplers enable you to submit your problem to remote or local compute
 resources (solvers) of different types:
 
-*   :ref:`opt_index_hybrid_solvers` such as
+*   :ref:`Hybrid solvers <opt_index_properties_parameters>` such as
     `Leap's <https://cloud.dwavesys.com/leap/>`_ service's
     ``hybrid_nonlinear_program_version<x>`` and
     ``hybrid_binary_quadratic_model_version<x>`` solvers.
-*   :ref:`qpu_classical_intro` such as the
+*   :ref:`Classical solvers <qpu_classical_intro>` such as the
     :class:`~dimod.reference.samplers.ExactSolver` class for exact solutions to
     small problems
-*   :ref:`qpu_quantum_solvers_intro` such as the :term:`Advantage` system.
+*   :ref:`Quantum solvers <qpu_quantum_solvers_intro>` such as the
+    :term:`Advantage` system.
 
 .. _ocean_simple_sampling_example:
 
@@ -278,7 +279,7 @@ minor-embedding.
     chain (qubits 176 and 180) for variable :math:`x2`. The tool is helpful in
     visualizing the quality of your embedding.
 
-See also the :ref:`qpu_problem_inspector` section.
+See also the :ref:`qpu_embedding_inspector` section.
 
 Example: Postprocessing
 ~~~~~~~~~~~~~~~~~~~~~~~

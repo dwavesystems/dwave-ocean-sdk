@@ -5,13 +5,13 @@ Leap Service
 ============
 
 .. toctree::
-  :hidden:
-  :maxdepth: 1
+    :hidden:
+    :maxdepth: 1
 
-  leap_index_rns
-  leap_dev_env
-  leap_admin
-  leap_sapi_rest
+    leap_dev_env
+    leap_admin
+    leap_sapi_rest
+    leap_index_rns
 
 Launched in 2018, the |cloud_tm| quantum cloud service from |dwave_short|_
 brings quantum computing to the real world by providing real-time cloud access
@@ -21,13 +21,6 @@ to our systems.
 
 .. grid:: 3
     :gutter: 2
-
-    .. grid-item-card:: :ref:`leap_index_rns`
-        :img-top: /_images/release_notes_icon.svg
-        :link: leap_index_rns
-        :link-type: ref
-
-        System release notes, fixed and open issues.
 
     .. grid-item-card:: :ref:`leap_dev_env`
         :img-top: /_images/ide_icon.svg
@@ -52,6 +45,13 @@ to our systems.
         Reference documentation for the :term:`Solver API <SAPI>` (SAPI)
         REST interface.
 
+    .. grid-item-card:: :ref:`leap_index_rns`
+        :img-top: /_images/release_notes_icon.svg
+        :link: leap_index_rns
+        :link-type: ref
+
+        Leap service release notes, fixed and open issues.
+
 .. sections-end-marker
 
 .. figure:: ../_images/network-leap-simple.png
@@ -62,7 +62,7 @@ to our systems.
 You use the Leap service to do the following:
 
 *   Submit problems to |dwave_short| quantum computers,
-    including :ref:`hybrid solvers <opt_index_hybrid_solvers>`, which use a
+    including :ref:`hybrid solvers <opt_index_properties_parameters>`, which use a
     combination of classical and quantum resources and can accept extremely
     large problems.
 

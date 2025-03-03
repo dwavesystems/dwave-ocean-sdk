@@ -8,9 +8,9 @@ Samplers and Solvers
 :term:`objective function`. Ocean software provides
 :ref:`quantum <qpu_quantum_solvers_intro>`,
 :ref:`classical <qpu_classical_intro>`, and quantum-classical
-:ref:`hybrid <opt_index_hybrid_solvers>` samplers that run either remotely (for
-example, in the |cloud|_ service) or locally on your CPU. These compute
-resources are known as solvers.
+:ref:`hybrid <opt_index_properties_parameters>` samplers that run either
+remotely (for example, in the |cloud|_ service) or locally on your CPU. These
+compute resources are known as solvers.
 
 .. note:: Some classical samplers actually brute-force solve small problems
     rather than sample, and these are also referred to as “solvers”.

@@ -1,8 +1,8 @@
 .. _opt_index_using:
 
-==============================
-Optimizing with Hybrid Solvers
-==============================
+========================
+Using the Hybrid Solvers
+========================
 
 Learn best practices for using the |cloud_tm| service's hybrid solvers
 in this section.

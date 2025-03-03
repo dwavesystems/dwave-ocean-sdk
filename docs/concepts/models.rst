@@ -40,8 +40,8 @@ unconstrained models.
 .. [#]
     Some hybrid samplers accept constrained and non-binary models; for example,
     a quadratic model with an integer variable that must be smaller than some
-    configured value. See the :ref:`opt_index_hybrid_solvers` section for the
-    available hybrid solvers and their capabilities.
+    configured value. See the :ref:`opt_index_properties_parameters` section For
+    the available hybrid solvers and their capabilities.
 
 .. _concept_models_supported:
 

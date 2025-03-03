@@ -70,7 +70,7 @@ General Guidance on Reformulating
 =================================
 
 While the `Leap service <https://cloud.dwavesys.com/leap/>`_'s
-:ref:`hybrid solvers <opt_index_hybrid_solvers>` can accept arbitrarily
+:ref:`hybrid solvers <opt_index_properties_parameters>` can accept arbitrarily
 structured BQMs of huge size, problems submitted directly to the quantum
 computer must be formulated to be compatible with the constraints of the
 physical system and as robust as possible to its control errors\ [#]_.

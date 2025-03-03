@@ -665,13 +665,13 @@ query.\ [#]_
         data            Encoded problem data; see below.
         label           Optional user-defined string to label the problem.
         params          Solver-specific
-                        :ref:`hybrid parameters <opt_index_hybrid_solvers>` or
-                        :ref:`QPU parameters <qpu_solver_parameters>`.
+                        :ref:`hybrid parameters <opt_index_properties_parameters>`
+                        or :ref:`QPU parameters <qpu_solver_parameters>`.
         solver          Solver to be used.
         type            One of the supported
                         :ref:`problem types <property_qpu_supported_problem_types>`
                         (on QPUs, see the equivalent property for hybrid solvers
-                        :ref:`here <opt_index_hybrid_solvers>`).
+                        :ref:`here <opt_index_properties_parameters>`).
         =============== ===========================
 
     .. tabularcolumns:: |p{3.5cm}|p{10cm}|

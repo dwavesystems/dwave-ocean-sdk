@@ -11,12 +11,11 @@ Using the QPU
     qpu_index_formulation
     qpu_decomposing
     qpu_embedding_guidance
-    qpu_problem_inspector
     qpu_solver_parameters
     qpu_solver_configuration
     qpu_postprocessing
     qpu_index_examples_advanced
-    
+
 Guidance and best practices for QPU usage.
 
 .. grid:: 3
@@ -39,12 +38,6 @@ Guidance and best practices for QPU usage.
         :link-type: ref
 
         Considerations for :term:`minor embedding`.
-
-    .. grid-item-card:: :ref:`qpu_problem_inspector`
-        :link: qpu_problem_inspector
-        :link-type: ref
-
-        Visualizing your minor-embedded problems.
 
     .. grid-item-card:: :ref:`qpu_solver_parameters`
         :link: qpu_solver_parameters

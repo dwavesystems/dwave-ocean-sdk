@@ -275,8 +275,8 @@ Concepts and Terminology
 
         *   :ref:`concept_hybrid` for an introduction.
         *   :ref:`opt_index_hybrid` gets you started with hybrid samplers.
-        *   :ref:`opt_index_hybrid_solvers` describes the supported hybrid
-            solvers in the :term:`Leap service`.
+        *   :ref:`opt_index_properties_parameters` describes the supported
+            hybrid solvers in the :term:`Leap service`.
         *   :ref:`opt_index_using` describes best practices.
 
     ICE

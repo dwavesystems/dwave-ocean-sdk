@@ -33,7 +33,7 @@ main steps: (1) Formulate the problem as an :term:`objective function` in a
 .. start_hybrid_advantage
 
 The `Leap <https://cloud.dwavesys.com/leap/>`_ quantum cloud service provides
-:ref:`hybrid solvers <opt_index_hybrid_solvers>` you can submit your
+:ref:`hybrid solvers <opt_index_properties_parameters>` you can submit your
 :ref:`models <concept_models>` to. These solvers, which implement
 state-of-the-art classical algorithms together with intelligent allocation of
 the quantum processing unit (:term:`QPU`) to parts of the problem where it

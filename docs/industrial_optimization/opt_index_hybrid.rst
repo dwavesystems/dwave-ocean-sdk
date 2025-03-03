@@ -1,8 +1,8 @@
 .. _opt_index_hybrid:
 
-========================
-Sampling: Hybrid Solvers
-========================
+============================
+Sampling with Hybrid Solvers
+============================
 
 .. toctree::
     :hidden:

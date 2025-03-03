@@ -9,7 +9,7 @@ Industrial Optimization
     :maxdepth: 1
 
     opt_index_get_started
-    opt_index_hybrid_solvers
+    opt_index_properties_parameters
     opt_index_using
     opt_developing_quantum_applications
 
@@ -28,12 +28,12 @@ problems using the |cloud_tm| service's quantum-classical :term:`hybrid` solvers
 
         Learn about optimizing with hybrid solvers.
 
-    .. grid-item-card:: :ref:`opt_index_hybrid_solvers`
+    .. grid-item-card:: :ref:`opt_index_properties_parameters`
         :img-top: /_images/hybrid_icon.svg
-        :link: opt_index_hybrid_solvers
+        :link: opt_index_properties_parameters
         :link-type: ref
 
-        Solver properties and parameters.
+        Properties and parameters of hybrid solvers in the Leap service.
 
     .. grid-item-card:: :ref:`opt_index_using`
         :img-top: /_images/optimization_icon.svg
@@ -49,7 +49,7 @@ problems using the |cloud_tm| service's quantum-classical :term:`hybrid` solvers
 
         How |dwave_short| and other companies develop successful
         quantum applications.
-        
+
 .. sections-end-marker
 
 Example
