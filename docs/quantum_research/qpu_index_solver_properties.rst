@@ -11,11 +11,11 @@ QPU Solver Properties
     qpu_solver_properties_all
     qpu_solver_properties_specific
 
-.. todo:: Fix this up
-
-Properties that characterize behaviors and supported features of SAPI 
-solvers[1] can be queried through SAPI. Also properties and annealing schedule 
-of particular QPUs. 
+Properties that characterize behaviors and supported features of all
+:term:`solvers <solver>` in the `Leap <https://cloud.dwavesys.com/leap/>`_
+service can be queried through :term:`SAPI`. Properties specific to the hardware
+of an individual :term:`QPU` are recorded in the
+:ref:`qpu_solver_properties_specific` section.
 
 .. grid:: 3
     :gutter: 2

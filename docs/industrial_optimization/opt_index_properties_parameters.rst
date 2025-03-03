@@ -17,7 +17,10 @@ Solver Properties & Parameters
     opt_solver_dqm_properties
     opt_solver_dqm_parameters
 
-The |cloud_tm| service provides these :term:`hybrid` :term:`solver`\ s.
+The |cloud_tm| service provides several :term:`hybrid` :term:`solvers <solver>`
+with the properties and configurable parameters described here. For the
+properties and parameters of :term:`QPU` solvers, see the
+:ref:`qpu_index_solver_properties` and :ref:`qpu_solver_parameters` sections.
 
 Nonlinear Solver
 ================

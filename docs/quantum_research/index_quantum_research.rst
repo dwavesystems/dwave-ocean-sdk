@@ -14,8 +14,8 @@ Quantum Research
 
 .. sections-start-marker
 
-:ref:`index_quantum_research` documents how to use |dwave_short_tm| quantum 
-processing units (QPUs) directly.
+The :ref:`index_quantum_research` section shows how to use |dwave_short_tm|
+quantum processing units (:term:`QPU`) directly.
 
 .. grid:: 3
     :gutter: 2
@@ -24,7 +24,7 @@ processing units (QPUs) directly.
         :img-top: /_images/rocket_icon.svg
         :link: qpu_index_get_started
         :link-type: ref
-         
+
         Learn about |dwave_short| quantum computers.
 
     .. grid-item-card:: :ref:`qpu_index_about`
@@ -41,6 +41,10 @@ processing units (QPUs) directly.
 
         Configuring QPU parameters and usage best-practices.
 
+The :ref:`index_industrial_optimization` section shows how to optimize business
+problems using the |cloud_tm| service's quantum-classical :term:`hybrid`
+solvers.
+
 .. sections-end-marker
 
 Example
@@ -49,3 +53,12 @@ Example
 .. include:: ../shared/examples.rst
   :start-after: start_qpu1
   :end-before: end_qpu1
+
+Useful Links
+============
+
+*   :ref:`ocean_sapi_access_basic` on accessing :term:`QPU`
+    :term:`solvers <solver>` in the `Leap <https://cloud.dwavesys.com/leap/>`_
+    service.
+*   :ref:`qpu_qpu_usage_charges` on how the Leap service charges your
+    account for use (also: :ref:`qpu_runtime_estimating`).

@@ -4,6 +4,10 @@
 QPU Solver Parameters
 =====================
 
+This section describes the configurable parameters you can set on :term:`QPU`
+solvers. The :ref:`qpu_index_solver_properties` section gives the properties of
+these solvers, such as the ranges within which parameter values must be set.
+
 .. |anneal_time_parameter_granularity| replace:: with a resolution of 0.01
     :math:`\mu s`
 

@@ -45,7 +45,7 @@
 
     Pages have three navigation bars: top, left, and right.
 
-    *   Top navigation bar lets you select the following documentation:
+    *   **Top** navigation bar lets you select the following documentation:
 
         .. list-table::
 
@@ -69,10 +69,10 @@
                 *   -   **More** > :ref:`Bibliography <bibliography>`
                     -   Cited content.
 
-    *   Left navigation bar lets you select a subtopic; for example, how to get
-        started, properties, best practices.
+    *   **Left** navigation bar lets you select a subtopic; for example, how to
+        get started, properties, best practices.
 
-    *   Right navigation bar displays the topics on your current page.
+    *   **Right** navigation bar displays the topics on your current page.
 
 Welcome to |dwave_short|
 ========================

@@ -7,9 +7,9 @@ General QPU Solver Properties
 .. |anneal_time_display_granularity| replace:: with a resolution of 0.01
     :math:`\mu s`
 
-This section describes the properties of all QPU solvers, such as the Leap
-service's ``Advantage_system4.1``; for properties specific to a particular QPU,
-such as the quantum critical point, see the
+This section describes the properties in common to all :term:`QPU` solvers and
+shows how you can query their values through :term:`SAPI`; for properties
+specific to the hardware of a particular QPU, see the
 :ref:`qpu_solver_properties_specific` section.
 
 For the parameters you can configure, see the :ref:`qpu_solver_parameters`

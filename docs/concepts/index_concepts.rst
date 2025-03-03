@@ -93,7 +93,7 @@ Concepts and Terminology
         Time charged to your `Leap service <https://cloud.dwavesys.com/leap/>`_
         account.
 
-        Learn more: :ref`opt_leap_hybrid_timing` describes the timing
+        Learn more: :ref:`opt_leap_hybrid_timing` describes the timing
         for hybrid solvers.
 
     Chimera

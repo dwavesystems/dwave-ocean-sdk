@@ -18,8 +18,8 @@ affect your use of the |cloud_tm| service, and resolved issues.
 .. grid:: 3
     :gutter: 2
 
-    .. grid-item-card:: :ref:`leap_rns`
-        :link: leap_rns
+    .. grid-item-card:: :ref:`leap_release_notes`
+        :link: leap_release_notes
         :link-type: ref
 
         New features.

@@ -15,8 +15,9 @@ Industrial Optimization
 
 .. sections-start-marker
 
-:ref:`index_industrial_optimization` documents how to optimize business
-problems using the |cloud_tm| service's quantum-classical :term:`hybrid` solvers.
+The :ref:`index_industrial_optimization` section shows how to optimize business
+problems using the |cloud_tm| service's quantum-classical :term:`hybrid`
+solvers.
 
 .. grid:: 3
     :gutter: 2
@@ -50,6 +51,9 @@ problems using the |cloud_tm| service's quantum-classical :term:`hybrid` solvers
         How |dwave_short| and other companies develop successful
         quantum applications.
 
+The :ref:`index_quantum_research` section shows how to use |dwave_short_tm|
+quantum processing units (:term:`QPU`) directly.
+
 .. sections-end-marker
 
 Example
@@ -58,3 +62,13 @@ Example
 .. include:: ../shared/examples.rst
   :start-after: start_nl1
   :end-before: end_nl1
+
+Useful Links
+============
+
+*   :ref:`ocean_sapi_access_basic` on accessing the :term:`hybrid`
+    :term:`solvers <solver>` in the `Leap <https://cloud.dwavesys.com/leap/>`_
+    service.
+*   :ref:`leap_hybrid_usage_charges` on how the Leap service charges your
+    account for use.
+*   :ref:`opt_scaling` on coding for production applications.
