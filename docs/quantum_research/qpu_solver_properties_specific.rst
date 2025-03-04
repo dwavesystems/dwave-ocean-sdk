@@ -76,10 +76,10 @@ This table lists the physical properties of the calibrated QPU.
     *   - Graph size
         - :math:`\text{Z6}`
 
-    *   - Number of :ref:`qubits <property_qubits>`
+    *   - Number of :ref:`qubits <property_qpu_qubits>`
         - :math:`1215`
 
-    *   - Number of :ref:`couplers <property_couplers>`
+    *   - Number of :ref:`couplers <property_qpu_couplers>`
         - :math:`10788`
 
     *   - Qubit temperature
@@ -180,10 +180,10 @@ This table lists the physical properties of the calibrated QPU.
     *   - Graph size
         - :math:`\text{P16}`
 
-    *   - Number of :ref:`qubits <property_qubits>`
+    *   - Number of :ref:`qubits <property_qpu_qubits>`
         - :math:`5554`
 
-    *   - Number of :ref:`couplers <property_couplers>`
+    *   - Number of :ref:`couplers <property_qpu_couplers>`
         - :math:`39238`
 
     *   - Qubit temperature
@@ -312,10 +312,10 @@ This table lists the physical properties of the calibrated QPU.
     *   - Graph size
         - :math:`\text{P16}`
 
-    *   - Number of :ref:`qubits <property_qubits>`
+    *   - Number of :ref:`qubits <property_qpu_qubits>`
         - :math:`5612`
 
-    *   - Number of :ref:`couplers <property_couplers>`
+    *   - Number of :ref:`couplers <property_qpu_couplers>`
         - :math:`40088`
 
     *   - Qubit temperature
@@ -444,10 +444,10 @@ This table lists the physical properties of the calibrated QPU.
     *   - Graph size
         - :math:`\text{P16}`
 
-    *   - Number of :ref:`qubits <property_qubits>`
+    *   - Number of :ref:`qubits <property_qpu_qubits>`
         - :math:`5614`
 
-    *   - Number of :ref:`couplers <property_couplers>`
+    *   - Number of :ref:`couplers <property_qpu_couplers>`
         - :math:`40050`
 
     *   - Qubit temperature
@@ -576,10 +576,10 @@ This table lists the physical properties of the calibrated QPU.
     *   - Graph size
         - :math:`\text{P16}`
 
-    *   - Number of :ref:`qubits <property_qubits>`
+    *   - Number of :ref:`qubits <property_qpu_qubits>`
         - :math:`5627`
 
-    *   - Number of :ref:`couplers <property_couplers>`
+    *   - Number of :ref:`couplers <property_qpu_couplers>`
         - :math:`40279`
 
     *   - Qubit temperature
@@ -679,3 +679,4 @@ respectively, for this system.
     :name: co-dac-quantization-adv4
 
     Typical quantization on the :math:`J` DAC control.
+

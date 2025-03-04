@@ -10,7 +10,7 @@ Reference Documentation
 
     api_ref_dimod/index
     api_ref_binarycsp/sdk_index
-    api_ref_cloud/sdk_index
+    api_ref_cloud/index
     api_ref_gate/index
     api_ref_hybrid/index
     api_ref_inspector/index
@@ -19,7 +19,7 @@ Reference Documentation
     api_ref_preprocessing/index
     api_ref_samplers/index
     api_ref_system/index
-    api_ref_minorminer/source/sdk_index
+    api_ref_minorminer/source/index
     api_ref_penaltymodel/index
 
 .. packages-start-marker

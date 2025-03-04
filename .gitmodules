@@ -3,10 +3,10 @@
     url = https://github.com/JoelPasvolsky/dimod
 [submodule "dwavebinarycsp"]
     path = dwavebinarycsp
-    url = https://github.com/dwavesystems/dwavebinarycsp
+    url = https://github.com/JoelPasvolsky/dwavebinarycsp
 [submodule "dwave-cloud-client"]
     path = dwave-cloud-client
-    url = https://github.com/dwavesystems/dwave-cloud-client
+    url = https://github.com/JoelPasvolsky/dwave-cloud-client
 [submodule "dwave-gate"]
     path = dwave-gate
     url = https://github.com/JoelPasvolsky/dwave-gate.git
@@ -33,7 +33,7 @@
     url = https://github.com/JoelPasvolsky/dwave-system
 [submodule "minorminer"]
     path = minorminer
-    url = https://github.com/dwavesystems/minorminer
+    url = https://github.com/JoelPasvolsky/minorminer
 [submodule "penaltymodel"]
     path = penaltymodel
     url = https://github.com/JoelPasvolsky/penaltymodel
