@@ -14,7 +14,7 @@ pairwise interaction structure, the corresponding graph must be
 There are algorithms that can embed a problem of :math:`N` variables in at most
 :math:`N^2` qubits.
 
-Ocean software's :ref:`minorminer <index_ minorminer>` provides embedding tools.
+Ocean software's :ref:`minorminer <index_minorminer>` provides embedding tools.
 
 
 .. _qpu_embedding_inspector:

@@ -121,7 +121,7 @@ The following are two example formulations.
 
         -x_1 -x_2  + 2x_1x_2
 
-2.  Ocean software's :doc:`dimod <index_dimod>` package enables the following
+2.  Ocean software's :ref:`dimod <index_dimod>` package enables the following
     formulation of an AND gate as a BQM:
 
 >>> from dimod.generators import and_gate

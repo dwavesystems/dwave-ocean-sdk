@@ -43,9 +43,9 @@ This information includes:
         &= 1.5092 \times 10^{24} A(s)_{\text{[Joules]}}
 
 .. [#]
-        Depending on your customer contract, customer plan,
-        and :ref:`seat type <seat_type>` in a project, you may not have access
-        to all QPUs in the Leap service.
+        Depending on your customer contract, customer plan, and
+        :ref:`seat type <admin_def_seat_type>` in a project, you may not have
+        access to all QPUs in the Leap service.
 
 Advantage2_prototype2.6
 =======================

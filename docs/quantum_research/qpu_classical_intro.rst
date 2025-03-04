@@ -46,7 +46,7 @@ invaluable.
 Example
 -------
 
-Among several samplers provided in the :doc:`dimod <index_dimod>` tool for
+Among several samplers provided in the :ref:`dimod <index_dimod>` tool for
 testing your code locally, is the :class:`~dimod.reference.samplers.ExactSolver`
 that calculates the energy of all possible samples for a given problem. Such a
 sampler can solve a small three-variable problem such as a BQM representing a

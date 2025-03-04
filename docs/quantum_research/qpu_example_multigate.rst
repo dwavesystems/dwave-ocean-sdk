@@ -464,7 +464,7 @@ sequence of related problems.
 Visualizing the Minor Embedding
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Ocean's :doc:`problem-inspector <index_inspector>` can illuminate differences in
+Ocean's :ref:`problem-inspector <index_inspector>` can illuminate differences in
 solution quality between alternative minor embeddings. You can use it to
 visualize sample sets returned from a quantum computer in your browser.
 

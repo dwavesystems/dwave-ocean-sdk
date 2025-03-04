@@ -495,7 +495,7 @@ applied problem energy as :math:`\sqrt{B(s)}`.
 Although the dynamics of :ref:`parameter_qpu_h` and flux bias (constant in
 time) differ, equivalence at a specific point in the anneal is valid under some
 assumptions. :ref:`Ocean software <index_ocean_sdk>` provides
-:std:doc:`conversion functions <system_utilities>` between
+:ref:`conversion functions <system_utilities>` between
 :ref:`parameter_qpu_h` and flux biases.
 
 See :ref:`this example <qpu_config_emulate_with_fbo>` in the

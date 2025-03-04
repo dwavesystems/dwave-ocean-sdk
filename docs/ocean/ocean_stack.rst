@@ -144,25 +144,25 @@ the Ocean stack.
             - Simulated annealing sampler.
             -
         *   - Quantum
-            - :doc:`dwave-system <index_system>`
+            - :ref:`dwave-system <index_system>`
               :class:`~dwave.system.samplers.DWaveSampler`
             - Quick incorporation of the |dwave_short| quantum computer as a
               sampler.
             - Typically part of a composite that handles
               :term:`minor-embedding`.
         *   - Quantum
-            - :doc:`dwave-system <index_system>`
+            - :ref:`dwave-system <index_system>`
               :class:`~dwave.system.samplers.DWaveCliqueSampler`
             - Quick incorporation of the |dwave_short| quantum computer as a
               sampler.
             - Handles :term:`minor-embedding` for clique
               (:term:`complete graph`) problems.
         *   - Quantum
-            - :doc:`dwave-cloud-client <index_cloud>` :code:`Solver()`
+            - :ref:`dwave-cloud-client <index_cloud>` :code:`Solver()`
             - |dwave_short| quantum computer as a sampler.\ [#]_
             - For low-level control of problem submission.
         *   - Hybrid
-            - :doc:`dwave-hybrid <index_hybrid>`
+            - :ref:`dwave-hybrid <index_hybrid>`
               :class:`~hybrid.reference.kerberos.KerberosSampler`
             - *dimod*-compatible hybrid asynchronous decomposition sampler.
             - For problems of arbitrary structure and size.
@@ -335,7 +335,7 @@ problem---and work your way down the Ocean stack.
         - Reformulate an integer problem to use binary variables, for example,
           or convert a nonquadratic (high-order) polynomial to a :term:`QUBO`.
 
-          Ocean's :ref:`dwavebinarycsp <indedx_binarycsp>` and
+          Ocean's :ref:`dwavebinarycsp <index_binarycsp>` and
           :ref:`dwave_networkx <index_dnx>` packages can be helpful for some
           problems.
     *   - Decompose

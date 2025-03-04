@@ -113,7 +113,7 @@ The :math:`K_5` BQM for a
 
 .. todo:: verify link to https://docs.ocean.dwavesys.com/en/stable/docs_dimod/reference/generated/dimod.generators.doped.html
 
-:ref:`doped ferromagnetic problem <dimod.generators.doped>`, created in the
+:func:`~dimod.generators.doped`, created in the
 :ref:`subsection above <qpu_embedding_intro_chains>`, has ten
 :term:`ground states <ground state>` (best solutions). These are shown
 below---solved by brute-force stepping through all possible configurations of

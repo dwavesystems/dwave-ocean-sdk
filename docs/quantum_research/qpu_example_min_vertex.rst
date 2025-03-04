@@ -71,7 +71,7 @@ Solving Classically on a CPU
 
 Before using the |dwave_short| quantum computer, it can sometimes be helpful to
 test code locally. Here, select one of Ocean software's test samplers to solve
-classically on a CPU. Ocean's :doc:`dimod <index_dimod>` package provides a
+classically on a CPU. Ocean's :ref:`dimod <index_dimod>` package provides a
 sampler that simply returns the :term:`BQM's <bqm>` value for every possible
 assignment of variable values.
 

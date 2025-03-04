@@ -150,7 +150,7 @@ environment from either Ocean's default values or your configuration.
             :start-after: cli_example_solvers_start
             :end-before: cli_example_solvers_end
 
-        Example: using :doc:`dwave-cloud-client <index_cloud>` to query for
+        Example: using :ref:`dwave-cloud-client <index_cloud>` to query for
         hybrid solvers.
 
         >>> from dwave.cloud import Client
@@ -226,7 +226,7 @@ environment from either Ocean's default values or your configuration.
                     :meth:`~dwave.cloud.client.Client.get_regions`
                 -
 
-        Example: using :doc:`dwave-cloud-client <index_cloud>` to query
+        Example: using :ref:`dwave-cloud-client <index_cloud>` to query
         supported regions.
 
             >>> from dwave.cloud import Client
