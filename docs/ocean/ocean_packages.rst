@@ -9,7 +9,7 @@ Reference Documentation
     :maxdepth: 1
 
     api_ref_dimod/index
-    api_ref_binarycsp/sdk_index
+    api_ref_binarycsp/index
     api_ref_cloud/index
     api_ref_gate/index
     api_ref_hybrid/index
@@ -36,7 +36,7 @@ Reference Documentation
 
     :bdg-link-primary:`code <https://github.com/dwavesystems/dimod>`
 
-.. dropdown:: :ref:`dwavebinarycsp <index_csp>`: Generates BQMs from constraint
+.. dropdown:: :ref:`dwavebinarycsp <index_binarycsp>`: Generates BQMs from constraint
     satisfaction problems.
 
     Library to construct a binary quadratic model from a constraint satisfaction
@@ -161,7 +161,7 @@ Reference Documentation
 
     :bdg-link-primary:`code <https://github.com/dwavesystems/minorminer>`
 
-.. dropdown:: :ref:`penaltymodel <index_penalty>`: Maps constraints to binary
+.. dropdown:: :ref:`penaltymodel <index_penaltymodel>`: Maps constraints to binary
     quadratic models.
 
     An approach to solve a constraint satisfaction problem (:term:`CSP`) using
