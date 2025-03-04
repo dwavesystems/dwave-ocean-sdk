@@ -109,13 +109,9 @@ Concepts and Terminology
     Complete graph
     Fully connected
         See `complete graph <https://en.wikipedia.org/wiki/Complete_graph>`_
-        on Wikipedia or
-
-        .. todo:: replace this link:
-
-        :std:doc:`oceandocs:docs_dnx/reference/algorithms/clique`. A fully
-        connected or complete :term:`binary quadratic model` is one that has
-        interactions between all of its variables.
+        on Wikipedia or :ref:`dnx_clique`. A fully connected or complete
+        :term:`binary quadratic model` is one that has interactions
+        between all of its variables.
 
     Combinatorial optimization
     Discrete optimization

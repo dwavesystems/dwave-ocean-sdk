@@ -12,9 +12,7 @@ import inspect
 from importlib.metadata import Distribution
 from packaging.requirements import Requirement
 
-# TODO: the first works in CI but not in my build, not sure why
-# sdk_directory = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-sdk_directory = os.path.dirname(os.path.abspath(__file__))
+sdk_directory = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 sys.path.insert(0, os.path.abspath('.'))
 sys.path.insert(0, sdk_directory)
