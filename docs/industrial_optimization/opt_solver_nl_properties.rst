@@ -136,7 +136,7 @@ num_nodes_multiplier
 ====================
 
 Multiplier applied to a problem's total number of
-:ref:`nodes <oceandocs:intro_optimization>`, the product of which is used
+:ref:`nodes <opt_model_construction_nl>`, the product of which is used
 in the internal estimate of the problem's minimum runtime.
 
 Example

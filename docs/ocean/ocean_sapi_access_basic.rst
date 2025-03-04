@@ -93,10 +93,7 @@ environment from either Ocean's default values or your configuration.
                     or edit the file manually.
                 -   You can override this configuration by setting an
                     environment variable or explicitly in your code.
-
-                    .. todo:: check the link below
-
-            *   -   :std:doc:`Environment variables <docs_cloud/reference/configuration>`
+            *   -   :ref:`Environment variables <cloud_configuration>`
                 -   Configure :code:`DWAVE_API_TOKEN`. For example,
                     :code:`export DWAVE_API_TOKEN=ABC-1234 ... 789` in
                     a Unix shell.
@@ -189,10 +186,7 @@ environment from either Ocean's default values or your configuration.
                     or edit the file manually.
                 -   You can override this configuration by setting a solver in
                     an environment variable or explicitly in your code.
-
-                    .. todo:: check the link below
-
-            *   -   :std:doc:`Environment variables <oceandocs:docs_cloud/reference/configuration>`
+            *   -   :ref:`Environment variables <cloud_configuration>`
                 -   Configure :code:`DWAVE_API_SOLVER`. For example,
                     :code:`export DWAVE_API_SOLVER='{"num_qubits__gt": 2000}'`
                     in a Unix shell.

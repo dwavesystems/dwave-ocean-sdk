@@ -1047,11 +1047,8 @@ Alternatively, set directly on the problem qubit a flux-bias offset that is
 closest to an equivalent of the needed linear bias. Although the dynamics of
 :math:`h` and flux bias (constant in time) differ, equivalence at a specific
 point in the anneal is valid under some assumptions. Ocean software provides
-
-.. todo:: update the following xref
-
-:std:doc:`conversion functions <oceandocs:docs_system/reference/utilities>`
-between :math:`h` and flux biases.
+:ref:`conversion functions <system_utilities>` between :math:`h` and
+flux biases.
 
 :numref:`Figure %s <fluxBiasOffsetsHVsFB>` shows the probability of state
 :math:`-1` for a qubit, :math:`q_1`, annealed 1000 times for each value, in

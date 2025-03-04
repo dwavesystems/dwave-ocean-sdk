@@ -243,9 +243,9 @@ q1 q2 energy num_oc. chain_.
 2  1  0    0.1       1     0.0
 ['BINARY', 3 rows, 5000 samples, 2 variables]
 
-The rerunning of one of the :ref:`gsg_auto_scale` section's submissions above
-produced results that are more symmetrical in this case. The use of this
-composite has a cost of longer runtime.
+The rerunning of one of the :ref:`qpu_basic_config_auto_scale` section's
+submissions above produced results that are more symmetrical in this case. The
+use of this composite has a cost of longer runtime.
 
 Next Steps for Learning about Solver Parameters
 ===============================================

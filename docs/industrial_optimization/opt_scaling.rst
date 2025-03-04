@@ -11,7 +11,7 @@ on problems of the industrial scale supported by
 While the code examples below focus on
 :ref:`constrained quadratic models (CQMs) <concept_models_cqm>`, most the guidance is also
 applicable to :ref:`binary quadratic models (BQMs) <concept_models_bqm>` and
-:ref:`quadratic models (QMs) <concept_models_qm>`.
+:ref:`quadratic models (QMs) <concept_models_quadratic>`.
 
 This section does not discuss
 `algorithmic complexity <https://en.wikipedia.org/wiki/Computational_complexity_theory>`_

@@ -194,7 +194,7 @@ Submit the Model to a Solver
 ----------------------------
 
 The example code below submits a :term:`BQM` representing a Boolean AND gate
-(see also the :ref:`qpu_exampler_and` section) to a Leap :term:`hybrid` solver.
+(see also the :ref:`qpu_example_and` section) to a Leap :term:`hybrid` solver.
 In this case, the :ref:`dwave-system <index_system>` package's
 :class:`~dwave.system.samplers.LeapHybridSampler` class is the Ocean sampler and
 the remote compute resource selected might be Leap hybrid solver

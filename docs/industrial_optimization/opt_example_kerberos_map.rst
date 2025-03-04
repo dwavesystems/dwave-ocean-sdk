@@ -86,7 +86,7 @@ edges.
 Solve the Problem by Sampling
 =============================
 
-Ocean's :doc:`dwave_networkx <index_dnx>` can return a
+Ocean's :ref:`dwave_networkx <index_dnx>` can return a
 `minimum vertex coloring <https://en.wikipedia.org/wiki/Graph_coloring>`_ for a
 graph, which assigns a color to the vertices of a graph in a way that no
 adjacent vertices have the same color, using the minimum number of colors. Given

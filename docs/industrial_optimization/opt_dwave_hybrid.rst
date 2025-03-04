@@ -11,7 +11,7 @@ Introduction
 samples through parallel solvers to find an optimal solution.
 
 For the documentation of a particular code element, see the 
-:ref:`hybrid_reference` section. This introduction gives an overview of the 
+:ref:`hybrid_api_ref` section. This introduction gives an overview of the 
 package; steps you through using it, starting with running a provided hybrid
 solver that handles arbitrary-sized QUBOs; and points out the way to developing 
 your own components in the framework.
@@ -394,7 +394,7 @@ The :ref:`racingBranches1` graphic below shows the top-down composition (tree st
   Top-Down Composition
 
 
-.. include:: ../ocean/api_ref_hybrid/reference/traits.rst
+.. include:: ../ocean/api_ref_hybrid/traits.rst
      :start-after: start_hybrid_traits
      :end-before: end_hybrid_traits
 
@@ -410,13 +410,13 @@ Reference Examples
 ==================
 
 The `examples <https://github.com/dwavesystems/dwave-hybrid/tree/master/examples>`_
-directory of the code includes implementations of some :ref:`reference_workflows`
+directory of the code includes implementations of some :ref:`hybrid_reference_workflows`
 you can incorporate as provided into your application and also use to jumpstart
 your development of custom workflows.
 
 A typical first use of dwave-hybrid might be to simply use the Kerberos reference
 sampler to solve a QUBO, as shown in :ref:`opt_dwave_hybrid_using_framework`. Next, you might tune its configurable
-parameters, described under :ref:`reference_workflows`.
+parameters, described under :ref:`hybrid_reference_workflows`.
 
 To further improve performance, you can step up from using a generic
 workflow to one tailored for your application and its problem. As a first step you can

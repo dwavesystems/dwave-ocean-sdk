@@ -253,7 +253,7 @@ This example embeds a BQM representing a 30-node
 
 .. todo:: Update the next line's xref
 
-:std:doc:`signed-social network <oceandocs:docs_dnx/reference/algorithms/social>`
+:ref:`signed-social network <dnx_social>`
 problem and then looks at the effects of different chain-strength settings.
 
 >>> import networkx as nx

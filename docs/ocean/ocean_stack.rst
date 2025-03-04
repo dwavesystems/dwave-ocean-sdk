@@ -171,7 +171,7 @@ the Ocean stack.
               :class:`~dwave.system.samplers.LeapHybridNLSampler`
             - Cloud-based quantum-classical hybrid solver.
             - For application problems formulated as
-              :ref:`nonlinear models <nl_model_sdk>`.
+              :ref:`nonlinear models <concept_models_nonlinear>`.
         *   - Hybrid
             - `Leap <https://cloud.dwavesys.com/leap/>`_ service's
               :class:`~dwave.system.samplers.LeapHybridCQMSampler`

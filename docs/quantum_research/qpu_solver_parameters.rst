@@ -494,13 +494,9 @@ section as a term :math:`I_p \phi_{\rm flux bias} \sigma_z` that grows with the
 applied problem energy as :math:`\sqrt{B(s)}`.
 Although the dynamics of :ref:`parameter_qpu_h` and flux bias (constant in
 time) differ, equivalence at a specific point in the anneal is valid under some
-assumptions.
-:ref:`Ocean software <index_ocean_sdk>` provides
-
-.. todo:: fix the link below
-
-:std:doc:`conversion functions <oceandocs:docs_system/reference/utilities>`
-between :ref:`parameter_qpu_h` and flux biases.
+assumptions. :ref:`Ocean software <index_ocean_sdk>` provides
+:std:doc:`conversion functions <system_utilities>` between
+:ref:`parameter_qpu_h` and flux biases.
 
 See :ref:`this example <qpu_config_emulate_with_fbo>` in the
 :ref:`qpu_solver_configuration` section for more-detailed usage information.

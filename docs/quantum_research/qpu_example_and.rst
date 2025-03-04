@@ -439,7 +439,7 @@ Chain Strength
 --------------
 
 For illustrative purposes, this subsection purposely weakens the
-:ref:`chain strength` (strength of the coupling between qubits ``45`` and
+:term:`chain strength` (strength of the coupling between qubits ``45`` and
 ``46``, which represent variable :math:`z`).
 
 In the previous subsection, the chain strength, which by default is set by the

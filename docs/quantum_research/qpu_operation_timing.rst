@@ -361,7 +361,7 @@ second) and a problem has an estimated runtime of 3,750,000 microseconds for
 each. (With
 :ref:`spin-reversal transforms (SRTs) <qpu_config_srt>`, you
 similarly divide your samples into such batches; consider using
-:ref:`Ocean software <index_ocean_sdk`'s
+:ref:`Ocean software <index_ocean_sdk>`'s
 :class:`~dwave.preprocessing.composites.SpinReversalTransformComposite`
 composite to also benefit from potential reduction in QPU biases.)
 

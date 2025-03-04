@@ -442,8 +442,8 @@ Ocean software provides for all supported topologies the following graph tools:
 *   :ref:`graph generation <dnx_generators>` creates graphs for the
     supported topologies of various sizes.
 *   :ref:`drawing <drawing>` visualizes the graphs you create.
-*   :ref:`indexing <index_conversion_classes>` helps translate
-    coordinates of the supported graphs.
+*   :ref:`dnx_coordinates_conversion` helps translate coordinates of the
+    supported graphs.
 
 Further Information: Technical Reports
 ======================================
@@ -451,7 +451,7 @@ Further Information: Technical Reports
 You can learn more about these topologies and their implications in the
 following technical reports:
 
-*   Pegasus topology: 
+*   Pegasus topology:
     `14-1026 Next-Generation Topology of D-Wave Quantum Processors <https://www.dwavesys.com/media/jwwj5z3z/14-1026a-c_next-generation-topology-of-dw-quantum-processors.pdf>`_
-*   Zephyr topology: 
+*   Zephyr topology:
     `14-1056 Zephyr Topology of D-Wave Quantum Processors <https://www.dwavesys.com/media/2uznec4s/14-1056a-a_zephyr_topology_of_d-wave_quantum_processors.pdf>`_

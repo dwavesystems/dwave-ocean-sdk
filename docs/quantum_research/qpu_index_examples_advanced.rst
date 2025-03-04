@@ -4,7 +4,7 @@
 QPU Usage Examples
 ==================
 
-For beginner examples, see the :ref:`qpu_index_intro_examples` section. 
+For beginner examples, see the :ref:`qpu_index_examples_beginner` section. 
 
 ..  toctree::
     :maxdepth: 1

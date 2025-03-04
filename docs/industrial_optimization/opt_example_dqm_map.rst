@@ -110,7 +110,7 @@ Solve the Problem by Sampling
     :start-after: start_hybrid_advantage
     :end-before: end_hybrid_advantage
 
-Ocean software's :doc:`dwave-system <index_system>`
+Ocean software's :ref:`dwave-system <index_system>`
 :class:`~dwave.system.samplers.LeapHybridDQMSampler` class enables you to easily
 incorporate Leap's hybrid DQM solvers into your application. The solution
 printed below is truncated.

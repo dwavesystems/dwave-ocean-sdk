@@ -19,7 +19,7 @@ the variable's value based on the state returned from the majority of the qubits
 in the chain. You can often improve results, at a low cost of classical
 processing time, by postprocessing.
 
-the :ref:`dwave-samplers <>` package provides an
+the :ref:`dwave-samplers <index_samplers>` package provides an
 implementation of a steepest-descent solver,
 :class:`~dwave.samplers.SteepestDescentSolver`,for binary quadratic models.
 This example runs this classical algorithm initialized from QPU samples to find

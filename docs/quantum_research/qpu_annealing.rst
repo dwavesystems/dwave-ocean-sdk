@@ -684,8 +684,8 @@ Pause and Quench
 
 *   You can scale the quadratic growth in persistent current---that is,
     quadratic growth in :math:`B(t)`---using the
-    :ref:`sysdocs:param_anneal_time` parameter.
-*   You can also set the :ref:`sysdocs:param_anneal_sched` parameter, which
+    :ref:`parameter_qpu_annealing_time` parameter.
+*   You can also set the :ref:`parameter_qpu_anneal_schedule` parameter, which
     allows for a *pause* or *quench* partway through the annealing
     process.\ [#]_ A pause dwells for some time at a particular anneal fraction;
     a quench abruptly terminates the anneal within a few hundred nanoseconds of

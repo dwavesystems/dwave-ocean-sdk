@@ -74,7 +74,7 @@ sampler for solution, you typically use one of the
 
     .. todo:: update this link
 
-    :ref:`higher order models <oceandocs:higher_order>`, which are typically
+    :ref:`higher order models <dimod_higher_order_models>`, which are typically
     reduced to quadratic for sampling.
 
 .. _qpu_workflow_samplers:

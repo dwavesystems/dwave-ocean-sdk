@@ -458,10 +458,7 @@ Ising objective functions, as shown here.
 .. todo:: fix ref to FBSS below:
 
 First, select a quantum computer. Ocean software provides
-
-.. todo:: update this link:
-
-:std:doc:`feature-based solver selection <oceandocs:docs_cloud/reference/resources>`,
+:ref:`feature-based solver selection <cloud_resources>`,
 enabling you to select a quantum computer that meets your requirements on its
 number of qubits, topology, particular features, etc. This example, uses the
 default.

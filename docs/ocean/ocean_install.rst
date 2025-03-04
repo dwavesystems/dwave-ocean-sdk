@@ -99,7 +99,7 @@ steps:
 *   :ref:`ocean_install_contrib`
 
     Adds non-open-source tools such as the
-    :ref:`problem inspector <dwave_inspector>`.
+    :ref:`problem inspector <index_inspector>`.
 
 *   :ref:`ocean_sapi_access_basic`
 

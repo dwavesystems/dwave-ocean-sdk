@@ -330,7 +330,7 @@ original problem through the following layers:
     :ref:`map-coloring <qpu_example_mapcoloring>` problem is to color all
     regions of a map such that any two regions sharing a border have different
     colors. The
-    :ref:`job-shop scheduling <https://github.com/dwave-examples/job-shop-scheduling-cqm>`
+    `job-shop scheduling <https://github.com/dwave-examples/job-shop-scheduling-cqm>`_
     problem is to schedule multiple jobs done on several machines with
     constraints on the machines' execution of tasks.
 *   Method: constraint compilation.

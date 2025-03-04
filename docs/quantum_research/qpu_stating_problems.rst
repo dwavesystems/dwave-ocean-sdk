@@ -50,7 +50,7 @@ performance, so it may be useful to consider various approaches.
         -
         - QPU
         - Papers
-    *   - :ref:`cqpu_stating_problems_factoring`
+    *   - :ref:`qpu_stating_problems_factoring`
         - Yes
         - QPU
         - Code, papers
