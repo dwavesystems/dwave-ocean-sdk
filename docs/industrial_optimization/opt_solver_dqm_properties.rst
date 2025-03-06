@@ -15,12 +15,8 @@ category
 ========
 
 .. include:: ../shared/properties.rst
-    :start-after: start_category1
-    :end-before: end_category1
-
-.. include:: ../shared/properties.rst
-    :start-after: start_property_category
-    :end-before: end_property_category
+    :start-after: start_property_category_hybrid
+    :end-before: end_property_category_hybrid
 
 Example
 -------

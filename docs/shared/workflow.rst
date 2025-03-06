@@ -1,5 +1,3 @@
-.. |figSolutionOverview| replace:: dummy
-
 .. start_workflow_intro
 
 The two main steps of solving problems using quantum computers are:
@@ -22,7 +20,6 @@ The two main steps of solving problems using quantum computers are:
 .. todo:: Ask Michael to refresh this graphic
 
 .. figure:: ../_images/SolutionOverview.svg
-    :name: |figSolutionOverview|
     :alt: image
     :align: center
     :width: 100%
@@ -51,8 +48,6 @@ The two main steps of solving problems using quantum computers are:
 .. end_workflow_intro
 
 
-.. |figObjectiveFunction| replace:: dummy
-
 .. start_objective
 
 To express a problem for a |dwave_short| :term:`solver` in a form that enables
@@ -63,7 +58,6 @@ its qubits\ [#]_\ ; for quantum-classical :term:`hybrid` solvers, the objective
 function might be more abstract\ [#]_\ .
 
 .. figure:: ../_images/obj.png
-    :name: |figObjectiveFunction|
     :scale: 50 %
     :alt: Energy of objective function.
 
@@ -172,14 +166,14 @@ locally on your CPU.
 .. end_samplers
 
 
-.. |figSimpleRandomSampler| replace:: dummy
-.. |simple_objective_example_ref| replace:: dummy
+Simple Objective Example
+========================
 
 .. start_simple_sampler_example
 
 As an illustrative example, consider solving by sampling the objective,
-:math:`\text{E}(x) = (1-x)^2` found in the |simple_objective_example_ref|
-example above to represent equation, :math:`x+1=2`.
+:math:`\text{E}(x) = (1-x)^2` found in the `Simple Objective Example`_
+subsection above to represent equation, :math:`x+1=2`.
 
 This example creates a simple sampler that generates 10 random values of the
 variable :math:`x` and selects the one that produces the lowest value of the
@@ -206,7 +200,6 @@ sides of the original equation, which occurs at equality, has the lowest value
 (energy) of :math:`\text{E}(x)`.
 
 .. figure:: ../_images/random_sampler_x_e.png
-    :name: |figSimpleRandomSampler|
     :scale: 75 %
     :alt: Simple random sampler: E(x) versus x.
 

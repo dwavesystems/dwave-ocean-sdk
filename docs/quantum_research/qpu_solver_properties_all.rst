@@ -108,12 +108,9 @@ Example
 category
 ========
 
-.. |category| replace:: ``qpu``: Quantum computers such as the |dwave_5kq|
-    system.
+Type of solver.
 
-.. include:: ../shared/properties.rst
-    :start-after: start_property_category
-    :end-before: end_property_category
+*   ``qpu``: Quantum computers such as the |dwave_5kq| system.
 
 Example
 -------

@@ -8,8 +8,6 @@ This section provides a high-level description of how you solve problems using
 :term:`hybrid` :term:`solver`\ s. For solving problems directly on quantum
 computers, see the :ref:`qpu_workflow` section.
 
-.. |figSolutionOverview| replace:: optSolutionOverview
-
 .. include:: ../shared/workflow.rst
     :start-after: start_workflow_intro
     :end-before: end_workflow_intro
@@ -18,8 +16,6 @@ computers, see the :ref:`qpu_workflow` section.
 
 Objective Functions
 ===================
-
-.. |figObjectiveFunction| replace:: optObjectiveFunction
 
 .. include:: ../shared/workflow.rst
     :start-after: start_objective
@@ -104,9 +100,6 @@ Samplers
 
 Simple Sampling Example
 -----------------------
-
-.. |figSimpleRandomSampler| replace:: optSimpleRandomSampler
-.. |simple_objective_example_ref| replace:: :ref:`opt_workflow_simple_obj_example`
 
 .. include:: ../shared/workflow.rst
     :start-after: start_simple_sampler_example

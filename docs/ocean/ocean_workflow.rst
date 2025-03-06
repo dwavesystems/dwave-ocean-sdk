@@ -182,10 +182,6 @@ resources (solvers) of different types:
 Simple Sampling Example
 -----------------------
 
-.. |figSimpleRandomSampler| replace:: oceanSimpleRandomSampler
-.. |simple_objective_example_ref| replace::
-    :ref:`ocean_workflow_simple_obj_example`
-
 .. include:: ../shared/workflow.rst
     :start-after: start_simple_sampler_example
     :end-before: end_simple_sampler_example

@@ -1,21 +1,12 @@
-.. |category| replace:: dummy
-
-.. start_property_category
+.. start_property_category_hybrid
 
 Type of solver.
 
-*   |category|
+*   ``hybrid``: Quantum-classical hybrid; typically one or more classical
+    algorithms run on the problem while outsourcing to a quantum processing unit
+    (:term:`QPU`) parts of the problem where it benefits most.
 
-.. end_property_category
-
-
-.. start_category1
-
-.. |category| replace:: ``hybrid``: Quantum-classical hybrid; typically one or
-    more classical algorithms run on the problem while outsourcing to a quantum
-    processing unit (QPU) parts of the problem where it benefits most.
-
-.. end_category1
+.. end_property_category_hybrid
 
 
 .. start_property_maximum_number_of_biases
