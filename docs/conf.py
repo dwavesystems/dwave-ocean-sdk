@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 # This file contains function linkcode_resolve, based on
 # https://github.com/numpy/numpy/blob/main/doc/source/conf.py,
 # which is licensed under the BSD 3-Clause "New" or "Revised"
@@ -29,16 +27,12 @@ from dwaveoceansdk import __version__ as release
 setup_cfg = configparser.ConfigParser()
 setup_cfg.read(os.path.join(sdk_directory, 'setup.cfg'))
 
-author = setup_cfg['metadata']['author']
-copyright = setup_cfg['metadata']['author']
-
-project = 'Ocean Documentation'
+copyright = 'D-Wave Quantum Inc' #setup_cfg['metadata']['author']
 
 # Also add our own 'special value', the minimum supported Python version
 rst_prolog = f"""
 .. |python_requires| replace:: {setup_cfg['options']['python_requires']}
-.. |array-like| replace:: array-like
-.. _array-like: https://numpy.org/devdocs/glossary.html#term-array_like
+
 """
 
 # -- General configuration ------------------------------------------------
@@ -62,16 +56,17 @@ extensions = [
 ]
 
 autosummary_generate = True
+numfig = True
 
 source_suffix = ['.rst', '.md']
 
-root_doc = 'index'  # before Sphinx 4.0, named master_doc
+root_doc = 'index'
 
 language = 'en'
 
 add_module_names = False
 
-exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
+exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', '*/shared/*.rst',]
 
 linkcheck_ignore = [r'.clang-format',                    # would need symlink
                     r'setup.cfg',                        # would need symlink (for dimod)
@@ -80,6 +75,17 @@ linkcheck_ignore = [r'.clang-format',                    # would need symlink
                     r'https://epubs.siam.org',           # ignores robots since Feb 2023
                     r'LICENSE',                          # would need symlink, checked by submodule
                     r'CONTRIBUTING',                     # would need symlink, checked by submodule
+                    r'^https?://cloud\.dwavesys\.com/leap(\/.*)?$', # redirects, many checks
+                    r'^https?://(.*\.)?cloud\.dwavesys\.com/sapi(\/.*)?$', # not pingable
+                    r'^https://www\.sciencedirect\.com\/science\/article\/pii(\/.*)?$', # site rejects robots since March 2023
+                    r'^https://onlinelibrary\.wiley\.com(\/.*)?$', # site rejects robots since March 2023
+                    r'^http://science\.sciencemag\.org\/content(\/.*)?$', # site rejects robots since March 2023 
+                    r'^https://iopscience\.iop\.org\/article(\/.*)?$', # site rejects robots since November 2023 
+                    r'^https://journals\.aps\.org(\/.*)?$', # site rejects robots since October 2024
+                    r'^https://doi\.org(\/.*)?PhysRev(.*)?$', # redirects to journals.aps.org above
+                    r'^https://ssrn\.com(\/.*)?$', # site rejects robots since October 2024
+                    r'^https?://dx\.doi\.org(\/.*)?ssrn\.(.*)?$', # redirects to SSRN above
+                    r'^https://support\.dwavesys\.com', # Leap support site rejects robots
                     ]
 
 pygments_style = 'sphinx'
@@ -124,23 +130,41 @@ import dwave.inspector
 # -- Breathe configuration ------------------------------------------------
 
 # Path to the cpp xml files
-breathe_projects = {"minorminer": os.path.join(
-                      sdk_directory, 'minorminer/docs/build-cpp/xml/'),
-                    "dimod": os.path.join(
-                      sdk_directory, 'dimod/docs/build-cpp/xml/'),
-                    "dwave-preprocessing": os.path.join(
-                      sdk_directory, 'dwave-preprocessing/docs/build-cpp/xml/'),
-                    }
+breathe_projects = {
+    "minorminer": os.path.join(sdk_directory, 'minorminer/docs/build-cpp/xml/'),
+    "dimod": os.path.join(sdk_directory, 'dimod/docs/build-cpp/xml/'),
+    "dwave-preprocessing": os.path.join(sdk_directory, 'dwave-preprocessing/docs/build-cpp/xml/'),
+    }
 
 breathe_default_members = ('members', )
 breathe_default_project = "minorminer"
 
-# we want to build the c++ docs in RTD with all warnings:
+
+
+
+# TESTING WITHOUT BUILD WARNINGS
 if os.environ.get('READTHEDOCS', False):
-    subprocess.call('cd ../minorminer/docs/; make cpp', shell=True)
-    subprocess.call('cd ../dimod/docs/; make cpp', shell=True)
-    subprocess.call('cd ../dwave-preprocessing/docs/; make cpp', shell=True)
+    os.environ["DOXYGEN_QUIET"] = "YES"
+    os.environ["DOXYGEN_WARNINGS"] = "NO"
+    os.environ["DOXYGEN_WARN_LOGFILE"] = "/dev/null"
+    #subprocess.call('cd ../minorminer/docs/; make cpp > /dev/null 2>&1', shell=True)
+    subprocess.call('cd ../dimod/docs/; make cpp > /dev/null 2>&1', shell=True)
+    subprocess.call('cd ../dwave-preprocessing/docs/; make cpp > /dev/null 2>&1', shell=True)
     subprocess.call('cd ../dwave-gate/; python dwave/gate/simulator/operation_generation.py', shell=True)
+
+
+
+
+
+
+# TODO restore this:
+
+# we want to build the c++ docs in RTD with all warnings:
+# if os.environ.get('READTHEDOCS', False):
+#     subprocess.call('cd ../minorminer/docs/; make cpp', shell=True)
+#     subprocess.call('cd ../dimod/docs/; make cpp', shell=True)
+#     subprocess.call('cd ../dwave-preprocessing/docs/; make cpp', shell=True)
+#     subprocess.call('cd ../dwave-gate/; python dwave/gate/simulator/operation_generation.py', shell=True)
 
 # we want to build the c++ docs in CircleCI without warnings
 # and without minorminer because it generates ~500 warnings
@@ -169,16 +193,8 @@ html_favicon = 'https://www.dwavesys.com/favicon.ico'
 
 html_theme_options = {
     "github_url": "https://github.com/dwavesystems/dwave-ocean-sdk",
-    "external_links": [
-        {
-            "url": "https://docs.dwavesys.com/docs/latest/index.html",
-            "name": "System Docs",
-        },
-        {
-            "url": "https://docs.dwavesys.com/docs/latest/legal.html",
-            "name": "Legal",
-        },
-    ],
+    "footer_start": ["copyright"],
+    "footer_end": ["sphinx-version", "theme-version"],
     "icon_links": [
         {
             "name": "Leap",
@@ -188,13 +204,13 @@ html_theme_options = {
         },
     ],
     "collapse_navigation": True,
-    "header_links_before_dropdown": 8,
+    "header_links_before_dropdown": 5,
     "navbar_align": "left",
     "show_prev_next": False,
     "logo": {
-        "image_light": "_static/Ocean.svg",
-        "image_dark": "_static/Ocean.svg",
-    }
+        "image_light": "_static/DWave.svg",
+        "image_dark": "_static/DWaveWhite.svg",
+    },
 }
 html_sidebars = {
     "**": ["sidebar-nav-bs"]  # remove ads
@@ -212,8 +228,8 @@ intersphinx_mapping = {
     'python': ('https://docs.python.org/3/', None),
     'numpy': ('http://numpy.org/doc/stable/', None),
     'networkx': ('https://networkx.org/documentation/stable/', None),
-    'sysdocs_gettingstarted': ('https://docs.dwavesys.com/docs/latest/', None),
-    'oceandocs': ('https://docs.ocean.dwavesys.com/en/stable/', None),
+    'urllib3': ('https://urllib3.readthedocs.io/en/stable/', None),
+    'requests': ('https://requests.readthedocs.io/en/stable/', None),
     }
 
 
@@ -301,3 +317,68 @@ def linkcode_resolve(domain, info):
     fn = "https://github.com/dwavesystems/{}/blob/{}{}".format(pm_module, pm_ver, fn)
 
     return fn + linespec
+
+# global substitutions
+rst_epilog = """
+.. |copy| unicode:: U+000A9 .. COPYRIGHT SIGN
+.. |deg| unicode:: U+00B0
+.. |nbsp| unicode:: 0xA0    .. non-breaking space
+.. |nb-| unicode:: U+2011  .. Non-breaking hyphen (e.g., "D |nb-| Wave")
+    :trim:
+.. |reg| unicode:: U+000AE .. REGISTERED SIGN
+.. |tm| unicode::  U+2122
+.. |Darr| unicode:: U+02193 .. DOWNWARDS ARROW from docutils/parsers/rst/include/isonum.txt
+.. |Uarr| unicode:: U+02191 .. UPWARDS ARROW from docutils/parsers/rst/include/isonum.txt
+
+.. |array-like| replace:: array-like    .. used in dwave-optimization
+.. _array-like: https://numpy.org/devdocs/glossary.html#term-array_like
+
+.. |adv2| unicode:: Advantage2
+.. |adv2_tm| unicode:: Advantage2 U+2122
+.. |cloud| unicode:: Leap
+.. _cloud: https://cloud.dwavesys.com/leap
+.. |cloud_tm| unicode:: Leap U+2122
+.. _cloud_tm: https://cloud.dwavesys.com/leap
+.. |dwave_2kq| unicode:: D-Wave U+00A0 2000Q
+.. |dwave_5kq| unicode:: Advantage
+.. |dwave_5kq_tm| unicode:: Advantage U+2122
+.. |dwave_short| unicode:: D-Wave
+.. _dwave_short: https://dwavequantum.com
+.. |dwave_short_tm| unicode:: D-Wave U+2122 U+0020
+.. |dwave_system| unicode:: D-Wave U+00A0 System
+
+.. |dwave_launch_tm| unicode:: D U+2011 Wave U+00A0 Launch U+2122
+.. _dwave_launch_tm: https://www.dwavesys.com/solutions-and-products/professional-services
+.. |dwave_launch| unicode:: D U+2011 Wave U+00A0 Launch
+.. _dwave_launch: https://www.dwavesys.com/solutions-and-products/professional-services
+.. |dwave_learn_tm| unicode:: D U+2011 Wave U+00A0 Learn U+2122
+.. _dwave_learn_tm: https://training.dwavequantum.com
+.. |dwave_learn| unicode:: D U+2011 Wave U+00A0 Learn
+.. _dwave_learn: https://training.dwavequantum.com
+
+.. |support_email| replace:: D-Wave Customer Support
+.. _support_email: support@dwavesys.com
+
+.. |doc_operations| replace:: *D-Wave Quantum Computer Operations*
+
+.. |max_qubits| replace:: 5640
+.. |max_couplers| replace:: 40484
+.. |max_j_junctions| replace:: 1,000,000
+"""
+
+# TODO: check which of these is used
+
+latex_preamble = r"""
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{braket}
+\usepackage{siunitx}
+
+\newcommand{\argmin}{\operatornamewithlimits{argmin}}
+\newcommand{\argmax}{\operatornamewithlimits{argmax}}
+\newcommand{\vc}[1]{{\pmb{#1}}}
+\newcommand{\ip}[2]{\langle{#1},{#2}\rangle}
+\newcommand{\sign}{\operatorname{sign}}
+\newcommand {\pauli}[2]{\hat\sigma_{#1}^{(#2)}}
+\newcommand{\tr}{\operatorname{tr}}
+"""

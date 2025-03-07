@@ -62,6 +62,9 @@ local_settings.py
 instance/
 .webassets-cache
 
+# Mac OS
+*.DS_Store
+
 # Scrapy stuff:
 .scrapy
 
