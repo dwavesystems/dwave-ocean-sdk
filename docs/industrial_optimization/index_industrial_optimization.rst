@@ -52,7 +52,7 @@ solvers.
         quantum applications.
 
 The :ref:`index_quantum_research` section shows how to use |dwave_short_tm|
-quantum processing units (:term:`QPU`) directly.
+quantum processing units (QPU) directly.
 
 .. sections-end-marker
 

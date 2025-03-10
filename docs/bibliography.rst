@@ -127,6 +127,16 @@ Bibliography
     https://link.springer.com/article/10.1007/s11128-015-1150-6
     https://arxiv.org/abs/1507.04774
 
+.. [Boo2019]
+    Boothby K., P. Bunyk, J. Raymond and A. Roy.
+    Next-Generation Topology of D-Wave Quantum Processors. 2019.
+    https://arxiv.org/abs/2003.00133
+
+.. [Boo2021]
+    Boothby K., J. Raymond and A. D. King.
+    Zephyr Topology of D-Wave Quantum Processors. September 22, 2021.
+    https://dwavesys.com/media/fawfas04/14-1056a-a_zephyr_topology_of_d-wave_quantum_processors.pdf
+
 .. [Bor2002]
     Boros, E. and Hammer, P. L.
     "Pseudo-boolean optimization."
@@ -217,6 +227,11 @@ Bibliography
     "A tutorial introduction to belief propagation."
     2009.
     https://www.ski.org/sites/default/files/publications/bptutorial.pdf
+
+.. [Dah2013]
+    Dahl E.D.
+    Programming the D-Wave: Map Coloring Problem. November 2013.
+    https://www.dwavesys.com/media/htfgw5bk/map-coloring-wp2.pdf
 
 .. [Das2019]
     Samudra Dasgupta, Arnab Banerjee.
@@ -343,6 +358,13 @@ Bibliography
     arXiv:1705.09545.
     https://arxiv.org/abs/1705.09545
 
+.. [Gog2004]
+    Gogate V. and R. Dechter.
+    A Complete Anytime Algorithm for Treewidth.
+    UAI '04: Proceedings of the 20th conference on Uncertainty in artificial
+    intelligence. Pages 201 - 208. July 7, 2004.
+    https://arxiv.org/abs/1207.4109
+
 .. [Gol2019]
     Vladislav Golyanik and Christian Theobalt.
     "A Quantum Computational Approach to Correspondence Problems on Point Sets."
@@ -464,10 +486,14 @@ Bibliography
     M. W. Johnson et al. "Quantum annealing with manufactured spins."
     *Nature* 473 (May 12, 2011), pp. 194--198.
 
-.. [Jor2011]
-    Stephen Jordan.
-    "Quantum Algorithm Zoo."
-    https://math.nist.gov/quantum/zoo/
+.. todo:: find a place to reference this link, it's a nice one
+
+.. removed the section that used this but
+
+    .. [Jor2011]
+        Stephen Jordan.
+        "Quantum Algorithm Zoo."
+        https://math.nist.gov/quantum/zoo/
 
 .. [Jue2016]
     Juexiao Su, Tianheng Tu, and Lei He.
@@ -521,12 +547,14 @@ Bibliography
     *OR Spectrum* 26 (2004), pp. 237--250.
     https://link.springer.com/article/10.1007/s00291-003-0153-3
 
-.. [Koh2022]
-    Yang Wei Koh, Hidetoshi Nishimori
-    "Quantum and classical annealing in a continuous space with multiple local
-    minima."
-    arXiv:2203.11417 [quant-ph]
-    https://doi.org/10.48550/arXiv.2203.11417
+.. removed the section that used this
+
+    .. [Koh2022]
+        Yang Wei Koh, Hidetoshi Nishimori
+        "Quantum and classical annealing in a continuous space with multiple local
+        minima."
+        arXiv:2203.11417 [quant-ph]
+        https://doi.org/10.48550/arXiv.2203.11417
 
 .. [Kol2004]
     V. Kolmogorov and R. Zabih.
@@ -605,10 +633,11 @@ Bibliography
     https://doi.org/10.48550/arXiv.1911.08043.
     https://arxiv.org/abs/1911.08043
 
-.. [Luc2013]
-    Andrew Lucas.
-    "Ising formulations of many NP problems."
-    arXiv:1302.5843. 23 Feb 2013. https://arxiv.org/abs/1302.5843
+.. [Luc2014]
+    Lucas A.
+    Ising formulations of many NP problems.
+    Frontiers in Physics, Volume 2, Article 5. February 11, 2014.
+    arXiv:1302.5843. https://arxiv.org/abs/1302.5843
 
 .. [Mac2018]
     Maciej Koch-Janusz and Zohar Ringel.
@@ -787,6 +816,14 @@ Bibliography
     "Global Warming: Temperature Estimation in Annealers"
     arXiv:1606.00919.
 
+.. [Ray2023]
+    Raymond J., R. Stevanovic, W. Bernoudy, K. Boothby, C. C. McGeoch, A. J.
+    Berkley, P. Farré, J. Pasvolsky, and A. D. King.
+    Hybrid quantum annealing for larger-than-QPU lattice-structured problems.
+    ACM Transactions on Quantum Computing, Volume 4, Issue 3 Article No.: 17,
+    Pages 1 - 30. April 8, 2023
+    https://arxiv.org/abs/2202.03044
+
 .. [Ret2017]
     Jacob Retallick, Michael Babcock, Miguel Aroca-Ouellette, Shane McNamara,
     Steve Wilton, Aidan, Mark Johnson, and Konrad Walus.
@@ -959,40 +996,3 @@ Bibliography
     High Performance Computing. ISC High Performance 2020. Lecture Notes in
     Computer Science (LNCS), vol 12151. Springer, Cham.
     https://doi.org/10.1007/978-3-030-50743-5_10
-
-.. todo:: order dwave-networkx citations alphabetically
-
-.. [Boo2019]
-    Boothby K., P. Bunyk, J. Raymond and A. Roy.
-    Next-Generation Topology of D-Wave Quantum Processors. 2019.
-    https://arxiv.org/abs/2003.00133
-
-.. [Boo2021]
-    Boothby K., J. Raymond and A. D. King.
-    Zephyr Topology of D-Wave Quantum Processors. September 22, 2021.
-    https://dwavesys.com/media/fawfas04/14-1056a-a_zephyr_topology_of_d-wave_quantum_processors.pdf
-
-.. [Dah2013]
-    Dahl E.D.
-    Programming the D-Wave: Map Coloring Problem. November 2013.
-    https://www.dwavesys.com/media/htfgw5bk/map-coloring-wp2.pdf
-
-.. [Gog2004]
-    Gogate V. and R. Dechter.
-    A Complete Anytime Algorithm for Treewidth.
-    UAI '04: Proceedings of the 20th conference on Uncertainty in artificial
-    intelligence. Pages 201 - 208. July 7, 2004.
-    https://arxiv.org/abs/1207.4109
-
-.. [Luc2014]
-    Lucas A.
-    Ising formulations of many NP problems.
-    Frontiers in Physics, Volume 2, Article 5. February 11, 2014.
-
-.. [Ray2023]
-    Raymond J., R. Stevanovic, W. Bernoudy, K. Boothby, C. C. McGeoch, A. J.
-    Berkley, P. Farré, J. Pasvolsky, and A. D. King.
-    Hybrid quantum annealing for larger-than-QPU lattice-structured problems.
-    ACM Transactions on Quantum Computing, Volume 4, Issue 3 Article No.: 17,
-    Pages 1 - 30. April 8, 2023
-    https://arxiv.org/abs/2202.03044

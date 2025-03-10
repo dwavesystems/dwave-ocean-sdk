@@ -555,7 +555,7 @@ Further Information
     problems.
 *   [Kol2004]_ characterizes binary-variables energy functions that can be
     minimized by graph cuts.
-*   [Luc2013]_ and [Lod2020]_ describe Ising formulations of many NP problems.
+*   [Luc2014]_ and [Lod2020]_ describe Ising formulations of many NP problems.
 
 .. _qpu_reformulating_weighted_max2sat:
 

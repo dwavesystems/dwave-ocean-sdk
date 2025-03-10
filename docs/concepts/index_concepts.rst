@@ -341,7 +341,7 @@ Concepts and Terminology
     One-hot
         For one-hot variables, the only valid values are those in which a single
         bit is 1 and the others are all zero. See
-        `one-hot on Wikipedia <https://en.wikipedia.org/wiki/One-hot>` for
+        `one-hot on Wikipedia <https://en.wikipedia.org/wiki/One-hot>`_ for
         details.
 
         Learn more: :ref:`qpu_reformulating_onehot_domainwall`
@@ -387,7 +387,7 @@ Concepts and Terminology
     qpu_access_time
         :term:`QPU` time used by a :term:`hybrid` solver.
 
-        Learn more: :ref`opt_leap_hybrid_timing` describes the timing
+        Learn more: :ref:`opt_leap_hybrid_timing` describes the timing
         for hybrid solvers.
 
     Quadratic model
@@ -404,7 +404,7 @@ Concepts and Terminology
         low-energy state of the problem, which corresponds to an optimal
         solution.
 
-        Learn more: ref:`qpu_quantum_annealing_intro`.
+        Learn more: :ref:`qpu_quantum_annealing_intro`.
 
     Quantum computing
     Quantum computer
@@ -414,7 +414,7 @@ Concepts and Terminology
         `quantum mechanical <https://en.wikipedia.org/wiki/Quantum_mechanics>`_
         phenomena. Today, there are two leading candidate architectures for
         quantum computers: :ref:`gate model <qpu_gate_model_intro>` (also known
-        as `circuit model <https://en.wikipedia.org/wiki/Quantum_circuit>`) and
+        as `circuit model <https://en.wikipedia.org/wiki/Quantum_circuit>`_) and
         :term:`quantum annealing`.
 
         Learn more: :ref:`qpu_quantum_annealing_intro`
@@ -473,7 +473,7 @@ Concepts and Terminology
     run_time
         Time a :term:`hybrid` solver spent working on your problem.
 
-        Learn more: :ref`opt_leap_hybrid_timing` describes the timing
+        Learn more: :ref:`opt_leap_hybrid_timing` describes the timing
         for hybrid solvers.
 
     Sampler

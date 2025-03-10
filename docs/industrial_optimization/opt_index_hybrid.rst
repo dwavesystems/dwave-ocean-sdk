@@ -11,9 +11,16 @@ Sampling with Hybrid Solvers
     opt_leap_hybrid
     opt_dwave_hybrid
 
-.. include:: ../shared/hybrid.rst
-    :start-after: start_definition
-    :end-before: end_definition
+|dwave_short| provides two categories of :ref:`hybrid <concept_hybrid>`
+resources:
+
+*   |cloud|_ service solvers
+
+    Quantum-classical hybrid solvers intended to solve arbitrary application
+    problems.
+*   :ref:`dwave-hybrid <index_hybrid>` samplers
+
+    A Python framework for building a variety of flexible hybrid workflows.
 
 .. grid:: 3
     :gutter: 2
@@ -31,31 +38,13 @@ Sampling with Hybrid Solvers
         Ocean\ |tm| software's general framework for building hybrid
         samplers.
 
+Related Information
+===================
 
-.. todo:: move the following content lower
-
-.. _leap_hybrid_solvers:
-
-Leap's Hybrid Solvers
-=====================
-
-.. include:: ../shared/hybrid.rst
-    :start-after: start_leap_intro
-    :end-before: end_leap_intro
-
-The :ref:`opt_example_nl_tsp` section provides an example of submitting a
-problem for solution on a |cloud|_ hybrid solver.
-
-
-.. _dwave_hybrid_solvers:
-
-dwave-hybrid Hybrid Solvers
-===========================
-
-.. include:: ../shared/hybrid.rst
-    :start-after: start_dwave_hybrid_intro
-    :end-before: end_dwave_hybrid_intro
-
-The :ref:`opt_example_kerberos_map` and :ref:`opt_example_dwavehybrid_workflow`
-sections provide examples of solving problems using
-:ref:`dwave-hybrid <index_hybrid>` samplers.
+*   The :ref:`Concepts: Hybrid <concept_hybrid>` section gives an overview of
+    hybrid and links to related topics.
+*   The :ref:`opt_example_nl_tsp` section is an example of using Leap service
+    solvers.
+*   The :ref:`opt_example_kerberos_map` and
+    :ref:`opt_example_dwavehybrid_workflow` sections are examples of using the
+    :ref:`dwave-hybrid <index_hybrid>` framework.

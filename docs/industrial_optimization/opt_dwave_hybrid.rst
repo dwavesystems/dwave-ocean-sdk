@@ -1,83 +1,95 @@
 .. _opt_dwave_hybrid:
 
 ==================================
-dwave-hybrid Development Framework 
+dwave-hybrid Development Framework
 ==================================
 
-Introduction
-============
+The :ref:`dwave-hybrid <index_hybrid>` package provides a framework for
+iterating arbitrary-sized sets of samples through parallel solvers to find an
+optimal solution.
 
-**dwave-hybrid** provides a framework for iterating arbitrary-sized sets of 
-samples through parallel solvers to find an optimal solution.
+This introduction gives an overview of the package; steps you through using it,
+starting with running a provided hybrid solver that handles arbitrary-sized
+QUBOs; and points out the way to developing your own components in the
+framework.
 
-For the documentation of a particular code element, see the 
-:ref:`hybrid_api_ref` section. This introduction gives an overview of the 
-package; steps you through using it, starting with running a provided hybrid
-solver that handles arbitrary-sized QUBOs; and points out the way to developing 
-your own components in the framework.
+*   The :ref:`opt_dwave_hybrid_overview` subsection presents the framework and
+    explains key concepts.
 
-*   :ref:`opt_dwave_hybrid_overview` presents the framework and explains key concepts.
+*   The :ref:`opt_dwave_hybrid_using_framework` subsection shows how to use the
+    framework. You can quickly get started by using a provided reference sampler
+    built with this framework,
+    :class:`Kerberos <oceandocs:hybrid.reference.kerberos.KerberosSampler>`, to
+    solve a problem too large to :term:`minor-embed` on a |dwave_short| quantum
+    computer. Next, use the framework to build (hybrid) workflows; for example,
+    a workflow for larger-than-QPU lattice-structured problems.
 
-*   :ref:`opt_dwave_hybrid_using_framework` shows how to use the framework. You can quickly get 
-    started by using a provided reference sampler built with this framework, 
-    :class:`Kerberos <oceandocs:hybrid.reference.kerberos.KerberosSampler>`, to 
-    solve a problem too large to :term:`minor-embed` on a D-Wave system. Next, 
-    use the framework to build (hybrid) workflows; for example, a workflow for 
-    larger-than-QPU lattice-structured problems.
+*   The :ref:`opt_dwave_hybrid_dev_components` subsection guides you to
+    developing your own hybrid components.
 
-*   :ref:`opt_dwave_hybrid_dev_components` guides you to developing your own hybrid components.
+*   The :ref:`opt_dwave_hybrid_ref_examples` subsection describes some workflow
+    examples included in the code.
 
-*   :ref:`opt_dwave_hybrid_ref_examples` describes some workflow examples included in the code.
+For the reference documentation of a particular code element, see the
+:ref:`hybrid_api_ref` section. For detailed development and usage examples, see
+the
+`Hybrid Computing https://github.com/dwave-examples/hybrid-computing-notebook`_
+Jupyter notebook.
 
 .. _opt_dwave_hybrid_overview:
 
 Overview
 ========
 
-The *dwave-hybrid* framework enables you to quickly design and test workflows that
-iterate sets of samples through samplers to solve arbitrary QUBOs. Large problems
-can be decomposed and two or more solution techniques can run in parallel.
+The :ref:`dwave-hybrid <index_hybrid>` framework enables you to quickly design
+and test workflows that iterate sets of samples through samplers to solve
+arbitrary QUBOs. Large problems can be decomposed and two or more solution
+techniques can run in parallel.
 
-The :ref:`HybridBlockDiagram` figure below shows an example configuration. Samples
-are iterated over four parallel solvers. The top **branch** represents a classical tabu
-search that runs on the entire problem until interrupted by another branch completing.
-These use different decomposers to parcel out parts of the current sample
-set (iteration :math:`i`) to samplers such as a D-Wave system (second-highest branch)
-or another structure of parallel simulated annealing and tabu search. A generic
-representation of a branch's components---decomposer, sampler, and composer---is
-shown in the lowest branch. A user-defined criterion selects from current samples
-and solver outputs a sample set for iteration :math:`i+1`.
+The :ref:`HybridBlockDiagram` figure below shows an example configuration.
+Samples are iterated over four parallel solvers. The top **branch** represents
+a classical tabu search that runs on the entire problem until interrupted by
+another branch completing. These use different decomposers to parcel out parts
+of the current sample set (iteration :math:`i`) to samplers such as a
+|dwave_short| quantum computer (second-highest branch) or another structure of
+parallel simulated annealing and tabu search. A generic representation of a
+branch's components---decomposer, sampler, and composer---is shown in the lowest
+branch. A user-defined criterion selects from current samples and solver outputs
+a sample set for iteration :math:`i+1`.
 
 .. figure:: ../_images/HybridBlockDiagram.png
-  :name: HybridBlockDiagram
-  :scale: 70 %
-  :alt: Block diagram
+    :name: HybridBlockDiagram
+    :scale: 70 %
+    :alt: Block diagram
 
-  Schematic Representation
+    Schematic Representation
 
-You can use the framework to run a provided hybrid solver or to configure workflows using
-provided components such as tabu samplers and energy-based decomposers.
+You can use the framework to run a provided hybrid solver or to configure
+workflows using provided components such as tabu samplers and energy-based
+decomposers.
 
-You can also use the framework to build your own components to incorporate into your
-workflow.
+You can also use the framework to build your own components to incorporate into
+your workflow.
 
 .. _opt_dwave_hybrid_using_framework:
 
 Using the Framework
 ===================
 
-This section helps you quickly use a provided reference sampler to solve 
-arbitrary-sized problems and then shows you how to build (hybrid) workflows 
+This section helps you quickly use a provided reference sampler to solve
+arbitrary-sized problems and then shows you how to build (hybrid) workflows
 using provided components.
 
 Reference Hybrid Sampler: Kerberos
-==================================
+----------------------------------
 
-*dwave-hybrid* includes a reference example sampler built using the framework:
-Kerberos is a dimod-compatible hybrid asynchronous decomposition sampler that 
-enables you to solve problems of arbitrary structure and size. It finds best 
-samples by running in parallel tabu search, simulated annealing, and D-Wave 
-subproblem sampling on problem variables that have high-energy impact.
+The :ref:`dwave-hybrid <index_hybrid>` package includes a reference example
+sampler built using the framework: Kerberos is a
+:ref:`dimod <index_dimod>`-compatible hybrid asynchronous decomposition sampler
+that enables you to solve problems of arbitrary structure and size. It finds
+best samples by running in parallel tabu search, simulated annealing, and
+|dwave_short| subproblem sampling on problem variables that have high-energy
+impact.
 
 The example below uses Kerberos to solve a large QUBO.
 
@@ -92,26 +104,26 @@ The example below uses Kerberos to solve a large QUBO.
 -4647.0
 
 Building Workflows
-==================
+------------------
 
-As shown in the :ref:`opt_dwave_hybrid_overview` section, you build hybrid solvers by 
-arranging components such as samplers in a workflow.
+As shown in the :ref:`opt_dwave_hybrid_overview` section, you build hybrid
+solvers by arranging components such as samplers in a workflow.
 
 Building Blocks
----------------
+~~~~~~~~~~~~~~~
 
-The basic components---building blocks---you use are based on the 
-:class:`.Runnable` class: decomposers, samplers, and composers. Such components 
-input a set of samples, a :class:`~hybrid.core.SampleSet`, and output updated 
-samples. A :class:`State` associated with such an iteration of a component holds 
+The basic components---building blocks---you use are based on the
+:class:`.Runnable` class: decomposers, samplers, and composers. Such components
+input a set of samples, a :class:`~hybrid.core.SampleSet`, and output updated
+samples. A :class:`State` associated with such an iteration of a component holds
 the problem, samples, and optionally additional information.
 
-The following example demonstrates a simple workflow that uses just one 
-:class:`.Runnable`, a sampler representing the classical tabu search algorithm, 
-to solve a problem (fully classically, without decomposition). The example 
-solves a small problem of a triangle graph of nodes identically coupled. An 
-initial :class:`.State` of all-zero samples is set as a starting point. The 
-solution, `new_state`, is derived from a single iteration of the 
+The following example demonstrates a simple workflow that uses just one
+:class:`.Runnable`, a sampler representing the classical tabu search algorithm,
+to solve a problem (fully classically, without decomposition). The example
+solves a small problem of a triangle graph of nodes identically coupled. An
+initial :class:`.State` of all-zero samples is set as a starting point. The
+solution, `new_state`, is derived from a single iteration of the
 `TabuProblemSampler` :class:`.Runnable`.
 
 >>> import dimod
@@ -128,18 +140,18 @@ solution, `new_state`, is derived from a single iteration of the
 ['SPIN', 1 rows, 1 samples, 3 variables]
 
 Flow Structuring
-----------------
+~~~~~~~~~~~~~~~~
 
-The framework provides classes for structuring workflows that use the 
-"building-block" components. As shown in the :ref:`opt_dwave_hybrid_overview` section, 
-you can create a *branch* of :class:`Runnable` classes; for example 
-:code:`decomposer | sampler | composer`, which delegates part of a problem to a 
-sampler such as a D-Wave quantum computer.
+The framework provides classes for structuring workflows that use the
+"building-block" components. As shown in the :ref:`opt_dwave_hybrid_overview`
+subsection, you can create a *branch* of :class:`Runnable` classes; for example
+:code:`decomposer | sampler | composer`, which delegates part of a problem to a
+sampler such as a |dwave_short| quantum computer.
 
-The following example shows a branch comprising a decomposer, local Tabu 
-solver, and a composer. A 10-variable binary quadratic model is decomposed by 
-the energy impact of its variables into a 6-variable subproblem to be sampled 
-twice. An initial state of all -1 values is set using the utility function 
+The following example shows a branch comprising a decomposer, local Tabu
+solver, and a composer. A 10-variable binary quadratic model is decomposed by
+the energy impact of its variables into a 6-variable subproblem to be sampled
+twice. An initial state of all -1 values is set using the utility function
 :meth:`~hybrid.utils.min_sample`.
 
 >>> import dimod           # Create a binary quadratic model
@@ -156,17 +168,17 @@ twice. An initial state of all -1 values is set using the utility function
 1  +1  -1  -1  +1  -1  +1    -5.0         1
 ['SPIN', 2 rows, 2 samples, 6 variables]
 
-Such :class:`.Branch` classes can be run in parallel using the 
-:class:`.RacingBranches` class. From the outputs of these parallel branches, 
-:class:`.ArgMin` selects a new current sample. And instead of a single iteration 
-on the sample set, you can use the :class:`.Loop` to iterate a set number of 
+Such :class:`.Branch` classes can be run in parallel using the
+:class:`.RacingBranches` class. From the outputs of these parallel branches,
+:class:`.ArgMin` selects a new current sample. And instead of a single iteration
+on the sample set, you can use the :class:`.Loop` to iterate a set number of
 times or until a convergence criteria is met.
 
-This example of :ref:`racingBranches1` solves a binary quadratic model by 
+This example of :ref:`racingBranches1` solves a binary quadratic model by
 iteratively producing best samples. It employs both tabu search on the entire
-problem and a D-Wave quantum computer on subproblems. In addition to 
-building-block components such as employed above, this example also uses 
-infrastructure classes to manage the decomposition and parallel running of 
+problem and a |dwave_short| quantum computer on subproblems. In addition to
+building-block components such as employed above, this example also uses
+infrastructure classes to manage the decomposition and parallel running of
 branches.
 
 .. figure:: ../_images/racing_branches_1.png
@@ -183,17 +195,18 @@ branches.
     :end-before: end_hybrid_example
 
 Flow Refining
--------------
+~~~~~~~~~~~~~
 
-The framework enables quick modification of work flows to improve solutions and 
-performance. For example, after verifying the :ref:`racingBranches1` workflow 
-above on its small problem, you might make a series of modifications such as the 
+The framework enables quick modification of work flows to improve solutions and
+performance. For example, after verifying the :ref:`racingBranches1` workflow
+above on its small problem, you might make a series of modifications such as the
 examples below to better fit it to problems with large numbers of variables.
 
-1.  Configure a decomposition window that moves down a fraction of problem 
-    variables, ordered from highest to lower energy impact, and submit those 
-    subproblems to a D-Wave quantum computer while tabu searches globally. This 
-    example submits 50-variable subproblems on up to 15% of the total variables.
+1.  Configure a decomposition window that moves down a fraction of problem
+    variables, ordered from highest to lower energy impact, and submit those
+    subproblems to a |dwave_short| quantum computer while tabu searches
+    globally. This example submits 50-variable subproblems on up to 15% of the
+    total variables.
 
 .. code-block:: python
 
@@ -208,14 +221,15 @@ examples below to better fit it to problems with large numbers of variables.
 
     workflow = hybrid.LoopUntilNoImprovement(iteration, convergence=3)
 
-2.  Instead of sequentially producing a sample per subproblem, a further 
-    modification might be to process all the subproblems in parallel and merge 
-    the returned samples. Here the :class:`~hybrid.decomposers.EnergyImpactDecomposer` 
-    is iterated until it raises a :meth:`~hybrid.exceptions.EndOfStream` exception 
-    when it reaches 15% of the variables, and then all the 50-variable subproblems
-    are submitted to the D-Wave quantum computer in parallel. Subsamples returned 
-    by the QPU are disjoint in variables, so we can easily reduce them all to 
-    a single subsample, which is then merged with the input sample using
+2.  Instead of sequentially producing a sample per subproblem, a further
+    modification might be to process all the subproblems in parallel and merge
+    the returned samples. Here the
+    :class:`~hybrid.decomposers.EnergyImpactDecomposer` is iterated until it
+    raises a :meth:`~hybrid.exceptions.EndOfStream` exception when it reaches
+    15% of the variables, and then all the 50-variable subproblems are submitted
+    to the |dwave_short| quantum computer in parallel. Subsamples returned by
+    the QPU are disjoint in variables, so we can easily reduce them all to a
+    single subsample, which is then merged with the input sample using
     :class:`~hybrid.composers.SplatComposer`:
 
 .. code-block:: python
@@ -237,13 +251,13 @@ examples below to better fit it to problems with large numbers of variables.
         hybrid.Lambda(merge_substates)
     ) | hybrid.SplatComposer()
 
-3.  Change the criterion for selecting subproblems. By default, the variables 
-    are selected by maximal energy impact but selection can be better tailored 
+3.  Change the criterion for selecting subproblems. By default, the variables
+    are selected by maximal energy impact but selection can be better tailored
     to a problem's structure.
 
-    For example, for binary quadratic model representing the problem graph shown 
-    in the :ref:`eidEnergy` graphic, if you select a subproblem size of four, 
-    these nodes selected by descending energy impact are not directly connected 
+    For example, for binary quadratic model representing the problem graph shown
+    in the :ref:`eidEnergy` graphic, if you select a subproblem size of four,
+    these nodes selected by descending energy impact are not directly connected
     (no shared edges, and might not represent a local structure of the problem).
 
 .. figure:: ../_images/eid_energy.png
@@ -253,8 +267,9 @@ examples below to better fit it to problems with large numbers of variables.
 
     Traversal by Energy Impact
 
-    Configuring a mode of traversal such as breadth-first (BFS) or priority-first selection (PFS)
-    can capture features that represent local structures within a problem.
+    Configuring a mode of traversal such as breadth-first (BFS) or
+    priority-first selection (PFS)can capture features that represent local
+    structures within a problem.
 
     .. code-block:: python
 
@@ -262,12 +277,12 @@ examples below to better fit it to problems with large numbers of variables.
         subproblem = hybrid.Unwind(
             hybrid.EnergyImpactDecomposer(size=50, rolling_history=0.15, traversal='bfs'))
 
-    These two selection modes are shown in the :ref:`eidBfsPfs` graphic. BFS 
-    starts with the node with maximal energy impact, from which its graph 
-    traversal proceeds to directly connected nodes, then nodes directly connected 
-    to those, and so on, with graph traversal ordered by node index. In PFS, 
-    graph traversal selects the node with highest energy impact among unselected 
-    nodes directly connected to any already selected node.
+    These two selection modes are shown in the :ref:`eidBfsPfs` graphic. BFS
+    starts with the node with maximal energy impact, from which its graph
+    traversal proceeds to directly connected nodes, then nodes directly
+    connected to those, and so on, with graph traversal ordered by node index.
+    In PFS, graph traversal selects the node with highest energy impact among
+    unselected nodes directly connected to any already selected node.
 
 .. figure:: ../_images/eid_bfs_pfs.png
     :name: eidBfsPfs
@@ -277,23 +292,24 @@ examples below to better fit it to problems with large numbers of variables.
     Traversal by BFS or PFS
 
 Additional Examples
-===================
+-------------------
 
 Tailoring State Selection
--------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The next example tailors a state selector for a sampler that does some 
-post-processing and can alert upon suspect samples. Sampler output modified by 
-ellipses ("...") for readability is shown below for an Ising model of a triangle 
-problem with zero biases and interactions all equal to 0.5. The first of three 
-:class:`~hybrid.core.State` classes is flagged as problematic using the ``info`` 
+The next example tailors a state selector for a sampler that does some
+post-processing and can alert upon suspect samples. Sampler output modified by
+ellipses ("...") for readability is shown below for an Ising model of a triangle
+problem with zero biases and interactions all equal to 0.5. The first of three
+:class:`~hybrid.core.State` classes is flagged as problematic using the ``info``
 field::
 
     [{...,'samples': SampleSet(rec.array([([0, 1, 0], 0., 1)], ..., ['a', 'b', 'c'], {'Postprocessor': 'Excessive chain breaks'}, 'SPIN')},
     {...,'samples': SampleSet(rec.array([([1, 1, 1], 1.5, 1)], ..., ['a', 'b', 'c'], {}, 'SPIN')},
     {...,'samples': SampleSet(rec.array([([0, 0, 0], 0., 1)], ..., ['a', 'b', 'c'], {}, 'SPIN')}]
 
-This code snippet defines a metric for the key argument in :class:`~hybrid.flow.ArgMin`::
+This code snippet defines a metric for the key argument in
+:class:`~hybrid.flow.ArgMin`::
 
     def preempt(si):
         if 'Postprocessor' in si.samples.info:
@@ -301,8 +317,8 @@ This code snippet defines a metric for the key argument in :class:`~hybrid.flow.
         else:
             return(si.samples.first.energy)
 
-Using the defined key on the above input, :class:`~hybrid.flow.ArgMin` finds the 
-state with the lowest energy (zero) excluding the flagged state (which also has 
+Using the defined key on the above input, :class:`~hybrid.flow.ArgMin` finds the
+state with the lowest energy (zero) excluding the flagged state (which also has
 energy of zero):
 
 >>> ArgMin(key=preempt).next(states)     # doctest: +SKIP
@@ -311,9 +327,9 @@ energy of zero):
 dtype=[('sample', 'i1', (3,)), ('energy', '<f8'), ('num_occurrences', '<i4')]), ['a', 'b', 'c'], {}, 'SPIN')}
 
 Parallel Sampling
------------------
+~~~~~~~~~~~~~~~~~
 
-The code snippet below uses :class:`~hybrid.flow.Map` to run a tabu search on 
+The code snippet below uses :class:`~hybrid.flow.Map` to run a tabu search on
 two states in parallel.
 
 >>> Map(TabuProblemSampler()).run(States(                     # doctest: +SKIP
@@ -335,12 +351,12 @@ Logging and Execution Information
 
 You can see detailed execution information by setting the level of logging.
 
-The package supports logging levels TRACE, DEBUG, INFO, WARNING, ERROR, and 
-CRITICAL in ascending order of severity. By default, logging level is set to 
-ERROR. You can select the logging level with environment variable 
+The package supports logging levels TRACE, DEBUG, INFO, WARNING, ERROR, and
+CRITICAL in ascending order of severity. By default, logging level is set to
+ERROR. You can select the logging level with environment variable
 ``DWAVE_HYBRID_LOG_LEVEL``.
 
-For example, on a Windows operating system, set this environment variable to 
+For example, on a Windows operating system, set this environment variable to
 INFO level as:
 
 .. code-block:: bash
@@ -365,60 +381,68 @@ The previous example above might output something like the following:
     2018-12-10 15:18:37,377 hybrid.flow INFO Loop Iteration(iterno=3, best_state_quality=-3.0)
     Solution: sample=Sample(sample={'a': 1, 'b': -1, 'c': -1}, energy=-3.0, num_occurrences=1)
 
+
 .. _opt_dwave_hybrid_dev_components:
 
 Developing New Components
 =========================
 
-The *dwave-hybrid* framework enables you to build your own components to incorporate into your
-workflow.
+The :ref:`dwave-hybrid <index_hybrid>` framework enables you to build your own
+components to incorporate into your workflow.
 
-The key superclass is the :class:`~hybrid.core.Runnable` class: all basic components---samplers,
-decomposers, composers---and flow-structuring components such as branches inherit
-from this class. A :class:`~hybrid.core.Runnable` is run for an iteration in which it updates
-the :class:`~hybrid.core.State` it receives. Typical methods are `run` or `next` to execute an
-iteration and `stop` to terminate the :class:`~hybrid.core.Runnable`.
+The key superclass is the :class:`~hybrid.core.Runnable` class: all basic
+components---samplers, decomposers, composers---and flow-structuring components
+such as branches inherit from this class. A :class:`~hybrid.core.Runnable` is
+run for an iteration in which it updates the :class:`~hybrid.core.State` it
+receives. Typical methods are `run` or `next` to execute an iteration and `stop`
+to terminate the :class:`~hybrid.core.Runnable`.
 
-The :ref:`hybrid_core` and :ref:`hybrid_flow` sections describe, respectively, the basic :class:`~hybrid.core.Runnable`
-classes (building blocks) and flow-structuring ones and their methods. If you are
-implementing these methods for your own :class:`~hybrid.core.Runnable` class, see comments in
-the code.
+The :ref:`hybrid_core` and :ref:`hybrid_flow` sections describe, respectively,
+the basic :class:`~hybrid.core.Runnable` classes (building blocks) and
+flow-structuring ones and their methods. If you are implementing these methods
+for your own :class:`~hybrid.core.Runnable` class, see comments in the code.
 
-The :ref:`racingBranches1` graphic below shows the top-down composition (tree structure) of a hybrid loop.
+The :ref:`racingBranches1` graphic below shows the top-down composition (tree
+structure) of a hybrid loop.
 
 .. figure:: ../_images/tree.png
-  :name: Tree
-  :scale: 65 %
-  :alt: Top-Down Composition
+    :name: Tree
+    :scale: 65 %
+    :alt: Top-Down Composition
 
-  Top-Down Composition
-
+    Top-Down Composition
 
 .. include:: ../ocean/api_ref_hybrid/traits.rst
-     :start-after: start_hybrid_traits
-     :end-before: end_hybrid_traits
+    :start-after: start_hybrid_traits
+    :end-before: end_hybrid_traits
 
-The :ref:`hybrid_conversion` section describes the :class:`~hybrid.core.HybridRunnable`
-class you can use to produce a :class:`~hybrid.core.Runnable` sampler based on
-a :ref:`dimod <index_dimod>` sampler.
+The :ref:`hybrid_conversion` section describes the
+:class:`~hybrid.core.HybridRunnable` class you can use to produce a
+:class:`~hybrid.core.Runnable` sampler based on a :ref:`dimod <index_dimod>`
+sampler.
 
 The :ref:`hybrid_utilities` section provides a list of useful utility methods.
+
 
 .. _opt_dwave_hybrid_ref_examples:
 
 Reference Examples
 ==================
 
-The `examples <https://github.com/dwavesystems/dwave-hybrid/tree/master/examples>`_
-directory of the code includes implementations of some :ref:`hybrid_reference_workflows`
-you can incorporate as provided into your application and also use to jumpstart
-your development of custom workflows.
+The
+`examples <https://github.com/dwavesystems/dwave-hybrid/tree/master/examples>`_
+directory of the code includes implementations of some
+:ref:`hybrid_reference_workflows` you can incorporate as provided into your
+application and also use to jumpstart your development of custom workflows.
 
-A typical first use of dwave-hybrid might be to simply use the Kerberos reference
-sampler to solve a QUBO, as shown in :ref:`opt_dwave_hybrid_using_framework`. Next, you might tune its configurable
-parameters, described under :ref:`hybrid_reference_workflows`.
+A typical first use of the :ref:`dwave-hybrid <index_hybrid>` framework might be
+to simply use the Kerberos reference sampler to solve a QUBO, as shown in
+the :ref:`opt_dwave_hybrid_using_framework` subsection. Next, you might tune its
+configurable parameters, described under the :ref:`hybrid_reference_workflows`
+subsection.
 
 To further improve performance, you can step up from using a generic
-workflow to one tailored for your application and its problem. As a first step you can
-modify a reference workflow with existing components. After that, you can implement your
-own components as described in :ref:`opt_dwave_hybrid_dev_components`.
+workflow to one tailored for your application and its problem. As a first step
+you can modify a reference workflow with existing components. After that, you
+can implement your own components as described in the
+:ref:`opt_dwave_hybrid_dev_components` subsection.

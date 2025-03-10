@@ -111,7 +111,7 @@ Welcome to |dwave_short|
         The slow change makes it likely that the system ends in a low-energy
         state of the problem, which corresponds to an optimal solution. This
         technique is explained in more detail in the
-        ref:`qpu_quantum_annealing_intro` section.
+        :ref:`qpu_quantum_annealing_intro` section.
 
         Quantum annealing is implemented in |dwave_short|'s generally available
         quantum computers, such as the |dwave_5kq_tm| system, as a single

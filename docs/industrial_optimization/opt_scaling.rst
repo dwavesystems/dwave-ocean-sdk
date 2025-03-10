@@ -4,22 +4,22 @@
 Scaling for Production
 ======================
 
-This section provides guidance on coding your application for performance
-on problems of the industrial scale supported by
-`Leap's <https://cloud.dwavesys.com/leap>`_ quantum-classical hybrid solvers.
+This section provides guidance on coding your application for performance on
+problems of the industrial scale supported by quantum-classical hybrid solvers
+in the `Leap <https://cloud.dwavesys.com/leap>`_ service.
 
-While the code examples below focus on
-:ref:`constrained quadratic models (CQMs) <concept_models_cqm>`, most the guidance is also
+The code examples below focus on
+:ref:`constrained quadratic models (CQMs) <concept_models_cqm>`, non
+:ref:`nonlinear models <concept_models_nonlinear>`. (Most the guidance is also
 applicable to :ref:`binary quadratic models (BQMs) <concept_models_bqm>` and
-:ref:`quadratic models (QMs) <concept_models_quadratic>`.
+:ref:`quadratic models (QMs) <concept_models_quadratic>` in general.)
 
 This section does not discuss
 `algorithmic complexity <https://en.wikipedia.org/wiki/Computational_complexity_theory>`_
 or problem formulation.
-For information about problem formulation, the
-:ref:`opt_workflow` section provides an introduction
-and the :ref:`qpu_reformulating` section describes more advanced
-techniques.
+For information about problem formulation, the :ref:`opt_workflow` section
+provides an introduction and the :ref:`qpu_reformulating` section describes more
+advanced techniques.
 
 Simple Example Application
 ==========================
@@ -31,12 +31,12 @@ Simple Example Application
         our needs. E.g. has non-pip-installable requirements, doesn't play
         nicely with intersphinx, etc.
 
-    You can run the following code by downloading the `Jupyter <https://jupyter.org/>`_
+    You can run the following code by downloading the
+    `Jupyter <https://jupyter.org/>`_
     :download:`Notebook <../downloadables/scaling_for_production.ipynb>`.
 
 The code below formulates a simple `bin packing <https://w.wiki/3jz4>`_ problem,
-as explained in the Ocean SDK's :ref:`opt_example_cqm_binpacking`
-example.
+as explained in the example of the :ref:`opt_example_cqm_binpacking` section.
 
 For simplicity, assume that each bin has a capacity of `1` and start by
 generating weights for the items you wish to pack. A packing problem with `n`
@@ -104,15 +104,17 @@ Time the construction:
 
 .. note::
 
-    Because runtimes are highly system dependent, running the code on your system
-    will likely result in different values. The results shown here are illustrative.
+    Because runtimes are highly system dependent, running the code on your
+    system will likely result in different values. The results shown here are
+    illustrative.
 
 Use the quicksum Function
 =========================
 
-The easiest improvement you can make is to substitute :func:`~dimod.binary.quicksum`
-for the Python :func:`sum`, which creates a large number of intermediate objects
-not created by :func:`~dimod.binary.quicksum`.
+The easiest improvement you can make is to substitute the
+:func:`~dimod.binary.quicksum` function for the Python :func:`sum` function,
+which creates a large number of intermediate objects not created by
+:func:`~dimod.binary.quicksum`.
 
 .. testcode::
 
@@ -253,8 +255,8 @@ Add Constraints Without Copying
 ===============================
 
 By default, the :meth:`~dimod.ConstrainedQuadraticModel.add_constraint` method
-creates a copy of the objects you give it to avert mutation of objects that might
-be used elsewhere in your code. If these objects are used solely for the
+creates a copy of the objects you give it to avert mutation of objects that
+might be used elsewhere in your code. If these objects are used solely for the
 construction of constraints, as in this case, you can safely skip the copying.
 
 .. testcode::
@@ -308,5 +310,3 @@ This results in another performance improvement.
 
     In [1]: %timeit bin_packing(weights)
     68.1 ms ± 299 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
-
-

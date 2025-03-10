@@ -4,8 +4,8 @@
 Model Construction (Quadratic Models)
 =====================================
 
-dimod provides a variety of model generators. These are especially useful for testing
-code and learning.
+The :ref:`dimod <index_dimod>` package provides a variety of model generators.
+These are especially useful for testing code and learning.
 
 See examples of using QPU solvers and |cloud|_ service :term:`hybrid`
 :term:`solvers <solver>` on these models in the
@@ -17,7 +17,7 @@ Typically you construct a model when reformulating your problem, using such
 techniques as those presented in the :ref:`qpu_reformulating` section.
 
 CQM Example: Using a dimod Generator
-------------------------------------
+====================================
 
 This example creates a CQM representing a
 `knapsack problem <https://en.wikipedia.org/wiki/Knapsack_problem>`_ of ten
@@ -26,7 +26,7 @@ items.
 >>> cqm = dimod.generators.random_knapsack(10)
 
 CQM Example: Symbolic Formulation
----------------------------------
+=================================
 
 This example constructs a CQM from symbolic math, which is especially useful for
 learning and testing with small CQMs.
@@ -38,26 +38,27 @@ learning and testing with small CQMs.
 >>> cqm.add_constraint(y <= 3) #doctest: +ELLIPSIS
 '...'
 
-For very large models, you might read the data from a file or construct from a NumPy
-array.
+For very large models, you might read the data from a file or construct from a
+:std:doc:`NumPy <numpy:index>` array.
 
 BQM Example: Using a dimod Generator
-------------------------------------
+====================================
 
 This example generates a BQM from a fully-connected graph (a clique) where all
-linear biases are zero and quadratic values are uniformly selected -1 or +1 values.
+linear biases are zero and quadratic values are uniformly selected -1 or +1
+values.
 
 >>> bqm = dimod.generators.random.ran_r(1, 7)
 
 BQM Example: Python Formulation
--------------------------------
+===============================
 
 For learning and testing with small models, construction in Python is
 convenient.
 
-The `maximum cut <https://en.wikipedia.org/wiki/Maximum_cut>`_ problem is to find
-a subset of a graph's vertices such that the number of edges between it and the
-complementary subset is as large as possible.
+The `maximum cut <https://en.wikipedia.org/wiki/Maximum_cut>`_ problem is to
+find a subset of a graph's vertices such that the number of edges between it and
+the complementary subset is as large as possible.
 
 .. figure:: ../_images/four_node_star_graph.png
     :align: center
@@ -67,7 +68,8 @@ complementary subset is as large as possible.
 
     Star graph with four nodes.
 
-The `dwave-examples Maximum Cut <https://github.com/dwave-examples/maximum-cut>`_
+The
+`dwave-examples Maximum Cut <https://github.com/dwave-examples/maximum-cut>`_
 example demonstrates how such problems can be formulated as QUBOs:
 
 .. math::
@@ -83,11 +85,11 @@ example demonstrates how such problems can be formulated as QUBOs:
 >>> bqm = dimod.BQM.from_qubo(qubo)
 
 BQM Example: Construction from NumPy Arrays
--------------------------------------------
+===========================================
 
 For performance, especially with very large BQMs, you might read the data from a
 file using methods, such as :func:`~dimod.binary.BinaryQuadraticModel.from_file`
-or from NumPy arrays.
+or from :std:doc:`NumPy <numpy:index>` arrays.
 
 This example creates a BQM representing a long ferromagnetic loop with two opposite
 non-zero biases.
@@ -103,7 +105,7 @@ non-zero biases.
 1001
 
 QM Example: Interaction Between Integer Variables
--------------------------------------------------
+=================================================
 
 This example constructs a QM with an interaction between two integer variables.
 

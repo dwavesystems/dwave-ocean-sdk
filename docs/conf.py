@@ -60,6 +60,12 @@ numfig = True
 
 source_suffix = ['.rst', '.md']
 
+# TODO: see if we can do with a smaller config (https://docs.mathjax.org/en/stable/config-files.html)
+# (Joel Feb 2022). previous CDN path used in system docs
+# mathjax_path = 'https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML'
+templates_path = ['_templates'] # Needed for macros using in reformulating (Quantum Research)
+mathjax_path = 'https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'
+
 root_doc = 'index'
 
 language = 'en'
