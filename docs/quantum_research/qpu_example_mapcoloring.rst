@@ -184,7 +184,7 @@ formulate the constraint that each node (province) select a single color.
     >>> print(bqm_one_hot)
     BinaryQuadraticModel({'a': -1.0, 'b': -1.0}, {('b', 'a'): 2.0}, 1.0, 'BINARY')
     >>> print(ExactSolver().sample(bqm_one_hot))
-        a  b energy num_oc.
+       a  b energy num_oc.
     1  1  0    0.0       1
     3  0  1    0.0       1
     0  0  0    1.0       1
@@ -223,7 +223,7 @@ In the code below, :code:`bqm_neighbors` represents the constraint that two node
 
     >>> bqm_and = BinaryQuadraticModel({}, {'ab': -1}, 1, 'BINARY')
     >>> print(ExactSolver().sample(bqm_and))
-        a  b energy num_oc.
+       a  b energy num_oc.
     2  1  1    0.0       1
     0  0  0    1.0       1
     1  1  0    1.0       1
@@ -235,7 +235,7 @@ In the code below, :code:`bqm_neighbors` represents the constraint that two node
 
     >>> bqm_and_plus = BinaryQuadraticModel({}, {'ab': 1}, 0, 'BINARY')
     >>> print(ExactSolver().sample(bqm_and_plus))
-        a  b energy num_oc.
+       a  b energy num_oc.
     0  0  0    0.0       1
     1  1  0    0.0       1
     3  0  1    0.0       1

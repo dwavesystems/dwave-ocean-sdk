@@ -76,10 +76,7 @@ steps.
     problem down into two- or three-variable relationships. For other variables
     and non-quadratic degrees, you can try techniques such as
     :ref:`qpu_reformulating_higher_degree` and Ocean tools such as
-
-    .. todo:: update this hyperlink
-
-    `Higher-Order Models <https://docs.ocean.dwavesys.com/en/stable/docs_dimod/reference/models.html#higher-order-models>`_.
+    :ref:`higher order models <dimod_higher_order_models>`.
 
 3.  Reformulate as a model.
 

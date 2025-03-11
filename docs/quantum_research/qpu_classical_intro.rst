@@ -4,9 +4,6 @@
 Classical Solvers
 =================
 
-.. todo:: add the README info from dwave-samplers
-    (https://docs.ocean.dwavesys.com/en/stable/docs_samplers/index.html)
-
 :ref:`Ocean software <index_ocean_sdk>` provides a variety of classical solvers.
 You might use a classical solver while developing your code or on a small
 version of your problem to verify your code. Some are designed to help with code
@@ -90,9 +87,6 @@ problems and can often do so performantly.
 that implement various algorithms, such as simulated annealing, tabu search,
 and steepest descent (see the :ref:`index_samplers` section).
 
-.. todo:: verify the link above and below to
-    https://docs.ocean.dwavesys.com/en/stable/docs_samplers/index.html
-
 Examples
 --------
 
@@ -138,3 +132,10 @@ Although, for example, limitations on problem size are vastly expanded compared
 to QPU solvers, formulations that proliferate ancillary variables might still
 perform less well than alternative formulations.
 
+.. _qpu_classical_ocean_solvers:
+
+Classical Solvers in the Ocean SDK
+==================================
+
+*   Solvers in the :ref:`dimod <index_dimod>` package: :ref:`dimod_samplers`
+*   Solvers in the :ref:`dwave-samplers <index_samplers>` package: :ref:`samplers_api_ref`

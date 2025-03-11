@@ -67,9 +67,6 @@ sampler for solution, you typically use one of the
     quadratic with a relationship between the variables.
 
     Ocean software also provides support for
-
-    .. todo:: update this link
-
     :ref:`higher order models <dimod_higher_order_models>`, which are typically
     reduced to quadratic for sampling.
 

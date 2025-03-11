@@ -168,12 +168,8 @@ minimum_time_limit_s
 Minimum required run time, in seconds, the solver must be allowed to work on any
 given problem.
 
-.. todo:: update this link to the SDK:
-
-For more details, see Ocean software's
-`samplers <https://docs.ocean.dwavesys.com/en/stable/docs_system/reference/samplers.html>`_
-documentation for solver methods that calculate the default runtime of a given
-problem.
+For more details, see the :ref:`system_samplers` section for solver methods that
+calculate the default runtime of a given problem.
 
 Example
 -------

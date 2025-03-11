@@ -4,7 +4,12 @@
 Symbolic Math
 =============
 
-.. todo:: add section for dwave-optimization symbolic math.
+.. note::
+
+    This section currently describes symbolic math used for
+    :term:`quadratic models <quadratic model>` such as the constrained quadratic
+    model (:term:`CQM`). For :term:`nonlinear models <nonlinear model>`, see the
+    :ref:`opt_model_construction_nl` section.
 
 The :ref:`dimod <index_dimod>` package's support for symbolic math can simplify
 your coding of problems. For example, consider a problem of finding the

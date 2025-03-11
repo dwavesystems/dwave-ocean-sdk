@@ -224,10 +224,3 @@ Welcome to |dwave_short|
         efficient and facilitates collaborative projects. See the
         :ref:`index_ocean_sdk` section for the SDK and its reference
         documentation.
-
-TODO LIST (TEMPORARY)
-=====================
-
-.. todo:: remove this section later
-
-.. todolist::

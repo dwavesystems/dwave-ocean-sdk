@@ -287,10 +287,7 @@ Example: Local Search
 ---------------------
 
 :ref:`dwave-samplers <index_samplers>` provides an implementation of a
-
-.. todo:: verify the class xref in the following line:
-
-steepest-descent solver, :class:`~dwave.samplers.SteepestDescentSampler`,
+steepest-descent solver, :class:`~dwave.samplers.SteepestDescentSolver`,
 for binary quadratic models.
 
 This example runs this classical algorithm initialized from QPU samples to find

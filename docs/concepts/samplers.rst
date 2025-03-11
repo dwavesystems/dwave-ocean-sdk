@@ -73,10 +73,9 @@ code during development.
 Creating Samplers
 =================
 
-.. todo:: replace the :ref:`api` anchor a links
-
-The :ref:`dimod <index_dimod>` tool provides an :ref:`api` you can use to create
-your own dimod samplers and composed samplers.
+The :ref:`dimod <index_dimod>` tool enables you to create your own dimod
+samplers and composed samplers; see the :ref:`dimod_api_samplers_composites`
+section.
 
 Examples
 ========
@@ -85,12 +84,9 @@ Using a Reference Sampler
 -------------------------
 
 To find solutions to the small four-node
-`maximum cut <https://en.wikipedia.org/wiki/Maximum_cut>`_
-
-.. todo:: fix this up once ocean packages are updated
-
-:term:`BQM` generated in the :ref:`concept_models` section, shown again in the figure below,
-you can use one of dimod's reference samplers: its
+`maximum cut <https://en.wikipedia.org/wiki/Maximum_cut>`_ :term:`BQM` generated
+in the :ref:`concept_models` section, shown again in the figure below, you can
+use one of dimod's reference samplers: its
 :class:`~dimod.reference.samplers.ExactSolver` test sampler, for example,
 calculates the energy of all possible samples.
 

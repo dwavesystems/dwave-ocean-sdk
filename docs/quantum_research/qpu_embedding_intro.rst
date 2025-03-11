@@ -109,10 +109,7 @@ chain to be likely to return identical values, the coupling strength for their
 connecting edges must be strong compared to the coupling with other qubits
 that influence non-identical outcomes.
 
-The :math:`K_5` BQM for a
-
-.. todo:: verify link to https://docs.ocean.dwavesys.com/en/stable/docs_dimod/reference/generated/dimod.generators.doped.html
-
+The :math:`K_5` BQM for a :ref:`dimod <index_dimod>`
 :func:`~dimod.generators.doped`, created in the
 :ref:`subsection above <qpu_embedding_intro_chains>`, has ten
 :term:`ground states <ground state>` (best solutions). These are shown
@@ -221,10 +218,7 @@ For information on handling embedding and chains, see the following sections:
     and :ref:`qpu_example_inspector_graph_partitioning` sections show through
     some simple examples how to embed and set chain strength.
 
-*   The :ref:`minorminer <index_minorminer>` tool is the hueristic used by common
-    Ocean embedding :term:`composites <composite>`.
+*   The :ref:`minorminer <index_minorminer>` tool is the hueristic used by
+    common Ocean embedding :term:`composites <composite>`.
 
 *   The :ref:`problem inspector <index_inspector>` tool visualizes embeddings.
-
-.. todo:: verify links above
-

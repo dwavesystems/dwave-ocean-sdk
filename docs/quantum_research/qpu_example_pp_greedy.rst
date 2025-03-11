@@ -9,15 +9,11 @@ This example uses explicit postprocessing to improve results returned from a
 
 Typically, :ref:`Ocean <index_ocean_sdk>` tools do some minimal, implicit
 postprocessing; for example, when you use
-
-.. todo:: update this link to an xref:
-
-`embedding tools <https://docs.ocean.dwavesys.com/en/stable/docs_system/reference/embedding.html>`_
-to map problem variables to qubits, *broken* :term:`chains` (differing states of
-the qubits representing a variable) may be resolved by majority vote: Ocean sets
-the variable's value based on the state returned from the majority of the qubits
-in the chain. You can often improve results, at a low cost of classical
-processing time, by postprocessing.
+:ref:`embedding tools <system_embedding>`_to map problem variables to qubits,
+*broken* :term:`chains` (differing states of the qubits representing a variable)
+may be resolved by majority vote: Ocean sets the variable's value based on the
+state returned from the majority of the qubits in the chain. You can often
+improve results, at a low cost of classical processing time, by postprocessing.
 
 the :ref:`dwave-samplers <index_samplers>` package provides an
 implementation of a steepest-descent solver,

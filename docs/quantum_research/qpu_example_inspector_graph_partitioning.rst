@@ -34,11 +34,7 @@ Formulate the Problem
 =====================
 
 This example uses a synthetic problem for illustrative purposes: a NetworkX
-generated graph,
-
-.. todo:: replace link with xref
-
-`NetworkX random_geometric_graph() <https://networkx.org/documentation/latest/reference/generators.html>`_.
+generated graph, :func:`~networkx.generators.geometric.random_geometric_graph`.
 The problem of interest here, which is NP-hard, is to try and find the best
 division of the graph's nodes into two equal sets with a minimum number of edges
 between the two groups.

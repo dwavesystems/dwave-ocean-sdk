@@ -57,11 +57,8 @@ Formulate the Problem
 
 This example uses a synthetic problem for illustrative purposes: a
 :std:doc:`NetworkX <networkx:index>` generated graph,
-
-.. todo:: replace th efollowing link
-
-`NetworkX barabasi_albert_graph() <https://networkx.org/documentation/latest/reference/generators.html>`_,
-with random +1 or -1 couplings assigned to its edges.
+:func:`~networkx.generators.random_graphs.barabasi_albert_graph`, with random
+:math:`+1` or :math:`-1` couplings assigned to its edges.
 
 .. testcode::
 

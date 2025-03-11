@@ -92,14 +92,10 @@ Default annealing time is specified by the
 Example
 -------
 
-.. todo:: verify we can enable this test
-
-.. skip test until SDK>6.7.0 (https://github.com/dwavesystems/dwave-system/pull/503)
-
 >>> from dwave.system import DWaveSampler
 ...
 >>> sampler = DWaveSampler()
->>> sampler.properties["annealing_time_range"]        # doctest: +SKIP
+>>> sampler.properties["annealing_time_range"]
 [0.5, 2000.0]
 
 
@@ -275,14 +271,10 @@ Default annealing time is specified by the
 Example
 -------
 
-.. todo:: verify we can enable this test
-
-.. skip test until SDK>6.7.0 (https://github.com/dwavesystems/dwave-system/pull/503)
-
 >>> from dwave.system import DWaveSampler
 ...
 >>> sampler = DWaveSampler()
->>> sampler.properties["fast_anneal_time_range"]        # doctest: +SKIP
+>>> sampler.properties["fast_anneal_time_range"]
 [0.005, 2000.0]
 
 
@@ -362,14 +354,10 @@ number given in the :ref:`property_qpu_max_anneal_schedule_points` property.
 Example
 -------
 
-.. todo:: verify we can enable this test
-
-.. skip test until SDK>6.7.0 (https://github.com/dwavesystems/dwave-system/pull/503)
-
 >>> from dwave.system import DWaveSampler
 ...
 >>> sampler = DWaveSampler()
->>> sampler.properties["max_anneal_schedule_points"]   # doctest: +SKIP
+>>> sampler.properties["max_anneal_schedule_points"]
 12
 
 

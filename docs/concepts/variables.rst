@@ -4,7 +4,7 @@
 Variables
 =========
 
-.. todo:: this section and do with some work, especially related to nonlinear
+.. todo:: this section can do with some work, especially related to nonlinear
     models
 
 |dwave_short|'s :term:`samplers <sampler>` mostly\ [#]_ solve

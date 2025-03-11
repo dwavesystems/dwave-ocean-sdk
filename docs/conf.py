@@ -131,6 +131,14 @@ from hybrid.flow import *
 import penaltymodel
 
 import dwave.inspector
+
+# Setup live testing on leap_sapi_rest
+import os
+test_api_token_set = False      # TODO: switch back on by setting to True
+# hss_spot_check = bool(int(os.environ["HSS_SPOT_CHECK"]))
+# Previous line reads from this bash command: export HSS_SPOT_CHECK=$((RANDOM%20==0))
+# which is usually 0 but once in 20 tries is 1, which triggers live tests
+hss_spot_check = False          # TODO: reenable spot checks with env var
 """
 
 # -- Breathe configuration ------------------------------------------------

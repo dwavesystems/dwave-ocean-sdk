@@ -455,10 +455,8 @@ detailed examples, see the
 The Ocean software can heuristically find minor-embeddings for your QUBO or
 Ising objective functions, as shown here.
 
-.. todo:: fix ref to FBSS below:
-
 First, select a quantum computer. Ocean software provides
-:ref:`feature-based solver selection <cloud_resources>`,
+:meth:`feature-based solver selection <dwave.cloud.client.Client.get_solvers>`,
 enabling you to select a quantum computer that meets your requirements on its
 number of qubits, topology, particular features, etc. This example, uses the
 default.
