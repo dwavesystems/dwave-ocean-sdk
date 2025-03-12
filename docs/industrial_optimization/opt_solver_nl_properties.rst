@@ -23,7 +23,7 @@ Example
 
 >>> from dwave.system import LeapHybridNLSampler
 ...
->>> sampler = LeapHybridNLSampler()
+>>> sampler = LeapHybridNLSampler()     # doctest: +SKIP
 >>> sampler.properties["category"]
 'hybrid'
 
@@ -42,7 +42,7 @@ Example
 
 >>> from dwave.system import LeapHybridNLSampler
 ...
->>> sampler = LeapHybridNLSampler()
+>>> sampler = LeapHybridNLSampler()     # doctest: +SKIP
 >>> sampler.properties["maximum_decision_state_size"]    # doctest: +SKIP
 52428800
 
@@ -60,7 +60,7 @@ Example
 
 >>> from dwave.system import LeapHybridNLSampler
 ...
->>> sampler = LeapHybridNLSampler()
+>>> sampler = LeapHybridNLSampler()     # doctest: +SKIP
 >>> sampler.properties["maximum_number_of_nodes"]    # doctest: +SKIP
 2000000
 
@@ -84,7 +84,7 @@ Example
 
 >>> from dwave.system import LeapHybridNLSampler
 ...
->>> sampler = LeapHybridNLSampler()
+>>> sampler = LeapHybridNLSampler()     # doctest: +SKIP
 >>> sampler.properties["maximum_number_of_states"]    # doctest: +SKIP
 1
 
@@ -102,7 +102,7 @@ Example
 
 >>> from dwave.system import LeapHybridNLSampler
 ...
->>> sampler = LeapHybridNLSampler()
+>>> sampler = LeapHybridNLSampler()     # doctest: +SKIP
 >>> sampler.properties["maximum_state_size"]    # doctest: +SKIP
 786432000
 
@@ -121,7 +121,7 @@ Example
 
 >>> from dwave.system import LeapHybridNLSampler
 ...
->>> sampler = LeapHybridNLSampler()
+>>> sampler = LeapHybridNLSampler()     # doctest: +SKIP
 >>> sampler.properties["maximum_time_limit_hrs"]  # doctest: +SKIP
 24.0
 
@@ -140,7 +140,7 @@ Example
 
 >>> from dwave.system import LeapHybridNLSampler
 ...
->>> sampler = LeapHybridNLSampler()
+>>> sampler = LeapHybridNLSampler()     # doctest: +SKIP
 >>> sampler.properties["num_nodes_multiplier"]    # doctest: +SKIP
 0.00008306792043756981
 
@@ -159,7 +159,7 @@ Example
 
 >>> from dwave.system import LeapHybridNLSampler
 ...
->>> sampler = LeapHybridNLSampler()
+>>> sampler = LeapHybridNLSampler()     # doctest: +SKIP
 >>> sampler.properties["num_nodes_state_size_multiplier"]    # doctest: +SKIP
 2.1097317822863965e-12
 
@@ -178,7 +178,7 @@ Example
 
 >>> from dwave.system import LeapHybridNLSampler
 ...
->>> sampler = LeapHybridNLSampler()
+>>> sampler = LeapHybridNLSampler()     # doctest: +SKIP
 >>> sampler.properties["parameters"]["time_limit"]  # doctest: +SKIP
 'Requested runtime in seconds.'
 
@@ -197,7 +197,7 @@ Example
 
 >>> from dwave.system import LeapHybridNLSampler
 ...
->>> sampler = LeapHybridNLSampler()
+>>> sampler = LeapHybridNLSampler()     # doctest: +SKIP
 >>> sampler.properties["quota_conversion_rate"]  # doctest: +SKIP
 20
 
@@ -216,7 +216,7 @@ Example
 
 >>> from dwave.system import LeapHybridNLSampler
 ...
->>> sampler = LeapHybridNLSampler()
+>>> sampler = LeapHybridNLSampler()     # doctest: +SKIP
 >>> sampler.properties["state_size_multiplier"]    # doctest: +SKIP
 2.8379674360396316e-10
 
@@ -243,7 +243,7 @@ Example
 
 >>> from dwave.system import LeapHybridNLSampler
 ...
->>> sampler = LeapHybridNLSampler()
+>>> sampler = LeapHybridNLSampler()     # doctest: +SKIP
 >>> sampler.properties["supported_problem_types"]  # doctest: +SKIP
 ['nl']
 
@@ -260,7 +260,7 @@ Example
 
 >>> from dwave.system import LeapHybridNLSampler
 ...
->>> sampler = LeapHybridNLSampler()
+>>> sampler = LeapHybridNLSampler()     # doctest: +SKIP
 >>> sampler.properties["time_constant"]    # doctest: +SKIP
 0.012671678446550176
 
@@ -279,6 +279,6 @@ Example
 
 >>> from dwave.system import LeapHybridNLSampler
 ...
->>> sampler = LeapHybridNLSampler()
+>>> sampler = LeapHybridNLSampler()     # doctest: +SKIP
 >>> sampler.properties["version"]  # doctest: +SKIP
 1.5

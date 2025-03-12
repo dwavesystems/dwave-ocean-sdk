@@ -23,8 +23,8 @@ Example
 
 >>> from dwave.system import LeapHybridDQMSampler
 ...
->>> sampler = LeapHybridDQMSampler()
->>> sampler.properties["category"]
+>>> sampler = LeapHybridDQMSampler()        # doctest: +SKIP
+>>> sampler.properties["category"]          # doctest: +SKIP
 'hybrid'
 
 
@@ -42,7 +42,7 @@ Example
 
 >>> from dwave.system import LeapHybridDQMSampler
 ...
->>> sampler = LeapHybridDQMSampler()
+>>> sampler = LeapHybridDQMSampler()                # doctest: +SKIP
 >>> sampler.properties["maximum_number_of_biases"]  # doctest: +SKIP
 5000000000
 
@@ -62,8 +62,8 @@ Example
 
 >>> from dwave.system import LeapHybridDQMSampler
 ...
->>> sampler = LeapHybridDQMSampler()
->>> sampler.properties["maximum_number_of_cases"]    # doctest: +SKIP
+>>> sampler = LeapHybridDQMSampler()                # doctest: +SKIP
+>>> sampler.properties["maximum_number_of_cases"]   # doctest: +SKIP
 500000
 
 
@@ -81,8 +81,8 @@ Example
 
 >>> from dwave.system import LeapHybridDQMSampler
 ...
->>> sampler = LeapHybridDQMSampler()
->>> sampler.properties["maximum_number_of_variables"]  # doctest: +SKIP
+>>> sampler = LeapHybridDQMSampler()                    # doctest: +SKIP
+>>> sampler.properties["maximum_number_of_variables"]   # doctest: +SKIP
 5000
 
 
@@ -100,8 +100,8 @@ Example
 
 >>> from dwave.system import LeapHybridDQMSampler
 ...
->>> sampler = LeapHybridDQMSampler()
->>> sampler.properties["maximum_time_limit_hrs"]  # doctest: +SKIP
+>>> sampler = LeapHybridDQMSampler()                # doctest: +SKIP
+>>> sampler.properties["maximum_time_limit_hrs"]    # doctest: +SKIP
 24.0
 
 
@@ -123,8 +123,8 @@ Example
 
 >>> from dwave.system import LeapHybridDQMSampler
 ...
->>> sampler = LeapHybridDQMSampler()
->>> sampler.properties["minimum_time_limit"]       # doctest: +SKIP
+>>> sampler = LeapHybridDQMSampler()                # doctest: +SKIP
+>>> sampler.properties["minimum_time_limit"]        # doctest: +SKIP
 [[20000,5],
  [100000,6],
  [200000,13],
@@ -150,7 +150,7 @@ Example
 
 >>> from dwave.system import LeapHybridDQMSampler
 ...
->>> sampler = LeapHybridDQMSampler()
+>>> sampler = LeapHybridDQMSampler()                # doctest: +SKIP
 >>> sampler.properties["parameters"]["time_limit"]  # doctest: +SKIP
 'Maximum requested runtime in seconds.'
 
@@ -169,8 +169,8 @@ Example
 
 >>> from dwave.system import LeapHybridDQMSampler
 ...
->>> sampler = LeapHybridDQMSampler()
->>> sampler.properties["quota_conversion_rate"]  # doctest: +SKIP
+>>> sampler = LeapHybridDQMSampler()                # doctest: +SKIP
+>>> sampler.properties["quota_conversion_rate"]     # doctest: +SKIP
 20
 
 
@@ -196,8 +196,8 @@ Example
 
 >>> from dwave.system import LeapHybridDQMSampler
 ...
->>> sampler = LeapHybridDQMSampler()
->>> sampler.properties["supported_problem_types"]  # doctest: +SKIP
+>>> sampler = LeapHybridDQMSampler()                # doctest: +SKIP
+>>> sampler.properties["supported_problem_types"]   # doctest: +SKIP
 ['dqm']
 
 
@@ -215,6 +215,6 @@ Example
 
 >>> from dwave.system import LeapHybridDQMSampler
 ...
->>> sampler = LeapHybridDQMSampler()
->>> sampler.properties["version"]  # doctest: +SKIP
+>>> sampler = LeapHybridDQMSampler()    # doctest: +SKIP
+>>> sampler.properties["version"]       # doctest: +SKIP
 1.12

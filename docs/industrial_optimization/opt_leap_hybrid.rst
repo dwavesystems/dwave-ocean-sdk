@@ -94,9 +94,9 @@ You can access this information via the :ref:`dimod <index_dimod>`
 >>> import dimod
 >>> from dwave.system import LeapHybridSampler
 ...
->>> sampler = LeapHybridSampler(solver={'category': 'hybrid'})
+>>> sampler = LeapHybridSampler(solver={'category': 'hybrid'})  # doctest: +SKIP
 >>> bqm = dimod.generators.ran_r(1, 300)
->>> sampleset = sampler.sample(bqm)
+>>> sampleset = sampler.sample(bqm)     # doctest: +SKIP
 >>> sampleset.info     # doctest: +SKIP
 {'qpu_access_time': 41990, 'charge_time': 2991424, 'run_time': 2991424}
 

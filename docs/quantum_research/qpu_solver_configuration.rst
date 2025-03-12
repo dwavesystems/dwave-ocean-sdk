@@ -294,7 +294,7 @@ This example runs this classical algorithm initialized from QPU samples to find
 minima in the samples' neighborhoods.
 
 >>> from dwave.system import DWaveSampler, EmbeddingComposite
->>> from greedy import SteepestDescentSolver
+>>> from dwave.samplers import SteepestDescentSolver
 >>> import dimod
 ...
 >>> solver_greedy = SteepestDescentSolver()

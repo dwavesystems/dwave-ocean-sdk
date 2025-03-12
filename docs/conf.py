@@ -134,6 +134,7 @@ import dwave.inspector
 
 # Setup live testing on leap_sapi_rest
 import os
+os.environ["SAPI_TOKEN"] = "placeholder until implemented in SDK"
 test_api_token_set = False      # TODO: switch back on by setting to True
 # hss_spot_check = bool(int(os.environ["HSS_SPOT_CHECK"]))
 # Previous line reads from this bash command: export HSS_SPOT_CHECK=$((RANDOM%20==0))
@@ -153,34 +154,24 @@ breathe_projects = {
 breathe_default_members = ('members', )
 breathe_default_project = "minorminer"
 
-
-
-
 # TESTING WITHOUT BUILD WARNINGS
-if os.environ.get('READTHEDOCS', False):
-    os.environ["DOXYGEN_QUIET"] = "YES"
-    os.environ["DOXYGEN_WARNINGS"] = "NO"
-    os.environ["DOXYGEN_WARN_LOGFILE"] = "/dev/null"
-    #subprocess.call('cd ../minorminer/docs/; make cpp > /dev/null 2>&1', shell=True)
-    subprocess.call('cd ../dimod/docs/; make cpp > /dev/null 2>&1', shell=True)
-    subprocess.call('cd ../dwave-preprocessing/docs/; make cpp > /dev/null 2>&1', shell=True)
-    subprocess.call('cd ../dwave-gate/; python dwave/gate/simulator/operation_generation.py', shell=True)
-
-
-
-
-
-
-# TODO restore this:
-
-# we want to build the c++ docs in RTD with all warnings:
 # if os.environ.get('READTHEDOCS', False):
-#     subprocess.call('cd ../minorminer/docs/; make cpp', shell=True)
-#     subprocess.call('cd ../dimod/docs/; make cpp', shell=True)
-#     subprocess.call('cd ../dwave-preprocessing/docs/; make cpp', shell=True)
+#     os.environ["DOXYGEN_QUIET"] = "YES"
+#     os.environ["DOXYGEN_WARNINGS"] = "NO"
+#     os.environ["DOXYGEN_WARN_LOGFILE"] = "/dev/null"
+#     #subprocess.call('cd ../minorminer/docs/; make cpp > /dev/null 2>&1', shell=True)
+#     subprocess.call('cd ../dimod/docs/; make cpp > /dev/null 2>&1', shell=True)
+#     subprocess.call('cd ../dwave-preprocessing/docs/; make cpp > /dev/null 2>&1', shell=True)
 #     subprocess.call('cd ../dwave-gate/; python dwave/gate/simulator/operation_generation.py', shell=True)
 
-# we want to build the c++ docs in CircleCI without warnings
+# We want to build the c++ docs in RTD with all warnings:
+if os.environ.get('READTHEDOCS', False):
+    subprocess.call('cd ../minorminer/docs/; make cpp', shell=True)
+    subprocess.call('cd ../dimod/docs/; make cpp', shell=True)
+    subprocess.call('cd ../dwave-preprocessing/docs/; make cpp', shell=True)
+    subprocess.call('cd ../dwave-gate/; python dwave/gate/simulator/operation_generation.py', shell=True)
+
+# We want to build the c++ docs in CircleCI without warnings
 # and without minorminer because it generates ~500 warnings
 if os.environ.get('CI', False):
     os.environ["DOXYGEN_QUIET"] = "YES"

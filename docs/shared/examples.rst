@@ -91,7 +91,7 @@ using a quantum-classical hybrid solver in the Leap service.
 ...     [489, 170, 705, 161, 0]]
 ...
 >>> model = traveling_salesperson(distance_matrix=DISTANCE_MATRIX)
->>> sampler = LeapHybridNLSampler()
+>>> sampler = LeapHybridNLSampler()     # doctest: +SKIP
 >>> results = sampler.sample(
 ...     model,
 ...     label='SDK Examples - TSP')  	# doctest: +SKIP
@@ -109,7 +109,7 @@ solves it using a quantum-classical hybrid solver in the Leap service.
 >>> from dwave.system import LeapHybridCQMSampler
 ...
 >>> cqm = random_knapsack(10)
->>> sampler = LeapHybridCQMSampler()
+>>> sampler = LeapHybridCQMSampler()        # doctest: +SKIP
 >>> sampleset = sampler.sample_cqm(cqm,
 ...                                time_limit=180,
 ...                                label="SDK Examples - Bin Packing")  # doctest: +SKIP

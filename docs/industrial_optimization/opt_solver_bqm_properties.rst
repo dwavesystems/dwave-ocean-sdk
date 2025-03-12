@@ -23,8 +23,8 @@ Example
 
 >>> from dwave.system import LeapHybridBQMSampler
 ...
->>> sampler = LeapHybridBQMSampler()
->>> sampler.properties["category"]
+>>> sampler = LeapHybridBQMSampler()    # doctest: +SKIP
+>>> sampler.properties["category"]      # doctest: +SKIP
 'hybrid'
 
 
@@ -42,7 +42,7 @@ Example
 
 >>> from dwave.system import LeapHybridBQMSampler
 ...
->>> sampler = LeapHybridBQMSampler()
+>>> sampler = LeapHybridBQMSampler()                # doctest: +SKIP
 >>> sampler.properties["maximum_number_of_biases"]  # doctest: +SKIP
 200000000
 
@@ -61,8 +61,8 @@ Example
 
 >>> from dwave.system import LeapHybridBQMSampler
 ...
->>> sampler = LeapHybridBQMSampler()
->>> sampler.properties["maximum_number_of_variables"]  # doctest: +SKIP
+>>> sampler = LeapHybridBQMSampler()                    # doctest: +SKIP
+>>> sampler.properties["maximum_number_of_variables"]   # doctest: +SKIP
 1000000
 
 
@@ -80,8 +80,8 @@ Example
 
 >>> from dwave.system import LeapHybridBQMSampler
 ...
->>> sampler = LeapHybridBQMSampler()
->>> sampler.properties["maximum_time_limit_hrs"]  # doctest: +SKIP
+>>> sampler = LeapHybridBQMSampler()                # doctest: +SKIP
+>>> sampler.properties["maximum_time_limit_hrs"]    # doctest: +SKIP
 24.0
 
 
@@ -102,8 +102,8 @@ Example
 
 >>> from dwave.system import LeapHybridBQMSampler
 ...
->>> sampler = LeapHybridBQMSampler()
->>> sampler.properties["minimum_time_limit"]       # doctest: +SKIP
+>>> sampler = LeapHybridBQMSampler()                # doctest: +SKIP
+>>> sampler.properties["minimum_time_limit"]        # doctest: +SKIP
 [[1, 3.0],
  [1024, 3.0],
  [4096, 10.0],
@@ -127,7 +127,7 @@ Example
 
 >>> from dwave.system import LeapHybridBQMSampler
 ...
->>> sampler = LeapHybridBQMSampler()
+>>> sampler = LeapHybridBQMSampler()                # doctest: +SKIP
 >>> sampler.properties["parameters"]["time_limit"]  # doctest: +SKIP
 'Maximum requested runtime in seconds.'
 
@@ -146,8 +146,8 @@ Example
 
 >>> from dwave.system import LeapHybridBQMSampler
 ...
->>> sampler = LeapHybridBQMSampler()
->>> sampler.properties["quota_conversion_rate"]  # doctest: +SKIP
+>>> sampler = LeapHybridBQMSampler()                # doctest: +SKIP
+>>> sampler.properties["quota_conversion_rate"]     # doctest: +SKIP
 20
 
 
@@ -173,8 +173,8 @@ Example
 
 >>> from dwave.system import LeapHybridBQMSampler
 ...
->>> sampler = LeapHybridBQMSampler()
->>> sampler.properties["supported_problem_types"]  # doctest: +SKIP
+>>> sampler = LeapHybridBQMSampler()                # doctest: +SKIP
+>>> sampler.properties["supported_problem_types"]   # doctest: +SKIP
 ['bqm']
 
 
@@ -192,6 +192,6 @@ Example
 
 >>> from dwave.system import LeapHybridBQMSampler
 ...
->>> sampler = LeapHybridBQMSampler()
->>> sampler.properties["version"]  # doctest: +SKIP
+>>> sampler = LeapHybridBQMSampler()    # doctest: +SKIP
+>>> sampler.properties["version"]       # doctest: +SKIP
 2.2
