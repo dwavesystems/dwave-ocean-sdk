@@ -24,7 +24,7 @@ Example
 >>> from dwave.system import LeapHybridNLSampler
 ...
 >>> sampler = LeapHybridNLSampler()     # doctest: +SKIP
->>> sampler.properties["category"]
+>>> sampler.properties["category"]      # doctest: +SKIP
 'hybrid'
 
 
