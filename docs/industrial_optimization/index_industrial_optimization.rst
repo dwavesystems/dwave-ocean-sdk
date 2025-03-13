@@ -9,9 +9,9 @@ Industrial Optimization
     :maxdepth: 1
 
     opt_index_get_started
-    opt_index_properties_parameters
-    opt_index_using
     opt_developing_quantum_applications
+    opt_index_properties_parameters
+    opt_index_improving_solutions
 
 .. sections-start-marker
 
@@ -29,20 +29,6 @@ solvers.
 
         Learn about optimizing with hybrid solvers.
 
-    .. grid-item-card:: :ref:`opt_index_properties_parameters`
-        :img-top: /_images/hybrid_icon.svg
-        :link: opt_index_properties_parameters
-        :link-type: ref
-
-        Properties and parameters of hybrid solvers in the Leap service.
-
-    .. grid-item-card:: :ref:`opt_index_using`
-        :img-top: /_images/optimization_icon.svg
-        :link: opt_index_using
-        :link-type: ref
-
-        Scaling and usage best-practices.
-
     .. grid-item-card:: :ref:`opt_developing_quantum_applications`
         :img-top: /_images/development_icon.svg
         :link: opt_developing_quantum_applications
@@ -50,6 +36,21 @@ solvers.
 
         How |dwave_short| and other companies develop successful
         quantum applications.
+
+    .. grid-item-card:: :ref:`opt_index_properties_parameters`
+        :img-top: /_images/hybrid_icon.svg
+        :link: opt_index_properties_parameters
+        :link-type: ref
+
+        Properties and parameters of hybrid solvers in the Leap service.
+
+    .. grid-item-card:: :ref:`opt_index_improving_solutions`
+        :img-top: /_images/optimization_icon.svg
+        :link: opt_index_improving_solutions
+        :link-type: ref
+
+        Scaling and usage best-practices.
+
 
 The :ref:`index_quantum_research` section shows how to use |dwave_short_tm|
 quantum processing units (QPU) directly.

@@ -172,7 +172,7 @@ jobs:
           command: |
             . env/bin/activate
             apt update && apt install -yq doxygen graphviz
-            make -C docs/ html 
+            make -C docs/ html
 
       - store_artifacts:
           path: ./docs/_build/html
@@ -187,6 +187,12 @@ jobs:
           command: |
             . env/bin/activate
             make -C docs/ linkcheck || true
+      - run:
+          # If we add more notebooks in the future we can make this more general.
+          name: test scaling guide
+          command: |
+            . env/bin/activate
+            PYTHONPATH=$(pwd):$PYTHONPATH jupyter nbconvert --to notebook --execute docs/downloadables/scaling_for_production.ipynb
 
   deploy:
     docker:

@@ -8,12 +8,29 @@ Hybrid Usage Examples
     :maxdepth: 1
     :hidden:
 
+    opt_example_nl_cvrp
     opt_example_bqm_structuralimbalance
     opt_example_dqm_map
     opt_example_kerberos_map
     opt_example_dwavehybrid_workflow
 
 For beginner examples, see the :ref:`opt_index_examples_beginner` section.
+
+Nonlinear Models
+================
+
+These examples solve small instances of known optimization problems using
+the `Leap <https://cloud.dwavesys.com/leap/>`_ service's hybrid
+:term:`nonlinear-model <nonlinear model>` solver.
+
+.. grid:: 3
+    :gutter: 2
+
+    .. grid-item-card:: :ref:`opt_example_nl_cvrp`
+        :link: opt_example_nl_cvrp
+        :link-type: ref
+
+        Demonstrates more advanced usage options for solving nonlinear models.
 
 Quadratic Models
 ================

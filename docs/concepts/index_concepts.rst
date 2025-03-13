@@ -273,7 +273,7 @@ Concepts and Terminology
         *   :ref:`opt_index_hybrid` gets you started with hybrid samplers.
         *   :ref:`opt_index_properties_parameters` describes the supported
             hybrid solvers in the :term:`Leap service`.
-        *   :ref:`opt_index_using` describes best practices.
+        *   :ref:`opt_index_improving_solutions` describes best practices.
 
     ICE
     Integrated control errors
@@ -331,6 +331,13 @@ Concepts and Terminology
 
         Learn more: :ref:`concept_models`
 
+    Nonlinear model
+        A collection of variables with associated biases that constitute an
+        :term:`objective function` and/or constraints.
+        Sometimes referred to as a **problem**.
+
+        Learn more: :ref:`concept_models_nonlinear`.
+
     Objective function
     Objective
         A mathematical expression of the energy of a system as a function of
@@ -345,13 +352,6 @@ Concepts and Terminology
         details.
 
         Learn more: :ref:`qpu_reformulating_onehot_domainwall`
-
-    Nonlinear model
-        A collection of variables with associated biases that constitute an
-        :term:`objective function` and/or constraints.
-        Sometimes referred to as a **problem**.
-
-        Learn more: :ref:`concept_models_nonlinear`.
 
     Pegasus
         A D-Wave :term:`QPU` is a lattice of interconnected qubits. While some
