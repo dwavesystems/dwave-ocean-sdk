@@ -11,6 +11,9 @@ matplotlib
 # Needed for minorminer C docs
 breathe
 
+# Needed to test Jupyter notebooks in the downloadable directory
+notebook==6.4.11
+
 # Needed for dwave-gate
 cgen==2020.1
 
