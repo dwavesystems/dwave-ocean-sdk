@@ -2,6 +2,7 @@ pydata-sphinx-theme==0.14.3
 sphinx==7.3.7
 sphinx-design==0.5.0
 sphinx-copybutton==0.5.0
+sphinx-hoverxref==1.4.2
 reno[sphinx]==3.3.0
 numpy<2.0
 
