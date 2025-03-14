@@ -42,6 +42,20 @@ property rights of such other documents. Any use of such other documents is
 subject to the rights of |dwave_short| and/or any applicable third parties in
 those documents.
 
+.. raw:: html
+
+    <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
+    <img
+        alt="Creative Commons License"
+        style="border-width:0"
+        src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"
+    />
+    </a>
+    <br />The documentation is licensed under a
+    <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
+    Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License
+    </a>
+
 Ocean: Open-source Packages
 ===========================
 
