@@ -61,6 +61,7 @@ numfig = True
 
 hoverxref_roles = ['term']
 hoverxref_role_types = {'term': 'tooltip'}
+hoverxref_mathjax = True
 
 source_suffix = ['.rst', '.md']
 
