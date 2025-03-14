@@ -33,7 +33,7 @@ framework.
 For the reference documentation of a particular code element, see the
 :ref:`hybrid_api_ref` section. For detailed development and usage examples, see
 the
-`Hybrid Computing https://github.com/dwave-examples/hybrid-computing-notebook`_
+`Hybrid Computing <https://github.com/dwave-examples/hybrid-computing-notebook>`_
 Jupyter notebook.
 
 .. _opt_dwave_hybrid_overview:

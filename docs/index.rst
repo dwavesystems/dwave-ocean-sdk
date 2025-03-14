@@ -15,11 +15,11 @@
     :hidden:
     :maxdepth: 2
 
-    industrial_optimization/index_industrial_optimization
-    quantum_research/index_quantum_research
-    ocean/index_ocean_sdk
-    leap_sapi/index_leap_sapi
-    concepts/index_concepts
+    industrial_optimization/index
+    quantum_research/index
+    ocean/index
+    leap_sapi/index
+    concepts/index
     licenses
     bibliography
 
@@ -29,14 +29,14 @@
         :name: tab_industrial_optimization
         :selected:
 
-        .. include:: industrial_optimization/index_industrial_optimization.rst
+        .. include:: industrial_optimization/index.rst
             :start-after: sections-start-marker
             :end-before: sections-end-marker
 
     .. tab-item:: Quantum
         :name: tab_quantum_research
 
-        .. include:: quantum_research/index_quantum_research.rst
+        .. include:: quantum_research/index.rst
             :start-after: sections-start-marker
             :end-before: sections-end-marker
 

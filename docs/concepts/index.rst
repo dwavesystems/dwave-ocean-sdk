@@ -26,6 +26,12 @@ Concepts and Terminology
 
 .. glossary::
 
+    access time
+        Execution time for a single quantum machine instruction (:term:`QMI`, or
+        problem).
+
+        Learn more: :ref:`qpu_timing_breakdown_access`.
+
     adiabatic
         An annealing process that experiences no interference from outside
         energy sources and evolves the Hamiltonian slowly enough is called an
@@ -52,6 +58,29 @@ Concepts and Terminology
 
         See :term:`quantum annealing`.
 
+    anneal offset
+        Provide offsets to annealing paths, per qubit.
+
+        Learn more:
+
+        *   :ref:`parameter_qpu_anneal_offsets` for the solver property.
+        *   :ref:`qpu_qa_anneal_offsets` for a description.
+
+    anneal schedule
+    annealing schedule
+        A single, global, time-dependent bias controls the changes of energy
+        scales :math:`A(s)` and :math:`B(s)` during the quantum annealing
+        process.
+
+        Learn more:
+
+        *   :ref:`qpu_quantum_annealing_intro` for an introduction.
+        *   :ref:`qpu_annealprotocol_standard`.
+        *   :ref:`qpu_annealprotocol_fast`.
+        *   :ref:`qpu_qa_anneal_sched` for pause, quench, and reverse anneal.
+        *   :ref:`qpu_solver_properties_specific` for the schedules of each QPU,
+            as spreadsheets.
+
     binary quadratic model
     BQM
         A collection of binary-valued variables (variables that can be assigned
@@ -70,6 +99,19 @@ Concepts and Terminology
         *   :ref:`qpu_embedding_intro` for an introduction.
         *   :ref:`qpu_example_and` for an example.
         *   :ref:`qpu_embedding_guidance` for advanced information.
+
+    chain break
+    broken chain
+        In chains, the qubits that form the nodes of the chain should always
+        end the :term:`anneal` with the same value; when qubits in a chain take
+        different values, the chain is considered broken.
+
+        Learn more
+
+        *   :ref:`qpu_example_and` explains broken chains.
+        *   :ref:`qpu_example_inspector_graph_partitioning` uses the problem
+            inspector (the :ref:`dwave-inspector <index_inspector>`) for
+            viewing and dealing with broken chains.
 
     chain length
         The number of qubits in a :term:`Chain`.
@@ -90,6 +132,7 @@ Concepts and Terminology
         *   :ref:`qpu_embedding_guidance` for advanced information.
 
     charge_time
+    charge time
         Time charged to your `Leap service <https://cloud.dwavesys.com/leap/>`_
         account.
 
@@ -215,6 +258,29 @@ Concepts and Terminology
         A state in which the values of variables do not violate any hard
         :term:`constraint`.
 
+    flux bias
+    flux-bias offset
+        Flux biases can be used to refine the standard calibration and to bias
+        qubits indirectly when you cannot set a bias on the qubit.
+
+        Learn more:
+
+        *   :ref:`parameter_qpu_flux_biases` for a description of the parameter.
+        *   :ref:`qpu_error_fix_fbo` fo ran explanation of calibration
+            refinement.
+        *   :ref:`qpu_config_emulate_with_fbo`.
+
+    gate model
+    circuit model
+        Gate-model quantum computing, also known as circuit model, implements
+        compute algorithms with
+        `quantum gates <https://en.wikipedia.org/wiki/Quantum_logic_gate>`_,
+        analogously to the use of
+        `Boolean gates <https://en.wikipedia.org/wiki/Logic_gate>`_ in classical
+        computers.
+
+        Learn more: :ref:`qpu_gate_model_intro`.
+
     graph
         A collection of nodes and edges. A graph can be derived from a
         :term:`model`\ : a node for each variable and an edge for each pair of
@@ -319,6 +385,13 @@ Concepts and Terminology
         |dwave_short|_ brings quantum computing to the real world by providing
         real-time cloud access to D-Wave's systems.
 
+    linear program
+    linear optimization
+        `Linear programming <https://en.wikipedia.org/wiki/Linear_programming>`_
+        (LP) is a method to achieve the best outcome (such as maximum profit or
+        lowest cost) in a mathematical model whose requirements and objective
+        are represented by linear relationships.
+
     minimum gap
         The minimum distance between the :term:`ground state` and the first
         :term:`excited state` throughout any point in the anneal.
@@ -337,6 +410,13 @@ Concepts and Terminology
         Sometimes referred to as a **problem**.
 
         Learn more: :ref:`concept_models_nonlinear`.
+
+    ocean
+        Ocean\ |tm| software is a suite of tools for using
+        `D-Wave Quantum Inc. <https://www.dwavesys.com>`_ quantum computers and
+        :term:`hybrid` :term:`solvers <solver>`.
+
+        Learn more: :ref:`index_ocean_sdk`.
 
     objective function
     objective
@@ -379,6 +459,29 @@ Concepts and Terminology
 
         Learn more: :ref:`concept_penalty`.
 
+    postprocessing
+        Postprocessing in the context of using a solver can refer to additional
+        (classical) computation that improves the results at low cost; for
+        example majority voting on broken :term:`chains <chain>`.
+
+        Learn more:
+
+        *   :ref:`qpu_config_postprocessing` for an introduction.
+        *   :ref:`qpu_postprocessing` for results of postprocessing results
+            returned from a quantum computer.
+
+    preprocessing
+        Preprocessing can refer to some low-cost classical computation applied
+        to a problem before submitting to a solver, or as part of the solver's
+        work on the problem.
+
+        Learn more:
+
+        *   :ref:`index_preprocessing`
+
+    QMI
+        Quantum machine instruction.
+
     QPU
         Quantum processing unit.
 
@@ -404,7 +507,12 @@ Concepts and Terminology
         low-energy state of the problem, which corresponds to an optimal
         solution.
 
-        Learn more: :ref:`qpu_quantum_annealing_intro`.
+        Learn more:
+
+        *   :ref:`qpu_quantum_annealing_intro` for an introduction.
+        *   :ref:`qpu_annealprotocol_standard`.
+        *   :ref:`qpu_annealprotocol_fast`.
+        *   :ref:`qpu_qa_anneal_sched` for pause, quench, and reverse anneal.
 
     quantum computing
     quantum computer
@@ -471,10 +579,15 @@ Concepts and Terminology
         Learn more: :ref:`concept_models_qubo`.
 
     run_time
+    runtime
         Time a :term:`hybrid` solver spent working on your problem.
 
-        Learn more: :ref:`opt_leap_hybrid_timing` describes the timing
-        for hybrid solvers.
+        Learn more:
+
+        *   :ref:`opt_leap_hybrid_timing` describes the timing for hybrid
+            solvers.
+        *   :ref:`qpu_timing_runtime_limits` describes the runtime limit for a
+            problem executing on a quantum computer.
 
     sampler
         Samplers are processes that sample from low energy states of a problem's
@@ -511,6 +624,13 @@ Concepts and Terminology
 
         Learn more: `satisfiability (SAT) <https://en.wikipedia.org/wiki/Boolean_satisfiability_problem>`_
 
+    service time
+        Service time is defined as the difference between the times of the
+        ingress time (arrival at :term:`SAPI`) and sampleset's egress (exit from
+        the quantum computer) for each quantum machine instruction (QMI).
+
+        Learn more: :ref:`qpu_timing_breakdown_service`.
+
     solver
         A resource that runs a problem. Some solvers interface to the
         :term:`QPU`; others leverage CPU and GPU resources.
@@ -528,6 +648,15 @@ Concepts and Terminology
         *   :ref:`qpu_embedding_intro` for an introduction.
         *   :ref:`qpu_embedding_guidance` for advanced information.
         *   :ref:`qpu_topologies` on QPU topologies.
+
+    spin-reversal transform
+    gauge transform
+    SRT
+        Applying a spin-reversal transform can improve results by reducing the
+        impact of unintended biases of coupling :math:`J_{i,j}` adding a small
+        bias to qubits :math:`i` and :math:`j` due to leakage.
+
+        Learn more: :ref:`qpu_config_srt`.
 
     structured sampler
         Samplers that are restricted to sampling only binary quadratic models
@@ -559,6 +688,7 @@ Concepts and Terminology
         *   :ref:`qpu_topologies` on QPU topologies.
 
     topology
+    architecture
         The layout of the |dwave_short| quantum processing unit (:term:`QPU`):
         The QPU is a lattice of interconnected :term:`qubits`. While some
         qubits connect to others via :term:`couplers`, the QPU is not fully

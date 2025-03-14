@@ -13,6 +13,7 @@ Ocean SDK
     ocean_dwave_cli
     ocean_source_code
     ocean_release_notes
+    ocean_contribute
 
 Ocean\ |tm| software is a suite of tools for using
 `D-Wave Quantum Inc. <https://www.dwavesys.com>`_ quantum computers and
@@ -64,4 +65,8 @@ environment on your local machine::
 
     $ dwave setup
 
-.. include:: ../../CONTRIBUTING.rst
+==========
+Contribute
+==========
+
+See the :ref:`ocean_contribute` section.
