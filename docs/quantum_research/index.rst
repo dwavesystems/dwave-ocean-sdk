@@ -8,9 +8,9 @@ Quantum Research
     :hidden:
     :maxdepth: 1
 
-    qpu_index_get_started
-    qpu_index_about
-    qpu_index_using
+    index_get_started
+    index_about
+    index_using
 
 .. sections-start-marker
 

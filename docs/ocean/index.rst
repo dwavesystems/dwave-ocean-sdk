@@ -8,12 +8,12 @@ Ocean SDK
     :hidden:
     :maxdepth: 1
 
-    ocean_index_get_started
-    ocean_packages
-    ocean_dwave_cli
-    ocean_source_code
-    ocean_release_notes
-    ocean_contribute
+    index_get_started
+    packages
+    dwave_cli
+    source_code
+    release_notes
+    contribute
 
 Ocean\ |tm| software is a suite of tools for using
 `D-Wave Quantum Inc. <https://www.dwavesys.com>`_ quantum computers and

@@ -8,10 +8,10 @@ Industrial Optimization
     :hidden:
     :maxdepth: 1
 
-    opt_index_get_started
-    opt_developing_quantum_applications
-    opt_index_properties_parameters
-    opt_index_improving_solutions
+    index_get_started
+    developing_quantum_applications
+    index_properties_parameters
+    index_improving_solutions
 
 .. sections-start-marker
 

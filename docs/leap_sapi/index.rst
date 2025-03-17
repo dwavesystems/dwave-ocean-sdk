@@ -8,10 +8,10 @@ Leap Service
     :hidden:
     :maxdepth: 1
 
-    leap_dev_env
-    leap_admin
-    leap_sapi_rest
-    leap_index_release_notes
+    dev_env
+    admin
+    sapi_rest
+    index_release_notes
 
 Launched in 2018, the |cloud_tm| quantum cloud service from |dwave_short|_
 brings quantum computing to the real world by providing real-time cloud access
