@@ -7,9 +7,9 @@ Licenses
 D-Wave Documentation
 ====================
 
-Copyright |copy| D-Wave Systems Inc.
+Copyright |copy| D-Wave
 
-D-Wave Systems Inc. (|dwave_short|), its subsidiaries and affiliates, makes
+D-Wave Quantum Inc. (|dwave_short|), its subsidiaries and affiliates, makes
 commercially reasonable efforts to ensure that the information in this document
 is accurate and up to date, but errors may occur. NONE OF D-WAVE SYSTEMS INC.,
 its subsidiaries and affiliates, OR ANY OF ITS RESPECTIVE DIRECTORS, EMPLOYEES,

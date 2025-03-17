@@ -143,6 +143,11 @@ Bibliography
     Discrete Appl. Math., 123, 155-225 2002.
     https://www.sciencedirect.com/science/article/pii/S0166218X01003419.
 
+.. [Bor2006]
+    Boros, E., P.L. Hammer, G. Tavares.
+    Preprocessing of Unconstraint Quadratic Binary Optimization.
+    Rutcor Research Report 10-2006, April, 2006.
+
 .. [Bor2008]
     Boros, E., P. L. Hammer, R. Sun, G. Tavares.
     "A max-flow approach to improved lower bounds for quadratic unconstrained

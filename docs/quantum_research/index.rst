@@ -21,7 +21,7 @@ quantum processing units (QPU) directly.
     :gutter: 2
 
     .. grid-item-card:: :ref:`qpu_index_get_started`
-        :img-top: /_images/rocket_icon.svg
+        :img-top: /_images/rocket_icon_inv.svg
         :link: qpu_index_get_started
         :link-type: ref
 
