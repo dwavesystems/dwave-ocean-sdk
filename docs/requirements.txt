@@ -17,6 +17,7 @@ notebook==6.4.11
 
 # Needed for dwave-gate
 cgen==2020.1
+pyqir==0.9.0
 
 # needed in docs.conf to parse package versions
 packaging
