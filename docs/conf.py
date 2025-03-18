@@ -356,6 +356,9 @@ rst_epilog = """
 .. _dwave_short: https://dwavequantum.com
 .. |dwave_short_tm| unicode:: D-Wave U+2122 U+0020
 .. |dwave_system| unicode:: D-Wave U+00A0 System
+.. |ocean_tm| unicode:: Ocean U+2122
+.. |ocean_sdk| replace:: Ocean software
+.. _ocean_sdk: https://github.com/dwavesystems/dwave-ocean-sdk
 
 .. |dwave_launch_tm| unicode:: D U+2011 Wave U+00A0 Launch U+2122
 .. _dwave_launch_tm: https://www.dwavesys.com/solutions-and-products/professional-services
