@@ -95,7 +95,7 @@ time_limit
     estimated by Ocean software's
     :meth:`~dwave.system.samplers.LeapHybridNLSampler.estimated_min_time_limit`
     method in the
-    :class:`sampler's <oceandocs:dwave.system.samplers.LeapHybridNLSampler>`
+    :class:`sampler's <dwave.system.samplers.LeapHybridNLSampler>`
     class; however, runtime (and charge time) is not guaranteed to be shorter
     than the estimated time.
 

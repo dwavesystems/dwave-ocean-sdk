@@ -32,7 +32,6 @@ copyright = 'D-Wave Quantum Inc' #setup_cfg['metadata']['author']
 # Also add our own 'special value', the minimum supported Python version
 rst_prolog = f"""
 .. |python_requires| replace:: {setup_cfg['options']['python_requires']}
-
 """
 
 # -- General configuration ------------------------------------------------
@@ -90,13 +89,14 @@ linkcheck_ignore = [r'.clang-format',                    # would need symlink
                     r'^https?://(.*\.)?cloud\.dwavesys\.com/sapi(\/.*)?$', # not pingable
                     r'^https://www\.sciencedirect\.com\/science\/article\/pii(\/.*)?$', # site rejects robots since March 2023
                     r'^https://onlinelibrary\.wiley\.com(\/.*)?$', # site rejects robots since March 2023
-                    r'^http://science\.sciencemag\.org\/content(\/.*)?$', # site rejects robots since March 2023 
-                    r'^https://iopscience\.iop\.org\/article(\/.*)?$', # site rejects robots since November 2023 
+                    r'^http://science\.sciencemag\.org\/content(\/.*)?$', # site rejects robots since March 2023
+                    r'^https://iopscience\.iop\.org\/article(\/.*)?$', # site rejects robots since November 2023
                     r'^https://journals\.aps\.org(\/.*)?$', # site rejects robots since October 2024
                     r'^https://doi\.org(\/.*)?PhysRev(.*)?$', # redirects to journals.aps.org above
                     r'^https://ssrn\.com(\/.*)?$', # site rejects robots since October 2024
                     r'^https?://dx\.doi\.org(\/.*)?ssrn\.(.*)?$', # redirects to SSRN above
                     r'^https://support\.dwavesys\.com', # Leap support site rejects robots
+                    r'https://dl.acm.org/doi/10.1145/800157.805047', # site rejects robots since Mar 2025
                     ]
 
 pygments_style = 'sphinx'
@@ -158,16 +158,6 @@ breathe_projects = {
 
 breathe_default_members = ('members', )
 breathe_default_project = "minorminer"
-
-# TESTING WITHOUT BUILD WARNINGS
-# if os.environ.get('READTHEDOCS', False):
-#     os.environ["DOXYGEN_QUIET"] = "YES"
-#     os.environ["DOXYGEN_WARNINGS"] = "NO"
-#     os.environ["DOXYGEN_WARN_LOGFILE"] = "/dev/null"
-#     #subprocess.call('cd ../minorminer/docs/; make cpp > /dev/null 2>&1', shell=True)
-#     subprocess.call('cd ../dimod/docs/; make cpp > /dev/null 2>&1', shell=True)
-#     subprocess.call('cd ../dwave-preprocessing/docs/; make cpp > /dev/null 2>&1', shell=True)
-#     subprocess.call('cd ../dwave-gate/; python dwave/gate/simulator/operation_generation.py', shell=True)
 
 # We want to build the c++ docs in RTD with all warnings:
 if os.environ.get('READTHEDOCS', False):

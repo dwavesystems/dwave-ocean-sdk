@@ -1155,7 +1155,7 @@ Virtual Graphs
     :end-before: end_virtual_graph_deprecation
 
 The |dwave_short| *virtual graph* feature (see the
-:class:`~oceandocs:dwave.system.composites.virtual_graph.VirtualGraphComposite`
+:class:`~dwave.system.composites.virtual_graph.VirtualGraphComposite`
 class) simplifies the process of minor-embedding by enabling you to more easily
 create, optimize, use, and reuse an embedding for a given working graph. When
 you submit an embedding and specify a chain strength using these tools, they

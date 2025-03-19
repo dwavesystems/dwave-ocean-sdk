@@ -679,7 +679,7 @@ that some might significantly outperform others.
 
 .. [#]
     Including "one hot"
-    :meth:`discrete <oceandocs:dimod.ConstrainedQuadraticModel.add_discrete>`
+    :meth:`discrete <dimod.ConstrainedQuadraticModel.add_discrete>`
     variables.
 
 .. [#]
@@ -808,7 +808,7 @@ application includes the following steps of iterative development:
     *   Consider various :ref:`decomposition techniques <qpu_decomposing>` when
         dealing with extremely large problems.
     *   Consider various techniques to reduce problem size:
-        :class:`presolve techniques <oceandocs:dwave.preprocessing.presolve.pypresolve.Presolver>`,
+        :class:`presolve techniques <dwave.preprocessing.presolve.pypresolve.Presolver>`,
         dropping (or even adding) constraints, using native discrete variables
         for the hybrid CQM solver, etc.
 

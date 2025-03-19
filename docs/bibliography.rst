@@ -595,7 +595,6 @@ Bibliography
     "Predicting structured outputs."
     A Tutorial on Energy-Based Learning, MIT Press.
     2006.
-    http://yann.lecun.com/exdb/publis/pdf/lecun-06.pdf
 
 .. [Lev1973]
     Leonid Levin.

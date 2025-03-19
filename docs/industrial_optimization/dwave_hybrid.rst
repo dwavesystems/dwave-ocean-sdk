@@ -19,7 +19,7 @@ framework.
 *   The :ref:`opt_dwave_hybrid_using_framework` subsection shows how to use the
     framework. You can quickly get started by using a provided reference sampler
     built with this framework,
-    :class:`Kerberos <oceandocs:hybrid.reference.kerberos.KerberosSampler>`, to
+    :class:`Kerberos <hybrid.reference.kerberos.KerberosSampler>`, to
     solve a problem too large to :term:`minor-embed` on a |dwave_short| quantum
     computer. Next, use the framework to build (hybrid) workflows; for example,
     a workflow for larger-than-QPU lattice-structured problems.

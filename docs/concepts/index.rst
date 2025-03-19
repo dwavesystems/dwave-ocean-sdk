@@ -16,7 +16,7 @@ Concepts
     symbolic_math
     variables
 
-Find concepts/terminology are looking for here or under the
+Find concepts/terminology you are looking for here or under the
 :ref:`generated_site_index`.
 
 .. _terminology_links:

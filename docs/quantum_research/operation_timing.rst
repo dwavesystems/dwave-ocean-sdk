@@ -383,7 +383,7 @@ solver property, and the number of qubits used to embed\ [#]_ the problem on the
 selected QPU.
 
 Ocean software's
-:meth:`~oceandocs:dwave.cloud.solver.StructuredSolver.estimate_qpu_access_time`
+:meth:`~dwave.cloud.solver.StructuredSolver.estimate_qpu_access_time`
 method implements the procedure described in the table below. The following
 example uses this method to estimate the QPU access time for a random problem
 with a 20-node complete graph using an anneal schedule that sets a ~1 ms pause
@@ -562,14 +562,14 @@ and calculating the runtime estimation for versions 1.0.x\ [#]_ of the
     between executions. If you are using a heuristic embedding tool such as
     :ref:`minorminor <index_minorminer>` indirectly through your sampler (e.g.,
     by using Ocean’s
-    :class:`~oceandocs:dwave.system.composites.EmbeddingComposite` or
-    :class:`~oceandocs:dwave.system.samplers.DWaveCliqueSampler`), you can use
+    :class:`~dwave.system.composites.EmbeddingComposite` or
+    :class:`~dwave.system.samplers.DWaveCliqueSampler`), you can use
     the same tool on your problem to estimate the expected number of qubits: for
     large, complex problems you might run the tool several times and take the
     number of qubits from the produced average or worst-case embedding; for
     small, simple problems even a single run might be sufficient. If you are
     using such a tool directly (e.g., in conjunction with Ocean's
-    :class:`~oceandocs:dwave.system.composites.FixedEmbeddingComposite`) or
+    :class:`~dwave.system.composites.FixedEmbeddingComposite`) or
     otherwise generating a heuristic or non-heuristic embedding, take the
     required number of qubits from your embedding. Because embedding depends on
     a QPU's working graph, such embeddings should be for the particular QPU for
