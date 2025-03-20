@@ -25,7 +25,7 @@
 
 .. tab-set::
 
-    .. tab-item:: Optimization
+    .. tab-item:: Industrial Optimization
         :name: tab_industrial_optimization
         :selected:
 
@@ -33,12 +33,17 @@
             :start-after: sections-start-marker
             :end-before: sections-end-marker
 
-    .. tab-item:: Quantum
+    .. tab-item:: Quantum Research
         :name: tab_quantum_research
 
         .. include:: quantum_research/index.rst
             :start-after: sections-start-marker
             :end-before: sections-end-marker
+
+    .. tab-item:: ML/AI
+        :name: tab_ml_ai
+
+        Coming soon.
 
 
 Welcome to |dwave_short|

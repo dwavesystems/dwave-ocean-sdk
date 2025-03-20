@@ -13,7 +13,7 @@ python:
         path: .
         extra_requirements: [all]
       - requirements: docs/requirements.txt
-        
+
 build:
   os: ubuntu-22.04
   tools:

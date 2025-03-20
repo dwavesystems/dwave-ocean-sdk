@@ -101,7 +101,7 @@ linkcheck_ignore = [r'.clang-format',                    # would need symlink
 
 pygments_style = 'sphinx'
 
-todo_include_todos = True
+todo_include_todos = False
 
 copybutton_prompt_text = r">>> |\.\.\. |\$ "
 copybutton_prompt_is_regexp = True
