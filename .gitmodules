@@ -9,10 +9,10 @@
     url = https://github.com/dwavesystems/dwave-cloud-client
 [submodule "dwave-gate"]
     path = dwave-gate
-    url = https://github.com/JoelPasvolsky/dwave-gate.git
+    url = https://github.com/dwavesystems/dwave-gate.git
 [submodule "dwave-hybrid"]
     path = dwave-hybrid
-    url = https://github.com/JoelPasvolsky/dwave-hybrid
+    url = https://github.com/dwavesystems/dwave-hybrid
 [submodule "dwave-inspector"]
     path = dwave-inspector
     url = https://github.com/dwavesystems/dwave-inspector.git
@@ -27,7 +27,7 @@
     url = https://github.com/dwavesystems/dwave-preprocessing.git
 [submodule "dwave-samplers"]
     path = dwave-samplers
-    url = https://github.com/JoelPasvolsky/dwave-samplers.git
+    url = https://github.com/dwavesystems/dwave-samplers.git
 [submodule "dwave-system"]
     path = dwave-system
     url = https://github.com/JoelPasvolsky/dwave-system
@@ -36,4 +36,4 @@
     url = https://github.com/JoelPasvolsky/minorminer
 [submodule "penaltymodel"]
     path = penaltymodel
-    url = https://github.com/JoelPasvolsky/penaltymodel
+    url = https://github.com/dwavesystems/penaltymodel
