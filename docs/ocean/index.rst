@@ -19,6 +19,8 @@ Ocean\ |tm| software is a suite of tools for using
 `D-Wave Quantum Inc. <https://www.dwavesys.com>`_ quantum computers and
 :term:`hybrid` :term:`solvers <solver>`.
 
+This section documents **Ocean SDK version** |version|.
+
 .. grid:: 3
     :gutter: 2
 

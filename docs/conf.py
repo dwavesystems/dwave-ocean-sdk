@@ -22,16 +22,17 @@ os.system('dwave install --yes inspector')   # To run doctests on examples with 
 # -- Project information - these are special values used by sphinx. -------
 
 from dwaveoceansdk import __version__ as version
-from dwaveoceansdk import __version__ as release
 
 setup_cfg = configparser.ConfigParser()
 setup_cfg.read(os.path.join(sdk_directory, 'setup.cfg'))
 
+python_requires = setup_cfg['options']['python_requires']
+
 copyright = 'D-Wave Quantum Inc' #setup_cfg['metadata']['author']
 
-# Also add our own 'special value', the minimum supported Python version
 rst_prolog = f"""
-.. |python_requires| replace:: {setup_cfg['options']['python_requires']}
+.. |python_requires| replace:: {python_requires}
+.. |sdk_version| replace:: {version}
 """
 
 # -- General configuration ------------------------------------------------
@@ -96,7 +97,8 @@ linkcheck_ignore = [r'.clang-format',                    # would need symlink
                     r'^https://ssrn\.com(\/.*)?$', # site rejects robots since October 2024
                     r'^https?://dx\.doi\.org(\/.*)?ssrn\.(.*)?$', # redirects to SSRN above
                     r'^https://support\.dwavesys\.com', # Leap support site rejects robots
-                    r'https://dl.acm.org/doi/10.1145/800157.805047', # site rejects robots since Mar 2025
+                    r'^https://dl.acm.org/doi/10.1145/800157.805047', # site rejects robots since Mar 2025
+                    r'^https://ieeexplore\.ieee\.org\/document(\/.*)?$',  # site rejects robots since Mar 2025
                     ]
 
 pygments_style = 'sphinx'
@@ -194,7 +196,7 @@ html_favicon = 'https://www.dwavesys.com/favicon.ico'
 html_theme_options = {
     "github_url": "https://github.com/dwavesystems/dwave-ocean-sdk",
     "footer_start": ["copyright"],
-    "footer_end": ["sphinx-version", "theme-version"],
+    "footer_end": ["ocean-version"],
     "icon_links": [
         {
             "name": "Leap",
