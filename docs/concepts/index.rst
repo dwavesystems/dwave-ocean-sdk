@@ -50,8 +50,8 @@ Concepts and Terminology
         was :code:`Advantage_system1.1`.
 
     Advantage2
-        The |adv2_tm| is |dwave_short|'s next-generation :term:`QPU`, after the
-        :term:`Advantage` quantum computer.
+        The |adv2_tm| quantum computer is |dwave_short|'s next-generation
+        :term:`QPU`, after the :term:`Advantage` quantum computer.
 
     anneal
     annealing
