@@ -4,17 +4,14 @@
 Model Construction (Quadratic Models)
 =====================================
 
+This section provides examples of creating
+:term:`quadratic models <quadratic model>` that can then be solved on a
+|cloud|_ service :term:`hybrid` :term:`solver` such as the :term:`CQM` solver.
+Typically you construct a :term:`model` when reformulating your problem, using
+such techniques as those presented in the :ref:`qpu_reformulating` section.
+
 The :ref:`dimod <index_dimod>` package provides a variety of model generators.
 These are especially useful for testing code and learning.
-
-See examples of using QPU solvers and |cloud|_ service :term:`hybrid`
-:term:`solvers <solver>` on these models in the
-:ref:`qpu_index_examples_beginner` and :ref:`opt_index_examples_beginner`
-sections and the
-`dwave-examples GitHub repository <https://github.com/dwave-examples>`_.
-
-Typically you construct a model when reformulating your problem, using such
-techniques as those presented in the :ref:`qpu_reformulating` section.
 
 CQM Example: Using a dimod Generator
 ====================================
@@ -112,3 +109,13 @@ This example constructs a QM with an interaction between two integer variables.
 >>> qm = dimod.QuadraticModel()
 >>> qm.add_variables_from('INTEGER', ['i', 'j'])
 >>> qm.add_quadratic('i', 'j', 1.5)
+
+Additional Examples
+===================
+
+*   The :ref:`qpu_index_examples_beginner` and
+    :ref:`opt_index_examples_beginner` sections have examples of using
+    :term:`QPU` :term:`solvers <solver>` and |cloud|_ service :term:`hybrid`
+    solvers on :term:`quadratic models <quadratic model>`.
+*   The `dwave-examples GitHub repository <https://github.com/dwave-examples>`_
+    provides more examples.

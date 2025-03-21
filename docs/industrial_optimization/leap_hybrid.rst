@@ -4,9 +4,8 @@
 Leap Service's Hybrid Solvers
 =============================
 
-This section introduces the |cloud_tm|_ service's quantum-classical
-:term:`hybrid` :term:`solvers <solver>` and provides references to usage
-information.
+This section introduces the |cloud|_ service's quantum-classical :term:`hybrid`
+:term:`solvers <solver>` and provides references to usage information.
 
 .. note::
     Not all accounts have access to this type of solver.

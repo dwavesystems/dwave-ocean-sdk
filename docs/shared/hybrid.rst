@@ -15,24 +15,23 @@ For an overview of, and motivation for, hybrid computing, see this
 .. start_leap_intro
 
 The quantum-classical hybrid solvers in the |cloud|_ service are intended to
-solve arbitrary application problems formulated as quadratic and nonlinear
-models\ [#]_\ .
+solve arbitrary application problems formulated as a :term:`quadratic model` or
+:term:`nonlinear model`\ [#]_.
 
 .. [#]
-    Problems submitted directly to |dwave_short| quantum computers are in the
-    :ref:`binary quadratic model <concept_models_bqm>` (BQM) format,
+    Problems submitted **directly** to |dwave_short| quantum computers are in
+    the :ref:`binary quadratic model <concept_models_bqm>` (BQM) format:
     unconstrained with binary-valued variables and structured for the
-    :term:`topology` of the quantum processing unit (:term:`QPU`). Hybrid
-    solvers may accept arbitrarily structured
-    :ref:`quadratic models <concept_models_quadratic>` and a
-    :ref:`nonlinear model <concept_models_nonlinear>`, constrained or
+    :term:`topology` of the :term:`QPU`. Hybrid solvers may accept arbitrarily
+    structured quadratic models and a nonlinear model, constrained or
     unconstrained, with real, integer, and binary variables.
 
-These solvers, which implement state-of-the-art classical algorithms together
-with intelligent allocation of the quantum computer to parts of the problem
-where it benefits most, are designed to accommodate even very large problems.
-Hybrid solvers enable you to benefit from |dwave_short|'s deep investment in
-researching, developing, optimizing, and maintaining hybrid algorithms.
+These solvers, which implement state-of-the-art :term:`classical` algorithms
+together with intelligent allocation of the quantum computer to parts of the
+problem where it benefits most, are designed to accommodate even very large
+problems. Hybrid solvers enable you to benefit from |dwave_short|'s deep
+investment in researching, developing, optimizing, and maintaining
+:term:`hybrid` algorithms.
 
 .. end_leap_intro
 

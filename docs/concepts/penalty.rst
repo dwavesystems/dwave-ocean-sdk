@@ -179,5 +179,7 @@ With all of the pieces, you can now build the penalty model.
 Related Information
 ===================
 
+*   The :ref:`qpu_example_sat_unconstrained` section shows a very simple example
+    formulated as a penalty model.
 *   :ref:`qpu_reformulating` describes penalty functions in general,
     and penalty functions for representing Boolean operations.

@@ -4,9 +4,6 @@
 Model Construction (Nonlinear Models)
 =====================================
 
-Introduction
-============
-
 `Nonlinear programming (NLP) <https://en.wikipedia.org/wiki/Nonlinear_programming>`_
 is the process of solving an optimization problem where some of the
 :term:`constraints <constraint>` are not linear equalities and/or the
@@ -22,7 +19,7 @@ Nonlinear Models
 The :ref:`dwave-optimization <index_optimization>` tool enables you to formulate
 the nonlinear models needed for such industrial optimization problems. The model
 can then be submitted to the
-`Leap <https://cloud.dwavesys.com/leap/>` service's quantum-classical
+`Leap <https://cloud.dwavesys.com/leap/>`_ service's quantum-classical
 :term:`hybrid` nonlinear-program solver to find good solutions.
 
 Examples of problems suited to such solution methods are resource routing,

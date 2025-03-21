@@ -148,6 +148,13 @@ Concepts and Terminology
 
         Learn more: :ref:`qpu_topologies`.
 
+    classical
+    classical solver
+        An algorithm that runs on any non-quantum
+        `computer <https://en.wikipedia.org/wiki/Computer>`.
+
+        Learn more: :ref:`qpu_classical_intro`.
+
     clique
     complete graph
     fully connected
@@ -497,6 +504,22 @@ Concepts and Terminology
     quadratic model
         A collection of variables with associated linear and quadratic biases.
         Sometimes referred to as a **problem**.
+
+        Quadratic functions have one or two variables per term. A simple example
+        of a quadratic function is,
+
+        .. math::
+
+            D = Ax + By + Cxy
+
+        where :math:`A`, :math:`B`, and :math:`C` are constants. Single variable
+        terms---:math:`Ax` and :math:`By` here---are linear with the constant
+        biasing the term's variable. Two-variable terms---:math:`Cxy` here---are
+        quadratic with a relationship between the variables.
+
+        Ocean software also provides support for
+        :ref:`higher order models <dimod_higher_order_models>`, which are
+        typically reduced to quadratic for sampling.
 
         Learn more: :ref:`concept_models_quadratic`.
 

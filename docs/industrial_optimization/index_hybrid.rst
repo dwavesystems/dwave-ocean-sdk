@@ -35,8 +35,7 @@ resources:
         :link: opt_dwave_hybrid
         :link-type: ref
 
-        Ocean\ |tm| software's general framework for building hybrid
-        samplers.
+        Ocean software's framework for building hybrid samplers.
 
 Related Information
 ===================

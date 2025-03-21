@@ -40,9 +40,9 @@ Supported Models
 
 To express your problem as an objective function and submit to a |dwave_short|
 :term:`hybrid` sampler for solution, you typically use one of the
-:ref:`Ocean software <index_ocean_sdk>` quadratic\ [#]_ models or
-nonlinear\ [#]_ :ref:`model <concept_models>` supported by the
-`Leap <https://cloud.dwavesys.com/leap/>`_ service's hybrid solvers:
+:ref:`Ocean software <index_ocean_sdk>`
+:term:`quadratic models <quadratic model>` or :term:`nonlinear model` supported
+by the `Leap <https://cloud.dwavesys.com/leap/>`_ service's hybrid solvers:
 
 *   .. include:: ../shared/models.rst
         :start-after: start_models_nonlinear
@@ -59,33 +59,6 @@ nonlinear\ [#]_ :ref:`model <concept_models>` supported by the
 *   .. include:: ../shared/models.rst
         :start-after: start_models_dqm
         :end-before: end_models_dqm
-
-.. note::
-    Constraints for unconstrained models are typically represented by adding
-    :ref:`penalty models <concept_penalty>` to the objective, as shown
-    in the :ref:`qpu_example_sat_unconstrained` section.
-
-.. [#]
-    Quadratic functions have one or two variables per term. A simple example of
-    a quadratic function is,
-
-    .. math::
-
-        D = Ax + By + Cxy
-
-    where :math:`A`, :math:`B`, and :math:`C` are constants. Single variable
-    terms---:math:`Ax` and :math:`By` here---are linear with the constant
-    biasing the term's variable. Two-variable terms---:math:`Cxy` here---are
-    quadratic with a relationship between the variables.
-
-    Ocean software also provides support for
-    :ref:`higher order models <dimod_higher_order_models>`, which are typically reduced to
-    quadratic for sampling.
-
-.. [#]
-    The nonlinear model represents a general optimization problem with an
-    :term:`objective function` and/or constraints over variables of various
-    types.
 
 .. _opt_workflow_samplers:
 
