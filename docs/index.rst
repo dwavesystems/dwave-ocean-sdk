@@ -54,13 +54,18 @@ Welcome to |dwave_short|
 
     Pages have three navigation bars: top, left, and right.
 
-    *   **Top** navigation bar lets you select the following documentation:
+    *   **Left** navigation bar lets you select a subtopic; for example, how to
+        get started, properties, best practices.
+
+    *   **Right** navigation bar displays the topics on your current page.
+
+    *   **Top** navigation bar lets you select the following sections:
 
         .. list-table::
 
                 *   -   :ref:`Industrial Optimization <index_industrial_optimization>`
                     -   Solving hard commercial optimization problems using
-                        :ref:`hybrid solvers <concept_hybrid>`.
+                        :term:`hybrid` :term:`solvers <solver>`.
                 *   -   :ref:`Quantum Research <index_quantum_research>`
                     -   Using the quantum processing unit (QPU) directly on
                         :term:`Ising` problems and :term:`QUBO` models.
@@ -72,16 +77,11 @@ Welcome to |dwave_short|
                         notes, IDE support, etc.
                 *   -   :ref:`concepts <index_concepts>`
                     -   Learn the relevant terminology and the fundamental
-                        concepts. Search for terms here.
+                        concepts. **Search for terms here.**
                 *   -   **More** > :ref:`Licenses <licenses>`
                     -   Licensing information for the documentation and SDK.
                 *   -   **More** > :ref:`Bibliography <bibliography>`
                     -   Cited content.
-
-    *   **Left** navigation bar lets you select a subtopic; for example, how to
-        get started, properties, best practices.
-
-    *   **Right** navigation bar displays the topics on your current page.
 
 *It's not a Turing machine, but a machine of a different kind.*
 
@@ -97,8 +97,9 @@ Welcome to |dwave_short|
         computing problems cannot be addressed by conventional systems. The huge
         growth of data and our need to better understand everything from the
         universe to our own DNA leads us to seek new tools that can help provide
-        answers. Quantum computing is the next frontier in computing, providing
-        an entirely new approach to solving the world's most difficult problems.
+        answers. :term:`Quantum computing <quantum computing>` is the next
+        frontier in computing, providing an entirely new approach to solving the
+        world's most difficult problems.
 
         While certainly not easy, much progress has been made in the field of
         quantum computing since 1981, when Feynman gave his famous lecture at
@@ -112,19 +113,19 @@ Welcome to |dwave_short|
         implements compute algorithms with quantum gates, analogously to the use
         of Boolean gates in classical computers.
 
-        With quantum annealers you initialize the system in a low-energy state
-        and gradually introduce the parameters of a problem you wish to solve.
-        The slow change makes it likely that the system ends in a low-energy
-        state of the problem, which corresponds to an optimal solution. This
-        technique is explained in more detail in the
+        With :term:`quantum annealers <quantum annealer>` you initialize the
+        system in a low-energy state and gradually introduce the parameters of a
+        problem you wish to solve. The slow change makes it likely that the
+        system ends in a low-energy state of the problem, which corresponds to
+        an optimal solution. This technique is explained in more detail in the
         :ref:`qpu_quantum_annealing_intro` section.
 
         Quantum annealing is implemented in |dwave_short|'s generally available
         quantum computers, such as the |dwave_5kq_tm| system, as a single
         quantum algorithm, and this scalable approach to quantum computing has
-        enabled us to create quantum processing units (QPUs) with more than 5000
-        quantum bits (*qubits*)---far beyond the state of the art for gate-model
-        quantum computing.
+        enabled us to create quantum processing units (:term:`QPUs <QPU>`) with
+        more than 5000 quantum bits (:term:`qubits <qubit>`)---far beyond the
+        state of the art for gate-model quantum computing.
 
         |dwave_short| has been developing various generations of our "machine of
         a different kind," to use Feynman's words, since 1999. We are the
@@ -133,10 +134,10 @@ Welcome to |dwave_short|
     ..  tab-item:: D-Wave's QPUs
         :name: tab_quantum_computers
 
-        The |dwave_short| system contains a QPU that must be kept at a
-        temperature near absolute zero and isolated from the surrounding
-        environment in order to behave quantum mechanically. The system achieves
-        these requirements as follows:
+        A |dwave_short| quantum computer contains a :term:`QPU` that must be
+        kept at a temperature near absolute zero and isolated from the
+        surrounding environment in order to behave quantum mechanically. The
+        system achieves these requirements as follows:
 
         *   Cryogenic temperatures, achieved using a closed-loop cryogenic
             dilution refrigerator system. The QPU operates at temperatures below
@@ -180,9 +181,9 @@ Welcome to |dwave_short|
     .. tab-item:: Software Environment
         :name: tab_dwave_software_environment
 
-        Users interact with the |dwave_short| quantum computer through a web
+        Users interact with |dwave_short| quantum computers through a web
         user interface (UI), and through open-source tools that communicate with
-        the Solver API (SAPI).\ [#]_
+        the :term:`Solver <solver>` API (SAPI).
         The SAPI components are responsible for user interaction, user
         authentication, and work scheduling. In turn, SAPI connects to back-end
         servers that send problems to and return results from QPUs and
@@ -191,11 +192,6 @@ Welcome to |dwave_short|
 
         See :numref:`Figure %s <network-gs>` for a simplified view of the
         |dwave_short| software environment.
-
-        .. [#]
-            A *solver* is simply a resource that runs a problem.
-            Some solvers interface to the QPU; others leverage CPU and GPU
-            resources.
 
         .. [#]
             Solvers are available by region.

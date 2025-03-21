@@ -390,7 +390,8 @@ Concepts and Terminology
         `Linear programming <https://en.wikipedia.org/wiki/Linear_programming>`_
         (LP) is a method to achieve the best outcome (such as maximum profit or
         lowest cost) in a mathematical model whose requirements and objective
-        are represented by linear relationships.
+        are represented by linear relationships. See also
+        :term:`nonlinear model`.
 
     minimum gap
         The minimum distance between the :term:`ground state` and the first
@@ -406,8 +407,8 @@ Concepts and Terminology
 
     nonlinear model
         A collection of variables with associated biases that constitute an
-        :term:`objective function` and/or constraints.
-        Sometimes referred to as a **problem**.
+        :term:`objective function` and/or constraints. Sometimes referred to as
+        a **problem**. See also :term:`linear program`.
 
         Learn more: :ref:`concept_models_nonlinear`.
 
@@ -592,10 +593,16 @@ Concepts and Terminology
     sampler
         Samplers are processes that sample from low energy states of a problem's
         objective function, which is a mathematical expression of the energy of
-        a system. A binary quadratic model (BQM) sampler samples from low energy
-        states in models such as those defined by an :term:`Ising` equation or
-        a :term:`QUBO` problem and returns an iterable of samples, in order of
-        increasing energy.
+        a system. A binary quadratic model (:term:`BQM`) sampler samples from
+        low energy states in models such as those defined by an :term:`Ising`
+        equation or a :term:`QUBO` problem and returns an iterable of samples,
+        in order of increasing energy.
+
+        Samplers run---either remotely (for example, in the
+        `Leap <https://cloud.dwavesys.com/leap/>`_ service) or locally on your
+        CPU---on compute resources known as :term:`solvers <solver>`. (Note that
+        some classical samplers actually brute-force solve small problems rather
+        than sample, and these are also referred to as solvers.)
 
         Learn more: :ref:`concept_samplers`.
 

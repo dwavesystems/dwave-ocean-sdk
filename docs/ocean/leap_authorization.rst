@@ -10,18 +10,11 @@ and higher enable Leap\ |tm| authentication using the secure
 `OAuth 2.0 <https://oauth.net/2/>`_ industry standard. As described in the
 :ref:`ocean_sapi_access_basic` section, you require a Solver API (:term:`SAPI`)
 token from your Leap account to submit problems to Leap
-:term:`solvers <solver>`.
-
-.. note:: The `OAuth-based <https://oauth.net/2/>`_ authorization is provided
-    for convenience but you also have the option of manually copying your SAPI
-    token from the Leap service's dashboard.
-
-As described in the :ref:`ocean_sapi_access_basic` section for Ocean software,
-you require a SAPI token to submit problems to solvers in the Leap service. The
-following procedure authorizes the Ocean software access to your account in the
-Leap service and enables storing your SAPI token in your development
-environment. Ocean software authorization to access the Leap service persists
-across subsequent development sessions for this development environment.
+:term:`solvers <solver>`. The following procedure authorizes the Ocean software
+access to your account in the Leap service and enables storing your SAPI token
+in your development environment. Ocean software authorization to access the Leap
+service persists across subsequent development sessions for this development
+environment.
 
 .. note:: The following `OAuth-based <https://oauth.net/2/>`_ procedure is
     provided for convenience but you also have the option of manually copying

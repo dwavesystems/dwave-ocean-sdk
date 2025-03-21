@@ -5,8 +5,8 @@ Basic Workflow: Models and Sampling
 ===================================
 
 This section provides a high-level description of how you solve problems using
-:term:`hybrid` :term:`solver`\ s. For solving problems directly on quantum
-computers, see the :ref:`qpu_workflow` section.
+**hybrid** solvers. (For solving problems directly on a
+:term:`QPU`, see :ref:`this <qpu_workflow>` section instead.)
 
 .. include:: ../shared/workflow.rst
     :start-after: start_workflow_intro

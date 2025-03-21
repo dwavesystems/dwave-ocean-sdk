@@ -474,8 +474,8 @@ except for the last part, which may be smaller.
 
 .. _sapi_rest_upload_multi_md5:
 
-Submit a Checksum for a Problem Upload
---------------------------------------
+Complete the Problem Upload
+---------------------------
 
 To complete an upload of problem data, send an HTTP POST request to
 ``bqm/multipart/<problem_data_id>/combine``.

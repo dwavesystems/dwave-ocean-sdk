@@ -101,9 +101,10 @@ using a quantum-classical hybrid solver in the Leap service.
 
 .. start_cqm1
 
-The following code creates a constrained quadratic model (CQM) representing
-a `knapsack problem <https://en.wikipedia.org/wiki/Knapsack_problem>`_ and
-solves it using a quantum-classical hybrid solver in the Leap service.
+The following code creates a constrained quadratic model (:term:`CQM`)
+representing a
+`knapsack problem <https://en.wikipedia.org/wiki/Knapsack_problem>`_
+and solves it using a quantum-classical hybrid solver in the Leap service.
 
 >>> from dimod.generators import random_knapsack
 >>> from dwave.system import LeapHybridCQMSampler

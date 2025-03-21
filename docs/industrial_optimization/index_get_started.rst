@@ -30,13 +30,13 @@ Learn to solve hard optimization problems using quantum-classical :term:`hybrid`
         :link: opt_model_construction_qm
         :link-type: ref
 
-        Constructing quadratic models.
+        Constructing :term:`quadratic models <quadratic model>`.
 
     .. grid-item-card:: :ref:`opt_model_construction_nl`
         :link: opt_model_construction_nl
         :link-type: ref
 
-        Constructing nonlinear models.
+        Constructing :term:`nonlinear models <nonlinear model>`.
 
     .. grid-item-card:: :ref:`opt_index_hybrid`
         :link: opt_index_hybrid

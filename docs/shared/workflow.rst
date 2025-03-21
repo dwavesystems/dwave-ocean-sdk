@@ -6,16 +6,17 @@ The two main steps of solving problems using quantum computers are:
 
     An :term:`objective function` (cost function) is a mathematical expression
     of the problem to be optimized; for quantum computing, these are
-    quadratic and (for some :term:`hybrid` :term:`solvers <solver>`) nonlinear
-    :ref:`models <concept_models>` that have lowest values (energy) for good
-    solutions to the problems they represent.
+    :term:`quadratic models <quadratic model>` and (for some :term:`hybrid`
+    :term:`solvers <solver>`) :term:`nonlinear models <nonlinear model>` that
+    have lowest values (energy) for good solutions to the problems they
+    represent.
 
 2.  **Find good solutions by sampling**
 
-    :ref:`Samplers <concept_samplers>` are processes that sample from low-energy
-    states of objective functions. Find good solutions by submitting your model
-    to one of a variety of |dwave_short|'s quantum, classical, and hybrid
-    quantum-classical samplers.
+    :term:`Samplers <sampler>` are processes that sample from low-energy
+    states of objective functions. Find good solutions by submitting your
+    :ref:`model <concept_models>` to one of a variety of |dwave_short|'s
+    quantum, classical, and hybrid quantum-classical samplers.
 
 .. todo:: Ask Michael to refresh this graphic
 
@@ -27,13 +28,6 @@ The two main steps of solving problems using quantum computers are:
     Solution steps: (1) a problem known in "problem space" (a circuit of Boolean
     gates, a graph, a network, etc) is formulated as a model, mathematically or
     using Ocean functionality, and (2) the model is sampled for solutions.
-
-.. note::
-    Samplers run---either remotely (for example, in the
-    `Leap <https://cloud.dwavesys.com/leap/>`_ service) or locally on your
-    CPU---on compute resources known as :term:`solvers <solver>`. (Note that
-    some classical samplers actually brute-force solve small problems rather
-    than sample, and these are also referred to as solvers.)
 
 .. [#]
     For quantum computing, as for classical, solving a problem requires that it

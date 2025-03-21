@@ -30,7 +30,7 @@
     url = https://github.com/dwavesystems/dwave-samplers.git
 [submodule "dwave-system"]
     path = dwave-system
-    url = https://github.com/JoelPasvolsky/dwave-system
+    url = https://github.com/dwavesystems/dwave-system
 [submodule "minorminer"]
     path = minorminer
     url = https://github.com/dwavesystems/minorminer
