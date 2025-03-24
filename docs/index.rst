@@ -43,7 +43,9 @@
     .. tab-item:: ML/AI
         :name: tab_ml_ai
 
-        Coming soon.
+        See the :ref:`qpu_stating_problems_machine_learning` section.
+
+        Additional content for this topic is currently under development.
 
 
 Welcome to |dwave_short|

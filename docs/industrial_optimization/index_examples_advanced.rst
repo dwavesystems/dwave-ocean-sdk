@@ -35,6 +35,8 @@ the `Leap <https://cloud.dwavesys.com/leap/>`_ service's hybrid
 Quadratic Models
 ================
 
+These examples use the |cloud| service's :term:`quadratic model` solvers.
+
 .. grid:: 3
     :gutter: 2
 
@@ -42,15 +44,15 @@ Quadratic Models
         :link: opt_example_bqm_structuralimbalance
         :link-type: ref
 
-        Solves an unconstrained problem using the
-        `Leap <https://cloud.dwavesys.com/leap/>`_ service's :term:`BQM` solver.
+        Solves an unconstrained problem using the |cloud| service's hybrid
+        :term:`BQM` solver.
 
     .. grid-item-card:: :ref:`opt_example_dqm_map`
         :link: opt_example_dqm_map
         :link-type: ref
 
         Solves a discrete quadratic model (:term:`DQM`) using the Leap service's
-        :term:`DQM` solver.
+        hybrid DQM solver.
 
     .. grid-item-card:: :ref:`opt_example_kerberos_map`
         :link: opt_example_kerberos_map

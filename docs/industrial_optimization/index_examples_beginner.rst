@@ -38,6 +38,8 @@ the `Leap <https://cloud.dwavesys.com/leap/>`_ service's hybrid
 Quadratic Models
 ================
 
+These examples use the |cloud| service's :term:`quadratic model` solvers.
+
 .. grid:: 3
     :gutter: 2
 
@@ -46,7 +48,7 @@ Quadratic Models
         :link-type: ref
 
         Solves a constrained problem with binary variables using the
-        `Leap <https://cloud.dwavesys.com/leap/>`_ service's :term:`CQM` solver.
+        |cloud| service's :term:`CQM` solver.
 
     .. grid-item-card:: :ref:`opt_example_cqm_stockselling`
         :link: opt_example_cqm_stockselling

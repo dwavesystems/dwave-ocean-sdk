@@ -80,7 +80,7 @@ Further Information
 
 *   [Dwave7]_ gives a performance evaluation of the hybrid solvers in the
     `Leap <https://cloud.dwavesys.com/leap/>`_ service.
-*   For documentation, see the :ref:`dwave-hybrid <index_hybrid>` section.
+*   For documentation, see the :ref:`opt_index_hybrid` section.
 *   The
     `Hybrid Computing <https://github.com/dwave-examples/hybrid-computing-notebook>`_
     Jupyter Notebooks explain and demonstrate how to develop and use the

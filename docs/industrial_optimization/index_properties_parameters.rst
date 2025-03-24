@@ -17,7 +17,7 @@ Solver Properties & Parameters
     solver_dqm_properties
     solver_dqm_parameters
 
-The |cloud_tm| service provides several :term:`hybrid` :term:`solvers <solver>`
+The |cloud| service provides several :term:`hybrid` :term:`solvers <solver>`
 with the properties and configurable parameters described here. For the
 properties and parameters of :term:`QPU` solvers, see the
 :ref:`qpu_index_solver_properties` and :ref:`qpu_solver_parameters` sections.
@@ -57,7 +57,7 @@ CQM Solver
 Large optimization problems can be formulated as
 :ref:`constrained quadratic models <concept_models_cqm>`, as described in the
 :ref:`opt_model_construction_qm` section. You can then use the CQM hybrid
-:term:`solver` hosted in the |cloud_tm| service to find good solutions.
+:term:`solver` hosted in the |cloud| service to find good solutions.
 
 .. grid:: 3
     :gutter: 2

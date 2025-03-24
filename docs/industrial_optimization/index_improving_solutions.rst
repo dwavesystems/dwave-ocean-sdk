@@ -4,7 +4,7 @@
 Improving Hybrid Solutions
 ==========================
 
-Learn best practices for using the |cloud_tm| service's hybrid solvers
+Learn best practices for using the |cloud| service's hybrid solvers
 in this section.
 
 .. toctree::
