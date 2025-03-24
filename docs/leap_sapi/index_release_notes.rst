@@ -4,36 +4,38 @@
 Leap Service Release Notes
 ==========================
 
-.. toctree::
-    :hidden:
-    :maxdepth: 1
+.. this section is built from a separate repo
 
-    release_notes
-    fixed_issues
-    known_issues
+    .. toctree::
+        :hidden:
+        :maxdepth: 1
 
-New product features, changes to default system behavior, known issues that may
-affect your use of the |cloud_tm| service, and resolved issues.
+        release_notes
+        fixed_issues
+        known_issues
 
-.. grid:: 3
-    :gutter: 2
+    New product features, changes to default system behavior, known issues that may
+    affect your use of the |cloud_tm| service, and resolved issues.
 
-    .. grid-item-card:: :ref:`leap_release_notes`
-        :link: leap_release_notes
-        :link-type: ref
+    .. grid:: 3
+        :gutter: 2
 
-        New features.
+        .. grid-item-card:: :ref:`leap_release_notes`
+            :link: leap_release_notes
+            :link-type: ref
 
-    .. grid-item-card:: :ref:`leap_fixed_issues`
-        :link: leap_fixed_issues
-        :link-type: ref
+            New features.
 
-        Problems that have been fixed.
+        .. grid-item-card:: :ref:`leap_fixed_issues`
+            :link: leap_fixed_issues
+            :link-type: ref
 
-    .. grid-item-card:: :ref:`leap_known_issues`
-        :link: leap_known_issues
-        :link-type: ref
+            Problems that have been fixed.
 
-        Problems that are currently known to be open.
+        .. grid-item-card:: :ref:`leap_known_issues`
+            :link: leap_known_issues
+            :link-type: ref
+
+            Problems that are currently known to be open.
 
 
