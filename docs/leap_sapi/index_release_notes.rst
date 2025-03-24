@@ -37,5 +37,3 @@ Leap Service Release Notes
             :link-type: ref
 
             Problems that are currently known to be open.
-
-

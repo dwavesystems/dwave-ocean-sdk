@@ -137,5 +137,7 @@ perform less well than alternative formulations.
 Classical Solvers in the Ocean SDK
 ==================================
 
-*   Solvers in the :ref:`dimod <index_dimod>` package: :ref:`dimod_samplers`
-*   Solvers in the :ref:`dwave-samplers <index_samplers>` package: :ref:`samplers_api_ref`
+*   Solvers in the :ref:`dimod <index_dimod>` package:
+    :ref:`test samplers <dimod_samplers>`.
+*   Solvers in the :ref:`dwave-samplers <index_samplers>` package:
+    :ref:`production samplers <samplers_api_ref>`.

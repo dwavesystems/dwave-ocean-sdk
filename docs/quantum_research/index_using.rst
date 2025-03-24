@@ -37,7 +37,7 @@ Guidance and best practices for QPU usage.
         :link: qpu_embedding_guidance
         :link-type: ref
 
-        Considerations for :term:`minor embedding`.
+        Considerations for minor embedding.
 
     .. grid-item-card:: :ref:`qpu_solver_parameters`
         :link: qpu_solver_parameters

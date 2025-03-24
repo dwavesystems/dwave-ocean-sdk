@@ -24,55 +24,54 @@ Basic QPU Examples
         :link: qpu_example_sat_unconstrained
         :link-type: ref
 
-        Describes the mathematical formulation of an :term:`objective function`
-        for a simple, *unconstrained* problem.
+        Describes the mathematical formulation of an objective function for a
+        simple, *unconstrained* problem.
 
     .. grid-item-card:: :ref:`qpu_example_sat_constrained`
         :link: qpu_example_sat_constrained
         :link-type: ref
 
-        Describes the end-to-end process of solving a simple,
-        :term:`constrained <constraint>` problem on a quantum computer.
+        Describes the end-to-end process of solving a simple, constrained
+        problem on a quantum computer.
 
     .. grid-item-card:: :ref:`qpu_example_min_vertex`
         :link: qpu_example_min_vertex
         :link-type: ref
 
         Submits to a quantum computer a common graph problem formulated with
-        :ref:`Ocean <index_ocean_sdk>` software.
+        Ocean software.
 
     .. grid-item-card:: :ref:`qpu_example_not`
         :link: qpu_example_not
         :link-type: ref
 
-        Mathematically formulates a simple :term:`QUBO`.
+        Mathematically formulates a simple QUBO.
 
     .. grid-item-card:: :ref:`qpu_example_and`
         :link: qpu_example_and
         :link-type: ref
 
-        Explains and demonstrates :term:`minor-embedding` on the QPU using
-        :term:`chains <chain>`.
+        Explains and demonstrates minor embedding on the QPU using chains.
 
     .. grid-item-card:: :ref:`qpu_example_multigate`
         :link: qpu_example_multigate
         :link-type: ref
 
-        Looks at various :term:`minor-embedding` techniques and results.
+        Looks at various minor-embedding techniques and results.
 
     .. grid-item-card:: :ref:`qpu_example_scheduling`
         :link: qpu_example_scheduling
         :link-type: ref
 
         Solves a small constraint satisfaction problem formulated with
-        :term:`penalties <penalty>`.
+        penalties.
 
     .. grid-item-card:: :ref:`qpu_example_mapcoloring`
         :link: qpu_example_mapcoloring
         :link-type: ref
 
         Solves a more complex constraint satisfaction problem by formulating
-        :term:`penalties <penalty>`.
+        penalties.
 
 Additional Examples
 ===================

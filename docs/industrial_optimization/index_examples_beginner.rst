@@ -48,7 +48,7 @@ These examples use the |cloud| service's :term:`quadratic model` solvers.
         :link-type: ref
 
         Solves a constrained problem with binary variables using the
-        |cloud| service's :term:`CQM` solver.
+        |cloud| service's CQM solver.
 
     .. grid-item-card:: :ref:`opt_example_cqm_stockselling`
         :link: opt_example_cqm_stockselling
@@ -61,8 +61,7 @@ These examples use the |cloud| service's :term:`quadratic model` solvers.
         :link: opt_example_cqm_diet
         :link-type: ref
 
-        Solves a mixed-integer linear-programming
-        (`MILP <https://en.wikipedia.org/wiki/Integer_programming>`_) problem
+        Solves a mixed-integer linear-programming (MILP) problem
         using the Leap service's CQM solver.
 
 Additional Examples

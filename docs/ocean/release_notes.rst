@@ -8,8 +8,8 @@ Ocean SDK Release Notes
     so that this page can generate the release notes as html without
     multiple warnings of conflict
 
-For release notes for the |cloud_tm| quantum cloud service, see the
-:ref:`leap_release_notes` section.
+For release notes for the |cloud| quantum cloud service, see the
+:ref:`index_leap_sapi` section.
 
 
 *   `dimod <https://github.com/dwavesystems/dimod/releases>`_

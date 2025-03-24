@@ -18,8 +18,8 @@ Get Started with Quantum Computing
     basic_config
     index_examples_beginner
 
-Learn to submit problems directly to quantum processing units (QPUs) in
-the |cloud_tm| quantum cloud service.
+Learn to submit problems directly to quantum processing units (:term:`QPU`) in
+the |cloud| quantum cloud service.
 
 .. grid:: 3
     :gutter: 2
@@ -62,7 +62,7 @@ the |cloud_tm| quantum cloud service.
         :link: qpu_embedding_intro
         :link-type: ref
 
-        Mapping arbitrary problems to QPU :term:`topology`.
+        Mapping arbitrary problems to QPU topology.
 
     .. grid-item-card:: :ref:`qpu_basic_config`
 

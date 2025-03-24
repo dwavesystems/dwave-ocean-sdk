@@ -61,7 +61,7 @@ The following code solves a random problem on a quantum computer.
 .. start_qpu2
 
 The following code solves the known "minimum vertex cover"
-graph problem using an annealing quantum computer.
+graph problem using an :term:`annealing` quantum computer.
 
 >>> import networkx as nx
 >>> import dwave_networkx as dnx

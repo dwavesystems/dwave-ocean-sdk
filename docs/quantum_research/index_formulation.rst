@@ -20,7 +20,7 @@ Advanced guidance on stating and reformulating your problems for quantum compute
         :link: qpu_stating_problems
         :link-type: ref
 
-        Properly stated, a problem can be formulated as an :term:`objective`.
+        Properly stated, a problem can be formulated as an objective.
 
     .. grid-item-card:: :ref:`qpu_reformulating`
         :link: qpu_reformulating

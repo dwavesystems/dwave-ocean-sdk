@@ -9,7 +9,7 @@ As part of the installation of the :ref:`dwave-ocean-sdk <ocean_source_code>` a
 might be installed as ``<virtual_environment>\\Scripts\\dwave.exe``. Running
 this file from your system's console opens an interactive command line interface
 (CLI) that can help you set up and configure your development environment,
-communicate with |cloud_tm|_ service's compute resources, interact with your
+communicate with |cloud|_ service's compute resources, interact with your
 |cloud| service's account, and other useful actions.
 
 Run :code:`dwave --help` for information on all the CLI options.\ [#]_  For
