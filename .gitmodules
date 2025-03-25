@@ -9,25 +9,25 @@
     url = https://github.com/dwavesystems/dwave-cloud-client
 [submodule "dwave-gate"]
     path = dwave-gate
-    url = https://github.com/dwavesystems/dwave-gate.git
+    url = https://github.com/dwavesystems/dwave-gate
 [submodule "dwave-hybrid"]
     path = dwave-hybrid
     url = https://github.com/dwavesystems/dwave-hybrid
 [submodule "dwave-inspector"]
     path = dwave-inspector
-    url = https://github.com/dwavesystems/dwave-inspector.git
+    url = https://github.com/dwavesystems/dwave-inspector
 [submodule "dwave-networkx"]
     path = dwave-networkx
     url = https://github.com/dwavesystems/dwave_networkx
 [submodule "dwave-optimization"]
     path = dwave-optimization
-    url = https://github.com/dwavesystems/dwave-optimization.git
+    url = https://github.com/dwavesystems/dwave-optimization
 [submodule "dwave-preprocessing"]
     path = dwave-preprocessing
-    url = https://github.com/dwavesystems/dwave-preprocessing.git
+    url = https://github.com/dwavesystems/dwave-preprocessing
 [submodule "dwave-samplers"]
     path = dwave-samplers
-    url = https://github.com/dwavesystems/dwave-samplers.git
+    url = https://github.com/dwavesystems/dwave-samplers
 [submodule "dwave-system"]
     path = dwave-system
     url = https://github.com/dwavesystems/dwave-system

@@ -192,7 +192,7 @@ jobs:
           name: test scaling guide
           command: |
             . env/bin/activate
-            PYTHONPATH=$(pwd):$PYTHONPATH jupyter nbconvert --to notebook --execute docs/downloadables/scaling_for_production.ipynb
+            jupyter nbconvert --to notebook --execute docs/downloadables/scaling_for_production.ipynb
 
   deploy:
     docker:
