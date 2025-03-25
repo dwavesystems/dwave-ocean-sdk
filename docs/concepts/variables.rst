@@ -4,24 +4,14 @@
 Variables
 =========
 
-.. todo:: this section can do with some work, especially related to nonlinear
-    models
+This section mainly relates to the :term:`quadratic models <quadratic model>`
+submitted to |cloud|_ service solvers such as the :term:`hybrid` :term:`CQM`
+solver.\ [#]_ For the variables in :term:`nonlinear models <nonlinear model>`,
+see an introduction in the :ref:`opt_model_construction_nl` section and the
+reference documentation under the :ref:`index_optimization` section.
 
-|dwave_short|'s :term:`samplers <sampler>` mostly\ [#]_ solve
-:ref:`quadratic models <concept_models_quadratic>` of various sorts. Quadratic
-models are characterized by having one or two variables per term. A simple
-example of a quadratic model is,
-
-.. math::
-
-    D = Ax + By + Cxy
-
-where :math:`A`, :math:`B`, and :math:`C` are constants. Single variable
-terms---:math:`Ax` and :math:`By` here---are *linear* with the constant biasing
-the term's variable. Two-variable terms---:math:`Cxy` here---are *quadratic*
-with a relationship between the variables.
-
-The variables in these models may be of the following types.
+The variables in :ref:`supported models <concept_models>` may be of the
+following types.
 
 .. |variables_table| replace:: Supported Variables
 
@@ -29,9 +19,19 @@ The variables in these models may be of the following types.
     :start-after: start_variables_table
     :end-before: end_variables_table
 
-.. [#] :ref:`Ocean <index_ocean_sdk>` software also provides some higher-order
-    tools for developing and testing your code; for example, the
-    :class:`~dimod.reference.samplers.ExactPolySolver` class.
+.. [#]
+
+    These models are characterized by having one or two variables per term. A simple
+    example of a quadratic model is,
+
+    .. math::
+
+        D = Ax + By + Cxy
+
+    where :math:`A`, :math:`B`, and :math:`C` are constants. Single variable
+    terms---:math:`Ax` and :math:`By` here---are *linear* with the constant biasing
+    the term's variable. Two-variable terms---:math:`Cxy` here---are *quadratic*
+    with a relationship between the variables.
 
 Variable Representations and Labels
 ===================================
@@ -81,3 +81,5 @@ Related Information
     nonlinear models.
 *   The :ref:`opt_model_construction_qm` section describes the construction of
     quadratic models.
+*   :ref:`quadratic models <concept_models_quadratic>` describes supported
+    models.

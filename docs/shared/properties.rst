@@ -48,7 +48,7 @@ solver were ``[[1, 0.1], [100, 10.0], [1000, 20.0]]``, then the minimum time
 for a 50-variable problem would be 5 seconds, the linear interpolation of the
 first two pairs that represent problems with between 1 to 100 variables.
 
-For more details, see `Ocean software's <index_ocean_sdk>`
+For more details, see :ref:`Ocean software's <index_ocean_sdk>`
 :ref:`samplers <system_samplers>` section for solver methods that calculate this
 parameter, and their descriptions.
 

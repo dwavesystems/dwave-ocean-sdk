@@ -19,9 +19,6 @@ Finally, the :ref:`qpu_qubo_ising_example` subsection gives a simple example and
 the :ref:`qpu_qubo_ising_transformations` subsection shows how to convert
 between :term:`Ising` models and :term:`QUBOs <QUBO>`.
 
-.. todo:: consider consolidating and importing the ising & qubo definitions from
-    concepts/models
-
 .. _qpu_qubo_ising_bqm:
 
 Binary Quadratic Models
@@ -37,57 +34,18 @@ trivial, as shown in the :ref:`qpu_qubo_ising_transformations` section.
 Ising Model
 -----------
 
-The Ising model is traditionally used in statistical mechanics. Variables are
-"spin up" (:math:`\uparrow`) and "spin down" (:math:`\downarrow`), states that
-correspond to :math:`+1` and :math:`-1` values. Relationships between the spins,
-represented by couplings, are correlations or anti-correlations. The objective
-function expressed as an Ising model is as follows:
-
-.. math::
-
-    \text{E}_{ising}(\vc s) = \sum_{i=1}^N h_i s_i +
-    \sum_{i=1}^N \sum_{j=i+1}^N J_{i,j} s_i s_j
-
-where the linear coefficients corresponding to qubit biases are :math:`h_i`,
-and the quadratic coefficients corresponding to coupling strengths are
-:math:`J_{i,j}`.
+.. include:: ../shared/models.rst
+    :start-after: start_models_ising_formula
+    :end-before: end_models_ising_formula
 
 .. _qpu_qubo_ising_qubo:
 
 QUBO
 ----
 
-QUBO problems are traditionally used in computer science, with variables taking
-values 1 (TRUE) and 0 (FALSE).
-
-A QUBO problem is defined using an upper-diagonal matrix :math:`Q`, which is an
-:math:`N` x :math:`N` upper-triangular matrix of real weights, and :math:`x`, a
-vector of binary variables, as minimizing the function
-
-.. math::
-
-    f(x) = \sum_{i} {Q_{i,i}}{x_i} + \sum_{i<j} {Q_{i,j}}{x_i}{x_j}
-
-where the diagonal terms :math:`Q_{i,i}` are the linear coefficients and the
-nonzero off-diagonal terms  :math:`Q_{i,j}` are the quadratic coefficients.
-
-This can be expressed more concisely as
-
-.. math::
-
-    \min_{{x} \in {\{0,1\}^n}} {x}^{T} {Q}{x}.
-
-In scalar notation, the objective function expressed as a QUBO is as follows:
-
-.. math::
-
-    \text{E}_{qubo}(a_i, b_{i,j}; q_i) = \sum_{i} a_i q_i +
-    \sum_{i<j} b_{i,j} q_i q_j.
-
-.. note::
-    Quadratic unconstrained binary optimization problems---QUBOs---are
-    *unconstrained* in that there are no constraints on the variables other
-    than those expressed in *Q*.
+.. include:: ../shared/models.rst
+    :start-after: start_models_qubo_formula
+    :end-before: end_models_qubo_formula
 
 .. _qpu_qubo_ising_example:
 

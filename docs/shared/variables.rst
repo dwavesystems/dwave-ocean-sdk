@@ -43,6 +43,6 @@
 
             - Where should the sensor be built?
         -   :class:`~dimod.Vartype.REAL`
-        -
+        -   :func:`~dwave.optimization.mathematical.linprog`
 
 .. end_variables_table

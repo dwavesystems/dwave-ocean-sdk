@@ -734,8 +734,7 @@ Your application will likely have multiple parts, including the following:
     it to a |dwave_short| solver for solution. It is recommended that you
     implement the :ref:`model <concept_models>` representing your
     problem, formulated as described in the previous section, and manage the
-    submission using the
-    `Ocean SDK <index_ocean_sdk>`.
+    submission using the :ref:`Ocean SDK <index_ocean_sdk>`.
 
 *   Handling inputs and presenting results
 

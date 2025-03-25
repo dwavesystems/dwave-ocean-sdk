@@ -136,33 +136,18 @@ can represent both.
 Ising Model
 -----------
 
-The :term:`Ising` model is an :term:`objective function` of :math:`N` variables
-:math:`s=[s_1,...,s_N]` corresponding to physical Ising spins, where :math:`h_i`
-are the biases and :math:`J_{i,j}` the couplings (interactions) between spins.
-
-.. math::
-
-    \text{Ising:} \qquad
-    E(\bf{s})
-    = \sum_{i=1} h_i s_i +
-    \sum_{i<j} J_{i,j} s_i s_j
-    \qquad\qquad s_i\in\{-1,+1\}
+.. include:: ../shared/models.rst
+    :start-after: start_models_ising_formula
+    :end-before: end_models_ising_formula
 
 .. _concept_models_qubo:
 
 QUBO
 ----
 
-The :term:`QUBO` model is an objective function of :math:`N` binary variables
-represented as an upper-diagonal matrix :math:`Q`, where diagonal terms are the
-linear coefficients and the nonzero off-diagonal terms the quadratic
-coefficients.
-
-.. math::
-
-    \text{QUBO:} \qquad E(\bf{x})
-    =  \sum_{i\le j} x_i Q_{i,j} x_j
-    \qquad\qquad x_i\in \{0,1\}
+.. include:: ../shared/models.rst
+    :start-after: start_models_qubo_formula
+    :end-before: end_models_qubo_formula
 
 Other Models
 ============

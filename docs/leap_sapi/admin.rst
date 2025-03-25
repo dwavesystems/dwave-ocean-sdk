@@ -1535,6 +1535,9 @@ one of the following:
     *   -   **Completed**
         -   The solver has successfully completed its work on the problem.
 
+    *   -   **Cancelling**
+        -   A request to cancel work on a problem is being processed.
+
     *   -   **Cancelled**
         -   Work on the problem has been cancelled. Cancelled problems do not
             use any solver-access time.

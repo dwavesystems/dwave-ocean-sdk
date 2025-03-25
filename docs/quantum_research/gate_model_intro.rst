@@ -18,4 +18,6 @@ Further Information
 ===================
 
 *   `Wikipedia's quantum circuit <https://en.wikipedia.org/wiki/Quantum_circuit>`_
-*   [Nel2010]_
+*   [Nel2010]_ is an introduction to the main ideas and techniques of the field
+    of quantum computation and quantum information.
+*   [Jor2011]_ is an online catalog of quantum algorithms.

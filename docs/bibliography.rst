@@ -491,14 +491,12 @@ Bibliography
     M. W. Johnson et al. "Quantum annealing with manufactured spins."
     *Nature* 473 (May 12, 2011), pp. 194--198.
 
-.. todo:: find a place to reference this link, it's a nice one
 
-.. removed the section that used this but
 
-    .. [Jor2011]
-        Stephen Jordan.
-        "Quantum Algorithm Zoo."
-        https://math.nist.gov/quantum/zoo/
+.. [Jor2011]
+    Stephen Jordan.
+    "Quantum Algorithm Zoo."
+    https://quantumalgorithmzoo.org
 
 .. [Jue2016]
     Juexiao Su, Tianheng Tu, and Lei He.

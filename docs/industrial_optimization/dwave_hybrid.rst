@@ -188,8 +188,6 @@ branches.
 
     Racing Branches
 
-.. todo:: consider modifying this pulled-in example (markers will change)
-
 .. include:: ../ocean/api_ref_hybrid/README.rst
     :start-after: start_hybrid_example
     :end-before: end_hybrid_example

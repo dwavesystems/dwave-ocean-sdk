@@ -150,7 +150,7 @@ unstructured problem (variables such as :math:`x_2` etc.) to the sampler's
 :ref:`graph structure <qpu_topologies>` (the QPU's numerically indexed qubits)
 in a process known as :term:`minor-embedding`.
 
-The next code sets up a D-Wave system as the sampler.
+The next code sets up a D-Wave quantum computer as the sampler.
 
 .. include:: ../shared/examples.rst
     :start-after: start_default_solver_config
