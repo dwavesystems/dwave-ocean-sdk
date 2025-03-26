@@ -1,0 +1,7 @@
+{# Display the version of Sphinx used to build your documentation. #}
+{% if show_sphinx %}
+  <p class="sphinx-version">
+    {% trans version=version|e %}Ocean SDK version {{ version }}.{% endtrans %}
+    <br/>
+  </p>
+{% endif %}

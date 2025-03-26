@@ -1,0 +1,25 @@
+{% extends "basic/page.html" %}
+
+{% block extrahead %}
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+        TeX: {
+            Macros: {
+                vc: ["{\\pmb #1}",1],
+                bra: ["{\\langle{ #1}|}",1],
+                ket: ["{|#1\\rangle}",1],
+                ip: ["{\\langle#1,#2\\rangle}",2],
+                tr: "\\operatorname{tr}",
+                argmax: "\\mathop{\\arg\\,\\max}\\limits",
+                argmin: "\\mathop{\\arg\\,\\min}\\limits"
+            }
+        }
+    });
+</script>
+
+{% endblock %}
+
+{% block body %}
+{{ body }}
+{% endblock %}
