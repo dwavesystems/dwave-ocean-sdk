@@ -76,7 +76,7 @@ and install the SDK to your virtual environment; for example:
 
     git clone https://github.com/dwavesystems/dwave-ocean-sdk.git
     cd dwave-ocean-sdk
-    python setup.py install
+    pip install .
 
 Note: To install a particular tool within the SDK only, follow the
 :ref:`link <ocean_source_code>`  to the GitHub repository for the tool, and

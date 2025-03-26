@@ -28,7 +28,7 @@ setup_cfg.read(os.path.join(sdk_directory, 'setup.cfg'))
 
 python_requires = setup_cfg['options']['python_requires']
 
-copyright = 'D-Wave Quantum Inc' #setup_cfg['metadata']['author']
+copyright = 'D-Wave'
 
 rst_prolog = f"""
 .. |python_requires| replace:: {python_requires}

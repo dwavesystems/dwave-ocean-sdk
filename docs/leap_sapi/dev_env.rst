@@ -35,4 +35,4 @@ Requirements
 If you configure your IDE to use
 `Ocean-Dev Docker Images <https://github.com/dwavesystems/ocean-dev-docker>`_,
 your development environment is updated with a recent Ocean SDK release.
-You can see an example `here <https://github.com/dwave-examples/sudoku>`_.
+You can see an example `here <https://github.com/dwave-examples/portfolio-optimization>`_.

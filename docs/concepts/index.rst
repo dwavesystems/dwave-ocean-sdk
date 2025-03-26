@@ -404,7 +404,7 @@ Concepts and Terminology
 
         Learn more: :ref:`concept_models_nonlinear`.
 
-    ocean
+    Ocean
         Ocean\ |tm| software is a suite of tools for using
         `D-Wave Quantum Inc. <https://www.dwavesys.com>`_ quantum computers and
         :term:`hybrid` :term:`solvers <solver>`.
@@ -648,7 +648,7 @@ Concepts and Terminology
         `subgraph <https://en.wikipedia.org/wiki/Glossary_of_graph_theory_terms#subgraph>`_
         on Wikipedia.
 
-    symbolic Math
+    symbolic math
         :ref:`index_dimod` supports symbolic math that can simplify your
         coding of problems.
 

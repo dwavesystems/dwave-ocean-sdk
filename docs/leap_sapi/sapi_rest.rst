@@ -124,7 +124,7 @@ explained in the :ref:`sapi_rest_url_token_setup` subsection.
 .. testsetup:: rest_live
 
     import os
-    SAPI_TOKEN = os.environ["SAPI_TOKEN"]   # https://git.dwavesys.local/projects/SAPI/repos/documentation/pull-requests/528/overview
+    SAPI_TOKEN = os.environ["SAPI_TOKEN"]   # pull-request 528
 
 .. doctest:: rest_live
     :skipif: False
@@ -153,7 +153,7 @@ Resources
 .. testsetup:: rest_live
 
     import os
-    SAPI_TOKEN = os.environ["SAPI_TOKEN"]   # https://git.dwavesys.local/projects/SAPI/repos/documentation/pull-requests/528/overview
+    SAPI_TOKEN = os.environ["SAPI_TOKEN"]   # pull-request 528
 
 This chapter describes supported Solver Application Programming Interface (SAPI)
 resources and provides example usages.
@@ -1614,7 +1614,7 @@ End-to-End Examples
 .. testsetup:: rest_live
 
     import os
-    SAPI_TOKEN = os.environ["SAPI_TOKEN"]   # https://git.dwavesys.local/projects/SAPI/repos/documentation/pull-requests/528/overview
+    SAPI_TOKEN = os.environ["SAPI_TOKEN"]   # pull-request 528
 
 This chapter demonstrates using the RESTful Solver Application Programming
 Interface (SAPI) directly---without :ref:`Ocean software <index_ocean_sdk>`
