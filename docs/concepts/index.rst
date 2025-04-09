@@ -225,7 +225,17 @@ Concepts and Terminology
         correlation between coupled qubits is controlled programmatically.
     
     directed acyclic graph
-        definition to come 
+    DAG
+        A graph whose edges are directed from one vertex to another, such that 
+        following the edges never forms a closed loop. They are suitable for 
+        use with decision variables that represent a common logic, such as 
+        subsets of choices or permutations of ordering. For example, in a 
+        traveling salesperson problem, permutations of the variables that 
+        represent cities signify the order of the route being optimized. 
+        Likewise, for tasks in a project with dependencies, nodes represent 
+        tasks and directed edges show which tasks must be completed before 
+        others. Models constructed for D-Wave's hybrid NL solver can be mapped 
+        to directed acyclic graphs.
 
     discrete quadratic model
     DQM
