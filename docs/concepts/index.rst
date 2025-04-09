@@ -30,7 +30,7 @@ Concepts and Terminology
         Execution time for a single quantum machine instruction (:term:`QMI`, or
         problem).
 
-        Learn more: :ref:`qpu_timing_breakdown_access`.
+        Learn more: :ref:`qpu_timing_breakdown_access`
 
     adiabatic
         An annealing process that experiences no interference from outside
@@ -63,8 +63,8 @@ Concepts and Terminology
 
         Learn more:
 
-        *   :ref:`parameter_qpu_anneal_offsets` for the solver property.
-        *   :ref:`qpu_qa_anneal_offsets` for a description.
+        *   :ref:`parameter_qpu_anneal_offsets` for the solver property
+        *   :ref:`qpu_qa_anneal_offsets` for a description
 
     anneal schedule
     annealing schedule
@@ -74,12 +74,12 @@ Concepts and Terminology
 
         Learn more:
 
-        *   :ref:`qpu_quantum_annealing_intro` for an introduction.
-        *   :ref:`qpu_annealprotocol_standard`.
-        *   :ref:`qpu_annealprotocol_fast`.
-        *   :ref:`qpu_qa_anneal_sched` for pause, quench, and reverse anneal.
+        *   :ref:`qpu_quantum_annealing_intro` for an introduction
+        *   :ref:`qpu_annealprotocol_standard`
+        *   :ref:`qpu_annealprotocol_fast`
+        *   :ref:`qpu_qa_anneal_sched` for pause, quench, and reverse anneal
         *   :ref:`qpu_solver_properties_specific` for the schedules of each QPU,
-            as spreadsheets.
+            as spreadsheets
 
     binary quadratic model
     BQM
@@ -87,7 +87,7 @@ Concepts and Terminology
         two values, for example -1, 1) with associated linear and quadratic
         biases. Sometimes referred to in other tools as a problem.
 
-        Learn more: :ref:`concept_models_bqm`.
+        Learn more: :ref:`concept_models_bqm`
 
     chain
     chains
@@ -96,9 +96,9 @@ Concepts and Terminology
 
         Learn more:
 
-        *   :ref:`qpu_embedding_intro` for an introduction.
-        *   :ref:`qpu_example_and` for an example.
-        *   :ref:`qpu_embedding_guidance` for advanced information.
+        *   :ref:`qpu_embedding_intro` for an introduction
+        *   :ref:`qpu_example_and` for an example
+        *   :ref:`qpu_embedding_guidance` for advanced information
 
     chain break
     broken chain
@@ -108,18 +108,18 @@ Concepts and Terminology
 
         Learn more
 
-        *   :ref:`qpu_example_and` explains broken chains.
+        *   :ref:`qpu_example_and` explains broken chains
         *   :ref:`qpu_example_inspector_graph_partitioning` uses the problem
             inspector (the :ref:`dwave-inspector <index_inspector>`) for
-            viewing and dealing with broken chains.
+            viewing and dealing with broken chains
 
     chain length
         The number of qubits in a :term:`Chain`.
 
         Learn more:
 
-        *   :ref:`qpu_embedding_intro` for an introduction.
-        *   :ref:`qpu_embedding_guidance` for advanced information.
+        *   :ref:`qpu_embedding_intro` for an introduction
+        *   :ref:`qpu_embedding_guidance` for advanced information
 
     chain strength
         Magnitude of the negative quadratic bias applied between variables to
@@ -127,9 +127,9 @@ Concepts and Terminology
 
         Learn more:
 
-        *   :ref:`qpu_embedding_intro` for an introduction.
-        *   :ref:`qpu_example_and` for an example.
-        *   :ref:`qpu_embedding_guidance` for advanced information.
+        *   :ref:`qpu_embedding_intro` for an introduction
+        *   :ref:`qpu_example_and` for an example
+        *   :ref:`qpu_embedding_guidance` for advanced information
 
     charge_time
     charge time
@@ -137,7 +137,7 @@ Concepts and Terminology
         account.
 
         Learn more: :ref:`opt_leap_hybrid_timing` describes the timing
-        for hybrid solvers.
+        for hybrid solvers
 
     Chimera
         A D-Wave :term:`QPU` is a lattice of interconnected qubits. While some
@@ -153,7 +153,7 @@ Concepts and Terminology
         An algorithm that runs on any non-quantum
         `computer <https://en.wikipedia.org/wiki/Computer>`.
 
-        Learn more: :ref:`qpu_classical_intro`.
+        Learn more: :ref:`qpu_classical_intro`
 
     clique
     complete graph
@@ -175,7 +175,7 @@ Concepts and Terminology
         sampler might add spin transformations when sampling from a D-Wave
         quantum computer.
 
-        Learn more: :ref:`dimod_composites`.
+        Learn more: :ref:`dimod_composites`
 
     composite
         A :term:`sampler` can be composed. The
@@ -185,7 +185,7 @@ Concepts and Terminology
         implementation. We refer to these layers as "composites". A composed
         sampler includes at least one sampler and possibly many composites.
 
-        Learn more: :ref:`dimod_composites`.
+        Learn more: :ref:`dimod_composites`
 
     connected graph
         See `connected graph <https://xlinux.nist.gov/dads/HTML/connectedGraph.html>`_
@@ -200,7 +200,7 @@ Concepts and Terminology
         representing a problem modeled as an :term:`objective function` and
         inequality and equality constraints.
 
-        Learn more: :ref:`concept_models_cqm`.
+        Learn more: :ref:`concept_models_cqm`
 
     constraint
     hard constraint
@@ -216,7 +216,7 @@ Concepts and Terminology
         requires that all the problem's variables be assigned values, out of a
         finite domain, that result in the satisfying of all constraints.
 
-        Learn more: :ref:`concept_constraint_satisfaction_problem`.
+        Learn more: :ref:`concept_constraint_satisfaction_problem`
 
     coupler
     couplers
@@ -248,7 +248,7 @@ Concepts and Terminology
         :math:`\{red, green, blue\}` or :math:`\{33, 5.7, 3,14 \}` ) with
         associated linear and quadratic biases.
 
-        Learn more: :ref:`concept_models_dqm`.
+        Learn more: :ref:`concept_models_dqm`
 
     embed
     embedding
@@ -264,11 +264,11 @@ Concepts and Terminology
 
         Learn more:
 
-        *   :ref:`qpu_embedding_intro` for an introduction.
-        *   :ref:`qpu_embedding_guidance` for advanced information.
-        *   :ref:`qpu_topologies` on QPU topologies.
+        *   :ref:`qpu_embedding_intro` for an introduction
+        *   :ref:`qpu_embedding_guidance` for advanced information
+        *   :ref:`qpu_topologies` on QPU topologies
         *   :ref:`qpu_example_not`, :ref:`qpu_example_and`, and
-            :ref:`qpu_example_multigate` for examples and more information.
+            :ref:`qpu_example_multigate` for examples and more information
 
     excited state
         States of a quantum system that have higher energy than the
@@ -276,7 +276,7 @@ Concepts and Terminology
         problems represented by an :term:`objective function` and infeasible
         configurations for problems represented by a :term:`penalty model`.
 
-        Learn more: :ref:`qpu_quantum_annealing_intro`.
+        Learn more: :ref:`qpu_quantum_annealing_intro`
 
     feasible state
         A state in which the values of variables do not violate any hard
@@ -289,10 +289,10 @@ Concepts and Terminology
 
         Learn more:
 
-        *   :ref:`parameter_qpu_flux_biases` for a description of the parameter.
+        *   :ref:`parameter_qpu_flux_biases` for a description of the parameter
         *   :ref:`qpu_error_fix_fbo` fo ran explanation of calibration
-            refinement.
-        *   :ref:`qpu_config_emulate_with_fbo`.
+            refinement
+        *   :ref:`qpu_config_emulate_with_fbo`
 
     gate model
     circuit model
@@ -303,7 +303,7 @@ Concepts and Terminology
         `Boolean gates <https://en.wikipedia.org/wiki/Logic_gate>`_ in classical
         computers.
 
-        Learn more: :ref:`qpu_gate_model_intro`.
+        Learn more: :ref:`qpu_gate_model_intro`
 
     graph
         A collection of nodes and edges. A graph can be derived from a
@@ -343,14 +343,14 @@ Concepts and Terminology
 
         Learn more:
 
-        *   :ref:`qpu_quantum_annealing_intro` for an introduction.
-        *   :ref:`qpu_annealing` for advanced information on implementation.
+        *   :ref:`qpu_quantum_annealing_intro` for an introduction
+        *   :ref:`qpu_annealing` for advanced information on implementation
 
     hardware graph
         The hardware graph is the physical lattice of interconnected qubits.
         See also :term:`working graph`.
 
-        Learn more: :ref:`qpu_topologies`.
+        Learn more: :ref:`qpu_topologies`
 
     hybrid
         Quantum-classical hybrid is the use of both classical and quantum
@@ -359,11 +359,11 @@ Concepts and Terminology
 
         Learn more:
 
-        *   :ref:`concept_hybrid` for an introduction.
-        *   :ref:`opt_index_hybrid` gets you started with hybrid samplers.
+        *   :ref:`concept_hybrid` for an introduction
+        *   :ref:`opt_index_hybrid` gets you started with hybrid samplers
         *   :ref:`opt_index_properties_parameters` describes the supported
-            hybrid solvers in the :term:`Leap service`.
-        *   :ref:`opt_index_improving_solutions` describes best practices.
+            hybrid solvers in the :term:`Leap service`
+        *   :ref:`opt_index_improving_solutions` describes best practices
 
     ICE
     integrated control errors
@@ -372,7 +372,7 @@ Concepts and Terminology
         *ICE* refers collectively to these sources of infidelity in problem
         representation.
 
-        Learn more: :ref:`qpu_errors`.
+        Learn more: :ref:`qpu_errors`
 
     infeasible state
         A state in which the values of variables violate a :term:`constraint`.
@@ -388,10 +388,10 @@ Concepts and Terminology
 
         Learn more:
 
-        *   `Ising Model on Wikipedia <https://en.wikipedia.org/wiki/Ising_model>`_.
-        *   :ref:`concept_models` on supported models.
         *   :ref:`qpu_qubo_ising_transformations` for how to convert between
             Ising and QUBO formulations
+        *   `Ising Model on Wikipedia <https://en.wikipedia.org/wiki/Ising_model>`_
+        *   :ref:`concept_models` on supported models
 
     Leap
     Leap service
@@ -412,7 +412,7 @@ Concepts and Terminology
         The minimum distance between the :term:`ground state` and the first
         :term:`excited state` throughout any point in the anneal.
 
-        Learn more: :ref:`qpu_quantum_annealing_intro`.
+        Learn more: :ref:`qpu_quantum_annealing_intro`
 
     model
         A collection of variables with associated biases. Sometimes referred to
@@ -425,21 +425,21 @@ Concepts and Terminology
         :term:`objective function` and/or constraints. Sometimes referred to as
         a **problem**. See also :term:`linear program`.
 
-        Learn more: :ref:`concept_models_nonlinear`.
+        Learn more: :ref:`concept_models_nonlinear`
 
     Ocean
         Ocean\ |tm| software is a suite of tools for using
         `D-Wave Quantum Inc. <https://www.dwavesys.com>`_ quantum computers and
         :term:`hybrid` :term:`solvers <solver>`.
 
-        Learn more: :ref:`index_ocean_sdk`.
+        Learn more: :ref:`index_ocean_sdk`
 
     objective function
     objective
         A mathematical expression of the energy of a system as a function of
         its variables.
 
-        Learn more: :ref:`qpu_quantum_annealing_intro`.
+        Learn more: :ref:`qpu_quantum_annealing_intro`
 
     one-hot
         For one-hot variables, the only valid values are those in which a single
@@ -456,7 +456,7 @@ Concepts and Terminology
         architecture known as Pegasus. See also :term:`Chimera` and
         :term:`Zephyr`.
 
-        Learn more: :ref:`qpu_topologies`.
+        Learn more: :ref:`qpu_topologies`
 
     penalty function
         An algorithm for solving constrained optimization problems. In the
@@ -465,7 +465,7 @@ Concepts and Terminology
         penalizing non-valid configurations. See
         `Penalty method on Wikipedia <https://en.wikipedia.org/wiki/Penalty_method>`_.
 
-        Learn more: :ref:`concept_penalty`.
+        Learn more: :ref:`concept_penalty`
 
     penalty
     penalty model
@@ -473,7 +473,7 @@ Concepts and Terminology
         :term:`Ising` model or a :term:`QUBO` by mapping each individual
         constraint in the CSP to a "small" Ising model or QUBO.
 
-        Learn more: :ref:`concept_penalty`.
+        Learn more: :ref:`concept_penalty`
 
     postprocessing
         Postprocessing in the context of using a solver can refer to additional
@@ -482,9 +482,9 @@ Concepts and Terminology
 
         Learn more:
 
-        *   :ref:`qpu_config_postprocessing` for an introduction.
+        *   :ref:`qpu_config_postprocessing` for an introduction
         *   :ref:`qpu_postprocessing` for results of postprocessing results
-            returned from a quantum computer.
+            returned from a quantum computer
 
     preprocessing
         Preprocessing can refer to some low-cost classical computation applied
@@ -501,13 +501,13 @@ Concepts and Terminology
     QPU
         Quantum processing unit.
 
-        Learn more: :ref:`qpu_quantum_annealing_intro`.
+        Learn more: :ref:`qpu_quantum_annealing_intro`
 
     qpu_access_time
         :term:`QPU` time used by a :term:`hybrid` solver.
 
         Learn more: :ref:`opt_leap_hybrid_timing` describes the timing
-        for hybrid solvers.
+        for hybrid solvers
 
     quadratic model
         A collection of variables with associated linear and quadratic biases.
@@ -529,7 +529,7 @@ Concepts and Terminology
         :ref:`higher order models <dimod_higher_order_models>`, which are
         typically reduced to quadratic for sampling.
 
-        Learn more: :ref:`concept_models_quadratic`.
+        Learn more: :ref:`concept_models_quadratic`
 
     quantum annealing
     quantum annealer
@@ -541,10 +541,10 @@ Concepts and Terminology
 
         Learn more:
 
-        *   :ref:`qpu_quantum_annealing_intro` for an introduction.
-        *   :ref:`qpu_annealprotocol_standard`.
-        *   :ref:`qpu_annealprotocol_fast`.
-        *   :ref:`qpu_qa_anneal_sched` for pause, quench, and reverse anneal.
+        *   :ref:`qpu_quantum_annealing_intro` for an introduction
+        *   :ref:`qpu_annealprotocol_standard`
+        *   :ref:`qpu_annealprotocol_fast`
+        *   :ref:`qpu_qa_anneal_sched` for pause, quench, and reverse anneal
 
     quantum computing
     quantum computer
@@ -565,7 +565,7 @@ Concepts and Terminology
         a two-state (or two-level) quantum-mechanical system; for example, the
         spin of the electron in which the two levels can be taken as spin up and
         spin down. See
-        `Qubit on Wikipedia <https://en.wikipedia.org/wiki/Qubit>`_.
+        `Qubit on Wikipedia <https://en.wikipedia.org/wiki/Qubit>`_
 
     QUBO
         .. include:: ../shared/models.rst
@@ -591,9 +591,9 @@ Concepts and Terminology
         Learn more:
 
         *   :ref:`opt_leap_hybrid_timing` describes the timing for hybrid
-            solvers.
+            solvers
         *   :ref:`qpu_timing_runtime_limits` describes the runtime limit for a
-            problem executing on a quantum computer.
+            problem executing on a quantum computer
 
     sampler
         Samplers are processes that sample from low energy states of a problem's
@@ -609,7 +609,7 @@ Concepts and Terminology
         some classical samplers actually brute-force solve small problems rather
         than sample, and these are also referred to as solvers.)
 
-        Learn more: :ref:`concept_samplers`.
+        Learn more: :ref:`concept_samplers`
 
     sampleset
     samples
@@ -617,14 +617,14 @@ Concepts and Terminology
         Ocean uses a :class:`~dimod.SampleSet` class to hold samples and some
         additional information.
 
-        Learn more: :ref:`concept_samplesets`.
+        Learn more: :ref:`concept_samplesets`
 
     SAPI
         Solver API used by clients to communicate with a :term:`solver`.
 
         Learn more:
 
-        *   :ref:`ocean_sapi_access_basic`.
+        *   :ref:`ocean_sapi_access_basic`
         *   :ref:`ocean_sapi_access_advanced`
 
     SAT
@@ -641,13 +641,13 @@ Concepts and Terminology
         ingress time (arrival at :term:`SAPI`) and sampleset's egress (exit from
         the quantum computer) for each quantum machine instruction (QMI).
 
-        Learn more: :ref:`qpu_timing_breakdown_service`.
+        Learn more: :ref:`qpu_timing_breakdown_service`
 
     solver
         A resource that runs a problem. Some solvers interface to the
         :term:`QPU`; others leverage CPU and GPU resources.
 
-        Learn more: :ref:`concept_samplers`.
+        Learn more: :ref:`concept_samplers`
 
     source
     source graph
@@ -657,9 +657,9 @@ Concepts and Terminology
 
         Learn more:
 
-        *   :ref:`qpu_embedding_intro` for an introduction.
-        *   :ref:`qpu_embedding_guidance` for advanced information.
-        *   :ref:`qpu_topologies` on QPU topologies.
+        *   :ref:`qpu_embedding_intro` for an introduction
+        *   :ref:`qpu_embedding_guidance` for advanced information
+        *   :ref:`qpu_topologies` on QPU topologies
 
     spin-reversal transform
     gauge transform
@@ -668,7 +668,7 @@ Concepts and Terminology
         impact of unintended biases of coupling :math:`J_{i,j}` adding a small
         bias to qubits :math:`i` and :math:`j` due to leakage.
 
-        Learn more: :ref:`qpu_config_srt`.
+        Learn more: :ref:`qpu_config_srt`
 
     structured sampler
         Samplers that are restricted to sampling only binary quadratic models
@@ -683,7 +683,7 @@ Concepts and Terminology
         :ref:`index_dimod` supports symbolic math that can simplify your
         coding of problems.
 
-        Learn more: :ref:`concept_symbolic_math`.
+        Learn more: :ref:`concept_symbolic_math`
 
     target
     target graph
@@ -695,9 +695,9 @@ Concepts and Terminology
 
         Learn more:
 
-        *   :ref:`qpu_embedding_intro` for an introduction.
-        *   :ref:`qpu_embedding_guidance` for advanced information.
-        *   :ref:`qpu_topologies` on QPU topologies.
+        *   :ref:`qpu_embedding_intro` for an introduction
+        *   :ref:`qpu_embedding_guidance` for advanced information
+        *   :ref:`qpu_topologies` on QPU topologies
 
     topology
     architecture
@@ -715,7 +715,7 @@ Concepts and Terminology
         is typically less than 100% of qubits and couplers that are fabricated
         and physically present in the QPU. See :term:`hardware graph`.
 
-        Learn more: :ref:`qpu_topologies`.
+        Learn more: :ref:`qpu_topologies`
 
     Zephyr
         A D-Wave :term:`QPU` is a lattice of interconnected qubits. While some
@@ -724,7 +724,7 @@ Concepts and Terminology
         the qubits interconnect in an architecture known as Zephyr. See also
         :term:`Pegasus` and :term:`Chimera`.
 
-        Learn more: :ref:`qpu_topologies`.
+        Learn more: :ref:`qpu_topologies`
 
 .. _generated_site_index:
 
