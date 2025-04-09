@@ -223,6 +223,9 @@ Concepts and Terminology
         Couplers can correlate two qubits such that they tend to end up in the
         same classical state---both 0 or both 1---or in opposite states. The
         correlation between coupled qubits is controlled programmatically.
+    
+    directed acyclic graph
+        definition to come 
 
     discrete quadratic model
     DQM
