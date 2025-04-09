@@ -105,6 +105,10 @@ abbr {
     text-decoration : none !important;
 }
 
+.math {
+    vertical-align: text-top;
+}
+
 .sd-card-title {
     font-size: 0.875em;
 }
