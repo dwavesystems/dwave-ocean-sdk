@@ -818,6 +818,16 @@ Bibliography
     "Global Warming: Temperature Estimation in Annealers"
     arXiv:1606.00919.
 
+.. [Ray2020]
+    J. Raymond, N. Ndiaye, G. Rayaprolu and A. D. King.
+    "Improving performance of logical qubits by parameter tuning and topology
+    compensation."
+    2020 IEEE International Conference on Quantum Computing and Engineering
+    (QCE), Denver, CO, USA, 2020, pp. 295-305.
+    doi: 10.1109/QCE49297.2020.00044.
+    https://ieeexplore.ieee.org/document/9259935
+    https://arxiv.org/abs/2006.04913
+
 .. [Ray2023]
     Raymond J., R. Stevanovic, W. Bernoudy, K. Boothby, C. C. McGeoch, A. J.
     Berkley, P. Farré, J. Pasvolsky, and A. D. King.
