@@ -184,13 +184,6 @@ a:hover {
     border: 1px solid var(--pst-color-border);
 }
 
-@media only screen and (max-width: 768px) {
-    .bd-content div.sd-tab-content {
-        padding-left: 1rem;
-        padding-right: 1rem;
-    }
-}
-
 .bd-content .sd-tab-set>input+label {
     border: none;
 }
@@ -211,6 +204,11 @@ div.sd-tab-set {
 }
 
 @media only screen and (max-width: 768px) {
+    .bd-content div.sd-tab-content {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
     .bd-content .sd-tab-set>input+label {
         font-size: 0.9rem;
         border: 1px solid var(--pst-color-border);
@@ -222,6 +220,15 @@ div.sd-tab-set {
         margin-bottom: 0;
         border-top-left-radius: 0;
         border-top-right-radius: 0;
+    }
+
+    .sd-container-fluid {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+    .sd-card-body {
+        padding: 0.6rem !important;
     }
 }
 
