@@ -221,7 +221,7 @@ In |dwave_5kq_tm| QPUs, qubits are “oriented” vertically or horizontally, as
 the Chimera topology, but similarly aligned qubits are also shifted, as
 illustrated in :numref:`Figure %s <PegasusQubits>`.
 
-.. figure:: ../_images/Pegasus_qubits.*
+.. figure:: ../_images/pegasus_qubits.*
     :name: PegasusQubits
     :height: 400 pt
     :width: 400 pt
