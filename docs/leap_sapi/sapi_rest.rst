@@ -1024,8 +1024,9 @@ The request should contain no body.
 List Problems
 -------------
 
-To retrieve a list of previously submitted problems, send an HTTP GET request to
-``problems``.
+To retrieve a list of problems, send an HTTP GET request to ``problems``.
+
+.. note:: |max_prob_results|
 
 The request should contain no body.
 
@@ -1129,6 +1130,9 @@ Retrieve a Problem
 
 To retrieve a previously submitted problem, send an HTTP GET request to
 ``problems/<problem_id>``.
+
+.. note:: Up to 1000 of a Leap account's newest problem submissions are stored
+    and accessible in the Leap service for up to 365 days.
 
 The request should contain no body.
 

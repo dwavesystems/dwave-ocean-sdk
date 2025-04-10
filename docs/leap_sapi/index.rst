@@ -136,8 +136,8 @@ the dashboard.
     API tokens required to submit arbitrary problems to solvers and thus users
     in those projects can only run some demos.
 
-Customer Plans and Access to Solvers
-====================================
+Customer Plans, Access to Solvers, and Storage of Problem Submissions
+=====================================================================
 
 Your customer plan\ [#]_ and :ref:`seat type <admin_def_seat_type>` in a
 project, together with your customer contract (where applicable), determine your
@@ -148,6 +148,10 @@ usage for a project on the dashboard.
 Users with :ref:`limited solver access <admin_def_solver_access_limit>` can
 submit problems to the solvers in a project while their remaining solver-access
 time\ [#]_ for that project is sufficient.
+
+Up to 1000 of a user's newest problem submissions are stored and accessible in
+the Leap service for up to 365 days; if the number of problem submissions
+exceeds 1000 for a user, the Leap service begins to delete the oldest ones.
 
 .. [#] For information about customer plans, see the
     `Leap Customer Plans <https://cloud.dwavesys.com/leap/plans>`_ page.
