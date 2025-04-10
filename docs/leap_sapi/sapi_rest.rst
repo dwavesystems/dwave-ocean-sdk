@@ -1026,8 +1026,6 @@ List Problems
 
 To retrieve a list of problems, send an HTTP GET request to ``problems``.
 
-.. note:: |max_prob_results|
-
 The request should contain no body.
 
 By default, the request blocks for up to one second unless at least one problem
