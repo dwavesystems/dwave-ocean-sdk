@@ -48,7 +48,7 @@
         provides an interface between D-Wave's quantum-classical :term:`hybrid`
         :term:`solvers <solver>` and the `PyTorch <https://pytorch.org/>`_
         framework.
-        
+
         Also see the :ref:`qpu_stating_problems_machine_learning` section.
 
         Additional content for this topic is currently under development.
