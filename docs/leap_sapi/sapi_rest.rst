@@ -1028,6 +1028,9 @@ To retrieve a list of problems, send an HTTP GET request to ``problems``.
 
 The request should contain no body.
 
+.. note:: Up to 1000 of a user's newest problem submissions are stored
+    and accessible in the Leap service for up to 365 days.
+
 By default, the request blocks for up to one second unless at least one problem
 has completed processing.
 
@@ -1128,9 +1131,6 @@ Retrieve a Problem
 
 To retrieve a previously submitted problem, send an HTTP GET request to
 ``problems/<problem_id>``.
-
-.. note:: Up to 1000 of a Leap account's newest problem submissions are stored
-    and accessible in the Leap service for up to 365 days.
 
 The request should contain no body.
 

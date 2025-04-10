@@ -123,21 +123,23 @@ To submit a problem, an API token is required. Instead of a user name and
 password, an API token is used to authenticate your client session when it
 connects to the Leap service. A unique and secure API token is generated
 for each of your projects, excluding those with the **Trial Plan** account
-type,\ [#]_ and is available on the dashboard.
+type,\ [#]_ and is available on the dashboard. If your API token is shared or
+compromised in any way, you should reset it via the dashboard.
 
-To learn about authorizing the Ocean software access to your account
-in the Leap service and enabling it to store your API token in your development
+To learn about authorizing the Ocean software access to your account in
+the Leap service and enabling it to store your API token in your development
 environment, see the :ref:`leap_dev_env` section.
 
-If your API token is shared or compromised in any way, you should reset it via
-the dashboard.
+Up to 1000 of your newest problem submissions are stored and accessible in
+the Leap service for up to 365 days; if your number of problem submissions
+exceeds 1000, the Leap service begins to delete the oldest ones.
 
 .. [#]  Projects with the **Trial Plan** account type do not include the use of
     API tokens required to submit arbitrary problems to solvers and thus users
     in those projects can only run some demos.
 
-Customer Plans, Access to Solvers, and Storage of Problem Submissions
-=====================================================================
+Customer Plans and Access to Solvers
+====================================
 
 Your customer plan\ [#]_ and :ref:`seat type <admin_def_seat_type>` in a
 project, together with your customer contract (where applicable), determine your
@@ -148,10 +150,6 @@ usage for a project on the dashboard.
 Users with :ref:`limited solver access <admin_def_solver_access_limit>` can
 submit problems to the solvers in a project while their remaining solver-access
 time\ [#]_ for that project is sufficient.
-
-Up to 1000 of a user's newest problem submissions are stored and accessible in
-the Leap service for up to 365 days; if the number of problem submissions
-exceeds 1000 for a user, the Leap service begins to delete the oldest ones.
 
 .. [#] For information about customer plans, see the
     `Leap Customer Plans <https://cloud.dwavesys.com/leap/plans>`_ page.
