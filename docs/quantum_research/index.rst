@@ -17,7 +17,7 @@ Quantum Research
 The :ref:`index_quantum_research` section shows how to use |dwave_short_tm|
 quantum processing units (QPU) directly.
 
-.. grid:: 3
+.. grid:: 2 2 3 3
     :gutter: 2
 
     .. grid-item-card:: :ref:`qpu_index_get_started`

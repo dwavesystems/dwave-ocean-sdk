@@ -21,7 +21,7 @@ Ocean\ |tm| software is a suite of tools for using
 
 This section documents **Ocean SDK version** |version|.
 
-.. grid:: 3
+.. grid:: 2 2 3 3
     :gutter: 2
 
     .. grid-item-card:: :ref:`ocean_index_get_started`

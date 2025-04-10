@@ -26,7 +26,7 @@ These examples solve small instances of known optimization problems using
 the `Leap <https://cloud.dwavesys.com/leap/>`_ service's hybrid
 :term:`nonlinear-model <nonlinear model>` solver.
 
-.. grid:: 3
+.. grid:: 2 2 3 3
     :gutter: 2
 
     .. grid-item-card:: :ref:`opt_example_nl_tsp`
@@ -40,7 +40,7 @@ Quadratic Models
 
 These examples use the |cloud| service's :term:`quadratic model` solvers.
 
-.. grid:: 3
+.. grid:: 2 2 3 3
     :gutter: 2
 
     .. grid-item-card:: :ref:`opt_example_cqm_binpacking`

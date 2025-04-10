@@ -96,7 +96,7 @@ html[data-theme="dark"] {
 }
 
 /* Dropdown titles */
-.sd-summary-title{
+.sd-summary-title {
     font-weight: normal !important;
 }
 
@@ -184,6 +184,13 @@ a:hover {
     border: 1px solid var(--pst-color-border);
 }
 
+@media only screen and (max-width: 768px) {
+    .bd-content div.sd-tab-content {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}
+
 .bd-content .sd-tab-set>input+label {
     border: none;
 }
@@ -203,6 +210,21 @@ div.sd-tab-set {
     margin-bottom: 2em;
 }
 
+@media only screen and (max-width: 768px) {
+    .bd-content .sd-tab-set>input+label {
+        font-size: 0.9rem;
+        border: 1px solid var(--pst-color-border);
+        padding: 0.6rem;
+    }
+
+    .bd-content .sd-tab-set>input:checked+label {
+        border: 1px solid var(--pst-color-link);
+        margin-bottom: 0;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+    }
+}
+
 /* grid-item-card */
 img.sd-card-img-top {
     height: 4.5rem;
@@ -211,8 +233,12 @@ img.sd-card-img-top {
     background: none !important;
 }
 
-.sd-card-body .sd-card-title a {
+.sd-card-body .sd-card-title {
     font-size: 1rem;
+}
+
+div.sd-card.sd-card-hover .sd-card-body .sd-card-title {
+    color: var(--pst-color-link);
 }
 
 div.sd-card.sd-card-hover .sd-card-body .sd-card-title a {

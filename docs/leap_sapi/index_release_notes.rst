@@ -17,7 +17,7 @@ Leap Service Release Notes
     New product features, changes to default system behavior, known issues that may
     affect your use of the |cloud_tm| service, and resolved issues.
 
-    .. grid:: 3
+    .. grid:: 2 2 3 3
         :gutter: 2
 
         .. grid-item-card:: :ref:`leap_release_notes`

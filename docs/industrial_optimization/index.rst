@@ -19,7 +19,7 @@ The :ref:`index_industrial_optimization` section shows how to optimize business
 problems using the |cloud_tm| service's quantum-classical :term:`hybrid`
 solvers.
 
-.. grid:: 3
+.. grid:: 2 2 3 3
     :gutter: 2
 
     .. grid-item-card:: :ref:`opt_index_get_started`
