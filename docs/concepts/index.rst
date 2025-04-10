@@ -226,16 +226,20 @@ Concepts and Terminology
     
     directed acyclic graph
     DAG
-        A graph whose edges are directed from one vertex to another, such that 
-        following the edges never forms a closed loop. They are suitable for 
-        use with decision variables that represent a common logic, such as 
-        subsets of choices or permutations of ordering. For example, in a 
-        traveling salesperson problem, permutations of the variables that 
+        A DAG <https://en.wikipedia.org/wiki/Directed_acyclic_graph>_ is a graph 
+        whose edges are directed from one vertex to another, such that 
+        following the edges never forms a closed loop (you cannot return to a 
+        node by following any path along these directed edges). They are 
+        suitable for use with decision variables that represent a common logic, 
+        such as subsets of choices or permutations of ordering. For example, in 
+        a traveling salesperson problem, permutations of the variables that 
         represent cities signify the order of the route being optimized. 
         Likewise, for tasks in a project with dependencies, nodes represent 
         tasks and directed edges show which tasks must be completed before 
-        others. Models constructed for D-Wave's hybrid NL solver can be mapped 
-        to directed acyclic graphs.
+        others. Models constructed for D-Wave's hybrid nonlinear solver can be 
+        mapped to DAGs.
+
+        Learn more: :ref:`opt_model_construction_nl`
 
     discrete quadratic model
     DQM
