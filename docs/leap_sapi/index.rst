@@ -131,7 +131,7 @@ the Leap service and enabling it to store your API token in your development
 environment, see the :ref:`leap_dev_env` section.
 
 Up to 1000 of your newest problem submissions are stored and accessible in
-the Leap service for up to 365 days; if your number of problem submissions
+the Leap service for up to 365 days; if the number of your problem submissions
 exceeds 1000, the Leap service begins to delete the oldest ones.
 
 .. [#]  Projects with the **Trial Plan** account type do not include the use of
