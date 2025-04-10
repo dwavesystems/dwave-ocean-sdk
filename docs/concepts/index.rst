@@ -365,10 +365,16 @@ Concepts and Terminology
             :start-after: start_models_ising_formula
             :end-before: end_models_ising_formula
 
+        Ising models are closely related to :term:`QUBO` models. Both are ways
+        of representing optimization problems as binary quadratic models 
+        suitable for quantum annealing.
+        
         Learn more:
 
         *   `Ising Model on Wikipedia <https://en.wikipedia.org/wiki/Ising_model>`_.
         *   :ref:`concept_models` on supported models.
+        *   :ref:`ising-qubo-transformations` for how to convert between Ising   
+            and QUBO formulations
 
     Leap
     Leap service
@@ -551,7 +557,15 @@ Concepts and Terminology
 
         See also `QUBO on Wikipedia <https://en.wikipedia.org/wiki/Quadratic_unconstrained_binary_optimization>`_.
 
-        Learn more: :ref:`concept_models_qubo`.
+        QUBO models are closely related to :term:`Ising` models. Both are ways
+        of representing optimization problems as binary quadratic models 
+        suitable for quantum annealing.
+
+        Learn more: 
+        
+        *   :ref:`concept_models_qubo`
+        *   :ref:`ising-qubo-transformations` for how to convert between Ising   
+            and QUBO formulations
 
     run_time
     runtime
