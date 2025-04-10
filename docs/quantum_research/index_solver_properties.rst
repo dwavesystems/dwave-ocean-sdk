@@ -17,7 +17,7 @@ service can be queried through :term:`SAPI`. Properties specific to the hardware
 of an individual :term:`QPU` are recorded in the
 :ref:`qpu_solver_properties_specific` section.
 
-.. grid:: 3
+.. grid:: 2 2 3 3
     :gutter: 2
 
     .. grid-item-card:: :ref:`qpu_solver_properties_all`

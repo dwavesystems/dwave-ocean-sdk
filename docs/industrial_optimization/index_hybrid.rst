@@ -22,7 +22,7 @@ resources:
 
     A Python framework for building a variety of flexible hybrid workflows.
 
-.. grid:: 3
+.. grid:: 2 2 3 3
     :gutter: 2
 
     .. grid-item-card:: :ref:`opt_leap_hybrid`

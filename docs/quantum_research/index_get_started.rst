@@ -21,7 +21,7 @@ Get Started with Quantum Computing
 Learn to submit problems directly to quantum processing units (:term:`QPU`) in
 the |cloud| quantum cloud service.
 
-.. grid:: 3
+.. grid:: 2 2 3 3
     :gutter: 2
 
     .. grid-item-card:: :ref:`qpu_quantum_annealing_intro`

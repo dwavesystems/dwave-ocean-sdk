@@ -14,7 +14,7 @@ For beginner examples, see the :ref:`qpu_index_examples_beginner` section.
     example_inspector_graph_partitioning
     example_topology_samplers
 
-.. grid:: 3
+.. grid:: 2 2 3 3
     :gutter: 2
 
     .. grid-item-card:: :ref:`qpu_example_pp_greedy`

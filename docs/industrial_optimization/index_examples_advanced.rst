@@ -23,7 +23,7 @@ These examples solve small instances of known optimization problems using
 the `Leap <https://cloud.dwavesys.com/leap/>`_ service's hybrid
 :term:`nonlinear-model <nonlinear model>` solver.
 
-.. grid:: 3
+.. grid:: 2 2 3 3
     :gutter: 2
 
     .. grid-item-card:: :ref:`opt_example_nl_cvrp`
@@ -37,7 +37,7 @@ Quadratic Models
 
 These examples use the |cloud| service's :term:`quadratic model` solvers.
 
-.. grid:: 3
+.. grid:: 2 2 3 3
     :gutter: 2
 
     .. grid-item-card:: :ref:`opt_example_bqm_structuralimbalance`
@@ -72,7 +72,7 @@ Demos
 D-Wave's `dwave-examples <https://github.com/dwave-examples>`_ GitHub repo
 contains many more code examples.
 
-.. grid:: 3
+.. grid:: 2 2 3 3
     :gutter: 2
 
     .. grid-item-card:: `Nurse scheduling <https://github.com/dwave-examples/nurse-scheduling>`_
@@ -111,7 +111,7 @@ and code, are helpful for both walking beginners through the theory and practice
 of problem solving and explaining complex features. They can also serve as
 a framework in which to develop your own code.
 
-.. grid:: 3
+.. grid:: 2 2 3 3
     :gutter: 2
 
     .. grid-item-card:: `Structural imbalance notebook <https://github.com/dwave-examples/structural-imbalance-notebook>`_

@@ -51,7 +51,7 @@ Ocean SDK's Programming Model
 
 Learn Ocean software's workflow and structure.
 
-.. grid:: 3
+.. grid:: 2 2 3 3
     :gutter: 2
 
     .. grid-item-card:: :ref:`ocean_workflow`

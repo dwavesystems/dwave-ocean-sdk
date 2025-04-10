@@ -17,7 +17,7 @@ Basic QPU Examples
     example_scheduling
     example_mapcoloring
 
-.. grid:: 3
+.. grid:: 2 2 3 3
     :gutter: 2
 
     .. grid-item-card:: :ref:`qpu_example_sat_unconstrained`

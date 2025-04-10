@@ -15,7 +15,7 @@ in this section.
     scaling
     index_examples_advanced
 
-.. grid:: 3
+.. grid:: 2 2 3 3
     :gutter: 2
 
     .. grid-item-card:: :ref:`opt_best_practices`

@@ -36,7 +36,7 @@ Large optimization problems can be formulated as
 :ref:`opt_model_construction_nl` section. You can then use the nonlinear hybrid
 :term:`solver` hosted in the |cloud_tm| service to find good solutions.
 
-.. grid:: 3
+.. grid:: 2 2 3 3
     :gutter: 2
 
     .. grid-item-card:: :ref:`opt_solver_nl_properties`
@@ -59,7 +59,7 @@ Large optimization problems can be formulated as
 :ref:`opt_model_construction_qm` section. You can then use the CQM hybrid
 :term:`solver` hosted in the |cloud| service to find good solutions.
 
-.. grid:: 3
+.. grid:: 2 2 3 3
     :gutter: 2
 
     .. grid-item-card:: :ref:`opt_solver_cqm_properties`
@@ -81,7 +81,7 @@ Additional Solvers
 BQM Solver
 ----------
 
-.. grid:: 3
+.. grid:: 2 2 3 3
     :gutter: 2
 
     .. grid-item-card:: :ref:`opt_solver_bqm_properties`
@@ -99,7 +99,7 @@ BQM Solver
 DQM Solver
 ----------
 
-.. grid:: 3
+.. grid:: 2 2 3 3
     :gutter: 2
 
     .. grid-item-card:: :ref:`opt_solver_dqm_properties`
