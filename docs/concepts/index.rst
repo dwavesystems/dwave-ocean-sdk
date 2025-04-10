@@ -233,6 +233,34 @@ Concepts and Terminology
 
         Learn more: :ref:`concept_models_dqm`.
 
+    eigenenergy
+    eigenspectrum
+    eigenstate
+    eigenvalue
+    eigenvector
+        An *eigenvector* is a vector that does not change direction when a
+        linear transformation is applied; instead, it is scaled by a number
+        called the *eigenvalue*. In quantum mechanics, the transformation of an
+        eigenvector (the wave function of the system) is governed by the
+        :term:`Hamiltonian` operator.
+
+        An *eigenstate* is a quantum state---that is, a solution to the
+        Schrödinger equation---that corresponds to a particular eigenvalue of
+        the Hamiltonian. In quantum annealing, an eigenstate has a well-defined
+        energy with respect to the Hamiltonian at a given point in time.
+        Throughout the annealing process, the system evolves from the
+        lowest-energy eigenstate (the :term:`ground state`) of the initial
+        Hamiltonian toward an eigenstate of the final (problem) Hamiltonian. At
+        any point during the anneal, the system can be described in terms of the
+        eigenstates (possible configurations) of the current Hamiltonian.
+
+        Each eigenstate corresponds to a specific *eigenenergy*. The complete
+        set of these energies forms the *eigenspectrum*, representing all
+        possible energy levels of the quantum system. 
+        See also :term:`Hamiltonian`.
+    
+        Learn more: :ref:`qpu_quantum_annealing_intro`
+    
     embed
     embedding
     minor embed
@@ -303,9 +331,9 @@ Concepts and Terminology
         the system, and the Hamiltonian returns the energy for that state.
         For a quantum system, a Hamiltonian is a function that maps certain
         states, called *eigenstates*, to energies. Only when the system is in
-        an eigenstate of the Hamiltonian is its energy well defined and called
-        the *eigenenergy*. When the system is in any other state, its energy
-        is uncertain.
+        an :term:`eigenstate` of the Hamiltonian is its energy well defined and
+        called the :term:`eigenenergy`. When the system is in any other state,
+        its energy is uncertain.
         For D-Wave quantum computers, the Hamiltonian may be represented as
 
         .. math::
@@ -322,7 +350,7 @@ Concepts and Terminology
 
         where :math:`{\hat\sigma_{x,z}^{(i)}}` are Pauli matrices operating on
         a qubit :math:`q_i`, and :math:`h_i` and :math:`J_{i,j}` are the qubit
-        biases and coupling strengths.
+        biases and coupling strengths. See also :term:`eigenstate`.
 
         Learn more:
 
