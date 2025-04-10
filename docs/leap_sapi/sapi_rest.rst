@@ -1024,8 +1024,7 @@ The request should contain no body.
 List Problems
 -------------
 
-To retrieve a list of previously submitted problems, send an HTTP GET request to
-``problems``.
+To retrieve a list of problems, send an HTTP GET request to ``problems``.
 
 The request should contain no body.
 
