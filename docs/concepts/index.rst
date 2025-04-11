@@ -373,7 +373,7 @@ Concepts and Terminology
 
         *   `Ising Model on Wikipedia <https://en.wikipedia.org/wiki/Ising_model>`_.
         *   :ref:`concept_models` on supported models.
-        *   :ref:`ising-qubo-transformations` for how to convert between Ising   
+        *   :ref:`qpu_qubo_ising_transformations` for how to convert between Ising   
             and QUBO formulations
 
     Leap
