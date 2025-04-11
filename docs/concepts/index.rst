@@ -564,7 +564,7 @@ Concepts and Terminology
         Learn more: 
         
         *   :ref:`concept_models_qubo`
-        *   :ref:`ising-qubo-transformations` for how to convert between Ising   
+        *   :ref:`qpu_qubo_ising_transformations` for how to convert between Ising   
             and QUBO formulations
 
     run_time
