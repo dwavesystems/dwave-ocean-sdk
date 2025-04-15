@@ -19,7 +19,7 @@ to our systems.
 
 .. sections-start-marker
 
-.. grid:: 3
+.. grid:: 2 2 3 3
     :gutter: 2
 
     .. grid-item-card:: :ref:`leap_dev_env`

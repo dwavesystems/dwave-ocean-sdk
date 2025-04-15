@@ -18,7 +18,7 @@ Using the QPU
 
 Guidance and best practices for QPU usage.
 
-.. grid:: 3
+.. grid:: 2 2 3 3
     :gutter: 2
 
     .. grid-item-card:: :ref:`qpu_index_formulation`

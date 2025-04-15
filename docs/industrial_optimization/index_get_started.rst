@@ -17,7 +17,7 @@ Get Started with Optimization
 Learn to solve hard optimization problems using quantum-classical :term:`hybrid`
 :term:`solver`\ s hosted in the |cloud_tm| quantum cloud service.
 
-.. grid:: 3
+.. grid:: 2 2 3 3
     :gutter: 2
 
     .. grid-item-card:: :ref:`opt_workflow`

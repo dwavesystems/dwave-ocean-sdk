@@ -16,7 +16,7 @@ QPU Hardware and Properties
 
 Technical details on the QPU hardware and features.
 
-.. grid:: 3
+.. grid:: 2 2 3 3
     :gutter: 2
 
     .. grid-item-card:: :ref:`qpu_index_solver_properties`
