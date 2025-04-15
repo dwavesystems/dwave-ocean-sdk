@@ -123,14 +123,16 @@ To submit a problem, an API token is required. Instead of a user name and
 password, an API token is used to authenticate your client session when it
 connects to the Leap service. A unique and secure API token is generated
 for each of your projects, excluding those with the **Trial Plan** account
-type,\ [#]_ and is available on the dashboard.
+type,\ [#]_ and is available on the dashboard. If your API token is shared or
+compromised in any way, you should reset it via the dashboard.
 
-To learn about authorizing the Ocean software access to your account
-in the Leap service and enabling it to store your API token in your development
+To learn about authorizing the Ocean software access to your account in
+the Leap service and enabling it to store your API token in your development
 environment, see the :ref:`leap_dev_env` section.
 
-If your API token is shared or compromised in any way, you should reset it via
-the dashboard.
+Up to 1000 of your most recent problems are stored and accessible in
+the Leap service for up to 365 days; if the number of your problems
+exceeds 1000, the Leap service begins to delete the oldest ones.
 
 .. [#]  Projects with the **Trial Plan** account type do not include the use of
     API tokens required to submit arbitrary problems to solvers and thus users
