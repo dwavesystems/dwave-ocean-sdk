@@ -13,9 +13,8 @@ Leap Service
     sapi_rest
     Leap Service Release Notes <https://docs.dwavequantum.com/projects/leap_sapi/en/latest/index.html>
 
-Launched in 2018, the |cloud_tm| quantum cloud service from |dwave_short|_
-brings quantum computing to the real world by providing real-time cloud access
-to our systems.
+The |cloud_tm| quantum cloud service provides real-time cloud access to
+|dwave_short|_ quantum computers and :term:`hybrid` :term:`solvers <solver>`.
 
 .. sections-start-marker
 
@@ -52,94 +51,54 @@ to our systems.
 
         Leap service release notes, fixed and open issues.
 
-.. sections-end-marker
+About the Service
+=================
 
 .. figure:: ../_images/network-leap-simple.png
     :alt: network diagram showing a laptop connecting to a |dwave_short| quantum
-      computer through the cloud.
+        computer through the cloud.
     :scale: 50 %
+    :figwidth: 25%
+    :align: right
 
-You use the Leap service to do the following:
+The Leap service hosts |dwave_short|'s :term:`solvers <solver>`, including
+quantum computers and :term:`hybrid` solvers. It enables you to do the
+following:
 
-*   Submit problems to |dwave_short| quantum computers,
-    including :ref:`hybrid solvers <opt_index_properties_parameters>`, which use a
-    combination of classical and quantum resources and can accept extremely
-    large problems.
-
-*   Get started quickly and write your quantum applications using an integrated
-    development environment (IDE) that is compliant with the
-    `Development Containers specification <https://containers.dev/supporting>`_,
-    for example, cloud-based
-    `GitHub Codespaces <https://docs.github.com/codespaces>`_.
-
-*   Run demos and interactive coding examples
-    in `Resources <https://cloud.dwavesys.com/leap/resources/demos/>`_.
-
-*   Get involved in
-    `our community of like-minded users <https://support.dwavesys.com/hc/en-us/
-    community/topics>`_.
-
-*   `Administer projects <https://cloud.dwavesys.com/leap/admin>`_,
-    including managing solvers and users together and setting access to solvers
-    for those users.
+*   Submit problems and view results and usage statistics
+*   Administer projects
+*   Find learning resources: a `Community page <https://support.dwavesys.com/>`_
+    where you can pose questions and provide answers to other users,
+    a `Resources page <https://cloud.dwavesys.com/leap/resources/demos/>`_ with
+    interactive demos and a searchable collection of examples, and a
+    `Help Center <https://support.dwavesys.com/>`_ for frequently asked
+    questions (FAQ) section and a searchable knowledge base
 
 Sign up for the Leap service here: https://cloud.dwavesys.com/leap.
 
 Dashboard
-=========
+---------
 
 The dashboard is the home for your experience using the Leap service and
-contains a considerable amount of useful information. For example, you can
-manage your account settings and see the status of problems you have submitted,
-usage statistics, solver status, a summary of your account, and your active
-project and its associated API token.
+contains a considerable amount of useful information, some of which you can also
+update; for example:
+
+*   Your account settings and a summary of your account
+*   Your active project and its associated API token
+*   Status of problems you have submitted and usage statistics
+*   Solver status
 
 You might be a member of multiple projects, but the information displayed on the
 dashboard is only for the active project; for example, the solvers that have
-been assigned to the active project.
+been assigned to the active project. You can make a different project active by
+selecting *your_user_name* > **Projects** > *project*.
 
 The Leap service supports solvers in multiple regions (for example, North
 America and Europe). The dashboard displays the solvers that are available by
 region.
 
-.. note::
-
-    You can make a different project active by selecting
-    *your_user_name* > **Projects** > *project*.
-
-Solvers
-=======
-
-You submit problems to :term:`solvers <solver>`.
-Solvers are either quantum processing units (QPUs), classical,\ [#]_ or hybrid;
-hybrid solvers use a combination of quantum and classical resources.
-
-.. [#] Classical solvers can be used to test your code during development.
-
-Problem Submission and API Tokens
-=================================
-
-To submit a problem, an API token is required. Instead of a user name and
-password, an API token is used to authenticate your client session when it
-connects to the Leap service. A unique and secure API token is generated
-for each of your projects, excluding those with the **Trial Plan** account
-type,\ [#]_ and is available on the dashboard. If your API token is shared or
-compromised in any way, you should reset it via the dashboard.
-
-To learn about authorizing the Ocean software access to your account in
-the Leap service and enabling it to store your API token in your development
-environment, see the :ref:`leap_dev_env` section.
-
-Up to 1000 of your most recent problems are stored and accessible in
-the Leap service for up to 365 days; if the number of your problems
-exceeds 1000, the Leap service begins to delete the oldest ones.
-
-.. [#]  Projects with the **Trial Plan** account type do not include the use of
-    API tokens required to submit arbitrary problems to solvers and thus users
-    in those projects can only run some demos.
-
-Customer Plans and Access to Solvers
-====================================
+Solver Access
+=============
 
 Your customer plan\ [#]_ and :ref:`seat type <admin_def_seat_type>` in a
 project, together with your customer contract (where applicable), determine your
@@ -157,45 +116,33 @@ time\ [#]_ for that project is sufficient.
 .. [#] A user's solver-access time for a project is renewed monthly, subject to
     the customer contract; the renewal date is displayed on the dashboard.
 
-.. _leap_support_for_dev_env:
+Your API Token
+--------------
 
-Support for IDEs
+To submit a problem, an API token is required. Instead of a user name and
+password, an API token is used to authenticate your client session when it
+connects to the Leap service. A unique and secure API token is generated
+for each of your projects, excluding those with the **Trial Plan** account
+type,\ [#]_ and is available on the dashboard. If your API token is shared or
+compromised in any way, you should reset it via the dashboard.
+
+.. [#]  Projects with the **Trial Plan** account type do not include the use of
+    API tokens required to submit arbitrary problems to solvers and thus users
+    in those projects can only run some demos.
+
+Ocean SDK Access
 ================
 
-The Leap service supports third-party integrated development environments (IDEs)
-that are compliant with the Development Containers specification. Examples of
-popular, compliant IDEs are cloud-based GitHub Codespaces and locally installed
-VS Code.
+you can authorize Ocean software to access your account in the Leap service and
+store your API token in your development environment; see the
+:ref:`ocean_leap_authorization` section for details.
 
-For more information, see the :ref:`leap_dev_env` section.
+(For information on configuring Ocean software to access preferred solvers or
+use one of multiple API tokens, see the :ref:`ocean_index_get_started` page.)
 
-Administration
-==============
+Problem Storage
+===============
 
-Leap Admin is an easy-to-use cloud-based administration tool.\ [#]_
-You use Leap Admin to invite users and manage their access to projects in the
-Leap service, view the status of problems submitted to solvers, troubleshoot
-submission issues, and generate solver usage reports.
-
-For more information, see the :ref:`leap_admin` section.
-
-.. [#] To administer projects, you must be a project administrator.
-
-Community, Resources, and Help
-==============================
-
-The Leap service has many learning resources available as follows:
-
-*   `Community <https://support.dwavesys.com/>`_
-
-    A community space where you can pose questions and provide answers to other
-    users of the service.
-
-*   `Resources <https://cloud.dwavesys.com/leap/resources/demos/>`_
-
-    Includes demos and a searchable collection of examples and Jupyter
-    notebooks.
-
-*   `Help <https://support.dwavesys.com/>`_
-
-    Includes a frequently asked questions (FAQ) section and a knowledge base.
+Up to 1000 of your most recent problems are stored and accessible in the Leap
+service for up to 365 days; if the number of your problems exceeds 1000, the
+Leap service begins to delete the oldest ones.
