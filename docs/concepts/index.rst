@@ -37,7 +37,7 @@ Concepts and Terminology
         energy sources and evolves the Hamiltonian slowly enough is called an
         *adiabatic* process.
 
-        Learn more: :ref:`qpu_quantum_annealing_intro`.
+        Learn more: :ref:`qpu_quantum_annealing_intro`
 
     Advantage
         The |dwave_5kq_tm| quantum computer is the first quantum system
@@ -146,7 +146,7 @@ Concepts and Terminology
         an architecture known as Chimera. See also :term:`Pegasus` and
         :term:`Zephyr`.
 
-        Learn more: :ref:`qpu_topologies`.
+        Learn more: :ref:`qpu_topologies`
 
     classical
     classical solver
