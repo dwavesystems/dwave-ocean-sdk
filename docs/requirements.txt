@@ -13,7 +13,7 @@ matplotlib
 breathe
 
 # Needed to test Jupyter notebooks in the downloadable directory
-notebook==6.4.11
+notebook==6.4.12
 
 # Needed for dwave-gate
 cgen==2020.1
@@ -21,3 +21,9 @@ pyqir==0.9.0
 
 # needed in docs.conf to parse package versions
 packaging
+ipython>=8.10.0 # not directly required, pinned by Snyk to avoid a vulnerability
+requests>=2.32.2 # not directly required, pinned by Snyk to avoid a vulnerability
+setuptools>=65.5.1 # not directly required, pinned by Snyk to avoid a vulnerability
+tornado>=6.4.2 # not directly required, pinned by Snyk to avoid a vulnerability
+urllib3>=2.2.2 # not directly required, pinned by Snyk to avoid a vulnerability
+zipp>=3.19.1 # not directly required, pinned by Snyk to avoid a vulnerability
