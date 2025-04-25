@@ -5,15 +5,15 @@ Time is specified in microseconds. For
 :ref:`standard anneals <qpu_annealprotocol_standard>`, input times are rounded
 to two decimal places (a granularity of 0.01 :math:`\mu s`); for the
 :ref:`fast-anneal protocol <qpu_annealprotocol_fast>`, you can specify times to
-a maximum resolution of 5%.\ [#]_
+a maximum resolution of 0.05%.\ [#]_
+
+.. start_time_granularity_footnote
 
 ..  [#]
-    For the fast-anneal protocol, if you are interested in annealing times of
-    about 2 ns (``[[0.0, 0.0], [0.002, 1.0]]``), for example, specify no more
-    than six decimal places for the time (a granularity of 1 ps), while for
-    anneals of about 20 ns, specify no more than five decimal places (a
-    granularity of 10 ps). Specifying additional decimal places is not
-    meaningful.
+    The :ref:`fast-anneal protocol <qpu_annealprotocol_fast>` supports a time
+    granularity of about 0.05% of the anneal time. For annealing times of about
+    10 ns, the granularity is about 5 ps; for anneals of about 20 :math:`\mu s`,
+    it is reduced to around 10 ns.
 
 .. end_time_granularity
 

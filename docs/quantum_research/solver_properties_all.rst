@@ -262,11 +262,9 @@ quench possible for this solver.
 Default annealing time is specified by the
 :ref:`property_qpu_default_annealing_time` property.
 
-..  [#]
-    The :ref:`fast-anneal protocol <qpu_annealprotocol_fast>` supports a time
-    granularity of about 0.05% of the anneal time. For annealing times of about
-    10 ns, the granularity is about 5 ps; for anneals of about 20 :math:`\mu s`,
-    it is reduced to around 10 ns.
+.. include:: ../shared/anneal.rst
+    :start-after: start_time_granularity_footnote
+    :end-before: end_time_granularity
 
 Example
 -------

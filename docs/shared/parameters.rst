@@ -109,22 +109,3 @@ given problem. Can be a float or integer.
 Default value is problem dependent.
 
 .. end_parameter_time_limit
-
-
-.. start_time_granularity
-
-Time is specified in microseconds. For
-:ref:`standard anneals <qpu_annealprotocol_standard>`, input times are rounded
-to two decimal places (a granularity of 0.01 :math:`\mu s`); for the
-:ref:`fast-anneal protocol <qpu_annealprotocol_fast>`, you can specify times to
-a maximum resolution of 5%.\ [#]_
-
-..  [#]
-    For the fast-anneal protocol, if you are interested in annealing times of
-    about 2 ns (``[[0.0, 0.0], [0.002, 1.0]]``), for example, specify no more
-    than six decimal places for the time (a granularity of 1 ps), while for
-    anneals of about 20 ns, specify no more than five decimal places (a
-    granularity of 10 ps). Specifying additional decimal places is not
-    meaningful.
-
-.. end_time_granularity

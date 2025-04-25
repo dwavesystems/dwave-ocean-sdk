@@ -85,7 +85,7 @@ element in the pair is time :math:`t` and the second is anneal fraction
 :math:`s` in the range [0,1]. The resulting schedule is the piecewise-linear
 curve that connects the provided points.
 
-.. include:: ../shared/parameters.rst
+.. include:: ../shared/anneal.rst
     :start-after: start_time_granularity
     :end-before: end_time_granularity
 
