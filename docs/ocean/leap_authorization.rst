@@ -36,14 +36,14 @@ commands and all their options with the CLI's ``--help`` option.
         can access `localhost <https://en.wikipedia.org/wiki/Localhost>`_
         addresses from your browser, initiate the OAuth *redirect* flow::
 
-            dwave auth login
+            dwave setup --auth
 
     -   In an environment such as a **cloud IDE**, where access to
         `localhost <https://en.wikipedia.org/wiki/Localhost>`_ addresses from
         your browser might be blocked, you can initiate the alternative OAuth
         *out-of-band* flow::
 
-            dwave auth login --oob
+            dwave setup --oob
 
 #.  If you are not currently logged into the Leap service, you are asked to
     enter your credentials.
@@ -81,7 +81,7 @@ commands and all their options with the CLI's ``--help`` option.
     terminal's "``Authorization code:``" prompt, similar to the representative
     shell lines shown below::
 
-        $ dwave auth login --oob
+        $ dwave setup --oob
         Please visit the following URL to authorize Ocean:
         https://leap.dwavesystems.com/leap/openid/authorize?response_type=code&client_id=96...
 
@@ -97,12 +97,6 @@ commands and all their options with the CLI's ``--help`` option.
         :scale: 50%
 
         Authorization code screen
-
-#.  Create a :ref:`dwave-cloud-client <index_cloud>`
-    :ref:`configuration file <sapi_access_config_files>` to manage your SAPI
-    access by running the following command from your terminal::
-
-        dwave config create --auto-token
 
 #.  Validate the configuration by running the following command in your
     terminal::
