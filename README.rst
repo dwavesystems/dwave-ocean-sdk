@@ -67,14 +67,14 @@ on a quantum computer.
 
 .. code-block:: python
 
-  import dimod
-  import dwave.inspector
-  import dwave.system
+    import dimod
+    import dwave.inspector
+    import dwave.system
 
-  bqm = dimod.generators.ran_r(1, 20)
-  sampler = dwave.system.EmbeddingComposite(dwave.system.DWaveSampler())
-  sampleset = sampler.sample(bqm, num_reads=100)
-  dwave.inspector.show(sampleset)
+    bqm = dimod.generators.ran_r(1, 20)
+    sampler = dwave.system.EmbeddingComposite(dwave.system.DWaveSampler())
+    sampleset = sampler.sample(bqm, num_reads=100)
+    dwave.inspector.show(sampleset)
 
 The left side of the
 `visualized <https://docs.dwavequantum.com/en/latest/quantum_research/embedding_guidance.html>`_
@@ -97,13 +97,13 @@ Support
 
 Find support here:
 
-* `Leap user community <https://support.dwavesys.com/hc/en-us/community/topics>`_
-  to converse with a large community of D-Wave users.
-* `Leap help center <https://support.dwavesys.com/hc/en-us>`_
-  to search the Leap knowledge base.
-* `SDK GitHub repo <https://github.com/dwavesystems/dwave-ocean-sdk/issues>`_ to
-  open issues or request features on the Ocean SDK or on any one of its
-  `packages <https://github.com/dwavesystems>`_.
+*   `Leap user community <https://support.dwavesys.com/hc/en-us/community/topics>`_
+    to converse with a large community of D-Wave users.
+*   `Leap help center <https://support.dwavesys.com/hc/en-us>`_
+    to search the Leap knowledge base.
+*   `SDK GitHub repo <https://github.com/dwavesystems/dwave-ocean-sdk/issues>`_
+    to open issues or request features on the Ocean SDK or on any one of its
+    `packages <https://github.com/dwavesystems>`_.
 
 Contributing
 ============
