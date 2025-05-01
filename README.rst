@@ -15,8 +15,8 @@
 .. index-start-marker
 
 `Ocean SDK <https://docs.dwavequantum.com/en/latest/ocean/>`_ is
-`D-Wave's <https://www.dwavesys.com>`_ suite of tools for solving hard problems
-with quantum computers.
+`D-Wave's <https://www.dwavequantum.com/>`_ suite of tools for solving hard
+problems with quantum computers.
 
 .. index-end-marker
 
