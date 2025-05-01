@@ -54,7 +54,7 @@ Start learning with the following D-Wave resources:
 *   `dwave-examples <https://github.com/dwave-examples>`_ for code examples
     and Jupyter Notebooks.
 
-*   `Resource Library <https://www.dwavesys.com/learn/resource-library>`_ on
+*   `Resource Library <https://www.dwavequantum.com/learn/resource-library>`_ on
     D-Wave website for whitepapers and additional resources.
 
 Example Quantum Program
@@ -90,7 +90,7 @@ You can find introductory examples in the
 `D-Wave documentation <https://docs.dwavequantum.com/en/latest/quantum_research/index_examples_beginner.html>`_
 and `dwave-examples <https://github.com/dwave-examples>`_ GitHub repository, and
 many customer prototype applications on the
-`D-Wave website <https://www.dwavesys.com/learn/featured-applications/>`_.
+`D-Wave website <https://www.dwavequantum.com/learn/featured-applications/>`_.
 
 Support
 =======
