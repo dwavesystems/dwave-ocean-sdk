@@ -23,7 +23,8 @@ environment.
 
 This procedure uses the :ref:`Ocean software CLI <ocean_dwave_cli>` commands
 that you enter into your terminal. You can see help documentation for these
-commands and all their options with the CLI's ``--help`` option.
+commands and all their options with the CLI's ``--help`` option. This CLI is
+installed as part of the :ref:`Ocean SDK installation <ocean_install>`.
 
 #.  For any new developer environment (for example, a Python
     `virtual environment <https://docs.python.org/3/library/venv.html>`_
@@ -32,18 +33,73 @@ commands and all their options with the CLI's ``--help`` option.
     using the secure `OAuth 2.0 <https://oauth.net/2/>`_ code exchange, by
     running one of the following commands from your terminal.
 
-    -   In an environment such as an **IDE installed on your system**, where you
-        can access `localhost <https://en.wikipedia.org/wiki/Localhost>`_
-        addresses from your browser, initiate the OAuth *redirect* flow::
+    .. tab-set::
 
-            dwave setup --auth
+        .. tab-item:: Single Leap Project
+            :name: tab_authorize_single_leap_project
+            :selected:
 
-    -   In an environment such as a **cloud IDE**, where access to
-        `localhost <https://en.wikipedia.org/wiki/Localhost>`_ addresses from
-        your browser might be blocked, you can initiate the alternative OAuth
-        *out-of-band* flow::
+            .. include:: ../shared/authorization.rst
+                :start-after: start_local_system
+                :end-before: end_local_system
 
-            dwave setup --oob
+            .. doctest::
+                :skipif: True
+
+                dwave setup --auth
+
+            .. include:: ../shared/authorization.rst
+                :start-after: start_cloud_system
+                :end-before: end_cloud_system
+
+            .. doctest::
+                :skipif: True
+
+                dwave setup --oob
+
+        .. tab-item:: Multiple Leap Projects
+
+            To authorize your new environment to use the
+            :ref:`API token <index_leap_sapi>` for one of multiple projects in
+            your account, log in to your |cloud|_ account, set the preferred
+            project to be the active project (by selecting
+            *your_user_name* > **Projects** > *project*) and then use the
+            procedure described in the :ref:`tab_authorize_single_leap_project`
+            tab.
+
+            Alternatively, you can use the ``--project`` option to select a
+            project as shown here (the example code below selects a project
+            named ``PROJ3``):\ [#]_
+
+            .. include:: ../shared/authorization.rst
+                :start-after: start_local_system
+                :end-before: end_local_system
+
+            .. doctest::
+                :skipif: True
+
+                dwave setup --auth --project PROJ3
+
+            .. include:: ../shared/authorization.rst
+                :start-after: start_cloud_system
+                :end-before: end_cloud_system
+
+            .. doctest::
+                :skipif: True
+
+                    dwave setup --oob --project PROJ3
+
+            You can always switch your environment to use the API token of
+            another project later. For example, if you ran the procedure of the
+            :ref:`tab_authorize_single_leap_project` tab with the ``PROJ2``
+            project set to active in Leap , you can at any time switch to the
+            ``PROJ3`` project with the
+            ``dwave config create --auto --project PROJ3`` command.
+
+            .. [#]
+                If you have an existing environment, you can use the
+                ``dwave leap project ls`` command to retrieve the names and
+                codes of all your accounts projects.
 
 #.  If you are not currently logged into the Leap service, you are asked to
     enter your credentials.
