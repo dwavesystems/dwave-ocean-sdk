@@ -14,7 +14,7 @@
 
 .. index-start-marker
 
-`Ocean SDK <https://docs.dwavequantum.com/en/latest/ocean/index.html>`_ is
+`Ocean SDK <https://docs.dwavequantum.com/en/latest/ocean/>`_ is
 `D-Wave's <https://www.dwavesys.com>`_ suite of tools for solving hard problems
 with quantum computers.
 
@@ -61,7 +61,7 @@ Example Quantum Program
 -----------------------
 
 The following lines of code solve and visualize a
-`random <https://docs.dwavequantum.com/en/latest/ocean/api_ref_dimod/generators.html>`_
+`random <https://docs.dwavequantum.com/en/latest/ocean/api_ref_dimod/generators.html#random>`_
 `problem <https://docs.dwavequantum.com/en/latest/concepts/models.html#binary-quadratic-models>`_
 on a quantum computer.
 
