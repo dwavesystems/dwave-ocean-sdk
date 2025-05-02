@@ -39,6 +39,10 @@ installed as part of the :ref:`Ocean SDK installation <ocean_install>`.
             :name: tab_authorize_single_leap_project
             :selected:
 
+            If your account has more than one project, the
+            :ref:`tab_authorize_multiple_leap_projects` tab shows how to select
+            one.
+
             .. include:: ../shared/authorization.rst
                 :start-after: start_local_system
                 :end-before: end_local_system
@@ -58,6 +62,7 @@ installed as part of the :ref:`Ocean SDK installation <ocean_install>`.
                 dwave setup --oob
 
         .. tab-item:: Multiple Leap Projects
+            :name: tab_authorize_multiple_leap_projects
 
             To authorize your new environment to use the
             :ref:`API token <index_leap_sapi>` for one of multiple projects in
@@ -99,7 +104,7 @@ installed as part of the :ref:`Ocean SDK installation <ocean_install>`.
             .. [#]
                 If you have an existing environment, you can use the
                 ``dwave leap project ls`` command to retrieve the names and
-                codes of all your accounts projects.
+                codes of all your account's projects.
 
 #.  If you are not currently logged into the Leap service, you are asked to
     enter your credentials.
