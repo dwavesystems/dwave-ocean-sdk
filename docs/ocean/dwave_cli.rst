@@ -77,18 +77,23 @@ authorize Ocean's access to your Leap account, using the secure
 `OAuth 2.0 <https://oauth.net/2/>`_ code exchange, by running one of the
 following Ocean CLI commands from your terminal.
 
--   In an environment such as an **IDE installed on your system**, where you can
-    access `localhost <https://en.wikipedia.org/wiki/Localhost>`_ addresses from
-    your browser, initiate the OAuth *redirect* flow::
+.. include:: ../shared/authorization.rst
+                :start-after: start_local_system
+                :end-before: end_local_system
 
-        dwave auth login
+.. doctest::
+    :skipif: True
 
--   In an environment such as a **cloud IDE**, where access to
-    `localhost <https://en.wikipedia.org/wiki/Localhost>`_ addresses from your
-    browser might be blocked, you can initiate the alternative OAuth
-    *out-of-band* flow::
+    dwave auth login
 
-        dwave auth login --oob
+.. include:: ../shared/authorization.rst
+    :start-after: start_cloud_system
+    :end-before: end_cloud_system
+
+.. doctest::
+    :skipif: True
+
+    dwave auth login --oob
 
 With Ocean now authorized to access your |cloud| service's account, you can
 create a :ref:`dwave-cloud-client <index_cloud>`
