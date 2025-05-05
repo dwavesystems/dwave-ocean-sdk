@@ -10,38 +10,31 @@ and higher enable Leap\ |tm| authentication using the secure
 `OAuth 2.0 <https://oauth.net/2/>`_ industry standard. As described in the
 :ref:`ocean_sapi_access_basic` section, you require a Solver API (:term:`SAPI`)
 token from your Leap account to submit problems to Leap
-:term:`solvers <solver>`. The following procedure authorizes the Ocean software
-access to your account in the Leap service and enables storing your SAPI token
-in your development environment. Ocean software authorization to access the Leap
-service persists across subsequent development sessions for this development
-environment.
+:term:`solvers <solver>`.
 
-.. note:: The following `OAuth-based <https://oauth.net/2/>`_ procedure is
-    provided for convenience but you also have the option of manually copying
-    your SAPI token from the dashboard in the Leap service. The
-    :ref:`ocean_sapi_access_basic` section provides more information.
+Authorization Procedure
+=======================
 
-This procedure uses the :ref:`Ocean software CLI <ocean_dwave_cli>` commands
-that you enter into your terminal. You can see help documentation for these
-commands and all their options with the CLI's ``--help`` option. This CLI is
-installed as part of the :ref:`Ocean SDK installation <ocean_install>`.
+The following procedure authorizes the Ocean software access to your account in
+the Leap service and enables storing your SAPI token in your development
+environment. Ocean software authorization to access the Leap service persists
+across subsequent development sessions for this development environment.
+
+This procedure uses the :ref:`Ocean software CLI <ocean_dwave_cli>`
+commands\ [#]_ that you enter into your terminal.
 
 #.  For any new developer environment (for example, a Python
     `virtual environment <https://docs.python.org/3/library/venv.html>`_
     or a `GitHub Codespaces <https://docs.github.com/codespaces>`_ *codespace*),
-    authorize the Ocean software access to your account in the Leap service,
-    using the secure `OAuth 2.0 <https://oauth.net/2/>`_ code exchange, by
-    running one of the following commands from your terminal.
+    run one of the following commands from your terminal. If your account has
+    more than one project, the :ref:`tab_authorize_multiple_leap_projects` tab
+    below shows how to select one.
 
     .. tab-set::
 
         .. tab-item:: Single Leap Project
             :name: tab_authorize_single_leap_project
             :selected:
-
-            If your account has more than one project, the
-            :ref:`tab_authorize_multiple_leap_projects` tab shows how to select
-            one.
 
             .. include:: ../shared/authorization.rst
                 :start-after: start_local_system
@@ -64,9 +57,7 @@ installed as part of the :ref:`Ocean SDK installation <ocean_install>`.
         .. tab-item:: Multiple Leap Projects
             :name: tab_authorize_multiple_leap_projects
 
-            To authorize your new environment to use the
-            :ref:`API token <index_leap_sapi>` for one of multiple projects in
-            your account, log in to your |cloud|_ account, set the preferred
+            You can log in to your |cloud|_ account, set the preferred
             project to be the active project (by selecting
             *your_user_name* > **Projects** > *project*) and then use the
             procedure described in the :ref:`tab_authorize_single_leap_project`
@@ -165,3 +156,16 @@ installed as part of the :ref:`Ocean SDK installation <ocean_install>`.
         dwave ping
 
 If you cloned a |dwave_short| example, you can now run it.
+
+Manual Authorization
+====================
+
+The `OAuth-based <https://oauth.net/2/>`_ procedure of the previous section is
+provided for convenience but you also have the option of manually copying your
+SAPI token from the dashboard in the Leap service. The
+:ref:`ocean_sapi_access_basic` section provides more information.
+
+.. [#]
+    You can see help documentation for these commands and all their options with
+    the CLI's ``--help`` option. This CLI is installed as part of the
+    :ref:`Ocean SDK installation <ocean_install>`.
