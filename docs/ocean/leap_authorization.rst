@@ -88,7 +88,7 @@ commands\ [#]_ that you enter into your terminal.
             You can always switch your environment to use the API token of
             another project later. For example, if you ran the procedure of the
             :ref:`tab_authorize_single_leap_project` tab with the ``PROJ2``
-            project set to active in Leap , you can at any time switch to the
+            project set to active in Leap, you can at any time switch to the
             ``PROJ3`` project with the
             ``dwave config create --auto --project PROJ3`` command.
 
