@@ -52,7 +52,7 @@ The following rules apply to the set of anneal-schedule points provided:
     Note that the I/O system that delivers the anneal waveform---the
     :math:`\Phi_{\rm CCJJ}(s)` term of equation
     :math:numref:`qpu_equation_rfsquid_hamiltonian` in the :ref:`qpu_annealing`
-    section---to a QPU limits  bandwidth with a 30 MHz low-pass filter for
+    section---to a QPU limits bandwidth with a 30 MHz low-pass filter for
     |dwave_5kq| and |adv2| systems; if you configure a too-rapidly changing
     curve, even with supported slopes, expect distorted values of
     :ref:`parameter_qpu_h` and :ref:`parameter_qpu_j` for your problem.

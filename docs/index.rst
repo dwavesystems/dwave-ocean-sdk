@@ -148,27 +148,27 @@ Welcome to |dwave_short|
         system achieves these requirements as follows:
 
         *   Cryogenic temperatures, achieved using a closed-loop cryogenic
-            dilution refrigerator system. The QPU operates at temperatures below
-            20 mK.
+            dilution refrigerator system. The QPU generally operates at
+            temperatures below 20 mK.
         *   Shielding from electromagnetic interference, achieved using a radio
             frequency (RF)-shielded enclosure and a magnetic shielding
             subsystem.
 
-        .. figure:: ./_images/advantage_system.png
+        .. figure:: ./_images/advantage2_system.png
             :name: dwave-components
             :height: 400 pt
             :width: 400 pt
 
-            |dwave_5kq| system.
+            |adv2| quantum computer.
 
         The |dwave_short| QPU (:numref:`Figure %s <qpu1>`) is a lattice of tiny
         metal loops, each of which is a qubit or a coupler. Below temperatures
         of 9.2 kelvin, these loops become superconductors and exhibit
         quantum-mechanical effects.
 
-        The QPU in |dwave_short|'s |dwave_5kq| system has more than 5,000 qubits
-        and 35,000 couplers. To reach this scale, it uses over |max_j_junctions|
-        Josephson junctions, which makes the |dwave_5kq| QPU by far the most
+        The QPU in |dwave_short|'s |adv2| system has more than 4,400 qubits
+        and 40,000 couplers. To reach this scale, it uses over 1,000,000
+        Josephson junctions, which makes the |adv2| QPU by far the most
         complex superconducting integrated circuit ever built.
 
         For details on the topology of the QPU, see the

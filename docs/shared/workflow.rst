@@ -135,7 +135,7 @@ locally on your CPU.
 
 *   QPU Solvers
 
-    |dwave_short| currently supports |dwave_5kq| quantum computers.
+    |dwave_short| currently supports |dwave_5kq| and |adv2| quantum computers.
 
 *   Quantum-Classical Hybrid Solvers
 

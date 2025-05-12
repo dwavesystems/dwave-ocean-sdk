@@ -365,10 +365,6 @@ rst_epilog = """
 .. _support_email: support@dwavesys.com
 
 .. |doc_operations| replace:: *D-Wave Quantum Computer Operations*
-
-.. |max_qubits| replace:: 5640
-.. |max_couplers| replace:: 40484
-.. |max_j_junctions| replace:: 1,000,000
 """
 
 # TODO: check which of these is used

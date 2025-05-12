@@ -106,7 +106,7 @@ category
 
 Type of solver.
 
-*   ``qpu``: Quantum computers such as the |dwave_5kq| system.
+*   ``qpu``: Quantum computers such as the |adv2| system.
 
 Example
 -------
