@@ -139,7 +139,7 @@ Welcome to |dwave_short|
         a different kind," to use Feynman's words, since 1999. We are the
         world's first commercial quantum computer company.
 
-    ..  tab-item:: D-Wave's QPUs
+    ..  tab-item:: Quantum Computers
         :name: tab_quantum_computers
 
         A |dwave_short| quantum computer contains a :term:`QPU` that must be
@@ -181,11 +181,17 @@ Welcome to |dwave_short|
             |dwave_short| QPU.
 
         .. note::
-            For more details on the physical system, including specifications
-            and essential safety information required for anyone who accesses
-            the hardware directly, see the |doc_operations| manual, available
-            from |dwave_short|.
+            |dwave_short|'s quantum computer systems are available for
+            on-premise installation. For their physical specifications,
+            including electrical, cooling, environmental, and networking
+            requirements, download
+            :download:`System Specifications for D-Wave Quantum Computers
+            <downloadables/09-1313A-A_System_Specifications_for_D-Wave_Quantum_Computers.pdf>`.
 
+            For customers who directly access quantum computer hardware, see the 
+            |doc_operations| manual, which provides more details on the physical
+            system, including specifications and essential safety information.
+            
     .. tab-item:: Software Environment
         :name: tab_dwave_software_environment
 
