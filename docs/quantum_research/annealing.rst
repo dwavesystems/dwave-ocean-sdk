@@ -680,7 +680,7 @@ anneal in reverse from there. This section describes these features.
 Pause and Quench
 ----------------
 
-QPU solvers provide user control over the global annealing trajectories:
+Quantum computers provide user control over the global annealing trajectories:
 
 *   You can scale the quadratic growth in persistent current---that is,
     quadratic growth in :math:`B(t)`---using the
