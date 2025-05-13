@@ -187,8 +187,8 @@ Welcome to |dwave_short|
             <downloadables/09-1313A-A_System_Specifications_for_D-Wave_Quantum_Computers.pdf>`.
 
             For customers who directly access quantum computer hardware, see the 
-            |doc_operations| manual, which provides more details on the physical
-            system, including specifications and essential safety information.
+            |doc_operations| manual, which includes essential safety
+            information.
             
     .. tab-item:: Software Environment
         :name: tab_dwave_software_environment
