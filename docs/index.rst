@@ -156,8 +156,7 @@ Welcome to |dwave_short|
 
         .. figure:: ./_images/advantage2_system.png
             :name: dwave-components
-            :height: 400 pt
-            :width: 400 pt
+            :scale: 20 %
 
             |adv2| quantum computer.
 
