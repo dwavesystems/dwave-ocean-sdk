@@ -21,7 +21,9 @@ environment. Ocean software authorization to access the Leap service persists
 across subsequent development sessions for this development environment.
 
 This procedure uses the :ref:`Ocean software CLI <ocean_dwave_cli>`
-commands\ [#]_ that you enter into your terminal.
+``dwave setup`` command, which also handles optional Ocean packages and the
+configuration file for you; the :ref:`CLI <cli_example_auth_leap>` page also
+describes alternative commands (e.g., ``dwave auth``) for more granular control.
 
 #.  For any new developer environment (for example, a Python
     `virtual environment <https://docs.python.org/3/library/venv.html>`_
@@ -90,7 +92,7 @@ commands\ [#]_ that you enter into your terminal.
             :ref:`tab_authorize_single_leap_project` tab with the ``PROJ2``
             project set to active in Leap, you can at any time switch to the
             ``PROJ3`` project with the
-            ``dwave config create --auto --project PROJ3`` command.
+            ``dwave config create --auto-token --project PROJ3`` command.
 
             .. [#]
                 If you have an existing environment, you can use the
@@ -134,10 +136,29 @@ commands\ [#]_ that you enter into your terminal.
     shell lines shown below::
 
         $ dwave setup --oob
+        Optionally install non-open-source packages and configure your environment.
+
+        All optional packages already installed.
+
+        Authorizing Leap access.
+
         Please visit the following URL to authorize Ocean:
-        https://leap.dwavesystems.com/leap/openid/authorize?response_type=code&client_id=96...
+        https://cloud.dwavesys.com/leap/openid/authorize?response_type=code&client_id=80...
 
         Authorization code: 717983...
+
+        Authorization completed successfully. You can now use "dwave auth get"
+        to fetch your token.
+
+        Creating the D-Wave configuration file.
+
+        Using the simplified configuration flow.
+        Try 'dwave config create --full' for more options.
+
+        Creating new configuration file: /home/user/.config/dwave/dwave.conf
+        Updating existing profile: defaults
+        Fetched SAPI token for project 'Project 5' (PRJ5) from Leap API.
+        Configuration saved.
 
     :numref:`Figure %s <LeapIdeAuthOobCode>` shows the authorization code
     returned in a browser tab for you to copy to the terminal prompt.
@@ -164,8 +185,3 @@ The `OAuth-based <https://oauth.net/2/>`_ procedure of the previous section is
 provided for convenience but you also have the option of manually copying your
 SAPI token from the dashboard in the Leap service. The
 :ref:`ocean_sapi_access_basic` section provides more information.
-
-.. [#]
-    You can see help documentation for these commands and all their options with
-    the CLI's ``--help`` option. This CLI is installed as part of the
-    :ref:`Ocean SDK installation <ocean_install>`.
