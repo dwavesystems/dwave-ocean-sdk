@@ -168,8 +168,7 @@ Welcome to |dwave_short|
 
         The QPU in |dwave_short|'s |adv2| system has more than 4,400 qubits
         and 40,000 couplers. To reach this scale, it uses over 1,000,000
-        Josephson junctions, which makes the |adv2| QPU by far the most
-        complex superconducting integrated circuit ever built.
+        Josephson junctions.
 
         For details on the topology of the QPU, see the
         :ref:`qpu_topologies` section.
