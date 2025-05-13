@@ -110,7 +110,7 @@ environment from either Ocean's default values or your configuration.
 *   **Solver** (default: feature-based selection)
 
     A |dwave_short| resource to be used to solve your submitted problems; for
-    example, a :term:`hybrid` or QPU :term:`solver`.
+    example, a :term:`hybrid` :term:`solver` or quantum computer.
 
     .. dropdown:: Viewing Available Solvers
 
