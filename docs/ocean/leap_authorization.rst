@@ -85,7 +85,7 @@ describes alternative commands (e.g., ``dwave auth``) for more granular control.
             .. doctest::
                 :skipif: True
 
-                    dwave setup --oob --project PROJ3
+                dwave setup --oob --project PROJ3
 
             You can always switch your environment to use the API token of
             another project later. For example, if you ran the procedure of the
