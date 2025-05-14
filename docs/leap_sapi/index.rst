@@ -116,8 +116,8 @@ time\ [#]_ for that project is sufficient.
 .. [#] A user's solver-access time for a project is renewed monthly, subject to
     the customer contract; the renewal date is displayed on the dashboard.
 
-Your API Token
---------------
+API Tokens
+----------
 
 To submit a problem, an API token is required. Instead of a user name and
 password, an API token is used to authenticate your client session when it
@@ -133,7 +133,7 @@ compromised in any way, you should reset it via the dashboard.
 Ocean SDK Access
 ================
 
-you can authorize Ocean software to access your account in the Leap service and
+You can authorize Ocean software to access your account in the Leap service and
 store your API token in your development environment; see the
 :ref:`ocean_leap_authorization` section for details.
 
