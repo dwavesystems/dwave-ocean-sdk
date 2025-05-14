@@ -80,8 +80,8 @@ Dashboard
 ---------
 
 The dashboard is the home for your experience using the Leap service and
-contains a considerable amount of useful information, some of which you can also
-update; for example:
+contains the following information, some of which you can also update; for
+example:
 
 *   Your account settings and a summary of your account
 *   Your active project and its associated API token
@@ -124,11 +124,11 @@ password, an API token is used to authenticate your client session when it
 connects to the Leap service. A unique and secure API token is generated
 for each of your projects, excluding those with the **Trial Plan** account
 type,\ [#]_ and is available on the dashboard. If your API token is shared or
-compromised in any way, you should reset it via the dashboard.
+compromised in any way, reset it via the dashboard.
 
 .. [#]  Projects with the **Trial Plan** account type do not include the use of
     API tokens required to submit arbitrary problems to solvers and thus users
-    in those projects can only run some demos.
+    in those projects can only run certain demos.
 
 Ocean SDK Access
 ================
