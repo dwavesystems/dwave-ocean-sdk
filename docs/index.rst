@@ -180,7 +180,7 @@ Welcome to |dwave_short|
 
         .. note::
             |dwave_short|'s quantum computer systems are available for
-            on-premise installation. For their physical specifications,
+            on-premises installation. For their physical specifications,
             including electrical, cooling, environmental, and networking
             requirements, download
             :download:`System Specifications for D-Wave Quantum Computers
