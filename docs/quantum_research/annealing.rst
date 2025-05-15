@@ -527,6 +527,10 @@ typical :math:`B_i(s)` versus :math:`s` for the same set of :math:`\delta c_i`.
     :math:`\delta c_i = -0.05` (delays the annealing process for the qubit).
     Data shown are representative of |dwave_2kq| systems.
 
+:ref:`Ocean software <index_ocean_sdk>` provides a utility function,
+:func:`~dwave.system.utilities.anneal_schedule_with_offset`, you can use to
+calculate the energy scales for a given anneal offset.
+
 The change of :math:`B(s)\rightarrow B_i(s)` has consequences for the target
 Ising spin Hamiltonian parameters :math:`h_i` and :math:`J_{i,j}`. The anneal
 offset for the :math:`i{\rm th}` qubit deflects
@@ -712,6 +716,9 @@ causes the system to produce linear changes in :math:`s` between :math:`s_i` and
 The table below gives three valid examples of anneal schedule points, producing
 the varying patterns of :math:`B(t)` that appear in
 :numref:`Figure %s <annealing_trajectories>`.
+:ref:`Ocean software <index_ocean_sdk>` provides a utility function,
+:func:`~dwave.system.utilities.energy_scales_custom_schedule`, you can use to
+calculate the energy scales generated for your custom anneal schedule.
 
 
 .. list-table:: Anneal Schedule Tuples: Examples
