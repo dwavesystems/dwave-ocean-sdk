@@ -139,7 +139,7 @@ Welcome to |dwave_short|
         a different kind," to use Feynman's words, since 1999. We are the
         world's first commercial quantum computer company.
 
-    ..  tab-item:: D-Wave's QPUs
+    ..  tab-item:: Quantum Computers
         :name: tab_quantum_computers
 
         A |dwave_short| quantum computer contains a :term:`QPU` that must be
@@ -148,28 +148,26 @@ Welcome to |dwave_short|
         system achieves these requirements as follows:
 
         *   Cryogenic temperatures, achieved using a closed-loop cryogenic
-            dilution refrigerator system. The QPU operates at temperatures below
-            20 mK.
+            dilution refrigerator system. The QPU generally operates at
+            temperatures below 20 mK.
         *   Shielding from electromagnetic interference, achieved using a radio
             frequency (RF)-shielded enclosure and a magnetic shielding
             subsystem.
 
-        .. figure:: ./_images/advantage_system.png
+        .. figure:: ./_images/advantage2_system.png
             :name: dwave-components
-            :height: 400 pt
-            :width: 400 pt
+            :scale: 20 %
 
-            |dwave_5kq| system.
+            |adv2| quantum computer.
 
         The |dwave_short| QPU (:numref:`Figure %s <qpu1>`) is a lattice of tiny
         metal loops, each of which is a qubit or a coupler. Below temperatures
         of 9.2 kelvin, these loops become superconductors and exhibit
         quantum-mechanical effects.
 
-        The QPU in |dwave_short|'s |dwave_5kq| system has more than 5,000 qubits
-        and 35,000 couplers. To reach this scale, it uses over |max_j_junctions|
-        Josephson junctions, which makes the |dwave_5kq| QPU by far the most
-        complex superconducting integrated circuit ever built.
+        The QPU in |dwave_short|'s |adv2| system has more than 4,400 qubits
+        and 40,000 couplers. To reach this scale, it uses over 1,000,000
+        Josephson junctions.
 
         For details on the topology of the QPU, see the
         :ref:`qpu_topologies` section.
@@ -181,11 +179,17 @@ Welcome to |dwave_short|
             |dwave_short| QPU.
 
         .. note::
-            For more details on the physical system, including specifications
-            and essential safety information required for anyone who accesses
-            the hardware directly, see the |doc_operations| manual, available
-            from |dwave_short|.
+            |dwave_short|'s quantum computer systems are available for
+            on-premises installation. For their physical specifications,
+            including electrical, cooling, environmental, and networking
+            requirements, download
+            :download:`System Specifications for D-Wave Quantum Computers
+            <downloadables/09-1313A-A_System_Specifications_for_D-Wave_Quantum_Computers.pdf>`.
 
+            For customers who directly access quantum computer hardware, see the 
+            |doc_operations| manual, which includes essential safety
+            information.
+            
     .. tab-item:: Software Environment
         :name: tab_dwave_software_environment
 

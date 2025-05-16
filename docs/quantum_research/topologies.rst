@@ -24,8 +24,7 @@ fully connected. Instead, the qubits of |dwave_short| annealing quantum
 computers interconnect in one of the following topologies:
 
 *   :ref:`Pegasus <topology_intro_pegasus>` topology for |dwave_5kq| QPUs
-*   :ref:`Zephyr <topology_intro_zephyr>` topology for next-generation QPUs
-    currently under development
+*   :ref:`Zephyr <topology_intro_zephyr>` topology for |adv2| QPUs
 
 .. _topologies_working_graph:
 
@@ -58,8 +57,8 @@ Topology Concepts and the Chimera Topology
 ==========================================
 
 This section introduces concepts in topology by describing elements of the
-Chimera\ |tm| topology used on |dwave_short|'s previous generation of quantum
-computer, the |dwave_2kq| system. The Chimera topology's relative simplicity
+Chimera\ |tm| topology used on a previous generation of |dwave_short|'s quantum
+computers, the |dwave_2kq| system. The Chimera topology's relative simplicity
 is helpful for understanding the more complex topologies of newer QPUs: in
 addition to shared concepts, the newer topologies are often described in terms
 derived from the Chimera topology.

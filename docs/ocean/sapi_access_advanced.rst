@@ -169,9 +169,9 @@ A typical workflow may include the following steps:
     -   Adding problems to a client's submission queue
 
     Solvers that provide sampling for solving :term:`Ising` and :term:`QUBO`
-    problems, such as an :term:`Advantage`
-    :class:`~dwave.system.samplers.DWaveSampler` :term:`sampler`, or constrained
-    quadratic models, such as a quantum-classical :term:`hybrid`
+    problems, such as a :class:`~dwave.system.samplers.DWaveSampler`
+    :term:`sampler` via a QPU, or constrained quadratic models, such as
+    a quantum-classical :term:`hybrid`
     :class:`~dwave.system.samplers.LeapHybridCQMSampler` solver, might be remote
     resources.
 

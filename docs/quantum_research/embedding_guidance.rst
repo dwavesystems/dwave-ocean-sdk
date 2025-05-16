@@ -6,8 +6,8 @@ Minor-Embedding: Best Practices
 
 The |dwave_short| QPU minimizes the energy of an Ising spin configuration
 whose pairwise interactions lie on the edges of a QPU
-:ref:`working graph <topologies_working_graph>`, such as the :term:`Pegasus`
-graph of an |dwave_5kq| system. To solve an Ising spin problem with arbitrary
+:ref:`working graph <topologies_working_graph>`, such as the :term:`Zephyr`
+graph of an |adv2| system. To solve an Ising spin problem with arbitrary
 pairwise interaction structure, the corresponding graph must be
 :term:`minor-embedded <minor embed>` into a QPU's graph.
 
@@ -15,7 +15,6 @@ There are algorithms that can embed a problem of :math:`N` variables in at most
 :math:`N^2` qubits.
 
 Ocean software's :ref:`minorminer <index_minorminer>` provides embedding tools.
-
 
 .. _qpu_embedding_inspector:
 

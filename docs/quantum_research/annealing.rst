@@ -26,12 +26,12 @@ that allow you to control the annealing process\ [#]_.
 QA Implementation
 =================
 
-The superconducting QPU at the heart of the |dwave_short| system, which operates
-at a temperature below 20 mK, is a controllable, physical realization of the
-quantum Ising spin system in a transverse field. Each qubit and coupler on the
-QPU has several controls that are manipulated by individual on-QPU
-digital-to-analog converters (DACs); see [Bun2014]_ and [Joh2010]_. Along with
-the DACs, a small number of analog control lines provide the time-dependent
+The superconducting QPU at the heart of the |dwave_short| system, which
+generally operates at a temperature below 20 mK, is a controllable, physical
+realization of the quantum Ising spin system in a transverse field. Each qubit
+and coupler on the QPU has several controls that are manipulated by individual
+on-QPU digital-to-analog converters (DACs); see [Bun2014]_ and [Joh2010]_. Along
+with the DACs, a small number of analog control lines provide the time-dependent
 control required by the quantum Hamiltonian:
 
 .. math::
@@ -680,7 +680,7 @@ anneal in reverse from there. This section describes these features.
 Pause and Quench
 ----------------
 
-|dwave_5kq| systems provide user control over the global annealing trajectories:
+Quantum computers provide user control over the global annealing trajectories:
 
 *   You can scale the quadratic growth in persistent current---that is,
     quadratic growth in :math:`B(t)`---using the
