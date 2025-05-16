@@ -34,6 +34,10 @@ standard trajectory). Before using this parameter, query the solver properties
 to see whether the :ref:`property_qpu_anneal_offset_ranges` property exists and,
 if so, to obtain the permitted offset values per qubit. Default is no offsets.
 
+:ref:`Ocean software <index_ocean_sdk>` provides a utility function,
+:func:`~dwave.system.utilities.anneal_schedule_with_offset`, you can use to
+calculate the energy scales for a given anneal offset.
+
 Relevant Properties
 -------------------
 
@@ -95,6 +99,9 @@ curve that connects the provided points.
 
 Default anneal schedules are described in the
 :ref:`QPU-specific anneal schedules <qpu_solver_properties_specific>` section.
+:ref:`Ocean software <index_ocean_sdk>` provides a utility function,
+:func:`~dwave.system.utilities.energy_scales_custom_schedule`, you can use to
+calculate the energy scales generated for your custom anneal schedule.
 
 Relevant Properties
 -------------------
