@@ -57,7 +57,8 @@ permutations of the variables representing cities can signify the order of the
 route being optimized and in a
 `knapsack problem <https://en.wikipedia.org/wiki/Knapsack_problem>`_ the
 variables representing items can be divided into subsets of packed and not
-packed.
+packed. The design principles and major features of this solver are described in
+the :ref:`dwave-optimization philosophy <optimization_philosophy>` page.
 
 .. end_models_nonlinear
 
