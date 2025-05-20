@@ -45,6 +45,112 @@ This information includes:
         :ref:`seat type <admin_def_seat_type>` in a project, you may not have
         access to all QPUs in the Leap service.
 
+
+Advantage2_system1.1
+====================
+
+All data presented in this section are specific to the **Advantage2_system1.1**
+solver. The |adv2_tm| system QPU is based on a physical lattice of qubits and
+couplers known as the *Zephyr*\ |tm| topology. For information, see the
+:ref:`topology_intro_zephyr` section.
+
+Physical Properties
+-------------------
+
+This table lists the physical properties of the calibrated QPU.
+
+.. tabularcolumns:: |l|L|
+
+.. list-table:: QPU Physical Properties\ [#]_
+    :header-rows: 1
+    :widths: 3 2
+
+    *   - Property
+        - Value
+
+    *   - Model
+        - :math:`\text{Advantage2}`
+
+    *   - Graph size
+        - :math:`\text{Z12}`
+
+    *   - Number of :ref:`qubits <property_qpu_qubits>`
+        - :math:`4600`
+
+    *   - Number of :ref:`couplers <property_qpu_couplers>`
+        - :math:`41927`
+
+    *   - Qubit temperature
+        - :math:`20 \pm 1.0\ \text{mK}`
+
+    *   - :math:`\rm M_{\rm AFM}`: Maximum mutual inductance for qubit pairs
+        - :math:`2.113\ \text{pH}`
+
+    *   - Quantum critical point for 1D chains
+        - :math:`2.308\ \text{GHz}`
+
+    *   - :math:`L_q`: Qubit inductance
+        - :math:`120\ \text{pH}`
+
+    *   - :math:`C_q`: Qubit capacitance
+        - :math:`147\ \text{fF}`
+
+    *   - :math:`I_c`: Qubit critical current
+        - :math:`4.75\ \text{µA}`
+
+    *   - `Average single-qubit temperature <https://docs.ocean.dwavesys.com/en/stable/docs_system/reference/generated/dwave.system.temperatures.fast_effective_temperature.html#dwave.system.temperatures.fast_effective_temperature>`_
+        - :math:`0.112`
+
+    *   - :ref:`Ferromagnetic-problem freezeout <qpu_qa_freezeout>`
+        - :math:`0.008`
+
+    *   - :ref:`Single-qubit freezeout <qpu_qa_freezeout>`
+        - :math:`0.684`
+
+    *   - :math:`\Phi_{\rm CCJJ}^i`: Initial (at :math:`s=0`) external flux on
+          compound Josephson junctions
+        - :math:`-0.694\ \Phi_0`
+
+    *   - :math:`\Phi_{\rm CCJJ}^f`: Final (at :math:`s=1`) external flux on
+          compound Josephson junctions
+        - :math:`-0.760\ \Phi_0`
+
+    *   - Readout time range
+        - :math:`17.0\ \text{to}\ 101.0\ \text{µs}`
+
+    *   - Programming time
+        - :math:`\sim 33600\ \text{µs}`
+
+    *   - QPU-delay-time per sample
+        - :math:`60.6\ \text{µs}`
+
+    *   - Readout error rate
+        - :math:`\leq 0.001`
+
+.. [#]
+
+Some notes for the QPU properties are as follows:
+
+.. include:: ../shared/qpu_specific_specs.rst
+    :start-after: start_qpu_adv_and_adv2_prop_notes
+    :end-before: end_qpu_adv_and_adv2_prop_notes
+
+Annealing Schedule
+------------------
+
+Download the annealing schedule for the QPU here:
+:download:`Advantage2_system1.1 Excel spreadsheet <../downloadables/09-1312A-A_Advantage2_system1_1_annealing_schedule.xlsx>`.
+
+The standard annealing schedule for the QPU is shown in
+:numref:`Figure %s <annealing-schedule-adv2-sys1.1>`.
+
+.. figure:: ../_images/annealing-schedule-adv2-1.1.png
+    :name: annealing-schedule-adv2-1.1
+
+    Standard annealing schedule for the QPU, showing energy changes
+    as a function of scaled time.
+
+
 Advantage2_prototype2.6
 =======================
 
@@ -149,6 +255,7 @@ The standard annealing schedule for the QPU is shown in
 
     Standard annealing schedule for the QPU, showing energy changes
     as a function of scaled time.
+
 
 Advantage_system7.1
 ===================
@@ -282,6 +389,7 @@ respectively, for this system.
 
     Typical quantization on the :math:`J` DAC control.
 
+
 Advantage_system6.4
 ===================
 
@@ -411,8 +519,9 @@ respectively, for this system.
 
 .. figure:: ../_images/coupler-quantization-error-adv6.png
     :name: co-dac-quantization-adv6
-  
+
     Typical quantization on the :math:`J` DAC control.
+
 
 Advantage_system5.4
 ===================
@@ -493,7 +602,7 @@ This table lists the physical properties of the calibrated QPU.
         - :math:`21.0\ \text{µs}`
 
     *   - Readout error rate
-        - :math:`\leq 0.001` 
+        - :math:`\leq 0.001`
 
 .. [#]
     Some notes for the QPU properties are as follows:
@@ -545,6 +654,7 @@ respectively, for this system.
     :name: co-dac-quantization-adv5
 
     Typical quantization on the :math:`J` DAC control.
+
 
 Advantage_system4.1
 ===================
@@ -677,4 +787,3 @@ respectively, for this system.
     :name: co-dac-quantization-adv4
 
     Typical quantization on the :math:`J` DAC control.
-
