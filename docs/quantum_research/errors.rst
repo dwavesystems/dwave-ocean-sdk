@@ -922,6 +922,13 @@ submit the problem at least twice.
 Spin-Bath Polarization Effect
 -----------------------------
 
+.. note::
+    This source of noise is vastly reduced on |adv2| quantum computers;
+    consequently, usage of the
+    :ref:`parameter_qpu_reduce_intersample_correlation` and
+    :ref:`parameter_qpu_readout_thermalization` parameters should be considered
+    for |dwave_5kq| systems only.
+
 One of the main sources of environmental noise affecting the qubit is magnetic
 fluctuations from an ensemble of spins local to the qubit wiring. This produces
 low-frequency flux noise that can cause the misspecification errors referred to
@@ -938,28 +945,22 @@ distribution. The partially polarized environment can also produce
 sample-to-sample correlations, biasing the QPU towards previously achieved spin
 configurations.
 
-To reduce these sample-to-sample correlations, enable the
-:ref:`parameter_qpu_reduce_intersample_correlation` solver parameter. This
-setting adds optimal delay times before each anneal, giving the spin bath time
-to depolarize and thereby lose the effects from the previous read. It adds a
-delay that varies (approximately) between :math:`200` microseconds and
-:math:`10` milliseconds, increasing linearly with increasing length of the
-schedule:
+You can reduce these sample-to-sample correlations, with the
+:ref:`parameter_qpu_reduce_intersample_correlation` and/or
+:ref:`parameter_qpu_readout_thermalization` solver parameters. These parameters
+add a delay after each anneal,\ [#]_ giving the spin bath time to depolarize and
+thereby lose the effects from the previous read.
 
-.. math::
-    :nowrap:
-
-    \begin{equation}
-        delay = 500 + \frac{\rm{T} (10000 - 500)}{2000}
-    \end{equation}
-
-where T is the total time of the anneal schedule.
+.. [#]
+    An exception is for :ref:`reverse annealing <qpu_qa_anneal_sched_reverse>`
+    as described by the :ref:`parameter_qpu_reinitialize_state` parameter.
 
 .. important::
-    Enabling this parameter drastically increases problem run times. To avoid
-    exceeding the maximum problem run time configured for your system, limit the
-    number of reads  when using this feature. For more information, see the
-    :ref:`qpu_operation_timing` section.
+    Enabling the :ref:`parameter_qpu_reduce_intersample_correlation` parameter
+    on an |dwave_5kq| quantum computer drastically increases problem run times.
+    To avoid exceeding the maximum problem run time configured for your system,
+    limit the number of reads  when using this feature. For more information,
+    see the :ref:`qpu_operation_timing` section.
 
 The anneal schedule feature discussed in the :ref:`qpu_annealing` chapter allows
 you to insert pauses at intermediate values of :math:`s`. Be aware that pausing
