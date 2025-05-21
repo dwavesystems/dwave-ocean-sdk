@@ -1108,10 +1108,6 @@ floating-point numbers.
 Default value for a solver is given in the
 :ref:`property_qpu_default_readout_thermalization` property.
 
-.. include:: ../shared/parameters.rst
-    :start-after: start_parameter_delay_after_read
-    :end-before: end_parameter_delay_after_read
-
 Relevant Properties
 -------------------
 
@@ -1157,9 +1153,11 @@ Boolean flag indicating whether the system adds a delay.
 *   ``reduce_intersample_correlation=True``: Adds delay.
 *   ``reduce_intersample_correlation=False`` (default): Does not add delay.
 
-.. include:: ../shared/parameters.rst
-    :start-after: start_parameter_delay_after_read
-    :end-before: end_parameter_delay_after_read
+.. note::
+    Spin-bath polarization has no noticable effect on |adv2| systems; activating
+    this parameter adds zero delay after reads (for |adv2| systems, the
+    :ref:`property_qpu_problem_timing_data` property's
+    ``decorrelation_time_range`` field is set to ``[0, 0]``).
 
 .. important::
     Enabling this parameter drastically increases problem run times. To avoid

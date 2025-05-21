@@ -925,9 +925,8 @@ Spin-Bath Polarization Effect
 .. note::
     This source of noise is vastly reduced on |adv2| quantum computers;
     consequently, usage of the
-    :ref:`parameter_qpu_reduce_intersample_correlation` and
-    :ref:`parameter_qpu_readout_thermalization` parameters should be considered
-    for |dwave_5kq| systems only.
+    :ref:`parameter_qpu_reduce_intersample_correlation` parameter should be
+    considered for |dwave_5kq| systems only.
 
 One of the main sources of environmental noise affecting the qubit is magnetic
 fluctuations from an ensemble of spins local to the qubit wiring. This produces

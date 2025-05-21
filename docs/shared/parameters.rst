@@ -109,15 +109,3 @@ given problem. Can be a float or integer.
 Default value is problem dependent.
 
 .. end_parameter_time_limit
-
-
-.. start_parameter_delay_after_read
-
-.. note::
-    Usage of the
-    :ref:`parameter_qpu_reduce_intersample_correlation` and
-    :ref:`parameter_qpu_readout_thermalization` parameters is not recommended
-    for |adv2| systems; see the :ref:`qpu_errors_spinbath_polarization` section
-    for details.
-
-.. end_parameter_delay_after_read
