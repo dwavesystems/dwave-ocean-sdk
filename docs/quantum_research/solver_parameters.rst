@@ -447,7 +447,7 @@ This example samples a ferromagnetic chain for an anneal time of 8 ns.
 >>> qpu_advantage2 = DWaveSampler(
 ...     solver={"topology__type": "zephyr"})   # doctest: +SKIP
 >>> sampler = EmbeddingComposite(qpu_advantage2)    # doctest: +SKIP
->>> h = 0
+>>> h = {}
 >>> J = {(i, i + 1): -1.5 for i in range(20)}
 >>> sampleset = sampler.sample_ising(
 ...     h, J, num_reads=1000,
