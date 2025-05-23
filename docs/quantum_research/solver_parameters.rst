@@ -13,6 +13,7 @@ these solvers, such as the ranges within which parameter values must be set.
 
 .. |meet_run_duration| replace:: :ref:`parameter_qpu_anneal_schedule` or
     :ref:`parameter_qpu_annealing_time`,
+    :ref:`parameter_qpu_reduce_intersample_correlation` and/or
     :ref:`parameter_qpu_readout_thermalization`, :ref:`parameter_qpu_num_reads`
     (samples), and :ref:`parameter_qpu_programming_thermalization` values taken
     together must meet the limitations specified in
@@ -1117,6 +1118,8 @@ Interacts with Parameters
 -------------------------
 
 *   |meet_run_duration|
+*   Delays from :ref:`parameter_qpu_readout_thermalization` and
+    :ref:`parameter_qpu_reduce_intersample_correlation` aggregate.
 
 Example
 -------
@@ -1138,7 +1141,7 @@ reduce_intersample_correlation
 ==============================
 
 Reduces sample-to-sample correlations caused by the spin-bath polarization
-effect\ [#]_ by adding a delay between reads.
+effect\ [#]_ by adding a delay after each read.
 
 .. [#]
 
@@ -1150,13 +1153,41 @@ Boolean flag indicating whether the system adds a delay.
 *   ``reduce_intersample_correlation=True``: Adds delay.
 *   ``reduce_intersample_correlation=False`` (default): Does not add delay.
 
+.. note::
+    Spin-bath polarization has no noticable effect on |adv2| systems; activating
+    this parameter adds zero delay after reads (for |adv2| systems, the
+    :ref:`property_qpu_problem_timing_data` property's
+    ``decorrelation_time_range`` field is set to ``[0, 0]``).
+
 .. important::
     Enabling this parameter drastically increases problem run times. To avoid
     exceeding the maximum problem run time configured for your system, limit the
     number of reads when using this feature. For more information on timing,
     see the :ref:`qpu_operation_timing` section.
 
-Default is to not add delay between reads.
+Activating this parameter adds a delay that increases linearly with the
+length of the anneal schedule. The value of the delay varies in the range of the
+:ref:`property_qpu_problem_timing_data` property's ``decorrelation_time_range``
+field. For example, on the
+``Advantage_system4.1`` solver, with an :ref:`property_qpu_annealing_time_range`
+of ``[o.5, 2000]`` microseconds and ``decorrelation_time_range`` of
+``[500, 10000]`` microseconds, the delay is given by:
+
+.. math::
+    :nowrap:
+
+    \begin{equation}
+        delay = 500 + \frac{\rm{T} (10000 - 500)}{2000}
+    \end{equation}
+
+where T is the total time of the anneal schedule.
+
+Interacts with Parameters
+-------------------------
+
+*   |meet_run_duration|
+*   Delays from :ref:`parameter_qpu_readout_thermalization` and
+    :ref:`parameter_qpu_reduce_intersample_correlation` aggregate.
 
 Example
 -------
