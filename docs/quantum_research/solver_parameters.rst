@@ -144,7 +144,7 @@ annealing_time
 
 Sets the duration of quantum annealing time, per read.
 
-.. include:: ../shared/parameters.rst
+.. include:: ../shared/anneal.rst
     :start-after: start_time_granularity
     :end-before: end_time_granularity
 
