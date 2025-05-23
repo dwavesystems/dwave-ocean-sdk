@@ -44,8 +44,10 @@ rock-paper-scissors---to Ocean software's
 >>> win = {"rock": "scissors", "paper": "rock", "scissors": "paper"}
 ...
 >>> dqm = dimod.DiscreteQuadraticModel()
->>> dqm.add_variable(3, label='my_hand')    # doctest: +IGNORE_RESULT
->>> dqm.add_variable(3, label='their_hand') # doctest: +IGNORE_RESULT
+>>> dqm.add_variable(3, label='my_hand')
+'my_hand'
+>>> dqm.add_variable(3, label='their_hand')
+'their_hand'
 >>> for my_idx, my_case in enumerate(cases):
 ...    for their_idx, their_case in enumerate(cases):
 ...       if win[my_case] == their_case:
