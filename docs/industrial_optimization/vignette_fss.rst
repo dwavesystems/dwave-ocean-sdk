@@ -1,8 +1,9 @@
-=====================================
+==============================================
 D-WAVE PERFORMANCE STUDY: FLOW-SHOP SCHEDULING
-=====================================
+==============================================
 
 OPTIMIZING MANUFACTURING WITH FLOW-SHOP SCHEDULING
+==================================================
 
 Flow-shop scheduling (FSS) is an optimization challenge that involves organizing 
 a set of jobs that need to be processed through multiple machines in a specific order. 
@@ -19,17 +20,13 @@ In this study, we show how the optimization of flow-shop scheduling  using D-Wav
 (NL solver) improves this process, with the goal of driving operational efficiencies. 
 This study includes performance benchmarks of D-Wave's NL and CQM solvers as well as COIN-OR, OR-Tools, and SciPy's HiGHS.
 
-:numref:`Figure %s <vignette_fss_lineplot>` shows the results on the Taillard FSS instances with a time limit of 150 seconds. 
-The plot displays the median gap versus number of jobs for each solver. 
-The complete study contains more time limits, where the results are qualitatively the same, 
-except for OR-Tools obtaining optimality in the smallest instances with the largest time limit. 
-For each number of jobs with a 150-second runtime, D-Wave's NL solver outperforms the other solvers.
-
 .. figure:: ../_images/vignette_fss_graphic.png
     :name: FSS
     :height: 339 pt
     :width: 661 pt
-    :alt: An example of flow-shop scheduling.
+    :alt: image
+
+    An example of flow-shop scheduling.
 
 
 MATHEMATICAL MODELS
@@ -89,7 +86,7 @@ The relevant Python code is as follows:
 >>>             else:
 >>>                 end_job_j = times[machine_m, :][order[job_j]]
 >>>                 end_job_j += machine_m_times[-1]
->>>                machine_m_times.append(end_job_j)
+>>>                 machine_m_times.append(end_job_j)
 >>>     else:
 >>>         for job_j in range(num_jobs):
 >>>             if job_j == 0:
@@ -137,5 +134,8 @@ For each number of jobs with a 150-second runtime, D-Wave's NL solver outperform
     :name: Results
     :height: 291 pt
     :width: 483 pt
-    :alt: On FSS problems with 150 seconds of runtime, the median gap for solutions found by D-Wave's NL solver beats
+    :alt: lineplot
+    
+    On FSS problems with 150 seconds of runtime, the median gap for solutions found by D-Wave's NL solver beats
     the median gaps found by all other solvers tested on all sizes available in the Taillard benchmarking library.
+    
