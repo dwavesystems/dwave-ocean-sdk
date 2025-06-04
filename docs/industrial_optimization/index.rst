@@ -52,7 +52,7 @@ solvers.
 
         Scaling and usage best-practices.
 
-    .. grid-item-card:: :ref:`opt_vignettes`
+    .. grid-item-card:: :ref:`opt_index_vignettes`
         :img-top: /_images/vignette_icon.svg
         :link: opt_index_vignettes
         :link-type: ref
