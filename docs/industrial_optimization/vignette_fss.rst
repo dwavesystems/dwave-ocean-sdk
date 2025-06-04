@@ -1,3 +1,5 @@
+.. _opt_vignette_fss:
+
 ==============================================
 D-WAVE PERFORMANCE STUDY: FLOW-SHOP SCHEDULING
 ==============================================
