@@ -1,16 +1,20 @@
-.. _opt_index_vignettes:
+.. _opt_index_benchmarks:
 
-===============================
-NL Solver Performance Vignettes
-===============================
+================
+Performance Benchmarks
+================
 
 .. toctree::
     :hidden:
     :maxdepth: 1
 
     vignette_fss
-The following vignettes compare the performance of D-Wave's nonlinear solver to 
+    
+The following vignettes compare the performance of D-Wave's hybrid solvers versus 
 other relevant solvers on a range of optimization applications.
+
+Nonlinear Solver
+================
 
 
 

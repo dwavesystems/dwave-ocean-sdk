@@ -1,11 +1,9 @@
 .. _opt_vignette_fss:
 
-==============================================
-D-WAVE PERFORMANCE STUDY: FLOW-SHOP SCHEDULING
-==============================================
+====================
+Flow-Shop Scheduling
+====================
 
-OPTIMIZING MANUFACTURING WITH FLOW-SHOP SCHEDULING
-==================================================
 
 Flow-shop scheduling (FSS) is an optimization challenge that involves organizing 
 a set of jobs that need to be processed through multiple machines in a specific order. 
@@ -31,12 +29,12 @@ This study includes performance benchmarks of D-Wave's NL and CQM solvers as wel
     An example of flow-shop scheduling.
 
 
-MATHEMATICAL MODELS
-===================================
+Mathematical Models
+===================
 
 This section discusses the various mathematical models that were used in this study.
 
-MIXED INTEGER LINEAR PROGRAMMING (MILP) MODEL
+Mixed Integer Linear Programming (MILP) Model
 ----------------------------------------------
 
 For MILP solvers, we use the formulation provided by Manne [Man1960]_. 
@@ -54,13 +52,13 @@ For each job, the number of constraints is quadratic in the number of machines.
 
 This formulation is used by the CQM solver, COIN-OR's Pulp CBC CMD solver, and SciPy's HiGHS.
 
-OR-TOOLS CP-SAT SOLVER 
----------------------------------------
+OR-Tools CP-SAT Solver 
+---------------------------
 
 OR-Tools defines a FSS formulation that fits their API where task processing times are passed as an :math:`n\times m` matrix.
 
-NL SOLVER MODEL 
----------------------------------------
+Nonlinear Solver Model 
+---------------------------
 
 D-Wave's NL solver can efficiently encode a FSS problem by taking advantage of a list variable taht encodes
 an ordering of the jobs. This variable eliminates the need for both the quadratic number of binary variables 
@@ -105,8 +103,8 @@ The relevant Python code is as follows:
 >>> model.minimize(makespan)
 >>> model.lock()
 
-RESULTS 
-=============================================
+Results 
+=======
 
 All problems were run with a time limit of 150 seconds. 
 Results are reported as optimality gaps (that is, (energy/best solution) - 1) when feasible. 

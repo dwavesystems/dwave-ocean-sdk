@@ -57,7 +57,7 @@ solvers.
         :link: opt_index_vignettes
         :link-type: ref
 
-        Optimization problem performance studies.
+        Performance studies on use cases.
 
 
 The :ref:`index_quantum_research` section shows how to use |dwave_short_tm|
