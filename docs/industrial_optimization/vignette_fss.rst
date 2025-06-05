@@ -16,7 +16,7 @@ in order on m machines; for example, see :numref:`Figure %s <vignette_fss_graphi
 The order of the jobs must be consistent across all machines. 
 The goal is to find a permutation of the jobs that minimizes the overall makespan (that is, the finish time). 
 
-In this study, we show how the optimization of flow-shop scheduling  using D-Wave's hybrid nonlinear-program solver 
+In this study, we show how the optimization of flow-shop scheduling using D-Wave's hybrid nonlinear-program solver 
 (NL solver) improves this process, with the goal of driving operational efficiencies. 
 This study includes performance benchmarks of D-Wave's NL and CQM solvers as well as COIN-OR, OR-Tools, and SciPy's HiGHS.
 
@@ -60,7 +60,7 @@ OR-Tools defines a FSS formulation that fits their API where task processing tim
 Nonlinear Solver Model 
 ---------------------------
 
-D-Wave's NL solver can efficiently encode a FSS problem by taking advantage of a list variable taht encodes
+D-Wave's NL solver can efficiently encode a FSS problem by taking advantage of a list variable that encodes
 an ordering of the jobs. This variable eliminates the need for both the quadratic number of binary variables 
 representing job orders and constraints preserving job order for the MILP formulation. The array of processing times
 is converted to a constant variable from which the task end times are computed. As a result, there is no need to 
@@ -68,6 +68,8 @@ encode constraints that prevent the jobs from overlapping.
 
 The relevant Python code is as follows:
 
+>>> from dwave.optimization import Model
+>>>
 >>> model = Model()
 >>>
 >>> # Add the constant processing-times matrix 
