@@ -1473,7 +1473,7 @@ to get a subset of solver fields.
         .. code-block:: bash
 
             $ filter="filter=none%2C%2Bid%2C%2Bstatus"
-            $ curl -H "X-Auth-Token: $SAPI_TOKEN" $SAPI_HOME/solvers/remote/?filter
+            $ curl -H "X-Auth-Token: $SAPI_TOKEN" "$SAPI_HOME/solvers/remote/?$filter"
 
 .. dropdown:: 2xx response
     :color: success
@@ -1566,8 +1566,8 @@ to get a subset of solver fields.
         .. code-block:: bash
 
             $ solver_name="Advantage_system4.1"
-            $ filter="none%2C%2Bstatus%2C%2Bavg_load%2C%2Bproperties.num_qubits"
-            $ curl -H "X-Auth-Token: $SAPI_TOKEN" $SAPI_HOME/solvers/remote/$solver_name/?filter
+            $ filter="filter=none%2C%2Bstatus%2C%2Bavg_load%2C%2Bproperties.num_qubits"
+            $ curl -H "X-Auth-Token: $SAPI_TOKEN" "$SAPI_HOME/solvers/remote/$solver_name/?$filter"
 
 .. dropdown:: 2xx response
     :color: success
