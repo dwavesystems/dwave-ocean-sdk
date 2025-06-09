@@ -4,24 +4,29 @@
 Flow-Shop Scheduling
 ====================
 
+`Flow-shop scheduling <https://en.wikipedia.org/wiki/Flow-shop_scheduling>`_
+(FSS) is an optimization challenge that involves organizing a set of jobs that
+need to be processed through multiple machines in a specific order. This type of
+scheduling is important in manufacturing and production environments, where
+operators are pressed to efficiently manage the workflow by optimizing the time
+it takes to complete each job and thus maintain a smooth and linear progression
+through the production line.
 
-Flow-shop scheduling (FSS) is an optimization challenge that involves organizing 
-a set of jobs that need to be processed through multiple machines in a specific order. 
-This type of scheduling is important in manufacturing and production environments 
-where operators are pressed to efficiently manage the workflow by optimizing the time it takes 
-to complete each job and thus maintain a smooth and linear progression through the production line. 
+Specifically, in the FSS problem, a set of :math:`n` jobs each having :math:`m`
+tasks must run in order on :math:`m` machines; for example, see
+:numref:`Figure %s <vignetteFssGraphic>`. The order of the jobs must be
+consistent across all machines. The goal is to find a permutation of the jobs
+that minimizes the overall `makespan <https://en.wikipedia.org/wiki/Makespan>`_
+(that is, the finish time).
 
-Specifically, in the FSS problem, a set of :math:`n` jobs each having :math:`m` tasks must run 
-in order on m machines; for example, see :numref:`Figure %s <vignette_fss_graphic>`. 
-The order of the jobs must be consistent across all machines. 
-The goal is to find a permutation of the jobs that minimizes the overall makespan (that is, the finish time). 
-
-In this study, we show how the optimization of flow-shop scheduling using D-Wave's hybrid nonlinear-program solver 
-(NL solver) improves this process, with the goal of driving operational efficiencies. 
-This study includes performance benchmarks of D-Wave's NL and CQM solvers as well as COIN-OR, OR-Tools, and SciPy's HiGHS.
+This study shows how the optimization of flow-shop scheduling using D-Wave's
+hybrid nonlinear-program solver (NL solver) improves this process, with the goal
+of driving operational efficiencies. This study includes performance benchmarks
+of D-Wave's NL and :term:`CQM` solvers as well as COIN-OR, OR-Tools, and SciPy's
+HiGHS.
 
 .. figure:: ../_images/vignette_fss_graphic.png
-    :name: FSS
+    :name: vignetteFssGraphic
     :height: 339 pt
     :width: 661 pt
     :alt: image
@@ -32,39 +37,47 @@ This study includes performance benchmarks of D-Wave's NL and CQM solvers as wel
 Mathematical Models
 ===================
 
-This section discusses the various mathematical models that were used in this study.
+This section discusses the various mathematical models that were used in this
+study.
 
 Mixed Integer Linear Programming (MILP) Model
-----------------------------------------------
+---------------------------------------------
 
-For MILP solvers, we use the formulation provided by Manne [Man1960]_. 
-Job orders are represented by binary variables :math:`x_{ij}`. 
-For each pair of jobs :math:`i` and :math:`j`, the variable :math:`x_{ij}` 
-is assigned a value of 1 if job :math:`i` is scheduled to be processed after job :math:`j`.
-If job :math:`i` is not processed after job :math:`j`, then :math:`x_{ij}`
-is assigned a value of 0. This binary system determines the sequence of job processing. 
-Task completion times are encoded by continuous variables. 
-In the resulting formulation, the number of binary variables is quadratic in the number of jobs, 
-and the number of continuous variables is equal to the number of jobs multiplied by the number of tasks.
+For MILP solvers, the study uses the formulation provided by Manne [Man1960]_.
+Job orders are represented by binary variables :math:`x_{ij}`. For each pair of
+jobs :math:`i` and :math:`j`, the variable :math:`x_{ij}` is assigned a value of
+1 if job :math:`i` is scheduled to be processed after job :math:`j`. If job
+:math:`i` is not processed after job :math:`j`, then :math:`x_{ij}` is assigned
+a value of 0. This binary system determines the sequence of job processing. Task
+completion times are encoded by continuous variables. In the resulting
+formulation, the number of binary variables is quadratic in the number of jobs,
+and the number of continuous variables is equal to the number of jobs multiplied
+by the number of tasks.
 
-The assigned constraints ensure that the jobs do not overlap, and the order of the jobs is respected across all machines.
-For each job, the number of constraints is quadratic in the number of machines.
+The assigned constraints ensure that the jobs do not overlap, and the order of
+the jobs is respected across all machines. For each job, the number of
+constraints is quadratic in the number of machines.
 
-This formulation is used by the CQM solver, COIN-OR's Pulp CBC CMD solver, and SciPy's HiGHS.
+This formulation is used by the CQM solver, COIN-OR's Pulp CBC CMD solver, and
+SciPy's HiGHS.
 
-OR-Tools CP-SAT Solver 
----------------------------
+OR-Tools CP-SAT Solver
+----------------------
 
-OR-Tools defines a FSS formulation that fits their API where task processing times are passed as an :math:`n\times m` matrix.
+OR-Tools defines an FSS formulation that fits their API where task processing
+times are passed as an :math:`n\times m` matrix.
 
 Nonlinear Solver Model 
 ---------------------------
 
-D-Wave's NL solver can efficiently encode a FSS problem by taking advantage of a list variable that encodes
-an ordering of the jobs. This variable eliminates the need for both the quadratic number of binary variables 
-representing job orders and constraints preserving job order for the MILP formulation. The array of processing times
-is converted to a constant variable from which the task end times are computed. As a result, there is no need to 
-encode constraints that prevent the jobs from overlapping.
+D-Wave's NL solver can efficiently encode an FSS problem by taking advantage of
+a list variable (:class:`~dwave.optimization.symbols.ListVariable`) that encodes
+an ordering of the jobs. This variable eliminates the need for both the
+quadratic number of binary variables representing job orders and constraints
+preserving job order for the MILP formulation. The array of processing times
+is converted to a constant variable from which the task end times are computed.
+As a result, there is no need to encode constraints that prevent the jobs from
+overlapping.
 
 The relevant Python code is as follows:
 
