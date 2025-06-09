@@ -81,48 +81,51 @@ overlapping.
 
 The relevant Python code is as follows:
 
-.. testsetup:: 
+.. testsetup::
 
     processing_times = [[10, 5, 7], [20, 10, 15]]
     num_jobs = 3
     num_machines = 2
 
->>> from dwave.optimization import Model
->>>
->>> model = Model()
->>>
->>> # Add the constant processing-times matrix 
->>> times = model.constant(processing_times)
->>>
->>> # The decision symbol is a num_jobs-long array of integer variables 
->>> order = model.list(num_jobs)
->>> end_times = []
->>>
->>> for machine_m in range(num_machines):
-...     machine_m_times = []
-...     if machine_m == 0:
-...         for job_j in range(num_jobs):
-...             if job_j == 0:
-...                 machine_m_times.append(times[machine_m, :][order[job_j]])
-...             else:
-...                 end_job_j = times[machine_m, :][order[job_j]]
-...                 end_job_j += machine_m_times[-1]
-...                 machine_m_times.append(end_job_j)
-...     else:
-...         for job_j in range(num_jobs):
-...             if job_j == 0:
-...                 end_job_j = end_times[machine_m - 1][job_j]
-...                 end_job_j += times[machine_m, :][order[job_j]]
-...                 machine_m_times.append(end_job_j)
-...             else:
-...                 end_job_j = maximum(end_times[machine_m - 1][job_j], machine_m_times[-1])
-...                 end_job_j += times[machine_m, :][order[job_j]]
-...                 machine_m_times.append(end_job_j)
-...     end_times.append(machine_m_times)
->>> makespan = end_times[-1][-1]
->>> # The objective is to minimize the last end time
->>> model.minimize(makespan)
->>> model.lock()
+.. testcode::
+
+    from dwave.optimization import Model
+    from dwave.optimization.mathematical import maximum
+
+    model = Model()
+
+    # Add the constant processing-times matrix
+    times = model.constant(processing_times)
+
+    # The decision symbol is a num_jobs-long array of integer variables
+    order = model.list(num_jobs)
+    end_times = []
+
+    for machine_m in range(num_machines):
+        machine_m_times = []
+        if machine_m == 0:
+            for job_j in range(num_jobs):
+                if job_j == 0:
+                    machine_m_times.append(times[machine_m, :][order[job_j]])
+                else:
+                    end_job_j = times[machine_m, :][order[job_j]]
+                    end_job_j += machine_m_times[-1]
+                    machine_m_times.append(end_job_j)
+        else:
+            for job_j in range(num_jobs):
+                if job_j == 0:
+                    end_job_j = end_times[machine_m - 1][job_j]
+                    end_job_j += times[machine_m, :][order[job_j]]
+                    machine_m_times.append(end_job_j)
+                else:
+                    end_job_j = maximum(end_times[machine_m - 1][job_j], machine_m_times[-1])
+                    end_job_j += times[machine_m, :][order[job_j]]
+                    machine_m_times.append(end_job_j)
+        end_times.append(machine_m_times)
+    makespan = end_times[-1][-1]
+    # The objective is to minimize the last end time
+    model.minimize(makespan)
+    cntx = model.lock()
 
 Results 
 =======
