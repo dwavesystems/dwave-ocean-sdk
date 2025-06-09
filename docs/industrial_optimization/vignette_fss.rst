@@ -127,6 +127,9 @@ The relevant Python code is as follows:
     model.minimize(makespan)
     cntx = model.lock()
 
+This model is available via the 
+:func:`~dwave.optimization.generators.flow_shop_scheduling` generator.
+
 Results
 =======
 
