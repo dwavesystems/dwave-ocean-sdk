@@ -127,39 +127,44 @@ The relevant Python code is as follows:
     model.minimize(makespan)
     cntx = model.lock()
 
-Results 
+Results
 =======
 
-All problems were run with a time limit of 150 seconds. 
-Results are reported as optimality gaps (that is, (energy/best solution) - 1) when feasible. 
-Infeasible solutions correspond to infinite gaps in the median, and if the median is infeasible, 
-the data point is not shown in the plot. In order to impose time limits on COIN-OR's solver, 
-presolve techniques are turned off. Presolve modifies the model by removing redundant equations, 
-changing some equations to bounds, and so forth without contributing to the time limit. 
+All problems were run with a time limit of 150 seconds.
+Results are reported as optimality gaps (that is, (energy/best solution) - 1)
+when feasible. Infeasible solutions correspond to infinite gaps in the median,
+and if the median is infeasible, the data point is not shown in the plot. In
+order to impose time limits on COIN-OR's solver, presolve techniques are turned
+off. Presolve modifies the model by removing redundant equations, changing some
+equations to bounds, and so forth without contributing to the time limit.
 
-D-Wave's NL solver and CQM solver benchmarks were run on D-Wave's Leap™ quantum cloud service. 
-COIN-OR, OR-Tools, and HiGHS were run on an Intel Core i9-7900X CPU @ 3.30GHz processor with 16GB RAM. 
-The benchmarks for OR-Tools were run with eight threads (the minimum number for parallel search), 
-and the remaining were run with a single thread. The instances run in this benchmark are the set of 
-Taillard FSS instances [Tai1993]_, which is an industry-standard benchmarking testbed (for example,
-[Li2022]_, [Kar2022]_, [Mao2021]_). 
-These 120 instance files contain the processing times for each task, with problem sizes 
-ranging from 20 to 500 jobs on 5 to 20 machines. For each job size, there are instances 
-with 5, 10, and 20 machines, excluding 200 jobs (having 10 and 20 machines) and 500 jobs (having 20 machines). 
+D-Wave's NL solver and CQM solver benchmarks were run on D-Wave's |cloud_tm|_
+quantum cloud service. COIN-OR, OR-Tools, and HiGHS were run on an Intel Core
+i9-7900X CPU @ 3.30GHz processor with 16GB RAM. The benchmarks for OR-Tools were
+run with eight threads (the minimum number for parallel search), and the
+remaining were run with a single thread. The instances run in this benchmark are
+the set of Taillard FSS instances [Tai1993]_, which is an industry-standard
+benchmarking testbed (for example, [Li2022]_, [Kar2022]_, [Mao2021]_).
+These 120 instance files contain the processing times for each task, with
+problem sizes ranging from 20 to 500 jobs on 5 to 20 machines. For each job
+size, there are instances with 5, 10, and 20 machines, excluding 200 jobs
+(having 10 and 20 machines) and 500 jobs (having 20 machines).
 
-:numref:`Figure %s <vignette_fss_lineplot>` shows the results on the Taillard FSS instances with a time limit 
-of 150 seconds. 
-The plot displays the median gap versus number of jobs for each solver. 
-The complete study contains more time limits, where the results are qualitatively the same, 
-except for OR-Tools obtaining optimality in the smallest instances with the largest time limit. 
-For each number of jobs with a 150-second runtime, D-Wave's NL solver outperforms the other solvers.
+:numref:`Figure %s <vignetteFssLineplot>` shows the results on the Taillard FSS
+instances with a time limit of 150 seconds. The plot displays the median gap
+versus number of jobs for each solver. The complete study contains more time
+limits, where the results are qualitatively the same, except for OR-Tools
+obtaining optimality in the smallest instances with the largest time limit.
+For each number of jobs with a 150-second runtime, D-Wave's NL solver
+outperforms the other solvers.
 
 .. figure:: ../_images/vignette_fss_lineplot.png
-    :name: Results
+    :name: vignetteFssLineplot
     :height: 291 pt
     :width: 483 pt
     :alt: lineplot
-    
-    On FSS problems with 150 seconds of runtime, the median gap for solutions found by D-Wave's NL solver beats
-    the median gaps found by all other solvers tested on all sizes available in the Taillard benchmarking library.
+
+    On FSS problems with 150 seconds of runtime, the median gap for solutions
+    found by D-Wave's NL solver beats the median gaps found by all other solvers
+    tested on all sizes available in the Taillard benchmarking library.
     
