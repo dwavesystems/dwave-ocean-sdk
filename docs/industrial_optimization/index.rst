@@ -12,6 +12,7 @@ Industrial Optimization
     developing_quantum_applications
     index_properties_parameters
     index_improving_solutions
+    index_vignettes
 
 .. sections-start-marker
 
@@ -50,6 +51,13 @@ solvers.
         :link-type: ref
 
         Scaling and usage best-practices.
+
+    .. grid-item-card:: :ref:`opt_index_benchmarks`
+        :img-top: /_images/vignette_icon.svg
+        :link: opt_index_benchmarks
+        :link-type: ref
+
+        Performance studies on use cases.
 
 
 The :ref:`index_quantum_research` section shows how to use |dwave_short_tm|

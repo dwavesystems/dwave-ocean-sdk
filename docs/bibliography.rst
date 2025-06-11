@@ -517,6 +517,13 @@ Bibliography
     arXiv:1706.01945 [quant-ph]
     https://doi.org/10.48550/arXiv.1706.01945
 
+.. [Kar2022]
+    Maryam Karimi-Mamaghan et al.
+    "Machine learning at the service of meta-heuristics for solving
+    combinatorial optimization problems: A state-of-the-art."
+    European Journal of Operational Research 296, No. 2 (January 2022): 393-422. 
+    https://doi.org/10.1016/j.ejor.2021.04.032
+
 .. [Kin2014]
     A. D. King and C. C. McGeoch.
     "Algorithm engineering for a quantum annealing platform."
@@ -608,6 +615,14 @@ Bibliography
     "Quantum-soft QUBO Suppression for Accurate Object Detection."
     arXiv:2007.13992 [cs.CV]
 
+.. [Li2022]
+    Hanxiao Li et al.
+    "An improved artificial bee colony algorithm with Q-learning for solving
+    permutation flow-shop scheduling problems."
+    IEEE Transactions on Systems, Man, and Cybernetics: Systems 53, 
+    no. 5 (May 2022): 2684-2693.
+    https://doi.org/10.1109/TSMC.2022.3219380
+
 .. [Lin2021]
     Jian Lin, Zhengfeng Zhang, Junping Zhang, and Xiaopeng Li.
     "Hard instance learning for quantum adiabatic prime factorization."
@@ -645,6 +660,20 @@ Bibliography
     Maciej Koch-Janusz and Zohar Ringel.
     "Mutual Information, Neural Networks and the Renormalization Group."
     24 Sep 2018. https://arxiv.org/pdf/1704.06279.pdf
+
+.. [Man1960]
+    Alan S. Manne.
+    "On the job-shop scheduling problem."
+    Operations Research 8, No. 2 (April 1960): 219-223.
+    https://doi.org/10.1287/opre.8.2.219
+
+.. [Mao2021]
+    Jia-yang Mao et al.
+    "An effective multi-start iterated greedy algorithm to minimize makespan
+    for the distributed permutation flowshop scheduling problem with preventative
+    maintenance."
+    Expert Systems with Applications 169, No. 114495 (May 2021). 
+    https://doi.org/10.1016/j.eswa.2020.114495
 
 .. [Mar1957]
     H.M. Markowitz (1957).
@@ -887,6 +916,12 @@ Bibliography
     Advances in Neural Information Processing Systems 21, MIT Press.
     2009.
     http://users.cecs.anu.edu.au/~dkamen/nips08.pdf.
+
+.. [Tai1993]
+    E. D. Taillard.
+    "Benchmarks for basic scheduling problems."
+    Eur. J. Oper. Res., Vol. 64, no. 2 (January 1993): 278-285.
+    https://doi.org/10.1016/0377-2217(93)90182-M
 
 .. [Tam2022]
     Toufan D. Tambunan, Andriyan B. Suksmono, Ian J.M. Edward,
