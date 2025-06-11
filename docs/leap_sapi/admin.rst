@@ -1563,7 +1563,8 @@ performs the following actions:
     *   -   |filter_combo|
         -   Filters the rows by a combination of a part of a member name or
             email address, problem status, solvers (by region), and submission
-            beginning and ending dates and times.
+            beginning and ending dates and times. You can exclude users and
+            projects via the **Is not** filter condition.
 
             **Note:** To change the region, select the desired region in the
             **Region:** *current_region* field.
