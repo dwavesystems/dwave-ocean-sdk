@@ -194,6 +194,29 @@ jobs:
             . env/bin/activate
             jupyter nbconvert --to notebook --execute docs/downloadables/scaling_for_production.ipynb
 
+  test-package-build:
+    docker:
+      - image: python:3.12
+
+    steps:
+      - checkout
+
+      - run: *create-virtualenv
+
+      - run: &build-package
+          name: build package
+          command: |
+            . env/bin/activate
+            pip install -U build
+            python -m build
+
+      - run:
+          name: twine check
+          command: |
+            . env/bin/activate
+            pip install twine
+            twine check dist/*
+
   deploy:
     docker:
       - image: python:3.12
@@ -211,13 +234,7 @@ jobs:
             echo $CIRCLE_TAG
             [[ "$(pip show dwave-ocean-sdk 2>/dev/null | grep Version)" == "Version: $CIRCLE_TAG" ]]
 
-      - run:
-          name: build sdist and bdist
-          command: |
-            . env/bin/activate
-            pip install -U pip setuptools wheel
-            python setup.py sdist
-            python setup.py bdist_wheel
+      - run: *build-package
 
       - run:
           name: upload
@@ -250,6 +267,7 @@ workflows:
               python-version: &python-versions-windows ["3.9.13", "3.10.11", "3.11.9", "3.12.8", "3.13.1"]
       # - test-individual-pkgs
       - test-doctest
+      - test-package-build
 
   deploy:
     jobs:
