@@ -1565,8 +1565,8 @@ performs the following actions:
             email address, problem status, solvers (by region), and submission
             beginning and ending dates and times.
             
-            **Tip:** You can exclude problems from the list by user and project
-            via the **Add filter** option's **Is not** condition.
+            **Tip:** You can exclude problems via the **Add filter** option's
+            **Is not** condition.
 
             **Note:** To change the region, select the desired region in the
             **Region:** *current_region* field.
