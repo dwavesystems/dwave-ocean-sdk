@@ -204,12 +204,11 @@ jobs:
       - run: *create-virtualenv
 
       - run: &build-package
-          name: build sdist and bdist
+          name: build package
           command: |
             . env/bin/activate
-            pip install -U pip setuptools wheel
-            python setup.py sdist
-            python setup.py bdist_wheel
+            pip install -U build
+            python -m build
 
       - run:
           name: twine check
