@@ -87,7 +87,7 @@ quantum processing unit.
 .. image:: docs/_static/inspector_bqm_ran_r_20.png
 
 You can find introductory examples in the
-`D-Wave documentation <https://docs.dwavequantum.com/en/latest/quantum_research/index_examples_beginner.html>`_
+`documentation examples <https://docs.dwavequantum.com/en/latest/quantum_research/index_examples_beginner.html>`_
 and `dwave-examples <https://github.com/dwave-examples>`_ GitHub repository, and
 many customer prototype applications on the
 `D-Wave website <https://www.dwavequantum.com/learn/featured-applications/>`_.
