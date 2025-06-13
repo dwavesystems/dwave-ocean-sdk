@@ -242,7 +242,7 @@ Full NL Model Formulation
     success = model.add_constraint(lp.success)
     model.minimize(lp.fun)
 
-    model.lock()
+    cntx = model.lock()
 
 .. figure:: ../_images/vignette_sat_graphic.png
     :name: vignetteSatGraphic
