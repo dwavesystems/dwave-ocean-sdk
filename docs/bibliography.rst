@@ -917,6 +917,13 @@ Bibliography
     2009.
     http://users.cecs.anu.edu.au/~dkamen/nips08.pdf.
 
+.. [Spa1991]
+    Susan B. Spalti, et al.
+    "Modeling the satellite placement problem as a network flow problem with one
+    side constraint."
+    OR Spektrum, Vol. 13, no. 1 (March 1991): 1-14.
+    https://doi.org/10.1007/BF01719766
+
 .. [Tai1993]
     E. D. Taillard.
     "Benchmarks for basic scheduling problems."
