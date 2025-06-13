@@ -98,7 +98,7 @@ This table lists the physical properties of the calibrated QPU.
     *   - :math:`I_c`: Qubit critical current
         - :math:`4.75\ \text{µA}`
 
-    *   - `Average single-qubit temperature <https://docs.ocean.dwavesys.com/en/stable/docs_system/reference/generated/dwave.system.temperatures.fast_effective_temperature.html#dwave.system.temperatures.fast_effective_temperature>`_
+    *   - `Average single-qubit temperature <https://docs.dwavequantum.com/en/latest/ocean/api_ref_system/generated/dwave.system.temperatures.fast_effective_temperature.html>`_
         - :math:`0.112`
 
     *   - :ref:`Ferromagnetic-problem freezeout <qpu_qa_freezeout>`
@@ -204,7 +204,7 @@ This table lists the physical properties of the calibrated QPU.
     *   - :math:`I_c`: Qubit critical current
         - :math:`4.57\ \text{µA}`
 
-    *   - :ref:`Average single-qubit temperature <system_utilities>`
+    *   - `Average single-qubit temperature <https://docs.dwavequantum.com/en/latest/ocean/api_ref_system/generated/dwave.system.temperatures.fast_effective_temperature.html>`_
         - :math:`0.117`
 
     *   - :ref:`Ferromagnetic-problem freezeout <qpu_qa_freezeout>`
@@ -308,7 +308,7 @@ This table lists the physical properties of the calibrated QPU.
     *   - :math:`I_c`: Qubit critical current
         - :math:`1.99\ \text{µA}`
 
-    *   - :ref:`Average single-qubit temperature <system_utilities>`
+    *   - `Average single-qubit temperature <https://docs.dwavequantum.com/en/latest/ocean/api_ref_system/generated/dwave.system.temperatures.fast_effective_temperature.html>`_
         - :math:`0.221`
 
     *   - :ref:`Ferromagnetic-problem freezeout <qpu_qa_freezeout>`
@@ -388,140 +388,6 @@ respectively, for this system.
 
     Typical quantization on the :math:`J` DAC control.
 
-
-Advantage_system5.4
-===================
-
-All data presented in this section are specific to the **Advantage_system5.4**
-solver. The |dwave_5kq| QPU is based on a physical lattice of qubits and
-couplers known as the *Pegasus*\ |tm| topology. For information,
-see the :ref:`topology_intro_pegasus` section.
-
-Physical Characteristics
-------------------------
-
-This table lists the physical properties of the calibrated QPU.
-
-.. tabularcolumns:: |l|L|
-
-.. list-table:: QPU Physical Properties\ [#]_
-    :header-rows: 1
-    :widths: 3 2
-
-    *   - Property
-        - Value
-
-    *   - Model
-        - :math:`\text{Advantage, performance update}`
-
-    *   - Graph size
-        - :math:`\text{P16}`
-
-    *   - Number of :ref:`qubits <property_qpu_qubits>`
-        - :math:`5614`
-
-    *   - Number of :ref:`couplers <property_qpu_couplers>`
-        - :math:`40050`
-
-    *   - Qubit temperature
-        - :math:`16.4 \pm 0.1\ \text{mK}`
-
-    *   - :math:`\rm M_{\rm AFM}`: Maximum mutual inductance for qubit pairs
-        - :math:`1.687\ \text{pH}`
-
-    *   - Quantum critical point for 1D chains
-        - :math:`1.389\ \text{GHz}`
-
-    *   - :math:`L_q`: Qubit inductance
-        - :math:`375\ \text{pH}`
-
-    *   - :math:`C_q`: Qubit capacitance
-        - :math:`117\ \text{fF}`
-
-    *   - :math:`I_c`: Qubit critical current
-        - :math:`2.10\ \text{µA}`
-
-    *   - :ref:`Average single-qubit temperature <system_utilities>`
-        - :math:`0.193`
-
-    *   - :ref:`Ferromagnetic-problem freezeout <qpu_qa_freezeout>`
-        - :math:`0.067`
-
-    *   - :ref:`Single-qubit freezeout <qpu_qa_freezeout>`
-        - :math:`0.622`
-
-    *   - :math:`\Phi_{\rm CCJJ}^i`: Initial (at :math:`s=0`) external flux on
-          compound Josephson junctions
-        - :math:`-0.620\ \Phi_0`
-
-    *   - :math:`\Phi_{\rm CCJJ}^f`: Final (at :math:`s=1`) external flux on
-          compound Josephson junctions
-        - :math:`-0.714\ \Phi_0`
-
-    *   - Readout time range
-        - :math:`18.0\ \text{to}\ 123.0\ \text{µs}`
-
-    *   - Programming time
-        - :math:`\sim 13300\ \text{µs}`
-
-    *   - QPU-delay-time per sample
-        - :math:`21.0\ \text{µs}`
-
-    *   - Readout error rate
-        - :math:`\leq 0.001`
-
-.. [#]
-    Some notes for the QPU properties are as follows:
-
-    .. include:: ../shared/qpu_specific_specs.rst
-        :start-after: start_qpu_adv_only_prop_notes
-        :end-before: end_qpu_adv_only_prop_notes
-
-    .. include:: ../shared/qpu_specific_specs.rst
-        :start-after: start_qpu_adv_and_adv2_prop_notes
-        :end-before: end_qpu_adv_and_adv2_prop_notes
-
-Annealing Schedule
-------------------
-
-Download the annealing schedule for the QPU here:
-:download:`Advantage_system5.4 <../downloadables/09-1265A-E_Advantage_system5_4_annealing_schedule.xlsx>`.
-
-The standard annealing schedule for the QPU is shown in
-:numref:`Figure %s <annealing-schedule-adv5>`.
-
-.. figure:: ../_images/annealing-schedule-adv5.png
-    :name: annealing-schedule-adv5
-
-    Standard annealing schedule for the QPU, showing energy changes
-    as a function of scaled time.
-
-DAC Quantization Effects
-------------------------
-
-.. ice 3
-
-The on-QPU digital-analog converters (DACs) that provide the user-specified
-:math:`h` and :math:`J` values have a finite quantization step size. That step
-size depends on the value of the :math:`h` and :math:`J` applied because the
-response to the DAC output is nonlinear.
-
-:numref:`Figure %s <ip-comp-dac-quantization-adv5>` and
-:numref:`Figure %s <co-dac-quantization-adv5>` show the effects of the DAC
-quantization step for the DACs controlling the :math:`h` and :math:`J` values,
-respectively, for this system.
-
-.. figure:: ../_images/ip-comp-quantization-error-adv5.png
-    :name: ip-comp-dac-quantization-adv5
-
-    Typical quantization on the :math:`h` DAC control.
-
-.. figure:: ../_images/coupler-quantization-error-adv5.png
-    :name: co-dac-quantization-adv5
-
-    Typical quantization on the :math:`J` DAC control.
-
-
 Advantage_system4.1
 ===================
 
@@ -574,7 +440,7 @@ This table lists the physical properties of the calibrated QPU.
     *   - :math:`I_c`: Qubit critical current
         - :math:`2.1\ \text{µA}`
 
-    *   - :ref:`Average single-qubit temperature <system_utilities>`
+    *   - `Average single-qubit temperature <https://docs.dwavequantum.com/en/latest/ocean/api_ref_system/generated/dwave.system.temperatures.fast_effective_temperature.html>`_
         - :math:`0.198`
 
     *   - :ref:`Ferromagnetic-problem freezeout <qpu_qa_freezeout>`
