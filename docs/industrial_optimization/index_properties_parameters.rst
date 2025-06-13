@@ -51,6 +51,9 @@ Large optimization problems can be formulated as
 
         Parameters of the nonlinear solver.
 
+The design principles and major features of this solver are described in the
+:ref:`dwave-optimization philosophy <optimization_philosophy>` page.
+
 CQM Solver
 ==========
 
