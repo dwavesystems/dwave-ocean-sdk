@@ -110,12 +110,13 @@ These values are the arguments for the LinearProgram node:
 
 .. testsetup::
 
+    import numpy as np
     from dwave.optimization import Model, linprog
 
     model = Model()
     c = model.integer(2, lower_bound=-10, upper_bound=10)
     A = model.integer((3, 2), lower_bound=-10, upper_bound=10)
-    b_ub = model.integer(3, lower_bound=-10, upper_bound=10)
+    b = model.integer(3, lower_bound=-10, upper_bound=10)
     W = model.integer(2, lower_bound=0, upper_bound=1)
     E = model.integer(2, lower_bound=0, upper_bound=1)
 
@@ -140,6 +141,7 @@ the order of midpoints of the satellite ranges (“sorted_indices”):
     num_satellites = 2
 
     model = Model()
+    sorted_indices = [0,1]
 
 .. testcode::
 
@@ -190,6 +192,7 @@ Full NL Model Formulation
 .. testcode::
 
     import itertools
+    import numpy as np
 
     from dwave.optimization import Model
     from dwave.optimization import linprog
