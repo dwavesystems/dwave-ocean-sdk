@@ -21,8 +21,6 @@ Satellite Placement
 
     </div>
 
-   </div>
-
 Problem Instances
 =================
 
@@ -112,7 +110,7 @@ Finally, to maximize :math:`z`, define the vector :math:`\mathbf{c}` to be
 These values are the arguments for the
 :class:`~dwave.optimization.symbols.LinearProgram` symbol:
 
-.. testsetup::
+.. testsetup:: [linprog]
 
     import numpy as np
     from dwave.optimization import Model, linprog
@@ -124,7 +122,7 @@ These values are the arguments for the
     W = model.integer(2, lower_bound=0, upper_bound=1)
     E = model.integer(2, lower_bound=0, upper_bound=1)
 
-.. testcode::
+.. testcode:: [linprog]
 
     from dwave.optimization import linprog
 
@@ -138,7 +136,7 @@ the nonlinear solver ran with and without an initial state for the list variable
 representing the order of the satellites. An initial state was assigned by the
 order of midpoints of the satellite ranges (“sorted_indices”):
 
-.. testsetup::
+.. testsetup:: [states]
 
     from dwave.optimization import Model
     num_satellites = 2
@@ -146,7 +144,7 @@ order of midpoints of the satellite ranges (“sorted_indices”):
     model = Model()
     sorted_indices = [0,1]
 
-.. testcode::
+.. testcode:: [states]
 
     orders = model.list(num_satellites)
     model.states.resize(1)
@@ -184,13 +182,13 @@ Nonlinear Model: Full Formulation
 =================================
 
 
-.. testsetup::
+.. testsetup:: [full]
 
     D = [[0.5,0.5],[0.5,0.5]]
     W = [1,2]
     E = [3,4]
 
-.. testcode::
+.. testcode:: [full]
 
     import itertools
     import numpy as np
