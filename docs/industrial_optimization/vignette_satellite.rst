@@ -226,8 +226,7 @@ Nonlinear Model: Full Formulation
         theta[row][i] = +1
         theta[row][j] = -1
     model.theta = theta = model.constant(np.vstack((theta, -theta)))
-        
-    # Concatenate A with the column for the coefficients of z    
+    # Concatenate A with the column for the coefficients of z
     d_combinations = d[from_, to_]
     A = hstack((theta, concatenate((d_combinations, d_combinations)).reshape(-1, 1)))
     b_ub = model.constant([0] * num_rows + [360] * num_rows)
