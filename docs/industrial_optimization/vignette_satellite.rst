@@ -6,19 +6,20 @@ Satellite Placement
 
 .. raw:: html
 
-   <div style="position: relative; width: 100%;">
+       <div style="position: relative; width: 100%;">
 
-     <img src="../_images/vignette_sat_graphic.png" style="width: 100%;">
+        <img src="../_images/vignette_sat_graphic.png" style="width: 100%;">
 
-     <div style="position: absolute; bottom: 10%; left: 0%; 
-     right: 20%; color: black; 
-     font-size: 16px;">
-       In the Satellite Placement Problem, a set of satellites each having east
-       and west boundaries are to be placed along an arc. Between each pair of
-       satellites, there is an interference that decreases with distance. The
-       goal is to place the satellites so that the maximum interference
-       experienced by any pair is minimized.
-     </div>
+        <div style="position: absolute; bottom: 10%; left: 0%;
+        right: 20%; color: black; font-size: 16px;">
+        In the satellite-placement problem, a set of satellites, each having
+        east and west boundaries, is to be placed along an arc. Between each
+        pair of satellites, there is interference that decreases with distance.
+        The goal is to place the satellites so that the maximum interference
+        experienced by any pair is minimized.
+        </div>
+
+    </div>
 
    </div>
 
@@ -50,12 +51,13 @@ the number of these variables is quartic in the number of satellites.
 Mixed Integer Nonlinear Programming (MINLP) Formulation
 -------------------------------------------------------
 
-For Pyomo with IPOpt (Interior Point Optimization), we can use absolute value to
-avoid the binary variables encoding the order of the satellites. Here, :math:`z`
-and :math:`\theta_i` are continuous variables, :math:`d_{ij}` is the
-interference between satellites :math:`i` and :math:`j`, and :math:`W_i` and
-:math:`E_i` are the west and east boundaries of satellite :math:`i`. The
-formulation is then the same as in [Spa1991]_:
+The `Pyomo <https://www.pyomo.org/>`_ modeling language with IPOpt (Interior
+Point Optimization) can use absolute value rather than encoding the order of the
+satellites with binary variables. Here, :math:`z` and :math:`\theta_i` are
+continuous variables, :math:`d_{ij}` is the interference between satellites
+:math:`i` and :math:`j`, and :math:`W_i` and :math:`E_i` are the west and east
+boundaries of satellite :math:`i`. The formulation is then the same as in
+[Spa1991]_:
 
 .. math::
 
@@ -64,14 +66,15 @@ formulation is then the same as in [Spa1991]_:
     \text{such that } & d_{ij}z \leq |\theta_j -\theta_i| \leq 360-d_{ij}z &
     \forall 1 \leq i < j \leq n\\
     &W_i \leq \theta_i \leq E_i & \forall 1 \leq i \leq n\\
-    \end{array} 
+    \end{array}
 
-NL Solver Formulation
----------------------
+Nonlinear Solver Formulation
+----------------------------
 
-We make use of a list variable to eliminate the need for the binary variables in
-the MIP formulation encoding the order of the satellites. To introduce
-continuous variables in our model, we use the LinearProgram Node.
+This formulation makes use of a :class:`dwave.optimization.Model.list` variable
+to eliminate the need for the binary variables in the MIP formulation encoding
+the order of the satellites. To introduce continuous variables in the model, the
+:class:`~dwave.optimization.symbols.LinearProgram` class is used.
 
 For each satellite ordering, there is an associated linear program:
 
@@ -98,15 +101,16 @@ in the :math:`i^{\text{th}}` and :math:`j^{\text{th}}` positions. The matrix
 left-hand sides of the inequalities, and the vector :math:`\mathbf{b}` is equal
 to :math:`(0,\ldots,0,360,\ldots,360)`, determined by the right-hand sides.
 
-The upper and lower bound vectors l and u are the west and east boundaries
-:math:`W_{\sigma(i)}` and :math:`E_{\sigma(i)}`, ordered by the state of the
-list variable.
+The upper and lower bound vectors :math:`l` and :math:`u` are the west and east
+boundaries :math:`W_{\sigma(i)}` and :math:`E_{\sigma(i)}`, ordered by the state
+of the list variable.
 
-Finally, since we want to maximize :math:`z`, we define the vector
-:math:`\mathbf{c}` to be :math:`(0,\ldots,0,-1)`, since
+Finally, to maximize :math:`z`, define the vector :math:`\mathbf{c}` to be
+:math:`(0,\ldots,0,-1)`, since
 :math:`\mathbf{x} = (\theta_1, \ldots, \theta_n, z)`.
 
-These values are the arguments for the LinearProgram node:
+These values are the arguments for the
+:class:`~dwave.optimization.symbols.LinearProgram` symbol:
 
 .. testsetup::
 
@@ -129,15 +133,14 @@ These values are the arguments for the LinearProgram node:
 Initial States
 --------------
 
-The NL solver and Pyomo can make use of initial states. For this study, we run
-the NL solver with and without an initial state for the list variable
-representing the order of the satellites. We assign an initial state given by
-the order of midpoints of the satellite ranges (“sorted_indices”):
+The nonlinear solver and Pyomo can make use of initial states. For this study,
+the nonlinear solver ran with and without an initial state for the list variable
+representing the order of the satellites. An initial state was assigned by the
+order of midpoints of the satellite ranges (“sorted_indices”):
 
 .. testsetup::
 
     from dwave.optimization import Model
-    
     num_satellites = 2
 
     model = Model()
@@ -149,39 +152,37 @@ the order of midpoints of the satellite ranges (“sorted_indices”):
     model.states.resize(1)
     orders.set_state(0, sorted_indices)
 
-We also run Pyomo and IPOpt with and without an initial state for the locations
+Pyomo and IPOpt also ran with and without an initial state for the locations
 of the satellites, given by the midpoints of the satellite ranges.
 
 Results
 =======
 
-:numref:`Figure %s <vignetteSatLineplot>` shows the median gaps for the NL
-solver, CQM solver, and Pyomo with IPOpt, with runtimes of 5, 30, and 60
-seconds. D-Wave's NL solver and CQM solver benchmarks were run on D-Wave's
-|cloud_tm|_ quantum cloud service. Pyomo with IPOpt was run on an AMD EPYC 9534
-64-Core Processor @ 2.45 GHz with 64 GB of memory. Pyomo reports the same energy
-for all runtimes given and thus is represented by a single line. The gaps are
-computed with respect to the best solution found over all runs. Infeasible
-solutions are counted as infinite gaps.
+:numref:`Figure %s <vignetteSatLineplot>` shows the median gaps for the
+nonlinear solver, CQM solver, and Pyomo with IPOpt, with runtimes of 5, 30, and
+60 seconds. D-Wave's nonlinear solver and CQM solver benchmarks were run on
+D-Wave's |cloud_tm|_ quantum cloud service. Pyomo with IPOpt was run on an AMD
+EPYC 9534 64-Core Processor @ 2.45 GHz with 64 GB of memory. Pyomo reports the
+same energy for all runtimes given and thus is represented by a single line.
+The gaps are computed with respect to the best solution found over all runs.
+Infeasible solutions are counted as infinite gaps.
 
-D-Wave's NL solver finds the best solutions to the satellite placement problem
-with 60-second runtimes. The other solvers tested--D-Wave's CQM solver and Pyomo
-with IPOpt--reach the same median gap for only up to three satellites with the
-same time limit.
+D-Wave's nonlinear solver finds the best solutions to the satellite-placement
+problem with 60-second runtimes. The other solvers tested--D-Wave's CQM solver
+and Pyomo with IPOpt--reach the same median gap for only up to three satellites
+with the same time limit.
 
 .. figure:: ../_images/vignette_sat_lineplot.png
     :name: vignetteSatLineplot
     :width: 100%
     :alt: image
 
-    On all problem sizes tested, D-Wave's NL solver finds the best solutions
-    to the satellite placement problem with 60-second runtimes.
+    On all problem sizes tested, D-Wave's nonlinear solver finds the best
+    solutions to the satellite placement problem with 60-second runtimes.
 
-Appendix
-========
+Nonlinear Model: Full Formulation
+=================================
 
-Full NL Model Formulation
--------------------------
 
 .. testsetup::
 
