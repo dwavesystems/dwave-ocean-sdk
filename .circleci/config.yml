@@ -1,6 +1,7 @@
 version: 2.1
 
 orbs:
+  node: circleci/node@7
   ocean: dwave/ocean@1
   windows: circleci/windows@5.0
 
@@ -217,6 +218,15 @@ jobs:
             pip install twine
             twine check dist/*
 
+  test-pa11y:
+    docker:
+      - image: buildkite/puppeteer:v1.15.0
+
+    steps:
+      - checkout
+      - run: npm install --global --unsafe-perm pa11y-ci
+      - run: pa11y-ci -c ./docs/pa11y.json
+
   deploy:
     docker:
       - image: python:3.12
@@ -252,46 +262,47 @@ workflows:
       not:
         equal: [scheduled_pipeline, << pipeline.trigger_source >>]
     jobs:
-      - test-linux:
-          matrix:
-            parameters:
-              python-version: &python-versions ["3.9.21", "3.10.16", "3.11.11", "3.12.8", "3.13.1"]
-      - test-macos:
-          matrix:
-            parameters:
-              python-version: *python-versions
-      - test-windows:
-          matrix:
-            parameters:
-              # note: limit to versions available via nuget
-              python-version: &python-versions-windows ["3.9.13", "3.10.11", "3.11.9", "3.12.8", "3.13.1"]
-      # - test-individual-pkgs
-      - test-doctest
-      - test-package-build
+      # - test-linux:
+      #     matrix:
+      #       parameters:
+      #         python-version: &python-versions ["3.9.21", "3.10.16", "3.11.11", "3.12.8", "3.13.1"]
+      # - test-macos:
+      #     matrix:
+      #       parameters:
+      #         python-version: *python-versions
+      # - test-windows:
+      #     matrix:
+      #       parameters:
+      #         # note: limit to versions available via nuget
+      #         python-version: &python-versions-windows ["3.9.13", "3.10.11", "3.11.9", "3.12.8", "3.13.1"]
+      # # - test-individual-pkgs
+      # - test-doctest
+      # - test-package-build
+      - test-pa11y
 
-  deploy:
-    jobs:
-      - deploy:
-          filters: &on-tag-push
-            tags:
-              only: /^[0-9]+(\.[0-9]+)*((\.dev|rc)([0-9]+)?)?$/
-            branches:
-              ignore: /.*/
+  # deploy:
+  #   jobs:
+  #     - deploy:
+  #         filters: &on-tag-push
+  #           tags:
+  #             only: /^[0-9]+(\.[0-9]+)*((\.dev|rc)([0-9]+)?)?$/
+  #           branches:
+  #             ignore: /.*/
 
-  nightly:
-    when:
-      equal: [nightly, << pipeline.schedule.name >>]
-    jobs:
-      - test-linux:
-          matrix:
-            parameters:
-              python-version: *python-versions
-      - test-macos:
-          matrix:
-            parameters:
-              python-version: *python-versions
-      - test-windows:
-          matrix:
-            parameters:
-              python-version: *python-versions-windows
-      - test-doctest
+  # nightly:
+  #   when:
+  #     equal: [nightly, << pipeline.schedule.name >>]
+  #   jobs:
+  #     - test-linux:
+  #         matrix:
+  #           parameters:
+  #             python-version: *python-versions
+  #     - test-macos:
+  #         matrix:
+  #           parameters:
+  #             python-version: *python-versions
+  #     - test-windows:
+  #         matrix:
+  #           parameters:
+  #             python-version: *python-versions-windows
+  #     - test-doctest

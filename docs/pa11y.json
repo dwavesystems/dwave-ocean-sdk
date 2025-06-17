@@ -1,0 +1,12 @@
+{
+    "defaults": {
+        "chromeLaunchConfig": {
+            "args": [
+                "--no-sandbox"
+            ]
+        }
+    },
+    "urls": [
+        "https://docs.dwavequantum.com/",
+    ]
+}
