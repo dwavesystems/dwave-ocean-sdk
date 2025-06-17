@@ -4,22 +4,16 @@
 Satellite Placement
 ===================
 
-.. raw:: html
+.. figure:: ../_images/vignette_sat_graphic.png
+    :name: vignetteSatGraphic
+    :width: 100%
+    :alt: image
 
-       <div style="position: relative; width: 100%;">
-
-        <img src="../_images/vignette_sat_graphic.png" style="width: 100%;">
-
-        <div style="position: absolute; bottom: 10%; left: 0%;
-        right: 20%; color: black; font-size: 16px;">
-        In the satellite-placement problem, a set of satellites, each having
-        east and west boundaries, is to be placed along an arc. Between each
-        pair of satellites, there is interference that decreases with distance.
-        The goal is to place the satellites so that the maximum interference
-        experienced by any pair is minimized.
-        </div>
-
-    </div>
+In the satellite-placement problem, a set of satellites, each having east and
+west boundaries, is to be placed along an arc. Between each pair of satellites,
+there is interference that decreases with distance. The goal is to place the
+satellites so that the maximum interference experienced by any pair is
+minimized.
 
 Problem Instances
 =================
@@ -244,8 +238,3 @@ Nonlinear Model: Full Formulation
     model.minimize(lp.fun)
 
     cntx = model.lock()
-
-.. figure:: ../_images/vignette_sat_graphic.png
-    :name: vignetteSatGraphic
-    :width: 0px
-    :alt: image
