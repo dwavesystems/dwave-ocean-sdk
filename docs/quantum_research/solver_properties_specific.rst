@@ -98,7 +98,7 @@ This table lists the physical properties of the calibrated QPU.
     *   - :math:`I_c`: Qubit critical current
         - :math:`4.75\ \text{µA}`
 
-    *   - `Average single-qubit temperature <https://docs.dwavequantum.com/en/latest/ocean/api_ref_system/generated/dwave.system.temperatures.fast_effective_temperature.html>`_
+    *   - :ref:`Average single-qubit temperature <system_utilities>`
         - :math:`0.112`
 
     *   - :ref:`Ferromagnetic-problem freezeout <qpu_qa_freezeout>`
@@ -204,7 +204,7 @@ This table lists the physical properties of the calibrated QPU.
     *   - :math:`I_c`: Qubit critical current
         - :math:`4.57\ \text{µA}`
 
-    *   - `Average single-qubit temperature <https://docs.dwavequantum.com/en/latest/ocean/api_ref_system/generated/dwave.system.temperatures.fast_effective_temperature.html>`_
+    *   - :ref:`Average single-qubit temperature <system_utilities>`
         - :math:`0.117`
 
     *   - :ref:`Ferromagnetic-problem freezeout <qpu_qa_freezeout>`
@@ -308,7 +308,7 @@ This table lists the physical properties of the calibrated QPU.
     *   - :math:`I_c`: Qubit critical current
         - :math:`1.99\ \text{µA}`
 
-    *   - `Average single-qubit temperature <https://docs.dwavequantum.com/en/latest/ocean/api_ref_system/generated/dwave.system.temperatures.fast_effective_temperature.html>`_
+    *   - :ref:`Average single-qubit temperature <system_utilities>`
         - :math:`0.221`
 
     *   - :ref:`Ferromagnetic-problem freezeout <qpu_qa_freezeout>`
@@ -440,7 +440,7 @@ This table lists the physical properties of the calibrated QPU.
     *   - :math:`I_c`: Qubit critical current
         - :math:`2.1\ \text{µA}`
 
-    *   - `Average single-qubit temperature <https://docs.dwavequantum.com/en/latest/ocean/api_ref_system/generated/dwave.system.temperatures.fast_effective_temperature.html>`_
+    *   - :ref:`Average single-qubit temperature <system_utilities>`
         - :math:`0.198`
 
     *   - :ref:`Ferromagnetic-problem freezeout <qpu_qa_freezeout>`
