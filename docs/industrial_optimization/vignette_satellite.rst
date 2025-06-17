@@ -63,7 +63,7 @@ boundaries of satellite :math:`i`. The formulation is then the same as in
 Nonlinear Solver Formulation
 ----------------------------
 
-This formulation makes use of a :class:`dwave.optimization.Model.list` variable
+This formulation makes use of a :meth:`~dwave.optimization.model.Model.list` variable
 to eliminate the need for the binary variables in the MIP formulation encoding
 the order of the satellites. To introduce continuous variables in the model, the
 :class:`~dwave.optimization.symbols.LinearProgram` class is used.
