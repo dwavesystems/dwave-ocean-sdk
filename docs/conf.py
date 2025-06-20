@@ -203,6 +203,18 @@ html_theme_options = {
             "url": "https://cloud.dwavesys.com/leap/",
             "icon": "_static/Dots.svg",
             "type": "local",
+            "attributes": {
+                "class": "nav-link light-theme-icon",
+            },
+        },
+        {
+            "name": "Leap",
+            "url": "https://cloud.dwavesys.com/leap/",
+            "icon": "_static/DotsWhite.svg",
+            "type": "local",
+            "attributes": {
+                "class": "nav-link dark-theme-icon",
+            },
         },
     ],
     "collapse_navigation": True,
