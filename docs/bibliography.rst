@@ -924,11 +924,23 @@ Bibliography
     OR Spektrum, Vol. 13, no. 1 (March 1991): 1-14.
     https://doi.org/10.1007/BF01719766
 
+.. [Tai1991]
+    E. D. Taillard.
+    "Robust taboo search for the quadratic assignment problem."
+    Parallel Computing, Vol. 17, nos. 4-5 (July 1991): 443-455.
+    https://doi.org/10.1016/S0167-8191(05)80147-4
+
 .. [Tai1993]
     E. D. Taillard.
     "Benchmarks for basic scheduling problems."
     Eur. J. Oper. Res., Vol. 64, no. 2 (January 1993): 278-285.
     https://doi.org/10.1016/0377-2217(93)90182-M
+
+.. [Tai1995]
+    E. D. Taillard.
+    "Comparison of iterative searches for the quadratic assignment problem."
+    Location Science, Vol. 3, no. 2 (August 1995): 87-105.
+    https://doi.org/10.1016/0966-8349(95)00008-6
 
 .. [Tam2022]
     Toufan D. Tambunan, Andriyan B. Suksmono, Ian J.M. Edward,
