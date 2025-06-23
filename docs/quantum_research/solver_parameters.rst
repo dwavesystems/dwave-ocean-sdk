@@ -726,6 +726,73 @@ as
 
 where `t_final` is the requested annealing time.
 
+.. dropdown:: Simulate h-gain in a filtered waveform
+    :name: tab_simulate_hgain_in_filtered_waveform
+
+    .. code-block:: py
+
+        import numpy as np
+        from scipy import signal
+        import warnings
+        
+        def simulate_hgain_filter (pwl, bandwidth):
+            """
+            Simulates the waveform resulting from being passed through a low-pass
+            filter with a specific ``bandwidth``.
+            
+            The low-pass filter is applied to a waveform before such waveform is sent
+            to the quantum computer by applying a second-order low-pass Bessel filter
+            to a piece-wise linear (``pwl``) waveform.
+
+            Because the simulated filtered waveform is an approximation, the actual
+            filtered waveform differs from the simulated one as follows:
+            
+            *   The actual filtered waveform is not infinitely smooth; and
+            *   The actual filtered waveform can expand beyond the requested waveform,
+                as required.
+            
+            Args:
+            
+                pwl:
+                    A piece-wise linear numpy 2d-array: [[t0, i0], [t1, i1], [t2, i2] ...] 
+                    where t0, t1... are points in time in units of microseconds and 
+                    i0, i1, ... are measurements of electrical current in units of
+                    milliamperes.
+            
+                    The initial current is assumed to be 0; thus, if i0 is not 0.0,
+                    there will be a rise time associated with that. For the actual
+                    filtered waveform, the initial current is not required to be 0. 
+            
+                bandwidth:
+                    Bandwidth (in MHz) of the low-pass filter. Valid values are the
+                    following:
+                    *   ``Adv`` = 3 MHz
+                    *   ``Adv2`` = 30 MHz
+                    *   An integer for any other bandwidth. 
+
+            Returns:
+                The simulated filtered waveform as the first returned ``np.vstack`` and
+                the original waveform as the second returned ``np.vstack``.
+            """
+            
+            t_i = pwl[0,0]
+            t_f = pwl[-1,0]
+            cur_i = pwl[0,1]
+            if (cur_i != 0.0):
+                warnings.warn("This function only processes PWLs starting from 0.0 bias." \
+                "Please add a point to the beginning of your PWL with zero bias.")
+            
+            if bandwidth == 'Adv':
+                bandwidth = 3
+            elif bandwidth == 'Adv2':
+                bandwidth = 30      
+            sampling_rate = int(bandwidth * 100) # per microsecond.
+            time_array = np.linspace(t_i, t_f, int(np.ceil(sampling_rate * (t_f-t_i))))
+            sig = np.interp(time_array, pwl[:, 0], pwl[:, 1])
+            b, a = signal.bessel(2, 2/100, btype="lowpass", analog=False, output="ba", norm="mag")
+            return np.vstack([time_array, signal.lfilter(b, a, sig)]).T, np.vstack([time_array, sig]).T
+
+
 Relevant Properties
 -------------------
 
