@@ -275,6 +275,22 @@ Example
 >>> sampler.properties["fast_anneal_time_range"]
 [0.005, 2000.0]
 
+.. _property_qpu_graph_id:
+
+graph_id
+========
+
+ID of the QPU's :ref:`working graph <topologies_working_graph>`.
+
+Example
+-------
+
+>>> from dwave.system import DWaveSampler
+...
+>>> sampler = DWaveSampler()
+>>> sampler.properties["graph_id"]        # doctest: +SKIP
+0111439a77
+
 
 .. _property_qpu_h_gain_schedule_range:
 
