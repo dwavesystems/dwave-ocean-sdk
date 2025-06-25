@@ -4,14 +4,14 @@
 Topologies
 ==========
 
-The layout of the |dwave_short| quantum processing unit (QPU) is critical to
-formulating an objective function in a format that a |dwave_short| annealing
-quantum computer can solve, as described in the :ref:`qpu_workflow` section.
-Although :ref:`Ocean software <index_ocean_sdk>` automates the mapping from the
-linear and quadratic coefficients of a quadratic model to qubit bias and
-coupling values set on the QPU, you should understand it if you are using QPU
-solvers directly because it has implications for the problem-graph size and
-solution quality.
+The topology (or layout) of the |dwave_short| quantum processing unit (QPU) is
+critical to formulating an objective function in a format that a |dwave_short|
+annealing quantum computer can solve, as described in the :ref:`qpu_workflow`
+section. Although :ref:`Ocean software <index_ocean_sdk>` automates the mapping
+from the linear and quadratic coefficients of a quadratic model to qubit bias
+and coupling values set on the QPU, you should understand the topology if you
+are using QPU solvers directly because it has implications for the problem-graph
+size and solution quality.
 
 .. note:: If you are sending your problem to a
     quantum-classical hybrid solver in the
@@ -32,10 +32,17 @@ The Working Graph
 =================
 
 Some small number of qubits and couplers in a QPU may not meet the
-specifications to function as desired. These are therefore removed from the
-programmable fabric that users can access. The subset of the QPU's graph
-available to users is the *working graph*. The yield\ [#]_ of the working graph
-is the percentage of working qubits that are present.
+specifications to function as desired. These qubits and couplers are therefore
+removed from the programmable fabric that users can access. The subset of the
+QPU's graph available to users is the *working graph*. The yield\ [#]_ of the
+working graph is the percentage of working qubits that are present.
+
+Due to various events, qubits may no longer meet the required specifications and
+at that time the qubits and associated couplers are removed from the working
+graph, which results in the working graph being versioned. The version of the
+working graph is tracked in the :ref:`property_qpu_graph_id` QPU solver
+property. If the removed qubits are used in a problem's
+:ref:`embedding <qpu_embedding_intro>`, the problem must be re-embedded.
 
 .. [#]
     Manufacturing variations and the need to prepare the QPU to operate at

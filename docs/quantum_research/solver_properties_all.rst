@@ -282,6 +282,14 @@ graph_id
 
 ID of the QPU's :ref:`working graph <topologies_working_graph>`.
 
+A solver's `graph_id` property is returned when connecting to the solver;
+for more information, see the :ref:`index_cloud` topic.
+
+.. note::
+    The `graph_id` property specified when submitting a problem to a QPU
+    solver must match the QPU solver's current `graph_id` property;
+    otherwise, an error is returned.
+
 Example
 -------
 
