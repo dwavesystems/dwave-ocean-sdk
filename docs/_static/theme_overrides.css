@@ -60,6 +60,10 @@ html[data-theme="light"] {
     --pst-color-info-bg: rgba(42, 125, 225, 0.1);
 }
 
+html[data-theme="light"] .nav-item:has(.dark-theme-icon) {
+    display: none;
+}
+
 html[data-theme="dark"] {
 
     /* theme overrides */
@@ -83,6 +87,10 @@ html[data-theme="dark"] {
     --sd-color-card-border-hover: var(--dwave-color-bright-blue);
     --dwave-bg: var(--dwave-color-leap-bg-dark);
     --pst-color-info-bg: var(--dwave-bg);
+}
+
+html[data-theme="dark"] .nav-item:has(.light-theme-icon) {
+    display: none;
 }
 
 .wy-table-responsive table td, .wy-table-responsive table th {
