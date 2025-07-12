@@ -163,7 +163,45 @@ resources and provides example usages.
 Examples Setup
 --------------
 
-The examples below use the following setup:
+To run the examples in this topic, set up your development environment, such as
+iPython, as described on the following tabs.
+
+The ``Accept`` request header is optional; if included, it must be one of the
+following:
+
+============================================ ====== ===================================================================
+Resource                                     Method Accept Request Header
+============================================ ====== ===================================================================
+/bqm/multipart                               POST   application/vnd.dwave.sapi.multipart-initiate+json; version=<x>
+/bqm/multipart/<problem_data_id>/part/<part> PUT    application/vnd.dwave.sapi.multipart-upload+json; version=<x>
+/bqm/multipart/<problem_data_id>/combine     POST   application/vnd.dwave.sapi.multipart-combine+json; version=<x>
+/bqm/multipart/<problem_data_id>/status      GET    application/vnd.dwave.sapi.multipart-status+json; version=<x>
+/problems/                                   POST   application/vnd.dwave.sapi.problems+json; version=<x>
+/problems/                                   DELETE application/vnd.dwave.sapi.problems+json; version=<x>
+/problems/<problem_id>                       DELETE application/vnd.dwave.sapi.problem-data+json; version=<x>
+/problems/                                   GET    application/vnd.dwave.sapi.problems+json; version=<x>
+/problems/<problem_id>/                      GET    application/vnd.dwave.sapi.problem+json; version=<x>
+/problems/<problem_id>/info                  GET    application/vnd.dwave.sapi.problem-data+json; version=<x>
+/problems/<problem_id>/answer/               GET    application/vnd.dwave.sapi.problem-answer+json; version=<x>
+/problems/<problem_id>/messages/             GET    application/vnd.dwave.sapi.problem-message+json; version=<x>
+/solvers/remote/                             GET    application/vnd.dwave.sapi.solver-definition-list+json; version=<x>
+/solvers/remote/<solver_id>/                 GET    application/vnd.dwave.sapi.solver-definition+json; version=<x> [#]_
+/solvers/remote/<solver_name>                GET    application/vnd.dwave.sapi.solver-definition+json; version=<x> [#]_
+============================================ ====== ===================================================================
+
+``<x>`` is the version of the Accept request-header; for example, ``3.0.0``.
+
+.. [#]
+    If ``version=3.0.0`` is specified, the ``identity``
+    resource field is returned; otherwise, the ``id`` resource field is
+    returned. For more information, see the "Solver Resource Fields"
+    table on the "2xx responses" tab in
+    :ref:`sapi_rest_get_remote_solver_config`.
+
+.. [#]
+    ``solver_name`` is the value in the ``identity.name`` field.
+    Regardless of the version specified in ``version``, the ``identity``
+    resource field is always returned.
 
 .. tab-set::
 
@@ -363,9 +401,9 @@ except for the last part, which may be smaller.
 
 .. testsetup:: md5
 
-    import dimod
-    bqm = dimod.BinaryQuadraticModel({}, {'xy': -1}, 'BINARY')
-    bqm_ser = bqm.to_file().read()
+    >>> import dimod
+    >>> bqm = dimod.BinaryQuadraticModel({}, {'xy': -1}, 'BINARY')
+    >>> bqm_ser = bqm.to_file().read()
 
 .. dropdown:: Calculating the MD5 Hash
 
@@ -385,13 +423,13 @@ except for the last part, which may be smaller.
         >>> part_hash = base64.b64encode(hash_md5.digest()).decode('utf-8')
         >>> print(part_hash)
         mkDiHuw5xZD3ocYSikE4nw==
-
+        ...
         >>> # For large problems:
         >>> hash_md5 = hashlib.md5()
         >>> with bqm.to_file() as f:    # for a saved file: with open("filename", "r")
-        ...  for chunk in iter(lambda: f.read(4096), b""):
-        ...   hash_md5.update(chunk)
-        >>> part_hash = (base64.b64encode(hash_md5.digest()).decode('utf-8'))
+        ...     for chunk in iter(lambda: f.read(4096), b""):
+        ...         hash_md5.update(chunk)
+        >>> part_hash = base64.b64encode(hash_md5.digest()).decode('utf-8')
         >>> print(part_hash)
         mkDiHuw5xZD3ocYSikE4nw==
 
@@ -750,15 +788,18 @@ sampler,see the :ref:`sapi_rest_full_examples` section.
 .. testsetup:: rest_live
     :skipif: test_api_token_set == False
 
+    >>> session.headers = {'X-Auth-Token': SAPI_TOKEN,
+    ...                    'Content-type': 'application/json'
+    ...                    'Accept': 'application/vnd.dwave.sapi.solver-definition+json; version=3.0.0'}
     from urllib.parse import urlencode
     import requests
-    filter = urlencode({"filter": "none,+id,+status,+properties.category"})
+    filter = urlencode({"filter": "none,+solver,+status,+properties.category"})
     r_hybrid_bqm = requests.get("https://na-west-1.cloud.dwavesys.com/sapi/v2/solvers/remote/?" \
       + filter, headers={'X-Auth-Token': SAPI_TOKEN}).json()
-    hybrid_bqm_solvers =  [r_hybrid_bqm[i]['id'] for i in range(len(r_hybrid_bqm)) if \
+    hybrid_bqm_solvers =  [r_hybrid_bqm[i]['solver']['name'] for i in range(len(r_hybrid_bqm)) if \
       r_hybrid_bqm[i]['properties']['category'] == "hybrid" and \
       r_hybrid_bqm[i]['status'] == "ONLINE" and \
-      "binary" in r_hybrid_bqm[i]['id']]
+      "binary" in r_hybrid_bqm[i]['solver']['name']]
     solver_hybrid_bqm = hybrid_bqm_solvers[0]
 
 .. tab-set::
@@ -1464,7 +1505,10 @@ to get a subset of solver fields.
         .. doctest:: rest_live
             :skipif: test_api_token_set == False
 
-            >>> filter = urlencode({"filter": "none,+id,+status,+avg_load,+properties.num_qubits,+properties.category"})
+            >>> session.headers = {'X-Auth-Token': SAPI_TOKEN,
+            ...                    'Content-type': 'application/json',
+            ...                    'Accept': 'application/vnd.dwave.sapi.solver-definition-list+json; version=3.0.0'}
+            >>> filter = urlencode({"filter": "none,+identity,+status,+avg_load"})
             ...
             >>> r = session.get(f"{SAPI_HOME}/solvers/remote/?{filter}")
 
@@ -1472,8 +1516,10 @@ to get a subset of solver fields.
 
         .. code-block:: bash
 
-            $ filter='filter=none,+id,+status'
-            $ curl -H "X-Auth-Token: $SAPI_TOKEN" -G "$SAPI_HOME/solvers/remote/" --data-urlencode "$filter"
+            $ filter='filter=none,+solver,+status,+avg_load'
+            $ curl -H "X-Auth-Token: $SAPI_TOKEN" -H "Content-type: application/json \
+            -H "Accept: application/vnd.dwave.sapi.solver-definition-list+json; version=3.0.0" \
+            -G "$SAPI_HOME/solvers/remote/" --data-urlencode "$filter"
 
 .. dropdown:: 2xx response
     :color: success
@@ -1490,32 +1536,32 @@ to get a subset of solver fields.
         the solver field values. Solver fields with values that change more
         frequently (e.g., ``avg_load``) should probably be cached for a shorter
         time than fields with values that change infrequently (e.g.,
-        ``description`` and ``id``). The value for this directive is based on
-        the shortest cache-refresh time of the returned fields. (Use the
-        ``filter`` parameter to return the desired subset of solver fields.)
+        ``description`` and ``solver.name``). The value for this directive is
+        based on the shortest cache-refresh time of the returned fields. (Use
+        the ``filter`` parameter to return the desired subset of solver fields.)
 
     .. doctest:: rest_live
         :skipif: test_api_token_set == False
 
         >>> r = r.json()
         >>> for i in range(len(r)):
-        ...    print(f"{r[i]['id']} \n\tStatus: {r[i]['status']}    Load: {r[i]['avg_load']}")  # doctest: +SKIP
-        DW_2000Q_6
+        ...    print(f"{r[i]['identity']['name']} \n\tStatus: {r[i]['status']}    Load: {r[i]['avg_load']}")  # doctest: +SKIP
+        hybrid_nonlinear_program_version1p
             Status: ONLINE    Load: 0.0
-        DW_2000Q_VFYC_6
+        hybrid_constrained_quadratic_model_version1p
             Status: ONLINE    Load: 0.0
         hybrid_binary_quadratic_model_version2p
             Status: ONLINE    Load: 0.0
         hybrid_discrete_quadratic_model_version1p
             Status: ONLINE    Load: 0.0
+        Advantage2_system1.3
+            Status: ONLINE    Load: 0.58
+        Advantage_system6.4
+            Status: ONLINE    Load: 0.02
         Advantage_system4.1
-            Status: ONLINE    Load: 0.13
-        hybrid_constrained_quadratic_model_version1p
-            Status: ONLINE    Load: 0.0
-        Advantage_system6.1
-            Status: ONLINE    Load: 0.01
-        Advantage2_prototype1.1
-            Status: ONLINE    Load: 0.0
+            Status: ONLINE    Load: 0.09
+
+    .. _solver_resource_fields_table:
 
     .. include:: ../shared/sapi_rest.rst
         :start-after: start_solver_resource_fields
@@ -1557,9 +1603,13 @@ to get a subset of solver fields.
 
         .. doctest:: rest_live
             :skipif: test_api_token_set == False
-
+            
+            >>> session.headers = {'X-Auth-Token': SAPI_TOKEN,
+            ...                    'Content-type': 'application/json',
+            ...                    'Accept': 'application/vnd.dwave.sapi.solver-definition+json; version=3.0.0'}
             >>> solver_name = "Advantage_system4.1"
-            >>> r = session.get(f"{SAPI_HOME}/solvers/remote/{solver_name}")
+            >>> filter = urlencode({"filter": "none,+identity,+status,+avg_load,+properties.num_qubits"})
+            >>> r = session.get(f"{SAPI_HOME}/solvers/remote/{solver_name}/?{filter}")
 
     .. tab-item:: cURL
 
@@ -1568,8 +1618,9 @@ to get a subset of solver fields.
             $ solver_name="Advantage_system4.1"
             $ url="$SAPI_HOME/solvers/remote/$solver_name/"
             $ auth="X-Auth-Token: $SAPI_TOKEN"
-            $ filter="filter=none,+status,+avg_load,+properties.num_qubits"
-            $ curl -H "$auth" -G "$url" --data-urlencode "$filter"
+            $ request="Accept: application/vnd.dwave.sapi.solver-definition+json; version=3.0.0"
+            $ filter="filter=none,+identity,+status,+avg_load,+properties.num_qubits"
+            $ curl -H "$auth" -H "$request" -G "$url" --data-urlencode "$filter"
 
 .. dropdown:: 2xx response
     :color: success
@@ -1669,7 +1720,9 @@ used for all SAPI requests.
     >>> SAPI_TOKEN = "ABC-1234567...345678"     # doctest: +SKIP
     ...
     >>> session = requests.Session()
-    >>> session.headers = {'X-Auth-Token': SAPI_TOKEN, 'Content-type': 'application/json'}
+    >>> session.headers = {'X-Auth-Token': SAPI_TOKEN,
+    ...                    'Content-type': 'application/json',
+    ...                    'Accept': 'application/vnd.dwave.sapi.solver-definition-list+json; version=3.0.0'}
 
 .. _sapi_rest_token_available_solvers:
 
@@ -1684,7 +1737,7 @@ quantity of retrieved information, can be omitted.
 .. doctest:: rest_live
     :skipif: test_api_token_set == False
 
-    >>> filter = urlencode({"filter": "none,+id,+status,+avg_load,+properties.num_qubits,+properties.category"})
+    >>> filter = urlencode({"filter": "none,+identity,+status,+avg_load"})
     ...
     >>> r1 = session.get(f"{SAPI_HOME}/solvers/remote/?{filter}")
     >>> print(r1.status_code)
@@ -1698,23 +1751,21 @@ lists the solver names, statuses, and current usage loads.
 
     >>> r1 = r1.json()
     >>> for i in range(len(r1)):
-    ...    print(f"{r1[i]['id']} \n\tStatus: {r1[i]['status']}    Load: {r1[i]['avg_load']}")  # doctest: +SKIP
-    DW_2000Q_6
+    ...    print(f"{r1[i]['identity']['name']} \n\tStatus: {r1[i]['status']}    Load: {r1[i]['avg_load']}")  # doctest: +SKIP
+    hybrid_nonlinear_program_version1p
         Status: ONLINE    Load: 0.0
-    DW_2000Q_VFYC_6
+    hybrid_constrained_quadratic_model_version1p
         Status: ONLINE    Load: 0.0
     hybrid_binary_quadratic_model_version2p
         Status: ONLINE    Load: 0.0
     hybrid_discrete_quadratic_model_version1p
         Status: ONLINE    Load: 0.0
+    Advantage2_system1.3
+        Status: ONLINE    Load: 0.58
+    Advantage_system6.4
+        Status: ONLINE    Load: 0.02
     Advantage_system4.1
-        Status: ONLINE    Load: 0.13
-    hybrid_constrained_quadratic_model_version1p
-        Status: ONLINE    Load: 0.0
-    Advantage_system6.1
-        Status: ONLINE    Load: 0.01
-    Advantage2_prototype1.1
-        Status: ONLINE    Load: 0.0
+        Status: ONLINE    Load: 0.09
 
 Submit a Problem to a QPU Sampler
 ---------------------------------
@@ -1747,8 +1798,8 @@ account running the example.
 .. doctest:: rest_live
     :skipif: test_api_token_set == False
 
-    >>> advantage_systems =  {r1[i]['id']: r1[i]["properties"]["num_qubits"] for
-    ...    i in range(len(r1)) if "Advantage_system" in r1[i]['id']}
+    >>> advantage_systems =  {r1[i]['identity]['name']: r1[i]["properties"]["num_qubits"] for
+    ...    i in range(len(r1)) if "Advantage_system" in r1[i]['identity']['name']}
     >>> akeys = list(advantage_systems.keys())
     >>> avals = list(advantage_systems.values())
     >>> qpu_solver = akeys[avals.index(max(avals))]
@@ -1966,8 +2017,8 @@ section above.
 .. doctest:: rest_live
     :skipif: test_api_token_set == False or hss_spot_check == False
 
-    >>> hybrid_bqm_solvers =  [r1[i]['id'] for i in range(len(r1)) if
-    ...    r1[i]['properties']['category'] == "hybrid" and "binary" in r1[i]['id']]
+    >>> hybrid_bqm_solvers =  [r1[i]['identity']['name'] for i in range(len(r1)) if
+    ...    r1[i]['properties']['category'] == "hybrid" and "binary" in r1[i]['identity']['name']]
     >>> bqm_solver = hybrid_bqm_solvers[0]
     >>> print(bqm_solver)                           # doctest: +SKIP
     hybrid_binary_quadratic_model_version2p
