@@ -37,12 +37,17 @@ removed from the programmable fabric that users can access. The subset of the
 QPU's graph available to users is the *working graph*. The yield\ [#]_ of the
 working graph is the percentage of working qubits that are present.
 
-Due to various events, qubits may no longer meet the required specifications and
-at that time the qubits and associated couplers are removed from the working
-graph, which results in the working graph being versioned. The version of the
-working graph is tracked in the :ref:`property_qpu_graph_id` QPU solver
-property. If the removed qubits are used in a problem's
-:ref:`embedding <qpu_embedding_intro>`, the problem must be re-embedded.
+Due to various events during the operation of the QPU, qubits may no longer meet
+the required specifications and at that time the qubits and associated couplers
+are removed from the working graph; qubits and associated couplers may also be
+added back. Both adding and removing qubits and couplers result in the working
+graph being versioned. The version of the working graph is tracked in the
+``graph_id`` solver resource field (see the "Solver Resource Fields" table on
+the "2xx responses" tab in :ref:`sapi_rest_get_remote_solver_config`). If the
+affected qubits are used in a problem's :ref:`embedding <qpu_embedding_intro>`,
+such as one that uses the
+:class:`~dwave.system.composites.FixedEmbeddingComposite` class, the problem
+must be re-embedded.
 
 .. [#]
     Manufacturing variations and the need to prepare the QPU to operate at
