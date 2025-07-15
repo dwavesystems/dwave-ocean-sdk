@@ -1618,9 +1618,9 @@ to get a subset of solver fields.
             $ solver_name="Advantage_system4.1"
             $ url="$SAPI_HOME/solvers/remote/$solver_name/"
             $ auth="X-Auth-Token: $SAPI_TOKEN"
-            $ request="Accept: application/vnd.dwave.sapi.solver-definition+json; version=3.0.0"
-            $ filter="filter=none,+identity,+status,+avg_load,+properties.num_qubits"
-            $ curl -H "$auth" -H "$request" -G "$url" --data-urlencode "$filter"
+            $ accept="Accept: application/vnd.dwave.sapi.solver-definition+json; version=3.0.0"
+            $ filter="none,+identity,+status,+avg_load,+properties.num_qubits"
+            $ curl -H "$auth" -H "$accept" -G "$url" --data-urlencode "filter=$filter"
 
 .. dropdown:: 2xx response
     :color: success
