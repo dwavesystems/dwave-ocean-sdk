@@ -91,9 +91,8 @@ The serialized file may look like this:
     ============== ==============================
     avg_load       Average current load for the solver.
     description    Description of the solver.
-    id             Unique ID (name) of the solver. Only available for an
-                   ``Accept`` request header  with ``version=2.0.0``, which is
-                   the default.
+    id             Unique ID (name) of the solver. Only available in
+                   solver representation versions 1 and 2.
     properties     :ref:`Solver properties <qpu_solver_properties_all>`
                    that reside in the ``properties`` dict; for example,
                    supported problem types, active qubits, active couplers,
@@ -103,10 +102,10 @@ The serialized file may look like this:
 
                    .. code-block:: json
                     
-                        "identity":{
-                            "name":
-                            "version":{
-                                "graph_id":
+                        "identity": {
+                            "name": <name>,
+                            "version": {
+                                "graph_id": <graph-id>
                             }
                         }
                     
