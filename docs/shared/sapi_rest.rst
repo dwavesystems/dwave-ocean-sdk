@@ -91,11 +91,35 @@ The serialized file may look like this:
     ============== ==============================
     avg_load       Average current load for the solver.
     description    Description of the solver.
-    id             Unique ID (name) of the solver.
+    id             Unique ID (name) of the solver. Only available in
+                   solver representation versions 1 and 2.
     properties     :ref:`Solver properties <qpu_solver_properties_all>`
                    that reside in the ``properties`` dict; for example,
                    supported problem types, active qubits, active couplers,
                    total number of qubits, and so on.
+    identity       Represents the following JSON structure. Only available for
+                   an ``Accept`` request header with ``version=3.0.0``.
+
+                   .. code-block:: json
+                    
+                        "identity": {
+                            "name": <name>,
+                            "version": {
+                                "graph_id": <graph-id>
+                            }
+                        }
+                    
+                   where the fields are as follows:
+                   
+                   *    ``identity``: Parent for solver-related fields.
+                   
+                   *    ``name``: Name of the solver.
+
+                   *    ``version``: Parent for version-related fields.
+                   
+                   *    ``graph_id``: ID of the QPU solver's
+                        :ref:`working graph <topologies_working_graph>`. This
+                        field does not apply to hybrid solvers.
     status         Status of the solver; for example, a status of
                    ``ONLINE`` is returned if it is available and ``OFFLINE``
                    if it is unavailable.
