@@ -1,3 +1,7 @@
+..  |resource_rep_version| replace:: ``<x>`` is the version of the resource
+    representation that the client prefers; for example, ``3``. The Leap service
+    responds with the lastest available version.  
+
 .. _leap_sapi_rest:
 
 ===================
@@ -163,46 +167,9 @@ resources and provides example usages.
 Examples Setup
 --------------
 
-To run the examples in this topic, set up your development environment, such as
-iPython, as described on the following tabs.
-
-The ``Accept`` request header is optional; if included, it must be one of the
-following:
-
-============================================ ====== ===================================================================
-Resource                                     Method Accept Request Header
-============================================ ====== ===================================================================
-/bqm/multipart                               POST   application/vnd.dwave.sapi.multipart-initiate+json; version=<x>
-/bqm/multipart/<problem_data_id>/part/<part> PUT    application/vnd.dwave.sapi.multipart-upload+json; version=<x>
-/bqm/multipart/<problem_data_id>/combine     POST   application/vnd.dwave.sapi.multipart-combine+json; version=<x>
-/bqm/multipart/<problem_data_id>/status      GET    application/vnd.dwave.sapi.multipart-status+json; version=<x>
-/problems/                                   POST   application/vnd.dwave.sapi.problems+json; version=<x>
-/problems/                                   DELETE application/vnd.dwave.sapi.problems+json; version=<x>
-/problems/<problem_id>                       DELETE application/vnd.dwave.sapi.problem-data+json; version=<x>
-/problems/                                   GET    application/vnd.dwave.sapi.problems+json; version=<x>
-/problems/<problem_id>/                      GET    application/vnd.dwave.sapi.problem+json; version=<x>
-/problems/<problem_id>/info                  GET    application/vnd.dwave.sapi.problem-data+json; version=<x>
-/problems/<problem_id>/answer/               GET    application/vnd.dwave.sapi.problem-answer+json; version=<x>
-/problems/<problem_id>/messages/             GET    application/vnd.dwave.sapi.problem-message+json; version=<x>
-/solvers/remote/                             GET    application/vnd.dwave.sapi.solver-definition-list+json; version=<x>
-/solvers/remote/<solver_id>/                 GET    application/vnd.dwave.sapi.solver-definition+json; version=<x> [#]_
-/solvers/remote/<solver_name>                GET    application/vnd.dwave.sapi.solver-definition+json; version=<x> [#]_
-============================================ ====== ===================================================================
-
-``<x>`` is the version of the Accept request-header; for example, ``3.0.0``.
-
-.. [#]
-    If ``version=3.0.0`` is specified, the ``identity``
-    resource field is returned; otherwise, the ``id`` resource field is
-    returned. For more information, see the "Solver Resource Fields"
-    table on the "2xx responses" tab in
-    :ref:`sapi_rest_get_remote_solver_config`.
-
-.. [#]
-    ``solver_name`` is the value in the ``identity.name`` field.
-    Regardless of the version specified in ``version``, the ``identity``
-    resource field is always returned.
-
+To run the examples in this topic, set up your development environment as
+described on the following tabs.
+    
 .. tab-set::
 
     .. tab-item:: Python
@@ -292,7 +259,7 @@ SAPI provides the following resources and methods.
     /problems/<problem_id>/answer/               GET    :ref:`sapi_rest_get_problem_answer`
     /problems/<problem_id>/messages/             GET    :ref:`sapi_rest_get_problem_messages`
     /solvers/remote/                             GET    :ref:`sapi_rest_list_remote_solvers`
-    /solvers/remote/<solver_id>/                 GET    :ref:`sapi_rest_get_remote_solver_config`
+    /solvers/remote/<solver_name>/               GET    :ref:`sapi_rest_get_remote_solver_config`
     ============================================ ====== =========================================
 
 .. _sapi_rest_get_multi_id:
@@ -301,7 +268,9 @@ Initiate Upload of Problem Data
 -------------------------------
 
 For quantum-classical hybrid solvers in the Leap service, you must upload your
-problem using the ``$SAPI_HOME/bqm/multipart/*`` endpoints before submitting a
+problem using the ``$SAPI_HOME/bqm/multipart/*`` endpoints and, optionally,
+the ``application/vnd.dwave.sapi.multipart-initiate+json; version=2.0.0``
+resource representation before submitting a
 SAPI request to run the problem. For large problems (starting from several
 megabytes and higher), upload the problem data in multiple parts.
 
@@ -389,7 +358,9 @@ Upload Problem Data
 
 To upload a problem, or parts of a large problem, send an HTTP PUT request to
 ``bqm/multipart/<problem_data_id>/part/<part>`` (for each part, where ``<part>``
-is an integer beginning at 1).
+is an integer beginning at 1) and, optionally, the
+``application/vnd.dwave.sapi.multipart-upload+json; version=2.0.0`` resource
+representation.
 
 The POST request body should contain the data for (one part of) the problem,
 encoded as described in the :ref:`dimod <index_dimod>`
@@ -401,9 +372,9 @@ except for the last part, which may be smaller.
 
 .. testsetup:: md5
 
-    >>> import dimod
-    >>> bqm = dimod.BinaryQuadraticModel({}, {'xy': -1}, 'BINARY')
-    >>> bqm_ser = bqm.to_file().read()
+    import dimod
+    bqm = dimod.BinaryQuadraticModel({}, {'xy': -1}, 'BINARY')
+    bqm_ser = bqm.to_file().read()
 
 .. dropdown:: Calculating the MD5 Hash
 
@@ -423,7 +394,7 @@ except for the last part, which may be smaller.
         >>> part_hash = base64.b64encode(hash_md5.digest()).decode('utf-8')
         >>> print(part_hash)
         mkDiHuw5xZD3ocYSikE4nw==
-        ...
+        
         >>> # For large problems:
         >>> hash_md5 = hashlib.md5()
         >>> with bqm.to_file() as f:    # for a saved file: with open("filename", "r")
@@ -516,7 +487,9 @@ Complete the Problem Upload
 ---------------------------
 
 To complete an upload of problem data, send an HTTP POST request to
-``bqm/multipart/<problem_data_id>/combine``.
+``bqm/multipart/<problem_data_id>/combine`` and, optionally, the
+``application/vnd.dwave.sapi.multipart-combine+json; version=2.0.0``
+resource representation.
 
 The POST request body should contain the checksum for the entire problem, as a
 string.
@@ -623,7 +596,9 @@ Status of a Problem Upload
 --------------------------
 
 To query the status of an in-progress problem upload, send an HTTP GET request
-to ``bqm/multipart/<problem_data_id>/status``.
+to ``bqm/multipart/<problem_data_id>/status`` and, optionally, the
+``application/vnd.dwave.sapi.multipart-status+json; version=2.0.0``
+resource representation.
 
 The GET request should contain no body.
 
@@ -682,7 +657,9 @@ Submit Problems
 ---------------
 
 To submit problems to a solver in the Leap service, send an HTTP POST request to
-``problems``.
+``problems`` and, optionally, the
+``application/vnd.dwave.sapi.problems+json; version=<x>`` resource
+representation.\ [#]_
 
 The POST request body should contain the JSON-encoded fields described below.
 When possible, if you have more than one problem, submit them in a single
@@ -782,24 +759,24 @@ query.\ [#]_
                            Not used for ``data`` with ``format="ref"``.
         ================== =======================================
 
-For an example of sumitting a problem to a quantum processing unit (QPU)
+For an example of submitting a problem to a quantum processing unit (QPU)
 sampler,see the :ref:`sapi_rest_full_examples` section.
 
 .. testsetup:: rest_live
     :skipif: test_api_token_set == False
 
-    >>> session.headers = {'X-Auth-Token': SAPI_TOKEN,
-    ...                    'Content-type': 'application/json'
-    ...                    'Accept': 'application/vnd.dwave.sapi.solver-definition+json; version=3.0.0'}
+    session.headers = {'X-Auth-Token': SAPI_TOKEN,
+                        'Content-type': 'application/json'
+                        'Accept': 'application/vnd.dwave.sapi.solver-definition+json; version=3.0.0'}
     from urllib.parse import urlencode
     import requests
-    filter = urlencode({"filter": "none,+solver,+status,+properties.category"})
+    filter = urlencode({"filter": "none,+identity,+status,+properties.category"})
     r_hybrid_bqm = requests.get("https://na-west-1.cloud.dwavesys.com/sapi/v2/solvers/remote/?" \
       + filter, headers={'X-Auth-Token': SAPI_TOKEN}).json()
-    hybrid_bqm_solvers =  [r_hybrid_bqm[i]['solver']['name'] for i in range(len(r_hybrid_bqm)) if \
+    hybrid_bqm_solvers =  [r_hybrid_bqm[i]['identity']['name'] for i in range(len(r_hybrid_bqm)) if \
       r_hybrid_bqm[i]['properties']['category'] == "hybrid" and \
       r_hybrid_bqm[i]['status'] == "ONLINE" and \
-      "binary" in r_hybrid_bqm[i]['solver']['name']]
+      "binary" in r_hybrid_bqm[i]['identity']['name']]
     solver_hybrid_bqm = hybrid_bqm_solvers[0]
 
 .. tab-set::
@@ -837,6 +814,9 @@ sampler,see the :ref:`sapi_rest_full_examples` section.
             "solver":"hybrid_binary_quadratic_model_version2p", \
             "data":{"format": "ref", "data": "'"$problem_data_id"'"}, \
             "params":{"time_limit":5}}]'
+
+.. [#]
+   |resource_rep_version|
 
 .. [#]
     The request body is JSON data enclosed in a list. For submitting multiple
@@ -913,7 +893,9 @@ Cancel Multiple Problems
 ------------------------
 
 To cancel pending problems (problems with status ``PENDING``), send an HTTP
-DELETE request to ``problems``.
+DELETE request to ``problems`` and, optionally, the
+``application/vnd.dwave.sapi.problems+json; version=<x>`` resource
+representation.\ [#]_
 
 The request body should be a JSON-encoded list of problem IDs; if the request
 body is empty, the request has no effect.
@@ -939,6 +921,9 @@ single query.
 
             $ id_list=[\"74d9344c-0160-47bc-b7b1-e245b2ffd955\",\"25f98470-bc55-476c-9042-120bbc0336cf\"]
             $ curl -H "X-Auth-Token: $SAPI_TOKEN" $SAPI_HOME/problems -X DELETE -d $id_list
+
+.. [#]
+    |resource_rep_version|
 
 .. dropdown:: 2xx responses
     :color: success
@@ -999,7 +984,9 @@ Cancel a Problem by ID
 ----------------------
 
 To cancel a previously submitted problem, make an HTTP DELETE request to
-``problems/<problem_id>``.
+``problems/<problem_id>`` and, optionally, the
+``application/vnd.dwave.sapi.problem-data+json; version=<x>`` resource
+representation.\ [#]_
 
 The request should contain no body.
 
@@ -1020,6 +1007,9 @@ The request should contain no body.
 
             $ problem_id="74d9344c-0160-47bc-b7b1-e245b2ffd955"
             $ curl -H "X-Auth-Token: $SAPI_TOKEN" $SAPI_HOME/problems/$problem_id -X DELETE
+
+.. [#]
+    |resource_rep_version|
 
 .. dropdown:: 2xx responses
     :color: success
@@ -1065,8 +1055,10 @@ The request should contain no body.
 List Problems
 -------------
 
-To retrieve a list of problems, send an HTTP GET request to ``problems``.
-
+To retrieve a list of problems, send an HTTP GET request to ``problems`` and,
+optionally, the
+``application/vnd.dwave.sapi.problems+json; version=<x>``
+resource representation.\ [#]_
 The request should contain no body.
 
 By default, the request blocks for up to one second unless at least one problem
@@ -1113,6 +1105,9 @@ with an ampersand ("&").
 
             $ filter="solver=Advantage_system4.1&max_results=3"
             $ curl  -H "X-Auth-Token: $SAPI_TOKEN" -X GET "$SAPI_HOME/problems/?$filter"
+
+.. [#]
+    |resource_rep_version|
 
 .. dropdown:: 2xx response
     :color: success
@@ -1168,7 +1163,9 @@ Retrieve a Problem
 ------------------
 
 To retrieve a previously submitted problem, send an HTTP GET request to
-``problems/<problem_id>``.
+``problems/<problem_id>`` and, optionally,
+``application/vnd.dwave.sapi.problem+json; version=<x>`` resource
+representation.\ [#]_
 
 The request should contain no body.
 
@@ -1196,6 +1193,9 @@ not completed processing.
 
             $ problem_id="74d9344c-0160-47bc-b7b1-e245b2ffd955"
             $ curl -H "X-Auth-Token: $SAPI_TOKEN" $SAPI_HOME/problems/$problem_id?timeout=5 -X GET
+
+.. [#]
+    |resource_rep_version|
 
 .. dropdown:: 2xx responses
     :color: success
@@ -1250,7 +1250,9 @@ Retrieve Problem Information
 ----------------------------
 
 To retrieve information about a problem, send an HTTP GET request to
-``problems/<problem_id>/info``:
+``problems/<problem_id>/info`` and, optionally, the
+``application/vnd.dwave.sapi.problem-data+json; version=<x>`` resource
+representation.\ [#]_
 
 The request should contain no body.
 
@@ -1271,6 +1273,9 @@ The request should contain no body.
 
             $ problem_id="74d9344c-0160-47bc-b7b1-e245b2ffd955"
             $ curl -H "X-Auth-Token: $SAPI_TOKEN" $SAPI_HOME/problems/$problem_id/info -X GET
+
+.. [#]
+    |resource_rep_version|
 
 .. dropdown:: 2xx responses
     :color: success
@@ -1327,7 +1332,9 @@ Retrieve an Answer
 ------------------
 
 To retrieve an answer for a problem, send an HTTP GET request to
-``problems/<problem_id>/answer``. The answer consists of solution data in binary
+``problems/<problem_id>/answer`` and, optionally, the
+``application/vnd.dwave.sapi.problem-answer+json; version=2.1.0`` resource
+representation. The answer consists of solution data in binary
 format or a URL to such solution data as well as additional problem information.
 
 The request should contain no body.
@@ -1430,7 +1437,9 @@ Retrieve Problem Messages
 -------------------------
 
 To retrieve messages for a problem, send an HTTP GET request to
-``problems/<problem_id>/messages``.
+``problems/<problem_id>/messages`` and, optionally, the
+``application/vnd.dwave.sapi.problem-message+json; version=2.1.0``
+resource representation.
 
 The request should contain no body.
 
@@ -1479,7 +1488,9 @@ Retrieve Available Solvers
 --------------------------
 
 To retrieve a list of available solvers from the Leap service, send an HTTP GET
-request to ``solvers/remote``.
+request to ``solvers/remote`` and, optionally, the
+``application/vnd.dwave.sapi.solver-definition-list+json; version=<x>``
+resource representation.\ [#]_
 
 The request should contain no body.
 
@@ -1521,6 +1532,9 @@ to get a subset of solver fields.
             -H "Accept: application/vnd.dwave.sapi.solver-definition-list+json; version=3.0.0" \
             -G "$SAPI_HOME/solvers/remote/" --data-urlencode "$filter"
 
+.. [#]
+    |resource_rep_version|
+
 .. dropdown:: 2xx response
     :color: success
 
@@ -1546,20 +1560,20 @@ to get a subset of solver fields.
         >>> r = r.json()
         >>> for i in range(len(r)):
         ...    print(f"{r[i]['identity']['name']} \n\tStatus: {r[i]['status']}    Load: {r[i]['avg_load']}")  # doctest: +SKIP
-        hybrid_nonlinear_program_version1p
+        hybrid_binary_quadratic_model_version2
             Status: ONLINE    Load: 0.0
-        hybrid_constrained_quadratic_model_version1p
+        hybrid_discrete_quadratic_model_version1
             Status: ONLINE    Load: 0.0
-        hybrid_binary_quadratic_model_version2p
+        hybrid_constrained_quadratic_model_version1
             Status: ONLINE    Load: 0.0
-        hybrid_discrete_quadratic_model_version1p
+        hybrid_nonlinear_program_version1
             Status: ONLINE    Load: 0.0
-        Advantage2_system1.3
-            Status: ONLINE    Load: 0.58
-        Advantage_system6.4
-            Status: ONLINE    Load: 0.02
         Advantage_system4.1
             Status: ONLINE    Load: 0.09
+        Advantage_system6.4
+            Status: ONLINE    Load: 0.02
+        Advantage2_system1.4
+            Status: ONLINE    Load: 0.58
 
     .. _solver_resource_fields_table:
 
@@ -1580,7 +1594,9 @@ Retrieve Solver Fields
 ----------------------
 
 To retrieve the fields of a solver, send an HTTP GET request to
-``solvers/remote/<solver_id>``.
+``solvers/remote/<solver_name>`` and, optionally, the
+``application/vnd.dwave.sapi.solver-definition+json; version=<x>``
+resource representation.\ [#]_ [#]_
 
 The request supports the ``If-None-Match`` request header. If the ``ETag``
 (entity tag) value in the request header matches the one on the server, a
@@ -1621,6 +1637,18 @@ to get a subset of solver fields.
             $ accept="Accept: application/vnd.dwave.sapi.solver-definition+json; version=3.0.0"
             $ filter="none,+identity,+status,+avg_load,+properties.num_qubits"
             $ curl -H "$auth" -H "$accept" -G "$url" --data-urlencode "filter=$filter"
+
+.. [#]
+    |resource_rep_version|
+
+.. [#]
+    The ``solver_name`` resource is displayed on the Leap dashboard.
+    Furthermore, if ``version=3`` is specified, the ``solver_name`` resource is
+    the value in the ``identity.name`` field and the ``identity`` resource field
+    is returned; if ``version=2`` is specified, the ``solver_name`` resource is
+    the value in the ``id`` field; the ``id`` field is returned. For more
+    information, see the "Solver Resource Fields" table on this section's
+    "2xx responses" tab.
 
 .. dropdown:: 2xx response
     :color: success
@@ -1752,15 +1780,15 @@ lists the solver names, statuses, and current usage loads.
     >>> r1 = r1.json()
     >>> for i in range(len(r1)):
     ...    print(f"{r1[i]['identity']['name']} \n\tStatus: {r1[i]['status']}    Load: {r1[i]['avg_load']}")  # doctest: +SKIP
-    hybrid_nonlinear_program_version1p
+    hybrid_nonlinear_program_version1
         Status: ONLINE    Load: 0.0
-    hybrid_constrained_quadratic_model_version1p
+    hybrid_constrained_quadratic_model_version1
         Status: ONLINE    Load: 0.0
-    hybrid_binary_quadratic_model_version2p
+    hybrid_binary_quadratic_model_version2
         Status: ONLINE    Load: 0.0
-    hybrid_discrete_quadratic_model_version1p
+    hybrid_discrete_quadratic_model_version1
         Status: ONLINE    Load: 0.0
-    Advantage2_system1.3
+    Advantage2_system1.4
         Status: ONLINE    Load: 0.58
     Advantage_system6.4
         Status: ONLINE    Load: 0.02

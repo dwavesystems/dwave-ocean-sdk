@@ -31,30 +31,19 @@ computers interconnect in one of the following topologies:
 The Working Graph
 =================
 
-Some small number of qubits and couplers in a QPU may not meet the
-specifications to function as desired. These qubits and couplers are therefore
-removed from the programmable fabric that users can access. The subset of the
-QPU's graph available to users is the *working graph*. The yield\ [#]_ of the
-working graph is the percentage of working qubits that are present.
-
-Due to various events during the operation of the QPU, qubits may no longer meet
-the required specifications and at that time the qubits and associated couplers
-are removed from the working graph; qubits and associated couplers may also be
-added back. Both adding and removing qubits and couplers result in the working
-graph being versioned. The version of the working graph is tracked in the
-``graph_id`` solver resource field (see the "Solver Resource Fields" table on
-the "2xx responses" tab in :ref:`sapi_rest_get_remote_solver_config`). If the
-affected qubits are used in a problem's :ref:`embedding <qpu_embedding_intro>`,
-such as one that uses the
-:class:`~dwave.system.composites.FixedEmbeddingComposite` class, the problem
-must be re-embedded.
+During calibration of a fabricated QPU, a small number of qubits and couplers in
+the QPU may not meet the specifications to function as desired. These qubits and
+couplers are therefore removed from the programmable structure that users can
+access. The subset of the fabricated QPU's graph available to users is the
+*working graph*.\ [#]_
 
 .. [#]
     Manufacturing variations and the need to prepare the QPU to operate at
-    cryogenic temperatures in a low-magnetic field environment limits the yield.
-    These variations are minimized through an extensive calibration process that
-    attempts to bring all of these analog devices into a consistent parametric
-    regime.
+    cryogenic temperatures in a low-magnetic field environment limits the yield,
+    the number of qubits in the working graph as a percentage of those in the
+    fabricated QPU. These variations are minimized through an extensive
+    calibration process that attempts to bring all of these analog devices into
+    a consistent parametric regime.
 
     For example, each |dwave_5kq| QPU is fabricated with 5,640 qubits and 40,484
     couplers in a Pegasus topology. Of this total, the number and specific set
@@ -62,6 +51,13 @@ must be re-embedded.
     changes with each system cooldown and calibration cycle. Calibrated
     commercial systems typically have more than 97% of fabricated qubits
     available in their working graphs.
+
+    The version of the working graph is tracked in the ``graph_id`` solver
+    resource field (see
+    :ref:`solver properties <https://docs.dwavequantum.com/en/latest/ocean/api_ref_cloud/solver.html#properties>`).
+    Changes to a working graph, such as removing qubits that no longer meet
+    specifications after initial calibration, might required that you update a
+    saved minor :ref:`embedding <qpu_embedding_intro>`.
 
 .. _topology_intro_chimera:
 
