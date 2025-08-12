@@ -154,7 +154,7 @@ Advantage2_research1.1
 ======================
 
 All data presented in this section are specific to the
-**Advantage2_research1.1** solver. The |adv2_tm| prototype QPU is based on
+**Advantage2_research1.1** solver, which is based on
 a physical lattice of qubits and couplers known as the *Zephyr*\ |tm| topology.
 For information, see the :ref:`topology_intro_zephyr` section.
 
@@ -188,7 +188,7 @@ This table lists the physical properties of the calibrated QPU.
         - :math:`16.5 \pm 1.0\ \text{mK}`
 
     *   - :math:`\rm M_{\rm AFM}`: Maximum mutual inductance for qubit pairs
-        - :math:`0.443\ \text{pH}`
+        - :math:`1.771\ \text{pH}`
 
     *   - Quantum critical point for 1D chains
         - :math:`2.014\ \text{GHz}`
@@ -197,23 +197,23 @@ This table lists the physical properties of the calibrated QPU.
         - :math:`107\ \text{pH}`
 
     *   - :math:`C_q`: Qubit capacitance
-        - :math:`207\ \text{fF}`
+        - :math:`173\ \text{fF}`
 
     *   - :math:`I_c`: Qubit critical current
         - :math:`4.57\ \text{µA}`
 
     *   - :ref:`Average single-qubit temperature <system_utilities>`
-        - :math:`0.117`
+        - :math:`0.141`
 
     *   - :ref:`Ferromagnetic-problem freezeout <qpu_qa_freezeout>`
-        - :math:`0.009`
+        - :math:`0.008`
 
     *   - :ref:`Single-qubit freezeout <qpu_qa_freezeout>`
-        - :math:`0.605`
+        - :math:`0.603`
 
     *   - :math:`\Phi_{\rm CCJJ}^i`: Initial (at :math:`s=0`) external flux on
           compound Josephson junctions
-        - :math:`0.726\ \Phi_0`
+        - :math:`-0.726\ \Phi_0`
 
     *   - :math:`\Phi_{\rm CCJJ}^f`: Final (at :math:`s=1`) external flux on
           compound Josephson junctions
@@ -226,7 +226,7 @@ This table lists the physical properties of the calibrated QPU.
         - :math:`\sim 18200\ \text{µs}`
 
     *   - QPU-delay-time per sample
-        - :math:`20.5\ \text{µs}`
+        - :math:`20.6\ \text{µs}`
 
     *   - Readout error rate
         - :math:`\leq 0.001`
