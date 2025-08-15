@@ -283,9 +283,8 @@ SAPI returns an identifier, of type
 `UUID <https://en.wikipedia.org/wiki/Universally_unique_identifier>`_, for the
 uploaded problem.
 
-You can optionally set the ``Accept`` header to control the
-``application/vnd.dwave.sapi.multipart-initiate+json; version=2.0.0``
-resource representation.
+You can optionally set the ``Accept`` header to
+``application/vnd.dwave.sapi.multipart-initiate+json; version=2.0.0``.
 
 .. tab-set::
 
@@ -366,9 +365,8 @@ MD5 checksum.
 For a multi-part upload, data size for each part should be 5 MB (5242880 bytes),
 except for the last part, which may be smaller.
 
-You can optionally set the ``Accept`` header to control the
-``application/vnd.dwave.sapi.multipart-upload+json; version=2.0.0``
-resource representation.
+You can optionally set the ``Accept`` header to
+``application/vnd.dwave.sapi.multipart-upload+json; version=2.0.0``.
 
 .. testsetup:: md5
 
@@ -492,9 +490,8 @@ To complete an upload of problem data, send an HTTP POST request to the
 The POST request body should contain the checksum for the entire problem, as a
 string.
 
-You can optionally set the ``Accept`` header to control the
-``application/vnd.dwave.sapi.multipart-combine+json; version=2.0.0``
-resource representation.
+You can optionally set the ``Accept`` header to
+``application/vnd.dwave.sapi.multipart-combine+json; version=2.0.0``.
 
 .. dropdown:: Calculating the Checksum
 
@@ -604,9 +601,8 @@ The GET request should contain no body.
 
 SAPI returns the status as a string with parts and checksums.
 
-You can optionally set the ``Accept`` header to control the
-``application/vnd.dwave.sapi.multipart-status+json; version=2.0.0``
-resource representation.
+You can optionally set the ``Accept`` header to
+``application/vnd.dwave.sapi.multipart-status+json; version=2.0.0``.
 
 .. tab-set::
 
@@ -667,9 +663,8 @@ The POST request body should contain the JSON-encoded fields described below.
 When possible, if you have more than one problem, submit them in a single
 query.\ [#]_
 
-You can optionally set the ``Accept`` header to control the
-``application/vnd.dwave.sapi.problems+json; version=<x>`` resource
-representation.\ [#v3]_
+You can optionally set the ``Accept`` header to
+``application/vnd.dwave.sapi.problems+json; version=<x>``.\ [#v3]_
 
 .. dropdown:: Fields in Request Body
 
@@ -811,7 +806,7 @@ sampler,see the :ref:`sapi_rest_full_examples` section.
 
         This example uses the identifier ``problem_data_id`` returned from the
         :ref:`sapi_rest_get_multi_id` example and hybrid solver
-        ``solver_hybrid_bqm`` selected as in
+        ``bqm_solver`` selected as in
         the :ref:`sapi_rest_quick_start_submit_hybrid` section.
 
         .. doctest:: rest_live
@@ -933,9 +928,8 @@ body is empty, the request has no effect.
 When possible, if you have more than one problem to cancel, submit them in a
 single query.
 
-You can optionally set the ``Accept`` header to control the
-``application/vnd.dwave.sapi.problems+json; version=<x>`` resource
-representation.\ [#v3]_
+You can optionally set the ``Accept`` header to
+``application/vnd.dwave.sapi.problems+json; version=<x>``.\ [#v3]_
 
 .. tab-set::
 
@@ -1019,9 +1013,8 @@ To cancel a previously submitted problem, make an HTTP DELETE request to the
 
 The request should contain no body.
 
-You can optionally set the ``Accept`` header to control the
-``application/vnd.dwave.sapi.problem-data+json; version=<x>`` resource
-representation.\ [#v3]_
+You can optionally set the ``Accept`` header to
+``application/vnd.dwave.sapi.problem-data+json; version=<x>``.\ [#v3]_
 
 .. tab-set::
 
@@ -1100,9 +1093,8 @@ has completed processing.
 You can filter the results using one or more optional filter keys, concatenated
 with an ampersand ("&").
 
-You can optionally set the ``Accept`` header to control the
-``application/vnd.dwave.sapi.problems+json; version=<x>`` resource
-representation.\ [#v3]_
+You can optionally set the ``Accept`` header to
+``application/vnd.dwave.sapi.problems+json; version=<x>``.\ [#v3]_
 
 .. dropdown:: Filter Keys
 
@@ -1207,9 +1199,8 @@ not completed processing.
     :start-after: start_timeout
     :end-before: end_timeout
 
-You can optionally set the ``Accept`` header to control the
-``application/vnd.dwave.sapi.problem+json; version=<x>`` resource
-representation.\ [#v3]_
+You can optionally set the ``Accept`` header to
+``application/vnd.dwave.sapi.problem+json; version=<x>``.\ [#v3]_
 
 .. tab-set::
 
@@ -1286,9 +1277,8 @@ To retrieve information about a problem, send an HTTP GET request to the
 
 The request should contain no body.
 
-You can optionally set the ``Accept`` header to control the
-``application/vnd.dwave.sapi.problem-data+json; version=<x>`` resource
-representation.\ [#v3]_
+You can optionally set the ``Accept`` header to
+``application/vnd.dwave.sapi.problem-data+json; version=<x>``.\ [#v3]_
 
 .. tab-set::
 
@@ -1369,9 +1359,8 @@ information.
 
 The request should contain no body.
 
-You can optionally set the ``Accept`` header to control the
-``application/vnd.dwave.sapi.problem-answer+json; version=2.1.0`` resource
-representation.
+You can optionally set the ``Accept`` header to
+``application/vnd.dwave.sapi.problem-answer+json; version=2.1.0``.
 
 .. tab-set::
 
@@ -1475,9 +1464,8 @@ To retrieve messages for a problem, send an HTTP GET request to the
 
 The request should contain no body.
 
-You can optionally set the ``Accept`` header to control the
-``application/vnd.dwave.sapi.problem-message+json; version=2.1.0`` resource
-representation.
+You can optionally set the ``Accept`` header to
+``application/vnd.dwave.sapi.problem-message+json; version=2.1.0``.
 
 .. tab-set::
 
@@ -1534,9 +1522,8 @@ a ``304 (Not Modified)`` response is returned; otherwise, the list of solvers is
 returned. You can use this feature to manage downloading and caching of this
 content.
 
-You can optionally set the ``Accept`` header to control the
-``application/vnd.dwave.sapi.solver-definition-list+json; version=<x>``
-resource representation.\ [#v3]_
+You can optionally set the ``Accept`` header to
+``application/vnd.dwave.sapi.solver-definition-list+json; version=<x>``.\ [#v3]_
 
 By default, all solver fields are returned. You can use the ``filter`` parameter
 to get a subset of solver fields.
@@ -1630,7 +1617,7 @@ Retrieve Solver Fields
 ----------------------
 
 To retrieve the fields of a solver, send an HTTP GET request to the
-``solvers/remote/<solver_name>`` endpoint.
+``solvers/remote/<solver_name>`` endpoint.\ [#]_
 
 The request supports the ``If-None-Match`` request header. If the ``ETag``
 (entity tag) value in the request header matches the one on the server, a
@@ -1638,9 +1625,8 @@ The request supports the ``If-None-Match`` request header. If the ``ETag``
 values are returned. You can use this feature to manage downloading and caching
 of this content.
 
-You can optionally set the ``Accept`` header to control the
-``application/vnd.dwave.sapi.solver-definition+json; version=<x>``
-resource representation.\ [#v3]_
+You can optionally set the ``Accept`` header to
+``application/vnd.dwave.sapi.solver-definition+json; version=<x>``.\ [#v3]_
 
 By default, all solver fields are returned. You can use the ``filter`` parameter
 to get a subset of solver fields.
@@ -1870,7 +1856,7 @@ account running the example.
 
 Send a ``GET`` request method to the
 :ref:`/solvers/remote/\<solver_name\> <sapi_rest_get_remote_solver_config>`
-resource.\ [#]_
+resource.
 
 .. doctest:: rest_live
     :skipif: test_api_token_set == False
