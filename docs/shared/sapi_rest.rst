@@ -72,6 +72,26 @@ The serialized file may look like this:
     solved_on       If this problem is in terminal state (``COMPLETED``,
                     ``CANCELLED`` or ``FAILED``), time when problem was solved
                     or cancelled.
+    solver          Unique ID (name) of the solver. For resource representation
+                    ``version=3``, the solver name is represented by the
+                    following JSON structure::
+
+                    "solver": {"name": solver_name, "version": {"graph_id": graph_id}
+
+                    where the fields are as follows:
+                   
+                    *    ``solver``: Parent for solver-related fields.       
+                    *    ``name``: Name of the solver.
+                    *    ``version``: Parent for QPU-version-related fields.
+                         This field does not apply to hybrid solvers.
+                    *   ``graph_id``: ID of the QPU solver's
+                        :ref:`working graph <topologies_working_graph>`. This
+                        field does not apply to hybrid solvers.
+                    
+                    For resource representation ``version=2`` and
+                    earlier, simply use the name of the solver, including its
+                    version number. The ``version=2`` resource representation is
+                    deprecated; instead, use the ``version=3`` JSON structure.
     type            One of the supported values for the
                     ``supported_problem_types`` property; see, for example, the
                     :ref:`property_qpu_supported_problem_types` for QPUs.
@@ -91,7 +111,34 @@ The serialized file may look like this:
     ============== ==============================
     avg_load       Average current load for the solver.
     description    Description of the solver.
-    id             Unique ID (name) of the solver.
+    id             Unique ID (name) of the solver, including its version.
+                   Only available in resource representation ``version=2`` and
+                   earlier. This field is deprecated; instead, use the
+                   ``identity`` solver resource field.
+    identity       Represents the following JSON structure. Only available for
+                   resource representation ``version=3``.
+
+                   .. code-block:: json
+                    
+                        "identity": {
+                            "name":
+                            "version": {
+                                "graph_id": 
+                            }
+                        }
+                    
+                   where the fields are as follows:
+                   
+                   *    ``identity``: Parent for solver-related fields.
+                   
+                   *    ``name``: Name of the solver.
+
+                   *    ``version``: Parent for QPU-version-related fields. This
+                        field does not apply to hybrid solvers.
+                   
+                   *    ``graph_id``: ID of the QPU solver's
+                        :ref:`working graph <topologies_working_graph>`. This
+                        field does not apply to hybrid solvers.
     properties     :ref:`Solver properties <qpu_solver_properties_all>`
                    that reside in the ``properties`` dict; for example,
                    supported problem types, active qubits, active couplers,
