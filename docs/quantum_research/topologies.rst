@@ -53,9 +53,9 @@ access. The subset of the fabricated QPU's graph available to users is the
     available in their working graphs.
 
     The version of the working graph is tracked in the ``graph_id`` solver
-    resource field (see
-    :ref:`solver properties <https://docs.dwavequantum.com/en/latest/ocean/api_ref_cloud/solver.html#properties>`).
-    Changes to a working graph, such as removing qubits that no longer meet
+    resource field (see the :ref:`sapi_rest_get_remote_solver_config` topic,
+    specifically, the "Solver Resource Fields" table on the "2xx responses"
+    tab). Changes to a working graph, such as removing qubits that no longer meet
     specifications after initial calibration, might required that you update a
     saved minor :ref:`embedding <qpu_embedding_intro>`.
 
