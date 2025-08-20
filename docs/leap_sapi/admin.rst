@@ -997,7 +997,7 @@ Admin. To join the project, the person must accept the invitation by clicking
 the link in the email. A person who is new to the Leap service must also create
 an account.
 
-Invitations expire after 14 days; you can send reminders to people who have
+Invitations expire after 30 days; you can send reminders to people who have
 active invitations. If an invitation expires or is revoked, you can send a new
 invitation.
 
