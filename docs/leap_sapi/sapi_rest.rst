@@ -283,9 +283,6 @@ SAPI returns an identifier, of type
 `UUID <https://en.wikipedia.org/wiki/Universally_unique_identifier>`_, for the
 uploaded problem.
 
-You can optionally set the ``Accept`` header to
-``application/vnd.dwave.sapi.multipart-initiate+json; version=2.0.0``.
-
 .. tab-set::
 
     .. tab-item:: Python
@@ -320,6 +317,11 @@ You can optionally set the ``Accept`` header to
             $ curl -H "X-Auth-Token: $SAPI_TOKEN" -H "Content-type: application/json" \
             -X POST $SAPI_HOME/bqm/multipart/ -d '{"size": '"$size"'}'
             {"id":"be806ff1-09d3-49d4-bba1-3008790c99d6"}
+
+.. dropdown:: Optional ``Accept`` header
+
+    The optional ``Accept`` header supports
+    ``application/vnd.dwave.sapi.multipart-initiate+json; version=2``.
 
 .. dropdown:: 2xx responses
     :color: success
@@ -365,9 +367,6 @@ MD5 checksum.
 For a multi-part upload, data size for each part should be 5 MB (5242880 bytes),
 except for the last part, which may be smaller.
 
-You can optionally set the ``Accept`` header to
-``application/vnd.dwave.sapi.multipart-upload+json; version=2.0.0``.
-
 .. testsetup:: md5
 
     import dimod
@@ -392,7 +391,7 @@ You can optionally set the ``Accept`` header to
         >>> part_hash = base64.b64encode(hash_md5.digest()).decode('utf-8')
         >>> print(part_hash)
         mkDiHuw5xZD3ocYSikE4nw==
-        
+
         >>> # For large problems:
         >>> hash_md5 = hashlib.md5()
         >>> with bqm.to_file() as f:    # for a saved file: with open("filename", "r")
@@ -440,6 +439,11 @@ You can optionally set the ``Accept`` header to
             $ curl -H "X-Auth-Token: $SAPI_TOKEN" -H "Content-MD5: $md5" -H \
             "Content-type: application/octet-stream" -X PUT \
             $SAPI_HOME/bqm/multipart/$problem_data_id/part/1 -T my_bqm.txt
+
+.. dropdown:: Optional ``Accept`` header
+
+    The optional ``Accept`` header supports
+    ``application/vnd.dwave.sapi.multipart-upload+json; version=2``.
 
 .. dropdown:: 2xx responses
     :color: success
@@ -489,9 +493,6 @@ To complete an upload of problem data, send an HTTP POST request to the
 
 The POST request body should contain the checksum for the entire problem, as a
 string.
-
-You can optionally set the ``Accept`` header to
-``application/vnd.dwave.sapi.multipart-combine+json; version=2.0.0``.
 
 .. dropdown:: Calculating the Checksum
 
@@ -562,6 +563,11 @@ You can optionally set the ``Accept`` header to
             $ curl  -H "X-Auth-Token: $SAPI_TOKEN" -H "Content-type: application/json" \
             -X POST $SAPI_HOME/bqm/multipart/$problem_data_id/combine/ -d '{"checksum":'"$checksum"'}'
 
+.. dropdown:: Optional ``Accept`` header
+
+    The optional ``Accept`` header supports
+    ``application/vnd.dwave.sapi.multipart-combine+json; version=2``.
+
 .. dropdown:: 2xx responses
     :color: success
 
@@ -601,9 +607,6 @@ The GET request should contain no body.
 
 SAPI returns the status as a string with parts and checksums.
 
-You can optionally set the ``Accept`` header to
-``application/vnd.dwave.sapi.multipart-status+json; version=2.0.0``.
-
 .. tab-set::
 
     .. tab-item:: Python
@@ -626,6 +629,11 @@ You can optionally set the ``Accept`` header to
 
             $ problem_data_id="be806ff1-09d3-49d4-bba1-3008790c99d6"
             $ curl -H "X-Auth-Token: $SAPI_TOKEN" $SAPI_HOME/bqm/multipart/$problem_data_id/status
+
+.. dropdown:: Optional ``Accept`` header
+
+    The optional ``Accept`` header supports
+    ``application/vnd.dwave.sapi.multipart-status+json; version=2``.
 
 .. dropdown:: 2xx responses
     :color: success
@@ -663,9 +671,6 @@ The POST request body should contain the JSON-encoded fields described below.
 When possible, if you have more than one problem, submit them in a single
 query.\ [#]_
 
-You can optionally set the ``Accept`` header to
-``application/vnd.dwave.sapi.problems+json; version=<x>``.\ [#v3]_
-
 .. dropdown:: Fields in Request Body
 
     The JSON data for the submitted problem includes the following key-value
@@ -674,6 +679,7 @@ You can optionally set the ``Accept`` header to
     .. tabularcolumns:: |p{4cm}|p{8cm}|
 
     .. table:: Key-Value Pairs for ``problems`` Request
+        :name: key_value_problems_request
 
         =============== ===========================
         Key             Value
@@ -684,10 +690,10 @@ You can optionally set the ``Accept`` header to
                         :ref:`hybrid parameters <opt_index_properties_parameters>`
                         or :ref:`QPU parameters <qpu_solver_parameters>`.
         solver          Unique ID (name) of the solver to be used. For resource
-                        representation ``version=3``, the solver name is
+                        representation ``version=3``, the solver ID is
                         represented by the following JSON structure::
 
-                        "solver": {"name": solver_name, "version": {"graph_id": graph_id}
+                        "solver": {"name": solver_name, "version": {"graph_id": graph_id}}
 
                         where the fields are as follows:
                         
@@ -704,6 +710,9 @@ You can optionally set the ``Accept`` header to
                         its version number. The ``version=2`` resource
                         representation is deprecated; instead, use the
                         ``version=3`` JSON structure.
+
+                        See also the "Solver Resource Fields" table in the
+                        :ref:`available_solvers_2xx` tab.
         type            One of the supported
                         :ref:`problem types <property_qpu_supported_problem_types>`
                         (on QPUs, see the equivalent property for hybrid solvers
@@ -787,8 +796,8 @@ sampler,see the :ref:`sapi_rest_full_examples` section.
     :skipif: test_api_token_set == False
 
     session.headers = {'X-Auth-Token': SAPI_TOKEN,
-                        'Content-type': 'application/json'
-                        'Accept': 'application/vnd.dwave.sapi.solver-definition+json; version=3.0.0'}
+                       'Content-type': 'application/json'
+                       'Accept': 'application/vnd.dwave.sapi.solver-definition+json; version=3'}
     from urllib.parse import urlencode
     import requests
     filter = urlencode({"filter": "none,+identity,+status,+properties.category"})
@@ -815,7 +824,7 @@ sampler,see the :ref:`sapi_rest_full_examples` section.
             >>> session = requests.Session()
             >>> session.headers = {'X-Auth-Token': SAPI_TOKEN,
             ...         'Content-type': 'application/json',
-            ...         'Accept': 'application/vnd.dwave.sapi.problems+json; version=3.0.0'}
+            ...         'Accept': 'application/vnd.dwave.sapi.problems+json; version=3'}
             >>> r = session.post(f"{SAPI_HOME}/problems",
             ...                   json=[{"solver": {"name": bqm_solver},
             ...                          "label": "REST Submission to hybrid BQM solver",
@@ -840,14 +849,22 @@ sampler,see the :ref:`sapi_rest_full_examples` section.
             "data":{"format": "ref", "data": "'"$problem_data_id"'"}, \
             "params":{"time_limit":5}}]'
 
-.. [#v3]
-    ``<x>`` is the version of the resource representation that the client
-    prefers; valid values are ``2`` (the default) and ``3``.
-
 .. [#]
     The request body is JSON data enclosed in a list. For submitting multiple
     problems in a single query, the list is the comma-separated fields of each
     problem: ``[{"solver": ...},{"solver": ...},...{"solver": ...}]``.
+
+.. dropdown:: Optional ``Accept`` header
+
+    The optional ``Accept`` header supports:
+
+    *   ``application/vnd.dwave.sapi.problems+json; version=2``: ``solver`` ID
+        as a ``str`` (default, deprecated)
+
+    *   ``application/vnd.dwave.sapi.problems+json; version=3``: ``solver`` ID
+        as a ``dict``
+
+    For information, see :ref:`key_value_problems_request`.
 
 .. dropdown:: 2xx responses
     :color: success
@@ -928,9 +945,6 @@ body is empty, the request has no effect.
 When possible, if you have more than one problem to cancel, submit them in a
 single query.
 
-You can optionally set the ``Accept`` header to
-``application/vnd.dwave.sapi.problems+json; version=<x>``.\ [#v3]_
-
 .. tab-set::
 
     .. tab-item:: Python
@@ -989,6 +1003,18 @@ You can optionally set the ``Accept`` header to
         :start-after: start_problem_resource_fields
         :end-before: end_problem_resource_fields
 
+.. dropdown:: Optional ``Accept`` header
+
+    The optional ``Accept`` header supports:
+
+    *   ``application/vnd.dwave.sapi.problems+json; version=2``: ``solver`` ID
+        as a ``str`` (default, deprecated)
+
+    *   ``application/vnd.dwave.sapi.problems+json; version=3``: ``solver`` ID
+        as a ``dict``
+
+    For information, see :ref:`key_value_problems_request`.
+
 .. dropdown:: Error responses
     :color: danger
 
@@ -1013,9 +1039,6 @@ To cancel a previously submitted problem, make an HTTP DELETE request to the
 
 The request should contain no body.
 
-You can optionally set the ``Accept`` header to
-``application/vnd.dwave.sapi.problem-data+json; version=<x>``.\ [#v3]_
-
 .. tab-set::
 
     .. tab-item:: Python
@@ -1033,6 +1056,18 @@ You can optionally set the ``Accept`` header to
 
             $ problem_id="74d9344c-0160-47bc-b7b1-e245b2ffd955"
             $ curl -H "X-Auth-Token: $SAPI_TOKEN" $SAPI_HOME/problems/$problem_id -X DELETE
+
+.. dropdown:: Optional ``Accept`` header
+
+    The optional ``Accept`` header supports:
+
+    *   ``application/vnd.dwave.sapi.problem-data+json; version=2``: ``solver``
+        ID as a ``str`` (default, deprecated)
+
+    *   ``application/vnd.dwave.sapi.problem-data+json; version=3``: ``solver``
+        ID as a ``dict``
+
+    For information, see :ref:`key_value_problems_request`.
 
 .. dropdown:: 2xx responses
     :color: success
@@ -1093,9 +1128,6 @@ has completed processing.
 You can filter the results using one or more optional filter keys, concatenated
 with an ampersand ("&").
 
-You can optionally set the ``Accept`` header to
-``application/vnd.dwave.sapi.problems+json; version=<x>``.\ [#v3]_
-
 .. dropdown:: Filter Keys
 
     .. tabularcolumns:: |p{4cm}|p{8cm}|
@@ -1130,6 +1162,18 @@ You can optionally set the ``Accept`` header to
 
             $ filter="solver=Advantage_system4.1&max_results=3"
             $ curl  -H "X-Auth-Token: $SAPI_TOKEN" -X GET "$SAPI_HOME/problems/?$filter"
+
+.. dropdown:: Optional ``Accept`` header
+
+    The optional ``Accept`` header supports:
+
+    *   ``application/vnd.dwave.sapi.problems+json; version=2``: ``solver`` ID
+        as a ``str`` (default, deprecated)
+
+    *   ``application/vnd.dwave.sapi.problems+json; version=3``: ``solver`` ID
+        as a ``dict``
+
+    For information, see :ref:`key_value_problems_request`.
 
 .. dropdown:: 2xx response
     :color: success
@@ -1199,9 +1243,6 @@ not completed processing.
     :start-after: start_timeout
     :end-before: end_timeout
 
-You can optionally set the ``Accept`` header to
-``application/vnd.dwave.sapi.problem+json; version=<x>``.\ [#v3]_
-
 .. tab-set::
 
     .. tab-item:: Python
@@ -1252,6 +1293,18 @@ You can optionally set the ``Accept`` header to
         :start-after: start_answer_bq
         :end-before: end_answer_bq
 
+.. dropdown:: Optional ``Accept`` header
+
+    The optional ``Accept`` header supports:
+
+    *   ``application/vnd.dwave.sapi.problem+json; version=2``: ``solver`` ID
+        as a ``str`` (default, deprecated)
+
+    *   ``application/vnd.dwave.sapi.problem+json; version=3``: ``solver`` ID
+        as a ``dict``
+
+For information, see :ref:`key_value_problems_request`.
+
 .. dropdown:: Error responses
     :color: danger
 
@@ -1277,9 +1330,6 @@ To retrieve information about a problem, send an HTTP GET request to the
 
 The request should contain no body.
 
-You can optionally set the ``Accept`` header to
-``application/vnd.dwave.sapi.problem-data+json; version=<x>``.\ [#v3]_
-
 .. tab-set::
 
     .. tab-item:: Python
@@ -1297,6 +1347,18 @@ You can optionally set the ``Accept`` header to
 
             $ problem_id="74d9344c-0160-47bc-b7b1-e245b2ffd955"
             $ curl -H "X-Auth-Token: $SAPI_TOKEN" $SAPI_HOME/problems/$problem_id/info -X GET
+
+.. dropdown:: Optional ``Accept`` header
+
+    The optional ``Accept`` header supports:
+
+    *   ``application/vnd.dwave.sapi.problem-data+json; version=2``: ``solver``
+        ID as a ``str`` (default, deprecated)
+
+    *   ``application/vnd.dwave.sapi.problem-data+json; version=3``: ``solver``
+        ID as a ``dict``
+
+    For information, see :ref:`key_value_problems_request`.
 
 .. dropdown:: 2xx responses
     :color: success
@@ -1359,9 +1421,6 @@ information.
 
 The request should contain no body.
 
-You can optionally set the ``Accept`` header to
-``application/vnd.dwave.sapi.problem-answer+json; version=2.1.0``.
-
 .. tab-set::
 
     .. tab-item:: Python
@@ -1379,6 +1438,11 @@ You can optionally set the ``Accept`` header to
 
             $ problem_id="74d9344c-0160-47bc-b7b1-e245b2ffd955"
             $ curl -H "X-Auth-Token: $SAPI_TOKEN" $SAPI_HOME/problems/$problem_id/answer -X GET
+
+.. dropdown:: Optional ``Accept`` header
+
+    The optional ``Accept`` header supports
+    ``application/vnd.dwave.sapi.problem-answer+json; version=2.1``.
 
 .. dropdown:: 2xx responses
     :color: success
@@ -1464,9 +1528,6 @@ To retrieve messages for a problem, send an HTTP GET request to the
 
 The request should contain no body.
 
-You can optionally set the ``Accept`` header to
-``application/vnd.dwave.sapi.problem-message+json; version=2.1.0``.
-
 .. tab-set::
 
     .. tab-item:: Python
@@ -1484,6 +1545,11 @@ You can optionally set the ``Accept`` header to
 
             $ problem_id="74d9344c-0160-47bc-b7b1-e245b2ffd955"
             $ curl -H "X-Auth-Token: $SAPI_TOKEN" $SAPI_HOME/problems/$problem_id/messages -X GET
+
+.. dropdown:: Optional ``Accept`` header
+
+    The optional ``Accept`` header supports
+    ``application/vnd.dwave.sapi.problem-message+json; version=2.1``.
 
 .. dropdown:: 2xx responses
     :color: success
@@ -1522,9 +1588,6 @@ a ``304 (Not Modified)`` response is returned; otherwise, the list of solvers is
 returned. You can use this feature to manage downloading and caching of this
 content.
 
-You can optionally set the ``Accept`` header to
-``application/vnd.dwave.sapi.solver-definition-list+json; version=<x>``.\ [#v3]_
-
 By default, all solver fields are returned. You can use the ``filter`` parameter
 to get a subset of solver fields.
 
@@ -1544,7 +1607,7 @@ to get a subset of solver fields.
             >>> session = requests.Session()
             >>> session.headers = {'X-Auth-Token': SAPI_TOKEN,
             ...                    'Content-type': 'application/json',
-            ...                    'Accept': 'application/vnd.dwave.sapi.solver-definition-list+json; version=3.0.0'}
+            ...                    'Accept': 'application/vnd.dwave.sapi.solver-definition-list+json; version=3'}
             >>> filter = urlencode({"filter": "none,+identity,+status,+avg_load"})
             ...
             >>> r = session.get(f"{SAPI_HOME}/solvers/remote/?{filter}")
@@ -1553,13 +1616,27 @@ to get a subset of solver fields.
 
         .. code-block:: bash
 
-            $ filter='filter=none,+solver,+status,+avg_load'
+            $ filter='filter=none,+identity,+status,+avg_load'
             $ curl -H "X-Auth-Token: $SAPI_TOKEN" -H "Content-type: application/json \
-            -H "Accept: application/vnd.dwave.sapi.solver-definition-list+json; version=3.0.0" \
+            -H "Accept: application/vnd.dwave.sapi.solver-definition-list+json; version=3" \
             -G "$SAPI_HOME/solvers/remote/" --data-urlencode "$filter"
+
+.. dropdown:: Optional ``Accept`` header
+
+    The optional ``Accept`` header supports:
+
+    *   ``application/vnd.dwave.sapi.solver-definition-list+json; version=2``:
+        solver ``id`` as a ``str`` (default, deprecated)
+
+    *   ``application/vnd.dwave.sapi.solver-definition-list+json; version=3``:
+        solver ``identity`` as a ``dict``
+
+    For information, see the "Solver Resource Fields" table in the
+    :ref:`available_solvers_2xx` tab.
 
 .. dropdown:: 2xx response
     :color: success
+    :name: available_solvers_2xx
 
     SAPI returns a ``200 OK`` response.
 
@@ -1598,8 +1675,6 @@ to get a subset of solver fields.
         Advantage2_system1.4
             Status: ONLINE    Load: 0.58
 
-    .. _solver_resource_fields_table:
-
     .. include:: ../shared/sapi_rest.rst
         :start-after: start_solver_resource_fields
         :end-before: end_solver_resource_fields
@@ -1617,16 +1692,13 @@ Retrieve Solver Fields
 ----------------------
 
 To retrieve the fields of a solver, send an HTTP GET request to the
-``solvers/remote/<solver_name>`` endpoint.\ [#]_
+``solvers/remote/<solver_name>`` endpoint.
 
 The request supports the ``If-None-Match`` request header. If the ``ETag``
 (entity tag) value in the request header matches the one on the server, a
 ``304 (Not Modified)`` response is returned; otherwise, the solver fields and
 values are returned. You can use this feature to manage downloading and caching
 of this content.
-
-You can optionally set the ``Accept`` header to
-``application/vnd.dwave.sapi.solver-definition+json; version=<x>``.\ [#v3]_
 
 By default, all solver fields are returned. You can use the ``filter`` parameter
 to get a subset of solver fields.
@@ -1647,7 +1719,7 @@ to get a subset of solver fields.
             >>> session = requests.Session()
             >>> session.headers = {'X-Auth-Token': SAPI_TOKEN,
             ...                    'Content-type': 'application/json',
-            ...                    'Accept': 'application/vnd.dwave.sapi.solver-definition+json; version=3.0.0'}
+            ...                    'Accept': 'application/vnd.dwave.sapi.solver-definition+json; version=3'}
             >>> solver_name = "Advantage_system4.1"
             >>> r = session.get(f"{SAPI_HOME}/solvers/remote/{solver_name}")
 
@@ -1658,20 +1730,25 @@ to get a subset of solver fields.
             $ solver_name="Advantage_system4.1"
             $ url="$SAPI_HOME/solvers/remote/$solver_name/"
             $ auth="X-Auth-Token: $SAPI_TOKEN"
-            $ accept="Accept: application/vnd.dwave.sapi.solver-definition+json; version=3.0.0"
+            $ accept="Accept: application/vnd.dwave.sapi.solver-definition+json; version=3"
             $ curl -H "$auth" -H "$accept" -G "$url"
 
-.. [#]
-    The ``solver_name`` resource is displayed on the Leap dashboard.
-    Furthermore, if ``version=3`` is specified, the ``solver_name`` resource is
-    the value in the ``{identity:{name}}`` field and the ``identity`` resource field
-    is returned; if ``version=2`` is specified, the ``solver_name`` resource is
-    the value in the ``id`` field; the ``id`` field is returned. For more
-    information, see the "Solver Resource Fields" table on this section's
-    "2xx responses" tab.
+.. dropdown:: Optional ``Accept`` header
+
+    The optional ``Accept`` header supports:
+
+    *   ``application/vnd.dwave.sapi.solver-definition+json; version=2``:
+        solver ``id`` as a ``str`` (default, deprecated)
+
+    *   ``application/vnd.dwave.sapi.solver-definition+json; version=3``:
+        solver ``identity`` as a ``dict``.
+
+    For information, see the "Solver Resource Fields" table in the
+    :ref:`solver_fields_2xx` tab.
 
 .. dropdown:: 2xx response
     :color: success
+    :name: solver_fields_2xx
 
     SAPI returns a ``200 OK`` response.
 
@@ -1770,7 +1847,7 @@ used for all SAPI requests.
     >>> session = requests.Session()
     >>> session.headers = {'X-Auth-Token': SAPI_TOKEN,
     ...                    'Content-type': 'application/json',
-    ...                    'Accept': 'application/vnd.dwave.sapi.solver-definition-list+json; version=3.0.0'}
+    ...                    'Accept': 'application/vnd.dwave.sapi.solver-definition-list+json; version=3'}
 
 .. _sapi_rest_token_available_solvers:
 
@@ -1856,7 +1933,7 @@ account running the example.
 
 Send a ``GET`` request method to the
 :ref:`/solvers/remote/\<solver_name\> <sapi_rest_get_remote_solver_config>`
-resource.
+resource.\ _[#]
 
 .. doctest:: rest_live
     :skipif: test_api_token_set == False
@@ -1864,7 +1941,7 @@ resource.
     >>> session = requests.Session()
     >>> session.headers = {'X-Auth-Token': SAPI_TOKEN,
     ...                    'Content-type': 'application/json',
-    ...                    'Accept': 'application/vnd.dwave.sapi.solver-definition+json; version=3.0.0'}
+    ...                    'Accept': 'application/vnd.dwave.sapi.solver-definition+json; version=3'}
     >>> r2 = session.get(f"{SAPI_HOME}/solvers/remote/{qpu_solver}")
     >>> r2 = r2.json()
 
@@ -1927,7 +2004,7 @@ You should get a valid problem identifier in the response.
     >>> session = requests.Session()
     >>> session.headers = {'X-Auth-Token': SAPI_TOKEN,
     ...                    'Content-type': 'application/json',
-    ...                    'Accept': 'application/vnd.dwave.sapi.problems+json; version=3.0.0'}
+    ...                    'Accept': 'application/vnd.dwave.sapi.problems+json; version=3'}
     ...
     >>> r3 = session.post(f"{SAPI_HOME}/problems",
     ...                   json=[{"solver": {"name": qpu_solver, "version": {"graph_id": graph_id}},
@@ -2098,7 +2175,7 @@ a valid problem identifier in the response.
     >>> session = requests.Session()
     >>> session.headers = {'X-Auth-Token': SAPI_TOKEN,
     ...                    'Content-type': 'application/json',
-    ...                    'Accept': 'application/vnd.dwave.sapi.problems+json; version=3.0.0'}
+    ...                    'Accept': 'application/vnd.dwave.sapi.problems+json; version=3'}
     ...
     >>> r8 = session.post(f"{SAPI_HOME}/problems",
     ...                   json=[{"solver": {"name": bqm_solver},
