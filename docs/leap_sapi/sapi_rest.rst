@@ -1991,11 +1991,11 @@ You should get a valid problem identifier in the response.
 .. doctest:: rest_live
     :skipif: test_api_token_set == False
 
-    >>> graph_id = r2['identity']['version']['graph_id']
+    >>> solver_id = r2['identity']
     >>> session.headers['Accept'] = 'application/vnd.dwave.sapi.problems+json; version=3'
     ...
     >>> r3 = session.post(f"{SAPI_HOME}/problems",
-    ...                   json=[{"solver": {"name": qpu_solver, "version": {"graph_id": graph_id}},
+    ...                   json=[{"solver": solver_id,
     ...                          "label": "QPU REST submission 1",
     ...                          "data": {"format": "qp", "lin": lin, "quad": quad},
     ...                          "type": "ising",
@@ -2139,7 +2139,7 @@ section above.
 .. doctest:: rest_live
     :skipif: test_api_token_set == False or hss_spot_check == False
 
-    >>> hybrid_bqm_solvers =  [r1[i]['identity']['name'] for i in range(len(r1)) if
+    >>> hybrid_bqm_solvers =  [r1[i]['identity'] for i in range(len(r1)) if
     ...    r1[i]['properties']['category'] == "hybrid" and "binary" in r1[i]['identity']['name']]
     >>> bqm_solver = hybrid_bqm_solvers[0]
     >>> print(bqm_solver)                           # doctest: +SKIP
@@ -2163,7 +2163,7 @@ a valid problem identifier in the response.
     >>> session.headers['Accept'] = 'application/vnd.dwave.sapi.problems+json; version=3'
     ...
     >>> r8 = session.post(f"{SAPI_HOME}/problems",
-    ...                   json=[{"solver": {"name": bqm_solver},
+    ...                   json=[{"solver": bqm_solver,
     ...                          "label": "REST Submission to hybrid BQM solver 2",
     ...                          "data": {"format": "ref", "data": problem_data_id},
     ...                          "type": "bqm",
