@@ -86,13 +86,11 @@ The serialized file may look like this:
                     *    ``version``: Parent for QPU-version-related fields.
                          This field does not apply to hybrid solvers.
                     *   ``graph_id``: Identifier of the QPU solver's
+                        :ref:`working graph <topologies_working_graph>`.
 
-                        :ref:`working graph <topologies_working_graph>`. This
-                        field does not apply to hybrid solvers.
-                    
                     For resource representation ``version=2`` and
-                    earlier, simply use the name of the solver, including its
-                    version number. The ``version=2`` resource representation is
+                    earlier, simply use the name of the solver.
+                    The ``version=2`` resource representation is
                     deprecated; instead, use the ``version=3`` JSON structure.
     type            One of the supported values for the
                     ``supported_problem_types`` property; see, for example, the
@@ -140,8 +138,7 @@ The serialized file may look like this:
                         field does not apply to hybrid solvers.
                    
                    *    ``graph_id``: ID of the QPU solver's
-                        :ref:`working graph <topologies_working_graph>`. This
-                        field does not apply to hybrid solvers.
+                        :ref:`working graph <topologies_working_graph>`.
     properties     :ref:`Solver properties <qpu_solver_properties_all>`
                    that reside in the ``properties`` dict; for example,
                    supported problem types, active qubits, active couplers,

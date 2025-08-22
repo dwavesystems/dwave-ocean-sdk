@@ -708,7 +708,6 @@ query.\ [#]_
                              This field does not apply to hybrid solvers.
                         *   ``graph_id``: Unique identifier of the QPU solver's
                             :ref:`working graph <topologies_working_graph>`.
-                            This field does not apply to hybrid solvers.
 
                         For resource representation ``version=2`` and
                         earlier, use the name of the solver. The ``version=2``
@@ -963,6 +962,18 @@ single query.
             $ id_list=[\"74d9344c-0160-47bc-b7b1-e245b2ffd955\",\"25f98470-bc55-476c-9042-120bbc0336cf\"]
             $ curl -H "X-Auth-Token: $SAPI_TOKEN" $SAPI_HOME/problems -X DELETE -d $id_list
 
+.. dropdown:: Optional ``Accept`` header
+
+    SAPI supports these resource representations:
+
+    *   ``application/vnd.dwave.sapi.problems+json; version=2`` (default,
+        deprecated): The ``solver`` field is a string.
+
+    *   ``application/vnd.dwave.sapi.problems+json; version=3``: The ``solver``
+        field is a dict.
+
+    For information, see :ref:`key_value_problems_request`.
+
 .. dropdown:: 2xx responses
     :color: success
 
@@ -1001,18 +1012,6 @@ single query.
     .. include:: ../shared/sapi_rest.rst
         :start-after: start_problem_resource_fields
         :end-before: end_problem_resource_fields
-
-.. dropdown:: Optional ``Accept`` header
-
-    SAPI supports these resource representations:
-
-    *   ``application/vnd.dwave.sapi.problems+json; version=2`` (default,
-        deprecated): The ``solver`` field is a string.
-
-    *   ``application/vnd.dwave.sapi.problems+json; version=3``: The ``solver``
-        field is a dict.
-
-    For information, see :ref:`key_value_problems_request`.
 
 .. dropdown:: Error responses
     :color: danger
@@ -1841,7 +1840,8 @@ used for all SAPI requests.
     >>> SAPI_TOKEN = "ABC-1234567...345678"     # doctest: +SKIP
     ...
     >>> session = requests.Session()
-    >>> session.headers['Accept'] = 'application/vnd.dwave.sapi.solver-definition-list+json; version=3'
+    >>> session.headers = {'X-Auth-Token': SAPI_TOKEN,
+    ...                    'Content-type': 'application/json'}
 
 .. _sapi_rest_token_available_solvers:
 
@@ -1856,6 +1856,7 @@ quantity of retrieved information, can be omitted.
 .. doctest:: rest_live
     :skipif: test_api_token_set == False
 
+    >>> session.headers['Accept'] = 'application/vnd.dwave.sapi.solver-definition-list+json; version=3'
     >>> filter = urlencode({"filter": "none,+identity,+status,+avg_load,+properties.num_qubits,+properties.category"})
     ...
     >>> r1 = session.get(f"{SAPI_HOME}/solvers/remote/?{filter}")
@@ -2107,6 +2108,7 @@ data. Calculations of the checksums for the part(s) and whole are shown there.
 
 .. doctest:: rest_live
     :skipif: test_api_token_set == False or hss_spot_check == False
+    :hide:
 
     >>> # blocking call to sequence r6 (part upload) and r7 (combine checksum)
     >>> r6.json()
