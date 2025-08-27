@@ -841,9 +841,11 @@ sampler,see the :ref:`sapi_rest_full_examples` section.
         .. code-block:: bash
 
             $ problem_data_id="be806ff1-09d3-49d4-bba1-3008790c99d6"
-            $ curl -H "X-Auth-Token: $SAPI_TOKEN" $SAPI_HOME/problems -X POST \
-            -d '[{"type":"bqm","label": "REST Submission to hybrid BQM solver", \
-            "solver":"hybrid_binary_quadratic_model_version2", \
+            $ auth="X-Auth-Token: $SAPI_TOKEN"
+            $ accept="Accept: application/vnd.dwave.sapi.problems+json; version=3"
+            $ curl -H "$auth" -H "$accept" $SAPI_HOME/problems -X POST \
+            -d '[{"type":"bqm", "label": "REST Submission to hybrid BQM solver", \
+            "solver":{"name": "hybrid_binary_quadratic_model_version2"}, \
             "data":{"format": "ref", "data": "'"$problem_data_id"'"}, \
             "params":{"time_limit":5}}]'
 
@@ -960,7 +962,9 @@ single query.
         .. code-block:: bash
 
             $ id_list=[\"74d9344c-0160-47bc-b7b1-e245b2ffd955\",\"25f98470-bc55-476c-9042-120bbc0336cf\"]
-            $ curl -H "X-Auth-Token: $SAPI_TOKEN" $SAPI_HOME/problems -X DELETE -d $id_list
+            $ accept="Accept: application/vnd.dwave.sapi.problems+json; version=3"
+            $ auth="X-Auth-Token: $SAPI_TOKEN"
+            $ curl -H "$auth" -H "$accept" $SAPI_HOME/problems -X DELETE -d $id_list
 
 .. dropdown:: Optional ``Accept`` header
 
@@ -1053,7 +1057,9 @@ The request should contain no body.
         .. code-block:: bash
 
             $ problem_id="74d9344c-0160-47bc-b7b1-e245b2ffd955"
-            $ curl -H "X-Auth-Token: $SAPI_TOKEN" $SAPI_HOME/problems/$problem_id -X DELETE
+            $ auth="X-Auth-Token: $SAPI_TOKEN"
+            $ accept="Accept: application/vnd.dwave.sapi.problem-data+json; version=3"
+            $ curl -H "$auth" -H "$accept" $SAPI_HOME/problems/$problem_id -X DELETE
 
 .. dropdown:: Optional ``Accept`` header
 
@@ -1160,7 +1166,9 @@ with an ampersand ("&").
         .. code-block:: bash
 
             $ filter="solver=Advantage_system4.1&max_results=3"
-            $ curl  -H "X-Auth-Token: $SAPI_TOKEN" -X GET "$SAPI_HOME/problems/?$filter"
+            $ auth="X-Auth-Token: $SAPI_TOKEN"
+            $ accept="Accept: application/vnd.dwave.sapi.problems+json; version=3"
+            $ curl -H "$auth" -H "$accept" $SAPI_HOME/problems/?$filter
 
 .. dropdown:: Optional ``Accept`` header
 
@@ -1258,7 +1266,9 @@ not completed processing.
         .. code-block:: bash
 
             $ problem_id="74d9344c-0160-47bc-b7b1-e245b2ffd955"
-            $ curl -H "X-Auth-Token: $SAPI_TOKEN" $SAPI_HOME/problems/$problem_id?timeout=5 -X GET
+            $ auth="X-Auth-Token: $SAPI_TOKEN"
+            $ accept="Accept: application/vnd.dwave.sapi.problem+json; version=3"
+            $ curl -H "$auth" -H "$accept" $SAPI_HOME/problems/$problem_id?timeout=5 -X GET
 
 .. dropdown:: Optional ``Accept`` header
 
@@ -1345,7 +1355,9 @@ The request should contain no body.
         .. code-block:: bash
 
             $ problem_id="74d9344c-0160-47bc-b7b1-e245b2ffd955"
-            $ curl -H "X-Auth-Token: $SAPI_TOKEN" $SAPI_HOME/problems/$problem_id/info -X GET
+            $ auth="X-Auth-Token: $SAPI_TOKEN"
+            $ accept="Accept: application/vnd.dwave.sapi.problem-data+json; version=3"
+            $ curl -H "$auth" -H "$accept" $SAPI_HOME/problems/$problem_id/info -X GET
 
 .. dropdown:: Optional ``Accept`` header
 
@@ -1615,9 +1627,10 @@ to get a subset of solver fields.
         .. code-block:: bash
 
             $ filter='filter=none,+identity,+status,+avg_load'
-            $ curl -H "X-Auth-Token: $SAPI_TOKEN" -H "Content-type: application/json \
-            -H "Accept: application/vnd.dwave.sapi.solver-definition-list+json; version=3" \
-            -G "$SAPI_HOME/solvers/remote/" --data-urlencode "$filter"
+            $ auth="X-Auth-Token: $SAPI_TOKEN"
+            $ accept="Accept: application/vnd.dwave.sapi.solver-definition-list+json; version=3"
+            $ url="$SAPI_HOME/solvers/remote/"
+            $ curl -H "$auth" -H "$accept" -G "$url" --data-urlencode "$filter"
 
 .. dropdown:: Optional ``Accept`` header
 
@@ -1723,10 +1736,9 @@ to get a subset of solver fields.
         .. code-block:: bash
 
             $ solver_name="Advantage_system4.1"
-            $ url="$SAPI_HOME/solvers/remote/$solver_name/"
             $ auth="X-Auth-Token: $SAPI_TOKEN"
             $ accept="Accept: application/vnd.dwave.sapi.solver-definition+json; version=3"
-            $ curl -H "$auth" -H "$accept" -G "$url"
+            $ curl -H "$auth" -H "$accept" $SAPI_HOME/solvers/remote/$solver_name
 
 .. dropdown:: Optional ``Accept`` header
 
@@ -2145,7 +2157,7 @@ section above.
     ...    r1[i]['properties']['category'] == "hybrid" and "binary" in r1[i]['identity']['name']]
     >>> bqm_solver = hybrid_bqm_solvers[0]
     >>> print(bqm_solver)                           # doctest: +SKIP
-    hybrid_binary_quadratic_model_version2
+    {'name': 'hybrid_binary_quadratic_model_version2p'}
 
 Submit Your SAPI Request
 ~~~~~~~~~~~~~~~~~~~~~~~~
