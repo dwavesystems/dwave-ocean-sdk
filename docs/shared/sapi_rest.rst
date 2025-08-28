@@ -89,9 +89,9 @@ The serialized file may look like this:
                         :ref:`working graph <topologies_working_graph>`.
 
                     For resource representation ``version=2`` and
-                    earlier, simply use the name of the solver.
-                    The ``version=2`` resource representation is
-                    deprecated; instead, use the ``version=3`` JSON structure.
+                    earlier, the solver name is represented as a string.
+                    The ``version=2`` resource representation is deprecated;
+                    instead, use the ``version=3`` JSON structure.
     type            One of the supported values for the
                     ``supported_problem_types`` property; see, for example, the
                     :ref:`property_qpu_supported_problem_types` for QPUs.

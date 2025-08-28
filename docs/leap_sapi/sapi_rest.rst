@@ -824,7 +824,7 @@ sampler,see the :ref:`sapi_rest_full_examples` section.
 
             >>> session.headers['Accept'] = 'application/vnd.dwave.sapi.problems+json; version=3'
             >>> r = session.post(f"{SAPI_HOME}/problems",
-            ...                   json=[{"solver": {"name": bqm_solver},
+            ...                   json=[{"solver": bqm_solver,
             ...                          "label": "REST Submission to hybrid BQM solver",
             ...                          "data": {"format": "ref", "data": problem_data_id},
             ...                          "type": "bqm",
@@ -954,7 +954,7 @@ single query.
 
             >>> id_list = ["74d9344c-0160-47bc-b7b1-e245b2ffd955",
             ...            "25f98470-bc55-476c-9042-120bbc0336cf"]
-            ...
+            >>> session.headers['Accept'] = 'application/vnd.dwave.sapi.problems+json; version=3'
             >>> r = session.delete(f"{SAPI_HOME}/problems", json=id_list)
 
     .. tab-item:: cURL
@@ -1050,6 +1050,7 @@ The request should contain no body.
 
             >>> problem_id = "74d9344c-0160-47bc-b7b1-e245b2ffd955"
             ...
+            >>> session.headers['Accept'] = 'application/vnd.dwave.sapi.problem-data+json; version=3'
             >>> r = session.delete(f"{SAPI_HOME}/problems/{problem_id}")
 
     .. tab-item:: cURL
@@ -1159,6 +1160,7 @@ with an ampersand ("&").
         .. doctest:: rest_live
             :skipif: test_api_token_set == False
 
+            >>> session.headers['Accept'] = 'application/vnd.dwave.sapi.problems+json; version=3'
             >>> r = session.get(f"{SAPI_HOME}/problems/?max_results=3")
 
     .. tab-item:: cURL
@@ -1258,7 +1260,7 @@ not completed processing.
             :skipif: test_api_token_set == False
 
             >>> problem_id = "74d9344c-0160-47bc-b7b1-e245b2ffd955"
-            ...
+            >>> session.headers['Accept'] = 'application/vnd.dwave.sapi.problem+json; version=3'
             >>> r = session.get(f"{SAPI_HOME}/problems/{problem_id}?timeout=5")
 
     .. tab-item:: cURL
@@ -1347,7 +1349,7 @@ The request should contain no body.
             :skipif: test_api_token_set == False
 
             >>> problem_id = "74d9344c-0160-47bc-b7b1-e245b2ffd955"
-            ...
+            >>> session.headers['Accept'] = 'application/vnd.dwave.sapi.problem-data+json; version=3'
             >>> r = session.get(f"{SAPI_HOME}/problems/{problem_id}/info")
 
     .. tab-item:: cURL
@@ -2125,6 +2127,9 @@ data. Calculations of the checksums for the part(s) and whole are shown there.
     >>> # blocking call to sequence r6 (part upload) and r7 (combine checksum)
     >>> r6.json()
     {}
+
+.. doctest:: rest_live
+    :skipif: test_api_token_set == False or hss_spot_check == False
 
     >>> # For a problem uploaded in a single part:
     >>> hash_md5 = hashlib.md5()
