@@ -20,7 +20,9 @@
     --dwave-color-ocean-blue: rgb(42, 125, 225);
     --dwave-color-dark-blue: rgb(7, 76, 145);
     --dwave-color-bright-blue: rgb(3, 184, 255);
+    /* Higher contrast for accessibility: */
     --dwave-color-dark-blue-50: rgb(31, 116, 218);
+    --dwave-color-medium-blue-55: rgb(56, 134, 227);
 
     --dwave-color-leap-teal: rgb(23, 190, 187);
     --dwave-color-dark-teal: rgb(0, 140, 130);
@@ -37,7 +39,7 @@
   }
 
 html[data-theme="light"] {
- 
+
     /* theme overrides */
     --pst-color-primary: var(--dwave-color-ocean-blue);
     --pst-color-secondary: grey;
@@ -70,7 +72,7 @@ html[data-theme="dark"] {
     /* theme overrides */
     --pst-color-primary: var(--dwave-color-ocean-blue);
     --pst-color-secondary: grey;
-    --pst-color-link: var(--dwave-color-dark-blue-50);
+    --pst-color-link: var(--dwave-color-medium-blue-55);
     --pst-color-link-hover: var(--dwave-color-ocean-blue);
     --pst-color-inline-code: var(--inline-code-pink);
     --pst-color-inline-code-links: var(--dwave-color-ocean-blue);
