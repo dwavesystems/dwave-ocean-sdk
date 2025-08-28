@@ -2162,7 +2162,7 @@ section above.
     ...    r1[i]['properties']['category'] == "hybrid" and "binary" in r1[i]['identity']['name']]
     >>> bqm_solver = hybrid_bqm_solvers[0]
     >>> print(bqm_solver)                           # doctest: +SKIP
-    {'name': 'hybrid_binary_quadratic_model_version2p'}
+    {'name': 'hybrid_binary_quadratic_model_version2'}
 
 Submit Your SAPI Request
 ~~~~~~~~~~~~~~~~~~~~~~~~
