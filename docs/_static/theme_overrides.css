@@ -41,7 +41,7 @@
 html[data-theme="light"] {
 
     /* theme overrides */
-    --pst-color-primary: var(--dwave-color-ocean-blue);
+    --pst-color-primary: var(--dwave-color-medium-blue-45);
     --pst-color-secondary: grey;
     --pst-color-link: var(--dwave-color-medium-blue-45);
     --pst-color-link-hover: var(--dwave-color-ocean-blue);
@@ -70,7 +70,7 @@ html[data-theme="light"] .nav-item:has(.dark-theme-icon) {
 html[data-theme="dark"] {
 
     /* theme overrides */
-    --pst-color-primary: var(--dwave-color-ocean-blue);
+    --pst-color-primary: var(--dwave-color-medium-blue-60);
     --pst-color-secondary: grey;
     --pst-color-link: var(--dwave-color-medium-blue-60);
     --pst-color-link-hover: var(--dwave-color-ocean-blue);
