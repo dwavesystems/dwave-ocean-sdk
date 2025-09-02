@@ -698,11 +698,10 @@ query.\ [#]_
                         identifier is represented by the following JSON
                         structure::
 
-                        "solver": {"name": solver_name, "version": {"graph_id": graph_id}}
+                        {"name": solver_name, "version": {"graph_id": graph_id}}
 
                         where the fields are as follows:
 
-                        *    ``solver``: Parent for solver-related fields.
                         *    ``name``: Name of the solver.
                         *    ``version``: Parent for QPU-version-related fields.
                              This field does not apply to hybrid solvers.
@@ -1685,7 +1684,7 @@ to get a subset of solver fields.
             Status: ONLINE    Load: 0.09
         Advantage_system6.4
             Status: ONLINE    Load: 0.02
-        Advantage2_system1.4
+        Advantage2_system1.5
             Status: ONLINE    Load: 0.58
 
     .. include:: ../shared/sapi_rest.rst
