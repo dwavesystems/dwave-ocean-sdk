@@ -793,22 +793,6 @@ query.\ [#]_
 For an example of submitting a problem to a quantum processing unit (QPU)
 sampler,see the :ref:`sapi_rest_full_examples` section.
 
-.. testsetup:: rest_live
-    :skipif: test_api_token_set == False
-
-    session.headers['Accept'] = 'application/vnd.dwave.sapi.solver-definition+json; version=3'
-    from urllib.parse import urlencode
-    import requests
-    params = {"filter": "none,+identity,+status,+properties.category"}
-    r_hybrid_bqm = requests.get(
-        f"{SAPI_HOME}/solvers/remote/", params=params,
-        headers={'X-Auth-Token': SAPI_TOKEN}).json()
-    hybrid_bqm_solvers =  [r_hybrid_bqm[i]['identity']['name'] for i in range(len(r_hybrid_bqm)) if \
-      r_hybrid_bqm[i]['properties']['category'] == "hybrid" and \
-      r_hybrid_bqm[i]['status'] == "ONLINE" and \
-      "binary" in r_hybrid_bqm[i]['identity']['name']]
-    solver_hybrid_bqm = hybrid_bqm_solvers[0]
-
 .. tab-set::
 
     .. tab-item:: Python
@@ -1875,11 +1859,11 @@ quantity of retrieved information, can be omitted.
 .. doctest:: rest_live
     :skipif: test_api_token_set == False
 
-    >>> session.headers['Accept'] = 'application/vnd.dwave.sapi.solver-definition-list+json; version=3'
     >>> params = {"filter": "none,+identity,+status,+avg_load,+properties.num_qubits,+properties.category"}
     ...
     >>> r1 = requests.get(f"{SAPI_HOME}/solvers/remote/", params=params,
-    ...                   headers={'X-Auth-Token': SAPI_TOKEN})
+    ...                   headers={'X-Auth-Token': SAPI_TOKEN,
+    ...                   'Accept': 'application/vnd.dwave.sapi.solver-definition-list+json; version=3'})
     >>> print(r1.status_code)
     200
 
