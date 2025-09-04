@@ -799,9 +799,10 @@ sampler,see the :ref:`sapi_rest_full_examples` section.
     session.headers['Accept'] = 'application/vnd.dwave.sapi.solver-definition+json; version=3'
     from urllib.parse import urlencode
     import requests
-    filter = urlencode({"filter": "none,+identity,+status,+properties.category"})
-    r_hybrid_bqm = requests.get("https://na-west-1.cloud.dwavesys.com/sapi/v2/solvers/remote/?" \
-      + filter, headers={'X-Auth-Token': SAPI_TOKEN}).json()
+    params = {"filter": "none,+identity,+status,+properties.category"}
+    r_hybrid_bqm = requests.get(
+        f"{SAPI_HOME}/solvers/remote/", params=params,
+        headers={'X-Auth-Token': SAPI_TOKEN}).json()
     hybrid_bqm_solvers =  [r_hybrid_bqm[i]['identity']['name'] for i in range(len(r_hybrid_bqm)) if \
       r_hybrid_bqm[i]['properties']['category'] == "hybrid" and \
       r_hybrid_bqm[i]['status'] == "ONLINE" and \
