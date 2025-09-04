@@ -98,7 +98,7 @@ identifier of the selected Advantage2 QPU.
 In any future experiments, the researcher can explicitly select that QPU with
 the requirement that the current working graph is unchanged:
 
->>> sampler = DWaveSampler(solver=dict(qpu_identity))        # doctest: +SKIP
+>>> sampler = DWaveSampler(solver=dict(identity=qpu_identity))        # doctest: +SKIP
 >>> print(sampler.solver.version)      # doctest: +SKIP
 {'graph_id': '010e7a62e5'}
 
