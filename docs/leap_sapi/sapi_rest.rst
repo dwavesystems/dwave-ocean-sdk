@@ -138,7 +138,7 @@ explained in the :ref:`sapi_rest_url_token_setup` subsection.
     >>> r = requests.get(f"{SAPI_HOME}/problems/?max_results=3",
     ...                  headers={'X-Auth-Token': SAPI_TOKEN})
     >>> print(r.headers["Content-Type"])   # doctest: +SKIP
-    application/vnd.dwave.sapi.problems+json; version=2.1.0; charset=utf-8
+    application/vnd.dwave.sapi.problems+json; version=2.1; charset=utf-8
 
 
 .. |general error responses| replace:: In addition to generic client and server
@@ -694,9 +694,13 @@ query.\ [#]_
                         :ref:`hybrid parameters <opt_index_properties_parameters>`
                         or :ref:`QPU parameters <qpu_solver_parameters>`.
         solver          Unique identifier (name) of the solver to be used. For
-                        resource representation ``version=3``, the solver
-                        identifier is represented by the following JSON
-                        structure::
+                        resource representation ``version=2.1`` and earlier, use
+                        the name of the solver (e.g., ``"solver": "solver_id"``).
+                        The ``version=2.1`` resource representation is
+                        deprecated; instead, use the ``version=3`` JSON
+                        structure. For resource representation ``version=3``,
+                        the solver identifier is represented by the following
+                        JSON structure::
 
                         {"name": solver_name, "version": {"graph_id": graph_id}}
 
@@ -707,11 +711,6 @@ query.\ [#]_
                              This field does not apply to hybrid solvers.
                         *   ``graph_id``: Unique identifier of the QPU solver's
                             :ref:`working graph <topologies_working_graph>`.
-
-                        For resource representation ``version=2`` and
-                        earlier, use the name of the solver. The ``version=2``
-                        resource representation is deprecated; instead, use the
-                        ``version=3`` JSON structure.
 
                         See also the "Solver Resource Fields" table in the
                         :ref:`available_solvers_2xx` tab.
@@ -814,16 +813,19 @@ sampler,see the :ref:`sapi_rest_full_examples` section.
     .. tab-item:: Python
 
         This example uses the identifier ``problem_data_id`` returned from the
-        :ref:`sapi_rest_get_multi_id` example and hybrid solver
-        ``bqm_solver`` selected as in
-        the :ref:`sapi_rest_quick_start_submit_hybrid` section.
+        :ref:`sapi_rest_get_multi_id` example and sets the requested solver to
+        ``hybrid_binary_quadratic_model_version2``, a solver available to the
+        user account that executed this example. To get a ``2xx`` response, run
+        the examples that :ref:`initiate <sapi_rest_get_multi_id>`,
+        :ref:`upload <sapi_rest_upload_multi_parts>`, and
+        :ref:`complete <sapi_rest_upload_multi_md5>` the problem upload.
 
         .. doctest:: rest_live
             :skipif: test_api_token_set == False or hss_spot_check == False
 
             >>> session.headers['Accept'] = 'application/vnd.dwave.sapi.problems+json; version=3'
             >>> r = session.post(f"{SAPI_HOME}/problems",
-            ...                   json=[{"solver": bqm_solver,
+            ...                   json=[{"solver": {"name": "hybrid_binary_quadratic_model_version2"},
             ...                          "label": "REST Submission to hybrid BQM solver",
             ...                          "data": {"format": "ref", "data": problem_data_id},
             ...                          "type": "bqm",
@@ -835,7 +837,10 @@ sampler,see the :ref:`sapi_rest_full_examples` section.
         data being uploaded to the value returned from the
         :ref:`sapi_rest_get_multi_id` example and sets the requested solver to
         ``hybrid_binary_quadratic_model_version2``, a solver available to the
-        user account that executed this example.
+        user account that executed this example. To get a ``2xx`` response, run
+        the examples that :ref:`initiate <sapi_rest_get_multi_id>`,
+        :ref:`upload <sapi_rest_upload_multi_parts>`, and
+        :ref:`complete <sapi_rest_upload_multi_md5>` the problem upload.
 
         .. code-block:: bash
 
@@ -857,7 +862,7 @@ sampler,see the :ref:`sapi_rest_full_examples` section.
 
     SAPI supports these resource representations:
 
-    *   ``application/vnd.dwave.sapi.problems+json; version=2`` (default,
+    *   ``application/vnd.dwave.sapi.problems+json; version=2.1`` (default,
         deprecated): The ``solver`` field is a string.
 
     *   ``application/vnd.dwave.sapi.problems+json; version=3``: The ``solver``
@@ -969,7 +974,7 @@ single query.
 
     SAPI supports these resource representations:
 
-    *   ``application/vnd.dwave.sapi.problems+json; version=2`` (default,
+    *   ``application/vnd.dwave.sapi.problems+json; version=2.1`` (default,
         deprecated): The ``solver`` field is a string.
 
     *   ``application/vnd.dwave.sapi.problems+json; version=3``: The ``solver``
@@ -1049,7 +1054,7 @@ The request should contain no body.
 
             >>> problem_id = "74d9344c-0160-47bc-b7b1-e245b2ffd955"
             ...
-            >>> session.headers['Accept'] = 'application/vnd.dwave.sapi.problem-data+json; version=3'
+            >>> session.headers['Accept'] = 'application/vnd.dwave.sapi.problem+json; version=3'
             >>> r = session.delete(f"{SAPI_HOME}/problems/{problem_id}")
 
     .. tab-item:: cURL
@@ -1058,17 +1063,17 @@ The request should contain no body.
 
             $ problem_id="74d9344c-0160-47bc-b7b1-e245b2ffd955"
             $ auth="X-Auth-Token: $SAPI_TOKEN"
-            $ accept="Accept: application/vnd.dwave.sapi.problem-data+json; version=3"
+            $ accept="Accept: application/vnd.dwave.sapi.problem+json; version=3"
             $ curl -H "$auth" -H "$accept" $SAPI_HOME/problems/$problem_id -X DELETE
 
 .. dropdown:: Optional ``Accept`` header
 
     SAPI supports these resource representations:
 
-    *   ``application/vnd.dwave.sapi.problem-data+json; version=2`` (default,
+    *   ``application/vnd.dwave.sapi.problem+json; version=2.1`` (default,
         deprecated): The ``solver`` field is a string.
 
-    *   ``application/vnd.dwave.sapi.problem-data+json; version=3``: The
+    *   ``application/vnd.dwave.sapi.problem+json; version=3``: The
         ``solver`` field is a dict.
 
     For information, see :ref:`key_value_problems_request`.
@@ -1175,7 +1180,7 @@ with an ampersand ("&").
 
     SAPI supports these resource representations:
 
-    *   ``application/vnd.dwave.sapi.problems+json; version=2`` (default,
+    *   ``application/vnd.dwave.sapi.problems+json; version=2.1`` (default,
         deprecated): The ``solver`` field is a string.
 
     *   ``application/vnd.dwave.sapi.problems+json; version=3``: The ``solver``
@@ -1275,7 +1280,7 @@ not completed processing.
 
     SAPI supports these resource representations:
 
-    *   ``application/vnd.dwave.sapi.problem+json; version=2`` (default,
+    *   ``application/vnd.dwave.sapi.problem+json; version=2.1`` (default,
         deprecated): The ``solver`` field is a string.
 
     *   ``application/vnd.dwave.sapi.problem+json; version=3``: The ``solver``
@@ -1364,7 +1369,7 @@ The request should contain no body.
 
     SAPI supports these resource representations:
 
-    *   ``application/vnd.dwave.sapi.problem-data+json; version=2`` (default,
+    *   ``application/vnd.dwave.sapi.problem-data+json; version=2.1`` (default,
         deprecated): The ``solver`` field is a string.
 
     *   ``application/vnd.dwave.sapi.problem-data+json; version=3``: The
@@ -1870,9 +1875,10 @@ quantity of retrieved information, can be omitted.
     :skipif: test_api_token_set == False
 
     >>> session.headers['Accept'] = 'application/vnd.dwave.sapi.solver-definition-list+json; version=3'
-    >>> filter = urlencode({"filter": "none,+identity,+status,+avg_load,+properties.num_qubits,+properties.category"})
+    >>> params = {"filter": "none,+identity,+status,+avg_load,+properties.num_qubits,+properties.category"}
     ...
-    >>> r1 = session.get(f"{SAPI_HOME}/solvers/remote/?{filter}")
+    >>> r1 = requests.get(f"{SAPI_HOME}/solvers/remote/", params=params,
+    ...                   headers={'X-Auth-Token': SAPI_TOKEN})
     >>> print(r1.status_code)
     200
 
@@ -1893,7 +1899,7 @@ lists the solver names, statuses, and current usage loads.
         Status: ONLINE    Load: 0.0
     hybrid_discrete_quadratic_model_version1
         Status: ONLINE    Load: 0.0
-    Advantage2_system1.4
+    Advantage2_system1.6
         Status: ONLINE    Load: 0.58
     Advantage_system6.4
         Status: ONLINE    Load: 0.02

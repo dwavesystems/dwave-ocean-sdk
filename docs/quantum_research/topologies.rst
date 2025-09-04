@@ -52,10 +52,10 @@ access. The subset of the fabricated QPU's graph available to users is the
     commercial systems typically have more than 97% of fabricated qubits
     available in their working graphs.
 
-    The version of the working graph is tracked in the ``graph_id`` solver
-    resource field (see the :ref:`key_value_problems_request` table). Changes to
-    a working graph, such as removing qubits that no longer meet specifications
-    after initial calibration, might required that you update a saved minor
+    The working graph is tracked in the ``graph_id`` solver resource field (see
+    the :ref:`key_value_problems_request` table). Changes to a working graph,
+    such as removing qubits that no longer meet specifications after initial
+    calibration, might required that you update a saved minor
     :ref:`embedding <qpu_embedding_intro>`.
 
 .. _topology_intro_chimera:
