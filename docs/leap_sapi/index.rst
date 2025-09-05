@@ -147,37 +147,11 @@ Up to 1000 of your most recent problems are stored and accessible in the Leap
 service for up to 365 days; if the number of your problems exceeds 1000, the
 Leap service begins to delete the oldest ones.
 
-.. _leap_sapi_deprecated_features:
-
 Feature Deprecation
 ===================
 
-A Leap service feature may be deprecated and, during the deprecation period,
-information about such a deprecation is displayed whenever the feature is used.
-For example, a message would be displayed when a deprecated SAPI endpoint is
-called. For the Ocean SDK, deprecation messages are displayed in a terminal; for
-SAPI, deprecation messages are displayed as HTTP ``X-Deprecation`` response
-headers. A deprecation message includes the following:
-
-*   Brief description
-
-*   Deprecation ID, which can be used to find a more detailed description
-    in the release notes
-
-*   ``context`` string, which identifies the affected Leap service category as
-    follows:
-
-    *   ``api``: SAPI, such as endpoints, HTTP headers, and data structures
-
-    *   ``feature``: Solver features
-
-    *   ``parameter``: Solver parameters
-
-    *   ``solver``: QPU solvers
-
-    *   ``solver type``: Hybrid solvers
-
-*   Link to the release note for the deprecation
-
-*   Sunset date, after which date support for the feature is no longer
-    guaranteed
+A Leap service feature can be deprecated for a period of time before being
+removed. During the deprecation period, a deprecation notice is sent when such a
+feature is used. For example, a notification is sent when you use a deprecated
+solver parameter or submit a problem to a deprecated solver. For more
+information, see the :ref:`_leap_sapi_feature_deprecation` section.

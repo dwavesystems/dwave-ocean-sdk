@@ -145,6 +145,56 @@ explained in the :ref:`sapi_rest_url_token_setup` subsection.
     :ref:`error responses <sapi_rest_general_response_codes>`, SAPI may return
     particular error codes.
 
+.. _leap_sapi_deprecation_message:
+
+SAPI Deprecation Messages
+-------------------------
+
+During the deprecation period, a deprecation message is sent when such a
+feature is used. For example, a message is sent when you use a deprecated
+solver parameter or submit a problem to a deprecated solver.
+
+Deprecation messages are sent in SAPI responses via the HTTP ``X-Deprecation``
+response header, which adheres to
+`RFC 9651: Structured Field Values for HTTP <https://www.rfc-editor.org/rfc/rfc9651>`_.
+
+A deprecation message includes the following:
+
+*   ``context`` (string): which identifies the affected Leap service category as
+    follows:
+
+    *   ``api``: SAPI, such as endpoints, HTTP headers, and data structures
+
+    *   ``feature``: Solver features
+
+    *   ``parameter``: Solver parameters
+
+    *   ``solver``: QPU and hybrid solvers
+
+*   ``deprecated`` (date, optional): Date the feature was deprecated
+
+*   ``deprecation-id`` (string): Deprecation ID, which can be used to find the
+    relevant release note
+
+*   ``link`` (string, optional): URI to the release note for the deprecation
+
+*   ``message`` (string): Brief description
+
+*   ``sunset`` (date): Sunset date, after which support for the feature is no
+    longer guaranteed
+
+An example of a deprecation message is the following:
+
+.. code-block::
+
+    x-deprecation:
+        dep-1;
+            message="Missing Accept header or unsupported content type in Accept Header. Please use the allowed content type for version 3 in Accept header.";
+            sunset=@1717171200;
+            context="api";
+            deprecated=@1714531200;
+            link="https://docs.dwavesystems.com/projects/leap_sapi/en/latest/release_notes.html"
+
 .. _sapi_rest_resources:
 
 Resources
