@@ -4,14 +4,14 @@
 Topologies
 ==========
 
-The layout of the |dwave_short| quantum processing unit (QPU) is critical to
-formulating an objective function in a format that a |dwave_short| annealing
-quantum computer can solve, as described in the :ref:`qpu_workflow` section.
-Although :ref:`Ocean software <index_ocean_sdk>` automates the mapping from the
-linear and quadratic coefficients of a quadratic model to qubit bias and
-coupling values set on the QPU, you should understand it if you are using QPU
-solvers directly because it has implications for the problem-graph size and
-solution quality.
+The topology (or layout) of the |dwave_short| quantum processing unit (QPU) is
+critical to formulating an objective function in a format that a |dwave_short|
+annealing quantum computer can solve, as described in the :ref:`qpu_workflow`
+section. Although :ref:`Ocean software <index_ocean_sdk>` automates the mapping
+from the linear and quadratic coefficients of a quadratic model to qubit bias
+and coupling values set on the QPU, you should understand the topology if you
+are using QPU solvers directly because it has implications for the problem-graph
+size and solution quality.
 
 .. note:: If you are sending your problem to a
     quantum-classical hybrid solver in the
@@ -31,18 +31,19 @@ computers interconnect in one of the following topologies:
 The Working Graph
 =================
 
-Some small number of qubits and couplers in a QPU may not meet the
-specifications to function as desired. These are therefore removed from the
-programmable fabric that users can access. The subset of the QPU's graph
-available to users is the *working graph*. The yield\ [#]_ of the working graph
-is the percentage of working qubits that are present.
+During calibration of a fabricated QPU, a small number of qubits and couplers in
+the QPU may not meet the specifications to function as desired. These qubits and
+couplers are therefore removed from the programmable structure that users can
+access. The subset of the fabricated QPU's graph available to users is the
+*working graph*.\ [#]_
 
 .. [#]
     Manufacturing variations and the need to prepare the QPU to operate at
-    cryogenic temperatures in a low-magnetic field environment limits the yield.
-    These variations are minimized through an extensive calibration process that
-    attempts to bring all of these analog devices into a consistent parametric
-    regime.
+    cryogenic temperatures in a low-magnetic field environment limits the yield,
+    the number of qubits in the working graph as a percentage of those in the
+    fabricated QPU. These variations are minimized through an extensive
+    calibration process that attempts to bring all of these analog devices into
+    a consistent parametric regime.
 
     For example, each |dwave_5kq| QPU is fabricated with 5,640 qubits and 40,484
     couplers in a Pegasus topology. Of this total, the number and specific set
@@ -50,6 +51,12 @@ is the percentage of working qubits that are present.
     changes with each system cooldown and calibration cycle. Calibrated
     commercial systems typically have more than 97% of fabricated qubits
     available in their working graphs.
+
+    The working graph is tracked in the ``graph_id`` solver resource field (see
+    the :ref:`key_value_problems_request` table). Changes to a working graph,
+    such as removing qubits that no longer meet specifications after initial
+    calibration, might required that you update a saved minor
+    :ref:`embedding <qpu_embedding_intro>`.
 
 .. _topology_intro_chimera:
 
