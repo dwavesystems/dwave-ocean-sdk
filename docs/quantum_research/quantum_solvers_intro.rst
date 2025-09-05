@@ -29,14 +29,13 @@ that tracks any changes to the solver's
 selection by identity (name alone or with a particular graph ID), topology type,
 qubit count, and other characteristics, as described in the
 :meth:`~dwave.cloud.client.Client.get_solvers` method. The
-:ref:`qpu_quantum_solvers_example_native` example selects a QPU solver with the
-requirement that it have a :ref:`Zephyr` topology and saves the ``graph_id`` of
-its current working graph for reference.
+:ref:`qpu_quantum_solvers_example_native` example ensures that the selected QPU
+solver has a :term:`Zephyr` topology and saves the ``graph_id`` of its current
+working graph for reference.
 
 .. [#]
 
-    Requires Ocean SDK releases 9.0 or higher, which support SAPI solver
-    representation version 3.
+    Requires :ref:`Ocean SDK <index_ocean_sdk>` releases 9.0 or higher.
 
 .. _qpu_quantum_solvers_example_and:
 
@@ -82,11 +81,12 @@ computers, see the :ref:`qpu_index_examples_beginner` section.
 Example: Problem on the Native Graph
 ====================================
 
-This example runs a RAN7 problem (see :func:`~dimod.generators.ran_r`) on a 1000
-qubits in a Zephyr topology.
+This example creates a RAN7 problem (see :func:`~dimod.generators.ran_r`) on a
+graph of 1000 nodes structured in a Zephyr topology, which can embed directly
+onto 1000 qubits of an |adv2| QPU.
 
 For reproducibility, it saves the :ref:`working graph <topologies_working_graph>`
-identifier of the selected Advantage2 QPU.
+identifier of the selected QPU.
 
 >>> from dwave.system import DWaveSampler
 ...
