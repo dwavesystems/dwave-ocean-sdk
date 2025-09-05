@@ -147,7 +147,7 @@ Up to 1000 of your most recent problems are stored and accessible in the Leap
 service for up to 365 days; if the number of your problems exceeds 1000, the
 Leap service begins to delete the oldest ones.
 
-.. _deprecated_features:
+.. _leap_sapi_deprecated_features:
 
 Feature Deprecation
 ===================
@@ -177,8 +177,7 @@ headers. A deprecation message includes the following:
 
     *   ``solver type``: Hybrid solvers
 
-*   Link to the release notes, which includes a more detailed description about
-    the deprecation
+*   Link to the release note for the deprecation
 
-*   Sunset date, which is the date after which the feature is no longer
-    guaranteed to be supported
+*   Sunset date, after which date support for the feature is no longer
+    guaranteed
