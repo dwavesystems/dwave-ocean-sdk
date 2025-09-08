@@ -76,7 +76,8 @@ The serialized file may look like this:
                     ``version=3``, the solver is represented by the
                     following JSON object::
 
-                    {"name": name, "version": {"graph_id": graph_id}}
+                        {"name": name, "version": {"graph_id": graph_id}}
+
 
                     where the fields are as follows:
                    
@@ -116,7 +117,8 @@ The serialized file may look like this:
     identity       Represents the following JSON object. Only available for
                    resource representation ``version=3``.
 
-                   .. code-block:: json
+                   .. code-block:: python
+
                     
                         {
                             "name": name

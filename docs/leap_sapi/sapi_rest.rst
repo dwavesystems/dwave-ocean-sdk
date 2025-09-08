@@ -1348,7 +1348,7 @@ The request should contain no body.
             $ problem_id="74d9344c-0160-47bc-b7b1-e245b2ffd955"
             $ auth="X-Auth-Token: $SAPI_TOKEN"
             $ accept="Accept: application/vnd.dwave.sapi.problem-data+json; version=3"
-            $ curl -H "$auth" -H "$accept" $SAPI_HOME/problems/$problem_id/info -X GET
+            $ curl -H "$auth" -H "$accept" $SAPI_HOME/problems/$problem_id/info
 
 .. dropdown:: Optional ``Accept`` header
 
