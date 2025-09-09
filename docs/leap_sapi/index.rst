@@ -154,4 +154,4 @@ A Leap service feature can be deprecated for a period of time before being
 removed. During the deprecation period, a deprecation notice is sent when such a
 feature is used. For example, a notification is sent when you use a deprecated
 solver parameter or submit a problem to a deprecated solver. For more
-information, see the :ref:`_leap_sapi_feature_deprecation` section.
+information, see the :ref:`leap_sapi_deprecation_message` section.

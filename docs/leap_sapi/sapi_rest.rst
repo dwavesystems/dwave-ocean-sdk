@@ -150,11 +150,11 @@ explained in the :ref:`sapi_rest_url_token_setup` subsection.
 SAPI Deprecation Messages
 -------------------------
 
-During the deprecation period, a deprecation message is sent when such a
-feature is used. For example, a message is sent when you use a deprecated
-solver parameter or submit a problem to a deprecated solver.
+The Leap service sends deprecation messages when you use deprecated features;
+for example, a message is sent when you use a deprecated solver parameter or
+submit a problem to a deprecated solver.
 
-Deprecation messages are sent in SAPI responses via the HTTP ``X-Deprecation``
+Deprecation messages are sent in SAPI responses via an HTTP ``X-Deprecation``
 response header, which adheres to
 `RFC 9651: Structured Field Values for HTTP <https://www.rfc-editor.org/rfc/rfc9651>`_.
 
@@ -171,19 +171,21 @@ A deprecation message includes the following:
 
     *   ``solver``: QPU and hybrid solvers
 
-*   ``deprecated`` (date, optional): Date the feature was deprecated
+*   ``deprecated`` (date, optional): `Date <https://www.rfc-editor.org/rfc/rfc9651#name-dates>`_
+    the feature was deprecated
 
-*   ``deprecation-id`` (string): Deprecation ID, which can be used to find the
-    relevant release note
+*   ``deprecation-id`` (string): Deprecation ID, which directly follows
+    ``x-deprecation`` and can be used to find the relevant release note
 
 *   ``link`` (string, optional): URI to the release note for the deprecation
 
 *   ``message`` (string): Brief description
 
-*   ``sunset`` (date): Sunset date, after which support for the feature is no
-    longer guaranteed
+*   ``sunset`` (date): Sunset `date <https://www.rfc-editor.org/rfc/rfc9651#name-dates>`_,
+    after which support for the feature is no longer guaranteed
 
-An example of a deprecation message is the following:
+An example of a deprecation message\ [#]_ is the following, where ``dep-1`` is
+the ``deprecation-id``:
 
 .. code-block::
 
@@ -194,6 +196,10 @@ An example of a deprecation message is the following:
             context="api";
             deprecated=@1714531200;
             link="https://docs.dwavesystems.com/projects/leap_sapi/en/latest/release_notes.html"
+
+.. [#]
+     Linebreaks in the example are provided for legibility; the actual output is
+     on one line.
 
 .. _sapi_rest_resources:
 
