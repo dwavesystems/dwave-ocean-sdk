@@ -76,12 +76,12 @@ The serialized file may look like this:
                     ``version=3``, the solver is represented by the
                     following JSON object::
 
-                        {"name": name, "version": {"graph_id": graph_id}}
+                        {"name": solver_name, "version": {"graph_id": graph_id}}
 
 
                     where the fields are as follows:
-                   
-                    *    ``name``: Name of the solver.
+
+                    *    ``solver_name``: Name of the solver.
                     *    ``version``: Version object, used for QPU solvers only.
                     *   ``graph_id``: Identifier of the QPU solver's
                         :ref:`working graph <topologies_working_graph>`.
@@ -119,20 +119,19 @@ The serialized file may look like this:
 
                    .. code-block:: python
 
-                    
                         {
-                            "name": name
+                            "name": solver_name,
                             "version": {
                                 "graph_id": graph_id
                             }
                         }
-                    
+
                    where the values are as follows:
-                   
-                   *    ``name``: Name of the solver.
+
+                   *    ``solver_name``: Name of the solver.
 
                    *    ``version``: Version object, used for QPU solvers only.
-                   
+
                    *    ``graph_id``: ID of the QPU solver's
                         :ref:`working graph <topologies_working_graph>`.
 

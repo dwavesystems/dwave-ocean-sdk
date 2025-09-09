@@ -138,7 +138,7 @@ explained in the :ref:`sapi_rest_url_token_setup` subsection.
     >>> r = requests.get(f"{SAPI_HOME}/problems/?max_results=3",
     ...                  headers={'X-Auth-Token': SAPI_TOKEN})
     >>> print(r.headers["Content-Type"])   # doctest: +SKIP
-    application/vnd.dwave.sapi.problems+json; version=2.1; charset=utf-8
+    application/vnd.dwave.sapi.problems+json; version=2.1.0; charset=utf-8
 
 
 .. |general error responses| replace:: In addition to generic client and server
@@ -695,7 +695,7 @@ query.\ [#]_
                         or :ref:`QPU parameters <qpu_solver_parameters>`.
         solver          Unique identifier (name) of the solver to be used. For
                         resource representation ``version=2.1`` and earlier, use
-                        the name of the solver (e.g., ``"solver": "solver_id"``).
+                        the name of the solver (e.g., ``"solver": "solver_name"``).
                         The ``version=2.1`` resource representation is
                         deprecated; instead, use the ``version=3`` JSON
                         structure. For resource representation ``version=3``,
@@ -706,9 +706,9 @@ query.\ [#]_
 
                         where the fields are as follows:
 
-                        *    ``name``: Name of the solver.
-                        *    ``version``: Parent for QPU-version-related fields.
-                             This field does not apply to hybrid solvers.
+                        *   ``solver_name``: Name of the solver.
+                        *   ``version``: Parent for QPU-version-related fields.
+                            This field does not apply to hybrid solvers.
                         *   ``graph_id``: Unique identifier of the QPU solver's
                             :ref:`working graph <topologies_working_graph>`.
 
@@ -860,30 +860,29 @@ sampler,see the :ref:`sapi_rest_full_examples` section.
 
     SAPI returns a ``200 OK`` response with the problem identifier.
 
-    Below are some example 201 responses:
+    Below are some example 200 responses:
 
     >>> r.json()   # doctest: +SKIP
-    {'status': 'IN_PROGRESS',
-     'id': 'a239c000-10de-4663-b562-af8029c0c470',
-     'solver': {'name': 'hybrid_binary_quadratic_model_version2'},
-     'type': 'bqm',
-     'submitted_on': '2022-09-01T16:48:36.052206Z',
-     'label': 'REST Submission to hybrid BQM solver'}
+    [{'status': 'IN_PROGRESS',
+      'id': 'a239c000-10de-4663-b562-af8029c0c470',
+      'solver': {'name': 'hybrid_binary_quadratic_model_version2'},
+      'type': 'bqm',
+      'submitted_on': '2022-09-01T16:48:36.052206Z',
+      'label': 'REST Submission to hybrid BQM solver'}]
 
     >>> r.json()  # doctest: +SKIP
-    {'status': 'COMPLETED',
-     'id': '51fa2c98-3f19-4dd9-9f2d-c4295278218f',
-     'solver': {'name': 'Advantage_system4.1',
-        'version': {'graph_id': '01d07086e1'}},
-     'type': 'ising',
-     'submitted_on': '2022-09-01T17:55:00.877038Z',
-     'label': 'QPU REST submission 1',
-     'solved_on': '2022-09-01T17:55:01.087126Z',
-     'answer': {'solutions': 'AMA=',
-                'energies': 'AAAAAAAA8L8AAAAAAADwvw==',
+    [{'status': 'COMPLETED',
+      'id': '51fa2c98-3f19-4dd9-9f2d-c4295278218f',
+      'solver': {'name': 'Advantage_system4.1', 'version': {'graph_id': '01d07086e1'}},
+      'type': 'ising',
+      'submitted_on': '2022-09-01T17:55:00.877038Z',
+      'label': 'QPU REST submission 1',
+      'solved_on': '2022-09-01T17:55:01.087126Z',
+      'answer': {'solutions': 'AMA=',
+                 'energies': 'AAAAAAAA8L8AAAAAAADwvw==',
      ... # SNIPPED FOR BREVITY
-                'num_variables': 5760}
-    }
+                 'num_variables': 5760}
+    }]
 
     The following table describes fields in the responses above.
 
@@ -1138,8 +1137,7 @@ with an ampersand ("&").
         status          Problem state: COMPLETED, IN_PROGRESS, PENDING, FAILED,
                         CANCELLED.
         solver          Solver name as a string (e.g.,
-                        ``hybrid_binary_quadratic_model_version2``) or a dict
-                        (e.g, ``'solver': {'name': 'hybrid_binary_quadratic_model_version2'}``).
+                        ``hybrid_binary_quadratic_model_version2``).
         =============== ===========================
 
 .. tab-set::
@@ -1259,7 +1257,7 @@ not completed processing.
             $ problem_id="74d9344c-0160-47bc-b7b1-e245b2ffd955"
             $ auth="X-Auth-Token: $SAPI_TOKEN"
             $ accept="Accept: application/vnd.dwave.sapi.problem+json; version=3"
-            $ curl -H "$auth" -H "$accept" $SAPI_HOME/problems/$problem_id?timeout=5 -X GET
+            $ curl -H "$auth" -H "$accept" $SAPI_HOME/problems/$problem_id?timeout=5
 
 .. dropdown:: Optional ``Accept`` header
 
@@ -1513,7 +1511,7 @@ The request should contain no body.
 
     |general error responses|
 
-    *   ``404`` for nonexistent problem ID
+    *   ``404`` for nonexistent or cancelled problem
     *   ``410`` for submitted problems that are no longer accessible
 
     Below are some example error responses:
@@ -1608,11 +1606,11 @@ to get a subset of solver fields.
         .. doctest:: rest_live
             :skipif: test_api_token_set == False
 
-            >>> session.headers['Accept'] = 'application/vnd.dwave.sapi.solver-definition-list+json; version=3'
-            >>> filter = urlencode({"filter": "none,+identity,+status,+avg_load"})
-            ...
-            >>> r = session.get(f"{SAPI_HOME}/solvers/remote/?{filter}")
-
+            >>> params = {"filter": "none,+identity,+status,+avg_load"}
+            >>> r = requests.get(f"{SAPI_HOME}/solvers/remote/", params=params,
+            ...                  headers={'X-Auth-Token': SAPI_TOKEN,
+            ...                  'Accept': 'application/vnd.dwave.sapi.solver-definition-list+json; version=3'})
+        
     .. tab-item:: cURL
 
         .. code-block:: bash
