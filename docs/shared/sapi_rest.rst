@@ -81,8 +81,8 @@ The serialized file may look like this:
 
                     where the fields are as follows:
 
-                    *    ``solver_name``: Name of the solver.
-                    *    ``version``: Version object, used for QPU solvers only.
+                    *   ``name``: Name of the solver.
+                    *   ``version``: Version object, used for QPU solvers only.
                     *   ``graph_id``: Identifier of the QPU solver's
                         :ref:`working graph <topologies_working_graph>`.
 
@@ -128,7 +128,7 @@ The serialized file may look like this:
 
                    where the values are as follows:
 
-                   *    ``solver_name``: Name of the solver.
+                   *    ``name``: Name of the solver.
 
                    *    ``version``: Version object, used for QPU solvers only.
 

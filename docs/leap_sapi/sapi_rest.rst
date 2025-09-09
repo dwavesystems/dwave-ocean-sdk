@@ -695,7 +695,7 @@ query.\ [#]_
                         or :ref:`QPU parameters <qpu_solver_parameters>`.
         solver          Unique identifier (name) of the solver to be used. For
                         resource representation ``version=2.1`` and earlier, use
-                        the name of the solver (e.g., ``"solver": "solver_name"``).
+                        the name of the solver (e.g., ``"solver": "Advantage_system4.1"``).
                         The ``version=2.1`` resource representation is
                         deprecated; instead, use the ``version=3`` JSON
                         structure. For resource representation ``version=3``,
@@ -706,7 +706,7 @@ query.\ [#]_
 
                         where the fields are as follows:
 
-                        *   ``solver_name``: Name of the solver.
+                        *   ``name``: Name of the solver.
                         *   ``version``: Parent for QPU-version-related fields.
                             This field does not apply to hybrid solvers.
                         *   ``graph_id``: Unique identifier of the QPU solver's
@@ -1011,7 +1011,7 @@ single query.
     |general error responses|
 
     *   ``404`` for nonexistent problem ID
-    *   ``409`` for a poblem that reached a terminal states before the request
+    *   ``409`` for a problem that reached a terminal states before the request
 
     Below are some example error responses:
 
@@ -1093,7 +1093,7 @@ The request should contain no body.
     |general error responses|
 
     *   ``404`` for nonexistent problem ID
-    *   ``409`` for a poblem that reached a terminal states before the request
+    *   ``409`` for a problem that reached a terminal states before the request
 
     Below are some example error responses:
 
@@ -1607,9 +1607,8 @@ to get a subset of solver fields.
             :skipif: test_api_token_set == False
 
             >>> params = {"filter": "none,+identity,+status,+avg_load"}
-            >>> r = requests.get(f"{SAPI_HOME}/solvers/remote/", params=params,
-            ...                  headers={'X-Auth-Token': SAPI_TOKEN,
-            ...                  'Accept': 'application/vnd.dwave.sapi.solver-definition-list+json; version=3'})
+            >>> r = session.get(f"{SAPI_HOME}/solvers/remote/", params=params,
+            ...                  headers={'Accept': 'application/vnd.dwave.sapi.solver-definition-list+json; version=3'})
         
     .. tab-item:: cURL
 
@@ -1859,9 +1858,8 @@ quantity of retrieved information, can be omitted.
 
     >>> params = {"filter": "none,+identity,+status,+avg_load,+properties.num_qubits,+properties.category"}
     ...
-    >>> r1 = requests.get(f"{SAPI_HOME}/solvers/remote/", params=params,
-    ...                   headers={'X-Auth-Token': SAPI_TOKEN,
-    ...                   'Accept': 'application/vnd.dwave.sapi.solver-definition-list+json; version=3'})
+    >>> r1 = session.get(f"{SAPI_HOME}/solvers/remote/", params=params,
+    ...                   headers={'Accept': 'application/vnd.dwave.sapi.solver-definition-list+json; version=3'})
     >>> print(r1.status_code)
     200
 
