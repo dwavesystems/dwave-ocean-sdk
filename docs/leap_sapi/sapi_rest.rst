@@ -158,7 +158,7 @@ Deprecation messages are sent in SAPI responses via an HTTP ``X-Deprecation``
 response header, which adheres to
 `RFC 9651: Structured Field Values for HTTP <https://www.rfc-editor.org/rfc/rfc9651>`_.
 
-A deprecation message includes the following:
+A deprecation message is a `List` (RFC9651, section 3.1.) of `Token` (RFC9651, section 3.3.4.) items, each item associated with the following `Parameters` (RFC9651, section 3.1.2.):
 
 *   ``context`` (string): which identifies the affected Leap service category as
     follows:
