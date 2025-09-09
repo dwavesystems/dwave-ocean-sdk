@@ -1606,10 +1606,10 @@ to get a subset of solver fields.
         .. doctest:: rest_live
             :skipif: test_api_token_set == False
 
+            >>> session.headers['Accept'] = 'application/vnd.dwave.sapi.solver-definition-list+json; version=3'
             >>> params = {"filter": "none,+identity,+status,+avg_load"}
-            >>> r = session.get(f"{SAPI_HOME}/solvers/remote/", params=params,
-            ...                  headers={'Accept': 'application/vnd.dwave.sapi.solver-definition-list+json; version=3'})
-        
+            >>> r = session.get(f"{SAPI_HOME}/solvers/remote/", params=params)
+
     .. tab-item:: cURL
 
         .. code-block:: bash
@@ -1856,10 +1856,10 @@ quantity of retrieved information, can be omitted.
 .. doctest:: rest_live
     :skipif: test_api_token_set == False
 
+    >>> session.headers['Accept'] = 'application/vnd.dwave.sapi.solver-definition-list+json; version=3'
     >>> params = {"filter": "none,+identity,+status,+avg_load,+properties.num_qubits,+properties.category"}
     ...
-    >>> r1 = session.get(f"{SAPI_HOME}/solvers/remote/", params=params,
-    ...                   headers={'Accept': 'application/vnd.dwave.sapi.solver-definition-list+json; version=3'})
+    >>> r1 = session.get(f"{SAPI_HOME}/solvers/remote/", params=params)
     >>> print(r1.status_code)
     200
 
