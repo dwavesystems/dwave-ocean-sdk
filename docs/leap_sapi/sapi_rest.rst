@@ -155,13 +155,19 @@ for example, a message is sent when you use a deprecated solver parameter or
 submit a problem to a deprecated solver.
 
 Deprecation messages are sent in SAPI responses via an HTTP ``X-Deprecation``
-response header, which adheres to
-`RFC 9651: Structured Field Values for HTTP <https://www.rfc-editor.org/rfc/rfc9651>`_.
+response header, which is an Item Structured Header field
+(`RFC 9651 <https://www.rfc-editor.org/rfc/rfc9651>`_). Thus, a deprecation
+message is a
+List (`RFC 9651, 3.1 <https://www.rfc-editor.org/rfc/rfc9651#name-lists>`_)
+of Token
+(`RFC 9651, 3.3.4 <https://www.rfc-editor.org/rfc/rfc9651#name-tokens>`_)
+items, where each item is associated with the following
+Parameters
+(`RFC 9651, 3.1.2 <https://www.rfc-editor.org/rfc/rfc9651#name-parameters>`_):
 
-A deprecation message is a `List` (RFC9651, section 3.1.) of `Token` (RFC9651, section 3.3.4.) items, each item associated with the following `Parameters` (RFC9651, section 3.1.2.):
-
-*   ``context`` (string): which identifies the affected Leap service category as
-    follows:
+*   ``context`` (String
+    (`RFC 9651, 3.3.3 <https://www.rfc-editor.org/rfc/rfc9651#name-strings>`_)):
+    which identifies the affected Leap service category as follows:
 
     *   ``api``: SAPI, such as endpoints, HTTP headers, and data structures
 
@@ -171,18 +177,21 @@ A deprecation message is a `List` (RFC9651, section 3.1.) of `Token` (RFC9651, s
 
     *   ``solver``: QPU and hybrid solvers
 
-*   ``deprecated`` (date, optional): `Date <https://www.rfc-editor.org/rfc/rfc9651#name-dates>`_
-    the feature was deprecated
+*   ``deprecated`` (Date
+    (`RFC 9651, 3.3.7 <https://www.rfc-editor.org/rfc/rfc9651#name-dates>`_),
+    optional): Date that the feature was deprecated
 
-*   ``deprecation-id`` (string): Deprecation ID, which directly follows
-    ``x-deprecation`` and can be used to find the relevant release note
+*   ``deprecation-id`` (Token
+    (`RFC 9651, 3.3.4 <https://www.rfc-editor.org/rfc/rfc9651#name-tokens>`_)):
+    Deprecation ID (e.g., ``dep-1``), which directly follows ``x-deprecation``
+    and can be used to find the relevant release note
 
-*   ``link`` (string, optional): URI to the release note for the deprecation
+*   ``link`` (String, optional): URI to the release note for the deprecation
 
-*   ``message`` (string): Brief description
+*   ``message`` (String): Brief description
 
-*   ``sunset`` (date): Sunset `date <https://www.rfc-editor.org/rfc/rfc9651#name-dates>`_,
-    after which support for the feature is no longer guaranteed
+*   ``sunset`` (Date): Sunset date, after which support for the feature is no
+    longer guaranteed
 
 An example of a deprecation message\ [#]_ is the following, where ``dep-1`` is
 the ``deprecation-id``:
@@ -192,9 +201,9 @@ the ``deprecation-id``:
     x-deprecation:
         dep-1;
             message="Missing Accept header or unsupported content type in Accept Header. Please use the allowed content type for version 3 in Accept header.";
-            sunset=@1717171200;
+            sunset=@1773039600;
             context="api";
-            deprecated=@1714531200;
+            deprecated=@1757487600;
             link="https://docs.dwavesystems.com/projects/leap_sapi/en/latest/release_notes.html"
 
 .. [#]
