@@ -1157,7 +1157,7 @@ with an ampersand ("&").
             $ filter="solver=Advantage_system4.1&max_results=3"
             $ auth="X-Auth-Token: $SAPI_TOKEN"
             $ accept="Accept: application/vnd.dwave.sapi.problems+json; version=3"
-            $ curl -H "$auth" -H "$accept" $SAPI_HOME/problems/?$filter
+            $ curl -H "$auth" -H "$accept" "$SAPI_HOME/problems/?$filter"
 
 .. dropdown:: Optional ``Accept`` header
 
@@ -1257,7 +1257,7 @@ not completed processing.
             $ problem_id="74d9344c-0160-47bc-b7b1-e245b2ffd955"
             $ auth="X-Auth-Token: $SAPI_TOKEN"
             $ accept="Accept: application/vnd.dwave.sapi.problem+json; version=3"
-            $ curl -H "$auth" -H "$accept" $SAPI_HOME/problems/$problem_id?timeout=5
+            $ curl -H "$auth" -H "$accept" "$SAPI_HOME/problems/$problem_id?timeout=5"
 
 .. dropdown:: Optional ``Accept`` header
 
