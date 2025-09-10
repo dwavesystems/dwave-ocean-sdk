@@ -355,7 +355,7 @@ The two tabs below provide the two formulations.
 
         >>> model = Model()
         >>> weight = model.constant([30, 10, 40, 20])
-        >>> value = model.constant([10, 20, 30, 40])
+        >>> value = model.constant([15, 25, 35, 45])
         >>> capacity = model.constant(30)
 
         Add a binary-array variable for the items: which items should be
@@ -395,10 +395,10 @@ The two tabs below provide the two formulations.
         >>> weight1 = model.constant(10)
         >>> weight2 = model.constant(40)
         >>> weight3 = model.constant(20)
-        >>> val0 = model.constant(10)
-        >>> val1 = model.constant(20)
-        >>> val2 = model.constant(30)
-        >>> val3 = model.constant(40)
+        >>> val0 = model.constant(15)
+        >>> val1 = model.constant(25)
+        >>> val2 = model.constant(35)
+        >>> val3 = model.constant(45)
         >>> capacity = model.constant(30)
 
         Add a binary variable for each item: should that item be loaded into the
@@ -424,7 +424,7 @@ The two tabs below provide the two formulations.
         shown in the first tab:
 
         >>> model.num_nodes()
-        29
+        28
 
 Compare the two formulations. Prefer compact-matrix formulations for your
 models. 

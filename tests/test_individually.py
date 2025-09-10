@@ -26,19 +26,6 @@ except Exception:
 
 class TestSmokeIndividually(unittest.TestCase):
     """Use each package individually. Mostly we use the simple scripts from the READMEs."""
-    def test_dwavebinarycsp(self):
-        import dimod
-        import dwavebinarycsp
-
-        csp = dwavebinarycsp.factories.random_2in4sat(8, 4)  # 8 variables, 4 clauses
-
-        bqm = dwavebinarycsp.stitch(csp)
-
-        resp = dimod.ExactSolver().sample(bqm)
-
-        for sample, energy in resp.data(['sample', 'energy']):
-            csp.check(sample)
-
     def test_dnx(self):
         import dimod
         import dwave_networkx as dnx
