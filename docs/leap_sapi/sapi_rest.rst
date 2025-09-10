@@ -155,14 +155,14 @@ for example, a message is sent when you use a deprecated solver parameter or
 submit a problem to a deprecated solver.
 
 Deprecation messages are sent in SAPI responses via an HTTP ``X-Deprecation``
-response header, which is an List Structured Header field
+response header, which is a List Structured Header field
 (`RFC 9651 <https://www.rfc-editor.org/rfc/rfc9651>`_). Thus, a deprecation
 message is a
 List (`RFC 9651, 3.1 <https://www.rfc-editor.org/rfc/rfc9651#name-lists>`_)
-of Tokens
-(`RFC 9651, 3.3.4 <https://www.rfc-editor.org/rfc/rfc9651#name-tokens>`_),
-each associated with the following
-Parameters
+of ``deprecation-ID`` Tokens
+(`RFC 9651, 3.3.4 <https://www.rfc-editor.org/rfc/rfc9651#name-tokens>`_).
+Each ``deprecation-id`` Token directly follows ``x-deprecation`` and has the
+following Parameters
 (`RFC 9651, 3.1.2 <https://www.rfc-editor.org/rfc/rfc9651#name-parameters>`_):
 
 *   ``context`` (String
@@ -181,11 +181,6 @@ Parameters
     (`RFC 9651, 3.3.7 <https://www.rfc-editor.org/rfc/rfc9651#name-dates>`_),
     optional): Date that the feature was deprecated
 
-*   ``deprecation-id`` (Token
-    (`RFC 9651, 3.3.4 <https://www.rfc-editor.org/rfc/rfc9651#name-tokens>`_)):
-    Deprecation ID (e.g., ``dep-1``), which directly follows ``x-deprecation``
-    and can be used to find the relevant release note
-
 *   ``link`` (String, optional): URI to the release note for the deprecation
 
 *   ``message`` (String): Brief description
@@ -193,8 +188,8 @@ Parameters
 *   ``sunset`` (Date): Sunset date, after which support for the feature is no
     longer guaranteed
 
-An example of a deprecation message\ [#]_ is the following, where ``dep-1`` is
-the ``deprecation-id``:
+An example of a deprecation message\ [#]_ is the following, where ``dep-1``
+(which identifies the relevant release note) is the ``deprecation-id``:
 
 .. code-block::
 
