@@ -70,10 +70,8 @@ to satisfy, :math:`y=x_1x_2`, can be expressed as a set of valid configurations:
     :math:`1,1`      :math:`1`
     ===============  ============================
 
-You can use Ocean's :ref:`dwavebinarycsp <index_binarycsp>` to construct a
-:term:`BQM` from a CSP. It maps each individual constraint in the CSP to a
-"small" :term:`Ising` model or :term:`QUBO`, in a mapping called a
-:ref:`penalty model <concept_penalty>`.
+See :ref:`penalty model <concept_penalty>` for mapping a constraint to a
+:term:`Ising` model or :term:`QUBO`.
 
 Related Information
 ===================

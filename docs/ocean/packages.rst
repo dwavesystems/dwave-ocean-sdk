@@ -9,7 +9,7 @@ Reference Documentation
     :maxdepth: 1
 
     api_ref_dimod/index
-    api_ref_binarycsp/index
+    api_ref_binarycsp
     api_ref_cloud/index
     api_ref_gate/index
     api_ref_hybrid/index
@@ -35,14 +35,6 @@ Reference Documentation
     :term:`composed samplers <composed sampler>`.
 
     :bdg-link-primary:`code <https://github.com/dwavesystems/dimod>`
-
-.. dropdown:: :ref:`dwavebinarycsp <index_binarycsp>`: Generates BQMs from constraint
-    satisfaction problems.
-
-    Library to construct a binary quadratic model from a constraint satisfaction
-    problem (:term:`CSP`) with small constraints over binary variables.
-
-    :bdg-link-primary:`code <https://github.com/dwavesystems/dwavebinarycsp>`
 
 .. dropdown:: :ref:`dwave-cloud-client <index_cloud>`: API client to the
     Leap service's solvers.
