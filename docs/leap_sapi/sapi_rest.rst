@@ -161,7 +161,7 @@ message is a
 List (`RFC 9651, 3.1 <https://www.rfc-editor.org/rfc/rfc9651#name-lists>`_)
 of ``deprecation-ID`` Tokens
 (`RFC 9651, 3.3.4 <https://www.rfc-editor.org/rfc/rfc9651#name-tokens>`_).
-Each ``deprecation-id`` Token directly follows ``x-deprecation`` and has the
+A ``deprecation-id`` Token has the
 following Parameters
 (`RFC 9651, 3.1.2 <https://www.rfc-editor.org/rfc/rfc9651#name-parameters>`_):
 
@@ -189,7 +189,7 @@ following Parameters
     longer guaranteed
 
 An example of a deprecation message\ [#]_ is the following, where ``dep-1``
-(which identifies the relevant release note) is the ``deprecation-id``:
+(which can be used to find the relevant release note) is the ``deprecation-id``:
 
 .. code-block::
 
