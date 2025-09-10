@@ -259,16 +259,11 @@ the Ocean stack.
     and post-processing composite layers) you select based on the considerations
     listed above.
 
-    Ocean provides tools for formulating the BQM:
-
-    *   :ref:`dwavebinarycsp <index_binarycsp>` for constraint satisfaction
-        problems with small constraints over binary variables. For example, many
-        problems can be posed as satisfiability problems or with Boolean logic.
-    *   :ref:`dwave_networkx <index_dnx>` for implementing graph-theory
-        algorithms of the |dwave_short| quantum computer. Many problems can be
-        posed in a form of graphs---this tool handles the construction of BQMs
-        for several standard graph algorithms such as maximum cut, cover, and
-        coloring.
+    Ocean provides tools for formulating the BQM; for example
+    :ref:`dwave_networkx <index_dnx>` for implementing graph-theory algorithms
+    of the |dwave_short| quantum computer. Many problems can be posed in a form
+    of graphs---this tool handles the construction of BQMs for several standard
+    graph algorithms such as maximum cut, cover, and coloring.
 
     You might formulate a BQM mathematically; see the :ref:`qpu_example_not`
     section for a mathematical formulation for a two-variable problem.
@@ -334,10 +329,6 @@ problem---and work your way down the Ocean stack.
     *   - Formulate as a :term:`BQM`
         - Reformulate an integer problem to use binary variables, for example,
           or convert a nonquadratic (high-order) polynomial to a :term:`QUBO`.
-
-          Ocean's :ref:`dwavebinarycsp <index_binarycsp>` and
-          :ref:`dwave_networkx <index_dnx>` packages can be helpful for some
-          problems.
     *   - Decompose
         - Allocate large problems to classical and quantum resources.
 

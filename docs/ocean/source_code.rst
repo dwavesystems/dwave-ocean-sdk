@@ -16,7 +16,6 @@ Ocean packages
 ==============
 
 *   `dimod <https://github.com/dwavesystems/dimod>`_
-*   `dwavebinarycsp <https://github.com/dwavesystems/dwavebinarycsp>`_
 *   `dwave-cloud-client <https://github.com/dwavesystems/dwave-cloud-client>`_
 *   `dwave-gate <https://github.com/dwavesystems/dwave-gate>`_
 *   `dwave-hybrid <https://github.com/dwavesystems/dwave-hybrid>`_

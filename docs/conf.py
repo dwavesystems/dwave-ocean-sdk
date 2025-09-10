@@ -110,7 +110,6 @@ copybutton_prompt_is_regexp = True
 copybutton_line_continuation_character = "\\"
 
 doctest_global_setup = """
-import operator         # Used by dwave-binarycsp
 
 # Set up mocking for DWaveSampler
 from dwave.system.testing import MockDWaveSampler
@@ -126,7 +125,6 @@ import networkx as nx
 import dwave_networkx as dnx
 
 import dimod
-import dwavebinarycsp
 
 from hybrid.samplers import *
 from hybrid.core import *
@@ -248,8 +246,7 @@ intersphinx_mapping = {
 
 
 # -- Linkcode -------------------------------------------------------------
-github_map = {'dwavebinarycsp': 'dwavebinarycsp',
-              'cloud': 'dwave-cloud-client',
+github_map = {'cloud': 'dwave-cloud-client',
               'dimod':  'dimod',
               'gate': 'dwave-gate',
               'dwave_networkx': 'dwave_networkx',

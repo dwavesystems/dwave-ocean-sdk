@@ -66,11 +66,6 @@ dimod
 
 .. include:: ../dimod/LICENSE
 
-dwavebinarycsp
---------------
-
-.. include:: ../dwavebinarycsp/LICENSE
-
 dwave-cloud-client
 ------------------
 
