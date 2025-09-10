@@ -155,19 +155,19 @@ for example, a message is sent when you use a deprecated solver parameter or
 submit a problem to a deprecated solver.
 
 Deprecation messages are sent in SAPI responses via an HTTP ``X-Deprecation``
-response header, which is an Item Structured Header field
+response header, which is an List Structured Header field
 (`RFC 9651 <https://www.rfc-editor.org/rfc/rfc9651>`_). Thus, a deprecation
 message is a
 List (`RFC 9651, 3.1 <https://www.rfc-editor.org/rfc/rfc9651#name-lists>`_)
-of Token
-(`RFC 9651, 3.3.4 <https://www.rfc-editor.org/rfc/rfc9651#name-tokens>`_)
-items, where each item is associated with the following
+of Tokens
+(`RFC 9651, 3.3.4 <https://www.rfc-editor.org/rfc/rfc9651#name-tokens>`_),
+each associated with the following
 Parameters
 (`RFC 9651, 3.1.2 <https://www.rfc-editor.org/rfc/rfc9651#name-parameters>`_):
 
 *   ``context`` (String
     (`RFC 9651, 3.3.3 <https://www.rfc-editor.org/rfc/rfc9651#name-strings>`_)):
-    which identifies the affected Leap service category as follows:
+    identifies the affected Leap service category with one of the following values:
 
     *   ``api``: SAPI, such as endpoints, HTTP headers, and data structures
 
