@@ -451,7 +451,7 @@ This table lists the physical properties of the calibrated QPU.
         - :math:`10686`
 
     *   - Qubit temperature
-        - :math:`16.5 \pm 1.0\ \text{mK}`
+        - :math:`17.5 \pm 1.0\ \text{mK}`
 
     *   - :math:`\rm M_{\rm AFM}`: Maximum mutual inductance for qubit pairs
         - :math:`0.443\ \text{pH}`
