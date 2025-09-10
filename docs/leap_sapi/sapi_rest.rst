@@ -145,6 +145,66 @@ explained in the :ref:`sapi_rest_url_token_setup` subsection.
     :ref:`error responses <sapi_rest_general_response_codes>`, SAPI may return
     particular error codes.
 
+.. _leap_sapi_deprecation_message:
+
+SAPI Deprecation Messages
+-------------------------
+
+The Leap service sends deprecation messages when you use deprecated features;
+for example, a message is sent when you use a deprecated solver parameter or
+submit a problem to a deprecated solver.
+
+Deprecation messages are sent in SAPI responses via an HTTP ``X-Deprecation``
+response header, which is a List Structured Header field
+(`RFC 9651 <https://www.rfc-editor.org/rfc/rfc9651>`_). Thus, a deprecation
+message is a
+List (`RFC 9651, 3.1 <https://www.rfc-editor.org/rfc/rfc9651#name-lists>`_)
+of ``deprecation-ID`` Tokens
+(`RFC 9651, 3.3.4 <https://www.rfc-editor.org/rfc/rfc9651#name-tokens>`_).
+A ``deprecation-id`` Token has the
+following Parameters
+(`RFC 9651, 3.1.2 <https://www.rfc-editor.org/rfc/rfc9651#name-parameters>`_):
+
+*   ``context`` (String
+    (`RFC 9651, 3.3.3 <https://www.rfc-editor.org/rfc/rfc9651#name-strings>`_)):
+    identifies the affected Leap service category with one of the following values:
+
+    *   ``api``: SAPI, such as endpoints, HTTP headers, and data structures
+
+    *   ``feature``: Solver features
+
+    *   ``parameter``: Solver parameters
+
+    *   ``solver``: QPU and hybrid solvers
+
+*   ``deprecated`` (Date
+    (`RFC 9651, 3.3.7 <https://www.rfc-editor.org/rfc/rfc9651#name-dates>`_),
+    optional): Date that the feature was deprecated
+
+*   ``link`` (String, optional): URI to the release note for the deprecation
+
+*   ``message`` (String): Brief description
+
+*   ``sunset`` (Date): Sunset date, after which support for the feature is no
+    longer guaranteed
+
+An example of a deprecation message\ [#]_ is the following, where ``dep-1``
+(which can be used to find the relevant release note) is the ``deprecation-id``:
+
+.. code-block::
+
+    x-deprecation:
+        dep-1;
+            message="Missing Accept header or unsupported content type in Accept Header. Please use the allowed content type for version 3 in Accept header.";
+            sunset=@1773039600;
+            context="api";
+            deprecated=@1757487600;
+            link="https://docs.dwavesystems.com/projects/leap_sapi/en/latest/release_notes.html"
+
+.. [#]
+     Linebreaks in the example are provided for legibility; the actual output is
+     on one line.
+
 .. _sapi_rest_resources:
 
 Resources
