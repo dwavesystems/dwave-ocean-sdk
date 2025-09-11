@@ -246,7 +246,7 @@ are above it; see :numref:`Figure %s <eigenspectrum>`.
 
 .. figure:: ../_images/eigenspectrum.png
     :name: eigenspectrum
-    :scale: 55 %
+    :scale: 100 %
     :alt: Eigenspectrum, where the ground state is at the bottom and the higher
         excited states are above.
 

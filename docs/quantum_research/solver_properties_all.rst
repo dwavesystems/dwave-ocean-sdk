@@ -140,10 +140,10 @@ Example
 couplers
 ========
 
-Couplers in the working graph. A coupler contains two elements [*q1*, *q2*],
-where both *q1* and *q2* appear in the list of working qubits, in the range
-[0, *num_qubits* - 1] and in ascending order (i.e., *q1* < *q2*). These are the
-couplers that can be programmed with nonzero :math:`J` values.
+Indices of the couplers in the working graph. A coupler contains two elements
+[*q1*, *q2*], where both *q1* and *q2* appear in the list of working qubits, in
+the range [0, *num_qubits* - 1] and in ascending order (i.e., *q1* < *q2*).
+These are the couplers that can be programmed with nonzero :math:`J` values.
 
 Example
 -------
@@ -651,7 +651,7 @@ Example
 qubits
 ======
 
-Indices of the working graph.
+Indices of the qubits in the working graph.
 
 In a |dwave_short| QPU, the set of qubits and couplers that are available for
 computation is known as the :ref:`working graph <topologies_working_graph>`.
