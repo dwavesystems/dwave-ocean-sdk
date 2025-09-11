@@ -374,11 +374,11 @@ qubits that are divided between adjacent such unit cells, as shown in
 Zephyr Graph
 ============
 
-|dwave_short| is currently developing its next-generation QPU with the
-Zephyr\ |tm| topology: qubits are “oriented” vertically or horizontally, as in
-the Chimera and Pegasus topologies, and are shifted and connected with three
-coupler types as in the Pegasus topology, but this new graph achieves higher
-nominal length (16) and degree (20). A qubit in the Zephyr topology has sixteen
+|adv2_tm| QPUs feature the Zephyr\ |tm| topology: qubits are “oriented”
+vertically or horizontally, as in the Chimera and Pegasus topologies, and are
+shifted and connected with three coupler types as in the Pegasus topology, but
+this new graph achieves higher nominal length (16) and degree (20). A qubit in
+the Zephyr topology has sixteen
 :ref:`internal couplers <topologies_couplers_internal>` connecting it to
 orthogonal qubits and two
 :ref:`external couplers <topologies_couplers_external>` and two
