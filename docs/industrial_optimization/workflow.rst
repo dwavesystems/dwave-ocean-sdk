@@ -119,9 +119,10 @@ solver provided by the Leap quantum cloud service:
 
 >>> from dwave.system import LeapHybridCQMSampler
 ...
->>> sampler = LeapHybridCQMSampler()                # doctest: +SKIP
->>> sampleset = sampler.sample_cqm(cqm)             # doctest: +SKIP
->>> print(sampleset.first)                          # doctest: +SKIP
+>>> with LeapHybridCQMSampler() as sampler:         # doctest: +SKIP
+...     sampleset = sampler.sample_cqm(cqm)
+...     feasible_results = sampleset.filter(lambda d: d.is_feasible)
+...     print(feasible_results.first)
 Sample(sample={'i': 2.0, 'j': 2.0}, energy=-4.0, num_occurrences=1,
 ...            is_feasible=True, is_satisfied=array([ True]))
 
