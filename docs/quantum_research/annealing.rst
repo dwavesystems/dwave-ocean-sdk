@@ -173,7 +173,7 @@ Ising Hamiltonian becomes:
         B(s) &	= 2M_{\rm AFM} |I_p(\Phi_{\rm CCJJ}(s))|^2
     \end{align}
 
-For simplicity, introduce a normalized annealing bias,
+For simplicity, introduce a normalized control bias,
 
 .. math::
     :nowrap:
@@ -276,7 +276,7 @@ growth of the signal :math:`c(s)` . A typical plot of :math:`A(c(s))` and
     :width: 400 pt
     :alt: Graph showing how A(s) and B(s) energies change over time during a
         fast-anneal schedule. Along its horizontal axis is c(s) (normalized
-        annealing bias) from 0 to 1, marked in increments of 0.2. Along its
+        control bias) from 0 to 1, marked in increments of 0.2. Along its
         vertical axis is energy in Joules, from 0 to 7 x 10^-24, marked in
         increments of 1. Two lines are plotted in the graph. The concave curve
         labeled A(c(s)) decreases from 6.5 x 10 to the -24 joules to to 0 joules
@@ -493,7 +493,7 @@ or down in annealing control bias, not a shift in :math:`s`.
     several anneal offset values. Data shown are representative of |dwave_2kq|
     systems.
 
-Advancing or delaying the annealing bias by setting :math:`\delta c_i \ne 0`
+Advancing or delaying the control bias by setting :math:`\delta c_i \ne 0`
 changes the transverse field :math:`A_i(s)` with respect to the original global
 :math:`A(s)`. This allows you to increase or decrease :math:`A_i(s)`. Note that
 :math:`\delta c_i > 0` advances the annealing process (:math:`A_i(s) < A(s)`)
@@ -617,7 +617,7 @@ parameter remains.
 
     where :math:`J_{i,j}` and :math:`h_i` are the programmed biases for the
     Ising model, and :math:`c(s)` and :math:`c^{-1}` are the smooth, monotonic
-    :ref:`normalized annealing bias <qpu_annealprotocol_standard>` and its
+    :ref:`normalized control bias <qpu_annealprotocol_standard>` and its
     inverse. You can determine all values of :math:`c(s)` and :math:`c^{-1}` by
     smoothly approximating (e.g. linear interpolation) the discretized form of
     :math:`c(s)` available for QPUs in the :ref:`qpu_solver_properties_specific`
