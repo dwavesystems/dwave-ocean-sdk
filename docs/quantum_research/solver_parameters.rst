@@ -677,13 +677,13 @@ This time-dependent gain, :math:`g(t)`, is specified, similarly to the
 :ref:`parameter_qpu_anneal_schedule` parameter, by a series of pairs of
 floating-point numbers identifying points in the schedule at which to change
 the gain applied to :ref:`parameter_qpu_h`. The first element in the pair is
-time, :math:`t` in microseconds |anneal_time_parameter_granularity|; the second,
-the unitless :math:`g` in the range :ref:`property_qpu_h_gain_schedule_range`.
+time, :math:`t` in microseconds |anneal_time_parameter_granularity|; the second
+is the unitless :math:`g` in the range :ref:`property_qpu_h_gain_schedule_range`.
 The resulting time-dependent gain is the piecewise-linear curve that connects
-the provided points over the same range of times as the
+the points over the same range of times as the
 :ref:`parameter_qpu_anneal_schedule`.
 
-The following rules apply to the set of gain points provided:
+The following rules apply to the set of points for time-dependent gain:
 
 *   Time :math:`t`, in microseconds, must increase for all points in the
     schedule.
@@ -694,14 +694,16 @@ The following rules apply to the set of gain points provided:
 *   The number of points must be :math:`\geq 2`.
 *   The steepest slope of any curve segment,
     :math:`\frac{g_i - g_{i-1}}{t_i - t_{i-1}}`, must be within the bounds
-    supported by the selected QPU.\ [#]_  Note that the I/O system that delivers
-    the :ref:`parameter_qpu_h`-controlling waveform---the :math:`\Phi^x_i(s)`
+    supported by the selected QPU.\ [#]_ However, even if the curve is
+    within the supported bounds but changes too rapidly, expect distorted
+    values of :ref:`parameter_qpu_h` for your problem. The distortion is caused
+    by low-pass filters that limit the bandwidth of the
+    :ref:`parameter_qpu_h`-controlling waveform (the :math:`\Phi^x_i(s)`
     term of equation :math:numref:`qpu_equation_rfsquid_hamiltonian` in the
-    :ref:`qpu_annealing` section---to a QPU limits bandwidth using a low-pass
-    filter with a cutoff frequency of 3 MHz for |dwave_5kq| systems and 30 MHz
-    for |adv2| systems; if you configure a too-rapidly changing curve, even
-    within the supported bounds, expect distorted values of
-    :ref:`parameter_qpu_h` for your problem.
+    :ref:`qpu_annealing` section). The low-pass filters have a cutoff frequency
+    of 3 MHz for |dwave_5kq| systems and 30 MHz for |adv2| systems. You can
+    approximate the waveform sent through low-pass filters by using a
+    :ref:`sample Python script <tab_approximate_waveform_low_pass_filter>`.
 
 .. [#]
     To see the supported slope for a particular QPU, submit a test problem with
@@ -726,73 +728,91 @@ as
 
 where `t_final` is the requested annealing time.
 
-.. dropdown:: Simulate h-gain in a filtered waveform
-    :name: tab_simulate_hgain_in_filtered_waveform
+.. dropdown:: Approximating a waveform sent through low-pass filters
+    :name: tab_approximate_waveform_low_pass_filter
+
+    The Python method ``simulate_hgain_filter`` returns an approximation of a
+    waveform sent through a low-pass filter by taking a waveform of
+    time-dependent h-gain as a PWL curve ``pwl`` and a low-pass filter with a
+    specific cutoff frequency as ``bandwidth``, which is used in a
+    second-order low-pass Bessel filter applied to the original waveform
+    to derive the approximation of the filtered waveform. The approximated
+    filtered waveform is returned as the first ``np.vstack`` and the original
+    waveform is returned as the second ``np.vstack``. The actual filtered
+    waveform differs from the approximated filtered one in that the actual one
+    is not infinitely smooth and can contract or expand beyond the requested
+    waveform, as required.
+
+    The ``simulate_hgain_filter`` method takes the following parameters:
+
+    *   ``pwl``: A piece-wise linear numpy 2d-array::
+        
+            [[t0, i0], [t1, i1], [t2, i2] ...],
+            
+        where :math:`t0, t1, ...` are points in time in units of microseconds
+        and :math:`i0, i1, ...` are measurements of electrical current in units
+        of milliamperes. The initial current is assumed to be 0; thus, if
+        :math:`i0` is not 0.0, there will be a rise time associated with the
+        non-zero value. The actual filtered waveform's initial current is not
+        required to be 0. 
+
+    *   ``bandwidth``: Bandwidth (in MHz) of a low-pass filter's cutoff frequency.
+        Valid values are the following:
+
+        *   ``Adv``: 3 MHz
+        
+        *   ``Adv2``: 30 MHz
+        
+        *   Integer: Arbitrary bandwidth
 
     .. code-block:: py
 
-        import numpy as np
-        from scipy import signal
-        import warnings
-        
-        def simulate_hgain_filter (pwl, bandwidth):
-            """
-            Simulates the waveform resulting from being passed through a low-pass
-            filter with a specific ``bandwidth``.
-            
-            The low-pass filter is applied to a waveform before such waveform is sent
-            to the quantum computer by applying a second-order low-pass Bessel filter
-            to a piece-wise linear (``pwl``) waveform.
+        >>> import numpy as np
+        >>> from scipy import signal
+        >>> import warnings
+        ...
+        >>> def simulate_hgain_filter (pwl, bandwidth):
+        >>>     t_i = pwl[0,0]
+        >>>     t_f = pwl[-1,0]
+        >>>     cur_i = pwl[0,1]
+        >>>     if (cur_i != 0.0):
+        >>>         warnings.warn("This function only processes PWLs starting from 0.0 bias." \
+        >>>         "Add a point to the beginning of your PWL with zero bias.")
+        ...
+        >>>     if bandwidth == 'Adv':
+        >>>         bandwidth = 3
+        >>>     elif bandwidth == 'Adv2':
+        >>>         bandwidth = 30      
+        >>>     sampling_rate = int(bandwidth * 100) # per microsecond.
+        >>>     time_array = np.linspace(t_i, t_f, int(np.ceil(sampling_rate * (t_f-t_i))))
+        >>>     sig = np.interp(time_array, pwl[:, 0], pwl[:, 1])
+        >>>     b, a = signal.bessel(2, 2/100, btype="lowpass", analog=False, output="ba", norm="mag")
+        >>>     return np.vstack([time_array, signal.lfilter(b, a, sig)]).T, np.vstack([time_array, sig]).T
 
-            Because the simulated filtered waveform is an approximation, the actual
-            filtered waveform differs from the simulated one as follows:
-            
-            *   The actual filtered waveform is not infinitely smooth; and
-            *   The actual filtered waveform can expand beyond the requested waveform,
-                as required.
-            
-            Args:
-            
-                pwl:
-                    A piece-wise linear numpy 2d-array: [[t0, i0], [t1, i1], [t2, i2] ...] 
-                    where t0, t1... are points in time in units of microseconds and 
-                    i0, i1, ... are measurements of electrical current in units of
-                    milliamperes.
-            
-                    The initial current is assumed to be 0; thus, if i0 is not 0.0,
-                    there will be a rise time associated with that. For the actual
-                    filtered waveform, the initial current is not required to be 0. 
-            
-                bandwidth:
-                    Bandwidth (in MHz) of the low-pass filter. Valid values are the
-                    following:
-                    *   ``Adv`` = 3 MHz
-                    *   ``Adv2`` = 30 MHz
-                    *   An integer for any other bandwidth. 
+    The following example creates plots for both |dwave_2kq| and |adv2|,
+    calling the ``simulate_hgain_filter`` method and passing the ``test_pwl`` as
+    the h-gain waveform and ``filters`` as the |dwave_2kq| and |adv2| low-pass
+    filters' cutoff frequencies.  
 
-            Returns:
-                The simulated filtered waveform as the first returned ``np.vstack`` and
-                the original waveform as the second returned ``np.vstack``.
-            """
-            
-            t_i = pwl[0,0]
-            t_f = pwl[-1,0]
-            cur_i = pwl[0,1]
-            if (cur_i != 0.0):
-                warnings.warn("This function only processes PWLs starting from 0.0 bias." \
-                "Please add a point to the beginning of your PWL with zero bias.")
-            
-            if bandwidth == 'Adv':
-                bandwidth = 3
-            elif bandwidth == 'Adv2':
-                bandwidth = 30      
-            sampling_rate = int(bandwidth * 100) # per microsecond.
-            time_array = np.linspace(t_i, t_f, int(np.ceil(sampling_rate * (t_f-t_i))))
-            sig = np.interp(time_array, pwl[:, 0], pwl[:, 1])
-            b, a = signal.bessel(2, 2/100, btype="lowpass", analog=False, output="ba", norm="mag")
-            return np.vstack([time_array, signal.lfilter(b, a, sig)]).T, np.vstack([time_array, sig]).T
+    .. code-block:: py
 
+        >>> import matplotib.pyplot as plot
+        ...
+        >>> test_pwl = np.array([[0.0, 0.1], [0.1, 0.1], [0.101, 1.0], [0.2, 1.0], [0.202, 0.0], [0.3, 0.0]])
+        >>> fig, ax = plt.subplots(2, 1, figsize=(10,10))
+        >>> filters = ['Adv', 'Adv2']
+        >>> for i in range(2):
+        >>>    ax[i].plot(test_pwl[:,0], test_pwl[:,1], "o-", label="Original Waveform")
+        >>>    filtered, sig = pwl_filter(test_pwl, filters[i])
+        >>>    ax[i].plot(sig[:,0], sig[:,1], ".", label="Resampled Original Signal")
+        >>>    ax[i].plot(filtered[:,0], filtered[:,1], label="Filtered")
+        >>>    ax[i].set_xlabel("Time ($\mu$s)")
+        >>>    ax[i].set_ylabel("Current (mA)")
+        >>>    ax[i].grid()
+        >>>    ax[i].legend()
+        >>>    ax[i].set_title(f"{filters[i]} MHz Filter")
 
+    
 Relevant Properties
 -------------------
 
