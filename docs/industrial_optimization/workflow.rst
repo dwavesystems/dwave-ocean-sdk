@@ -123,8 +123,7 @@ solver provided by the Leap quantum cloud service:
 ...     sampleset = sampler.sample_cqm(cqm)
 ...     feasible_results = sampleset.filter(lambda d: d.is_feasible)
 ...     print(feasible_results.first)
-Sample(sample={'i': 2.0, 'j': 2.0}, energy=-4.0, num_occurrences=1,
-...            is_feasible=True, is_satisfied=array([ True]))
+Sample(sample={'i': 2.0, 'j': 2.0}, energy=-4.0, num_occurrences=1, is_satisfied=array([ True]), is_feasible=True)
 
 The best (lowest-energy) solution found has :math:`i=j=2` as expected, a
 solution that is feasible because all the constraints (one in this example)
