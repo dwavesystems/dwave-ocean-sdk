@@ -20,6 +20,9 @@
     --dwave-color-ocean-blue: rgb(42, 125, 225);
     --dwave-color-dark-blue: rgb(7, 76, 145);
     --dwave-color-bright-blue: rgb(3, 184, 255);
+    /* Higher contrast for accessibility: */
+    --dwave-color-medium-blue-45: rgb(27, 100, 189);
+    --dwave-color-medium-blue-60: rgb(81, 149, 230);
 
     --dwave-color-leap-teal: rgb(23, 190, 187);
     --dwave-color-dark-teal: rgb(0, 140, 130);
@@ -36,12 +39,12 @@
   }
 
 html[data-theme="light"] {
- 
+
     /* theme overrides */
-    --pst-color-primary: var(--dwave-color-ocean-blue);
+    --pst-color-primary: var(--dwave-color-medium-blue-45);
     --pst-color-secondary: grey;
-    --pst-color-link: var(--dwave-color-ocean-blue);
-    --pst-color-link-hover: var(--dwave-color-dark-blue);
+    --pst-color-link: var(--dwave-color-medium-blue-45);
+    --pst-color-link-hover: var(--dwave-color-ocean-blue);
     --pst-color-inline-code: var(--inline-code-pink);
     --pst-color-inline-code-links: var(--dwave-color-ocean-blue);
     --pst-color-success: var(--dwave-color-leap-teal);
@@ -67,9 +70,9 @@ html[data-theme="light"] .nav-item:has(.dark-theme-icon) {
 html[data-theme="dark"] {
 
     /* theme overrides */
-    --pst-color-primary: var(--dwave-color-ocean-blue);
+    --pst-color-primary: var(--dwave-color-medium-blue-60);
     --pst-color-secondary: grey;
-    --pst-color-link: var(--dwave-color-bright-blue);
+    --pst-color-link: var(--dwave-color-medium-blue-60);
     --pst-color-link-hover: var(--dwave-color-ocean-blue);
     --pst-color-inline-code: var(--inline-code-pink);
     --pst-color-inline-code-links: var(--dwave-color-ocean-blue);
