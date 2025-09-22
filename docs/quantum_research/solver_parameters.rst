@@ -694,7 +694,7 @@ The following rules apply to the set of points for time-dependent gain:
 *   The number of points must be :math:`\geq 2`.
 *   The steepest slope of any curve segment,
     :math:`\frac{g_i - g_{i-1}}{t_i - t_{i-1}}`, must be within the bounds
-    supported by the selected QPU.\ [#]_ However, even if the curve is
+    supported by the selected QPU. However, even if the curve is
     within the supported bounds but changes too rapidly, expect distorted
     values of :ref:`parameter_qpu_h` for your problem. The distortion is caused
     by low-pass filters that limit the bandwidth of the
@@ -704,21 +704,7 @@ The following rules apply to the set of points for time-dependent gain:
     systems and 30 MHz for |adv2| systems. You can approximate the filtered
     waveform (that is, the wavefrom that results from the original waveform
     being sent through low-pass filters) by using a
-    :ref:`sample Python script <tab_approximate_waveform_low_pass_filter>`.
-
-.. [#]
-    To see the supported slope for a particular QPU, submit a test problem with
-    slopes that are expected to violate any limitations; you can then read the
-    range of supported slopes in the returned error message. (Your account in
-    the Leap service is not charged for rejected problems.)
-
-    Supported slopes are typically under :math:`\frac{G_{max} - G_{min}}{0.02}`,
-    where :math:`G_{min}` and :math:`G_{max}` here stand for the range limits
-    of the time-dependent gain for the QPU. For example, for a QPU with
-    :ref:`property_qpu_h_gain_schedule_range` value of :code:`[-3, 3]`, a slope
-    above :math:`\frac{3 - (-3)}{0.02} = 300`, which occurs for a schedule that
-    contains :code:`[... [10.0, 0], [10.01, 3], ...]`, is likely to return an
-    error message with the maximum allowed slope.
+    :ref:`sample Python script <tab_approximate_filtered_hgain>`.
 
 Default :math:`g(t)`, when left unspecified, is 1, which can be explicitly coded
 as
@@ -730,24 +716,28 @@ as
 where `t_final` is the requested annealing time.
 
 .. dropdown:: Approximating the filtered waveform
-    :name: tab_approximate_waveform_low_pass_filter
+    :name: tab_approximate_filtered_hgain
 
-    In this sample Python script, the method ``simulate_hgain_filter`` derives
-    an approximation of the filtered waveform by applying a second-order
+    In this sample Python script, the method ``approximate_filtered_hgain``
+    derives an approximation of the filtered waveform by applying a second-order
     low-pass Bessel filter to the original waveform.
 
-    The ``simulate_hgain_filter`` method takes the following parameters:
+    The ``approximate_filtered_hgain`` method takes the following
+    parameters:
 
     *   ``pwl``: Original time-dependent h-gain waveform to approximate.
-        The format must be a piece-wise linear numpy 2d-array::
+        The format must be a piece-wise linear numpy 2d-array:
 
-            [[t0, i0], [t1, i1], [t2, i2] ...],
+        .. math::
+            \begin{equation}
+                [[t_0, g_0], ..., [t_f, g_f]]
+            \end{equation}
 
-        where :math:`t0, t1, ...` are points in time (microseconds)
-        and :math:`i0, i1, ...` are measurements of electrical current
-        (milliamperes). The initial current is assumed to be 0; thus, if
-        :math:`i0` is not 0.0, there will be a rise time associated with the
-        non-zero value.
+        where :math:`t_0, t_f` are points in time (microseconds)
+        and :math:`g_0, g_f` are points of :math:`g`.
+        The initial :math:`g` must be 0; however, for a real
+        filtered waveform, the initial current can be non-zero and, thus, there
+        will be a rise time associated with the non-zero value.
 
     *   ``bandwidth``: Bandwidth (MHz) of a low-pass filter's cutoff
         frequency used in the Bessel filter. Valid values are the following:
@@ -764,21 +754,17 @@ where `t_final` is the requested annealing time.
 
     *   The second ``np.vstack`` is the original waveform.
 
-    Unlike the approximated filtered waveform, the real filtered waveform is not
-    infinitely smooth and can contract or expand beyond the original waveform,
-    as required.
-
     .. code-block:: py
 
         >>> import numpy as np
         >>> from scipy import signal
         >>> import warnings
         >>>
-        >>> def simulate_hgain_filter (pwl, bandwidth):
+        >>> def approximate_filtered_hgain (pwl, bandwidth):
         >>>     t_i = pwl[0,0]
         >>>     t_f = pwl[-1,0]
-        >>>     cur_i = pwl[0,1]
-        >>>     if (cur_i != 0.0):
+        >>>     cur_g = pwl[0,1]
+        >>>     if (cur_g != 0.0):
         >>>         warnings.warn("This function only processes PWLs starting from 0.0 bias." \
         >>>         "Add a point to the beginning of your PWL with zero bias.")
         >>>
@@ -794,10 +780,10 @@ where `t_final` is the requested annealing time.
         >>>
         >>>     return np.vstack([time_array, signal.lfilter(b, a, sig)]).T, np.vstack([time_array, sig]).T
 
-    The following example creates plots for both |dwave_2kq| and |adv2|,
-    calling the ``simulate_hgain_filter`` method and passing ``test_pwl`` as
-    the original waveform and ``filters`` as the |dwave_2kq| and |adv2| low-pass
-    filters' cutoff frequencies.  
+    The following example creates plots for both |dwave_5kq| and |adv2|,
+    calling the ``approximate_filtered_hgain`` method and passing
+    ``test_pwl`` as the original waveform and ``filters`` as the |dwave_5kq| and
+    |adv2| low-pass filters' cutoff frequencies.  
 
     .. code-block:: py
 
@@ -809,7 +795,7 @@ where `t_final` is the requested annealing time.
         >>>
         >>> for i in range(2):
         >>>     ax[i].plot(test_pwl[:,0], test_pwl[:,1], "o-", label="Original Waveform")
-        >>>     filtered, sig = simulate_hgain_filter(test_pwl, filters[i])
+        >>>     filtered, sig = approximate_filtered_hgain(test_pwl, filters[i])
         >>>     ax[i].plot(sig[:,0], sig[:,1], ".", label="Resampled Original Signal")
         >>>     ax[i].plot(filtered[:,0], filtered[:,1], label="Filtered Waveform")
         >>>     ax[i].set_xlabel("Time ($\mu$s)")
