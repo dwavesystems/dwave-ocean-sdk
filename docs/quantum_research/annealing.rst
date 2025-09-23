@@ -931,3 +931,163 @@ for the selected QPU.
 
 See the :ref:`qpu_annealprotocol_fast` section for further details.
 
+.. _qpu_qa_h_gain:
+
+Setting a Time-dependent Gain for Qubit Biases
+==============================================
+
+The time-dependent gain :ref:`parameter_qpu_h_gain_schedule` applied to
+qubit biases :math:`h_i` (i.e., linear coefficients) is another feature that
+enables control of the annealing process.
+
+This parameter enables you to specify the :math:`g(t)` function in the
+Hamiltonian,
+
+.. math::
+    :nowrap:
+
+    \begin{equation}
+        {\cal H}_{ising} = - \frac{A({s})}{2}
+        \left(\sum_i {\hat\sigma_{x}^{(i)}}\right)
+        + \frac{B({s})}{2} \left(g(t) \sum_{i} h_i {\hat\sigma_{z}^{(i)}}
+        + \sum_{i>j} J_{i,j} {\hat\sigma_{z}^{(i)}} {\hat\sigma_{z}^{(j)}}\right)
+    \end{equation}
+
+where :math:`{\hat\sigma_{x,z}^{(i)}}` are Pauli matrices operating on a qubit
+:math:`q_i`; and :math:`h_i` and :math:`J_{i,j}` are the qubit biases and
+coupling strengths, respectively.
+
+This time-dependent gain :math:`g(t)` is specified, similarly to the
+:ref:`parameter_qpu_anneal_schedule` parameter, by a series of pairs of
+floating-point numbers identifying points in the schedule at which to change
+the gain applied to :ref:`parameter_qpu_h`. The first element in the pair is
+time, :math:`t` in microseconds |anneal_time_parameter_granularity|; the second
+is the unitless :math:`g` in the range :ref:`property_qpu_h_gain_schedule_range`.
+The resulting time-dependent gain is the piecewise-linear (PWL) curve that
+connects the points over the same range of times as the
+:ref:`parameter_qpu_anneal_schedule`.
+
+The following rules apply to the set of points for time-dependent gain:
+
+*   Time :math:`t`, in microseconds, must increase for all points in the
+    schedule.
+*   The first point of time must be zero, :math:`t=0.0`.
+*   The last point of time must match the last time in the
+    :ref:`parameter_qpu_anneal_schedule` or the
+    :ref:`parameter_qpu_annealing_time`.
+*   The number of points must be :math:`\geq 2`.
+*   The steepest slope of any curve segment,
+    :math:`\frac{g_i - g_{i-1}}{t_i - t_{i-1}}`, must be within the bounds
+    supported by the selected QPU. However, even if the curve is within the
+    supported bounds but changes too rapidly, expect distorted values of
+    :ref:`parameter_qpu_h` for your problem. The distortion is caused by
+    low-pass filters that limit the bandwidth of the :ref:`parameter_qpu_h`-gain
+    waveform (the :math:`\Phi^x_i(s)` term of equation
+    :math:numref:`qpu_equation_rfsquid_hamiltonian`) delivered to the QPU.
+    The low-pass filters have a cutoff frequency of 3 MHz for |dwave_5kq|
+    systems and 30 MHz for |adv2| systems. You can approximate the filtered
+    h-gain waveform (that is, the wavefrom that results from the original h-gain
+    waveform being sent through low-pass filters) by using a
+    :ref:`sample Python script <tab_approximate_filtered_h_gain>`.
+
+Default :math:`g(t)`, when left unspecified, is 1, which can be explicitly coded
+as
+
+.. code-block:: py
+
+    h_gain_schedule=[[0,1],[t_final,1]]
+
+where `t_final` is the requested annealing time.
+
+.. dropdown:: Approximating the filtered h-gain waveform
+    :name: tab_approximate_filtered_h_gain
+
+    In this sample Python script, the method ``approximate_filtered_h_gain``
+    derives an approximation of the filtered h-gain waveform by applying a
+    second-order low-pass Bessel filter to the original waveform.
+
+    The ``approximate_filtered_h_gain`` method takes the following
+    parameters:
+
+    *   ``pwl``: Original h-gain waveform to approximate. The format of the PWL
+        curve must be expressed as a numpy 2d-array:
+
+        .. math::
+            \begin{equation}
+                [[t_0, g_0], ..., [t_f, g_f]]
+            \end{equation}
+
+        where :math:`t_0` and :ref:`t_f` are points in time (microseconds) and
+        :math:`g_0` and :math:`g_f` are points of :math:`g`. The initial
+        :math:`g` must be 0.
+
+    *   ``bandwidth``: Bandwidth (MHz) of a low-pass filter's cutoff frequency
+        used in the Bessel filter. Valid values are the following:
+
+        *   ``Adv``: 3 MHz
+
+        *   ``Adv2``: 30 MHz
+
+        *   Integer: Arbitrary bandwidth
+
+    Two ``np.vstack`` structures are returned as follows:
+
+    *   The first ``np.vstack`` is the filtered h-gain waveform.
+
+    *   The second ``np.vstack`` is the original h-gain waveform.
+
+    .. code-block:: py
+
+        >>> import numpy as np
+        >>> from scipy import signal
+        >>> import warnings
+        >>>
+        >>> def approximate_filtered_h_gain (pwl, bandwidth):
+        >>>     t_i = pwl[0,0]
+        >>>     t_f = pwl[-1,0]
+        >>>     cur_g = pwl[0,1]
+        >>>     if (cur_g != 0.0):
+        >>>         warnings.warn("This function only processes PWL curves starting from 0.0 bias." \
+        >>>         "Add a point to the beginning of your PWL with zero bias.")
+        >>>
+        >>>     if bandwidth == 'Adv':
+        >>>         bandwidth = 3
+        >>>     elif bandwidth == 'Adv2':
+        >>>         bandwidth = 30
+        >>>
+        >>>     sampling_rate = int(bandwidth * 100)
+        >>>     time_array = np.linspace(t_i, t_f, int(np.ceil(sampling_rate * (t_f-t_i))))
+        >>>     sig = np.interp(time_array, pwl[:, 0], pwl[:, 1])
+        >>>     b, a = signal.bessel(2, 2/100, btype="lowpass", analog=False, output="ba", norm="mag")
+        >>>
+        >>>     return np.vstack([time_array, signal.lfilter(b, a, sig)]).T, np.vstack([time_array, sig]).T
+
+    The following example creates plots for both |dwave_5kq| and |adv2| by
+    calling the ``approximate_filtered_h_gain`` method and passing ``test_pwl``
+    as the original h-gain waveform and ``filters`` as the |dwave_5kq| and
+    |adv2| low-pass filters' cutoff frequencies.
+
+    .. code-block:: py
+
+        >>> import matplotlib.pyplot as plot
+        >>>
+        >>> test_pwl = np.array([[0.0, 0.0], [0.1, 0.1], [0.101, 1.0], [0.2, 1.0], [0.202, 0.0], [0.3, 0.0]])
+        >>> fig, ax = plot.subplots(2, 1, figsize=(10,10))
+        >>> filters = ['Adv', 'Adv2']
+        >>>
+        >>> for i in range(2):
+        >>>     ax[i].plot(test_pwl[:,0], test_pwl[:,1], "o-", label="Original h-gain waveform")
+        >>>     filtered, sig = approximate_filtered_h_gain(test_pwl, filters[i])
+        >>>     ax[i].plot(sig[:,0], sig[:,1], ".", label="Resampled original signal")
+        >>>     ax[i].plot(filtered[:,0], filtered[:,1], label="Filtered h-gain waveform")
+        >>>     ax[i].set_xlabel("Time ($\mu$s)")
+        >>>     ax[i].set_ylabel("g")
+        >>>     ax[i].grid()
+        >>>     ax[i].legend()
+        >>>     
+        >>>     if filters[i] == 'Adv':
+        >>>         ax[i].set_title(f"Advantage 3 MHz Filter")
+        >>>     elif filters[i] == 'Adv2':
+        >>>         ax[i].set_title(f"Advantage2 30 MHz Filter")
+        >>>
+        >>> plot.show()
