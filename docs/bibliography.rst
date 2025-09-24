@@ -822,9 +822,14 @@ Bibliography
 
 .. [Per2022]
     David Peral García, Juan Cruz-Benito, and Francisco José García-Peñalvo.
-    “Systematic Literature Review: Quantum Machine Learning and
-    its applications.”
+    "Systematic Literature Review: Quantum Machine Learning and
+    its applications."
     arXiv:2201.04093 [quant-ph]
+
+.. [Pel2023]
+    Elijah Pelofske, Georg Hahn, and Hristo Djidjev.
+    "Initial State Encoding via Reverse Quantum Annealing and h-gain Features"
+    https://doi.org/10.48550/arXiv.2303.13748
 
 .. [Phi2021]
     Phillipson F., Bhatia H.S.
