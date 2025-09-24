@@ -937,7 +937,7 @@ Setting a Time-dependent Gain for Qubit Biases
 ==============================================
 
 Time-dependent gain for qubit biases can be used with the standard-anneal
-protocol and reverse annealing (as demonstrated in [Pel2023]_).
+protocol and reverse annealing ([Vod2025]_, [Pel2023]_).
 The :ref:`parameter_qpu_h_gain_schedule` parameter is applied to qubit
 biases :math:`h_i` (i.e., linear coefficients) and specifies the :math:`g(t)`
 function in the Hamiltonian,
