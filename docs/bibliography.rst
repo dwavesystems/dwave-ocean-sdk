@@ -1022,6 +1022,13 @@ Bibliography
     Quantum Annealers."
     4 Dec 2019 https://arxiv.org/abs/1912.02119
 
+.. [Vod2025]
+    Vodeb, Jaka, Jean-Yves Desaules, Andrew Hallam, Andrea Rava, Gregor Humar,
+    Dennis Willsch, Fengping Jin, Madita Willsch, Kristel Michielsen,
+    Zlatko Papić. "Stirring the false vacuum via interacting quantized bubbles
+    on a 5,564-qubit quantum annealer." (2025) Nature Physics 21, 386.
+    https://doi.org/10.1038/s41567-024-02765-w
+
 .. [Wan2020]
     Wang, B., Hu, F., Yao, H. et al.
     "Prime factorization algorithm based on parameter optimization of
