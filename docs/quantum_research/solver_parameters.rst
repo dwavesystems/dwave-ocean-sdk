@@ -8,9 +8,6 @@ This section describes the configurable parameters you can set on :term:`QPU`
 solvers. The :ref:`qpu_index_solver_properties` section gives the properties of
 these solvers, such as the ranges within which parameter values must be set.
 
-.. |anneal_time_parameter_granularity| replace:: with a resolution of 0.01
-    :math:`\mu s`
-
 .. |meet_run_duration| replace:: :ref:`parameter_qpu_anneal_schedule` or
     :ref:`parameter_qpu_annealing_time`,
     :ref:`parameter_qpu_reduce_intersample_correlation` and/or
@@ -900,7 +897,7 @@ composite instead.
 programming_thermalization
 ==========================
 
-Sets the time, in microseconds |anneal_time_parameter_granularity|, to wait
+Sets the time, in microseconds with a resolution of 0.01 :math:`\mu s`, to wait
 after programming the QPU for it to cool back to base temperature (i.e.,
 post-programming thermalization time). Lower values accelerate solving at the
 expense of solution quality. Supported values are positive floating-point
@@ -1003,7 +1000,7 @@ This example submits a QUBO to a QPU solver.
 readout_thermalization
 ======================
 
-Sets the time, in microseconds |anneal_time_parameter_granularity|, to wait
+Sets the time, in microseconds with a resolution of 0.01 :math:`\mu s`, to wait
 after each state is read from the QPU for it to cool back to base temperature
 (i.e., post-readout thermalization time). This value contributes to the
 *qpu_delay_time_per_sample* time returned by SAPI in the
