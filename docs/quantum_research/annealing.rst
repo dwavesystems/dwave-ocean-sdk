@@ -966,6 +966,18 @@ second is the unitless :math:`g` in the range
 the piecewise-linear (PWL) curve that connects the points over the same range of
 times as the :ref:`parameter_qpu_anneal_schedule`.
 
+For standard problem solving, specifying a problem's linear coefficients
+(:ref:`parameter_qpu_h`) outside of a QPU's :ref:`property_qpu_h_range`
+is not recommended because the QPU is calibrated for linearity only within the
+specified :ref:`property_qpu_h_range` and :ref:`property_qpu_j_range`, and
+increased integrated control errors (ICE) are expected outside that range.
+By default, the :ref:`parameter_qpu_auto_scale` parameter allows you to specify
+linear coefficients in the :ref:`parameter_qpu_h_gain_schedule` parameter
+outside of the :ref:`property_qpu_h_range`. Furthermore, if you disable the
+:ref:`parameter_qpu_auto_scale` parameter (:code:`auto_scale=False`), ensure
+that :math:`\max_i(h\_gain*h_i)` and :math:`\min_i(h\_gain*h_i)` are within
+:ref:`property_qpu_h_range`.
+
 The following rules apply to the set of points for time-dependent gain:
 
 *   Time :math:`t`, in microseconds, must increase for all points in the
