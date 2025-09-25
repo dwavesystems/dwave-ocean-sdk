@@ -650,30 +650,14 @@ This example sets random linear and quadratic biases on all qubits.
 h_gain_schedule
 ===============
 
-Sets a time-dependent :ref:`h-gain <qpu_qa_h_gain>` for linear coefficients
-(qubit biases, see the :ref:`parameter_qpu_h` parameter) in the Hamiltonian.
+Sets a :ref:`time-dependent h-gain <qpu_qa_h_gain>` for linear coefficients
+(:ref:`qubit biases <parameter_qpu_h>`) in the Hamiltonian.
     
 Relevant Properties
 -------------------
 
 *   :ref:`property_qpu_h_gain_schedule_range` defines the range of the
     time-dependent gain values permitted for the solver.
-
-    .. note::
-        In conjunction with the :ref:`parameter_qpu_auto_scale` parameter, the
-        :ref:`parameter_qpu_h_gain_schedule` parameter enables you to extend
-        the range of your submitted problem's linear coefficients
-        (:ref:`parameter_qpu_h`) beyond the advertised
-        :ref:`property_qpu_h_range`. Such use is not recommended for standard
-        problem solving: the QPU is calibrated for linearity only within the
-        advertised :ref:`property_qpu_h_range` and :ref:`property_qpu_j_range`.
-        Increased integrated control errors (ICE) are expected outside that
-        range.
-
-        If you configure :code:`auto_scale=False` when using this parameter,
-        ensure that :math:`\max_i(h\_gain*h_i)` and :math:`\min_i(h\_gain*h_i)`
-        are within :ref:`property_qpu_h_range`.
-
 *   :ref:`property_qpu_max_anneal_schedule_points` defines the maximum number of
     anneal-schedule points permitted.
 *   :ref:`property_qpu_max_h_gain_schedule_points` defines the maximum number of
@@ -682,6 +666,10 @@ Relevant Properties
 Interacts with Parameters
 -------------------------
 
+*   :ref:`parameter_qpu_auto_scale` enables you to submit problems to QPU
+    solvers with values outside :ref:`property_qpu_h_range` and
+    :ref:`property_qpu_extended_j_range` and have the system automatically scale
+    them to fit.
 *   :ref:`parameter_qpu_h` defines the linear biases for the problem.
 *   :ref:`parameter_qpu_anneal_schedule` defines the anneal schedule.
 *   Cannot be used with the :ref:`fast-anneal protocol <qpu_annealprotocol_fast>`
