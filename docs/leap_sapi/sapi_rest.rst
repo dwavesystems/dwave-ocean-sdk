@@ -787,6 +787,10 @@ query.\ [#]_
         ================== =======================================
         Key                Value and Encoding
         ================== =======================================
+        data               The identifier ``problem_data_id`` returned when
+                           :ref:`initiating the upload of problem data
+                           <sapi_rest_get_multi_id>`.
+        
         format             Format of the problem data as a string.
                            Supported values are:
 
