@@ -1177,7 +1177,7 @@ length of the anneal schedule. The value of the delay varies in the range of the
 :ref:`property_qpu_problem_timing_data` property's ``decorrelation_time_range``
 field. For example, on the
 ``Advantage_system4.1`` solver, with an :ref:`property_qpu_annealing_time_range`
-of ``[o.5, 2000]`` microseconds and ``decorrelation_time_range`` of
+of ``[0.5, 2000]`` microseconds and ``decorrelation_time_range`` of
 ``[500, 10000]`` microseconds, the delay is given by:
 
 .. math::

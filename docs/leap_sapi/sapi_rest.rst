@@ -1426,20 +1426,23 @@ The request should contain no body.
     SAPI returns a ``200 OK`` response.
 
     >>> r.json()   # doctest: +SKIP
-    {'id': '7d341c42-0eea-460a-b7d0-82892a4a6726',
-     'data': {'format': 'ref', 'data': 'be806ff1-09d3-49d4-bba1-3008790c99d6'},
+    {'id': 'e2f3eaf8-7f30-483a-ab5e-ee9c34fee0c0',
+     'data': {'format': 'ref', 'data': '4ef9048d-006c-4bc0-90bf-d5eee29f6335'},
      'params': {'time_limit': 5},
      'metadata': {'submitted_by': 'ABC-123456789...',
-     'solver': {'name': 'hybrid_binary_quadratic_model_version2'},
-     'type': 'bqm',
-     'submitted_on': '2022-09-01T18:27:30.281252Z',
-     'solved_on': '2022-09-01T18:27:35.473474Z',
-     'status': 'COMPLETED',
-     'messages': [],
-     'label': 'REST Submission to hybrid BQM solver'},
+      'solver': {'name': 'hybrid_binary_quadratic_model_version2'},
+      'type': 'bqm',
+      'submitted_on': '2025-09-08T23:49:08.927608Z',
+      'solved_on': '2025-09-08T23:49:14.689950Z',
+      'status': 'COMPLETED',
+      'messages': [],
+      'label': 'REST Submission to hybrid BQM solver'},
      'answer': {'format': 'bq',
-     ... # SNIPPED FOR BREVITY
-     'run_time': 4998527}}}}
+      'data': {'type': 'SampleSet',
+      # snipped for brevity
+       'info': {'qpu_access_time': 243589,
+        'charge_time': 4991707,
+        'run_time': 4991707}}}}
 
     The following table describes fields in the response above.
 
