@@ -256,8 +256,9 @@ After the programming cycle, the system switches to the annealing phase during
 which the QPU is repeatedly annealed and read out. Annealing is performed using
 the analog lines over a time specified by the user as
 :ref:`parameter_qpu_annealing_time` and reported by the QPU as
-*qpu_anneal_time_per_sample.* Afterward, the digital readout system of the QPU
-reads and returns the spin states of the qubits. The system is then allowed to
+*qpu_anneal_time_per_sample*. Afterward, the digital readout system of the QPU
+reads and returns the spin states of the qubits, reported by the QPU as
+*qpu_readout_time_per_sample*.\ [#]_ The system is then allowed to
 cool for a time returned by the QPU as *qpu_delay_time_per_sample*---an interval
 comprising a constant value plus any additional time optionally specified by the
 user via the :ref:`parameter_qpu_readout_thermalization` parameter. During
@@ -269,6 +270,10 @@ some number of samples specified by the user in the
 :ref:`parameter_qpu_num_reads` parameter, and returns one solution per sample.
 The total time to complete the requested number of samples is returned by the
 QPU as *qpu_sampling_time.*
+
+.. [#] The *qpu_readout_time_per_sample* can vary depending on the size of the
+    problem (number of qubits). See the :ref:`qpu_solver_properties_specific`
+    page for your QPU.
 
 .. [#] For :ref:`reverse annealing <qpu_qa_anneal_sched_reverse>`,
     see the :ref:`parameter_qpu_initial_state` and
@@ -325,14 +330,18 @@ The limit is calculated according to the following formula:
     :nowrap:
 
     \begin{equation}
-        Duration = ((P_1 + P_2) * P_3) + P_4
+        Duration = ((P_1 + P_2 + T_r) * P_3) + P_4
     \end{equation}
 
 where :math:`P_1`, :math:`P_2`, :math:`P_3`, and :math:`P_4` are the values
 specified for the :ref:`parameter_qpu_annealing_time`,
 :ref:`parameter_qpu_readout_thermalization`,
 :ref:`parameter_qpu_num_reads` (samples), and
-:ref:`parameter_qpu_programming_thermalization` parameters, respectively.
+:ref:`parameter_qpu_programming_thermalization` parameters, respectively, and
+:math:`T_r` is the single-sample readout time, reported as
+*qpu_readout_time_per_sample*, which is in a range specified on the
+:ref:`qpu_solver_properties_specific` page for your QPU and can be estimated as
+described in the :ref:`qpu_runtime_estimating` section.
 
 If you attempt to submit a QMI whose execution time would exceed the limit for
 your system, an error is returned showing the values in microseconds. For
