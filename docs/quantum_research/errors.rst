@@ -1171,10 +1171,6 @@ Virtual graphs make use of :ref:`qpu_extended_j_range` and
 like physical qubits on the working graph, thereby improving the performance of
 embedded sampling and optimization problems.
 
-.. note::
-    Despite the similarity in name, the virtual graphs feature is unrelated to
-    |dwave_short|'s virtual full-yield chip (VFYC) solver.
-
 Whether virtual graph features are available may vary by solver; check for the
 :ref:`property_qpu_extended_j_range` property to see if it is present and what
 the range is. (The :ref:`property_qpu_j_range` property is unchanged.) When

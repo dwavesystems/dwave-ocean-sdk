@@ -785,20 +785,3 @@ The topology seen in this example is a P16 Pegasus graph. See the
 >>> sampler = DWaveSampler()
 >>> sampler.properties["topology"]                    # doctest: +SKIP
 {'type': 'pegasus', 'shape': [16]}
-
-
-.. _property_qpu_vfyc:
-
-vfyc
-====
-
-Obsolete property that is always :code:`False`.
-
-Example
--------
-
->>> from dwave.system import DWaveSampler
-...
->>> sampler = DWaveSampler()
->>> sampler.properties["vfyc"]              # doctest: +SKIP
-False
