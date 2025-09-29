@@ -787,7 +787,9 @@ query.\ [#]_
         ================== =======================================
         Key                Value and Encoding
         ================== =======================================
-        data               The identifier ``problem_data_id`` returned when
+        data               An identifier, of type
+                           `UUID <https://en.wikipedia.org/wiki/Universally_unique_identifier>`_,
+                           for the uploaded problem returned when
                            :ref:`initiating the upload of problem data
                            <sapi_rest_get_multi_id>`.
         
