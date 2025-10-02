@@ -787,7 +787,7 @@ query.\ [#]_
         ================== =======================================
         Key                Value and Encoding
         ================== =======================================
-        data               An identifier, of type
+        data               For ``data`` with ``format="ref"``, an identifier, of type
                            `UUID <https://en.wikipedia.org/wiki/Universally_unique_identifier>`_,
                            for the uploaded problem returned when
                            :ref:`initiating the upload of problem data
