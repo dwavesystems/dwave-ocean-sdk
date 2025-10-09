@@ -238,7 +238,6 @@ Interacts with Parameters
 *   :ref:`parameter_qpu_initial_state` (which sets the anneal schedule to a
     reverse anneal) returns answers in ``raw`` mode unless you explicitly set
     the answer mode to ``histogram``.
-*   :ref:`parameter_qpu_max_answers` specifies the maximum number of answers.
 *   :ref:`parameter_qpu_num_reads` defines the number of reads.
 
 Example
@@ -906,47 +905,7 @@ Test Ising Problem 1
 max_answers
 ===========
 
-Specifies the maximum number of answers returned from the solver. Must be an
-integer greater than 0.
-
-*   If :ref:`parameter_qpu_answer_mode` is ``histogram``: Total number of
-    distinct answers. Because answers in this mode are sorted by energy, these
-    are the best ``max_answers`` answers.
-*   If :ref:`parameter_qpu_answer_mode` is ``raw``: Limits the returned values
-    to the first :ref:`parameter_qpu_max_answers` of
-    :ref:`parameter_qpu_num_reads` samples. In this mode,
-    :ref:`parameter_qpu_max_answers` should never be more than
-    :ref:`parameter_qpu_num_reads`.
-
-Default value is :ref:`parameter_qpu_num_reads`.
-
-Interacts with Parameters
--------------------------
-
-*   :ref:`parameter_qpu_num_reads` defines the maximum number of requested
-    answers.
-*   :ref:`parameter_qpu_answer_mode` defines the answer mode.
-
-Example
--------
-
-This illustrative example resulted in fewer samples than the configured
-:ref:`parameter_qpu_num_reads`.
-
->>> from dwave.system import EmbeddingComposite, DWaveSampler
-...
->>> sampler = EmbeddingComposite(DWaveSampler())
->>> J = {('s1', 's2'): 0.5, ('s1', 's3'): 0.5, ('s2', 's3'): 0.5}
->>> sampleset = sampler.sample_ising({}, J, num_reads=1000,
-...                                  max_answers=5)
->>> print(sampleset)                                     # doctest: +SKIP
-  s1 s2 s3 energy num_oc. chain_.
-0 +1 -1 -1   -0.5     202     0.0
-1 -1 -1 +1   -0.5     132     0.0
-2 +1 -1 +1   -0.5     112     0.0
-3 -1 +1 -1   -0.5     248     0.0
-4 -1 +1 +1   -0.5      95     0.0
-['SPIN', 5 rows, 789 samples, 3 variables]
+This parameter is obsolete.
 
 
 .. _parameter_qpu_num_reads:
@@ -966,8 +925,6 @@ Default value is ``1``.
 Interacts with Parameters
 -------------------------
 
-*   :ref:`parameter_qpu_max_answers` sets the maximum number of answers to be
-    returned from the solver.
 *   |meet_run_duration|
 
 Example
