@@ -182,11 +182,13 @@ jobs:
           command: |
             . env/bin/activate
             make -C docs/ doctest
+
       - run:
           name: linkcheck
           command: |
             . env/bin/activate
             make -C docs/ linkcheck || true
+
       - run:
           # If we add more notebooks in the future we can make this more general.
           name: test scaling guide
