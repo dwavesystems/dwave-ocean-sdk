@@ -255,7 +255,7 @@ workflows:
       - test-linux:
           matrix:
             parameters:
-              python-version: &python-versions ["3.9.21", "3.10.16", "3.11.11", "3.12.8", "3.13.1"]
+              python-version: &python-versions ["3.10.16", "3.11.11", "3.12.8", "3.13.1"]
       - test-macos:
           matrix:
             parameters:
@@ -264,7 +264,7 @@ workflows:
           matrix:
             parameters:
               # note: limit to versions available via nuget
-              python-version: &python-versions-windows ["3.9.13", "3.10.11", "3.11.9", "3.12.8", "3.13.1"]
+              python-version: &python-versions-windows ["3.10.11", "3.11.9", "3.12.8", "3.13.1"]
       # - test-individual-pkgs
       - test-doctest
       - test-package-build
