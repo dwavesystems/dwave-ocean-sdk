@@ -574,7 +574,7 @@ This table lists the physical properties of the calibrated QPU.
         - :math:`4.57\ \text{µA}`
 
     *   - :ref:`Average single-qubit temperature <qpu_errors_temperature>`
-        - :math:`0.141`
+        - :math:`0.102`
 
     *   - :ref:`Ferromagnetic-problem freezeout <qpu_qa_freezeout>`
         - :math:`0.008`
