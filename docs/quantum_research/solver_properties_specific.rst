@@ -46,111 +46,6 @@ This information includes:
         access to all QPUs in the Leap service.
 
 
-Advantage2_system4.1
-====================
-
-All data presented in this section are specific to the **Advantage2_system4.1**
-solver. The |adv2_tm| system QPU is based on a physical lattice of qubits and
-couplers known as the *Zephyr*\ |tm| topology. For information, see the
-:ref:`topology_intro_zephyr` section.
-
-Physical Properties
--------------------
-
-This table lists the physical properties of the calibrated QPU.
-
-.. tabularcolumns:: |l|L|
-
-.. list-table:: QPU Physical Properties\ [#]_
-    :header-rows: 1
-    :widths: 3 2
-
-    *   - Property
-        - Value
-
-    *   - Model
-        - :math:`\text{Advantage2}`
-
-    *   - Graph size
-        - :math:`\text{Z6}`
-
-    *   - Number of :ref:`qubits <property_qpu_qubits>`
-        - :math:`1204`
-
-    *   - Number of :ref:`couplers <property_qpu_couplers>`
-        - :math:`10571`
-
-    *   - Qubit temperature
-        - :math:`18 \pm 1.0\ \text{mK}`
-
-    *   - :math:`\rm M_{\rm AFM}`: Maximum mutual inductance for qubit pairs
-        - :math:`2.057\ \text{pH}`
-
-    *   - Quantum critical point for 1D chains
-        - :math:`2.154\ \text{GHz}`
-
-    *   - :math:`L_q`: Qubit inductance
-        - :math:`119\ \text{pH}`
-
-    *   - :math:`C_q`: Qubit capacitance
-        - :math:`170\ \text{fF}`
-
-    *   - :math:`I_c`: Qubit critical current
-        - :math:`4.96\ \text{µA}`
-
-    *   - :ref:`Average single-qubit temperature <system_utilities>`
-        - :math:`0.119`
-
-    *   - :ref:`Ferromagnetic-problem freezeout <qpu_qa_freezeout>`
-        - :math:`0.007`
-
-    *   - :ref:`Single-qubit freezeout <qpu_qa_freezeout>`
-        - :math:`0.671`
-
-    *   - :math:`\Phi_{\rm CCJJ}^i`: Initial (at :math:`s=0`) external flux on
-          compound Josephson junctions
-        - :math:`-0.688\ \Phi_0`
-
-    *   - :math:`\Phi_{\rm CCJJ}^f`: Final (at :math:`s=1`) external flux on
-          compound Josephson junctions
-        - :math:`-0.747\ \Phi_0`
-
-    *   - Readout time range
-        - :math:`17.0\ \text{to}\ 45.0\ \text{µs}`
-
-    *   - Programming time
-        - :math:`\sim 8000\ \text{µs}`
-
-    *   - QPU-delay-time per sample
-        - :math:`20.6\ \text{µs}`
-
-    *   - Readout error rate
-        - :math:`\leq 0.001`
-
-.. [#]
-
-Some notes for the QPU properties are as follows:
-
-.. include:: ../shared/qpu_specific_specs.rst
-    :start-after: start_qpu_adv_and_adv2_prop_notes
-    :end-before: end_qpu_adv_and_adv2_prop_notes
-
-Annealing Schedule
-------------------
-
-Download the annealing schedule for the QPU here:
-:download:`Advantage2_system4.1 Excel spreadsheet <../downloadables/09-1323A-A_Advantage2_system4_1_annealing_schedule.xlsx>`.
-
-The standard annealing schedule for the QPU is shown in
-:numref:`Figure %s <annealing-schedule-adv2-4.1>`.
-
-.. figure:: ../_images/annealing-schedule-adv2-4.1.png
-    :name: annealing-schedule-adv2-4.1
-
-    Standard annealing schedule for the QPU, showing energy changes
-    as a function of scaled time.
-
-
 Advantage2_system1.6
 ====================
 
@@ -251,6 +146,111 @@ The standard annealing schedule for the QPU is shown in
 
 .. figure:: ../_images/annealing-schedule-adv2-1.1.png
     :name: annealing-schedule-adv2-1.1
+
+    Standard annealing schedule for the QPU, showing energy changes
+    as a function of scaled time.
+
+
+Advantage2_system4.1
+====================
+
+All data presented in this section are specific to the **Advantage2_system4.1**
+solver. The |adv2_tm| system QPU is based on a physical lattice of qubits and
+couplers known as the *Zephyr*\ |tm| topology. For information, see the
+:ref:`topology_intro_zephyr` section.
+
+Physical Properties
+-------------------
+
+This table lists the physical properties of the calibrated QPU.
+
+.. tabularcolumns:: |l|L|
+
+.. list-table:: QPU Physical Properties\ [#]_
+    :header-rows: 1
+    :widths: 3 2
+
+    *   - Property
+        - Value
+
+    *   - Model
+        - :math:`\text{Advantage2}`
+
+    *   - Graph size
+        - :math:`\text{Z6}`
+
+    *   - Number of :ref:`qubits <property_qpu_qubits>`
+        - :math:`1204`
+
+    *   - Number of :ref:`couplers <property_qpu_couplers>`
+        - :math:`10571`
+
+    *   - Qubit temperature
+        - :math:`18 \pm 1.0\ \text{mK}`
+
+    *   - :math:`\rm M_{\rm AFM}`: Maximum mutual inductance for qubit pairs
+        - :math:`2.057\ \text{pH}`
+
+    *   - Quantum critical point for 1D chains
+        - :math:`2.154\ \text{GHz}`
+
+    *   - :math:`L_q`: Qubit inductance
+        - :math:`119\ \text{pH}`
+
+    *   - :math:`C_q`: Qubit capacitance
+        - :math:`170\ \text{fF}`
+
+    *   - :math:`I_c`: Qubit critical current
+        - :math:`4.96\ \text{µA}`
+
+    *   - :ref:`Average single-qubit temperature <system_utilities>`
+        - :math:`0.119`
+
+    *   - :ref:`Ferromagnetic-problem freezeout <qpu_qa_freezeout>`
+        - :math:`0.007`
+
+    *   - :ref:`Single-qubit freezeout <qpu_qa_freezeout>`
+        - :math:`0.671`
+
+    *   - :math:`\Phi_{\rm CCJJ}^i`: Initial (at :math:`s=0`) external flux on
+          compound Josephson junctions
+        - :math:`-0.688\ \Phi_0`
+
+    *   - :math:`\Phi_{\rm CCJJ}^f`: Final (at :math:`s=1`) external flux on
+          compound Josephson junctions
+        - :math:`-0.747\ \Phi_0`
+
+    *   - Readout time range
+        - :math:`17.0\ \text{to}\ 45.0\ \text{µs}`
+
+    *   - Programming time
+        - :math:`\sim 8000\ \text{µs}`
+
+    *   - QPU-delay-time per sample
+        - :math:`20.6\ \text{µs}`
+
+    *   - Readout error rate
+        - :math:`\leq 0.001`
+
+.. [#]
+
+Some notes for the QPU properties are as follows:
+
+.. include:: ../shared/qpu_specific_specs.rst
+    :start-after: start_qpu_adv_and_adv2_prop_notes
+    :end-before: end_qpu_adv_and_adv2_prop_notes
+
+Annealing Schedule
+------------------
+
+Download the annealing schedule for the QPU here:
+:download:`Advantage2_system4.1 Excel spreadsheet <../downloadables/09-1323A-A_Advantage2_system4_1_annealing_schedule.xlsx>`.
+
+The standard annealing schedule for the QPU is shown in
+:numref:`Figure %s <annealing-schedule-adv2-4.1>`.
+
+.. figure:: ../_images/annealing-schedule-adv2-4.1.png
+    :name: annealing-schedule-adv2-4.1
 
     Standard annealing schedule for the QPU, showing energy changes
     as a function of scaled time.
