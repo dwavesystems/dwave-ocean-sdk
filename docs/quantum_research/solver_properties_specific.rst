@@ -105,7 +105,7 @@ This table lists the physical properties of the calibrated QPU.
         - :math:`0.007`
 
     *   - :ref:`Single-qubit freezeout <qpu_qa_freezeout>`
-        - :math:`0.664`
+        - :math:`0.671`
 
     *   - :math:`\Phi_{\rm CCJJ}^i`: Initial (at :math:`s=0`) external flux on
           compound Josephson junctions
