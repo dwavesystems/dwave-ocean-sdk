@@ -98,7 +98,7 @@ This table lists the physical properties of the calibrated QPU.
     *   - :math:`I_c`: Qubit critical current
         - :math:`4.75\ \text{µA}`
 
-    *   - :ref:`Average single-qubit temperature <system_utilities>`
+    *   - :ref:`Average single-qubit temperature <qpu_errors_temperature>`
         - :math:`0.112`
 
     *   - :ref:`Ferromagnetic-problem freezeout <qpu_qa_freezeout>`
@@ -203,7 +203,7 @@ This table lists the physical properties of the calibrated QPU.
     *   - :math:`I_c`: Qubit critical current
         - :math:`4.96\ \text{µA}`
 
-    *   - :ref:`Average single-qubit temperature <system_utilities>`
+    *   - :ref:`Average single-qubit temperature <qpu_errors_temperature>`
         - :math:`0.119`
 
     *   - :ref:`Ferromagnetic-problem freezeout <qpu_qa_freezeout>`
@@ -308,7 +308,7 @@ This table lists the physical properties of the calibrated QPU.
     *   - :math:`I_c`: Qubit critical current
         - :math:`1.99\ \text{µA}`
 
-    *   - :ref:`Average single-qubit temperature <system_utilities>`
+    *   - :ref:`Average single-qubit temperature <qpu_errors_temperature>`
         - :math:`0.221`
 
     *   - :ref:`Ferromagnetic-problem freezeout <qpu_qa_freezeout>`
@@ -440,7 +440,7 @@ This table lists the physical properties of the calibrated QPU.
     *   - :math:`I_c`: Qubit critical current
         - :math:`2.1\ \text{µA}`
 
-    *   - :ref:`Average single-qubit temperature <system_utilities>`
+    *   - :ref:`Average single-qubit temperature <qpu_errors_temperature>`
         - :math:`0.198`
 
     *   - :ref:`Ferromagnetic-problem freezeout <qpu_qa_freezeout>`
@@ -573,7 +573,7 @@ This table lists the physical properties of the calibrated QPU.
     *   - :math:`I_c`: Qubit critical current
         - :math:`4.57\ \text{µA}`
 
-    *   - :ref:`Average single-qubit temperature <system_utilities>`
+    *   - :ref:`Average single-qubit temperature <qpu_errors_temperature>`
         - :math:`0.141`
 
     *   - :ref:`Ferromagnetic-problem freezeout <qpu_qa_freezeout>`
