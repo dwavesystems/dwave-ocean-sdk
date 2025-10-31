@@ -933,7 +933,7 @@ See the :ref:`qpu_annealprotocol_fast` section for further details.
 
 .. _qpu_qa_h_gain:
 
-Setting a Time-dependent Gain for Qubit Biases
+Scheduling the Linear Biases
 ==============================================
 
 Time-dependent gain for qubit biases can be used with the standard-anneal
