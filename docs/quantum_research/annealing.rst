@@ -1033,88 +1033,42 @@ In this sample Python script, the method ``approximate_filtered_h_gain``
 derives an approximation of the filtered h-gain waveform by applying a
 second-order low-pass Bessel filter to the original waveform.
 
-The ``approximate_filtered_h_gain`` method takes the following
-parameters:
+.. testcode::
 
-*   ``pwl``: Original h-gain waveform to approximate. The format of the PWL
-    curve must be expressed as a numpy 2d-array:
+    import numpy as np
+    from scipy import signal
+    import warnings
 
-    .. math::
-        \begin{equation}
-            [[t_0, g_0], ..., [t_f, g_f]]
-        \end{equation}
+    def approximate_filtered_h_gain(pwl: np.typing.ArrayLike,
+                                    bandwidth: float) -> np.typing.ArrayLike:
+        """Approximate the h-gain schedule executed on a QPU.
 
-    where :math:`t_0` and :math:`t_f` are points in time (microseconds) and
-    :math:`g_0` and :math:`g_f` are points of :math:`g`. The initial
-    :math:`g` must be 0.
+        Args:
+            pwl: Input h-gain schedule, as a 2D array-like, that defines a
+                nominal piece-wise linear (PWL) waveform of time and gain values,
+                [[0.0, 0.0], ..., [t_f, g_f]]. The first value must be [0.0, 0.0].
 
-*   ``bandwidth``: Bandwidth (MHz) of a low-pass filter's cutoff frequency
-    used in the Bessel filter. Valid values are the following:
+            bandwidth: Cutoff frequency, as a floating point number in MHz, of
+                the low-pass filter on the  QPU I/O line. Valid values are the
+                following:
 
-    *   ``Adv``: 3 MHz
+                *   3: 3 Mhz for an Advantage QPU.
+                *   30: 30 Mhz for an Advantage2 QPU.
 
-    *   ``Adv2``: 30 MHz
+        Returns:
+            Filtered h-gain waveform and the resampled input h-gain waveform.
+        """
 
-    *   Integer: Arbitrary bandwidth
+        pwl = np.asarray(pwl)
+        t_i = pwl[0, 0]
+        t_f = pwl[-1, 0]
+        cur_g = pwl[0, 1]
 
-Two ``np.vstack`` structures are returned as follows:
+        assert cur_g == 0.0, "Please add ``[0.0, 0.0]`` as the first ``pwl`` value."
 
-*   The first ``np.vstack`` is the filtered h-gain waveform.
+        sampling_rate = int(bandwidth * 100)
+        time_array = np.linspace(t_i, t_f, int(np.ceil(sampling_rate * (t_f - t_i))))
+        sig = np.interp(time_array, pwl[:, 0], pwl[:, 1])
+        b, a = signal.bessel(2, 2/100, btype="lowpass", analog=False, output="ba", norm="mag")
 
-*   The second ``np.vstack`` is the original h-gain waveform.
-
-.. code-block:: py
-
-    >>> import numpy as np
-    >>> from scipy import signal
-    >>> import warnings
-    >>>
-    >>> def approximate_filtered_h_gain (pwl, bandwidth):
-    >>>     t_i = pwl[0,0]
-    >>>     t_f = pwl[-1,0]
-    >>>     cur_g = pwl[0,1]
-    >>>     if (cur_g != 0.0):
-    >>>         warnings.warn("This function only processes PWL curves starting from 0.0 bias." \
-    >>>         "Add a point to the beginning of your PWL with zero bias.")
-    >>>
-    >>>     if bandwidth == 'Adv':
-    >>>         bandwidth = 3
-    >>>     elif bandwidth == 'Adv2':
-    >>>         bandwidth = 30
-    >>>
-    >>>     sampling_rate = int(bandwidth * 100)
-    >>>     time_array = np.linspace(t_i, t_f, int(np.ceil(sampling_rate * (t_f-t_i))))
-    >>>     sig = np.interp(time_array, pwl[:, 0], pwl[:, 1])
-    >>>     b, a = signal.bessel(2, 2/100, btype="lowpass", analog=False, output="ba", norm="mag")
-    >>>
-    >>>     return np.vstack([time_array, signal.lfilter(b, a, sig)]).T, np.vstack([time_array, sig]).T
-
-The following example creates plots for both |dwave_5kq| and |adv2| by
-calling the ``approximate_filtered_h_gain`` method and passing ``test_pwl``
-as the original h-gain waveform and ``filters`` as the |dwave_5kq| and
-|adv2| low-pass filters' cutoff frequencies.
-
-.. code-block:: py
-
-    >>> import matplotlib.pyplot as plot
-    >>>
-    >>> test_pwl = np.array([[0.0, 0.0], [0.1, 0.1], [0.101, 1.0], [0.2, 1.0], [0.202, 0.0], [0.3, 0.0]])
-    >>> fig, ax = plot.subplots(2, 1, figsize=(10,10))
-    >>> filters = ['Adv', 'Adv2']
-    >>>
-    >>> for i in range(2):
-    >>>     ax[i].plot(test_pwl[:,0], test_pwl[:,1], "o-", label="Original h-gain waveform")
-    >>>     filtered, sig = approximate_filtered_h_gain(test_pwl, filters[i])
-    >>>     ax[i].plot(sig[:,0], sig[:,1], ".", label="Resampled original signal")
-    >>>     ax[i].plot(filtered[:,0], filtered[:,1], label="Filtered h-gain waveform")
-    >>>     ax[i].set_xlabel("Time ($\mu$s)")
-    >>>     ax[i].set_ylabel("g")
-    >>>     ax[i].grid()
-    >>>     ax[i].legend()
-    >>>     
-    >>>     if filters[i] == 'Adv':
-    >>>         ax[i].set_title(f"Advantage 3 MHz Filter")
-    >>>     elif filters[i] == 'Adv2':
-    >>>         ax[i].set_title(f"Advantage2 30 MHz Filter")
-    >>>
-    >>> plot.show()
+        return np.vstack([time_array, signal.lfilter(b, a, sig)]).T, np.vstack([time_array, sig]).T
