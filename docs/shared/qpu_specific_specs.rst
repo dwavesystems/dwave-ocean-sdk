@@ -21,7 +21,8 @@
 *   The ferromagnetic problem and single-qubit freezeout points shown are
     :ref:`normalized anneal fraction <qpu_qa_implementation>` values.
 
-*   The average single-qubit temperature is in units of ``h``.
+*   The average single-qubit temperature is given in units of dimensionless
+    linear biases, the ``h`` values in the Ising Hamiltonian.
 
 *   Readout time range: Typical readout times for reading between one qubit
     and the full QPU.
