@@ -8,6 +8,9 @@ This section describes the configurable parameters you can set on :term:`QPU`
 solvers. The :ref:`qpu_index_solver_properties` section gives the properties of
 these solvers, such as the ranges within which parameter values must be set.
 
+.. |anneal_time_parameter_granularity| replace:: with a resolution of 0.01
+    :math:`\mu s`
+
 .. |meet_run_duration| replace:: :ref:`parameter_qpu_anneal_schedule` or
     :ref:`parameter_qpu_annealing_time`,
     :ref:`parameter_qpu_reduce_intersample_correlation` and/or
@@ -653,11 +656,11 @@ h_gain_schedule
 Sets a :ref:`time-dependent h-gain <qpu_qa_h_gain>` for linear coefficients
 (:ref:`qubit biases <parameter_qpu_h>`) in the Hamiltonian.
 
-This time-dependent gain :math:`g(t)` in the Hamiltonian is specified, similarly to the
-:ref:`parameter_qpu_anneal_schedule` parameter, by a series of pairs of
+This time-dependent gain :math:`g(t)` in the Hamiltonian is specified, similarly
+to the :ref:`parameter_qpu_anneal_schedule` parameter, by a series of pairs of
 floating-point numbers identifying points in the schedule at which to change
 the gain applied to :ref:`parameter_qpu_h`. The first element in the pair is
-time, :math:`t` in microseconds with a resolution of 0.01 :math:`\mu s`; the
+time, :math:`t` in microseconds |anneal_time_parameter_granularity|; the
 second is the unitless :math:`g` in the range
 :ref:`property_qpu_h_gain_schedule_range`. The resulting time-dependent gain is
 the piecewise-linear (PWL) curve that connects the points over the same range of
@@ -949,7 +952,7 @@ composite instead.
 programming_thermalization
 ==========================
 
-Sets the time, in microseconds with a resolution of 0.01 :math:`\mu s`, to wait
+Sets the time, in microseconds |anneal_time_parameter_granularity|, to wait
 after programming the QPU for it to cool back to base temperature (i.e.,
 post-programming thermalization time). Lower values accelerate solving at the
 expense of solution quality. Supported values are positive floating-point
@@ -1052,7 +1055,7 @@ This example submits a QUBO to a QPU solver.
 readout_thermalization
 ======================
 
-Sets the time, in microseconds with a resolution of 0.01 :math:`\mu s`, to wait
+Sets the time, in microseconds |anneal_time_parameter_granularity|, to wait
 after each state is read from the QPU for it to cool back to base temperature
 (i.e., post-readout thermalization time). This value contributes to the
 *qpu_delay_time_per_sample* time returned by SAPI in the
