@@ -78,7 +78,7 @@ This table lists the physical properties of the calibrated QPU.
         - :math:`4592`
 
     *   - Number of :ref:`couplers <property_qpu_couplers>`
-        - :math:`41776`
+        - :math:`41779`
 
     *   - Qubit temperature
         - :math:`20 \pm 1.0\ \text{mK}`
