@@ -934,13 +934,14 @@ See the :ref:`qpu_annealprotocol_fast` section for further details.
 .. _qpu_qa_h_gain:
 
 Scheduling the Linear Biases
-==============================================
+============================
 
-Time-dependent gain for qubit biases can be used with the standard-anneal
-protocol and reverse annealing ([Vod2025]_, [Pel2023]_).
-The :ref:`parameter_qpu_h_gain_schedule` parameter is applied to qubit
-biases :math:`h_i` (i.e., linear coefficients) and specifies the :math:`g(t)`
-function in the Hamiltonian,
+For more control of the annealing process, you can schedule the time-dependent
+gain for the Hamiltonian's linear biases (i.e., qubit biases). Time-dependent
+gain for qubit biases can be used with the standard-anneal protocol and reverse
+annealing ([Vod2025]_, [Pel2023]_). The :ref:`parameter_qpu_h_gain_schedule`
+parameter is applied to qubit biases :math:`h_i` (i.e., linear coefficients)
+and specifies the :math:`g(t)` function in the Hamiltonian,
 
 .. math::
     :nowrap:
@@ -956,119 +957,73 @@ where :math:`{\hat\sigma_{x,z}^{(i)}}` are Pauli matrices operating on a qubit
 :math:`q_i`; and :math:`h_i` and :math:`J_{i,j}` are the qubit biases and
 coupling strengths, respectively.
 
-This time-dependent gain :math:`g(t)` is specified, similarly to the
-:ref:`parameter_qpu_anneal_schedule` parameter, by a series of pairs of
-floating-point numbers identifying points in the schedule at which to change
-the gain applied to :ref:`parameter_qpu_h`. The first element in the pair is
-time, :math:`t` in microseconds with a resolution of 0.01 :math:`\mu s`; the
-second is the unitless :math:`g` in the range
-:ref:`property_qpu_h_gain_schedule_range`. The resulting time-dependent gain is
-the piecewise-linear (PWL) curve that connects the points over the same range of
-times as the :ref:`parameter_qpu_anneal_schedule`.
+.. qpu_exec_hgain_waveform:
 
-For standard problem solving, specifying a problem's linear coefficients
-(:ref:`parameter_qpu_h`) outside of a QPU's :ref:`property_qpu_h_range`
-using the :ref:`parameter_qpu_h_gain_schedule` parameter is not recommended
-because the QPU is calibrated for linearity only within the
-specified :ref:`property_qpu_h_range` and :ref:`property_qpu_j_range`, and
-increased integrated control errors (ICE) are expected outside that range.
-By default, the :ref:`parameter_qpu_auto_scale` parameter allows you to specify
-linear coefficients outside of the :ref:`property_qpu_h_range`; if you disable
-the :ref:`parameter_qpu_auto_scale` parameter, ensure that
-:math:`\max_i(h\_gain*h_i)` and :math:`\min_i(h\_gain*h_i)` are within
-:ref:`property_qpu_h_range`.
+Filtered h-gain Waveforms
+-------------------------
 
-The following rules apply to the set of points for time-dependent gain:
+Low-pass filters with cutoff frequencies of 3 MHz for |dwave_5kq| systems
+and 30 MHz for |adv2| systems are used to limit the bandwidth of the
+:ref:`parameter_qpu_h`-gain waveform (the :math:`\Phi^x_i(s)` term of
+equation :math:numref:`qpu_equation_rfsquid_hamiltonian`) delivered to the
+QPU, as shown in :numref:`Figure %s <filtered_hgain_waveform_30mhz>`.
 
-*   Time :math:`t`, in microseconds, must increase for all points in the
-    schedule.
-*   The first point of time must be zero, :math:`t=0.0`.
-*   The last point of time must match the last time in the
-    :ref:`parameter_qpu_anneal_schedule` or the
-    :ref:`parameter_qpu_annealing_time`.
-*   The number of points must be :math:`\geq 2`.
-*   The steepest slope of any curve segment,
-    :math:`\frac{g_i - g_{i-1}}{t_i - t_{i-1}}`, must be within the bounds
-    supported by the selected QPU.\ [#]_ However, even if the curve is within the
-    supported bounds but changes too rapidly, expect distorted values of
-    :ref:`parameter_qpu_h` for your problem. The distortion is caused by
-    low-pass filters that limit the bandwidth of the :ref:`parameter_qpu_h`-gain
-    waveform (the :math:`\Phi^x_i(s)` term of equation
-    :math:numref:`qpu_equation_rfsquid_hamiltonian`) delivered to the QPU.
-    The low-pass filters have a cutoff frequency of 3 MHz for |dwave_5kq|
-    systems and 30 MHz for |adv2| systems. You can approximate the filtered
-    h-gain waveform (that is, the wavefrom that results from the original h-gain
-    waveform being sent through low-pass filters) by using a
-    :ref:`sample Python script <approximate_filtered_h_gain>`.
+.. figure:: ../_images/filtered_hgain_waveform_30mhz.png
+    :name: filtered_hgain_waveform_30mhz
+    :alt: Graph showing an h-gain waveform filtered by the Advantage2 30-MHz
+            low-pass filter.
 
-Default :math:`g(t)`, when left unspecified, is 1, which can be explicitly coded
-as
-
-.. code-block:: py
-
-    h_gain_schedule=[[0,1],[t_final,1]]
-
-where `t_final` is the requested annealing time.
-
-.. [#]
-    To see the supported slope for a particular QPU, submit a test problem with
-    slopes that are expected to violate any limitations; you can then read the
-    range of supported slopes in the returned error message. (Your account in
-    the Leap service is not charged for rejected problems.)
-
-    Supported slopes are typically under :math:`\frac{G_{max} - G_{min}}{0.02}`,
-    where :math:`G_{min}` and :math:`G_{max}` here stand for the range limits
-    of the time-dependent gain for the QPU. For example, for a QPU with
-    :ref:`property_qpu_h_gain_schedule_range` value of :code:`[-3, 3]`, a slope
-    above :math:`\frac{3 - (-3)}{0.02} = 300`, which occurs for a schedule that
-    contains :code:`[... [10.0, 0], [10.01, 3], ...]`, is likely to return an
-    error message with the maximum allowed slope.
+    Graph showing an h-gain waveform filtered by the Advantage2 30-MHz
+    low-pass filter.
 
 .. _approximate_filtered_h_gain:
 
-Approximating the Filtered h-gain Waveform
-------------------------------------------
+.. dropdown:: Approximating the Filtered h-gain Waveform
 
-In this sample Python script, the method ``approximate_filtered_h_gain``
-derives an approximation of the filtered h-gain waveform by applying a
-second-order low-pass Bessel filter to the original waveform.
+    You can use the following Python script to approximate the h-gain waveform
+    that is filtered and executed on the QPU. Approximating the filtered h-gain
+    waveform can be important because low-pass filters can cause distorted
+    values of :ref:`parameter_qpu_h`, even within the h-gain slope's supported
+    bounds. The script's ``approximate_filtered_h_gain`` method
+    derives an approximation of the filtered h-gain waveform by applying a
+    second-order low-pass Bessel filter to the input waveform.
 
-.. testcode::
+    .. testcode::
 
-    import numpy as np
-    from scipy import signal
-    import warnings
+        import numpy as np
+        from scipy import signal
+        import warnings
 
-    def approximate_filtered_h_gain(pwl: np.typing.ArrayLike,
-                                    bandwidth: float) -> np.typing.ArrayLike:
-        """Approximate the h-gain schedule executed on a QPU.
+        def approximate_filtered_h_gain(pwl: np.typing.ArrayLike,
+                                        bandwidth: float) -> np.typing.ArrayLike:
+            """Approximate the h-gain schedule executed on a QPU.
 
-        Args:
-            pwl: Input h-gain schedule, as a 2D array-like, that defines a
-                nominal piece-wise linear (PWL) waveform of time and gain values,
-                [[0.0, 0.0], ..., [t_f, g_f]]. The first value must be [0.0, 0.0].
+            Args:
+                pwl: Input h-gain schedule, as a 2D array-like, that defines a
+                    nominal piece-wise linear (PWL) waveform of time and gain values,
+                    [[0.0, 0.0], ..., [t_f, g_f]]. The first value must be [0.0, 0.0].
 
-            bandwidth: Cutoff frequency, as a floating point number in MHz, of
-                the low-pass filter on the  QPU I/O line. Valid values are the
-                following:
+                bandwidth: Cutoff frequency, as a floating point number in MHz, of
+                    the low-pass filter on the  QPU I/O line. Valid values are the
+                    following:
 
-                *   3: 3 Mhz for an Advantage QPU.
-                *   30: 30 Mhz for an Advantage2 QPU.
+                    *   3: 3 Mhz for an Advantage QPU.
+                    *   30: 30 Mhz for an Advantage2 QPU.
 
-        Returns:
-            Filtered h-gain waveform and the resampled input h-gain waveform.
-        """
+            Returns:
+                Filtered h-gain waveform and the resampled input h-gain waveform.
+            """
 
-        pwl = np.asarray(pwl)
-        t_i = pwl[0, 0]
-        t_f = pwl[-1, 0]
-        cur_g = pwl[0, 1]
+            pwl = np.asarray(pwl)
+            t_i = pwl[0, 0]
+            t_f = pwl[-1, 0]
+            cur_g = pwl[0, 1]
 
-        assert cur_g == 0.0, "Please add ``[0.0, 0.0]`` as the first ``pwl`` value."
+            assert cur_g == 0.0, "Please add ``[0.0, 0.0]`` as the first ``pwl`` value."
 
-        sampling_rate = int(bandwidth * 100)
-        time_array = np.linspace(t_i, t_f, int(np.ceil(sampling_rate * (t_f - t_i))))
-        sig = np.interp(time_array, pwl[:, 0], pwl[:, 1])
-        b, a = signal.bessel(2, 2/100, btype="lowpass", analog=False, output="ba", norm="mag")
+            sampling_rate = int(bandwidth * 100)
+            time_array = np.linspace(t_i, t_f, int(np.ceil(sampling_rate * (t_f - t_i))))
+            sig = np.interp(time_array, pwl[:, 0], pwl[:, 1])
+            b, a = signal.bessel(2, 2/100, btype="lowpass", analog=False, output="ba", norm="mag")
 
-        return np.vstack([time_array, signal.lfilter(b, a, sig)]).T, np.vstack([time_array, sig]).T
+            return np.vstack([time_array, signal.lfilter(b, a, sig)]).T, np.vstack([time_array, sig]).T

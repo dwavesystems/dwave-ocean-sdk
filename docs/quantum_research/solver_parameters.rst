@@ -652,12 +652,76 @@ h_gain_schedule
 
 Sets a :ref:`time-dependent h-gain <qpu_qa_h_gain>` for linear coefficients
 (:ref:`qubit biases <parameter_qpu_h>`) in the Hamiltonian.
+
+This time-dependent gain :math:`g(t)` in the Hamiltonian is specified, similarly to the
+:ref:`parameter_qpu_anneal_schedule` parameter, by a series of pairs of
+floating-point numbers identifying points in the schedule at which to change
+the gain applied to :ref:`parameter_qpu_h`. The first element in the pair is
+time, :math:`t` in microseconds with a resolution of 0.01 :math:`\mu s`; the
+second is the unitless :math:`g` in the range
+:ref:`property_qpu_h_gain_schedule_range`. The resulting time-dependent gain is
+the piecewise-linear (PWL) curve that connects the points over the same range of
+times as the :ref:`parameter_qpu_anneal_schedule`.
+
+The following rules apply to the set of points for time-dependent gain:
+
+*   Time :math:`t`, in microseconds, must increase for all points in the
+    schedule.
+*   The first point of time must be zero, :math:`t=0.0`.
+*   The last point of time must match the last time in the
+    :ref:`parameter_qpu_anneal_schedule` or the
+    :ref:`parameter_qpu_annealing_time`.
+*   The number of points must be :math:`\geq 2`.
+*   The steepest slope of any curve segment,
+    :math:`\frac{g_i - g_{i-1}}{t_i - t_{i-1}}`, must be within the bounds
+    supported by the selected QPU.\ [#]_ However, even if the curve is within the
+    supported bounds but changes too rapidly, distorted values of
+    :ref:`parameter_qpu_h` can be caused by
+    :ref:`low-pass filters <qpu_exec_hgain_waveform>`.
+
+Default :math:`g(t)`, when left unspecified, is 1, which can be explicitly coded
+as
+
+.. code-block:: py
+
+    h_gain_schedule=[[0,1],[t_final,1]]
+
+where `t_final` is the requested annealing time.
+
+.. [#]
+    To see the supported slope for a particular QPU, submit a test problem with
+    slopes that are expected to violate any limitations; you can then read the
+    range of supported slopes in the returned error message. (Your account in
+    the Leap service is not charged for rejected problems.)
+
+    Supported slopes are typically under :math:`\frac{G_{max} - G_{min}}{0.02}`,
+    where :math:`G_{min}` and :math:`G_{max}` here stand for the range limits
+    of the time-dependent gain for the QPU. For example, for a QPU with
+    :ref:`property_qpu_h_gain_schedule_range` value of :code:`[-3, 3]`, a slope
+    above :math:`\frac{3 - (-3)}{0.02} = 300`, which occurs for a schedule that
+    contains :code:`[... [10.0, 0], [10.01, 3], ...]`, is likely to return an
+    error message with the maximum allowed slope.
     
 Relevant Properties
 -------------------
 
 *   :ref:`property_qpu_h_gain_schedule_range` defines the range of the
     time-dependent gain values permitted for the solver.
+
+    .. note::
+        For standard problem solving, specifying a problem's linear coefficients
+        (:ref:`parameter_qpu_h`) outside of a QPU's :ref:`property_qpu_h_range`
+        using the :ref:`parameter_qpu_h_gain_schedule` parameter is not
+        recommended because the QPU is calibrated for linearity only within the
+        specified :ref:`property_qpu_h_range` and :ref:`property_qpu_j_range`,
+        and increased integrated control errors (ICE) are expected outside that
+        range. By default, the :ref:`parameter_qpu_auto_scale` parameter allows
+        you to specify linear coefficients outside of the
+        :ref:`property_qpu_h_range`; if you disable the
+        :ref:`parameter_qpu_auto_scale` parameter, ensure that
+        :math:`\max_i(h\_gain*h_i)` and :math:`\min_i(h\_gain*h_i)` are within
+        :ref:`property_qpu_h_range`.
+
 *   :ref:`property_qpu_max_anneal_schedule_points` defines the maximum number of
     anneal-schedule points permitted.
 *   :ref:`property_qpu_max_h_gain_schedule_points` defines the maximum number of
