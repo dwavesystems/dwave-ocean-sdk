@@ -145,7 +145,15 @@ test_api_token_set = False      # TODO: switch back on by setting to True
 # Previous line reads from this bash command: export HSS_SPOT_CHECK=$((RANDOM%20==0))
 # which is usually 0 but once in 20 tries is 1, which triggers live tests
 hss_spot_check = False          # TODO: reenable spot checks with env var
+
+# make sure numpy numeric scalars are printed without their type information,
+# e.g. as 3.0 rather than np.float64(3.0).
+import numpy
+numpy.set_printoptions(legacy='1.25')
 """
+
+# reduce output noise
+doctest_show_successes = False
 
 # -- Breathe configuration ------------------------------------------------
 
