@@ -656,12 +656,12 @@ h_gain_schedule
 Sets a :ref:`time-dependent h-gain <qpu_qa_h_gain>` for linear coefficients
 (:ref:`qubit biases <parameter_qpu_h>`) in the Hamiltonian.
 
-This time-dependent gain :math:`g(t)` in the Hamiltonian is specified, similarly
-to the :ref:`parameter_qpu_anneal_schedule` parameter, by a series of pairs of
+Like the :ref:`parameter_qpu_anneal_schedule` parameter, this time-dependent
+gain :math:`g(t)` in the Hamiltonian is specified by a series of pairs of
 floating-point numbers identifying points in the schedule at which to change
-the gain applied to :ref:`parameter_qpu_h`. The first element in the pair is
-time, :math:`t` in microseconds |anneal_time_parameter_granularity|; the
-second is the unitless :math:`g` in the range
+the gain applied to :ref:`parameter_qpu_h`. The first element in the pair
+is time, :math:`t` in microseconds |anneal_time_parameter_granularity|;
+the second is the unitless :math:`g` in the range
 :ref:`property_qpu_h_gain_schedule_range`. The resulting time-dependent gain is
 the piecewise-linear (PWL) curve that connects the points over the same range of
 times as the :ref:`parameter_qpu_anneal_schedule`.
@@ -677,8 +677,8 @@ The following rules apply to the set of points for time-dependent gain:
 *   The number of points must be :math:`\geq 2`.
 *   The steepest slope of any curve segment,
     :math:`\frac{g_i - g_{i-1}}{t_i - t_{i-1}}`, must be within the bounds
-    supported by the selected QPU.\ [#]_ However, even if the curve is within the
-    supported bounds but changes too rapidly, distorted values of
+    supported by the selected QPU.\ [#]_ However, even if the curve is within
+    the supported bounds but changes too rapidly, distorted values of
     :ref:`parameter_qpu_h` can be caused by
     :ref:`low-pass filters <qpu_exec_hgain_waveform>`.
 
