@@ -78,7 +78,7 @@ problem as nonlinear model as follows:
 
 The code above has the following elements:
 
-*   :code:`i` is a :class:`~dwave.optimization.symbols.IntegerVariable`
+*   :code:`i` is a :class:`~dwave.optimization.symbols.numbers.IntegerVariable`
     symbol, typically constructed with the
     :meth:`~dwave.optimization.model.Model.integer` method, that represents
     a single integer of values between :math:`-5` and :math:`+5`. It is a
@@ -126,7 +126,7 @@ States
 ------
 
 States represent assignments of values to a symbol. For example, symbol
-:math:`k`, defined as an :class:`~dwave.optimization.symbols.IntegerVariable` of
+:math:`k`, defined as an :class:`~dwave.optimization.symbols.numbers.IntegerVariable` of
 size :math:`2 \times 3`, might have states ``[[1, 1, 2], [4, 5, 5]]`` and
 ``[[1, 1, 3], [4, 5, 5]]``. Such states, which might be returned from a solver
 in response to a submission that requested two results, represent two
@@ -189,7 +189,7 @@ Typically, you construct your model by instantiating decision-variable symbols
 (:meth:`~dwave.optimization.model.Model.constant`).
 
 The example below, uses the :meth:`~dwave.optimization.model.Model.integer`
-method to instantiate an :class:`~dwave.optimization.symbols.IntegerVariable`
+method to instantiate an :class:`~dwave.optimization.symbols.numbers.IntegerVariable`
 symbol.
 
 >>> from dwave.optimization import Model
@@ -208,12 +208,12 @@ acyclic graph.
     :scale: 100%
 
     An directed acyclic graph that shows a single primitive, decision variable
-    :math:`i`, an :class:`~dwave.optimization.symbols.IntegerVariable`.
+    :math:`i`, an :class:`~dwave.optimization.symbols.numbers.IntegerVariable`.
 
 Operations on these symbols, create new symbols, which form the model's full
-directed acyclic graph. The :class:`~dwave.optimization.symbols.Sum` symbol, for
+directed acyclic graph. The :class:`~dwave.optimization.symbols.reduce.Sum` symbol, for
 example, sums the 100 integer elements of the
-:math:`1 \times 100`-shaped :class:`~dwave.optimization.symbols.IntegerVariable`
+:math:`1 \times 100`-shaped :class:`~dwave.optimization.symbols.numbers.IntegerVariable`
 :math:`i`.
 
 >>> sum_i = i.sum()
@@ -226,16 +226,16 @@ example, sums the 100 integer elements of the
     :scale: 100%
 
     An directed acyclic graph that shows a primitive, decision variable
-    :math:`i`, an :class:`~dwave.optimization.symbols.IntegerVariable`, and
-    :math:`sum_i`, a :class:`~dwave.optimization.symbols.Sum` symbol.
+    :math:`i`, an :class:`~dwave.optimization.symbols.numbers.IntegerVariable`, and
+    :math:`sum_i`, a :class:`~dwave.optimization.symbols.reduce.Sum` symbol.
 
 You can access these symbols by iterating on the model's symbols.
 
 >>> with model.lock():
 ...     for symbol in model.iter_symbols():
 ...         print(f"Symbol {type(symbol)} is node {symbol.topological_index()}")
-Symbol <class 'dwave.optimization.symbols.IntegerVariable'> is node 0
-Symbol <class 'dwave.optimization.symbols.Sum'> is node 1
+Symbol <class 'dwave.optimization.symbols.numbers.IntegerVariable'> is node 0
+Symbol <class 'dwave.optimization.symbols.reduce.Sum'> is node 1
 
 Typically, you add symbols to the model through mathematical operations between
 symbols. The code below adds a symbol that checks that only one of the 100
@@ -253,7 +253,7 @@ values assigned to symbol :math:`i` is a nonzero positive integer.
     :scale: 100%
 
     An directed acyclic graph that shows a primitive, decision variable
-    :math:`i`, an :class:`~dwave.optimization.symbols.IntegerVariable`, and
+    :math:`i`, an :class:`~dwave.optimization.symbols.numbers.IntegerVariable`, and
     additional mathematical-operation symbols.
 
 >>> symbols = {}
@@ -368,7 +368,7 @@ The two tabs below provide the two formulations.
 
         >>> total_weight = items * weight
         >>> model.add_constraint(total_weight.sum() <= capacity) # doctest: +ELLIPSIS
-        <dwave.optimization.symbols.LessEqual at ...>
+        <dwave.optimization.symbols.binaryop.LessEqual at ...>
 
         Add the objective (transport as much valuable merchandise as possible):
 
@@ -413,7 +413,7 @@ The two tabs below provide the two formulations.
 
         >>> total_weight = item0*weight0 + item1*weight1 + item2*weight2 + item3*weight3
         >>> model.add_constraint(total_weight <= capacity) # doctest: +ELLIPSIS
-        <dwave.optimization.symbols.LessEqual at ...>
+        <dwave.optimization.symbols.binaryop.LessEqual at ...>
 
         Add the objective to maximize the transported value:
 
@@ -558,7 +558,7 @@ The two tabs below provide the two formulations.
         ...     model.add_constraint(one <= itinerary_loc[i,:].sum())
         ...     model.add_constraint(itinerary_loc[:, i].sum() <= one)
         ...     model.add_constraint(one <= itinerary_loc[:, i].sum()) # doctest: +ELLIPSIS
-        <dwave.optimization.symbols.LessEqual at ...>
+        <dwave.optimization.symbols.binaryop.LessEqual at ...>
         ...
 
         You can see the objective cost for the least costly route
