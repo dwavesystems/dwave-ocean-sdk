@@ -958,7 +958,7 @@ where :math:`{\hat\sigma_{x,z}^{(i)}}` are Pauli matrices operating on a qubit
 :math:`q_i`; and :math:`h_i` and :math:`J_{i,j}` are the qubit biases and
 coupling strengths, respectively.
 
-.. qpu_exec_hgain_waveform:
+.. _qpu_exec_hgain_waveform:
 
 Filtered h-gain Waveforms
 -------------------------
