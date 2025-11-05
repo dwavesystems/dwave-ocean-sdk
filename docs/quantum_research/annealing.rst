@@ -933,15 +933,16 @@ See the :ref:`qpu_annealprotocol_fast` section for further details.
 
 .. _qpu_qa_h_gain:
 
-Scheduling the Linear Biases
-============================
+Varying the Linear-Bias Schedule 
+================================
 
 For more control of the annealing process, you can schedule the time-dependent
 gain for the Hamiltonian's linear biases (i.e., qubit biases). Time-dependent
-gain for qubit biases can be used with the standard-anneal protocol and reverse
-annealing ([Vod2025]_, [Pel2023]_). The :ref:`parameter_qpu_h_gain_schedule`
-parameter is applied to qubit biases :math:`h_i` (i.e., linear coefficients)
-and specifies the :math:`g(t)` function in the Hamiltonian,
+gain for qubit biases can be used with the standard annealing and reverse
+annealing protocols ([Vod2025]_, [Pel2023]_). The
+:ref:`parameter_qpu_h_gain_schedule` parameter is applied to qubit biases
+:math:`h_i` (i.e., linear coefficients) and specifies the :math:`g(t)` function
+in the Hamiltonian,
 
 .. math::
     :nowrap:
@@ -981,12 +982,10 @@ QPU, as shown in :numref:`Figure %s <filtered_hgain_waveform_30mhz>`.
 .. dropdown:: Approximating the Filtered h-gain Waveform
 
     You can use the following Python script to approximate the h-gain waveform
-    that is filtered and executed on the QPU. Approximating the filtered h-gain
-    waveform can be important because low-pass filters can cause distorted
-    values of :ref:`parameter_qpu_h`, even within the h-gain slope's supported
-    bounds. The script's ``approximate_filtered_h_gain`` method
-    derives an approximation of the filtered h-gain waveform by applying a
-    second-order low-pass Bessel filter to the input waveform.
+    that is filtered and executed on the QPU. The script's
+    ``approximate_filtered_h_gain`` method derives an approximation of the
+    filtered h-gain waveform by applying a second-order low-pass Bessel filter
+    to the input waveform.
 
     .. testcode::
 
@@ -1004,7 +1003,7 @@ QPU, as shown in :numref:`Figure %s <filtered_hgain_waveform_30mhz>`.
                     [[0.0, 0.0], ..., [t_f, g_f]]. The first value must be [0.0, 0.0].
 
                 bandwidth: Cutoff frequency, as a floating point number in MHz, of
-                    the low-pass filter on the  QPU I/O line. Valid values are the
+                    the low-pass filter on the QPU I/O line. Valid values are the
                     following:
 
                     *   3: 3 Mhz for an Advantage QPU.
