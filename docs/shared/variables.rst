@@ -18,7 +18,7 @@
             - Should the antenna transmit or no?
             - Did a network node experience failure?
         -   :class:`~dimod.Vartype.BINARY` and :class:`~dimod.Vartype.SPIN`
-        -   :class:`~dwave.optimization.symbols.BinaryVariable`
+        -   :class:`~dwave.optimization.symbols.numbers.BinaryVariable`
     *   -   Discrete.
 
             For example, a variable that can be assigned one of the values of
@@ -36,7 +36,7 @@
 
             - How many widgets should be loaded onto the truck?
         -   :class:`~dimod.Vartype.INTEGER`
-        -    :class:`~dwave.optimization.symbols.IntegerVariable`
+        -    :class:`~dwave.optimization.symbols.numbers.IntegerVariable`
     *   -   Real.
         -   Typically used for applications that optimize over an uncountable
             set; for example,
