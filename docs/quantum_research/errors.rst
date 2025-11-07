@@ -843,11 +843,13 @@ As a consequence, even when the temperature of the mixing chamber is constant,
 the effective temperature of the qubits may vary by a few millikelvin, depending
 on usage.
 
-:numref:`Figure %s <single-qubit-temp>` shows a graph of single-qubit-temperature
-extraction. Specifically, the average single-qubit temperature is extracted from
-two measurements of the qubit population: one as function of the applied linear
-bias and the other as a function of the applied flux bias. For information about
-the temperature utilities used for these temperature measurements, see the
+Temperature-related :ref:`QPU properties <qpu_solver_properties_specific>` are
+derived using the aforementioned techniques. That is, the
+*average single-qubit temperature* property is derived by measuring qubit
+population against per-qubit linear bias
+(see :numref:`Figure %s <single-qubit-temp>`). Similarly, the *qubit temperature*
+property is derived by measuring qubit population against per-qubit flux bias.
+For complementary techniques to estimate effective qubit temperature, see the
 :ref:`system_utilities` section.
 
 .. figure:: ../_images/single-qubit-temperature-extraction.png

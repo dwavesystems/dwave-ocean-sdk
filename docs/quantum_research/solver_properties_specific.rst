@@ -80,7 +80,7 @@ This table lists the physical properties of the calibrated QPU.
     *   - Number of :ref:`couplers <property_qpu_couplers>`
         - :math:`41779`
 
-    *   - Qubit temperature
+    *   - :ref:`Qubit temperature <qpu_errors_temperature>`
         - :math:`20 \pm 1.0\ \text{mK}`
 
     *   - :math:`\rm M_{\rm AFM}`: Maximum mutual inductance for qubit pairs
@@ -185,7 +185,7 @@ This table lists the physical properties of the calibrated QPU.
     *   - Number of :ref:`couplers <property_qpu_couplers>`
         - :math:`10571`
 
-    *   - Qubit temperature
+    *   - :ref:`Qubit temperature <qpu_errors_temperature>`
         - :math:`18 \pm 1.0\ \text{mK}`
 
     *   - :math:`\rm M_{\rm AFM}`: Maximum mutual inductance for qubit pairs
@@ -290,7 +290,7 @@ This table lists the physical properties of the calibrated QPU.
     *   - Number of :ref:`couplers <property_qpu_couplers>`
         - :math:`40088`
 
-    *   - Qubit temperature
+    *   - :ref:`Qubit temperature <qpu_errors_temperature>`
         - :math:`16.0 \pm 0.1\ \text{mK}`
 
     *   - :math:`\rm M_{\rm AFM}`: Maximum mutual inductance for qubit pairs
@@ -422,7 +422,7 @@ This table lists the physical properties of the calibrated QPU.
     *   - Number of :ref:`couplers <property_qpu_couplers>`
         - :math:`40279`
 
-    *   - Qubit temperature
+    *   - :ref:`Qubit temperature <qpu_errors_temperature>`
         - :math:`15.4 \pm 0.1\ \text{mK}`
 
     *   - :math:`\rm M_{\rm AFM}`: Maximum mutual inductance for qubit pairs
@@ -555,7 +555,7 @@ This table lists the physical properties of the calibrated QPU.
     *   - Number of :ref:`couplers <property_qpu_couplers>`
         - :math:`10498`
 
-    *   - Qubit temperature
+    *   - :ref:`Qubit temperature <qpu_errors_temperature>`
         - :math:`17.5 \pm 1.0\ \text{mK}`
 
     *   - :math:`\rm M_{\rm AFM}`: Maximum mutual inductance for qubit pairs
