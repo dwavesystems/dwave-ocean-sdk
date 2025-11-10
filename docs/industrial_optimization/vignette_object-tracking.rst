@@ -51,8 +51,8 @@ global label "ear" → feature 1 in the image
 
 global label "foot" → feature 0 in the image
 
-For each of the n images, we create a global permutation of length equal to the
-number of features, m.
+For each of the :math:`n` images, we create a global permutation of length equal to the
+number of features, :math:`m`.
 
 .. testsetup:: [vto_nl1]
 
@@ -141,7 +141,7 @@ stochastic matrix to be maximized where, for some label:
 
 .. math::
 
-    x_{i,k_1,\text{label}} * x_{j,\pi_{ij}[k_2],\text{label}} = 1
+    x_{i,k_1,\text{label}} * x_{j,\pi_{ij}[k_2],\text{label}} = 1.
 
 The relevant Python code is as follows:
 
@@ -155,20 +155,16 @@ The relevant Python code is as follows:
 
     import numpy as np
     from dimod import ConstrainedQuadraticModel, Binary
-    
     M_raw = {(i,j): np.random.rand(m,m) for i in range(n-1) for j in range(i+1, n)}
     M = {(i,j): v/v.sum(axis=1, keepdims=True) for (i,j), v in M_raw.items()}
 
     cqm = ConstrainedQuadraticModel()
-  
     vars = {(i,j,k): Binary(f'x_{i}_{j}_{k}')
             for i in range(n) for j in range(m) for k in range(m)}
-    
     for i in range(n):
         for j in range(m):
             cqm.add_constraint(sum([vars[(i,j,k)] for k in range(m)])==1)
             cqm.add_constraint(sum([vars[(i,k,j)] for k in range(m)])==1)
-    
     obj = 0
     
     for (i,j) in M.keys():
@@ -176,14 +172,13 @@ The relevant Python code is as follows:
             for k2 in range(m):
                 obj += (1 - M[(i,j)][k1,k2])*sum(vars[(i,k1,label)]*vars[(j,k2,label)]
                  for label in range(m))
-    
     cqm.set_objective(obj)
 
 
 Results
 =======
 
-The figure below shows the results for the object tracking instances for the
+The figure below shows the results for the object-tracking instances for the
 nonlinear solver, CQM solver, Pyomo with SCIP, and the spectral algorithm with
 runtimes of 5, 10, and 60 seconds. Since the spectral algorithm is
 deterministic, the runtime is fixed, but all spectral algorithm runtimes for
@@ -213,5 +208,5 @@ tracking instances with 5, 10, and 60 seconds of runtime.
 Data
 ====
 
-Solver runtimes and energies are available in the csv
+Solver runtimes and energies are available in CSV format
 :download:`here <../downloadables/vignette_object-tracking.csv>`.
