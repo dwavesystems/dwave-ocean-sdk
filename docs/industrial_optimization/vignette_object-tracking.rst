@@ -54,14 +54,14 @@ global label "foot" → feature 0 in the image
 For each of the n images, we create a global permutation of length equal to the
 number of features, m.
 
-.. testsetup::
+.. testsetup:: [vto_nl1]
 
     m = 2
     n = 3
 
-.. testcode::
+.. testcode:: [vto_nl1]
 
-    from dwave.optimization import Model
+    from dwave.optimization import Model, put
 
     model = Model()
 
@@ -72,18 +72,7 @@ Taking the composition of the global permutations :math:`\pi_i` and
 features in image :math:`j`, which we can call :math:`\pi_{ij}`. Computing this
 composition involves creating inverse permutations:
 
-.. testsetup::
-
-    m = 2
-    n = 3
-
-    from dwave.optimization import Model, put
-
-    model = Model()
-
-    permutations = {i: model.list(m) for i in range(n)}
-
-.. testcode::
+.. testcode:: [vto_nl1]
 
     inv_perms = {}
 
@@ -102,28 +91,7 @@ The pairwise permutation :math:`\pi_{ij}` is then given by indexing
 
     \pi_{ij} = \pi_j^{-1}[\pi_i]
 
-.. testsetup::
-
-    m = 2
-    n = 3
-
-    from dwave.optimization import Model, put
-
-    model = Model()
-
-    permutations = {i: model.list(m) for i in range(n)}
-
-    inv_perms = {}
-
-    for i in range(n):
-        perm = permutations[i]
-        array = model.constant(m*[0])
-        indices = perm
-        values = model.constant([x for x in range(m)])
-        inv_perm = put(array, indices, values)
-        inv_perms[i] = inv_perm
-
-.. testcode::
+.. testcode:: [vto_nl1]
 
     perm_convs = {}
 
@@ -134,39 +102,13 @@ The pairwise permutation :math:`\pi_{ij}` is then given by indexing
 The objective function ensures that the entries of our stochastic matrices
 indexed by the pairwise permutaitons are as close to 1 as possible.
 
-.. testsetup::
+
+.. testcode:: [vto_nl1]
 
     import numpy as np
-    from dwave.optimization import Model, put
 
-    m = 2
-    n = 3
-
-    model = Model()
-    
     M = {(i,j): np.identity(m) for i in range(n-1) for j in range(i+1,n)}
-
-    permutations = {i: model.list(m) for i in range(n)}
-
-    inv_perms = {}
-
-    for i in range(n):
-        perm = permutations[i]
-        array = model.constant(m*[0])
-        indices = perm
-        values = model.constant([x for x in range(m)])
-        inv_perm = put(array, indices, values)
-        inv_perms[i] = inv_perm
-
-    perm_convs = {}
-
-    for i in range(n):
-        for j in range(n):
-            perm_convs[(i,j)] = inv_perms[j][permutations[i]]
-            
     model.objective = model.constant(0)
-
-.. testcode::
 
     for (i,j) in M.keys():
         for k in range(m):
@@ -202,18 +144,18 @@ stochastic matrix to be maximized where, for some label:
 
 The relevant Python code is as follows:
 
-.. testsetup::
-
-    import numpy as np
+.. testsetup:: [vto_cqm1]
 
     n = 3
     m = 4
 
-    M = {(i,j): np.zeros((m,m)) for i in range(n) for j in range(n)}
 
-.. testcode::
+.. testcode:: [vto_cqm1]
 
+    import numpy as np
     from dimod import ConstrainedQuadraticModel, Binary
+    
+    M = {(i,j): np.zeros((m,m)) for i in range(n) for j in range(n)}
 
     cqm = ConstrainedQuadraticModel()
   
