@@ -93,7 +93,7 @@ composition involves creating inverse permutations:
 
 For example, if :math:`\pi_1 = [120]`, then :math:`\pi_1^{-1} = [201]`, where
 the :math:`i^{th}` entry of :math:`\pi_1^{-1}` is the index of :math:`i` in
-:math:`\pi_i`. 
+:math:`\pi_1`. 
 
 The pairwise permutation :math:`\pi_{ij}` is then given by indexing
 :math:`\pi_j^{-1}` by :math:`\pi_i`:
@@ -123,6 +123,7 @@ indexed by the pairwise permutations are as close to 1 as possible.
 
     M_raw = {(i,j): np.random.rand(m,m) for i in range(n-1) for j in range(i+1,n)}
     M = {(i,j): v/v.sum(axis=1, keepdims=True) for (i,j), v in M_raw.items()}
+
     model.objective = model.constant(0)
 
     for (i,j) in M.keys():
@@ -169,7 +170,8 @@ The relevant Python code is as follows:
 
     import numpy as np
     from dimod import ConstrainedQuadraticModel, Binary
-    M_raw = {(i,j): np.random.rand(m,m) for i in range(n-1) for j in range(i+1, n)}
+    
+    M_raw = {(i,j): np.random.rand(m,m) for i in range(n-1) for j in range(i+1,n)}
     M = {(i,j): v/v.sum(axis=1, keepdims=True) for (i,j), v in M_raw.items()}
 
     cqm = ConstrainedQuadraticModel()
