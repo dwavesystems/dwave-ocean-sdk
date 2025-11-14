@@ -41,18 +41,25 @@ Nonlinear Model
 
 With the NL Solver, we use :meth:`~dwave.optimization.model.Model.list`
 variables to represent the global permutations, which can be viewed as mappings
-from the global labels to the features in each image. We view the state of the
+from the features in each image to the global labels. We view the state of the
 list variable as a permutation in one-line form where, for example, [210]
 represents the mapping:
 
-global label "eye" → feature 2 in the image
+.. table:: Example permutation mapping
+   :width: 60%
 
-global label "ear" → feature 1 in the image
+   +---------+-----------+
+   | Feature | Label     |
+   +=========+===========+
+   | 0       | 2 ("eye") |
+   +---------+-----------+
+   | 1       | 1 ("ear") |
+   +---------+-----------+
+   | 2       | 0 ("foot")|
+   +---------+-----------+
 
-global label "foot" → feature 0 in the image
-
-For each of the :math:`n` images, we create a global permutation of length equal to the
-number of features, :math:`m`.
+For each of the :math:`n` images, we create a global permutation of length equal
+to the number of features, :math:`m`.
 
 .. testsetup:: [vto_nl1]
 
@@ -84,6 +91,10 @@ composition involves creating inverse permutations:
         inv_perm = put(array, indices, values)
         inv_perms[i] = inv_perm
 
+For example, if :math:`\pi_1 = [120]`, then :math:`\pi_1^{-1} = [201]`, where
+the :math:`i^{th}` entry of :math:`\pi_1^{-1}` is the index of :math:`i` in
+:math:`\pi_i`. 
+
 The pairwise permutation :math:`\pi_{ij}` is then given by indexing
 :math:`\pi_j^{-1}` by :math:`\pi_i`:
 
@@ -99,15 +110,18 @@ The pairwise permutation :math:`\pi_{ij}` is then given by indexing
         for j in range(n):
             perm_convs[(i,j)] = inv_perms[j][permutations[i]]
 
+As an example, if :math:`\pi_1 = [021]` and :math:`\pi_2 = [120]`, then
+:math:`\pi_{12} = \pi_2^{-1}[\pi_1] = [201][021] = [210]`.
+
 The objective function ensures that the entries of our stochastic matrices
-indexed by the pairwise permutaitons are as close to 1 as possible.
+indexed by the pairwise permutations are as close to 1 as possible.
 
 
 .. testcode:: [vto_nl1]
 
     import numpy as np
 
-    M_raw = {(i,j): np.random.rand(m,m) for i in range(n-1) for j in range(i+1, n)}
+    M_raw = {(i,j): np.random.rand(m,m) for i in range(n-1) for j in range(i+1,n)}
     M = {(i,j): v/v.sum(axis=1, keepdims=True) for (i,j), v in M_raw.items()}
     model.objective = model.constant(0)
 
@@ -187,9 +201,10 @@ and CQM solver benchmarks were run on D-Wave's |cloud_tm|_ quantum cloud
 service. Pyomo with SCIP and the spectral algorithm were run on an AMD EPYC 9534
 64-Core Processor @ 2.45 GHz with 128 GB of memory. The error score (on a scale
 of 0 to 1) is the gap from the specified solver divided by the gap from the
-random solution. The optimal solution is taken to be the best solution found
-throughout the study, which includes a 20-minute run on the nonlinear solver
-(not shown).
+random solution. The optimal solution (used for computing the gap) is taken to
+be the best solution found throughout the study, which includes a 20-minute run
+on the nonlinear solver (not shown). The problem size is equal to the number of
+features times the number of images.
 
 :numref:`Figure %s <vignetteObjectTrackingLineplot>` shows results on the object
 tracking instances with 5, 10, and 60 seconds of runtime.
