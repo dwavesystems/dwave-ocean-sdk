@@ -84,7 +84,7 @@ This table lists the physical properties of the calibrated QPU.
         - :math:`20 \pm 1.0\ \text{mK}`
 
     *   - :math:`\rm M_{\rm AFM}`: Maximum mutual inductance for qubit pairs
-        - :math:`2.113\ \text{pH}`
+        - :math:`0.528\ \text{pH}`
 
     *   - Quantum critical point for 1D chains
         - :math:`2.308\ \text{GHz}`
@@ -189,7 +189,7 @@ This table lists the physical properties of the calibrated QPU.
         - :math:`16.7 \pm 1.0\ \text{mK}`
 
     *   - :math:`\rm M_{\rm AFM}`: Maximum mutual inductance for qubit pairs
-        - :math:`2.217\ \text{pH}`
+        - :math:`0.554\ \text{pH}`
 
     *   - Quantum critical point for 1D chains
         - :math:`1.853\ \text{GHz}`
@@ -294,7 +294,7 @@ This table lists the physical properties of the calibrated QPU.
         - :math:`18 \pm 1.0\ \text{mK}`
 
     *   - :math:`\rm M_{\rm AFM}`: Maximum mutual inductance for qubit pairs
-        - :math:`2.057\ \text{pH}`
+        - :math:`0.514\ \text{pH}`
 
     *   - Quantum critical point for 1D chains
         - :math:`2.154\ \text{GHz}`
