@@ -697,6 +697,11 @@ Bibliography
     https://1qbit.com/our-thinking/research-papers
     arXiv:1811.06999 [quant-ph]
 
+.. [Mas2017]
+    Eleonora Maset, Federica Arrigoni, and Andrea Fusiello.
+    “Practical and efficient multi-view matching.”
+    Proceedings of the IEEE International Conference on Computer Vision (2017).
+
 .. [Mni2021]
     Susan M. Mniszewski, Pavel A. Dub, Sergei Tretiak, Petr M. Anisimov,
     Yu Zhang and Christian F. A. Negre.
@@ -769,6 +774,11 @@ Bibliography
     Orus, Roman & Mugel, Samuel & Lizaso, Enrique. (2019).
     "Forecasting financial crashes with quantum computing."
     Physical Review A. 99. 10.1103/PhysRevA.99.060301
+
+.. [Pac2013]
+    Deepti Pachauri, Risi Kondor, and Vikas Singh.
+    “Solving the multi-way matching problem by permutation synchronization.”
+    Adv. in Neural Information Processing Systems, Vol. 26 (2013).
 
 .. [Pal2021]
     Samuel Palmer, Serkan Sahin, Rodrigo Hernandez, Samuel Mugel, Roman Orus

@@ -9,6 +9,7 @@ Performance Benchmarks
     :maxdepth: 1
 
     vignette_fss
+    vignette_object-tracking
     vignette_qap
     vignette_satellite
 
@@ -28,6 +29,12 @@ Nonlinear Solver
         :link-type: ref
 
         Flow-shop scheduling.
+
+    .. grid-item-card:: :ref:`opt_vignette_object-tracking`
+        :link: opt_vignette_object-tracking
+        :link-type: ref
+
+        Object tracking.
 
     .. grid-item-card:: :ref:`opt_vignette_qap`
         :link: opt_vignette_qap
