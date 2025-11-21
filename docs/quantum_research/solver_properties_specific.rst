@@ -180,10 +180,10 @@ This table lists the physical properties of the calibrated QPU.
         - :math:`\text{Z12}`
 
     *   - Number of :ref:`qubits <property_qpu_qubits>`
-        - :math:`4525`
+        - :math:`4516`
 
     *   - Number of :ref:`couplers <property_qpu_couplers>`
-        - :math:`40572`
+        - :math:`40449`
 
     *   - :ref:`Qubit temperature <qpu_errors_temperature>`
         - :math:`16.7 \pm 1.0\ \text{mK}`
