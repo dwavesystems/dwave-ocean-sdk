@@ -626,11 +626,11 @@ respectively, for this system.
     Typical quantization on the :math:`J` DAC control.
 
 
-Advantage2_research1.3
+Advantage2_research1.4
 ======================
 
 All data presented in this section are specific to the
-**Advantage2_research1.3** solver, which is based on
+**Advantage2_research1.4** solver, which is based on
 a physical lattice of qubits and couplers known as the *Zephyr*\ |tm| topology.
 For information, see the :ref:`topology_intro_zephyr` section.
 
@@ -655,10 +655,10 @@ This table lists the physical properties of the calibrated QPU.
         - :math:`\text{Z6}`
 
     *   - Number of :ref:`qubits <property_qpu_qubits>`
-        - :math:`1200`
+        - :math:`1178`
 
     *   - Number of :ref:`couplers <property_qpu_couplers>`
-        - :math:`10498`
+        - :math:`10196`
 
     *   - :ref:`Qubit temperature <qpu_errors_temperature>`
         - :math:`17.5 \pm 1.0\ \text{mK}`
@@ -719,7 +719,7 @@ Annealing Schedule
 ------------------
 
 Download the annealing schedule for the QPU here:
-:download:`Advantage2_research1.3 Excel spreadsheet <../downloadables/09-1317A-C_Advantage2_research1_3_annealing_schedule.xlsx>`.
+:download:`Advantage2_research1.4 Excel spreadsheet <../downloadables/09-1317A-D_Advantage2_research1_4_annealing_schedule.xlsx>`.
 
 The standard annealing schedule for the QPU is shown in
 :numref:`Figure %s <annealing-schedule-adv2-research-1.1>`.
