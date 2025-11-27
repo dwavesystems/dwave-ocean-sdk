@@ -10,7 +10,6 @@ Industrial Optimization
 
     index_get_started
     developing_quantum_applications
-    deploying_quantum_applications_prod
     index_properties_parameters
     index_improving_solutions
     index_vignettes
