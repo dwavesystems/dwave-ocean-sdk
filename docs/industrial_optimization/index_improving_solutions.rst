@@ -13,6 +13,7 @@ in this section.
 
     best_practices
     scaling
+    productizing_apps
     index_examples_advanced
 
 .. grid:: 2 2 3 3
@@ -28,6 +29,13 @@ in this section.
 
         Coding your application for performance on problems of the industrial
         scale.
+
+    .. grid-item-card:: :ref:`opt_productizing_quantum_apps`
+        :link: opt_productizing_quantum_apps
+        :link-type: ref
+
+        Considerations for deploying your application to a production
+        environment.
 
     .. grid-item-card:: :ref:`opt_index_examples_advanced`
         :link: opt_index_examples_advanced
