@@ -98,11 +98,11 @@ Some performance and sizing requirements to consider are the following:
 
 *   Initial desired throughput (i.e., solved problems per second).
 
-*   Latency, size, and bandwidth for hybrid solvers.
-
-*   Asynchronous processing because potentially long runtimes can be requested.
+*   Latency, size, and bandwidth for hybrid problems.
 
 *   Problem size can range from about 10 MB to greater than 1 GB.
+
+*   Asynchronous processing because potentially long runtimes can be requested.
 
 .. _quantum_apps_security:
 
@@ -133,10 +133,11 @@ Monitoring and Logging
 ======================
 
 The microservice should log metrics, including problem IDs, timestamps,
-source, and timing information. Logging as much metadata as is reasonably
-possible could help make troubleshooting easier. Also, consider investing in
-structured logging solutions, such as Elasticsearch, Datadog, Splunk, and so
-forth.
+source, and timing information. A problem ID uniquely identifies each problem
+and can be used to track your submissions and troubleshoot issues
+Logging as much metadata as is reasonably possible could help make
+troubleshooting easier. Also, consider investing in structured logging solutions,
+such as Elasticsearch, Datadog, Splunk, and so forth.
 
 Consider building a dashboard to show important metrics, such as hybrid solver
 usage, to your stakeholders.
