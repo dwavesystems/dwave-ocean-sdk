@@ -200,10 +200,19 @@ html_logo = "_static/Ocean.svg"
 html_favicon = 'https://www.dwavesys.com/favicon.ico'
 
 html_theme_options = {
-    "github_url": "https://github.com/dwavesystems/dwave-ocean-sdk",
     "footer_start": ["copyright"],
     "footer_end": ["ocean-version"],
+    "icon_links_label": "Quick Links",
     "icon_links": [
+        {
+            "name": "GitHub",
+            "url": "https://github.com/dwavesystems/dwave-ocean-sdk",
+            "icon": "fa-brands fa-square-github",
+            "type": "fontawesome",
+            "attributes": {
+                "aria-label": "github repo link",
+            },
+        },
         {
             "name": "Leap",
             "url": "https://cloud.dwavesys.com/leap/",
@@ -231,6 +240,11 @@ html_theme_options = {
         "image_light": "_static/DWave.svg",
         "image_dark": "_static/DWaveWhite.svg",
     },
+    "secondary_sidebar_items": [
+        "page-toc",
+        "page-source",
+    ],
+    "navbar_end": ["navbar-icon-links"],
 }
 html_sidebars = {
     "**": ["sidebar-nav-bs"]  # remove ads
