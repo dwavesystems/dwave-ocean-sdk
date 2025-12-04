@@ -34,8 +34,8 @@ in this section.
         :link: opt_productizing_quantum_apps
         :link-type: ref
 
-        Considerations for deploying your application to a production
-        environment.
+        Considerations and best practices for integrating your application into
+        business processes.
 
     .. grid-item-card:: :ref:`opt_index_examples_advanced`
         :link: opt_index_examples_advanced

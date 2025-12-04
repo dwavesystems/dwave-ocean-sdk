@@ -1,120 +1,120 @@
 .. _opt_productizing_quantum_apps:
 
-=========================
-Productizing Applications
-=========================
+===================================
+Integrating into Business Processes
+===================================
 
-This section provides insight into preparing and designing your quantum
-application to be successfully deployed to a production environment.
+This section provides insight into designing and preparing your hybrid
+application to be successfully integrated into a business process in a
+production environment. Hybrid applications can be easy to integrate into
+business processes, in part, because such applications typically run batch-based,
+asynchronous operations, submitting problems to and receiving solutions from
+hybrid solvers in the Leap service.
 
-Although production environments can vary widely between businesses, some common
-components and processes can be identified as shown in
-:numref:`Figure %s <QuantumAppProdArch>`. In fact, applications can be
-easy to integrate into business operations in part because applications
-typically run batch-based operations, submitting problems to and receiving
-solutions from hybrid and quantum solvers via the Leap service.
+.. _quantum_apps_pipeline:
 
-.. _quantum_apps_prod_env:
+Application Pipeline
+====================
 
-Production Environment
+A hybrid-application pipeline acts as an intermediary between an enterprise
+business process and D-Wave's compute infrastructure made available via
+the solver API (SAPI) and the Leap service. :numref:`Figure %s <HybridAppPipeline>`
+provides a high-level illustration of a hybrid-application pipeline integrated
+into an enterprise business process. Enterprise business processes can involve
+many different business systems such as enterprise-content development systems
+(e.g., Microsoft Sharepoint), database management systems, and data lakes
+(in the figure, these various business systems are represented by
+``Business System 1``, ``Business System 2``, and ``Data Storage``).
+A hybrid application receives requests from a business system and uses
+D-Wave's Python-based and open-source software development kit (SDK),
+the Ocean SDK, to submit problems via SAPI REST calls to the hybrid solvers
+in D-Wave's Leap service. The hybrid solvers return solutions and, again using
+the Ocean SDK, the hybrid application receives and returns those solutions to
+the appropriate business system.
+
+.. figure:: ../_images/hybrid_app_pipeline.png
+    :name: HybridAppPipeline
+    :alt: Hybrid-application pipeline integrated into an enterprise business process
+
+    Hybrid-application pipeline integrated into an enterprise business process.\ [#]_
+
+.. [#] QPU solvers are not shown in this figure, but the solver API is also
+    used to call them.
+
+A typical hybrid-application pipeline is as follows:
+
+#.  Authenticate and authorize your access to the Leap service via your solver API
+    token and configuration of the Ocean SDK's :ref:`dwave-cloud-client <index_cloud>`
+    package. For information, see :ref:`ocean_sapi_access_advanced`.
+
+#.  Preprocess your data, which includes handling problem and model formulation,
+    storing the formulated problem, and, optionally, retrieving additional data
+    from data sources.
+
+#.  Upload your problem to the Leap service.
+
+#.  Submit your problem to a hybrid solver.
+
+#.  Wait and poll the hybrid solver for completion of the hybrid job as well as
+    retry on solver failures. For information, see the Ocean SDK's
+    :ref:`dwave-cloud-client <index_cloud>` package.
+
+#.  Post-process the solution, which typically includes the following:
+
+    *   Unpacking the solution.
+
+    *   Interpreting and converting the solution into a form suitable for the
+        appropriate business system and users.
+
+    *   Sending notifications to business systems and users,
+    
+A real-world example of an enterprise-level hybrid-application pipeline is
+Pattison Food Group's
+`production application <https://www.dwavequantum.com/resources/application/e-comm-driver-auto-scheduling-pattison-food-group>`_,
+which uses D-Wave's hybrid solvers to optimize the weekly assignment
+of drivers' work assignments, taking into account various constraints, such as
+seniority and the required number of drivers for each shift.
+
+.. _quantum_apps_guidelines:
+
+Application Guidelines
 ======================
 
-:numref:`Figure %s <QuantumAppProdArch>` illustrates an application acting as an
-intermediary between various business systems and D-Wave's compute
-infrastructure made available via the solver API and the Leap quantum cloud
-service. To communicate with D-Wave's hybrid and quantum solvers, the
-application uses D-Wave's Python-based and open-source software development kit
-(SDK), the Ocean SDK. In this context, the Ocean SDK manages submitting problems
-to and receiving solutions from hybrid and quantum solvers via the solver API
-(SAPI) REST interface. ``Business System 1``, ``Business System 2``, and
-``Data Storage`` represent various types of business systems, such as enterprise
-content development systems (e.g., Microsoft Sharepoint), database management
-systems, and data lakes.
+An application should be capable of handling large-scale, long-running
+hybrid problems in a heterogeneous environment typical of many enterprise
+businesses.
 
-.. figure:: ../_images/productizing_apps_business_infrastructure.png
-    :name: QuantumAppProdArch
-    :alt: Quantum-application infrastructure in production
-
-    Quantum-application infrastructure in production.
-
-.. _quantum_apps_design:
-
-Application Design
-==================
-
-An application integrated with the Ocean SDK should provide the capability to
-handle large-scale, long-running hybrid jobs in a heterogeneous environment
-typical of many enterprise businesses. Within such an environment, an
-application for running hybrid jobs could be part of a pipeline for
-a business operation. For example, Pattison Food Group's
-`production application <https://www.dwavequantum.com/resources/application/e-comm-driver-auto-scheduling-pattison-food-group>`_
-uses D-Wave's hybrid solvers to optimize the weekly assignment
-of drivers' work assignments, taking into account various constraints, such as
-seniority or a minimum number of shifts per week.
-
-Specifically, an application should be able to do the following:
-
-*   Run long jobs. Hybrid problems can be configured to run
-    for a few seconds or several hours.
-
-*   Manage job requests in a reliable, industrial-grade queue,
-    such as Redis, RabbitMQ, Amazon Elasticache, SQS, Kinesis, and so forth.
-
-*   Horizontally scale queue workers to perform required preprocessing,
-    retrieve additional data from datastores, transform the problem
-    into the required format and upload it to a hybrid solver in the
-    Leap service. Using a container orchestration platform, such as Kubernetes,
-    can be key to scaling workers in a production environment. 
-
-*   Easily keep up to date with Ocean SDK releases to help ensure the
-    best performance and take advantage of new features.
-
-Microservices can be a good choice for meeting the aforementioned guidelines.
-:numref:`Figure %s <QuantumAppProdMicroserviceArch>` shows an example of a
-microservice architecture.
-
-.. figure:: ../_images/quantum_app_prod_microservice_arch.png
-    :name: QuantumAppProdMicroserviceArch
-    :alt: Microservice architecture for a quantum-application in production.
-
-    Microservice architecture for a quantum-application in production.
-
-In :numref:`Figure %s <QuantumAppProdMicroserviceArch>`, queue workers grab
-problems off a queue of incoming problems. Each worker handles the following:
-
-*   Preprocessing, which could include retrieving additional data from data
-    sources, handling problem formulation, and storing the formulated problem.
-
-*   Submitting the job and polling the hybrid solver for completion of the job.
-
-*   Post-processing, which could include unpacking the solution, sending
-    the solution to other business systems for further processing, and sending
-    notifications.
-    
 .. _quantum_apps_performance_sizing:
 
-Performance and Sizing
-======================
+Performance and Scaling
+-----------------------
 
-Some performance and sizing requirements to consider are the following:
+Some performance and scaling considerations are the following:
 
-*   Desired throughput (i.e., solved problems per second).
+*   Desired throughput (i.e., solved problems per second). Also take into
+    account concurrency limits to provision your workloads effectively.
 
-*   Latency, size, and bandwidth for hybrid problems.
+*   Internet connection latency and bandwidth.
 
-*   Problem sizes can range from about 10 MB to greater than 1 GB.
+*   Size of problems, which can range from about 10 MB to greater than 1 GB.
 
-*   Asynchronous processing because jobs can be configured with potentially long
-    runtimes.
+*   Long and asynchronous jobs; hybrid problems can be configured to run for a
+    few seconds or several hours.
+
+*   CPU and memory requirements for hardware and virtual compute: How you model
+    your problems can impact these requirements.
+
+You should also keep up to date with Ocean SDK releases to help ensure the best
+performance and take advantage of the newest features.
 
 .. _quantum_apps_security:
 
 Security
-========
+--------
 
 In addition to implementing best practices for security and access control,
 you should also consider the following best practices specific to interacting
-with the D-Wave compute infrastructure:
+with D-Wave's compute infrastructure:
 
 *   Use a minimum-permission model for allowing application access to
     sensitive data, such as personally identifiable information (PII).
@@ -122,18 +122,22 @@ with the D-Wave compute infrastructure:
 *   Ensure that access control to the application for submitting problems is
     limited to authorized users.
 
-*   Keep your Leap API token secure as follows:
+*   Rotate your solver API token on a regular basis, and change them immediately
+    before deploying to production, just in case they have been saved outside of
+    your codebase during development. In addition, ensure that your solver API
+    token is secure as follows:
 
-    *   Do not hardcode your API token into your application.
+    *   Store your solver API token in a single secure location.
+    
+    *   Do not hardcode your solver API token in your application.
 
-    *   Store your API token in a secure location and do not write it logs.
-
-    *   Generate a new API token on a regular basis. 
+    *   Do not write your solver API token to logs nor save it to your version
+        control system.
 
 .. _quantum_apps_prod_monitoring_metrics:
 
 Monitoring and Logging
-======================
+----------------------
 
 The application should log metrics, including problem IDs, timestamps,
 source, and timing information. A problem ID uniquely identifies each problem
