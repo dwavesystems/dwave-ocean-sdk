@@ -1,63 +1,64 @@
 .. _opt_productizing_quantum_apps:
 
-===================================
-Integrating into Business Processes
-===================================
+===========================================
+Integrating into Business Technology Stacks
+===========================================
 
-This section provides insight into designing and preparing your hybrid
-application to be successfully integrated into a business process in a
-production environment. Hybrid applications can be easy to integrate into
-business processes, in part, because such applications typically run batch-based,
-asynchronous operations, submitting problems to and receiving results from
-hybrid solvers in the Leap service.
+This section provides insight into designing and preparing a hybrid application
+to be successfully integrated into a business's technology stack in
+a production environment. Hybrid applications can be easy to integrate into
+a business's technology stacks, in part, because such applications typically run
+batch-based, asynchronous operations, submitting problems to and receiving
+results from hybrid solvers in the Leap service.
 
 .. _quantum_apps_pipeline:
 
 Application Pipeline
 ====================
 
-A hybrid-application pipeline acts as an intermediary between an enterprise
-business process and D-Wave's compute infrastructure made available via
-the solver API (SAPI) and the Leap service. :numref:`Figure %s <HybridAppPipeline>`
-provides a high-level illustration of a typical hybrid-application pipeline integrated
-into an enterprise business process. Enterprise business processes can involve
-many different business systems such as a user interface, enterprise-content
-development systems (e.g., Microsoft Sharepoint), database management systems,
-and data lakes. A hybrid application receives input data from various systems in
-the business technology stack and uses D-Wave's Python-based and open-source
-software development kit (SDK), the Ocean SDK, to submit problems via SAPI REST
-calls to the hybrid solvers in D-Wave's Leap service. The hybrid solvers return
-problem results and, again using the Ocean SDK, the hybrid application receives
-such results; the hybrid solver postprocesses the results and returns solutions
-to the appropriate business system.
+A hybrid-application pipeline acts as an intermediary between the systems of
+a business's technology stack and D-Wave's compute infrastructure made available
+via the solver API (SAPI) and the Leap service.
+:numref:`Figure %s <HybridAppPipeline>` provides a high-level illustration of a
+typical hybrid-application pipeline integrated into an business's technology
+stack. A business's technology stacks can involve many different business
+systems such as a user interface, enterprise-content development systems
+(e.g., Microsoft Sharepoint), database management systems, and data lakes.
+A hybrid application receives input data from various systems in the business's
+technology stack and uses D-Wave's Python-based and open-source software
+development kit (SDK), the Ocean SDK, to submit problems via SAPI REST calls to
+the hybrid solvers in D-Wave's Leap service. The hybrid solvers return problem
+results and, again using the Ocean SDK, the hybrid application receives such
+results; the hybrid solver postprocesses the results and returns solutions to
+the appropriate business systems.
 
 .. figure:: ../_images/hybrid_app_pipeline.png
     :name: HybridAppPipeline
-    :alt: Hybrid-application pipeline integrated into a business technology stack
+    :alt: Hybrid-application pipeline integrated into a business's technology stack
 
-    Hybrid-application pipeline integrated into a business technology stack.\ [#]_
+    Hybrid-application pipeline integrated into a business's technology stack.\ [#]_
 
 .. [#] QPU solvers are not shown in this figure, but the solver API is also
     used to call them.
 
 A hybrid application can orchestrate the execution of any number of problems
-for running the complex pipelines that many enterprise businesses require.
-The following process illustrates a basic, hybrid-application pipeline, which can
-be used as a model for more complex ones.
+for running the complex pipelines that many enterprise-level businesses require.
+The following process illustrates a basic, hybrid-application pipeline, which
+can be used as a model for more complex ones.
 
-#.  Authenticate and authorize your access to the Leap service via your solver API
+#.  Authenticate and authorize access to the Leap service via a solver API
     token and configuration of the Ocean SDK's :ref:`dwave-cloud-client <index_cloud>`
     package. For information, see :ref:`ocean_sapi_access_advanced`.
 
-#.  Preprocess your input data, which includes handling problem and model
+#.  Preprocess input data, which includes handling problem and model
     formulation, storing the formulated problem, and, optionally, retrieving
     additional data from data sources.
 
-#.  Upload your problem to the Leap service.
+#.  Upload the problem to the Leap service.
 
     A best practice is to separate uploading problems from submitting them.
 
-#.  Submit your problem to a hybrid solver.
+#.  Submit the problem to a hybrid solver.
 
     A best practice is to force HTTP(S) connections to close after each
     submission for long jobs on certain networks. For information, see the Ocean
@@ -89,7 +90,7 @@ Application Guidelines
 ======================
 
 An application should be capable of handling large-scale, long-running
-hybrid problems in a heterogeneous environment typical of many enterprise
+hybrid problems in a heterogeneous environment typical of many enterprise-level
 businesses.
 
 .. _quantum_apps_performance_sizing:

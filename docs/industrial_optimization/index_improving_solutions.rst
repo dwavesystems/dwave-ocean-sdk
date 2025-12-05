@@ -35,7 +35,7 @@ in this section.
         :link-type: ref
 
         Considerations and best practices for integrating your application into
-        business processes.
+        your business's technology stack.
 
     .. grid-item-card:: :ref:`opt_index_examples_advanced`
         :link: opt_index_examples_advanced
