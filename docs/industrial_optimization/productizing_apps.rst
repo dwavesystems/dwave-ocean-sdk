@@ -20,7 +20,7 @@ A hybrid-application pipeline acts as an intermediary between the systems of
 a business's technology stack and D-Wave's compute infrastructure made available
 via the solver API (SAPI) and the Leap service.
 :numref:`Figure %s <HybridAppPipeline>` provides a high-level illustration of a
-typical hybrid-application pipeline integrated with an business's technology
+typical hybrid-application pipeline integrated with a business's technology
 stack. A business's technology stacks can involve many different business
 systems such as a user interface, enterprise-content development systems
 (e.g., Microsoft Sharepoint), database management systems, and data lakes.
