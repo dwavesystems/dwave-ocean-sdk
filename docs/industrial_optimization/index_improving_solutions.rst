@@ -34,7 +34,7 @@ in this section.
         :link: opt_productizing_quantum_apps
         :link-type: ref
 
-        Considerations and best practices for integrating your application into
+        Considerations and best practices for integrating your application with
         your business's technology stack.
 
     .. grid-item-card:: :ref:`opt_index_examples_advanced`
