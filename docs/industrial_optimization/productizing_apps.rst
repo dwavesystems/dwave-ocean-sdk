@@ -1,12 +1,12 @@
 .. _opt_productizing_quantum_apps:
 
 ===========================================
-Integrating into Business Technology Stacks
+Integrating with Business Technology Stacks
 ===========================================
 
 This section provides insight into designing and preparing a hybrid application
-to be successfully integrated into a business's technology stack in
-a production environment. Hybrid applications can be easy to integrate into
+to be successfully integrated with a business's technology stack in
+a production environment. Hybrid applications can be easy to integrate with
 a business's technology stacks, in part, because such applications typically run
 batch-based, asynchronous operations, submitting problems to and receiving
 results from hybrid solvers in the Leap service.
@@ -20,7 +20,7 @@ A hybrid-application pipeline acts as an intermediary between the systems of
 a business's technology stack and D-Wave's compute infrastructure made available
 via the solver API (SAPI) and the Leap service.
 :numref:`Figure %s <HybridAppPipeline>` provides a high-level illustration of a
-typical hybrid-application pipeline integrated into an business's technology
+typical hybrid-application pipeline integrated with an business's technology
 stack. A business's technology stacks can involve many different business
 systems such as a user interface, enterprise-content development systems
 (e.g., Microsoft Sharepoint), database management systems, and data lakes.
@@ -34,9 +34,9 @@ the appropriate business systems.
 
 .. figure:: ../_images/hybrid_app_pipeline.png
     :name: HybridAppPipeline
-    :alt: Hybrid-application pipeline integrated into a business's technology stack
+    :alt: Hybrid-application pipeline integrated with a business's technology stack
 
-    Hybrid-application pipeline integrated into a business's technology stack.\ [#]_
+    Hybrid-application pipeline integrated with a business's technology stack.\ [#]_
 
 .. [#] QPU solvers are not shown in this figure, but the solver API is also
     used to call them.
