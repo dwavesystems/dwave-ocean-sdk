@@ -54,20 +54,19 @@ can be used as a model for more complex ones.
     formulation, storing the formulated problem, and, optionally, retrieving
     additional data from data sources.
 
-#.  Upload the problem to the Leap service.
-
-    A best practice is to separate uploading problems from submitting them.
-
 #.  Submit the problem to a hybrid solver.
 
-    A best practice is to force HTTP(S) connections to close after each
-    submission for long jobs on certain networks. For information, see the Ocean
-    SDK's :ref:`dwave-cloud-client <index_cloud>` package.
+    When a problem is submitted, it is also uploaded. Sometimes, for example,
+    if you want to solve it again or clearly separate uploading from solving,
+    you may want to upload it separately.
 
-#.  Wait and poll the hybrid solver for completion of the hybrid job as well as
-    retry on solver failures. For information, see the Ocean SDK's
-    :ref:`dwave-cloud-client <index_cloud>` package.
-
+#.  (Optional) Although polling the hybrid solver for completion of the hybrid
+    job is automatically performed by the Ocean SDK, you may want to implement
+    polling yourself; if you do so, ensure that you download the results
+    (i.e., the answer) via SAPI calls using the ``problem_id``.
+    
+#.  Retry on solver failures.
+    
 #.  Post-process the problem results, which typically includes the following:
 
     *   Unpacking the problem results.
