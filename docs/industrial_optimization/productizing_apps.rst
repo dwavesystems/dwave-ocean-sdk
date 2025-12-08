@@ -60,12 +60,28 @@ can be used as a model for more complex ones.
     if you want to solve it again or clearly separate uploading from solving,
     you may want to upload it separately.
 
-#.  (Optional) Although polling the hybrid solver for completion of the hybrid
-    job is automatically performed by the Ocean SDK, you may want to implement
-    polling yourself; if you do so, ensure that you download the results
-    (i.e., the answer) via SAPI calls using the ``problem_id``.
-    
-#.  Retry on solver failures.
+#.  (Optional) Although polling the hybrid solver for completion of hybrid
+    problems is automatically performed by the Ocean SDK, you may want to
+    implement polling yourself; if you do so, you must explicitly download each
+    problem's results (i.e., the answer).
+
+#.  Handle solver errors as follows:
+
+    *   You do not need to retry idempotent requests because, by default, the
+        Ocean SDK retries them.
+
+    *   You should handle the errors raised when falling back to another
+        QPU solver is recommended or required.
+
+    *   You may retry on timeouts to non-idempotent endpoints. For example, you
+        could retry a problem submission, being aware that duplicate problems
+        could be submitted.
+
+    *   It is highly recommended that you never automatically retry on
+        authentication and authorization errors as well as HTTP 5xx errors.
+        Although an exception could be made for retrying on these errors while
+        polling, you should ensure that you back off or stop retrying during
+        long solver outages.
     
 #.  Post-process the problem results, which typically includes the following:
 
