@@ -265,6 +265,8 @@ workflows:
           matrix:
             parameters:
               python-version: &python-versions ["3.10.19", "3.11.14", "3.12.12", "3.13.9", "3.14.0"]
+              # note: make sure all non-pure python ocean packages are listed below
+              # to verify binary package build is not required during ocean install
               only-binary: &binary-ocean-packages ["dimod,dwave-gate,dwave-optimization,dwave-preprocessing,dwave-samplers,minorminer"]
       - test-macos:
           name: test-macos-py<< matrix.python-version >>
