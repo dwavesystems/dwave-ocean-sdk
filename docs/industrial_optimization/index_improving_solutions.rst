@@ -30,12 +30,11 @@ in this section.
         Coding your application for performance on problems of the industrial
         scale.
 
-    .. grid-item-card:: :ref:`opt_productizing_quantum_apps`
-        :link: opt_productizing_quantum_apps
+    .. grid-item-card:: :ref:`opt_deploying_quantum_apps_prod`
+        :link: opt_deploying_quantum_apps_prod
         :link-type: ref
 
-        Considerations and best practices for integrating your application with
-        your business's technology stack.
+        Integrating your application with your business's technology stack.
 
     .. grid-item-card:: :ref:`opt_index_examples_advanced`
         :link: opt_index_examples_advanced
