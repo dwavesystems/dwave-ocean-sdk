@@ -1,27 +1,26 @@
-.. _opt_productizing_quantum_apps:
+.. _opt_deploying_quantum_apps_prod:
 
-===========================================
-Integrating with Business Technology Stacks
-===========================================
+=======================
+Deploying in Production
+=======================
 
 This section provides insight into designing and preparing a hybrid application
-to be successfully integrated with a business's technology stack in
-a production environment. Hybrid applications can be easy to integrate with
-a business's technology stacks, in part, because such applications typically run
-batch-based, asynchronous operations, submitting problems to and receiving
-results from hybrid solvers in the Leap service.
+to be successfully deployed in a production environment. Hybrid applications
+can be easy to integrate with a business's technology stack, in part, because
+such applications typically run batch-based, asynchronous operations, submitting
+problems to and receiving results from hybrid solvers in the Leap service.
 
-.. _quantum_apps_pipeline:
+.. _quantum_apps:
 
-Application Pipeline
-====================
+Application
+===========
 
-A hybrid-application pipeline acts as an intermediary between the systems of
+A hybrid application acts as an intermediary between the systems of
 a business's technology stack and D-Wave's compute infrastructure made available
 via the solver API (SAPI) and the Leap service.
 :numref:`Figure %s <HybridAppPipeline>` provides a high-level illustration of a
-typical hybrid-application pipeline integrated with a business's technology
-stack. A business's technology stacks can involve many different business
+typical hybrid application integrated with a business's technology
+stack. A business's technology stack can involve many different business
 systems such as a user interface, enterprise-content development systems
 (e.g., Microsoft Sharepoint), database management systems, and data lakes.
 A hybrid application receives input data from various systems in the business's
@@ -29,21 +28,19 @@ technology stack and uses D-Wave's Python-based and open-source software
 development kit (SDK), the Ocean SDK, to submit problems via SAPI REST calls to
 the hybrid solvers in D-Wave's Leap service. The hybrid solvers return problem
 results and, again using the Ocean SDK, the hybrid application receives such
-results; the hybrid solver postprocesses the results and returns solutions to
-the appropriate business systems.
+results; the hybrid application postprocesses the results and returns solutions
+to the appropriate business systems.
 
 .. figure:: ../_images/hybrid_app_pipeline.png
     :name: HybridAppPipeline
-    :alt: Hybrid-application pipeline integrated with a business's technology stack
+    :alt: Hybrid application integrated with a business's technology stack
 
-    Hybrid-application pipeline integrated with a business's technology stack.\ [#]_
+    Hybrid application integrated with a business's technology stack.\ [#]_
 
 .. [#] QPU solvers are not shown in this figure, but the solver API is also
     used to call them.
 
-A hybrid application can orchestrate the execution of any number of problems
-for running the complex pipelines that many enterprise-level businesses require.
-The following process illustrates a basic, hybrid-application pipeline, which
+The following process illustrates a basic, hybrid application, which
 can be used as a model for more complex ones.
 
 #.  Authenticate and authorize access to the Leap service via a solver API
@@ -92,7 +89,7 @@ can be used as a model for more complex ones.
 
     *   Sending notifications to business systems and users.
     
-A real-world example of an enterprise-level hybrid-application pipeline is
+A real-world example of an enterprise-level hybrid application is
 Pattison Food Group's
 `production application <https://www.dwavequantum.com/resources/application/e-comm-driver-auto-scheduling-pattison-food-group>`_,
 which uses D-Wave's hybrid solvers to optimize the weekly assignment
@@ -108,7 +105,7 @@ An application should be capable of handling large-scale, long-running
 hybrid problems in a heterogeneous environment typical of many enterprise-level
 businesses.
 
-.. _quantum_apps_performance_sizing:
+.. _quantum_apps_performance_scaling:
 
 Performance and Scaling
 -----------------------
@@ -158,7 +155,7 @@ with D-Wave's compute infrastructure:
     *   Do not write your solver API token to logs nor save it to your version
         control system.
 
-.. _quantum_apps_prod_monitoring_metrics:
+.. _quantum_apps_monitoring_logging:
 
 Monitoring and Logging
 ----------------------
