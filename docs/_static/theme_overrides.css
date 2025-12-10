@@ -195,8 +195,23 @@ div.sd-card-body.docutils a.reference.internal span.std {
     font-weight: 600;
 }
 
-.bd-header ul.navbar-nav>li.nav-item.current>.nav-link:before {
+.bd-header ul.navbar-nav>li.nav-item>.nav-link:hover {
+    color: var(--pst-color-primary);
+}
+
+.bd-header ul.navbar-nav>li.nav-item.current>.nav-link:before,
+.bd-header ul.navbar-nav>li.nav-item>.nav-link:hover:before {
     border-bottom: none;
+}
+
+.bd-header ul.navbar-nav>li.nav-item.dropdown>.dropdown-toggle:hover {
+    color: var(--pst-color-primary);
+    box-shadow: unset;
+}
+
+.bd-header ul.navbar-nav li a.nav-link.dropdown-item:hover {
+    text-decoration: unset;
+    color: var(--pst-color-primary);
 }
 
 .bd-header .navbar-nav>.current>.nav-link::after {
@@ -237,6 +252,15 @@ div.sd-card-body.docutils a.reference.internal span.std {
     background-color: unset;
     line-height: 1.65;
     margin-inline-end: unset;
+}
+
+html[data-theme=dark] .bd-content .sd-tab-set>label {
+    color: var(--pst-color-text-muted);
+    background-color: var(--pst-color-background);
+}
+
+.bd-content .sd-tab-set>input:not(:checked,:focus-visible)+label:hover {
+    text-decoration-line: unset;
 }
 
 .bd-content .sd-tab-set>input:checked+label {
@@ -383,6 +407,10 @@ details.sd-dropdown[open]>.sd-card-header {
 }
 
 .table thead tr, .table tbody tr:nth-child(odd) {
+    background-color: unset;
+}
+
+.table tbody tr:nth-child(2n) {
     background-color: unset;
 }
 
