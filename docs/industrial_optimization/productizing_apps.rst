@@ -12,36 +12,41 @@ problems to and receiving results from hybrid solvers in the Leap service.
 
 .. _quantum_apps:
 
-Application
-===========
+Application Integration
+=======================
 
-A hybrid application acts as an intermediary between the systems of
-a business's technology stack and D-Wave's compute infrastructure made available
-via the solver API (SAPI) and the Leap service.
+A business's technology stack is composed of various business systems such as a
+user interface, enterprise-content development systems (e.g., Microsoft
+Sharepoint), database management systems, and data lakes. A hybrid application
+communicates between the business's technology stack and D-Wave's compute
+infrastructure made available via the solver API (SAPI) and the Leap service.
 :numref:`Figure %s <HybridAppPipeline>` provides a high-level illustration of a
-typical hybrid application integrated with a business's technology
-stack. A business's technology stack can involve many different business
-systems such as a user interface, enterprise-content development systems
-(e.g., Microsoft Sharepoint), database management systems, and data lakes.
-A hybrid application receives input data from various systems in the business's
-technology stack and uses D-Wave's Python-based and open-source software
-development kit (SDK), the Ocean SDK, to submit problems via SAPI REST calls to
-the hybrid solvers in D-Wave's Leap service. The hybrid solvers return problem
-results and, again using the Ocean SDK, the hybrid application receives such
-results; the hybrid application postprocesses the results and returns solutions
-to the appropriate business systems.
+hybrid application integrated with an example of a business's technology stack.
 
 .. figure:: ../_images/hybrid_app_pipeline.png
     :name: HybridAppPipeline
-    :alt: Hybrid application integrated with a business's technology stack
+    :alt: Hybrid application integrated with an example of a business's
+        technology stack
 
-    Hybrid application integrated with a business's technology stack.\ [#]_
+    Hybrid application integrated with an example of a business's technology
+    stack.\ [#]_ A hybrid application receives input data from various systems
+    in the business's technology stack and uses D-Wave's :ref:`index_ocean_sdk`
+    to submit problems via SAPI REST calls to the hybrid solvers in D-Wave's
+    Leap service. The hybrid solvers return problem results and, again using the
+    Ocean SDK, the hybrid application receives such results; the hybrid
+    application postprocesses the results and returns solutions to the
+    appropriate business systems.
 
 .. [#] QPU solvers are not shown in this figure, but the solver API is also
     used to call them.
 
-The following process illustrates a basic, hybrid application, which
-can be used as a model for more complex ones.
+Application Implementation
+==========================
+
+A hybrid application should be capable of handling large-scale, long-running
+hybrid problems in a heterogeneous environment typical of many enterprise-level
+businesses. The following provides steps for the implementation of a basic hybrid
+application, which can be used as a model for more complex ones.
 
 #.  Authenticate and authorize access to the Leap service via a solver API
     token and configuration of the Ocean SDK's :ref:`dwave-cloud-client <index_cloud>`
@@ -67,8 +72,9 @@ can be used as a model for more complex ones.
     *   You do not need to retry idempotent requests because, by default, the
         Ocean SDK retries them.
 
-    *   You should handle the errors raised when falling back to another
-        QPU solver is recommended or required.
+    *   You should handle the ``RetryCondition`` and ``FailoverCondition``
+        exceptions that are raised when falling back to another QPU solver is
+        recommended or required.
 
     *   You may retry on timeouts to non-idempotent endpoints. For example, you
         could retry a problem submission, being aware that duplicate problems
@@ -96,19 +102,10 @@ which uses D-Wave's hybrid solvers to optimize the weekly assignment
 of drivers' work assignments, taking into account various constraints, such as
 seniority and the required number of drivers for each shift.
 
-.. _quantum_apps_guidelines:
-
-Application Guidelines
-======================
-
-An application should be capable of handling large-scale, long-running
-hybrid problems in a heterogeneous environment typical of many enterprise-level
-businesses.
-
 .. _quantum_apps_performance_scaling:
 
 Performance and Scaling
------------------------
+=======================
 
 Some performance and scaling considerations are the following:
 
@@ -131,7 +128,7 @@ performance and take advantage of the newest features.
 .. _quantum_apps_security:
 
 Security
---------
+========
 
 In addition to implementing best practices for security and access control,
 you should also consider the following best practices specific to interacting
@@ -144,7 +141,7 @@ with D-Wave's compute infrastructure:
     limited to authorized users.
 
 *   Rotate your solver API token on a regular basis, and change them immediately
-    before deploying to production, just in case they have been saved outside of
+    before deploying to production, just in case they were saved outside of
     your codebase during development. In addition, ensure that your solver API
     token is secure as follows:
 
@@ -158,14 +155,13 @@ with D-Wave's compute infrastructure:
 .. _quantum_apps_monitoring_logging:
 
 Monitoring and Logging
-----------------------
+======================
 
 The application should log metrics, including problem IDs, timestamps,
 source, and timing information. A problem ID uniquely identifies each problem
 and can be used to track your submissions and troubleshoot issues.
 Logging as much metadata as is reasonably possible could help make
-troubleshooting easier. Also, consider investing in structured logging solutions,
-such as Elasticsearch, Datadog, and Splunk.
+troubleshooting easier.
 
 Consider building a dashboard to show important metrics, such as hybrid solver
 usage, to your stakeholders.
