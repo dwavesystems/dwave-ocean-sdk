@@ -71,6 +71,7 @@ jobs:
         type: string
       only-binary:
         type: string
+        default: ""
 
     executor:
       name: windows/default
@@ -302,12 +303,15 @@ workflows:
           matrix:
             parameters:
               python-version: *python-versions
+              only-binary: *binary-ocean-packages
       - test-macos:
           matrix:
             parameters:
               python-version: *python-versions
+              only-binary: *binary-ocean-packages
       - test-windows:
           matrix:
             parameters:
               python-version: *python-versions-windows
+              only-binary: *binary-ocean-packages
       - test-doctest
