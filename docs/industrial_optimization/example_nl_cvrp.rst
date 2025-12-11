@@ -111,7 +111,7 @@ Submit the model to the selected solver.
 You can check information such as :ref:`timing <opt_leap_hybrid_timing>` in the
 returned results:
 
->>> print(results.result().timing['charge_time'])       # doctest: +SKIP
+>>> print(results.result().info['timing']['charge_time'])       # doctest: +SKIP
 10000000
 
 You can iterate through the returned samples. The code below shows up to three
