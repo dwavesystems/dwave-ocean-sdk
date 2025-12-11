@@ -257,9 +257,7 @@ workflows:
   version: 2
 
   test:
-    when:
-      not:
-        equal: [scheduled_pipeline, << pipeline.trigger_source >>]
+    when: pipeline.trigger_source != "scheduled_pipeline"
     jobs:
       - test-linux:
           name: test-linux-py<< matrix.python-version >>
@@ -296,8 +294,7 @@ workflows:
               ignore: /.*/
 
   nightly:
-    when:
-      equal: [nightly, << pipeline.schedule.name >>]
+    when: pipeline.schedule.name == "nightly"
     jobs:
       - test-linux:
           matrix:
