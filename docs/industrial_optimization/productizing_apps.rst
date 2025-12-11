@@ -62,16 +62,15 @@ which can be used as a model for more complex ones.
 
 #.  Submit the problem to a hybrid solver.
 
-#.  When a problem is submitted, it is also uploaded. Sometimes, you may want to
-    separate uploading from solving; for example, to solve it using various time
-    limits.
+#.  (Optional) Upload the problem. Submitting a problem uploads it but sometimes,
+    you may want to separate uploading from solving; for example, to solve with
+    various time limits.
 
-#.  (Optional) Although the Ocean SDK automatically polls the hybrid solver for
-    completion of hybrid problems, you may want to implement polling yourself;
-    if you do so, you must explicitly download each problem's results (i.e.,
-    the answer).
+#.  (Optional) Poll the hybrid solver for completion of submitted problems.
+    Although the Ocean SDK automatically polls, you may want to implement
+    polling yourself; if so, you must explicitly download each problem's results.
 
-#.  Handle solver errors as follows:
+#.  Handle solver errors.
 
     *   You do not need to retry idempotent requests because, by default, the
         Ocean SDK retries them.
