@@ -242,6 +242,8 @@ div.sd-card-body.docutils a.reference.internal span.std {
     padding: 1rem 1.6rem 2rem;
     background-color: var(--dwave-bg);
     box-shadow: var(--dwave-shadow-leap);
+    border-top-left-radius: 0rem;
+    border-top-right-radius: 0rem;
     border-bottom-left-radius: 1.2rem;
     border-bottom-right-radius: 1.2rem;
     border: 1px solid var(--pst-color-border);
@@ -255,6 +257,7 @@ div.sd-card-body.docutils a.reference.internal span.std {
     margin-inline-end: unset;
 }
 
+.bd-content .sd-tab-set>label,
 html[data-theme=dark] .bd-content .sd-tab-set>label {
     color: var(--pst-color-text-muted);
     background-color: var(--pst-color-background);
@@ -273,7 +276,7 @@ html[data-theme=dark] .bd-content .sd-tab-set>label {
     border-bottom: none;
     border-top-left-radius: 1.2rem;
     border-top-right-radius: 1.2rem;
-    transform: translateY(0);
+    transform: translateY(1px);
 }
 
 div.sd-tab-set {
