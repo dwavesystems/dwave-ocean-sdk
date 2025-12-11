@@ -247,7 +247,9 @@ html_theme_options = {
     "navbar_end": ["navbar-icon-links"],
 }
 html_sidebars = {
-    "**": ["sidebar-nav-bs"]  # remove ads
+    "**": ["sidebar-nav-bs"],  # remove ads
+    "licenses": [],
+    "bibliography": [],
 }
 html_static_path = ['_static']
 

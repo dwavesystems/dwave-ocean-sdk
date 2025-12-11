@@ -157,6 +157,7 @@ a.reference.external {
     color: var(--pst-color-external-link);
 }
 
+blockquote .reference.external,
 div.sd-tab-content.docutils a.reference.external span.std,
 div.sd-tab-content.docutils a.reference.internal span.std {
     color: var(--pst-color-inline-code-links);
