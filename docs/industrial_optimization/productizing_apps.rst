@@ -21,18 +21,20 @@ A business's technology stack is composed of various business systems such as a
 user interface, enterprise-content development systems (e.g., Microsoft
 Sharepoint), database management systems, and data lakes. A hybrid application
 communicates between the business's technology stack and D-Wave's compute
-infrastructure made available via the solver API (SAPI) and the Leap service.
-:numref:`Figure %s <HybridAppPipeline>` provides a high-level illustration of a
-hybrid application integrated with an example of a business's technology stack.
+infrastructure made available via the :ref:`index_ocean_sdk`, solver API
+(SAPI) and Leap service. :numref:`Figure %s <HybridAppPipeline>` provides a
+high-level illustration of a hybrid application integrated with an example of a
+business's technology stack.
 
 .. figure:: ../_images/hybrid_app_pipeline.png
     :name: HybridAppPipeline
+    :scale: 70%
     :alt: Hybrid application integrated with an example of a business's
         technology stack
 
     Hybrid application integrated with an example of a business's technology
     stack.\ [#]_ A hybrid application receives input data from various systems
-    in the business's technology stack and uses D-Wave's :ref:`index_ocean_sdk`
+    in the business's technology stack and uses D-Wave's Ocean SDK
     to submit problems via SAPI REST calls to the hybrid solvers in D-Wave's
     Leap service. The hybrid solvers return problem results and, again using the
     Ocean SDK, the hybrid application receives such results; the hybrid
@@ -45,17 +47,18 @@ hybrid application integrated with an example of a business's technology stack.
 Application Implementation
 ==========================
 
-The following provides steps for the implementation of a basic
-hybrid application, which can be used as a model for more complex ones.
+The following steps describe the implementation of a basic hybrid application,
+which can be used as a model for more complex ones.
 
 #.  Authenticate and authorize access to the Leap service via a solver API
     token and configuration of the Ocean SDK's :ref:`dwave-cloud-client <index_cloud>`
     package. For information, see :ref:`ocean_sapi_access_advanced`.
 
-#.  Preprocess input data.
+#.  Preprocess input data to transform them to meet the optimization model's
+    requirements; for example, data cleaning, validation, and reduction.
 
-#.  Handle problem and model generation, store the formulated problem, and,
-    optionally, retrieve additional data from data sources.
+#.  Generate the problem and optimization model, store the generated
+    problem, and, optionally, retrieve additional data from data sources.
 
 #.  Submit the problem to a hybrid solver.
 
@@ -159,11 +162,14 @@ D-Wave's compute infrastructure during both initial development and maintenance:
 Monitoring and Logging
 ======================
 
-The application should log metrics, including problem IDs, timestamps,
-source, and timing information. A problem ID uniquely identifies each problem
-and can be used to track your submissions and troubleshoot issues.
-Logging as much metadata as is reasonably possible could help make
-troubleshooting easier.
+The application should log metrics, including problem IDs, log-event timestamps
+and sources (e.g., modules, functions, and line numbers), and timing information
+(e.g., request and response timing, data upload, and time-to-solution
+for problems).
+
+A problem ID uniquely identifies each problem and can be used to track your
+submissions and troubleshoot issues. Logging as much metadata as is reasonably
+possible could help make troubleshooting easier.
 
 Consider building a dashboard to show important metrics, such as hybrid solver
 usage, to your stakeholders.
