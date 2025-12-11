@@ -4,16 +4,18 @@
 Deploying in Production
 =======================
 
-This section provides insight into designing and preparing a hybrid application
-to be successfully deployed in a production environment. Hybrid applications
-can be easy to integrate with a business's technology stack, in part, because
-such applications typically run batch-based, asynchronous operations, submitting
-problems to and receiving results from hybrid solvers in the Leap service.
+This section provides guidelines for successfully deploying a hybrid application
+in your company's production environment.
 
-.. _quantum_apps:
+Hybrid applications can be easy to integrate with a business's technology stack
+because such applications typically run batch-based, asynchronous operations,
+submitting problems to and receiving results from hybrid solvers in the Leap
+service.
 
-Application Integration
-=======================
+.. _quantum_apps_prod_env:
+
+Typical Production Environment
+==============================
 
 A business's technology stack is composed of various business systems such as a
 user interface, enterprise-content development systems (e.g., Microsoft
@@ -43,38 +45,33 @@ hybrid application integrated with an example of a business's technology stack.
 Application Implementation
 ==========================
 
-A hybrid application should be capable of handling large-scale, long-running
-hybrid problems in a heterogeneous environment typical of many enterprise-level
-businesses. The following provides steps for the implementation of a basic hybrid
-application, which can be used as a model for more complex ones.
+The following provides steps for the implementation of a basic
+hybrid application, which can be used as a model for more complex ones.
 
 #.  Authenticate and authorize access to the Leap service via a solver API
     token and configuration of the Ocean SDK's :ref:`dwave-cloud-client <index_cloud>`
     package. For information, see :ref:`ocean_sapi_access_advanced`.
 
-#.  Preprocess input data, which includes handling problem and model
-    formulation, storing the formulated problem, and, optionally, retrieving
-    additional data from data sources.
+#.  Preprocess input data.
+
+#.  Handle problem and model generation, store the formulated problem, and,
+    optionally, retrieve additional data from data sources.
 
 #.  Submit the problem to a hybrid solver.
 
-    When a problem is submitted, it is also uploaded. Sometimes, for example,
-    if you want to solve it again or clearly separate uploading from solving,
-    you may want to upload it separately.
+#.  When a problem is submitted, it is also uploaded. Sometimes, you may want to
+    separate uploading from solving; for example, to solve it using various time
+    limits.
 
-#.  (Optional) Although polling the hybrid solver for completion of hybrid
-    problems is automatically performed by the Ocean SDK, you may want to
-    implement polling yourself; if you do so, you must explicitly download each
-    problem's results (i.e., the answer).
+#.  (Optional) Although the Ocean SDK automatically polls the hybrid solver for
+    completion of hybrid problems, you may want to implement polling yourself;
+    if you do so, you must explicitly download each problem's results (i.e.,
+    the answer).
 
 #.  Handle solver errors as follows:
 
     *   You do not need to retry idempotent requests because, by default, the
         Ocean SDK retries them.
-
-    *   You should handle the ``RetryCondition`` and ``FailoverCondition``
-        exceptions that are raised when falling back to another QPU solver is
-        recommended or required.
 
     *   You may retry on timeouts to non-idempotent endpoints. For example, you
         could retry a problem submission, being aware that duplicate problems
@@ -84,7 +81,7 @@ application, which can be used as a model for more complex ones.
         authentication and authorization errors as well as HTTP 5xx errors.
         Although an exception could be made for retrying on these errors while
         polling, you should ensure that you back off or stop retrying during
-        long solver outages.
+        long solver outages, such as scheduled maintenance.
     
 #.  Post-process the problem results, which typically includes the following:
 
@@ -94,20 +91,23 @@ application, which can be used as a model for more complex ones.
         the appropriate business system and users.
 
     *   Sending notifications to business systems and users.
-    
+
 A real-world example of an enterprise-level hybrid application is
 Pattison Food Group's
 `production application <https://www.dwavequantum.com/resources/application/e-comm-driver-auto-scheduling-pattison-food-group>`_,
 which uses D-Wave's hybrid solvers to optimize the weekly assignment
 of drivers' work assignments, taking into account various constraints, such as
-seniority and the required number of drivers for each shift.
+drivers' seniority and the required number of drivers for each shift.
 
 .. _quantum_apps_performance_scaling:
 
 Performance and Scaling
 =======================
 
-Some performance and scaling considerations are the following:
+A hybrid application should be capable of handling large-scale, long-running
+hybrid problems. To do so, ensure that the hardware and its configuration in
+your production environment enables your application to perform and scale as
+needed by considering the following:
 
 *   Desired throughput (i.e., solved problems per second). Also take into
     account concurrency limits to provision your workloads effectively.
@@ -122,8 +122,10 @@ Some performance and scaling considerations are the following:
 *   CPU and memory requirements for hardware and virtual compute: How you model
     your problems can impact these requirements.
 
-You should also keep up to date with Ocean SDK releases to help ensure the best
-performance and take advantage of the newest features.
+You should also maintain your application's code as follows:
+
+*   Keep up to date with Ocean SDK releases to help ensure the best performance
+    and take advantage of the newest features.
 
 .. _quantum_apps_security:
 
@@ -131,8 +133,8 @@ Security
 ========
 
 In addition to implementing best practices for security and access control,
-you should also consider the following best practices specific to interacting
-with D-Wave's compute infrastructure:
+you should consider the following best practices specific to interacting with
+D-Wave's compute infrastructure during both initial development and maintenance:
 
 *   Use a minimum-permission model for allowing application access to
     sensitive data, such as personally identifiable information (PII).
@@ -140,13 +142,13 @@ with D-Wave's compute infrastructure:
 *   Ensure that access control to the application for submitting problems is
     limited to authorized users.
 
-*   Rotate your solver API token on a regular basis, and change them immediately
-    before deploying to production, just in case they were saved outside of
-    your codebase during development. In addition, ensure that your solver API
-    token is secure as follows:
+*   Rotate your solver API token on a regular basis, and change it immediately
+    before deploying to production, just in case it was saved outside of your
+    codebase during development. In addition, ensure that your solver API token
+    is secure as follows:
 
     *   Store your solver API token in a single secure location.
-    
+
     *   Do not hardcode your solver API token in your application.
 
     *   Do not write your solver API token to logs nor save it to your version
