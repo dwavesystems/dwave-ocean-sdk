@@ -684,7 +684,7 @@ The following rules apply to the set of gain points provided:
 *   The steepest slope of any curve segment,
     :math:`\frac{g_i - g_{i-1}}{t_i - t_{i-1}}`, must be within the bounds
     supported by the selected QPU.\ [#]_  Note that the I/O system that delivers
-    the :ref:`parameter_qpu_h`-controlling waveform---the :math:`\Phi^x_i(s)`
+    the :ref:`parameter_qpu_h`-controlling waveform---the :math:`\Phi^x(s)`
     term of equation :math:numref:`qpu_equation_rfsquid_hamiltonian` in the
     :ref:`qpu_annealing` section---to a QPU limits bandwidth using a low-pass
     filter with a cutoff frequency of 3 MHz for |dwave_5kq| systems and 30 MHz
