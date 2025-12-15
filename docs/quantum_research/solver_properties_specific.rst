@@ -46,10 +46,10 @@ This information includes:
         access to all QPUs in the Leap service.
 
 
-Advantage2_system1.9
+Advantage2_system1.10
 ====================
 
-All data presented in this section are specific to the **Advantage2_system1.9**
+All data presented in this section are specific to the **Advantage2_system1.10**
 solver. The |adv2_tm| system QPU is based on a physical lattice of qubits and
 couplers known as the *Zephyr*\ |tm| topology. For information, see the
 :ref:`topology_intro_zephyr` section.
@@ -75,7 +75,7 @@ This table lists the physical properties of the calibrated QPU.
         - :math:`\text{Z12}`
 
     *   - Number of :ref:`qubits <property_qpu_qubits>`
-        - :math:`4590`
+        - :math:`4589`
 
     *   - Number of :ref:`couplers <property_qpu_couplers>`
         - :math:`41748`
@@ -139,7 +139,7 @@ Annealing Schedule
 ------------------
 
 Download the annealing schedule for the QPU here:
-:download:`Advantage2_system1.9 Excel spreadsheet <../downloadables/09-1312A-I_Advantage2_system1_9_annealing_schedule.xlsx>`.
+:download:`Advantage2_system1.10 Excel spreadsheet <../downloadables/09-1312A-J_Advantage2_system1_10_annealing_schedule.xlsx>`.
 
 The standard annealing schedule for the QPU is shown in
 :numref:`Figure %s <annealing-schedule-adv2-1.1>`.
