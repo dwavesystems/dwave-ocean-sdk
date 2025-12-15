@@ -22,7 +22,7 @@ user interface, enterprise-content development systems (e.g., Microsoft
 Sharepoint), database management systems, and data lakes. A hybrid application
 communicates between the business's technology stack and D-Wave's compute
 infrastructure made available via the :ref:`index_ocean_sdk`, solver API
-(SAPI) and Leap service. :numref:`Figure %s <HybridAppPipeline>` provides a
+(SAPI), and Leap service. :numref:`Figure %s <HybridAppPipeline>` provides a
 high-level illustration of a hybrid application integrated with an example of a
 business's technology stack.
 
@@ -47,8 +47,8 @@ business's technology stack.
 Application Implementation
 ==========================
 
-The following steps describe the implementation of a basic hybrid application,
-which can be used as a model for more complex ones.
+The following describes the typical operations of a hybrid application in
+a production environment, some of which can be complex.
 
 #.  Authenticate and authorize access to the Leap service via a solver API
     token and configuration of the Ocean SDK's :ref:`dwave-cloud-client <index_cloud>`
@@ -134,12 +134,12 @@ You should also maintain your application's code as follows:
 Security
 ========
 
-In addition to implementing best practices for security and access control,
-you should consider the following best practices specific to interacting with
-D-Wave's compute infrastructure during both initial development and maintenance:
+Consider the following examples of security best practices both generally and
+specific to interacting with D-Wave's compute infrastructure during initial
+development and maintenance.
 
-*   Use a minimum-permission model for allowing application access to
-    sensitive data, such as personally identifiable information (PII).
+*   Grant your application only the minimal required access to sensitive data,
+    such as personally identifiable information (PII).
 
 *   Ensure that access control to the application for submitting problems is
     limited to authorized users.
