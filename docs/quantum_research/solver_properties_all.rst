@@ -7,6 +7,9 @@ General QPU Solver Properties
 .. |anneal_time_display_granularity| replace:: with a resolution of 0.01
     :math:`\mu s`
 
+.. |research_property_note| replace:: This property supports experimental
+    research. Not all accounts have access to research QPU solvers.
+
 This section describes the properties in common to all :term:`QPU` solvers and
 shows how you can query their values through :term:`SAPI`; for properties
 specific to the hardware of a particular QPU, see the
@@ -787,19 +790,12 @@ The topology seen in this example is a P16 Pegasus graph. See the
 {'type': 'pegasus', 'shape': [16]}
 
 
-Experimental Research Features
-==============================
-
-Some QPU solvers support experimental research features, such as
-multicolor annealing.
-
-.. note::
-    Not all accounts have access to this type of QPU solver.
-
 .. _property_qpu_get_fast_reverse_anneal_exp_feature_info:
 
 x_get_fast_reverse_anneal_exp_feature_info
-------------------------------------------
+==========================================
+
+.. note:: |research_property_note|
 
 Returns information about supported parameters for fast reverse anneal.
 
@@ -851,7 +847,9 @@ and the range for the target normalized control bias :math:`c(s)` for a QPU.
 .. _property_qpu_get_multicolor_annealing_exp_feature_info:
 
 x_get_multicolor_annealing_exp_feature_info
--------------------------------------------
+===========================================
+
+.. note:: |research_property_note|
 
 Returns information about per-line anneal schedules, such as the subset of
 the QPU's qubits indexed to each line, supported minimum time steps, and ranges
@@ -969,7 +967,7 @@ Example
 
 This example prints the first 5 qubits on annealing line 0.
 
-1. Using the :func:`~dwave.experimental.multicolor_anneal.api.get_properties`
+1.  Using the :func:`~dwave.experimental.multicolor_anneal.api.get_properties`
     function (recommended)
 
     >>> from dwave.experimental import multicolor_anneal as mca
@@ -977,7 +975,7 @@ This example prints the first 5 qubits on annealing line 0.
     >>> print(exp_feature_info[0]['qubits'][:5])   # doctest: +SKIP
     [2, 5, 6, 9, 14]
 
-2. Directly using the :ref:`property_qpu_get_multicolor_annealing_exp_feature_info`
+2.  Directly using the :ref:`property_qpu_get_multicolor_annealing_exp_feature_info`
     parameter.
 
     >>> from dwave.cloud.client import Client
@@ -989,18 +987,3 @@ This example prints the first 5 qubits on annealing line 0.
     ...     exp_feature_info = result['x_get_multicolor_annealing_exp_feature_info']
     >>> print(exp_feature_info[0]['qubits'][:5])   # doctest: +SKIP
     [2, 5, 6, 9, 14]
-
-``dwave-experimental`` Utilities
---------------------------------
-
-.. currentmodule:: dwave.experimental.multicolor_anneal.api
-
-.. autofunction:: get_properties
-
-.. currentmodule:: dwave.experimental.fast_reverse_anneal.api
-
-.. autofunction:: get_parameters
-
-
-
-
