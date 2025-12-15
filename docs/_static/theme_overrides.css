@@ -277,7 +277,7 @@ html[data-theme=dark] .bd-content .sd-tab-set>label {
     border-bottom: none;
     border-top-left-radius: 1.2rem;
     border-top-right-radius: 1.2rem;
-    transform: translateY(0px);
+    transform: unset;
 }
 
 div.sd-tab-set {
