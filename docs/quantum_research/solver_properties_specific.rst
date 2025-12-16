@@ -47,7 +47,7 @@ This information includes:
 
 
 Advantage2_system1.10
-====================
+=====================
 
 All data presented in this section are specific to the **Advantage2_system1.10**
 solver. The |adv2_tm| system QPU is based on a physical lattice of qubits and
