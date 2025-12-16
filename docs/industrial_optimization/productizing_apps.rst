@@ -44,8 +44,8 @@ business's technology stack.
 .. [#] QPU solvers are not shown in this figure, but the solver API is also
     used to call them.
 
-Application Implementation
-==========================
+Application Operation
+=====================
 
 The following describes the typical operations of a hybrid application in
 a production environment, some of which can be complex.
@@ -54,8 +54,8 @@ a production environment, some of which can be complex.
     token and configuration of the Ocean SDK's :ref:`dwave-cloud-client <index_cloud>`
     package. For information, see :ref:`ocean_sapi_access_advanced`.
 
-#.  Preprocess input data to transform them to meet the optimization model's
-    requirements; for example, data cleaning, validation, and reduction.
+#.  Preprocess input data; for example, loading, cleaning, filtering, and
+    transforming raw data into inputs to the optimization model.
 
 #.  Generate the problem and optimization model, store the generated
     problem, and, optionally, retrieve additional data from data sources.
@@ -86,8 +86,6 @@ a production environment, some of which can be complex.
         long solver outages, such as scheduled maintenance.
     
 #.  Post-process the problem results, which typically includes the following:
-
-    *   Unpacking the problem results.
 
     *   Interpreting and converting the problem results into a form suitable for
         the appropriate business system and users.
