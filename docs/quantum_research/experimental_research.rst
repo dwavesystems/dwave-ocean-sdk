@@ -4,13 +4,13 @@
 Experimental Research
 =====================
 
-Some QPU solvers support experimental research features, such as
-multicolor annealing.
+Some QPU solvers in the |cloud|_ service support experimental features used for
+advanced research, described in this section.
 
 .. note::
-    Not all accounts have access to this type of QPU solver.
+    Not all accounts have access to such research quantum computers.
 
-.. _research_enablement_fast_reverse_annealing:
+.. _qpu_experimental_research_fast_reverse_annealing:
 
 Fast Reverse Annealing
 ======================
@@ -139,13 +139,10 @@ account has access to, ensure the following:
 
 You can select a QPU and verify the selection as follows.
 
-.. testcode::
-
-    from dwave.system import DWaveSampler
-
-    qpu = DWaveSampler(solver="Advantage2_research1.4")
-
->>> print(qpu.solver.name)        # doctest: +SKIP
+>>> from dwave.system import DWaveSampler
+...
+>>> qpu = DWaveSampler(solver="Advantage2_research1.4")     # doctest: +SKIP
+>>> print(qpu.solver.name)                                  # doctest: +SKIP
 Advantage2_research1.4
 
 Embed the FM Ring
@@ -167,7 +164,7 @@ with chain length of 1, as shown in this example's output.
         h={q: 0 for q in embedding.values()},  # For fast annealing, linear coefficients must be zero
         J={(embedding[v1], embedding[v2]): -1 for v1, v2 in edges})  # FM (J = -1) coupling
 
->>> print(embedding)    # doctest: +SKIP
+>>> print(embedding)                                        # doctest: +SKIP
 {0: 718, 1: 719, 2: 552, 3: 713}
 
 Calibration Refinement
@@ -216,7 +213,7 @@ contribute to its Ocean software.
 
     x_target_c_updates = np.arange(0.2, 0.22, 0.001)
 
-    flux_biases, _, _ = shim_flux_biases(
+    flux_biases, _, _ = shim_flux_biases(                   # doctest: +SKIP
         bqm=bqm_shim,
         sampler=qpu,
         sampling_params=sampler_params,
@@ -247,7 +244,7 @@ The code below runs the experiment.
 
 .. testcode::
 
-    from tqdm import tqdm
+    from tqdm import tqdm                                   # doctest: +SKIP
 
     c_target_range = np.arange(0.2, 0.4, 0.0005)
     num_samples = sampler_params['num_reads'] * num_qubits
@@ -255,7 +252,7 @@ The code below runs the experiment.
 
     pro_up = []
     pro_down = []
-    for target_c in tqdm(c_target_range):
+    for target_c in tqdm(c_target_range):                   # doctest: +SKIP
 
         sampler_params['x_target_c'] = target_c
 
@@ -290,6 +287,7 @@ below to plot outputs ``flux_biases, flux_bias_history, mag_history`` of the
 ``shim_flux_biases()`` function used above.
 
 .. testcode::
+    :skipif: True
 
     import matplotlib.pyplot as plt
 
@@ -318,6 +316,7 @@ below to plot outputs ``flux_biases, flux_bias_history, mag_history`` of the
 To view the experiment results, you can use code such as the following.
 
 .. testcode::
+    :skipif: True
 
     plt.plot(c_target_range, pro_up, label='All Up')
     plt.plot(c_target_range, pro_down, label='All Down')
@@ -329,7 +328,7 @@ To view the experiment results, you can use code such as the following.
     plt.show()
 
 
-.. _research_enablement_multicolor_annealing:
+.. _qpu_experimental_research_multicolor_annealing:
 
 Multicolor Annealing
 ====================
@@ -505,13 +504,10 @@ account has access to, ensure the following:
 
 You can select a QPU and verify the selection as follows.
 
-.. testcode::
-
-    from dwave.system import DWaveSampler, FixedEmbeddingComposite
-
-    qpu = DWaveSampler(solver="Advantage2_research1.4")
-
->>> print(qpu.solver.name)        # doctest: +SKIP
+>>> from dwave.system import DWaveSampler, FixedEmbeddingComposite
+...
+>>> qpu = DWaveSampler(solver="Advantage2_research1.4")     # doctest: +SKIP
+>>> print(qpu.solver.name)                                  # doctest: +SKIP
 Advantage2_research1.4
 
 Obtain Multicolor-Anneal Information
@@ -529,6 +525,7 @@ needed to use multicolor annealing on your selected QPU, either through the
 1. Use the ``get_properties`` function (recommended)
 
 .. testcode::
+    :skipif: True
 
     from dwave.experimental import multicolor_anneal as mca
 
@@ -536,7 +533,7 @@ needed to use multicolor annealing on your selected QPU, either through the
 
     num_anneal_lines = len(exp_feature_info)
 
->>> print(f"QPU {qpu.solver.name} has {num_anneal_lines} annealing lines.")
+>>> print(f"QPU {qpu.solver.name} has {num_anneal_lines} annealing lines.") # doctest: +SKIP
 QPU Advantage2_research1.4 has 6 annealing lines.
 
 
@@ -544,6 +541,7 @@ QPU Advantage2_research1.4 has 6 annealing lines.
 :ref:`property_qpu_get_multicolor_annealing_exp_feature_info` property directly.
 
 .. testcode::
+    :skipif: True
 
     computation = qpu.solver.sample_ising({qpu.nodelist[0]:0},
                                       {},
@@ -555,7 +553,7 @@ QPU Advantage2_research1.4 has 6 annealing lines.
 
     num_anneal_lines = len(exp_feature_info)
 
->>> print(f"QPU {qpu.solver.name} has {num_anneal_lines} annealing lines.")
+>>> print(f"QPU {qpu.solver.name} has {num_anneal_lines} annealing lines.") # doctest: +SKIP
 QPU Advantage2_research1.4 has 6 annealing lines.
 
 Embed the Experiment Qubits
@@ -576,6 +574,7 @@ See the `multicolor annealing example <https://github.com/dwavesystems/dwave-exp
 in the ``dwave-experimental`` repository.
 
 .. testcode::
+    :skipif: True
 
     import random
 
@@ -612,7 +611,7 @@ in the ``dwave-experimental`` repository.
     sampler = FixedEmbeddingComposite(qpu, embedding=embedding)
 
 >>> print(f"""Target qubit {Q_target} on line {line_target}\nSource qubit {Q_source} \
-    on line {line_source}\nDetector qubit {Q_detector} on line {line_detector}""")
+    on line {line_source}\nDetector qubit {Q_detector} on line {line_detector}""") # doctest: +SKIP
 Target qubit 365 on line 0
 Source qubit 370 on line 1
 Detector qubit 371 on line 2
@@ -642,6 +641,7 @@ Next, retrieve the maximum and minimum values you can use in creating an anneal
 schedule for the selected QPU.
 
 .. testcode::
+    :skipif: True
 
     Q_target_max_c = exp_feature_info[line_target]['maxC']
     Q_target_min_c = exp_feature_info[line_target]['minC']
@@ -654,7 +654,7 @@ schedule for the selected QPU.
 
     min_time_step = exp_feature_info[0]["minTimeStep"]
 
->>> print(f"Minimum time step is {min_time_step} µs")
+>>> print(f"Minimum time step is {min_time_step} µs")           # doctest: +SKIP
 Minimum time step is 0.01 µs
 
 Set Schedules
@@ -685,6 +685,7 @@ qubit's state by quenching the detector qubit.
 :numref:`Figure %s <mca3QubitSchedules>` shows these schedules.
 
 .. testcode::
+    :skipif: True
 
     import numpy as np
 
@@ -739,6 +740,7 @@ and shows a Larmor precession that corresponds to the chosen transverse energy,
 :math:`A(c)`, of the anneal for the target qubit.
 
 .. testcode::
+    :skipif: True
 
     from tqdm import tqdm
     import dimod
@@ -783,6 +785,9 @@ The following code can be used to visualize results. The code requires that
 To view schedules, you can use code such as the following.
 
 .. testcode::
+    :skipif: True
+
+    import matplotlib.pyplot as plt
 
     def plot_anneal_3q(anneal_pwl, fb_pwl, title):
 
@@ -811,6 +816,7 @@ To view schedules, you can use code such as the following.
 To view the experiment results, you can use code such as the following.
 
 .. testcode::
+    :skipif: True
 
     plt.plot(delay_sweep, res_plus, '.-', label='Spin Population')
     plt.xlabel("Delay [$\mu s$]")
@@ -820,16 +826,39 @@ To view the experiment results, you can use code such as the following.
     plt.title("Experiment Results")
     plt.show()
 
+.. _qpu_experimental_research_utilities:
 
 ``dwave-experimental`` Utilities
 ================================
 
+The `dwave-experimental <https://github.com/dwavesystems/dwave-experimental>`_
+repository provides Ocean utilities to support advanced QPU prototype features.
+It also contains useful code examples.
+
 .. currentmodule:: dwave.experimental.fast_reverse_anneal.api
 
+.. autofunction:: get_solver_name
+
+Fast Reverse Annealing
+----------------------
+
 .. autofunction:: get_parameters
+
+.. automodule:: dwave.experimental.fast_reverse_anneal.schedule
+    :members:
+
+Multicolor Annealing
+--------------------
 
 .. currentmodule:: dwave.experimental.multicolor_anneal.api
 
 .. autofunction:: get_properties
 
-.. autofunction:: get_solver_name
+
+Shimming
+--------
+
+.. currentmodule:: dwave.experimental.shimming
+
+.. automodule:: dwave.experimental.shimming.flux_biases
+    :members:

@@ -7,8 +7,16 @@ General QPU Solver Properties
 .. |anneal_time_display_granularity| replace:: with a resolution of 0.01
     :math:`\mu s`
 
-.. |research_property_note| replace:: This property supports experimental
-    research. Not all accounts have access to research QPU solvers.
+.. |research_property_note1| replace:: This property supports an advanced
+    annealing feature used in
+    :ref:`experimental research <qpu_experimental_research>` on designated
+    research QPUs. Not all accounts have access to such research quantum
+    computers.
+
+.. |research_property_note2| replace:: Also not that this is a parameter that
+    functions as a property. For convenience, you can instead use the
+    utility functions described in the
+    :ref:`qpu_experimental_research_utilities` section.
 
 This section describes the properties in common to all :term:`QPU` solvers and
 shows how you can query their values through :term:`SAPI`; for properties
@@ -795,14 +803,11 @@ The topology seen in this example is a P16 Pegasus graph. See the
 x_get_fast_reverse_anneal_exp_feature_info
 ==========================================
 
-.. note:: |research_property_note|
-
 Returns information about supported parameters for fast reverse anneal.
 
-.. note:: This parameter functions in place of a property. For convenience, you
-    can instead use the
-    `dwave-experimental <https://github.com/dwavesystems/dwave-experimental>`_
-    :func:`~dwave.experimental.fast_reverse_anneal.api.get_parameters` function.
+.. note:: |research_property_note1|
+
+    |research_property_note2|
 
 Submit a placeholder problem with this parameter set to True to return the
 information, as a Python list with a dict for each of the QPU's anneal lines,
@@ -824,9 +829,9 @@ and the range for the target normalized control bias :math:`c(s)` for a QPU.
     >>> with DWaveSampler(solver="Advantage2_research1.4") as sampler:  # doctest: +SKIP
     ...     param_info = fra.get_parameters(sampler)
 
-    >>> print(param_info["x_nominal_pause_time"]["limits"])  # doctest: +SKIP
+    >>> print(param_info["x_nominal_pause_time"]["limits"])     # doctest: +SKIP
     {'set': [0.0, 0.01, 0.02, 0.03, 0.04, 0.05]}
-    >>> print(param_info["x_target_c"]["limits"])   # doctest: +SKIP
+    >>> print(param_info["x_target_c"]["limits"])               # doctest: +SKIP
     {'rang
 
 2.  Directly using the :ref:`property_qpu_get_fast_reverse_anneal_exp_feature_info`
@@ -834,13 +839,13 @@ and the range for the target normalized control bias :math:`c(s)` for a QPU.
 
     >>> from dwave.cloud.client import Client
     ...
-    >>> with Client.from_config() as client:  # doctest: +SKIP
+    >>> with Client.from_config() as client:                    # doctest: +SKIP
     ...     solver = client.get_solver(name="Advantage2_research1.4")
     ...     computation = solver.sample_ising(
     ...         {1:0}, {}, num_reads=1, x_get_fast_reverse_anneal_exp_feature_info=True)
             result = computation.result()
             exp_feature_info = result['x_get_fast_reverse_anneal_exp_feature_info']
-    >>> print(exp_feature_info)   # doctest: +SKIP
+    >>> print(exp_feature_info)                                 # doctest: +SKIP
     ['fastReverseAnnealNominalPauseTimeValues', [0.0, 0.01, 0.02, 0.03, 0.04, 0.05], 'fastReverseAnnealTargetCRange', [0, 1]]
 
 
@@ -849,16 +854,13 @@ and the range for the target normalized control bias :math:`c(s)` for a QPU.
 x_get_multicolor_annealing_exp_feature_info
 ===========================================
 
-.. note:: |research_property_note|
-
 Returns information about per-line anneal schedules, such as the subset of
 the QPU's qubits indexed to each line, supported minimum time steps, and ranges
 of normalized control bias, :math:`c(s)`, etc.
 
-.. note:: This parameter functions in place of a property. For convenience, you
-    can instead use the
-    `dwave-experimental <https://github.com/dwavesystems/dwave-experimental>`_
-    :func:`~dwave.experimental.multicolor_anneal.api.get_properties` function.
+.. note:: |research_property_note1|
+
+    |research_property_note2|
 
 Submit a placeholder problem with this parameter set to True to return the
 information, as a Python list with a dict for each of the QPU's anneal lines,
@@ -971,19 +973,19 @@ This example prints the first 5 qubits on annealing line 0.
     function (recommended)
 
     >>> from dwave.experimental import multicolor_anneal as mca
-    >>> exp_feature_info = mca.get_properties()    # doctest: +SKIP
-    >>> print(exp_feature_info[0]['qubits'][:5])   # doctest: +SKIP
+    >>> exp_feature_info = mca.get_properties()         # doctest: +SKIP
+    >>> print(exp_feature_info[0]['qubits'][:5])        # doctest: +SKIP
     [2, 5, 6, 9, 14]
 
 2.  Directly using the :ref:`property_qpu_get_multicolor_annealing_exp_feature_info`
     parameter.
 
     >>> from dwave.cloud.client import Client
-    >>> with Client.from_config() as client:    # doctest: +SKIP
+    >>> with Client.from_config() as client:            # doctest: +SKIP
     ...     solver = client.get_solver(name="Advantage2_research1.4")
     ...     computation = solver.sample_ising(
     ...         {1:0}, {}, num_reads=1, x_get_multicolor_annealing_exp_feature_info=True)
     ...     result = computation.result()
     ...     exp_feature_info = result['x_get_multicolor_annealing_exp_feature_info']
-    >>> print(exp_feature_info[0]['qubits'][:5])   # doctest: +SKIP
+    >>> print(exp_feature_info[0]['qubits'][:5])        # doctest: +SKIP
     [2, 5, 6, 9, 14]
