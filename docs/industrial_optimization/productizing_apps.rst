@@ -41,9 +41,6 @@ business's technology stack.
     application postprocesses the results and returns solutions to the
     appropriate business systems.
 
-.. [#] QPU solvers are not shown in this figure, but the solver API is also
-    used to call them.
-
 Application Operation
 =====================
 
@@ -110,7 +107,8 @@ your production environment enables your application to perform and scale as
 needed by considering the following:
 
 *   Desired throughput (i.e., solved problems per second). Also take into
-    account concurrency limits to provision your workloads effectively.
+    account the your Leap project's concurrency limit (the default is 2) to
+    provision your workloads effectively.
 
 *   Internet connection latency and bandwidth.
 
