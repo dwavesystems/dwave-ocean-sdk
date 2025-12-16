@@ -79,7 +79,8 @@ To submit a fast-reverse-annealing problem to the QPU, set the experimental
 :ref:`parameter_qpu_target_c` and :ref:`parameter_qpu_nominal_pause_time`
 parameters. Use the
 `dwave-experimental <https://github.com/dwavesystems/dwave-experimental>`_
-``get_parameters`` function (you can also directly use the
+:func:`~dwave.experimental.fast_reverse_anneal.api.get_parameters` function
+(you can also directly use the
 :ref:`property_qpu_get_fast_reverse_anneal_exp_feature_info` parameter) to view
 supported values for the feature parameters.
 
@@ -153,7 +154,8 @@ Create a FM ring of four qubits and find a
 with chain length of 1, as shown in this example's output.
 
 .. testcode::
-
+    :skipif: True
+    
     import dimod
     from minorminer.subgraph import find_subgraph
 
@@ -192,6 +194,7 @@ techniques. The team at D-Wave will appreciate any techniques you wish to
 contribute to its Ocean software.
 
 .. testcode::
+    :skipif: True
 
     import numpy as np
     from dwave.experimental.shimming import shim_flux_biases, qubit_freezeout_alpha_phi
@@ -213,7 +216,7 @@ contribute to its Ocean software.
 
     x_target_c_updates = np.arange(0.2, 0.22, 0.001)
 
-    flux_biases, _, _ = shim_flux_biases(                   # doctest: +SKIP
+    flux_biases, _, _ = shim_flux_biases(
         bqm=bqm_shim,
         sampler=qpu,
         sampling_params=sampler_params,
@@ -243,6 +246,7 @@ Run the Experiment
 The code below runs the experiment.
 
 .. testcode::
+    :skipif: True
 
     from tqdm import tqdm                                   # doctest: +SKIP
 
@@ -409,7 +413,8 @@ Usage
 
 Use the
 `dwave-experimental <https://github.com/dwavesystems/dwave-experimental>`_
-``get_properties`` function (you can also directly use the
+:func:`~dwave.experimental.multicolor_anneal.api.get_properties` function
+(you can also directly use the
 :ref:`property_qpu_get_multicolor_annealing_exp_feature_info` property) to view
 supported values for the feature parameters.
 
@@ -520,9 +525,11 @@ indexed to each line, supported minimum time steps, and ranges of normalized
 control bias, :math:`c(s)`, etc. Use this property to retrieve the information
 needed to use multicolor annealing on your selected QPU, either through the
 `dwave-experimental <https://github.com/dwavesystems/dwave-experimental>`_
-``get_properties`` function (recommended) or directly.
+:func:`~dwave.experimental.multicolor_anneal.api.get_properties` function
+(recommended) or directly.
 
-1. Use the ``get_properties`` function (recommended)
+1.  Use the :func:`~dwave.experimental.multicolor_anneal.api.get_properties`
+    function (recommended)
 
 .. testcode::
     :skipif: True
@@ -537,8 +544,8 @@ needed to use multicolor annealing on your selected QPU, either through the
 QPU Advantage2_research1.4 has 6 annealing lines.
 
 
-2. Alternatively, use the
-:ref:`property_qpu_get_multicolor_annealing_exp_feature_info` property directly.
+2.  Alternatively, use the
+    :ref:`property_qpu_get_multicolor_annealing_exp_feature_info` property directly.
 
 .. testcode::
     :skipif: True
@@ -610,8 +617,10 @@ in the ``dwave-experimental`` repository.
     embedding = {'Q_target': [Q_target], 'Q_source': [Q_source], 'Q_detector': [Q_detector]}
     sampler = FixedEmbeddingComposite(qpu, embedding=embedding)
 
->>> print(f"""Target qubit {Q_target} on line {line_target}\nSource qubit {Q_source} \
-    on line {line_source}\nDetector qubit {Q_detector} on line {line_detector}""") # doctest: +SKIP
+>>> print(f"""
+... Target qubit {Q_target} on line {line_target}\nSource qubit {Q_source} 
+... on line {line_source}\nDetector qubit {Q_detector} on line {line_detector}
+... """) # doctest: +SKIP
 Target qubit 365 on line 0
 Source qubit 370 on line 1
 Detector qubit 371 on line 2
