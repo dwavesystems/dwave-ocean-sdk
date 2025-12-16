@@ -54,8 +54,8 @@ a production environment, some of which can be complex.
 #.  Preprocess input data; for example, loading, cleaning, filtering, and
     transforming raw data into inputs to the optimization model.
 
-#.  Generate the problem and optimization model, store the generated
-    problem, and, optionally, retrieve additional data from data sources.
+#.  Remove business-data references, generate the problem and optimization model,
+    store the generated problem.
 
 #.  Submit the problem to a hybrid solver.
 
