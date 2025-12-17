@@ -427,14 +427,14 @@ scaled anneal fraction :math:`s`.
 
 .. [#]
     The anneal and :ref:`parameter_qpu_h`-controlling
-    waveforms---:math:`\Phi_{\rm CCJJ}(s)` and :math:`\Phi^x(s)` terms,
+    waveforms---:math:`\Phi_{\rm CCJJ}(s)` and :math:`\Phi^x_i(s)` terms,
     respectively, of equation :math:numref:`qpu_equation_rfsquid_hamiltonian` in
     the :ref:`qpu_annealing` section---pass through low-pass filters with the
     following cutoff frequencies:
 
     *   For :math:`\Phi_{\rm CCJJ}(s)`: 30 MHz on both |dwave_5kq| and |adv2_tm|
         systems
-    *   For :math:`\Phi^x(s)`: 3 MHz for |dwave_5kq| systems and 30 MHz for
+    *   For :math:`\Phi^x_i(s)`: 3 MHz for |dwave_5kq| systems and 30 MHz for
         |adv2| systems
 
 .. _qpu_ice_error_h_scale_interqubits:

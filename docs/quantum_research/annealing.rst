@@ -113,7 +113,7 @@ of flux qubits in the qubit approximation is
 
     \begin{array}{rcl}
         H &=& -\frac{1}{2}\sum_i\left[\Delta_q(\Phi_{\rm CCJJ}(s))
-        {\hat\sigma_{x}^{(i)}} - 2 h_i |I_p(\Phi_{\rm CCJJ}(s))| \Phi^x(s)
+        {\hat\sigma_{x}^{(i)}} - 2 |I_p(\Phi_{\rm CCJJ}(s))| \Phi^x_i(s)
         {\hat\sigma_{z}^{(i)}} \right] \\
         & & + \sum_{i>j} J_{i,j} M_{\rm AFM} I_p(\Phi_{\rm CCJJ}(s))^2
         {\hat\sigma_{z}^{(i)}} {\hat\sigma_{z}^{(j)}}
@@ -158,7 +158,7 @@ Standard-Anneal Protocol
 
 To map the QPU's Hamiltonian to equation
 :math:numref:`qpu_equation_quantum_hamiltonian`, set
-:math:`\Phi^x(s) = M_{\rm AFM} |I_p(s)|`. Thus, as :math:`\Phi_{\rm CCJJ}(s)`
+:math:`\Phi^x_i(s) =  h_i M_{\rm AFM} |I_p(s)|`. Thus, as :math:`\Phi_{\rm CCJJ}(s)`
 changes during the anneal, :math:`\Phi^x(s)` changes as required to keep the
 relative energy ratio between the :math:`h` and :math:`J` terms constant. In
 particular, the physical flux applied to the qubit to implement a fixed
@@ -224,9 +224,9 @@ complete an anneal in mere nanoseconds, well within the coherent regime.
 
 However, for these potentially very fast ramps in :math:`\Phi_{\rm CCJJ}(s)`,
 no attempt is made to keep the relative energy ratio between :math:`h` and
-:math:`J` terms constant (through adjustments of :math:`\Phi^x(s)`, as is done
+:math:`J` terms constant (through adjustments of :math:`\Phi^x_i(s)`, as is done
 by the standard-anneal protocol, where it is set to the linear
-:math:`M_{\rm AFM} |I_p(s)|`). Consequently, this protocol is used only for
+:math:` h_i M_{\rm AFM} |I_p(s)|`). Consequently, this protocol is used only for
 problems with no linear biases (:math:`h=0`).
 
 .. note::
@@ -415,7 +415,7 @@ earlier in the anneal, where :math:`I_p` is lower.
 The signal corresponding to fixed :math:`h` values scales as :math:`I_p`. Larger
 logical qubits freeze out earlier in the annealing process: at lower
 :math:`I_p`. Thus, if an erroneous fixed flux offset exists in the physical body
-(a static addition to the term :math:`\Phi^x`), then the corresponding
+(a static addition to the term :math:`\Phi^x_i`), then the corresponding
 :math:`\delta h` at freezeout grows with the logical qubit size because of the
 lower persistent current at the freezeout point. This error should roughly
 double going from a logical qubit of size 1 to a logical qubit of size 5. The
