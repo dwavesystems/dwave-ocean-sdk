@@ -159,7 +159,7 @@ Standard-Anneal Protocol
 To map the QPU's Hamiltonian to equation
 :math:numref:`qpu_equation_quantum_hamiltonian`, set
 :math:`\Phi^x_i(s) =  h_i M_{\rm AFM} |I_p(s)|`. Thus, as :math:`\Phi_{\rm CCJJ}(s)`
-changes during the anneal, :math:`\Phi^x(s)` changes as required to keep the
+changes during the anneal, :math:`\Phi^x_i(s)` changes as required to keep the
 relative energy ratio between the :math:`h` and :math:`J` terms constant. In
 particular, the physical flux applied to the qubit to implement a fixed
 :math:`h` value increases as the anneal progresses. Then, the mapping to the
