@@ -54,10 +54,7 @@ a production environment, some of which can be complex.
 #.  Preprocess input data; for example, loading, cleaning, filtering, and
     transforming raw data into inputs to the optimization model.
 
-#.  Remove business-data references, generate the problem and optimization model,
-    store the generated problem.
-
-#.  Submit the problem to a hybrid solver.
+#.  Generate and submit the problem to a hybrid solver.
 
 #.  (Optional) Upload the problem. Submitting a problem uploads it but sometimes,
     you may want to separate uploading from solving; for example, to solve with
@@ -107,8 +104,8 @@ your production environment enables your application to perform and scale as
 needed by considering the following:
 
 *   Desired throughput (i.e., solved problems per second). Also take into
-    account the your Leap project's concurrency limit (the default is 2) to
-    provision your workloads effectively.
+    account the your Leap project's concurrency limit to provision your
+    workloads effectively.
 
 *   Internet connection latency and bandwidth.
 
