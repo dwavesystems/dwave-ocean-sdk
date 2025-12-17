@@ -13,7 +13,7 @@ General QPU Solver Properties
     research QPUs. Not all accounts have access to such research quantum
     computers.
 
-.. |research_property_note2| replace:: Also not that this is a parameter that
+.. |research_property_note2| replace:: Also note that this is a parameter that
     functions as a property. For convenience, you can instead use the
     utility functions described in the
     :ref:`qpu_experimental_research_utilities` section.
@@ -821,7 +821,7 @@ This example prints the the supported (calibrated) nominal-pause-duration values
 and the range for the target normalized control bias :math:`c(s)` for a QPU.
 
 1.  Using the :func:`~dwave.experimental.fast_reverse_anneal.api.get_parameters`
-    function (recommended)
+    function (recommended).
 
     >>> from dwave.experimental import fast_reverse_anneal as fra
     >>> from dwave.system import DWaveSampler
@@ -970,7 +970,7 @@ Example
 This example prints the first 5 qubits on annealing line 0.
 
 1.  Using the :func:`~dwave.experimental.multicolor_anneal.api.get_properties`
-    function (recommended)
+    function (recommended).
 
     >>> from dwave.experimental import multicolor_anneal as mca
     >>> exp_feature_info = mca.get_properties()         # doctest: +SKIP

@@ -4,8 +4,8 @@
 Experimental Research
 =====================
 
-Some QPU solvers in the |cloud|_ service support experimental features used for
-advanced research, described in this section.
+Some QPU solvers support experimental features used for advanced research,
+described in this section.
 
 .. note::
     Not all accounts have access to such research quantum computers.
@@ -112,6 +112,8 @@ various pause times.
     normalized control bias, :math:`c(s)`, as a function of time, with various
     pause durations, for a target :math:`c(s)=0.6`.
 
+.. _qpu_experimental_research_fra_example:
+
 Example: Larmor Precession
 --------------------------
 
@@ -155,7 +157,7 @@ with chain length of 1, as shown in this example's output.
 
 .. testcode::
     :skipif: True
-    
+
     import dimod
     from minorminer.subgraph import find_subgraph
 
@@ -435,7 +437,7 @@ experimental parameters:
     shifts with higher precision than the :ref:`parameter_qpu_anneal_schedules`
     parameter alone allows for.
 
-.. _research_enablement_mca_example:
+.. _qpu_experimental_research_mca_example:
 
 Example: Larmor Precession In an Excited Qubit
 ----------------------------------------------
@@ -842,7 +844,8 @@ To view the experiment results, you can use code such as the following.
 
 The `dwave-experimental <https://github.com/dwavesystems/dwave-experimental>`_
 repository provides Ocean utilities to support advanced QPU prototype features.
-It also contains useful code examples.
+It also contains useful
+`code examples <https://github.com/dwavesystems/dwave-experimental/tree/main/examples>`_.
 
 .. currentmodule:: dwave.experimental.fast_reverse_anneal.api
 
@@ -862,7 +865,6 @@ Multicolor Annealing
 .. currentmodule:: dwave.experimental.multicolor_anneal.api
 
 .. autofunction:: get_properties
-
 
 Shimming
 --------
