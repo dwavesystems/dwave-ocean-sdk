@@ -26,7 +26,10 @@ these solvers, such as the ranges within which parameter values must be set.
     computers.
 
 .. |realistic_mca_example| replace:: For a realistic example of multicolor
-    annealing, see the :ref:`research_enablement_mca_example` section.
+    annealing, see the :ref:`qpu_experimental_research_mca_example` section.
+
+.. |realistic_fra_example| replace:: For a realistic example of fast reverse
+    annealing, see the :ref:`qpu_experimental_research_fra_example` section.
 
 .. _parameter_qpu_anneal_offsets:
 
@@ -1507,6 +1510,8 @@ Interacts with Parameters
 Example
 -------
 
+|realistic_fra_example|
+
 >>> from dwave.system import DWaveSampler
 ...
 >>> qpu = DWaveSampler(solver="Advantage2_research1.4")     # doctest: +SKIP
@@ -1611,6 +1616,8 @@ Interacts with Parameters
 
 Example
 -------
+
+|realistic_fra_example|
 
 >>> from dwave.system import DWaveSampler
 ...
