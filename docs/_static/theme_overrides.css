@@ -22,7 +22,10 @@
     --dwave-color-bright-blue: rgb(3, 184, 255);
     /* Higher contrast for accessibility: */
     --dwave-color-medium-blue-45: rgb(27, 100, 189);
+    --dwave-color-medium-blue-50: rgb(31, 116, 218);
+    --dwave-color-medium-blue-55: rgb(56, 134, 227);
     --dwave-color-medium-blue-60: rgb(81, 149, 230);
+    --dwave-color-medium-blue-65: rgb(122, 174, 236);
 
     --dwave-color-leap-teal: rgb(23, 190, 187);
     --dwave-color-dark-teal: rgb(0, 140, 130);
@@ -31,22 +34,31 @@
     --dwave-color-advantage-orange: rgb(243, 120, 32);
     --dwave-color-dark-orange: rgb(175, 73, 4);
     --dwave-color-bright-orange: rgb(255, 161, 67);
-    --inline-code-pink: rgb(232, 62, 140);
+    --inline-code-light-pink: rgb(237, 110, 169);
+    --inline-code-dark-pink: rgb(210, 25, 111);
 
     --dwave-color-leap-bg: #f5f7fb; /* rgba(47, 100, 190, 0.05) */
     --dwave-color-leap-bg-dark: #1a2438; /* rgba(47, 100, 190, 0.16) */
     --dwave-shadow-leap: 0 10px 18px 0 rgba(66, 82, 121, 0.09);
+
+    --dwave-color-dark-gray-40: rgb(230, 230, 230);
+    --dwave-color-dark-gray-50: rgb(117, 117, 117);
+
+    --pst-font-weight-heading: 400;
+    --pst-font-size-h1: 2.5rem;
+    --pst-font-size-h2: 2rem;
   }
 
 html[data-theme="light"] {
 
     /* theme overrides */
     --pst-color-primary: var(--dwave-color-medium-blue-45);
-    --pst-color-secondary: grey;
-    --pst-color-link: var(--dwave-color-medium-blue-45);
+    --pst-color-secondary: var(--dwave-color-dark-gray-50);
+    --pst-color-link: var(--dwave-color-medium-blue-50);
+    --pst-color-external-link: var(--dwave-color-medium-blue-50);
     --pst-color-link-hover: var(--dwave-color-ocean-blue);
-    --pst-color-inline-code: var(--inline-code-pink);
-    --pst-color-inline-code-links: var(--dwave-color-ocean-blue);
+    --pst-color-inline-code: var(--inline-code-dark-pink);
+    --pst-color-inline-code-links: var(--dwave-color-medium-blue-45);
     --pst-color-success: var(--dwave-color-leap-teal);
     --pst-color-info: var(--dwave-color-ocean-blue);
     --pst-color-warning: var(--dwave-color-advantage-orange);
@@ -73,9 +85,10 @@ html[data-theme="dark"] {
     --pst-color-primary: var(--dwave-color-medium-blue-60);
     --pst-color-secondary: grey;
     --pst-color-link: var(--dwave-color-medium-blue-60);
+    --pst-color-external-link: var(--dwave-color-medium-blue-60);
     --pst-color-link-hover: var(--dwave-color-ocean-blue);
-    --pst-color-inline-code: var(--inline-code-pink);
-    --pst-color-inline-code-links: var(--dwave-color-ocean-blue);
+    --pst-color-inline-code: var(--inline-code-light-pink);
+    --pst-color-inline-code-links: var(--dwave-color-medium-blue-65);
     --pst-color-success: var(--dwave-color-leap-teal);
     --pst-color-info: var(--dwave-color-ocean-blue);
     --pst-color-warning: var(--dwave-color-advantage-orange);
@@ -140,11 +153,26 @@ a:hover {
     text-decoration-thickness: 2px;
 }
 
+a.reference.external {
+    color: var(--pst-color-external-link);
+}
+
+blockquote .reference.external,
+div.sd-tab-content.docutils a.reference.external span.std,
+div.sd-tab-content.docutils a.reference.internal span.std {
+    color: var(--pst-color-inline-code-links);
+}
+
+div.sd-card-body.docutils a.reference.external span.std,
+div.sd-card-body.docutils a.reference.internal span.std {
+    color: var(--pst-color-link);
+}
+
 /* Nav */
-.bd-header .navbar-nav,
-.bd-header .navbar-nav .bd-navbar-elements.navbar-nav,
-.bd-header .navbar-nav .bd-navbar-elements.navbar-nav .nav-item,
-.bd-header .navbar-nav .bd-navbar-elements.navbar-nav button {
+.bd-header nav,
+.bd-header nav .bd-navbar-elements.navbar-nav,
+.bd-header nav .bd-navbar-elements.navbar-nav .nav-item,
+.bd-header nav .bd-navbar-elements.navbar-nav button {
     height: 100%;
 }
 
@@ -165,6 +193,26 @@ a:hover {
     border: none;
     position: relative;
     color: var(--pst-color-link);
+    font-weight: 600;
+}
+
+.bd-header ul.navbar-nav>li.nav-item>.nav-link:hover {
+    color: var(--pst-color-primary);
+}
+
+.bd-header ul.navbar-nav>li.nav-item.current>.nav-link:before,
+.bd-header ul.navbar-nav>li.nav-item>.nav-link:hover:before {
+    border-bottom: none;
+}
+
+.bd-header ul.navbar-nav>li.nav-item.dropdown>.dropdown-toggle:hover {
+    color: var(--pst-color-primary);
+    box-shadow: unset;
+}
+
+.bd-header ul.navbar-nav li a.nav-link.dropdown-item:hover {
+    text-decoration: unset;
+    color: var(--pst-color-primary);
 }
 
 .bd-header .navbar-nav>.current>.nav-link::after {
@@ -190,10 +238,12 @@ a:hover {
 }
 
 /* tab-set */
-.bd-content div.sd-tab-content {
+.bd-content div.sd-tab-content.docutils {
     padding: 1rem 1.6rem 2rem;
     background-color: var(--dwave-bg);
     box-shadow: var(--dwave-shadow-leap);
+    border-top-left-radius: 0rem;
+    border-top-right-radius: 0rem;
     border-bottom-left-radius: 1.2rem;
     border-bottom-right-radius: 1.2rem;
     border: 1px solid var(--pst-color-border);
@@ -201,6 +251,21 @@ a:hover {
 
 .bd-content .sd-tab-set>input+label {
     border: none;
+    padding: 0.5em 1.25em;
+    background-color: unset;
+    line-height: 1.65;
+    margin-inline-end: unset;
+}
+
+.bd-content .sd-tab-set>label,
+html[data-theme=dark] .bd-content .sd-tab-set>label {
+    color: var(--pst-color-text-muted);
+    background-color: var(--pst-color-background);
+    border-radius: 0;
+}
+
+.bd-content .sd-tab-set>input:not(:checked,:focus-visible)+label:hover {
+    text-decoration-line: unset;
 }
 
 .bd-content .sd-tab-set>input:checked+label {
@@ -212,6 +277,7 @@ a:hover {
     border-bottom: none;
     border-top-left-radius: 1.2rem;
     border-top-right-radius: 1.2rem;
+    transform: unset;
 }
 
 div.sd-tab-set {
@@ -229,9 +295,13 @@ div.sd-tab-set {
         border: 1px solid var(--pst-color-border);
         padding: 0.6rem;
     }
+    
+    .bd-content .sd-tab-set>input:not(:checked,:focus-visible)+label:hover {
+        border-color: unset;
+    }
 
     .bd-content .sd-tab-set>input:checked+label {
-        border: 1px solid var(--pst-color-link);
+        border: 1px solid var(--dwave-color-medium-blue-45);
         margin-bottom: 0;
         border-top-left-radius: 0;
         border-top-right-radius: 0;
@@ -269,6 +339,7 @@ div.sd-card.sd-card-hover .sd-card-body .sd-card-title a {
 
 div.sd-card .sd-card-body.docutils {
     text-align: center;
+    background-color: var(--pst-color-panel-background);
 }
 
 .sd-tab-set div.sd-card.sd-card-hover.docutils:not(:hover) {
@@ -338,4 +409,21 @@ details.sd-dropdown[open]>.sd-card-header {
 
 .admonition>.admonition-title:before, div.admonition>.admonition-title:before {
     border-bottom: 1px solid var(--pst-color-border);
+}
+
+.table {
+    border: 0;
+}
+
+.table thead tr, .table tbody tr:nth-child(odd) {
+    background-color: unset;
+}
+
+.table tbody tr:nth-child(2n) {
+    background-color: unset;
+}
+
+.table thead tr, .table td, .table td~td, .table th, .table th~th {
+    border-width: 0 0 1px 0;
+    border-bottom-color: var(--dwave-color-dark-gray-40);
 }
