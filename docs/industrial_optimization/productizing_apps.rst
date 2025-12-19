@@ -132,8 +132,8 @@ specific to interacting with D-Wave's compute infrastructure during initial
 development and maintenance.
 
 *   Ensure that your formulated models do not have identifiable business data or
-    references to such data by refraining from using references
-    (e.g., decision :ref:`variable <concept_variables>` labels)
+    references to such data by refraining from using references (e.g., by taking
+    advantage of decision :ref:`variable <concept_variables>` labels)
     in your model that could be mapped back to sensitive business data because
     such references would appear in your submitted problems.
 
