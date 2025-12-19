@@ -9,8 +9,8 @@ in your company's production environment.
 
 Hybrid applications can be easy to integrate with a business's technology stack
 because such applications typically run batch-based, asynchronous operations,
-submitting problems---without business data or identifiable references to such
-data---to and receiving results from hybrid solvers in the Leap service.
+submitting problems to and receiving results from hybrid solvers in the Leap
+service.
 
 .. _quantum_apps_prod_env:
 
@@ -131,10 +131,11 @@ Consider the following examples of security best practices both generally and
 specific to interacting with D-Wave's compute infrastructure during initial
 development and maintenance.
 
-*   Ensure that you do not set up references (e.g.,
-    decision :ref:`variable <concept_variables>` labels) in your model that
-    could be mapped back to sensitive business data because such references
-    would appear in your submitted problems.
+*   Ensure that your formulated models do not have identifiable business data or
+    references to such data by refraining from using references
+    (e.g., decision :ref:`variable <concept_variables>` labels)
+    in your model that could be mapped back to sensitive business data because
+    such references would appear in your submitted problems.
 
 *   Grant your application only the minimal required access to sensitive data,
     such as personally identifiable information (PII).
