@@ -33,7 +33,7 @@ business's technology stack.
         technology stack
 
     Hybrid application integrated with an example of a business's technology
-    stack.\ [#]_ A hybrid application receives input data from various systems
+    stack. A hybrid application receives input data from various systems
     in the business's technology stack and uses D-Wave's Ocean SDK
     to submit problems via SAPI REST calls to the hybrid solvers in D-Wave's
     Leap service. The hybrid solvers return problem results and, again using the

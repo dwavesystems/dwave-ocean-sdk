@@ -13,7 +13,7 @@ in this section.
 
     best_practices
     scaling
-    productizing_apps
+    deploying_apps_prod
     index_examples_advanced
 
 .. grid:: 2 2 3 3
