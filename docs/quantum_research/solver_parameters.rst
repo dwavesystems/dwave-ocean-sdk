@@ -1438,9 +1438,9 @@ Interacts with Parameters
     In this case, substitute your :ref:`parameter_polarizing_schedules` values
     for :ref:`parameter_qpu_anneal_schedule` and
     :ref:`parameter_qpu_annealing_time`.
-*   The :ref:`parameter_qpu_flux_biases` values are added to any values set by
-    the :ref:`parameter_polarizing_schedules` parameter, but when the latter is
-    non-zero, have no noticeable effect due to the large value of the former.
+*   The :ref:`parameter_qpu_flux_biases` values are added to values set by
+    the :ref:`parameter_polarizing_schedules` parameter, but due to the large
+    value of the latter (when non-zero), have no noticeable effect.
 *   In the final schedule pair point for each anneal line, time :math:`t` must
     be identical to the last time set in the
     :ref:`parameter_qpu_anneal_schedules` parameter.

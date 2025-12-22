@@ -4,8 +4,8 @@
 Annealing Implementation and Controls
 =====================================
 
-This section describes how quantum annealing (QA) is implemented and features
-that allow you to control the annealing process\ [#]_\ [#]_\ .
+This section describes how quantum annealing (QA) is implemented and the
+features that allow you to control the annealing process\ [#]_\ [#]_\ .
 
 *   Per-qubit :ref:`anneal offsets <qpu_qa_anneal_offsets>`: adjust the standard
     annealing path per qubit.

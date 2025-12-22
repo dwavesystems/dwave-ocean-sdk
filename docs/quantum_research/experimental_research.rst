@@ -4,8 +4,8 @@
 Experimental Research
 =====================
 
-Some QPU solvers support experimental features used for advanced research,
-described in this section.
+Some QPU solvers support experimental features used for advanced research. This
+section describes the currently supported features.
 
 .. note::
     Not all accounts have access to such research quantum computers.
@@ -52,7 +52,7 @@ Current Limitations
 
 As noted above, in the current implementation, the QPU does not precisely follow
 anneal schedules set by the user. Consequently, some predefined schedules have
-been calibrated for use and the feature  has the following restrictions.
+been calibrated for use and the feature has the following restrictions.
 
 *   Where the standard reverse annealing supports a schedule of
     :ref:`max_anneal_schedule_points <property_qpu_max_anneal_schedule_points>`
