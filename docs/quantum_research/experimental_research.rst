@@ -849,6 +849,8 @@ It also contains useful
 
 .. currentmodule:: dwave.experimental.fast_reverse_anneal.api
 
+.. autodata:: SOLVER_FILTER
+
 .. autofunction:: get_solver_name
 
 Fast Reverse Annealing
