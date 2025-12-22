@@ -256,10 +256,10 @@ The standard annealing schedule for the QPU is shown in
     as a function of scaled time.
 
 
-Advantage2_system4.1
+Advantage2_system4.2
 ====================
 
-All data presented in this section are specific to the **Advantage2_system4.1**
+All data presented in this section are specific to the **Advantage2_system4.2**
 solver. The |adv2_tm| system QPU is based on a physical lattice of qubits and
 couplers known as the *Zephyr*\ |tm| topology. For information, see the
 :ref:`topology_intro_zephyr` section.
@@ -285,7 +285,7 @@ This table lists the physical properties of the calibrated QPU.
         - :math:`\text{Z6}`
 
     *   - Number of :ref:`qubits <property_qpu_qubits>`
-        - :math:`1204`
+        - :math:`1203`
 
     *   - Number of :ref:`couplers <property_qpu_couplers>`
         - :math:`10571`
@@ -349,7 +349,7 @@ Annealing Schedule
 ------------------
 
 Download the annealing schedule for the QPU here:
-:download:`Advantage2_system4.1 Excel spreadsheet <../downloadables/09-1323A-A_Advantage2_system4_1_annealing_schedule.xlsx>`.
+:download:`Advantage2_system4.2 Excel spreadsheet <../downloadables/09-1323A-B_Advantage2_system4_2_annealing_schedule.xlsx>`.
 
 The standard annealing schedule for the QPU is shown in
 :numref:`Figure %s <annealing-schedule-adv2-4.1>`.
