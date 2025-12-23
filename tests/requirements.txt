@@ -1,2 +1,7 @@
 coverage
 codecov
+
+# skip numpy 2.4.0 due to a bug fixed in numpy#30500 (see dwave-samplers#82)
+# to patch the CI
+# TODO: remove this transitive requirement once numpy 2.4.0 gets yanked
+numpy>=1.21.3,!=2.4.0       # lower bound comes from dwave-optimization
