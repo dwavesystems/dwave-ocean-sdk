@@ -104,7 +104,7 @@ your production environment enables your application to perform and scale as
 needed by considering the following:
 
 *   Desired throughput (i.e., solved problems per second). Also take into
-    account the your Leap project's concurrency limit to provision your
+    account your Leap project's concurrency limit to provision your
     workloads effectively.
 
 *   Internet connection latency and bandwidth.
