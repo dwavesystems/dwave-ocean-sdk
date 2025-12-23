@@ -131,11 +131,9 @@ Consider the following examples of security best practices both generally and
 specific to interacting with D-Wave's compute infrastructure during initial
 development and maintenance.
 
-*   Ensure that your formulated models do not have identifiable business data or
-    references to such data by refraining from using references (e.g., by taking
-    advantage of decision :ref:`variable <concept_variables>` labels)
-    in your model that could be mapped back to sensitive business data because
-    such references would appear in your submitted problems.
+*   Do not use variable names that reveal sensitive business information in your
+    models; for example, replace patient names with numerical codes in
+    healthcare applications.
 
 *   Grant your application only the minimal required access to sensitive data,
     such as personally identifiable information (PII).
