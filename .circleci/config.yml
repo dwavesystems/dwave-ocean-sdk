@@ -297,16 +297,19 @@ workflows:
     when: pipeline.schedule.name == "nightly"
     jobs:
       - test-linux:
+          name: test-linux-py<< matrix.python-version >>
           matrix:
             parameters:
               python-version: *python-versions
               only-binary: *binary-ocean-packages
       - test-macos:
+          name: test-macos-py<< matrix.python-version >>
           matrix:
             parameters:
               python-version: *python-versions
               only-binary: *binary-ocean-packages
       - test-windows:
+          name: test-windows-py<< matrix.python-version >>
           matrix:
             parameters:
               python-version: *python-versions-windows
