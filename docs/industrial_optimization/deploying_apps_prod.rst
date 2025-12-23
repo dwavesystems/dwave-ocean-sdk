@@ -140,8 +140,7 @@ development and maintenance.
 *   Grant your application only the minimal required access to sensitive data,
     such as personally identifiable information (PII).
 
-*   Ensure that access control to the application for submitting problems is
-    limited to authorized users.
+*   Limit access to the application to authorized users.
 
 *   Rotate your solver API token on a regular basis, and change it immediately
     before deploying to production, just in case it was saved outside of your
