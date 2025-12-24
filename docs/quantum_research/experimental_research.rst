@@ -134,7 +134,7 @@ To run the code on a QPU that supports this experimental feature and that your
 account has access to, ensure the following:
 
 1.  Set up your development environment as described in the
-    :ref:`Get Started with Ocean Software <dwave:ocean_index_get_started>`
+    :ref:`Get Started with Ocean Software <ocean_index_get_started>`
     documentation.
 
 2.  Replace the placeholder name below with the solver name of your research
@@ -250,7 +250,7 @@ The code below runs the experiment.
 .. testcode::
     :skipif: True
 
-    from tqdm import tqdm                                   # doctest: +SKIP
+    from tqdm import tqdm
 
     c_target_range = np.arange(0.2, 0.4, 0.0005)
     num_samples = sampler_params['num_reads'] * num_qubits
@@ -258,7 +258,7 @@ The code below runs the experiment.
 
     pro_up = []
     pro_down = []
-    for target_c in tqdm(c_target_range):                   # doctest: +SKIP
+    for target_c in tqdm(c_target_range):
 
         sampler_params['x_target_c'] = target_c
 
@@ -503,7 +503,7 @@ To run the code on a QPU that supports this experimental feature and that your
 account has access to, ensure the following:
 
 1.  Set up your development environment as described in the
-    :ref:`Get Started with Ocean Software <dwave:ocean_index_get_started>`
+    :ref:`Get Started with Ocean Software <ocean_index_get_started>`
     documentation.
 
 2.  Replace the placeholder name below with the solver name of your research
