@@ -135,6 +135,9 @@ development and maintenance.
     models; for example, replace patient names with numerical codes in
     healthcare applications.
 
+    Such information cannot otherwise be readily deduced from problems submitted
+    to the Leap service.\ [#]_
+
 *   Grant your application only the minimal required access to sensitive data,
     such as personally identifiable information (PII).
 
@@ -151,6 +154,12 @@ development and maintenance.
 
     *   Do not write your solver API token to logs nor save it to your version
         control system.
+
+.. [#] For example, a model with constraint
+        :math:`0.02*N_{nails} + 0.04*N_{screws}  + … <= B` can be understood as
+        optimizing a construction budget, while
+        :math:`0.02*N_0 + 0.04*N_1  + … <= B` could represent problems in
+        various domains, from scheduling to vehicle routing.
 
 .. _quantum_apps_monitoring_logging:
 
