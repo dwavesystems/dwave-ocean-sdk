@@ -19,12 +19,12 @@ Typical Production Environment
 
 A business's technology stack is composed of various business systems such as a
 user interface, enterprise-content development systems (e.g., Microsoft
-Sharepoint), database management systems, and data lakes. A hybrid application
-communicates between the business's technology stack and D-Wave's compute
-infrastructure made available via the :ref:`index_ocean_sdk`, solver API
-(SAPI), and Leap service. :numref:`Figure %s <HybridAppPipeline>` provides a
-high-level illustration of a hybrid application integrated with an example of a
-business's technology stack.
+Sharepoint), database management systems (e.g., SAP HANA), and data lakes.
+A hybrid application communicates between the business's technology stack and
+D-Wave's compute infrastructure made available via the :ref:`index_ocean_sdk`,
+solver API (SAPI), and Leap service. :numref:`Figure %s <HybridAppPipeline>`
+provides a high-level illustration of a hybrid application integrated with an
+example of a business's technology stack.
 
 .. figure:: ../_images/hybrid_app_pipeline.png
     :name: HybridAppPipeline
