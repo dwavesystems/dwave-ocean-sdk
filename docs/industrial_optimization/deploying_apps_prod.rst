@@ -56,9 +56,9 @@ a production environment, some of which can be complex.
 
 #.  Generate and submit the problem to a hybrid solver.
 
-#.  (Optional) Upload the problem. Submitting a problem uploads it but sometimes,
+#.  (Optional) Upload the problem. Submitting a problem uploads it, but sometimes
     you may want to separate uploading from solving; for example, to solve with
-    various time limits.
+    various :ref:`time limits <opt_best_practices_runtimes>`.
 
 #.  (Optional) Poll the hybrid solver for completion of submitted problems.
     Although the Ocean SDK automatically polls, you may want to implement
@@ -103,9 +103,9 @@ hybrid problems. To do so, ensure that the hardware and its configuration in
 your production environment enables your application to perform and scale as
 needed by considering the following:
 
-*   Desired throughput (i.e., solved problems per second). Also take into
-    account your Leap project's concurrency limit to provision your
-    workloads effectively.
+*   Desired throughput (i.e., the rate at which the application submits problems).
+    Also take into account your Leap project's concurrency limit to provision
+    your workloads effectively.
 
 *   Internet connection latency and bandwidth.
 
@@ -117,10 +117,9 @@ needed by considering the following:
 *   CPU and memory requirements for hardware and virtual compute: How you model
     your problems can impact these requirements.
 
-You should also maintain your application's code as follows:
-
-*   Keep up to date with Ocean SDK releases to help ensure the best performance
-    and take advantage of the newest features.
+You should also maintain your application's code by keeping up to date with
+Ocean SDK releases to help ensure the best performance and take advantage of the
+newest features.
 
 .. _quantum_apps_security:
 
