@@ -13,6 +13,7 @@ in this section.
 
     best_practices
     scaling
+    deploying_apps_prod
     index_examples_advanced
 
 .. grid:: 2 2 3 3
@@ -28,6 +29,12 @@ in this section.
 
         Coding your application for performance on problems of the industrial
         scale.
+
+    .. grid-item-card:: :ref:`opt_deploying_quantum_apps_prod`
+        :link: opt_deploying_quantum_apps_prod
+        :link-type: ref
+
+        Integrating your application with your business's technology stack.
 
     .. grid-item-card:: :ref:`opt_index_examples_advanced`
         :link: opt_index_examples_advanced
