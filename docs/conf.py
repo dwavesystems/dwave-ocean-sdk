@@ -53,15 +53,10 @@ extensions = [
     'sphinx_design',
     'reno.sphinxext',
     'sphinx_copybutton',
-    'hoverxref.extension',
 ]
 
 autosummary_generate = True
 numfig = True
-
-hoverxref_roles = ['term']
-hoverxref_role_types = {'term': 'tooltip'}
-hoverxref_mathjax = True
 
 source_suffix = ['.rst', '.md']
 
@@ -78,7 +73,8 @@ language = 'en'
 add_module_names = False
 
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', '*/shared/*.rst',
-                    'ocean/api_ref_*/README.rst']
+                    'ocean/api_ref_*/README.rst', 'ocean/api_ref_minorminer/source/README.rst',
+                    ]
 
 linkcheck_ignore = [r'.clang-format',                    # would need symlink
                     r'setup.cfg',                        # would need symlink (for dimod)

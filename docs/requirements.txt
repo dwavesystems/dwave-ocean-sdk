@@ -2,7 +2,6 @@ pydata-sphinx-theme==0.16.1
 sphinx==8.2.3
 sphinx-design==0.6.1
 sphinx-copybutton==0.5.2
-sphinx-hoverxref==1.4.2
 reno[sphinx]==3.3.0
 
 # skip numpy 2.4.0 due to a bug fixed in numpy#30500 (see dwave-samplers#82)
