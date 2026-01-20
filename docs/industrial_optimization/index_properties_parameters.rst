@@ -27,7 +27,7 @@ Nonlinear Solver
 
 `Nonlinear programming (NLP) <https://en.wikipedia.org/wiki/Nonlinear_programming>`_
 is the process of solving an optimization problem where some of the constraints
-are not linear equalities and/or the objective function is not a linear\
+are not linear equalities and/or the objective function is not a linear
 function. Such optimization problems are pervasive in business and logistics:
 inventory management, scheduling employees, equipment delivery, and many more.
 
