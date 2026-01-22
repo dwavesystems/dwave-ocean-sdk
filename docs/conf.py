@@ -53,10 +53,15 @@ extensions = [
     'sphinx_design',
     'reno.sphinxext',
     'sphinx_copybutton',
+    'hoverxref.extension',
 ]
 
 autosummary_generate = True
 numfig = True
+
+hoverxref_roles = ['term']
+hoverxref_role_types = {'term': 'tooltip'}
+hoverxref_mathjax = True
 
 source_suffix = ['.rst', '.md']
 
