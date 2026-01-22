@@ -28,6 +28,8 @@ setup_cfg.read(os.path.join(sdk_directory, 'setup.cfg'))
 
 python_requires = setup_cfg['options']['python_requires']
 
+project = "D-Wave Quantum Computing Products"
+author = "D-Wave Quantum Inc."
 copyright = 'D-Wave'
 
 rst_prolog = f"""
