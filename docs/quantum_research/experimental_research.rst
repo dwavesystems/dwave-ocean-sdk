@@ -371,19 +371,9 @@ qubits on each of the six annealing lines of a particular |adv2_tm| QPU with a
 Current Limitations
 -------------------
 
-*   Current implementation of the
-    :ref:`property_qpu_get_multicolor_annealing_exp_feature_info` property does
-    not return the field ``minPolarizingTimeStep``. The value for the
-    ``Advantage2_research1.4`` QPU is 0.02 microseconds, and this field is
-    expected to be part of a future release.
-*   Current implementation returns the field ``minTimeStep`` in the
-    :ref:`property_qpu_get_multicolor_annealing_exp_feature_info` property. The
-    name of that field is expected to change to ``minAnnealTimeStep`` in a
-    future release.
 *   Current implementation requires that the last points of anneal schedules set
     through the :ref:`parameter_qpu_anneal_schedules` must not be specified to a
-    precision greater than the value of the ``minPolarizingTimeStep`` field
-    (0.02 microseconds on the ``Advantage2_research1.4`` QPU).
+    precision greater than the value of the ``minPolarizingTimeStep`` field.
 *   In the current implementation, you can specify the
     :ref:`parameter_qpu_anneal_schedules` parameter with a maximum precision of
     :math:`0.01\ \text{µs}` (:math:`10\ \text{ns}`). However, the
@@ -409,6 +399,11 @@ Current Limitations
     parameter, :math:`[-100, 100]` is not available in the information provided
     by the :ref:`property_qpu_get_multicolor_annealing_exp_feature_info`
     property.
+*   There may be an issue with specifying schedules to an overly high precision;
+    if your solver returns an error that ``Time points must be quantized....``,
+    try rounding down your schedules::
+
+        polarization_schedules[:, :, 0] = np.round(polarization_schedules[:, :, 0], 2)
 
 Usage
 -----
@@ -663,7 +658,7 @@ schedule for the selected QPU.
     Q_detector_max_c = exp_feature_info[line_detector]['maxC']
     Q_detector_min_c = exp_feature_info[line_detector]['minC']
 
-    min_time_step = exp_feature_info[0]["minTimeStep"]
+    min_time_step = exp_feature_info[0]["minAnnealingTimeStep"]
 
 >>> print(f"Minimum time step is {min_time_step} µs")           # doctest: +SKIP
 Minimum time step is 0.01 µs
