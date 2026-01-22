@@ -79,7 +79,9 @@ language = 'en'
 
 add_module_names = False
 
-exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', '*/shared/*.rst',]
+exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', '*/shared/*.rst',
+                    'ocean/api_ref_*/README.rst', 'ocean/api_ref_minorminer/source/README.rst',
+                    ]
 
 linkcheck_ignore = [r'.clang-format',                    # would need symlink
                     r'setup.cfg',                        # would need symlink (for dimod)
@@ -264,7 +266,7 @@ def setup(app):
 # -- Intersphinx ----------------------------------------------------------
 intersphinx_mapping = {
     'python': ('https://docs.python.org/3/', None),
-    'numpy': ('http://numpy.org/doc/stable/', None),
+    'numpy': ('https://numpy.org/doc/stable/', None),
     'networkx': ('https://networkx.org/documentation/stable/', None),
     'urllib3': ('https://urllib3.readthedocs.io/en/stable/', None),
     'requests': ('https://requests.readthedocs.io/en/stable/', None),

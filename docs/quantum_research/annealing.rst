@@ -226,7 +226,7 @@ However, for these potentially very fast ramps in :math:`\Phi_{\rm CCJJ}(s)`,
 no attempt is made to keep the relative energy ratio between :math:`h` and
 :math:`J` terms constant (through adjustments of :math:`\Phi^x_i(s)`, as is done
 by the standard-anneal protocol, where it is set to the linear
-:math:` h_i M_{\rm AFM} |I_p(s)|`). Consequently, this protocol is used only for
+:math:`h_i M_{\rm AFM} |I_p(s)|`). Consequently, this protocol is used only for
 problems with no linear biases (:math:`h=0`).
 
 .. note::
