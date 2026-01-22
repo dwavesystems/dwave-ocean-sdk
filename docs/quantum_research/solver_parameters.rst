@@ -1267,7 +1267,7 @@ Supported values are three-dimensional arrays with the following indices:
 The following rules apply to each of the nominal anneal schedules:\ [#]_
 
 *   Time :math:`t`, specified in microseconds with a precision of the
-    ``minTimeStep`` field in the
+    ``minAnnealingTimeStep`` field in the
     :ref:`property_qpu_get_multicolor_annealing_exp_feature_info` property, must
     strictly increase for all points in the schedule.
 *   Normalized control bias, :math:`c(s)`, must be in the range
@@ -1412,7 +1412,7 @@ Supported values are three-dimensional arrays with the following indices:
 The following rules apply to each of the polarization schedules you specify:
 
 *   Time :math:`t`, specified in microseconds with a precision of the
-    ``minTimeStep`` field in the
+    ``minPolarizingTimeStep`` field in the
     :ref:`property_qpu_get_multicolor_annealing_exp_feature_info` property, must
     strictly increase for all points in the schedule.
 *   In the final schedule pair point for each anneal line, time :math:`t` must

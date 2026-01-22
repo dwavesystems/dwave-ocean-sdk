@@ -885,21 +885,16 @@ The returned information contains the following fields.
         -   Index of the annealing line for which the other field values are
             defined. Values range between 0 to :math:`N - 1`, where :math:`N` is
             the number of anneal lines for the QPU.
-    *   -   ``minTimeStep``
+    *   -   ``minAnnealingTimeStep``
         -   Float
         -   Minimum supported time step, in microseconds, for the
             :ref:`parameter_qpu_anneal_schedules` parameter. Values specified
             with greater precision are rounded.
-
-            Expected to be renamed to ``minAnnealTimeStep`` in a future release.
     *   -   ``minPolarizingTimeStep``
         -   Float
         -   Minimum supported time step, in microseconds, for the
             :ref:`parameter_polarizing_schedules` parameter. Values specified
             with greater precision are rounded.
-
-            Not yet released. Value is 0.02 microseconds for the
-            ``Advantage2_research1.4`` QPU.
     *   -   ``holdOvershootFor``
         -   Float
         -   Maximum supported duration, in microseconds, that you can specify a
