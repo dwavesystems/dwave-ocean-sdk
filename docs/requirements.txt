@@ -10,7 +10,7 @@ reno[sphinx]==3.3.0
 # TODO: remove the constraint once numpy 2.4.0 gets yanked
 numpy~=2.0,!=2.4.0
 
-dwave-experimental
+dwave-experimental==2026.1.23
 
 # needed for some of the examples
 matplotlib
