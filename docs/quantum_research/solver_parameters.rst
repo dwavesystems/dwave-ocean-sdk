@@ -19,6 +19,17 @@ these solvers, such as the ranges within which parameter values must be set.
     together must meet the limitations specified in
     :ref:`property_qpu_problem_run_duration_range`.
 
+.. |research_parameter_note| replace:: This parameter supports an advanced
+    annealing feature used in
+    :ref:`experimental research <qpu_experimental_research>` on designated
+    research QPUs. Not all accounts have access to such research quantum
+    computers.
+
+.. |realistic_mca_example| replace:: For a realistic example of multicolor
+    annealing, see the :ref:`qpu_experimental_research_mca_example` section.
+
+.. |realistic_fra_example| replace:: For a realistic example of fast reverse
+    annealing, see the :ref:`qpu_experimental_research_fra_example` section.
 
 .. _parameter_qpu_anneal_offsets:
 
@@ -1219,3 +1230,401 @@ problem with each anneal initialized from the final state of the previous cycle.
 ...                              reinitialize_state=False)
 >>> sampleset = qpu.sample_ising({}, J, num_reads=1000,
 ...                              **reverse_anneal_params)   # doctest: +SKIP
+
+
+.. _parameter_qpu_anneal_schedules:
+
+x_anneal_schedules
+==================
+
+Defines waveforms on the :math:`\Phi_{\rm CCJJ}(s)` lines for multicolor
+annealing, where :math:`\Phi_{\rm CCJJ}(s)` is an external flux applied to every
+qubit's compound Josephson-junction structures to change the potential energy
+shape of the qubit, as shown in Hamiltonian equation
+:math:numref:`qpu_equation_rfsquid_hamiltonian` of the :ref:`qpu_annealing`
+section.
+
+.. note:: |research_parameter_note|
+
+Each anneal schedule is defined by a series of pairs of floating-point numbers
+identifying points in the schedule at which to change slope. The first element
+in the pair is time, :math:`t`, and the second is normalized control
+bias, :math:`c(s)`. The resulting piecewise-linear (PWL) curve that connects the
+provided points is the nominal schedule that generates the waveform for the
+anneal line.
+
+Supported values are three-dimensional arrays with the following indices:
+
+*   Anneal line in the range 0 to :math:`N - 1`, where :math:`N` is the number
+    of anneal lines for the QPU.
+*   :math:`(t, c(s))` pair point of the selected line's anneal schedule, in a
+    range of 0 to the maximum number of supported points specified in the
+    :ref:`property_qpu_max_anneal_schedule_points` property.
+*   :math:`t` or :math:`c(s)` for the selected point of the anneal schedule on
+    the selected anneal line, with 0 indexing time and 1 indexing normalized
+    control bias.
+
+The following rules apply to each of the nominal anneal schedules:\ [#]_
+
+*   Time :math:`t`, specified in microseconds with a precision of the
+    ``minAnnealingTimeStep`` field in the
+    :ref:`property_qpu_get_multicolor_annealing_exp_feature_info` property, must
+    strictly increase for all points in the schedule.
+*   Normalized control bias, :math:`c(s)`, must be in the range
+    ``[minCOvershoot, maxCOvershoot]`` without ever exceeding the narrower range
+    ``[minC, maxC]`` for longer than a duration of ``holdOvershootFor``
+    microseconds, where values for these fields are specified in the
+    :ref:`property_qpu_get_multicolor_annealing_exp_feature_info` parameter for
+    each anneal line.
+*   In the final schedule pair point for each anneal line, time :math:`t` must
+    not exceed the maximum value in the
+    :ref:`property_qpu_fast_anneal_time_range` property.
+*   The number of points must be :math:`\geq 2`.
+*   The upper bound on the number of anneal-schedule points allowed for an
+    anneal line is specified in the
+    :ref:`property_qpu_max_anneal_schedule_points` property.
+
+.. [#]
+    When specifying anneal schedules on a subset of lines for some number of
+    time points, you must ensure that for that same number of points, :math:`t`
+    meets the rule of strictly increasing values on the remaining lines.
+
+Interacts with Parameters
+-------------------------
+
+*   You cannot provide both this parameter and the
+    :ref:`parameter_qpu_anneal_schedule` and/or
+    :ref:`parameter_qpu_annealing_time` parameter in a single submission.
+*   :ref:`parameter_qpu_h` values and :ref:`parameter_qpu_q` diagonal values
+    must be zero for the :ref:`fast-anneal protocol <qpu_annealprotocol_fast>`,
+    which is used in multicolor annealing.
+*   |meet_run_duration|
+    In this case, substitute your :ref:`parameter_qpu_anneal_schedules` values
+    for :ref:`parameter_qpu_anneal_schedule` and
+    :ref:`parameter_qpu_annealing_time`.
+*   :ref:`parameter_qpu_initial_state` and
+    :ref:`parameter_qpu_reinitialize_state` cannot be used with this parameter.
+*   :ref:`parameter_qpu_schedule_delays` sets relative delays between the anneal
+    schedules for the different lines.
+*   :ref:`parameter_qpu_disable_filtering` enables the waveforms on the
+    :math:`\Phi_{\rm CCJJ}(s)` lines to better track anneal schedules with fast
+    ramps.
+
+Example
+-------
+
+Set different anneal schedules for line 0 and line 1.
+
+|realistic_mca_example|
+
+>>> import numpy as np
+>>> import random
+>>> from dwave.experimental import multicolor_anneal as mca
+...
+>>> exp_feature_info = mca.get_properties()             # doctest: +SKIP
+>>> num_lines = len(exp_feature_info)                   # doctest: +SKIP
+...
+>>> as_a = [[0.0, 0.0], [random.uniform(3.0, 6.0), random.uniform(0.2, 0.7)], [10.0, 1.0]]
+>>> as_b = [[0.0, 0.0], [random.uniform(3.0, 6.0), random.uniform(0.2, 0.7)], [10.0, 1.0]]
+...
+>>> # Fill in schedules for all lines by duplicating as_a, then set for line 1
+>>> anneal_schedule = np.tile(as_a, (num_lines, 1, 1))  # doctest: +SKIP
+>>> anneal_schedule[1, :, :] = as_b                     # doctest: +SKIP
+
+
+.. _parameter_qpu_disable_filtering:
+
+x_disable_filtering
+===================
+
+When set to ``True``, disables filtering of :math:`\Phi_{\rm CCJJ}(s)` waveforms
+generated by your anneal schedule, enabling faster-changing waveforms.
+
+.. note:: |research_parameter_note|
+
+By default, :math:`\Phi_{\rm CCJJ}(s)` waveforms are filtered to match channel
+bandwidth.
+
+Interacts with Parameters
+-------------------------
+
+*   Together with your :ref:`parameter_qpu_anneal_schedules` generates the
+    :math:`\Phi_{\rm CCJJ}(s)` waveforms applied to the QPU.
+
+Example
+-------
+
+Disable filtering for a submission.
+
+|realistic_mca_example|
+
+>>> import numpy as np
+>>> import random
+>>> from dwave.system import DWaveSampler
+>>> from dwave.experimental import multicolor_anneal as mca
+...
+>>> qpu = DWaveSampler(solver="Advantage2_research1.4")     # doctest: +SKIP
+...
+>>> exp_feature_info = mca.get_properties(qpu)              # doctest: +SKIP
+>>> num_lines = len(exp_feature_info)                       # doctest: +SKIP
+...
+>>> # Select a qubit on anneal line 0 and a coupled qubit from another line
+>>> qubit_a = exp_feature_info[0]["qubits"][0]              # doctest: +SKIP
+>>> qubit_b = next(iter(qpu.adjacency[qubit_a]))            # doctest: +SKIP
+...
+>>> # Fill in schedules for all lines by duplicating one
+>>> schedule = [[0.0, 0.0], [random.uniform(3.0, 6.0), random.uniform(0.2, 0.7)], [10.0, 1.0]]
+>>> anneal_schedules = np.tile(schedule, (num_lines, 1, 1)) # doctest: +SKIP
+...
+>>> sampleset = qpu.sample_ising(                           # doctest: +SKIP
+...     {},
+...     {(qubit_a, qubit_b): 0.5},
+...     x_disable_filtering = True,
+...     x_anneal_schedules = anneal_schedules)
+
+
+.. _parameter_polarizing_schedules:
+
+x_polarizing_schedules
+======================
+
+Schedules the application of high (positive or negative) and zero flux bias on
+the subsets of qubits associated with each of the QPU's annealing lines.
+
+.. note:: |research_parameter_note|
+
+Each polarization schedule is defined by a series of tuples, where the first
+element is time, :math:`t`, in microseconds, formatted as a floating-point
+number, and the second is polarity, an integer with supported values :math:`-1`,
+:math:`+1`, and :math:`0`. The resulting schedule applies the specified
+time-dependent flux bias to the qubits of the anneal line.
+
+Supported values are three-dimensional arrays with the following indices:
+
+*   Anneal line in the range 0 to :math:`N - 1`, where :math:`N` is the number
+    of anneal lines for the QPU.
+*   :math:`(t, p(t))` pair point of the selected line's anneal schedule, in a
+    range of 0 to the maximum number of supported points specified in the
+    :ref:`property_qpu_max_anneal_schedule_points` property.
+*   :math:`t` or polarity for the selected point of the polarization schedule on
+    the selected anneal line, with 0 indexing time and 1 indexing polarity.
+
+The following rules apply to each of the polarization schedules you specify:
+
+*   Time :math:`t`, specified in microseconds with a precision of the
+    ``minPolarizingTimeStep`` field in the
+    :ref:`property_qpu_get_multicolor_annealing_exp_feature_info` property, must
+    strictly increase for all points in the schedule.
+*   In the final schedule pair point for each anneal line, time :math:`t` must
+    be identical to the last time set in the
+    :ref:`parameter_qpu_anneal_schedules` parameter.
+*   The number of points must be :math:`\geq 2`.
+*   The upper bound on the number of anneal-schedule points allowed for an
+    anneal line is specified in the
+    :ref:`property_qpu_max_anneal_schedule_points` property.
+*   Your :ref:`parameter_qpu_anneal_schedules` parameter must not change the
+    value of the normalized control bias, :math:`c(s)`, for a duration of
+    ``depolarizationAnnealScheduleRequiredDelay``, in microseconds, for an
+    anneal, after your :ref:`parameter_polarizing_schedules` parameter changes
+    the polarization value from :math:`-1` to :math:`0` or :math:`+1` to
+    :math:`0` for the qubits of that same anneal line.
+
+By default, no flux biases are set for the anneal lines.
+
+Interacts with Parameters
+-------------------------
+
+*   |meet_run_duration|
+    In this case, substitute your :ref:`parameter_polarizing_schedules` values
+    for :ref:`parameter_qpu_anneal_schedule` and
+    :ref:`parameter_qpu_annealing_time`.
+*   The :ref:`parameter_qpu_flux_biases` values are added to values set by
+    the :ref:`parameter_polarizing_schedules` parameter, but due to the large
+    value of the latter (when non-zero), have no noticeable effect.
+*   In the final schedule pair point for each anneal line, time :math:`t` must
+    be identical to the last time set in the
+    :ref:`parameter_qpu_anneal_schedules` parameter.
+
+Example
+-------
+
+Polarize qubits on line 0 from halfway through the anneal.
+
+|realistic_mca_example|
+
+>>> import numpy as np
+>>> from dwave.experimental import multicolor_anneal as mca
+...
+>>> exp_feature_info = mca.get_properties()             # doctest: +SKIP
+>>> num_lines = len(exp_feature_info)                   # doctest: +SKIP
+...
+>>> polarizing = [[0.0, 0.0], [5.0, -1], [10.0, -1]]
+>>> nonpolarizing = [[0.0, 0.0], [5.0, 0.0], [10.0, 0.0]]
+...
+>>> # Fill in schedules for all lines by duplicating nonpolarizing, then set for line 0
+>>> polarization_schedules = np.tile(nonpolarizing, (num_lines, 1, 1))  # doctest: +SKIP
+>>> polarization_schedules[0, :, :] = polarizing        # doctest: +SKIP
+
+
+.. _parameter_qpu_nominal_pause_time:
+
+x_nominal_pause_time
+====================
+
+Sets the pause duration, in microseconds, for fast-reverse-annealing schedules.
+
+.. note:: |research_parameter_note|
+
+Sets one of a discrete set of durations supported for fast-reverse-annealing
+schedules. The dwell time (e.g., 0.02 microseconds) refers to a property of the
+nominal schedule before filtering and does not represent a direct measure of the
+annealing schedule executed on the QPU.
+
+.. note::
+    The width of the schedule controlling the QPU is distorted due to line
+    filtering and does not increase linearly with the
+    :ref:`parameter_qpu_nominal_pause_time` value.
+
+Supported values are defined in the
+:ref:`property_qpu_get_fast_reverse_anneal_exp_feature_info` property.
+
+Default value is 0.
+
+Interacts with Parameters
+-------------------------
+
+*   :ref:`parameter_qpu_target_c` sets the lowest value of the
+    :ref:`normalized bias control <qpu_qa_implementation>`, :math:`c(s)`,
+    for the fast-reverse-annealing schedules.
+*   |meet_run_duration|
+*   :ref:`parameter_qpu_h` values and :ref:`parameter_qpu_q` diagonal values
+    must be zero for the fast-anneal protocol.
+*   :ref:`parameter_qpu_initial_state` specifies the initial classical state of
+    all qubits at the start of the fast reverse annealing. **This parameter must
+    be specified for reverse annealing.**
+*   :ref:`parameter_qpu_reinitialize_state` reinitializes the specified initial
+    state for every anneal-readout cycle. Note that this impacts timing.
+*   :ref:`parameter_qpu_anneal_schedule` must be provided with this parameter
+    but the configured values do not affect the executed schedule.
+
+Example
+-------
+
+|realistic_fra_example|
+
+>>> from dwave.system import DWaveSampler
+...
+>>> qpu = DWaveSampler(solver="Advantage2_research1.4")     # doctest: +SKIP
+>>> sampleset = qpu.sample_ising(                           # doctest: +SKIP
+...     {},
+...     {qpu.edgelist[0]: -1},
+...     x_target_c=0.3,
+...     x_nominal_pause_time=0.02,
+...     anneal_schedule=[[0, 1], [1, 1]],   # Not used but parameter must be set
+...     initial_state={qpu.edgelist[0][0]: 1, qpu.edgelist[0][1]: -1})
+
+
+.. _parameter_qpu_schedule_delays:
+
+x_schedule_delays
+=================
+
+Sets delays, in microseconds with a precision specified in the
+``scheduleDelayStep`` field of the
+:ref:`property_qpu_get_multicolor_annealing_exp_feature_info` property, between
+the :math:`\Phi_{\rm CCJJ}(s)` lines used for multicolor annealing, adding
+relative shifts of the waveforms generated by the
+:ref:`parameter_qpu_anneal_schedules` parameter.
+
+.. note:: |research_parameter_note|
+
+Supported values are one-dimensional arrays with values in the range
+:math:`[-100, 100]`, where the index is the anneal line, and ranges from 0 to
+:math:`N - 1`, with :math:`N` being the number of anneal lines for the QPU.
+
+By default, no delays are set.
+
+Example
+-------
+
+Sets a delay on anneal line 2 relative to all other lines.
+
+This example assumes a previously calculated anneal schedule,
+``anneal_schedules`` (see the example in the
+:ref:`parameter_qpu_anneal_schedules` section for creating such a schedule).
+
+|realistic_mca_example|
+
+>>> import numpy as np
+>>> from dwave.system import DWaveSampler
+>>> from dwave.experimental import multicolor_anneal as mca
+...
+>>> qpu = DWaveSampler(solver="Advantage2_research1.4")     # doctest: +SKIP
+...
+... exp_feature_info = mca.get_properties(qpu)              # doctest: +SKIP
+... num_anneal_lines = len(exp_feature_info)                # doctest: +SKIP
+... min_delay = exp_feature_info[2]["scheduleDelayStep"]    # doctest: +SKIP
+...
+>>> # Select a qubit on anneal line 2 and a coupled qubit from another line
+>>> qubit_a = exp_feature_info[2]["qubits"][0]              # doctest: +SKIP
+>>> qubit_b = next(iter(qpu.adjacency[qubit_a]))            # doctest: +SKIP
+...
+>>> delays = num_anneal_lines * [0.0]                       # doctest: +SKIP
+>>> delays[2] = 5*min_delay                                 # doctest: +SKIP
+...
+>>> sampleset = qpu.sample_ising(                           # doctest: +SKIP
+...     {},
+...     {(qubit_a, qubit_b): 0.5},
+...     x_schedule_delays = delays,
+...     x_disable_filtering = True,
+...     x_anneal_schedules = anneal_schedules)
+
+
+.. _parameter_qpu_target_c:
+
+x_target_c
+==========
+
+The lowest value of the
+:ref:`normalized control bias <qpu_annealprotocol_standard>`, :math:`c(s)`,
+reached during a fast reverse annealing.
+
+.. note:: |research_parameter_note|
+
+The energy scales of the Hamiltonian, :math:`A(c(s))` and :math:`B(c(s))` are
+those of the :ref:`fast annealing protocol <qpu_annealprotocol_fast>` and are
+available for a QPU on the :ref:`qpu_solver_properties_specific` page.
+
+Supported values are defined in the
+:ref:`property_qpu_get_fast_reverse_anneal_exp_feature_info` property.
+
+Interacts with Parameters
+-------------------------
+
+*   :ref:`parameter_qpu_nominal_pause_time` sets the pause duration for
+    fast-reverse-annealing schedules.
+*   |meet_run_duration|
+*   :ref:`parameter_qpu_h` values and :ref:`parameter_qpu_q` diagonal values
+    must be zero for the fast-anneal protocol.
+*   :ref:`parameter_qpu_initial_state` specifies the initial classical state of
+    all qubits at the start of the fast reverse annealing. **This parameter must
+    be specified for reverse annealing.**
+*   :ref:`parameter_qpu_reinitialize_state` reinitializes the specified initial
+    state for every anneal-readout cycle. Note that this impacts timing.
+*   :ref:`parameter_qpu_anneal_schedule` must be provided with this parameter
+    but the configured values do not affect the executed schedule.
+
+Example
+-------
+
+|realistic_fra_example|
+
+>>> from dwave.system import DWaveSampler
+...
+>>> qpu = DWaveSampler(solver="Advantage2_research1.4")     # doctest: +SKIP
+>>> sampleset = qpu.sample_ising(                           # doctest: +SKIP
+...     {},
+...     {qpu.edgelist[0]: -1},
+...     x_target_c=0.3,
+...     anneal_schedule=[[0, 1], [1, 1]],   # Not used but parameter must be set
+...     initial_state={qpu.edgelist[0][0]: 1, qpu.edgelist[0][1]: -1})
