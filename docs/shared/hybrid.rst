@@ -63,7 +63,7 @@ service. Check your dashboard to see which hybrid solvers are available to you.
 
 Generally available hybrid solvers currently supported include:
 
-*   Hybrid nonlinear-program solver (e.g.,
+*   Hybrid nonlinear solver, also known as the |nlstride_tm| (e.g.,
     ``hybrid_nonlinear_program_version1``)
 
     .. include:: ../shared/models.rst

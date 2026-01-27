@@ -397,6 +397,7 @@ rst_epilog = """
 .. _dwave_learn_tm: https://training.dwavequantum.com
 .. |dwave_learn| unicode:: D U+2011 Wave U+00A0 Learn
 .. _dwave_learn: https://training.dwavequantum.com
+.. |nlstride_tm| unicode:: Stride U+2122 U+00A0 hybrid U+00A0 solver
 
 .. |support_email| replace:: D-Wave Customer Support
 .. _support_email: support@dwavesys.com

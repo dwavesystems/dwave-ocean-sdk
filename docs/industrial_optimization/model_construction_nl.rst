@@ -20,8 +20,8 @@ The :ref:`dwave-optimization <index_optimization>` tool enables you to formulate
 the nonlinear models needed for such industrial optimization problems. The model
 can then be submitted to the
 `Leap <https://cloud.dwavesys.com/leap/>`_ service's quantum-classical
-:term:`hybrid` nonlinear-program solver to find good solutions. The design
-principles and major features are described in the
+:term:`hybrid` nonlinear solver (also known as the |nlstride_tm|) to find good
+solutions. The design principles and major features are described in the
 :ref:`dwave-optimization philosophy <optimization_philosophy>` page.
 
 
