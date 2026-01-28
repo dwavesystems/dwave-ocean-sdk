@@ -24,7 +24,8 @@ Nonlinear Models
 
 These examples solve small instances of known optimization problems using
 the `Leap <https://cloud.dwavesys.com/leap/>`_ service's hybrid
-:term:`nonlinear-model <nonlinear model>` solver.
+:term:`nonlinear-model <nonlinear model>` solver
+(also known as the |nlstride_tm|).
 
 .. grid:: 2 2 3 3
     :gutter: 2
