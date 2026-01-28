@@ -39,11 +39,11 @@ study.
 Nonlinear Model
 ---------------
 
-With the NL Solver, we use :meth:`~dwave.optimization.model.Model.list`
-variables to represent the global permutations, which can be viewed as mappings
-from the features in each image to the global labels. We view the state of the
-list variable as a permutation in one-line form where, for example, [210]
-represents the mapping:
+With the nonlinear solver (also known as the |nlstride|), we use
+:meth:`~dwave.optimization.model.Model.list` variables to represent the global
+permutations, which can be viewed as mappings from the features in each image to
+the global labels. We view the state of the list variable as a permutation in
+one-line form where, for example, [210] represents the mapping:
 
 .. table:: Example permutation mapping
    :width: 60%
