@@ -33,7 +33,7 @@ inventory management, scheduling employees, equipment delivery, and many more.
 
 Large optimization problems can be formulated as
 :ref:`nonlinear models <concept_models_nonlinear>`, as described in the
-:ref:`opt_model_construction_nl` section. You can then use the nonlinear hybrid
+:ref:`opt_model_construction_nl` section. You can then use the hybrid nonlinear
 :term:`solver` (also known as the |nlstride_tm|) hosted in the |cloud_tm|
 service to find good solutions.
 
