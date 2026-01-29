@@ -13,6 +13,7 @@ QPU Hardware and Properties
     topologies
     operation_timing
     errors
+    experimental_research
 
 Technical details on the QPU hardware and features.
 
@@ -48,7 +49,13 @@ Technical details on the QPU hardware and features.
         :link-type: ref
 
         Errors sources and correction.
-        
+
+    .. grid-item-card:: :ref:`qpu_experimental_research`
+        :link: qpu_experimental_research
+        :link-type: ref
+
+        Experimental features for QPU research.
+
 Example
 =======
 
