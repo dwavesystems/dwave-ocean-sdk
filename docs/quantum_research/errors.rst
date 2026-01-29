@@ -434,7 +434,7 @@ scaled anneal fraction :math:`s`.
 
     *   For :math:`\Phi_{\rm CCJJ}(s)`: 30 MHz on both |dwave_5kq| and |adv2_tm|
         systems
-    *   For :math:`\Phi^x_i(s)`: 3 MHz for |dwave_5kq| systems and 30 MHz for
+    *   For :math:`\Phi^x_i(s)`: 3 MHz for |dwave_5kq| systems and 6.5 MHz for
         |adv2| systems
 
 .. _qpu_ice_error_h_scale_interqubits:
