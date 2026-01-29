@@ -4,11 +4,12 @@
 Traveling Salesperson: Simple Nonlinear Model
 =============================================
 
-This example demonstrates the most basic use of a
-`Leap <https://cloud.dwavesys.com/leap/>`_ :term:`hybrid` :term:`solver` on a
-problem formulated as a :ref:`nonlinear model <concept_models_nonlinear>`. For
-more-advanced solver usage, see the :ref:`opt_example_nl_cvrp` section; for
-information on formulating problems as nonlinear models, see the
+This example demonstrates the most basic use of the
+`Leap <https://cloud.dwavesys.com/leap/>`_ :term:`hybrid` nonlinear
+:term:`solver` (also known as the |nlstride|) on a problem formulated as a
+:ref:`nonlinear model <concept_models_nonlinear>`. For more-advanced solver
+usage, see the :ref:`opt_example_nl_cvrp` section; for information on
+formulating problems as nonlinear models, see the
 :ref:`opt_model_construction_nl` section.
 
 The goal of renowned

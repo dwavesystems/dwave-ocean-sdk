@@ -13,13 +13,9 @@ Performance Benchmarks
     vignette_qap
     vignette_satellite
 
-The following vignettes compare the performance of D-Wave's hybrid solvers
-versus other relevant solvers on a range of optimization applications.
-
-Nonlinear Solver
-================
-
-
+The following vignettes compare the performance of D-Wave's hybrid nonlinear
+solver (also known as the |nlstride_tm|) versus other relevant solvers on a
+range of optimization applications.
 
 .. grid:: 2 2 3 3
     :gutter: 2

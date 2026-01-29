@@ -4,8 +4,9 @@
 Vehicle Routing: Using a Nonlinear Model
 ========================================
 
-This example demonstrates the use of a
-`Leap <https://cloud.dwavesys.com/leap/>`_ :term:`hybrid` :term:`solver` on a
+This example demonstrates the use of the
+`Leap <https://cloud.dwavesys.com/leap/>`_ :term:`hybrid` nonlinear
+:term:`solver` (also known as the |nlstride|) on a
 :ref:`nonlinear model <concept_models_nonlinear>`. It explains how to estimate
 the minimum time the solver requires for the model, check that solutions meet
 the model's constraints, set initial states, and more. For a simpler example

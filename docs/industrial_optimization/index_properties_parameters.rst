@@ -27,14 +27,15 @@ Nonlinear Solver
 
 `Nonlinear programming (NLP) <https://en.wikipedia.org/wiki/Nonlinear_programming>`_
 is the process of solving an optimization problem where some of the constraints
-are not linear equalities and/or the objective function is not a linear\
+are not linear equalities and/or the objective function is not a linear
 function. Such optimization problems are pervasive in business and logistics:
 inventory management, scheduling employees, equipment delivery, and many more.
 
 Large optimization problems can be formulated as
 :ref:`nonlinear models <concept_models_nonlinear>`, as described in the
-:ref:`opt_model_construction_nl` section. You can then use the nonlinear hybrid
-:term:`solver` hosted in the |cloud_tm| service to find good solutions.
+:ref:`opt_model_construction_nl` section. You can then use the hybrid nonlinear
+:term:`solver` (also known as the |nlstride_tm|) hosted in the |cloud_tm|
+service to find good solutions.
 
 .. grid:: 2 2 3 3
     :gutter: 2

@@ -6,8 +6,9 @@ Nonlinear Solver Properties
 
 This section describes the properties of quantum-classical hybrid
 :ref:`nonlinear-model <concept_models_nonlinear>` solvers such as the Leap
-service's ``hybrid_nonlinear_program_version1``. For the parameters you can
-configure, see the :ref:`opt_solver_nl_parameters` section.
+service's ``hybrid_nonlinear_program_version1`` (also known as the |nlstride|).
+For the parameters you can configure, see the
+:ref:`opt_solver_nl_parameters` section.
 
 .. _property_nl_category:
 
