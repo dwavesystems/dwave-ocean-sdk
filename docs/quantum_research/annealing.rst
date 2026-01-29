@@ -964,17 +964,17 @@ Filtered h-gain Waveforms
 -------------------------
 
 Low-pass filters with cutoff frequencies of 3 MHz for |dwave_5kq| systems
-and 30 MHz for |adv2| systems are used to limit the bandwidth of the
+and 6.5 MHz for |adv2| systems are used to limit the bandwidth of the
 :ref:`parameter_qpu_h`-gain waveform (the :math:`\Phi^x_i(s)` term of
 equation :math:numref:`qpu_equation_rfsquid_hamiltonian`) delivered to the
 QPU, as shown in :numref:`Figure %s <filtered_hgain_waveform_30mhz>`.
 
-.. figure:: ../_images/filtered_hgain_waveform_30mhz.png
-    :name: filtered_hgain_waveform_30mhz
-    :alt: Graph showing an h-gain waveform filtered by the Advantage2 30-MHz
+.. figure:: ../_images/filtered_hgain_waveform_6.5mhz.png
+    :name: filtered_hgain_waveform_6.5mhz
+    :alt: Graph showing an h-gain waveform filtered by the Advantage2 6.5-MHz
             low-pass filter.
 
-    Graph showing an h-gain waveform filtered by the Advantage2 30-MHz
+    Graph showing an h-gain waveform filtered by the Advantage2 6.5-MHz
     low-pass filter.
 
 .. _approximate_filtered_h_gain:
@@ -1007,7 +1007,7 @@ QPU, as shown in :numref:`Figure %s <filtered_hgain_waveform_30mhz>`.
                     following:
 
                     *   3: 3 Mhz for an Advantage QPU.
-                    *   30: 30 Mhz for an Advantage2 QPU.
+                    *   6.5: 6.5 Mhz for an Advantage2 QPU.
 
             Returns:
                 Filtered h-gain waveform and the resampled input h-gain waveform.
