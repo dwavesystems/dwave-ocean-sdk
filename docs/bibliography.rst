@@ -1023,7 +1023,7 @@ Bibliography
     4 Dec 2019 https://arxiv.org/abs/1912.02119
 
 .. [Vod2025]
-    Vodeb, Jaka, Jean-Yves Desaules, Andrew Hallam, Andrea Rava, Gregor Humar,
+    Jaka Vodeb, Jean-Yves Desaules, Andrew Hallam, Andrea Rava, Gregor Humar,
     Dennis Willsch, Fengping Jin, Madita Willsch, Kristel Michielsen,
     Zlatko Papić. "Stirring the false vacuum via interacting quantized bubbles
     on a 5,564-qubit quantum annealer." (2025) Nature Physics 21, 386.
