@@ -933,7 +933,7 @@ See the :ref:`qpu_annealprotocol_fast` section for further details.
 
 .. _qpu_qa_h_gain:
 
-Varying the Linear-Bias Schedule 
+Varying the Linear-Bias Schedule
 ================================
 
 For more control of the annealing process, you can schedule the time-dependent
@@ -967,11 +967,11 @@ Low-pass filters with cutoff frequencies of 3 MHz for |dwave_5kq| systems
 and 6.5 MHz for |adv2| systems are used to limit the bandwidth of the
 :ref:`parameter_qpu_h`-gain waveform (the :math:`\Phi^x_i(s)` term of
 equation :math:numref:`qpu_equation_rfsquid_hamiltonian`) delivered to the
-QPU, as shown in :numref:`Figure %s <filtered_hgain_waveform_30mhz>`.
+QPU, as shown in :numref:`Figure %s <filtered_hgain_waveform_6.5mhz>`.
 
 .. figure:: ../_images/filtered_hgain_waveform_6.5mhz.png
     :name: filtered_hgain_waveform_6.5mhz
-    :alt: Graph showing an h-gain waveform filtered by the Advantage2 6.5-MHz
+    :alt: Graph showing a linear-bias gain waveform before and after the Advantage2 6.5-MHz
             low-pass filter.
 
     Graph showing an h-gain waveform filtered by the Advantage2 6.5-MHz
@@ -995,7 +995,7 @@ QPU, as shown in :numref:`Figure %s <filtered_hgain_waveform_30mhz>`.
 
         def approximate_filtered_h_gain(pwl: np.typing.ArrayLike,
                                         bandwidth: float) -> np.typing.ArrayLike:
-            """Approximate the h-gain schedule executed on a QPU.
+            """Approximate the linear-bias gain waveform applied on a QPU.
 
             Args:
                 pwl: Input h-gain schedule, as a 2D array-like, that defines a
