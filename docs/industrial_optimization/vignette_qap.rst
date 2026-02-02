@@ -30,9 +30,10 @@ difficult to formulate for MILP and LP solvers.
 
 This study shows that on QAP problems from the Taillard benchmarking library
 (see [Tai1991]_ and [Tai1995]_) with 150 seconds of runtime, the gap for
-solutions found by D-Wave's hybrid nonlinear-program solver, or NL solver, beats
-or ties all "b" and "c" instances. For the "a" instances, the only solver to
-beat the NL solver is D-Wave's hybrid constrained quadratic model (CQM) solver.
+solutions found by D-Wave's hybrid nonlinear solver (also known as the
+|nlstride|) beats or ties all "b" and "c" instances. For the "a" instances, the
+only solver to beat the nonlinear solver is D-Wave's hybrid constrained
+quadratic model (CQM) solver.
 
 Problem Instances
 =================
@@ -91,7 +92,7 @@ local search algorithm that searches by swapping facility placements.
 Nonlinear Model
 ---------------
 
-D-Wave's NL solver can efficiently encode a QAP problem by
+D-Wave's nonlinear solver can efficiently encode a QAP problem by
 taking advantage of a :meth:`~dwave.optimization.model.Model.list` variable that
 encodes an ordering of the facility placements. This variable eliminates the
 need for both the quadratic number of binary variables representing facility
@@ -141,7 +142,7 @@ order to impose time limits on COIN-OR's solver, presolve techniques are turned
 off. Solvers that terminate faster than the time limit are rerun for the full
 allocated time and the minimum objective value found is saved.
 
-D-Wave's NL solver and CQM solver benchmarks ran on D-Waves's |cloud_tm|_
+D-Wave's nonlinear solver and CQM solver benchmarks ran on D-Waves's |cloud_tm|_
 quantum cloud service. COIN-OR, OR-Tools, and SciPy were run on an Intel Core
 i9-7900X CPU @ 3.30GHz processor with 16GB RAM. The benchmarks for OR-Tools were
 run with eight threads, and the remaining were run with a single thread.
@@ -156,7 +157,7 @@ instances with a time limit of 150 seconds.
     :alt: lineplot
 
     The complete study contains more time limits. For all "b" and "c" instances,
-    the NL solver beats or ties all other solvers. For all "a" instances, the
-    only solver to beat the NL solver is D-Wave's CQM solver. The NL solver is
-    the only solver able to obtain a feasible solution for the problems of size
-    150 and 256 for all time limits tested.
+    the nonlinear solver beats or ties all other solvers. For all "a" instances,
+    the only solver to beat the nonlinear solver is D-Wave's CQM solver. The
+    nonlinear solver is the only solver able to obtain a feasible solution for
+    the problems of size 150 and 256 for all time limits tested.

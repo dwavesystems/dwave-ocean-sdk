@@ -125,10 +125,11 @@ These values are the arguments for the
 Initial States
 --------------
 
-The nonlinear solver and Pyomo can make use of initial states. For this study,
-the nonlinear solver ran with and without an initial state for the list variable
-representing the order of the satellites. An initial state was assigned by the
-order of midpoints of the satellite ranges (“sorted_indices”):
+The nonlinear solver (also known as the |nlstride|) and Pyomo can make use of
+initial states. For this study, the nonlinear solver ran with and without an
+initial state for the list variable representing the order of the satellites.
+An initial state was assigned by the order of midpoints of the satellite ranges
+(“sorted_indices”):
 
 .. testsetup:: [states]
 

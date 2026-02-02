@@ -20,10 +20,10 @@ that minimizes the overall `makespan <https://en.wikipedia.org/wiki/Makespan>`_
 (that is, the finish time).
 
 This study shows how the optimization of flow-shop scheduling using D-Wave's
-hybrid nonlinear-program solver (NL solver) improves this process, with the goal
-of driving operational efficiencies. This study includes performance benchmarks
-of D-Wave's NL and :term:`CQM` solvers as well as COIN-OR, OR-Tools, and SciPy's
-HiGHS.
+hybrid nonlinear solver (also known as the |nlstride|) improves this process,
+with the goal of driving operational efficiencies. This study includes
+performance benchmarks of D-Wave's nonlinear and :term:`CQM` solvers as well as
+COIN-OR, OR-Tools, and SciPy's HiGHS.
 
 .. figure:: ../_images/vignette_fss_graphic.png
     :name: vignetteFssGraphic
@@ -70,7 +70,7 @@ times are passed as an :math:`n\times m` matrix.
 Nonlinear Solver Model 
 ---------------------------
 
-D-Wave's NL solver can efficiently encode an FSS problem by taking advantage of
+D-Wave's nonlinear solver can efficiently encode an FSS problem by taking advantage of
 a list variable (:class:`~dwave.optimization.symbols.ListVariable`) that encodes
 an ordering of the jobs. This variable eliminates the need for both the
 quadratic number of binary variables representing job orders and constraints
@@ -141,7 +141,7 @@ order to impose time limits on COIN-OR's solver, presolve techniques are turned
 off. Presolve modifies the model by removing redundant equations, changing some
 equations to bounds, and so forth without contributing to the time limit.
 
-D-Wave's NL solver and CQM solver benchmarks were run on D-Wave's |cloud_tm|_
+D-Wave's nonlinear solver and CQM solver benchmarks were run on D-Wave's |cloud_tm|_
 quantum cloud service. COIN-OR, OR-Tools, and HiGHS were run on an Intel Core
 i9-7900X CPU @ 3.30GHz processor with 16GB RAM. The benchmarks for OR-Tools were
 run with eight threads (the minimum number for parallel search), and the
@@ -158,7 +158,7 @@ instances with a time limit of 150 seconds. The plot displays the median gap
 versus number of jobs for each solver. The complete study contains more time
 limits, where the results are qualitatively the same, except for OR-Tools
 obtaining optimality in the smallest instances with the largest time limit.
-For each number of jobs with a 150-second runtime, D-Wave's NL solver
+For each number of jobs with a 150-second runtime, D-Wave's nonlinear solver
 outperforms the other solvers.
 
 .. figure:: ../_images/vignette_fss_lineplot.png
@@ -168,6 +168,6 @@ outperforms the other solvers.
     :alt: lineplot
 
     On FSS problems with 150 seconds of runtime, the median gap for solutions
-    found by D-Wave's NL solver beats the median gaps found by all other solvers
-    tested on all sizes available in the Taillard benchmarking library.
+    found by D-Wave's nonlinear solver beats the median gaps found by all other
+    solvers tested on all sizes available in the Taillard benchmarking library.
     
