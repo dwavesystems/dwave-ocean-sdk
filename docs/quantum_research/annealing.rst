@@ -1006,8 +1006,8 @@ QPU, as shown in :numref:`Figure %s <filtered_hgain_waveform_6.5mhz>`.
                     the low-pass filter on the QPU I/O line. Valid values are the
                     following:
 
-                    *   3: 3 Mhz for an Advantage QPU.
-                    *   6.5: 6.5 Mhz for an Advantage2 QPU.
+                    *   3: 3 MHz for an Advantage QPU.
+                    *   6.5: 6.5 MHz for an Advantage2 QPU.
 
             Returns:
                 Filtered h-gain waveform and the resampled input h-gain waveform.
