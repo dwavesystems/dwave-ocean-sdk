@@ -5,7 +5,7 @@ Annealing Implementation and Controls
 =====================================
 
 This section describes how quantum annealing (QA) is implemented and features
-that allow you to control the annealing process\ [#]_.
+that allow you to control the annealing process.
 
 *   Per-qubit :ref:`anneal offsets <qpu_qa_anneal_offsets>`: adjust the standard
     annealing path per qubit.
@@ -13,13 +13,6 @@ that allow you to control the annealing process\ [#]_.
     :ref:`quench and pause <qpu_qa_anneal_sched_pause>`,
     :ref:`reverse annealing <qpu_qa_anneal_sched_reverse>`, and
     :ref:`fast annealing <qpu_annealprotocol_fast>`.
-
-.. [#]
-    Another feature that enables control of the annealing process, the
-    time-dependent gain, :ref:`parameter_qpu_h_gain_schedule`, applied to linear
-    coefficients (biases), :math:`h_i`, described in the
-    :ref:`qpu_solver_parameters` section, is currently used only experimentally
-    and not described here.
 
 .. _qpu_qa_implementation:
 
@@ -926,3 +919,100 @@ for the selected QPU.
 
 See the :ref:`qpu_annealprotocol_fast` section for further details.
 
+.. _qpu_qa_h_gain:
+
+Varying the Linear-Bias Schedule
+================================
+
+For the :ref:`standard annealing <qpu_annealprotocol_standard>` and
+:ref:`reverse annealing <qpu_qa_anneal_sched_reverse>` protocols, you can
+schedule a time-dependent gain for the Hamiltonian's linear biases (i.e., qubit
+biases). The :ref:`parameter_qpu_h_gain_schedule` parameter is applied to qubit
+biases :math:`h_i` and specifies the :math:`g(t)` function in the Hamiltonian,
+
+.. math::
+    :nowrap:
+
+    \begin{equation}
+        {\cal H}_{ising} = - \frac{A({s})}{2}
+        \left(\sum_i {\hat\sigma_{x}^{(i)}}\right)
+        + \frac{B({s})}{2} \left(g(t) \sum_{i} h_i {\hat\sigma_{z}^{(i)}}
+        + \sum_{i>j} J_{i,j} {\hat\sigma_{z}^{(i)}} {\hat\sigma_{z}^{(j)}}\right)
+    \end{equation}
+
+where :math:`{\hat\sigma_{x,z}^{(i)}}` are Pauli matrices operating on a qubit
+:math:`q_i`; and :math:`h_i` and :math:`J_{i,j}` are the qubit biases and
+coupling strengths, respectively. For examples of using this feature, see
+[Vod2025]_ and [Pel2023]_.
+
+.. _qpu_exec_hgain_waveform:
+
+Filter-Cutoff Frequencies
+-------------------------
+
+Low-pass filters with cutoff frequencies of 3 MHz for |dwave_5kq| systems and
+6.5 MHz for |adv2| systems limit the bandwidth of the ``h``-gain waveform
+delivered to the QPU, shown in
+:numref:`Figure %s <filtered_hgain_waveform_6.5mhz>` as an approximation.
+Thus, if you configure a too-rapidly changing curve, even
+within the supported bounds, expect distorted values of ``h`` for your problem. 
+
+.. figure:: ../_images/filtered_hgain_waveform_6.5mhz.png
+    :name: filtered_hgain_waveform_6.5mhz
+    :alt: Graph showing both a linear-bias gain waveform before the Advantage2
+        system's 6.5-MHz low-pass filter is applied and an approximation of the
+        waveform after said filter is applied.
+
+    Graph showing both a linear-bias gain waveform before the Advantage2
+    system's 6.5-MHz low-pass filter is applied and an approximation of the
+    waveform after said filter is applied.
+
+.. _approximate_filtered_h_gain:
+
+.. dropdown:: Approximating the Filtered Waveform
+
+    You can use the following Python script to approximate the h-gain waveform
+    that is filtered and executed on the QPU. The script's
+    ``approximate_filtered_h_gain`` method derives an approximation of the
+    filtered h-gain waveform by applying a second-order low-pass Bessel filter
+    to the input waveform.
+
+    .. testcode::
+
+        import numpy as np
+        from scipy import signal
+        import warnings
+
+        def approximate_filtered_h_gain(pwl: np.typing.ArrayLike,
+                                        bandwidth: float) -> np.typing.ArrayLike:
+            """Approximate the linear-bias gain waveform applied on a QPU.
+
+            Args:
+                pwl: Input h-gain schedule, as a 2D array-like, that defines a
+                    nominal piece-wise linear (PWL) waveform of time and gain values,
+                    [[0.0, 0.0], ..., [t_f, g_f]]. The first value must be [0.0, 0.0].
+
+                bandwidth: Cutoff frequency, as a floating point number in MHz, of
+                    the low-pass filter on the QPU I/O line. Valid values are the
+                    following:
+
+                    *   3: 3 MHz for an Advantage QPU.
+                    *   6.5: 6.5 MHz for an Advantage2 QPU.
+
+            Returns:
+                Filtered h-gain waveform and the resampled input h-gain waveform.
+            """
+
+            pwl = np.asarray(pwl)
+            t_i = pwl[0, 0]
+            t_f = pwl[-1, 0]
+            cur_g = pwl[0, 1]
+
+            assert cur_g == 0.0, "Please add ``[0.0, 0.0]`` as the first ``pwl`` value."
+
+            sampling_rate = int(bandwidth * 100)
+            time_array = np.linspace(t_i, t_f, int(np.ceil(sampling_rate * (t_f - t_i))))
+            sig = np.interp(time_array, pwl[:, 0], pwl[:, 1])
+            b, a = signal.bessel(2, 2/100, btype="lowpass", analog=False, output="ba", norm="mag")
+
+            return np.vstack([time_array, signal.lfilter(b, a, sig)]).T, np.vstack([time_array, sig]).T
