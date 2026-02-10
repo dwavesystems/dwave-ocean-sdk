@@ -975,9 +975,9 @@ within the supported bounds, expect distorted values of ``h`` for your problem.
         system's 6.5-MHz low-pass filter is applied and an approximation of the
         waveform after said filter is applied.
 
-    Graph showing both a linear-bias gain waveform before the Advantage2
-    system's 6.5-MHz low-pass filter is applied and an approximation of the
-    waveform after said filter is applied.
+    Graph showing a configured linear-bias gain waveform and an approximation
+    of the waveform after the Advantage2 system's 6.5-MHz low-pass filter is
+    applied.
 
 .. _approximate_filtered_h_gain:
 
