@@ -653,7 +653,7 @@ This example sets random linear and quadratic biases on all qubits.
 h_gain_schedule
 ===============
 
-Sets a :ref:`time-dependent h-gain <qpu_qa_h_gain>` for linear coefficients
+Sets a :ref:`time-dependent gain <qpu_qa_h_gain>` for linear coefficients
 (:ref:`qubit biases <parameter_qpu_h>`) in the Hamiltonian.
 
 Like the :ref:`parameter_qpu_anneal_schedule` parameter, this time-dependent
