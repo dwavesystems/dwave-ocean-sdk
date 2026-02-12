@@ -812,6 +812,11 @@ Bibliography
     Scientific Reports 2, Article number: 571. 2012.
     https://www.nature.com/articles/srep00571
 
+.. [Pel2023]
+    Elijah Pelofske, Georg Hahn, and Hristo Djidjev.
+    "Initial State Encoding via Reverse Quantum Annealing and h-gain Features"
+    https://doi.org/10.48550/arXiv.2303.13748
+
 .. [Per2015]
     A. Perdomo-Ortiz, J. Fluegemann, S. Narasimhan, R. Biswas, and
     V. N. Smelyanskiy.
@@ -825,11 +830,6 @@ Bibliography
     "Systematic Literature Review: Quantum Machine Learning and
     its applications."
     arXiv:2201.04093 [quant-ph]
-
-.. [Pel2023]
-    Elijah Pelofske, Georg Hahn, and Hristo Djidjev.
-    "Initial State Encoding via Reverse Quantum Annealing and h-gain Features"
-    https://doi.org/10.48550/arXiv.2303.13748
 
 .. [Phi2021]
     Phillipson F., Bhatia H.S.
