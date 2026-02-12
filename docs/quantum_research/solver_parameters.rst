@@ -653,18 +653,24 @@ This example sets random linear and quadratic biases on all qubits.
 h_gain_schedule
 ===============
 
-Sets a :ref:`time-dependent gain <qpu_qa_h_gain>` for linear coefficients
-(:ref:`qubit biases <parameter_qpu_h>`) in the Hamiltonian.
+Sets a :ref:`time-dependent gain for linear coefficients
+<qpu_qa_linear_bias_sched>` (i.e., :ref:`qubit biases <parameter_qpu_h>`) in the
+Hamiltonian.
 
 Like the :ref:`parameter_qpu_anneal_schedule` parameter, this time-dependent
-gain :math:`g(t)` in the Hamiltonian is specified by a series of pairs of
-floating-point numbers identifying points in the schedule at which to change
-the gain applied to :ref:`parameter_qpu_h`. The first element in the pair
-is time, :math:`t` in microseconds |anneal_time_parameter_granularity|;
-the second is the unitless :math:`g` in the range
-:ref:`property_qpu_h_gain_schedule_range`. The resulting time-dependent gain is
-the piecewise-linear (PWL) curve that connects the points over the same range of
-times as the :ref:`parameter_qpu_anneal_schedule`.
+gain :math:`g(t)` in the Hamiltonian,
+
+.. include:: ../shared/anneal.rst
+    :start-after: start_gt_hamiltonion
+    :end-before: end_gt_hamiltonion
+
+is specified by a series of pairs of floating-point numbers identifying points
+in the schedule at which to change the gain applied to :ref:`parameter_qpu_h`.
+The first element in the pair is time, :math:`t` in microseconds
+|anneal_time_parameter_granularity|; the second is the unitless :math:`g` in the
+range :ref:`property_qpu_h_gain_schedule_range`. The resulting time-dependent
+gain is the piecewise-linear (PWL) curve that connects the points over the same
+range of times as the :ref:`parameter_qpu_anneal_schedule`.
 
 The following rules apply to the set of points for time-dependent gain:
 
@@ -680,7 +686,7 @@ The following rules apply to the set of points for time-dependent gain:
     supported by the selected QPU.\ [#]_ However, even if the curve is within
     the supported bounds but changes too rapidly, distorted values of
     :ref:`parameter_qpu_h` can be caused by
-    :ref:`low-pass filters <qpu_exec_hgain_waveform>`.
+    :ref:`low-pass filters <qpu_qa_linear_bias_filter>`.
 
 Default :math:`g(t)`, when left unspecified, is 1, which can be explicitly coded
 as
