@@ -931,7 +931,7 @@ for the selected QPU.
 
 See the :ref:`qpu_annealprotocol_fast` section for further details.
 
-.. _qpu_qa_h_gain:
+.. _qpu_qa_linear_bias_sched:
 
 Varying the Linear-Bias Schedule
 ================================
@@ -942,52 +942,46 @@ schedule a time-dependent gain for the Hamiltonian's linear biases (i.e., qubit
 biases). The :ref:`parameter_qpu_h_gain_schedule` parameter is applied to qubit
 biases :math:`h_i` and specifies the :math:`g(t)` function in the Hamiltonian,
 
-.. math::
-    :nowrap:
-
-    \begin{equation}
-        {\cal H}_{ising} = - \frac{A({s})}{2}
-        \left(\sum_i {\hat\sigma_{x}^{(i)}}\right)
-        + \frac{B({s})}{2} \left(g(t) \sum_{i} h_i {\hat\sigma_{z}^{(i)}}
-        + \sum_{i>j} J_{i,j} {\hat\sigma_{z}^{(i)}} {\hat\sigma_{z}^{(j)}}\right)
-    \end{equation}
+.. include:: ../shared/anneal.rst
+    :start-after: start_gt_hamiltonion
+    :end-before: end_gt_hamiltonion
 
 where :math:`{\hat\sigma_{x,z}^{(i)}}` are Pauli matrices operating on a qubit
 :math:`q_i`; and :math:`h_i` and :math:`J_{i,j}` are the qubit biases and
 coupling strengths, respectively. For examples of using this feature, see
 [Vod2025]_ and [Pel2023]_.
 
-.. _qpu_exec_hgain_waveform:
+.. _qpu_qa_linear_bias_filter:
 
-Filter-Cutoff Frequencies
--------------------------
+Filtered Waveforms Delivered to the QPU
+---------------------------------------
 
-Low-pass filters with cutoff frequencies of 3 MHz for |dwave_5kq| systems and
-6.5 MHz for |adv2| systems limit the bandwidth of the ``h``-gain waveform
-delivered to the QPU, shown in
-:numref:`Figure %s <filtered_hgain_waveform_6.5mhz>` as an approximation.
-Thus, if you configure a too-rapidly changing curve, even
-within the supported bounds, expect distorted values of ``h`` for your problem. 
+As described in the :ref:`qpu_ice_io` section, the bandwidth of linear-bias gain
+waveforms delivered to the QPU are limited by low-pass filters, upon which the
+fidelity of such waveforms depends; thus, if you configure a too-rapidly
+changing curve, even within the supported bounds, expect distorted values of
+:ref:`parameter_qpu_h` for your problem.
+:numref:`Figure %s <filtered_hgain_waveform_6.5mhz>` shows a filtered waveform
+approximated using the Python script in the :ref:`qpu_qa_approx_filter_waveform`
+section.
 
 .. figure:: ../_images/filtered_hgain_waveform_6.5mhz.png
     :name: filtered_hgain_waveform_6.5mhz
-    :alt: Graph showing both a linear-bias gain waveform before the Advantage2
-        system's 6.5-MHz low-pass filter is applied and an approximation of the
-        waveform after said filter is applied.
+    :alt: Graph showing a configured linear-bias gain waveform and an
+        approximation of the waveform after the Advantage2 system's 6.5-MHz
+        low-pass filter is applied.
 
     Graph showing a configured linear-bias gain waveform and an approximation
     of the waveform after the Advantage2 system's 6.5-MHz low-pass filter is
     applied.
 
-.. _approximate_filtered_h_gain:
-
 .. dropdown:: Approximating the Filtered Waveform
+    :name: qpu_qa_approx_filter_waveform
 
-    You can use the following Python script to approximate the h-gain waveform
-    that is filtered and executed on the QPU. The script's
-    ``approximate_filtered_h_gain`` method derives an approximation of the
-    filtered h-gain waveform by applying a second-order low-pass Bessel filter
-    to the input waveform.
+    You can use the following Python script to approximate the filtered waveform
+    delivered to the QPU. The script's ``approximate_filtered_h_gain``
+    method derives an approximation of the filtered waveform by applying a
+    second-order low-pass Bessel filter to the input waveform.
 
     .. testcode::
 
