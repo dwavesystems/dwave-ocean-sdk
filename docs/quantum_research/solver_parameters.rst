@@ -662,8 +662,8 @@ Sets a :ref:`time-dependent gain for linear coefficients <qpu_qa_linear_bias_sch
     :end-before: end_gt_hamiltonion
 
 This time-dependent gain, :math:`g(t)`, is specified, similarly to the
-:ref:`parameter_qpu_anneal_schedule` parameter, is specified by a series of pairs
-of floating-point numbers identifying points in the schedule at which to change
+:ref:`parameter_qpu_anneal_schedule` parameter, by a series of pairs of
+floating-point numbers identifying points in the schedule at which to change
 the gain applied to :ref:`parameter_qpu_h`. The first element in the pair is time,
 :math:`t` in microseconds |anneal_time_parameter_granularity|; the second is the
 unitless :math:`g` in the range :ref:`property_qpu_h_gain_schedule_range`. The
@@ -718,9 +718,10 @@ Relevant Properties
     .. note::
         For standard problem solving, specifying a problem's linear coefficients
         (:ref:`parameter_qpu_h`) outside of a QPU's :ref:`property_qpu_h_range`
-        using the :ref:`parameter_qpu_h_gain_schedule` parameter is not
-        recommended because the QPU is calibrated for linearity only within the
-        specified :ref:`property_qpu_h_range` and :ref:`property_qpu_j_range`,
+        using the :ref:`parameter_qpu_h_gain_schedule` parameter in conjunction
+        with the :ref:`parameter_qpu_auto_scale` parameter is not recommended
+        because the QPU is calibrated for linearity only within its
+        :ref:`property_qpu_h_range` and :ref:`property_qpu_j_range` properties,
         and increased integrated control errors (ICE) are expected outside that
         range. By default, the :ref:`parameter_qpu_auto_scale` parameter allows
         you to specify linear coefficients outside of the
