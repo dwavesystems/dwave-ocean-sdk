@@ -73,4 +73,8 @@ The following rules apply to the set of anneal-schedule points provided:
         + \sum_{i>j} J_{i,j} {\hat\sigma_{z}^{(i)}} {\hat\sigma_{z}^{(j)}}\right)
     \end{equation}
 
+where :math:`{\hat\sigma_{x,z}^{(i)}}` are Pauli matrices operating on a qubit
+:math:`q_i` and :math:`h_i` and :math:`J_{i,j}` are the qubit biases and
+coupling strengths.
+
 .. end_gt_hamiltonion
