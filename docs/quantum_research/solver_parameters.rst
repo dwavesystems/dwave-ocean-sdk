@@ -654,7 +654,7 @@ h_gain_schedule
 ===============
 
 Sets a :ref:`time-dependent gain for linear coefficients <qpu_qa_linear_bias_sched>`,
- :math:`g(t)`,  in the Hamiltonian.
+:math:`g(t)`,  in the Hamiltonian.
 
 
 .. include:: ../shared/anneal.rst
