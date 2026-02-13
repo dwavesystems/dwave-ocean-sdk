@@ -947,7 +947,7 @@ Hamiltonian,
     :start-after: start_gt_hamiltonion
     :end-before: end_gt_hamiltonion
 
- For examples of using this feature, see [Vod2025]_ and [Pel2023]_.
+For examples of using this feature, see [Vod2025]_ and [Pel2023]_.
 
 .. _qpu_qa_linear_bias_filter:
 
