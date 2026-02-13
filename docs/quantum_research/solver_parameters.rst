@@ -654,8 +654,7 @@ h_gain_schedule
 ===============
 
 Sets a :ref:`time-dependent gain for linear coefficients <qpu_qa_linear_bias_sched>`,
-:math:`g(t)`,  in the Hamiltonian.
-
+:math:`g(t)`, in the Hamiltonian,
 
 .. include:: ../shared/anneal.rst
     :start-after: start_gt_hamiltonion
@@ -716,19 +715,19 @@ Relevant Properties
     time-dependent gain values permitted for the solver.
 
     .. note::
-        For standard problem solving, specifying a problem's linear coefficients
-        (:ref:`parameter_qpu_h`) outside of a QPU's :ref:`property_qpu_h_range`
-        using the :ref:`parameter_qpu_h_gain_schedule` parameter in conjunction
-        with the :ref:`parameter_qpu_auto_scale` parameter is not recommended
-        because the QPU is calibrated for linearity only within its
-        :ref:`property_qpu_h_range` and :ref:`property_qpu_j_range` properties,
-        and increased integrated control errors (ICE) are expected outside that
-        range. By default, the :ref:`parameter_qpu_auto_scale` parameter allows
-        you to specify linear coefficients outside of the
-        :ref:`property_qpu_h_range`; if you disable the
-        :ref:`parameter_qpu_auto_scale` parameter, ensure that
-        :math:`\max_i(h\_gain*h_i)` and :math:`\min_i(h\_gain*h_i)` are within
-        :ref:`property_qpu_h_range`.
+        In conjunction with the :ref:`parameter_qpu_auto_scale` parameter, the
+        :ref:`parameter_qpu_h_gain_schedule` parameter might enable you to
+        extend the range of your submitted problem's linear coefficients
+        (:ref:`parameter_qpu_h`) beyond the advertised
+        :ref:`property_qpu_h_range`. Such use is not recommended for standard
+        problem solving: the QPU is calibrated for linearity only within the
+        advertised :ref:`property_qpu_h_range` and :ref:`property_qpu_j_range`.
+        Increased integrated control errors (ICE) are expected outside that
+        range.
+
+        If you configure :code:`auto_scale=False` when using this parameter,
+        ensure that :math:`\max_i(h\_gain*h_i)` and :math:`\min_i(h\_gain*h_i)`
+        are within :ref:`property_qpu_h_range`.
 
 *   :ref:`property_qpu_max_anneal_schedule_points` defines the maximum number of
     anneal-schedule points permitted.
