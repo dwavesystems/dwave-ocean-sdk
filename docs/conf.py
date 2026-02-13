@@ -65,7 +65,7 @@ hoverxref_roles = ['term']
 hoverxref_role_types = {'term': 'tooltip'}
 hoverxref_mathjax = True
 
-source_suffix = ['.rst', '.md']
+source_suffix = {'.rst': 'restructuredtext', '.md': 'restructuredtext'}
 
 # TODO: see if we can do with a smaller config (https://docs.mathjax.org/en/stable/config-files.html)
 # (Joel Feb 2022). previous CDN path used in system docs
