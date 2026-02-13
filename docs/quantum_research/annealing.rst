@@ -939,17 +939,15 @@ Varying the Linear-Bias Schedule
 For the :ref:`standard annealing <qpu_annealprotocol_standard>` and
 :ref:`reverse annealing <qpu_qa_anneal_sched_reverse>` protocols, you can
 schedule a time-dependent gain for the Hamiltonian's linear biases (i.e., qubit
-biases). The :ref:`parameter_qpu_h_gain_schedule` parameter is applied to qubit
-biases :math:`h_i` and specifies the :math:`g(t)` function in the Hamiltonian,
+biases). The :ref:`parameter_qpu_h_gain_schedule` parameter specifies the
+:math:`g(t)` function that is applied to qubit biases :math:`h_i`  in the
+Hamiltonian,
 
 .. include:: ../shared/anneal.rst
     :start-after: start_gt_hamiltonion
     :end-before: end_gt_hamiltonion
 
-where :math:`{\hat\sigma_{x,z}^{(i)}}` are Pauli matrices operating on a qubit
-:math:`q_i`; and :math:`h_i` and :math:`J_{i,j}` are the qubit biases and
-coupling strengths, respectively. For examples of using this feature, see
-[Vod2025]_ and [Pel2023]_.
+ For examples of using this feature, see [Vod2025]_ and [Pel2023]_.
 
 .. _qpu_qa_linear_bias_filter:
 
@@ -957,10 +955,9 @@ Filtered Waveforms Delivered to the QPU
 ---------------------------------------
 
 As described in the :ref:`qpu_ice_io` section, the bandwidth of linear-bias gain
-waveforms delivered to the QPU are limited by low-pass filters, upon which the
-fidelity of such waveforms depends; thus, if you configure a too-rapidly
-changing curve, even within the supported bounds, expect distorted values of
-:ref:`parameter_qpu_h` for your problem.
+waveforms delivered to the QPU are limited by low-pass filters; if you configure
+a too-rapidly changing schedule, even within the supported bounds, expect
+distorted values of :ref:`parameter_qpu_h` for your problem.
 :numref:`Figure %s <filtered_hgain_waveform_6.5mhz>` shows a filtered waveform
 approximated using the Python script in the :ref:`qpu_qa_approx_filter_waveform`
 section.
