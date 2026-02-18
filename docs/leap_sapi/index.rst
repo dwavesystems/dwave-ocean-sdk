@@ -147,6 +147,29 @@ Up to 1000 of your most recent problems are stored and accessible in the Leap
 service for up to 365 days; if the number of your problems exceeds 1000, the
 Leap service begins to delete the oldest ones.
 
+Outbound Connections
+====================
+
+If required by your organization, use the following static IP addresses to allow
+outbound connections to the Leap service and solver API:
+
+.. table:: Static IP Addresses for Outbound Connections.
+    :widths: 2 2 1
+
+    ======================================== ================================== =================
+    Region                                   URL                                Static IP Address      
+    ======================================== ================================== =================
+    North America -- West (na-west-1)\ [#]_  na-west-1.cloud.dwavesys.com       15.197.163.78
+                                                                                99.83.140.133
+    North America -- East (na-east-1)        na-east-1.cloud.dwavesys.com       13.248.152.83
+                                                                                166.117.202.141
+    Europe (eu-central-1)                    eu-central-1.cloud.dwavesys.com    15.197.136.85
+                                                                                35.71.175.177
+    ======================================== ================================== =================
+    
+.. [#]
+    The Leap service (cloud.dwavesys.com) is hosted in this region.
+
 Feature Deprecation
 ===================
 
