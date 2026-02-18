@@ -65,7 +65,7 @@ hoverxref_roles = ['term']
 hoverxref_role_types = {'term': 'tooltip'}
 hoverxref_mathjax = True
 
-source_suffix = ['.rst', '.md']
+source_suffix = {'.rst': 'restructuredtext', '.md': 'restructuredtext'}
 
 # TODO: see if we can do with a smaller config (https://docs.mathjax.org/en/stable/config-files.html)
 # (Joel Feb 2022). previous CDN path used in system docs
@@ -304,6 +304,11 @@ def linkcode_resolve(domain, info):
     # module for objects such as properties
 
     if domain != 'py':
+        return None
+
+    # Experimental Research section generates dwave-experimental docstrings. Comparing
+    # info['module'] to github_map.keys() is more elegant but slower and as yet unneeded.
+    if 'dwave.experimental' in info['module']:
         return None
 
     obj={}

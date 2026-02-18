@@ -7,6 +7,17 @@ General QPU Solver Properties
 .. |anneal_time_display_granularity| replace:: with a resolution of 0.01
     :math:`\mu s`
 
+.. |research_property_note1| replace:: This property supports an advanced
+    annealing feature used in
+    :ref:`experimental research <qpu_experimental_research>` on designated
+    research QPUs. Not all accounts have access to such research quantum
+    computers.
+
+.. |research_property_note2| replace:: Also note that this is a parameter that
+    functions as a property. For convenience, you can instead use the
+    utility functions described in the
+    :ref:`qpu_experimental_research_utilities` section.
+
 This section describes the properties in common to all :term:`QPU` solvers and
 shows how you can query their values through :term:`SAPI`; for properties
 specific to the hardware of a particular QPU, see the
@@ -785,3 +796,191 @@ The topology seen in this example is a P16 Pegasus graph. See the
 >>> sampler = DWaveSampler()
 >>> sampler.properties["topology"]                    # doctest: +SKIP
 {'type': 'pegasus', 'shape': [16]}
+
+
+.. _property_qpu_get_fast_reverse_anneal_exp_feature_info:
+
+x_get_fast_reverse_anneal_exp_feature_info
+==========================================
+
+Returns information about supported parameters for fast reverse anneal.
+
+.. note:: |research_property_note1|
+
+    |research_property_note2|
+
+Submit a placeholder problem with this parameter set to True to return the
+information, as a Python list with a dict for each of the QPU's anneal lines,
+under the returned result's ``x_get_fast_reverse_anneal_exp_feature_info``
+field.
+
+Example
+-------
+
+This example prints the the supported (calibrated) nominal-pause-duration values
+and the range for the target normalized control bias :math:`c(s)` for a QPU.
+
+1.  Using the :func:`~dwave.experimental.fast_reverse_anneal.api.get_parameters`
+    function (recommended).
+
+    >>> from dwave.experimental import fast_reverse_anneal as fra
+    >>> from dwave.system import DWaveSampler
+    ...
+    >>> with DWaveSampler(solver="Advantage2_research1.4") as sampler:  # doctest: +SKIP
+    ...     param_info = fra.get_parameters(sampler)
+
+    >>> print(param_info["x_nominal_pause_time"]["limits"])     # doctest: +SKIP
+    {'set': [0.0, 0.01, 0.02, 0.03, 0.04, 0.05]}
+    >>> print(param_info["x_target_c"]["limits"])               # doctest: +SKIP
+    {'rang
+
+2.  Directly using the :ref:`property_qpu_get_fast_reverse_anneal_exp_feature_info`
+    parameter.
+
+    >>> from dwave.cloud.client import Client
+    ...
+    >>> with Client.from_config() as client:                    # doctest: +SKIP
+    ...     solver = client.get_solver(name="Advantage2_research1.4")
+    ...     computation = solver.sample_ising(
+    ...         {next(iter(solver.nodes)): 0}, {}, x_get_fast_reverse_anneal_exp_feature_info=True)
+            result = computation.result()
+            exp_feature_info = result['x_get_fast_reverse_anneal_exp_feature_info']
+    >>> print(exp_feature_info)                                 # doctest: +SKIP
+    ['fastReverseAnnealNominalPauseTimeValues', [0.0, 0.01, 0.02, 0.03, 0.04, 0.05], 'fastReverseAnnealTargetCRange', [0, 1]]
+
+
+.. _property_qpu_get_multicolor_annealing_exp_feature_info:
+
+x_get_multicolor_annealing_exp_feature_info
+===========================================
+
+Returns information about per-line anneal schedules, such as the subset of
+the QPU's qubits indexed to each line, supported minimum time steps, and ranges
+of normalized control bias, :math:`c(s)`, etc.
+
+.. note:: |research_property_note1|
+
+    |research_property_note2|
+
+Submit a placeholder problem with this parameter set to True to return the
+information, as a Python list with a dict for each of the QPU's anneal lines,
+under the returned result's ``x_get_multicolor_annealing_exp_feature_info``
+field. (The length of the returned list is the number of anneal lines of the
+QPU.)
+
+The returned information contains the following fields.
+
+.. tabularcolumns:: |p{4cm}|p{1.5cm}|p{7cm}|
+
+.. list-table:: ``x_get_multicolor_annealing_exp_feature_info`` Fields
+    :widths: auto
+    :class: longtable
+    :header-rows: 1
+
+    *   -   Field Name
+        -   Type
+        -   Value
+    *   -   ``annealingLine``
+        -   Integer
+        -   Index of the annealing line for which the other field values are
+            defined. Values range between 0 to :math:`N - 1`, where :math:`N` is
+            the number of anneal lines for the QPU.
+    *   -   ``minAnnealingTimeStep``
+        -   Float
+        -   Minimum supported time step, in microseconds, for the
+            :ref:`parameter_qpu_anneal_schedules` parameter. Values specified
+            with greater precision are rounded.
+    *   -   ``minPolarizingTimeStep``
+        -   Float
+        -   Minimum supported time step, in microseconds, for the
+            :ref:`parameter_polarizing_schedules` parameter. Values specified
+            with greater precision are rounded.
+    *   -   ``holdOvershootFor``
+        -   Float
+        -   Maximum supported duration, in microseconds, that you can specify a
+            value exceeding the range of ``[minC, maxC]`` in the anneal
+            schedules you set through the
+            :ref:`parameter_qpu_anneal_schedules` parameter.
+    *   -   ``minCOvershoot``
+        -   Float
+        -   Lowest supported value that you can specify for the normalized
+            control bias, :math:`c(s)`, element of the
+            :ref:`parameter_qpu_anneal_schedules` parameter. The duration in
+            which :math:`c(s) <` ``minC`` must not exceed the maximum supported
+            time specified in the ``holdOvershootFor`` field.
+
+            Values of :math:`c(s)` lower than ``minC`` do not correspond to a
+            greater transverse energy :math:`A(c)` than :math:`c(s) =` ``minC``;
+            by specifying such a value for a short time, you increase the
+            generated waveform's rate of change.
+    *   -   ``maxCOvershoot``
+        -   Float
+        -   Highest supported value that you can specify for the normalized
+            control bias, :math:`c(s)`, element of the
+            :ref:`parameter_qpu_anneal_schedules` parameter. The duration in
+            which :math:`c(s) >` ``maxC`` must not exceed the maximum supported
+            time specified in the ``holdOvershootFor`` field.
+
+            Values of :math:`c(s)` higher than ``maxC`` do not correspond to a
+            lower transverse energy :math:`A(c)` than :math:`c(s) =` ``maxC``;
+            by specifying such a value for a short time, you increase the
+            generated waveform's rate of change.
+    *   -   ``maxC``
+        -   Float
+        -   Highest value of the normalized control bias, :math:`c(s)`, element
+            of the :ref:`parameter_qpu_anneal_schedules` parameter that is
+            supported for durations that exceed ``holdOvershootFor``.
+            Corresponds to the highest possible barrier or lowest possible
+            transverse (tunneling) energy :math:`A(c)`.
+    *   -   ``minC``
+        -   Float
+        -   Lowest value of the normalized control bias, :math:`c(s)`, element
+            of the :ref:`parameter_qpu_anneal_schedules` parameter that is
+            supported for durations that exceed ``holdOvershootFor``.
+            Corresponds to the lowest possible barrier or highest possible
+            transverse (tunneling) energy :math:`A(c)`.
+    *   -   ``scheduleDelayStep``
+        -   Float
+        -   Maximum supported precision, in microseconds, of the
+            :ref:`parameter_qpu_schedule_delays` parameter. Values specified
+            with greater precision are rounded.
+    *   -   ``depolarizationAnneal``
+            ``ScheduleRequiredDelay``
+        -   Float
+        -   Time, in microseconds, after the
+            :ref:`parameter_polarizing_schedules` parameter changes the
+            polarization value from :math:`\pm 1` to :math:`0` for the qubits of
+            an anneal line, during which the
+            :ref:`parameter_qpu_anneal_schedules` parameter must not set a new
+            value of the normalized control bias, :math:`c(s)`, on that same
+            line.
+    *   -   ``qubits``
+        -   Array of integers
+        -   Indices of qubits controlled by the annealing line with the index
+            indicated by the value of ``annealingLine``.
+
+Example
+-------
+
+This example prints the first 5 qubits on annealing line 0.
+
+1.  Using the :func:`~dwave.experimental.multicolor_anneal.api.get_properties`
+    function (recommended).
+
+    >>> from dwave.experimental import multicolor_anneal as mca
+    >>> exp_feature_info = mca.get_properties()         # doctest: +SKIP
+    >>> print(exp_feature_info[0]['qubits'][:5])        # doctest: +SKIP
+    [2, 5, 6, 9, 14]
+
+2.  Directly using the :ref:`property_qpu_get_multicolor_annealing_exp_feature_info`
+    parameter.
+
+    >>> from dwave.cloud.client import Client
+    >>> with Client.from_config() as client:            # doctest: +SKIP
+    ...     solver = client.get_solver(name="Advantage2_research1.4")
+    ...     computation = solver.sample_ising(
+    ...         {next(iter(solver.nodes)): 0}, {}, x_get_multicolor_annealing_exp_feature_info=True)
+    ...     result = computation.result()
+    ...     exp_feature_info = result['x_get_multicolor_annealing_exp_feature_info']
+    >>> print(exp_feature_info[0]['qubits'][:5])        # doctest: +SKIP
+    [2, 5, 6, 9, 14]
