@@ -147,6 +147,8 @@ Up to 1000 of your most recent problems are stored and accessible in the Leap
 service for up to 365 days; if the number of your problems exceeds 1000, the
 Leap service begins to delete the oldest ones.
 
+.. _leap_sapi_outbound:
+
 Outbound Connections
 ====================
 
