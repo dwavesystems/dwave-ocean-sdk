@@ -153,7 +153,7 @@ Outbound Connections
 ====================
 
 If required by your organization, use the following static IP addresses to allow
-outbound connections to the Leap service and solver API:
+outbound connections to the Leap service and Solver API (:term:`SAPI`):
 
 .. table:: Static IP Addresses for Outbound Connections.
     :widths: 2 2 1
@@ -170,7 +170,7 @@ outbound connections to the Leap service and solver API:
     ======================================== ================================== =================
     
 .. [#]
-    The Leap service (cloud.dwavesys.com) is hosted in this region.
+    The Leap service (https://cloud.dwavesys.com) is hosted in this region.
 
 Feature Deprecation
 ===================
