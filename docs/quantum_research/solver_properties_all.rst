@@ -842,7 +842,7 @@ and the range for the target normalized control bias :math:`c(s)` for a QPU.
     >>> with Client.from_config() as client:                    # doctest: +SKIP
     ...     solver = client.get_solver(name="Advantage2_research1.4")
     ...     computation = solver.sample_ising(
-    ...         {1:0}, {}, num_reads=1, x_get_fast_reverse_anneal_exp_feature_info=True)
+    ...         {next(iter(solver.nodes)): 0}, {}, x_get_fast_reverse_anneal_exp_feature_info=True)
             result = computation.result()
             exp_feature_info = result['x_get_fast_reverse_anneal_exp_feature_info']
     >>> print(exp_feature_info)                                 # doctest: +SKIP
@@ -979,7 +979,7 @@ This example prints the first 5 qubits on annealing line 0.
     >>> with Client.from_config() as client:            # doctest: +SKIP
     ...     solver = client.get_solver(name="Advantage2_research1.4")
     ...     computation = solver.sample_ising(
-    ...         {1:0}, {}, num_reads=1, x_get_multicolor_annealing_exp_feature_info=True)
+    ...         {next(iter(solver.nodes)): 0}, {}, x_get_multicolor_annealing_exp_feature_info=True)
     ...     result = computation.result()
     ...     exp_feature_info = result['x_get_multicolor_annealing_exp_feature_info']
     >>> print(exp_feature_info[0]['qubits'][:5])        # doctest: +SKIP
