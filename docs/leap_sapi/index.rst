@@ -152,8 +152,9 @@ Leap service begins to delete the oldest ones.
 Outbound Connections
 ====================
 
-If required by your organization, use the following static IP addresses to allow
-outbound connections to the Leap service and Solver API (:term:`SAPI`):
+If required by your organization, whitelist the following static IP addresses
+for the North America -- West region and the other regions you are using to
+allow outbound connections to the Leap service and Solver API (:term:`SAPI`):
 
 .. table:: Static IP Addresses for Outbound Connections.
     :widths: 2 2 1
