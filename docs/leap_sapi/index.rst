@@ -153,8 +153,8 @@ Outbound Connections
 ====================
 
 If required by your organization, whitelist the following static IP addresses
-for the North America -- West region and the other regions you are using to
-allow outbound connections to the Leap service and Solver API (:term:`SAPI`):
+for the North America--West region to allow outbound connections to the Leap
+service and Solver API (:term:`SAPI`) plus any other regions you are using:
 
 .. table:: Static IP Addresses for Outbound Connections.
     :widths: 2 2 1
@@ -162,9 +162,9 @@ allow outbound connections to the Leap service and Solver API (:term:`SAPI`):
     ======================================== ================================== =================
     Region                                   URL                                Static IP Address      
     ======================================== ================================== =================
-    North America -- West (na-west-1)\ [#]_  na-west-1.cloud.dwavesys.com       15.197.163.78
+    North America--West (na-west-1)\ [#]_    na-west-1.cloud.dwavesys.com       15.197.163.78
                                                                                 99.83.140.133
-    North America -- East (na-east-1)        na-east-1.cloud.dwavesys.com       13.248.152.83
+    North America--East (na-east-1)          na-east-1.cloud.dwavesys.com       13.248.152.83
                                                                                 166.117.202.141
     Europe (eu-central-1)                    eu-central-1.cloud.dwavesys.com    15.197.136.85
                                                                                 35.71.175.177
