@@ -653,37 +653,23 @@ This example sets random linear and quadratic biases on all qubits.
 h_gain_schedule
 ===============
 
-Sets a time-dependent gain for linear coefficients (qubit biases, see the
-:ref:`parameter_qpu_h` parameter) in the Hamiltonian.
+Sets a :ref:`time-dependent gain for linear coefficients <qpu_qa_linear_bias_sched>`,
+:math:`g(t)`, in the Hamiltonian,
 
-This parameter enables you to specify the :math:`g(t)` function in the
-Hamiltonian,
-
-.. math::
-    :nowrap:
-
-    \begin{equation}
-        {\cal H}_{ising} = - \frac{A({s})}{2}
-        \left(\sum_i {\hat\sigma_{x}^{(i)}}\right)
-        + \frac{B({s})}{2} \left(g(t) \sum_{i} h_i {\hat\sigma_{z}^{(i)}}
-        + \sum_{i>j} J_{i,j} {\hat\sigma_{z}^{(i)}} {\hat\sigma_{z}^{(j)}}\right)
-    \end{equation}
-
-where :math:`{\hat\sigma_{x,z}^{(i)}}` are Pauli matrices operating on a qubit
-:math:`q_i` and :math:`h_i` and :math:`J_{i,j}` are the qubit biases and
-coupling strengths.
+.. include:: ../shared/anneal.rst
+    :start-after: start_gt_hamiltonion
+    :end-before: end_gt_hamiltonion
 
 This time-dependent gain, :math:`g(t)`, is specified, similarly to the
 :ref:`parameter_qpu_anneal_schedule` parameter, by a series of pairs of
 floating-point numbers identifying points in the schedule at which to change
-the gain applied to :ref:`parameter_qpu_h`. The first element in the pair is
-time, :math:`t` in microseconds |anneal_time_parameter_granularity|; the second,
-the unitless :math:`g` in the range :ref:`property_qpu_h_gain_schedule_range`.
-The resulting time-dependent gain is the piecewise-linear curve that connects
-the provided points over the same range of times as the
-:ref:`parameter_qpu_anneal_schedule`.
+the gain applied to :ref:`parameter_qpu_h`. The first element in the pair is time,
+:math:`t` in microseconds |anneal_time_parameter_granularity|; the second is the
+unitless :math:`g` in the range :ref:`property_qpu_h_gain_schedule_range`. The
+resulting time-dependent gain is the piecewise-linear (PWL) curve that connects
+the points over the same range of times as the :ref:`parameter_qpu_anneal_schedule`.
 
-The following rules apply to the set of gain points provided:
+The following rules apply to the set of points for time-dependent gain:
 
 *   Time :math:`t`, in microseconds, must increase for all points in the
     schedule.
@@ -694,14 +680,19 @@ The following rules apply to the set of gain points provided:
 *   The number of points must be :math:`\geq 2`.
 *   The steepest slope of any curve segment,
     :math:`\frac{g_i - g_{i-1}}{t_i - t_{i-1}}`, must be within the bounds
-    supported by the selected QPU.\ [#]_  Note that the I/O system that delivers
-    the :ref:`parameter_qpu_h`-controlling waveform---the :math:`\Phi^x_i(s)`
-    term of equation :math:numref:`qpu_equation_rfsquid_hamiltonian` in the
-    :ref:`qpu_annealing` section---to a QPU limits bandwidth using a low-pass
-    filter with a cutoff frequency of 3 MHz for |dwave_5kq| systems and 30 MHz
-    for |adv2| systems; if you configure a too-rapidly changing curve, even
-    within the supported bounds, expect distorted values of
-    :ref:`parameter_qpu_h` for your problem.
+    supported by the selected QPU.\ [#]_ However, if you configure a too-rapidly
+    changing curve, even within the supported bounds, expect distorted values
+    of :ref:`parameter_qpu_h` due to the
+    :ref:`low-pass filters <qpu_qa_linear_bias_filter>` of the I/O system.
+
+Default :math:`g(t)`, when left unspecified, is 1, which can be explicitly coded
+as
+
+.. code-block:: py
+
+    h_gain_schedule=[[0,1],[t_final,1]]
+
+where `t_final` is the requested annealing time.
 
 .. [#]
     To see the supported slope for a particular QPU, submit a test problem with
@@ -716,16 +707,7 @@ The following rules apply to the set of gain points provided:
     above :math:`\frac{3 - (-3)}{0.02} = 300`, which occurs for a schedule that
     contains :code:`[... [10.0, 0], [10.01, 3], ...]`, is likely to return an
     error message with the maximum allowed slope.
-
-Default :math:`g(t)`, when left unspecified, is 1, which can be explicitly coded
-as
-
-.. code-block:: py
-
-    h_gain_schedule=[[0,1],[t_final,1]]
-
-where `t_final` is the requested annealing time.
-
+    
 Relevant Properties
 -------------------
 
@@ -734,8 +716,8 @@ Relevant Properties
 
     .. note::
         In conjunction with the :ref:`parameter_qpu_auto_scale` parameter, the
-        :ref:`parameter_qpu_h_gain_schedule` parameter enables you to extend
-        the range of your submitted problem's linear coefficients
+        :ref:`parameter_qpu_h_gain_schedule` parameter might enable you to
+        extend the range of your submitted problem's linear coefficients
         (:ref:`parameter_qpu_h`) beyond the advertised
         :ref:`property_qpu_h_range`. Such use is not recommended for standard
         problem solving: the QPU is calibrated for linearity only within the
@@ -755,6 +737,10 @@ Relevant Properties
 Interacts with Parameters
 -------------------------
 
+*   :ref:`parameter_qpu_auto_scale` enables you to submit problems to QPU
+    solvers with values outside :ref:`property_qpu_h_range` and
+    :ref:`property_qpu_extended_j_range`, and have the system automatically scale
+    them to fit.
 *   :ref:`parameter_qpu_h` defines the linear biases for the problem.
 *   :ref:`parameter_qpu_anneal_schedule` defines the anneal schedule.
 *   Cannot be used with the :ref:`fast-anneal protocol <qpu_annealprotocol_fast>`
