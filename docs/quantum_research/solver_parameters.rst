@@ -814,14 +814,14 @@ native problem.
 >>> import random
 >>> from dwave.system import DWaveSampler
 ...
->>> sampler = DWaveSampler()
+>>> qpu = DWaveSampler()
 >>> J = {coupler: random.choice([-1, 1]) for coupler in qpu.edgelist}
 >>> initial = {qubit: random.randint(0, 1) for qubit in qpu.nodelist}
 >>> reverse_schedule = [[0.0, 1.0], [5, 0.45], [99, 0.45], [100, 1.0]]
 >>> reverse_anneal_params = dict(anneal_schedule=reverse_schedule,
 ...                              initial_state=initial,
 ...                              reinitialize_state=True)
->>> sampleset = sampler.sample_ising(
+>>> sampleset = qpu.sample_ising(
 ...     {}, J, num_reads=1000, **reverse_anneal_params)   # doctest: +SKIP
 
 
