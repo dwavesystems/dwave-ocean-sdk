@@ -812,6 +812,11 @@ Bibliography
     Scientific Reports 2, Article number: 571. 2012.
     https://www.nature.com/articles/srep00571
 
+.. [Pel2023]
+    Elijah Pelofske, Georg Hahn, and Hristo Djidjev.
+    "Initial State Encoding via Reverse Quantum Annealing and h-gain Features"
+    https://doi.org/10.48550/arXiv.2303.13748
+
 .. [Per2015]
     A. Perdomo-Ortiz, J. Fluegemann, S. Narasimhan, R. Biswas, and
     V. N. Smelyanskiy.
@@ -822,8 +827,8 @@ Bibliography
 
 .. [Per2022]
     David Peral García, Juan Cruz-Benito, and Francisco José García-Peñalvo.
-    “Systematic Literature Review: Quantum Machine Learning and
-    its applications.”
+    "Systematic Literature Review: Quantum Machine Learning and
+    its applications."
     arXiv:2201.04093 [quant-ph]
 
 .. [Phi2021]
@@ -1016,6 +1021,13 @@ Bibliography
     "A Path Towards Quantum Advantage in Training Deep Generative Models with
     Quantum Annealers."
     4 Dec 2019 https://arxiv.org/abs/1912.02119
+
+.. [Vod2025]
+    Jaka Vodeb, Jean-Yves Desaules, Andrew Hallam, Andrea Rava, Gregor Humar,
+    Dennis Willsch, Fengping Jin, Madita Willsch, Kristel Michielsen,
+    Zlatko Papić. "Stirring the false vacuum via interacting quantized bubbles
+    on a 5,564-qubit quantum annealer." (2025) Nature Physics 21, 386.
+    https://doi.org/10.1038/s41567-024-02765-w
 
 .. [Wan2020]
     Wang, B., Hu, F., Yao, H. et al.

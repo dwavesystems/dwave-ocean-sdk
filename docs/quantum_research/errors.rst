@@ -432,10 +432,10 @@ scaled anneal fraction :math:`s`.
     the :ref:`qpu_annealing` section---pass through low-pass filters with the
     following cutoff frequencies:
 
-    *   For :math:`\Phi_{\rm CCJJ}(s)`: 30 MHz on both |dwave_5kq| and |adv2_tm|
-        systems
-    *   For :math:`\Phi^x_i(s)`: 3 MHz for |dwave_5kq| systems and 30 MHz for
-        |adv2| systems
+    *   For :math:`\Phi_{\rm CCJJ}(s)`: 30 MHz on both |dwave_5kq_tm| and
+        |adv2_tm| systems
+    *   For :math:`\Phi^x_i(s)`: 3 MHz for |dwave_5kq| systems and 6.5 MHz for
+        |adv2| systems (see also the :ref:`qpu_qa_linear_bias_filter` section)
 
 .. _qpu_ice_error_h_scale_interqubits:
 
@@ -1127,7 +1127,7 @@ path, as shown in :numref:`Figure %s <fb-sigmoid>`.
     :width: 80 %
     :alt: Graph showing ideal and offset h sigmoid
 
-    Magnetization (mean spin value) of a six-qubit chain on an |adv2_tm|
+    Magnetization (mean spin value) of a six-qubit chain on an |adv2|
     QPU as a function of applied per-qubit flux-bias offset. A sigmoid function
     (:math:`\tanh()`, the dashed line) fit to the measurements intersects the
     horizontal grid line slightly above the zero.
@@ -1251,5 +1251,5 @@ Be aware of the following points when using virtual graph features:
         \end{array}
         \end{equation}
 
-    where :math:`num\_couplers\_per\_qubit = 5` for the |dwave_5kq_tm| QPU; see
+    where :math:`num\_couplers\_per\_qubit = 5` for the |dwave_5kq| QPU; see
     the :ref:`QPU Architecture <qpu_topologies>` section.

@@ -931,3 +931,91 @@ for the selected QPU.
 
 See the :ref:`qpu_annealprotocol_fast` section for further details.
 
+.. _qpu_qa_linear_bias_sched:
+
+Varying the Linear-Bias Schedule
+================================
+
+For the :ref:`standard annealing <qpu_annealprotocol_standard>` and
+:ref:`reverse annealing <qpu_qa_anneal_sched_reverse>` protocols, you can
+schedule a time-dependent gain for the Hamiltonian's linear biases (i.e., qubit
+biases). The :ref:`parameter_qpu_h_gain_schedule` parameter specifies the
+:math:`g(t)` function that is applied to qubit biases :math:`h_i`  in the
+Hamiltonian,
+
+.. include:: ../shared/anneal.rst
+    :start-after: start_gt_hamiltonion
+    :end-before: end_gt_hamiltonion
+
+For examples of using this feature, see [Vod2025]_ and [Pel2023]_.
+
+.. _qpu_qa_linear_bias_filter:
+
+Filtered Waveforms Delivered to the QPU
+---------------------------------------
+
+As described in the :ref:`qpu_ice_io` section, the bandwidth of linear-bias gain
+waveforms delivered to the QPU are limited by low-pass filters; if you configure
+a too-rapidly changing schedule, even within the supported bounds, expect
+distorted values of :ref:`parameter_qpu_h` for your problem.
+:numref:`Figure %s <filtered_hgain_waveform_6.5mhz>` shows a filtered waveform
+approximated using the Python script in the :ref:`qpu_qa_approx_filter_waveform`
+section.
+
+.. figure:: ../_images/filtered_hgain_waveform_6.5mhz.png
+    :name: filtered_hgain_waveform_6.5mhz
+    :alt: Graph showing a configured linear-bias gain waveform and an
+        approximation of the waveform after the Advantage2 system's 6.5-MHz
+        low-pass filter is applied.
+
+    Graph showing a configured linear-bias gain waveform and an approximation
+    of the waveform after the Advantage2 system's 6.5-MHz low-pass filter is
+    applied.
+
+.. dropdown:: Approximating the Filtered Waveform
+    :name: qpu_qa_approx_filter_waveform
+
+    You can use the following Python script to approximate the filtered waveform
+    delivered to the QPU. The script's ``approximate_filtered_h_gain``
+    method derives an approximation of the filtered waveform by applying a
+    second-order low-pass Bessel filter to the input waveform.
+
+    .. testcode::
+
+        import numpy as np
+        from scipy import signal
+        import warnings
+
+        def approximate_filtered_h_gain(pwl: np.typing.ArrayLike,
+                                        bandwidth: float) -> np.typing.ArrayLike:
+            """Approximate the linear-bias gain waveform applied on a QPU.
+
+            Args:
+                pwl: Input h-gain schedule, as a 2D array-like, that defines a
+                    nominal piece-wise linear (PWL) waveform of time and gain values,
+                    [[0.0, 0.0], ..., [t_f, g_f]]. The first value must be [0.0, 0.0].
+
+                bandwidth: Cutoff frequency, as a floating point number in MHz, of
+                    the low-pass filter on the QPU I/O line. Valid values are the
+                    following:
+
+                    *   3: 3 MHz for an Advantage QPU.
+                    *   6.5: 6.5 MHz for an Advantage2 QPU.
+
+            Returns:
+                Filtered h-gain waveform and the resampled input h-gain waveform.
+            """
+
+            pwl = np.asarray(pwl)
+            t_i = pwl[0, 0]
+            t_f = pwl[-1, 0]
+            cur_g = pwl[0, 1]
+
+            assert cur_g == 0.0, "Please add ``[0.0, 0.0]`` as the first ``pwl`` value."
+
+            sampling_rate = int(bandwidth * 100)
+            time_array = np.linspace(t_i, t_f, int(np.ceil(sampling_rate * (t_f - t_i))))
+            sig = np.interp(time_array, pwl[:, 0], pwl[:, 1])
+            b, a = signal.bessel(2, 2/100, btype="lowpass", analog=False, output="ba", norm="mag")
+
+            return np.vstack([time_array, signal.lfilter(b, a, sig)]).T, np.vstack([time_array, sig]).T
