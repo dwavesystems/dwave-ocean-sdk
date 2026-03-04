@@ -5,7 +5,7 @@ Annealing Implementation and Controls
 =====================================
 
 This section describes how quantum annealing (QA) is implemented and the
-features that allow you to control the annealing process\ [#]_\ [#]_\ .
+features that allow you to control the annealing process.\ [#]_
 
 *   Per-qubit :ref:`anneal offsets <qpu_qa_anneal_offsets>`: adjust the standard
     annealing path per qubit.
@@ -20,11 +20,6 @@ features that allow you to control the annealing process\ [#]_\ [#]_\ .
     coefficients (biases), :math:`h_i`, described in the
     :ref:`qpu_solver_parameters` section, is currently used only experimentally
     and not described here.
-
-.. [#]
-    Some :term:`QPU` solvers support experimental features used for advanced
-    research, described in the :ref:`qpu_experimental_research` section. Not all
-    accounts have access to such research quantum computers.
 
 .. _qpu_qa_implementation:
 
