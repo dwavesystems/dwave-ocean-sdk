@@ -940,7 +940,7 @@ For the :ref:`standard annealing <qpu_annealprotocol_standard>` and
 :ref:`reverse annealing <qpu_qa_anneal_sched_reverse>` protocols, you can
 schedule a time-dependent gain for the Hamiltonian's linear biases (i.e., qubit
 biases). The :ref:`parameter_qpu_h_gain_schedule` parameter specifies the
-:math:`g(t)` function that is applied to qubit biases :math:`h_i`  in the
+:math:`g(t)` function that is applied to qubit biases in the
 Hamiltonian,
 
 .. include:: ../shared/anneal.rst
