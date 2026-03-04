@@ -15,11 +15,9 @@ features that allow you to control the annealing process.\ [#]_
     :ref:`fast annealing <qpu_annealprotocol_fast>`.
 
 .. [#]
-    Another feature that enables control of the annealing process, the
-    time-dependent gain, :ref:`parameter_qpu_h_gain_schedule`, applied to linear
-    coefficients (biases), :math:`h_i`, described in the
-    :ref:`qpu_solver_parameters` section, is currently used only experimentally
-    and not described here.
+    Some :term:`QPU` solvers support experimental features used for advanced
+    research, described in the :ref:`qpu_experimental_research` section. Not all
+    accounts have access to such research quantum computers.
 
 .. _qpu_qa_implementation:
 
