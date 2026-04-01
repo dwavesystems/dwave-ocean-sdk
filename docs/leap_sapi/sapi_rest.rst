@@ -911,15 +911,16 @@ sampler,see the :ref:`sapi_rest_full_examples` section.
 
 .. dropdown:: Optional ``Accept`` header
 
-    SAPI supports these resource representations:
-
-    *   ``application/vnd.dwave.sapi.problems+json; version=2.1`` (default,
-        deprecated): The ``solver`` field is a string.
+    SAPI supports this resource representation:
 
     *   ``application/vnd.dwave.sapi.problems+json; version=3``: The ``solver``
         field is a dict.
 
     For information, see :ref:`key_value_problems_request`.
+
+    .. dropdown:: Unsupported ``solver`` field type
+
+        The ``solver`` field as a string is not supported.
 
 .. dropdown:: 2xx responses
     :color: success
