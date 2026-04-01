@@ -911,16 +911,16 @@ sampler,see the :ref:`sapi_rest_full_examples` section.
 
 .. dropdown:: Optional ``Accept`` header
 
-    SAPI supports this resource representation:
+    SAPI supports the resource representation:
 
     *   ``application/vnd.dwave.sapi.problems+json; version=3``: The ``solver``
         field is a dict.
 
     For information, see :ref:`key_value_problems_request`.
 
-    .. dropdown:: Unsupported ``solver`` field type
+    No longer supported:
 
-        The ``solver`` field as a string is not supported.
+    *   ``version=2.1``: The ``solver`` field is a string.
 
 .. dropdown:: 2xx responses
     :color: success
@@ -1023,15 +1023,17 @@ single query.
 
 .. dropdown:: Optional ``Accept`` header
 
-    SAPI supports these resource representations:
-
-    *   ``application/vnd.dwave.sapi.problems+json; version=2.1`` (default,
-        deprecated): The ``solver`` field is a string.
+    SAPI supports the resource representation:
 
     *   ``application/vnd.dwave.sapi.problems+json; version=3``: The ``solver``
         field is a dict.
 
     For information, see :ref:`key_value_problems_request`.
+
+    No longer supported:
+
+    *   ``version=2.1``: The ``solver`` field is a string.
+
 
 .. dropdown:: 2xx responses
     :color: success
@@ -1119,15 +1121,16 @@ The request should contain no body.
 
 .. dropdown:: Optional ``Accept`` header
 
-    SAPI supports these resource representations:
-
-    *   ``application/vnd.dwave.sapi.problem+json; version=2.1`` (default,
-        deprecated): The ``solver`` field is a string.
+    SAPI supports the resource representation:
 
     *   ``application/vnd.dwave.sapi.problem+json; version=3``: The
         ``solver`` field is a dict.
 
     For information, see :ref:`key_value_problems_request`.
+
+    No longer supported:
+
+    *   ``version=2.1``: The ``solver`` field is a string.
 
 .. dropdown:: 2xx responses
     :color: success
@@ -1228,15 +1231,16 @@ with an ampersand ("&").
 
 .. dropdown:: Optional ``Accept`` header
 
-    SAPI supports these resource representations:
-
-    *   ``application/vnd.dwave.sapi.problems+json; version=2.1`` (default,
-        deprecated): The ``solver`` field is a string.
+    SAPI supports the resource representation:
 
     *   ``application/vnd.dwave.sapi.problems+json; version=3``: The ``solver``
         field is a dict.
 
     For information, see :ref:`key_value_problems_request`.
+
+    No longer supported:
+
+    *   ``version=2.1``: The ``solver`` field is a string.
 
 .. dropdown:: 2xx response
     :color: success
@@ -1328,15 +1332,16 @@ not completed processing.
 
 .. dropdown:: Optional ``Accept`` header
 
-    SAPI supports these resource representations:
-
-    *   ``application/vnd.dwave.sapi.problem+json; version=2.1`` (default,
-        deprecated): The ``solver`` field is a string.
+    SAPI supports the resource representation:
 
     *   ``application/vnd.dwave.sapi.problem+json; version=3``: The ``solver``
         field is a dict.
 
     For information, see :ref:`key_value_problems_request`.
+
+    No longer supported:
+
+    *   ``version=2.1``: The ``solver`` field is a string.
 
 .. dropdown:: 2xx responses
     :color: success
@@ -1417,15 +1422,16 @@ The request should contain no body.
 
 .. dropdown:: Optional ``Accept`` header
 
-    SAPI supports these resource representations:
-
-    *   ``application/vnd.dwave.sapi.problem-data+json; version=2.1`` (default,
-        deprecated): The ``solver`` field is a string.
+    SAPI supports the resource representation:
 
     *   ``application/vnd.dwave.sapi.problem-data+json; version=3``: The
         ``solver`` field is a dict.
 
     For information, see :ref:`key_value_problems_request`.
+
+    No longer supported:
+
+    *   ``version=2.1``: The ``solver`` field is a string.
 
 .. dropdown:: 2xx responses
     :color: success
@@ -1695,16 +1701,17 @@ to get a subset of solver fields.
 
 .. dropdown:: Optional ``Accept`` header
 
-    SAPI supports these resource representations in the response:
-
-    *   ``application/vnd.dwave.sapi.solver-definition-list+json; version=2``
-        (default, deprecated): The solver ``id`` field is a string.
+    SAPI supports the resource representation in the response:
 
     *   ``application/vnd.dwave.sapi.solver-definition-list+json; version=3``:
         The solver ``identity`` field is a dict.
 
     For information, see the "Solver Resource Fields" table in the
     :ref:`available_solvers_2xx` tab.
+
+    No longer supported:
+
+    *   ``version=2``: The ``solver`` field is a string.
 
 .. dropdown:: 2xx response
     :color: success
@@ -1803,16 +1810,17 @@ to get a subset of solver fields.
 
 .. dropdown:: Optional ``Accept`` header
 
-    SAPI supports these resource representations in the response:
-
-    *   ``application/vnd.dwave.sapi.solver-definition+json; version=2``
-        (default, deprecated): The solver ``id`` field is a string.
+    SAPI supports the resource representation in the response:
 
     *   ``application/vnd.dwave.sapi.solver-definition+json; version=3``:
         The solver ``identity`` field is a dict.
 
     For information, see the "Solver Resource Fields" table in the
     :ref:`solver_fields_2xx` tab.
+
+    No longer supported:
+
+    *   ``version=2``: The ``solver`` field is a string.
 
 .. dropdown:: 2xx response
     :color: success
