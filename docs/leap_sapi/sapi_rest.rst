@@ -138,7 +138,7 @@ explained in the :ref:`sapi_rest_url_token_setup` subsection.
     >>> r = requests.get(f"{SAPI_HOME}/problems/?max_results=3",
     ...                  headers={'X-Auth-Token': SAPI_TOKEN})
     >>> print(r.headers["Content-Type"])   # doctest: +SKIP
-    application/vnd.dwave.sapi.problems+json; version=2.1.0; charset=utf-8
+    application/vnd.dwave.sapi.problems+json; version=3.0.0; charset=utf-8
 
 
 .. |general error responses| replace:: In addition to generic client and server
