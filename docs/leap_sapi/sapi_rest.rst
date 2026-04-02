@@ -51,31 +51,34 @@ The following table describes some of the most frequently encountered codes.
 
 .. table:: HTTP Response Codes
 
-    ========================== ================================================
-    Code                       Explanation
-    ========================== ================================================
-    200  OK	                   No error.
-    201  CREATED               Creation of a resource was successful.
-    202  ACCEPTED              Request such as problem cancellation was
-                               received.
-    304  NOT MODIFIED          The requested resource has not changed since
-                               the time specified in the request's
-                               ``If-Modified-Since`` header.
-    400  BAD REQUEST           Invalid request URI or header, or unsupported
-                               nonstandard parameter.
-    401  UNAUTHORIZED          Authorization required. This error can also mean
-                               that incorrect user credentials were sent with
-                               the request.
-    403  FORBIDDEN             Unsupported standard parameter, or
-                               authentication or authorization failed.
-    404  NOT FOUND             Resource (such as a problem) not found.
-    409  CONFLICT              Conflict such as a request for problem
-                               cancellation.
-                               for a problem that has already terminated.
-    429  TOO MANY REQUESTS     API request rate exceeds the permissible limit.
-    500  INTERNAL SERVER ERROR Internal error. This is the default code that is
-                               used for all unrecognized server errors.
-    ========================== ================================================
+    =========================== ================================================
+    Code                        Explanation
+    =========================== ================================================
+    200  OK	                    No error.
+    201  CREATED                Creation of a resource was successful.
+    202  ACCEPTED               Request such as problem cancellation was
+                                received.
+    304  NOT MODIFIED           The requested resource has not changed since
+                                the time specified in the request's
+                                ``If-Modified-Since`` header.
+    400  BAD REQUEST            Invalid request URI or header, or unsupported
+                                nonstandard parameter.
+    401  UNAUTHORIZED           Authorization required. This error can also mean
+                                that incorrect user credentials were sent with
+                                the request.
+    403  FORBIDDEN              Unsupported standard parameter, or
+                                authentication or authorization failed.
+    404  NOT FOUND              Resource (such as a problem) not found.
+    409  CONFLICT               Conflict, such as a request for problem
+                                cancellation for a problem that has already
+                                terminated.
+    415  UNSUPPORTED MEDIA TYPE Unsupported media type, such as an unsupported
+                                SAPI resource-representation version in the
+                                ``Accept`` header.
+    429  TOO MANY REQUESTS      API request rate exceeds the permissible limit.
+    500  INTERNAL SERVER ERROR  Internal error. This is the default code that is
+                                used for all unrecognized server errors.
+    =========================== ================================================
 
 .. _sapi_rest_lifecycle:
 
@@ -731,6 +734,9 @@ Submit Problems
 To submit problems to a solver in the Leap service, send an HTTP POST request to
 the ``problems`` endpoint.
 
+The ``Accept`` header should be set to
+``application/vnd.dwave.sapi.problems+json; version=3``.
+
 The POST request body should contain the JSON-encoded fields described below.
 When possible, if you have more than one problem, submit them in a single
 query.\ [#]_
@@ -753,14 +759,10 @@ query.\ [#]_
         params          Solver-specific
                         :ref:`hybrid parameters <opt_index_properties_parameters>`
                         or :ref:`QPU parameters <qpu_solver_parameters>`.
-        solver          Unique identifier (name) of the solver to be used. For
-                        resource representation ``version=2.1`` and earlier, use
-                        the name of the solver (e.g., ``"solver": "Advantage_system4.1"``).
-                        The ``version=2.1`` resource representation is
-                        deprecated; instead, use the ``version=3`` JSON
-                        structure. For resource representation ``version=3``,
-                        the solver identifier is represented by the following
-                        JSON structure::
+        solver          Unique identifier (name) of the solver to be used.
+                        For resource representation ``version=3``, the solver
+                        identifier is represented by the following JSON
+                        structure::
 
                         {"name": solver_name, "version": {"graph_id": graph_id}}
 
@@ -909,19 +911,6 @@ sampler,see the :ref:`sapi_rest_full_examples` section.
     problems in a single query, the list is the comma-separated fields of each
     problem: ``[{"solver": ...},{"solver": ...},...{"solver": ...}]``.
 
-.. dropdown:: Optional ``Accept`` header
-
-    SAPI supports the resource representation:
-
-    *   ``application/vnd.dwave.sapi.problems+json; version=3``: The ``solver``
-        field is a dict.
-
-    For information, see :ref:`key_value_problems_request`.
-
-    No longer supported:
-
-    *   ``version=2.1``: The ``solver`` field is a string.
-
 .. dropdown:: 2xx responses
     :color: success
 
@@ -986,6 +975,12 @@ sampler,see the :ref:`sapi_rest_full_examples` section.
     {'error_code': 400,
      'error_msg': 'Solver does not exist or apitoken does not have access'}
 
+.. dropdown:: Unsupported ``Accept`` header
+
+    No longer supported:
+
+    *   ``version=2.1``: The ``solver`` field is a string.
+
 .. _sapi_rest_cancel_many_problems:
 
 Cancel Multiple Problems
@@ -993,6 +988,9 @@ Cancel Multiple Problems
 
 To cancel pending problems (problems with status ``PENDING``), send an HTTP
 DELETE request to the ``problems`` endpoint.
+
+The ``Accept`` header should be set to
+``application/vnd.dwave.sapi.problems+json; version=3``.
 
 The request body should be a JSON-encoded list of problem IDs; if the request
 body is empty, the request has no effect.
@@ -1020,20 +1018,6 @@ single query.
             $ accept="Accept: application/vnd.dwave.sapi.problems+json; version=3"
             $ auth="X-Auth-Token: $SAPI_TOKEN"
             $ curl -H "$auth" -H "$accept" $SAPI_HOME/problems -X DELETE -d $id_list
-
-.. dropdown:: Optional ``Accept`` header
-
-    SAPI supports the resource representation:
-
-    *   ``application/vnd.dwave.sapi.problems+json; version=3``: The ``solver``
-        field is a dict.
-
-    For information, see :ref:`key_value_problems_request`.
-
-    No longer supported:
-
-    *   ``version=2.1``: The ``solver`` field is a string.
-
 
 .. dropdown:: 2xx responses
     :color: success
@@ -1088,6 +1072,12 @@ single query.
     [{'error_code': 409, 'error_msg': 'Problem has been finished.'},
      {'error_code': 409, 'error_msg': 'Problem has been finished.'}]
 
+.. dropdown:: Unsupported ``Accept`` header
+
+    No longer supported:
+
+    *   ``version=2.1``: The ``solver`` field is a string.
+
 .. _sapi_rest_cancel_problem_by_id:
 
 Cancel a Problem by ID
@@ -1095,6 +1085,9 @@ Cancel a Problem by ID
 
 To cancel a previously submitted problem, make an HTTP DELETE request to the
 ``problems/<problem_id>`` endpoint.
+
+The ``Accept`` header should be set to
+``application/vnd.dwave.sapi.problems+json; version=3``.
 
 The request should contain no body.
 
@@ -1118,19 +1111,6 @@ The request should contain no body.
             $ auth="X-Auth-Token: $SAPI_TOKEN"
             $ accept="Accept: application/vnd.dwave.sapi.problem+json; version=3"
             $ curl -H "$auth" -H "$accept" $SAPI_HOME/problems/$problem_id -X DELETE
-
-.. dropdown:: Optional ``Accept`` header
-
-    SAPI supports the resource representation:
-
-    *   ``application/vnd.dwave.sapi.problem+json; version=3``: The
-        ``solver`` field is a dict.
-
-    For information, see :ref:`key_value_problems_request`.
-
-    No longer supported:
-
-    *   ``version=2.1``: The ``solver`` field is a string.
 
 .. dropdown:: 2xx responses
     :color: success
@@ -1171,6 +1151,12 @@ The request should contain no body.
     {'error_code': 409,
      'error_msg': 'Problem has been finished.'}
 
+.. dropdown:: Unsupported ``Accept`` header
+
+    No longer supported:
+
+    *   ``version=2.1``: The ``solver`` field is a string.
+
 .. _sapi_rest_list_problems:
 
 List Problems
@@ -1178,6 +1164,9 @@ List Problems
 
 To retrieve a list of problems, send an HTTP GET request to the ``problems``
 endpoint.
+
+The ``Accept`` header should be set to
+``application/vnd.dwave.sapi.problems+json; version=3``.
 
 The request should contain no body.
 
@@ -1228,19 +1217,6 @@ with an ampersand ("&").
             $ auth="X-Auth-Token: $SAPI_TOKEN"
             $ accept="Accept: application/vnd.dwave.sapi.problems+json; version=3"
             $ curl -H "$auth" -H "$accept" "$SAPI_HOME/problems/?$filter"
-
-.. dropdown:: Optional ``Accept`` header
-
-    SAPI supports the resource representation:
-
-    *   ``application/vnd.dwave.sapi.problems+json; version=3``: The ``solver``
-        field is a dict.
-
-    For information, see :ref:`key_value_problems_request`.
-
-    No longer supported:
-
-    *   ``version=2.1``: The ``solver`` field is a string.
 
 .. dropdown:: 2xx response
     :color: success
@@ -1293,6 +1269,12 @@ with an ampersand ("&").
     >>> r.text   # doctest: +SKIP
     'Problem does not exist or apitoken does not have access'
 
+.. dropdown:: Unsupported ``Accept`` header
+
+    No longer supported:
+
+    *   ``version=2.1``: The ``solver`` field is a string.
+
 .. _sapi_rest_get_problem:
 
 Retrieve a Problem
@@ -1300,6 +1282,9 @@ Retrieve a Problem
 
 To retrieve a previously submitted problem, send an HTTP GET request to the
 ``problems/<problem_id>`` endpoint.
+
+The ``Accept`` header should be set to
+``application/vnd.dwave.sapi.problem+json; version=3``.
 
 The request should contain no body.
 
@@ -1329,19 +1314,6 @@ not completed processing.
             $ auth="X-Auth-Token: $SAPI_TOKEN"
             $ accept="Accept: application/vnd.dwave.sapi.problem+json; version=3"
             $ curl -H "$auth" -H "$accept" "$SAPI_HOME/problems/$problem_id?timeout=5"
-
-.. dropdown:: Optional ``Accept`` header
-
-    SAPI supports the resource representation:
-
-    *   ``application/vnd.dwave.sapi.problem+json; version=3``: The ``solver``
-        field is a dict.
-
-    For information, see :ref:`key_value_problems_request`.
-
-    No longer supported:
-
-    *   ``version=2.1``: The ``solver`` field is a string.
 
 .. dropdown:: 2xx responses
     :color: success
@@ -1390,6 +1362,12 @@ not completed processing.
     {'error_code': 404,
      'error_msg': 'Problem does not exist or apitoken does not have access'}
 
+.. dropdown:: Unsupported ``Accept`` header
+
+    No longer supported:
+
+    *   ``version=2.1``: The ``solver`` field is a string.
+
 .. _sapi_rest_get_problem_info:
 
 Retrieve Problem Information
@@ -1397,6 +1375,9 @@ Retrieve Problem Information
 
 To retrieve information about a problem, send an HTTP GET request to the
 ``problems/<problem_id>/info`` endpoint.
+
+The ``Accept`` header should be set to
+``application/vnd.dwave.sapi.problem-data+json; version=3``.
 
 The request should contain no body.
 
@@ -1419,19 +1400,6 @@ The request should contain no body.
             $ auth="X-Auth-Token: $SAPI_TOKEN"
             $ accept="Accept: application/vnd.dwave.sapi.problem-data+json; version=3"
             $ curl -H "$auth" -H "$accept" $SAPI_HOME/problems/$problem_id/info
-
-.. dropdown:: Optional ``Accept`` header
-
-    SAPI supports the resource representation:
-
-    *   ``application/vnd.dwave.sapi.problem-data+json; version=3``: The
-        ``solver`` field is a dict.
-
-    For information, see :ref:`key_value_problems_request`.
-
-    No longer supported:
-
-    *   ``version=2.1``: The ``solver`` field is a string.
 
 .. dropdown:: 2xx responses
     :color: success
@@ -1487,6 +1455,12 @@ The request should contain no body.
     >>> r.json()   # doctest: +SKIP
     {'error_code': 404,
      'error_msg': 'Problem does not exist or apitoken does not have access'}
+
+.. dropdown:: Unsupported ``Accept`` header
+
+    No longer supported:
+
+    *   ``version=2.1``: The ``solver`` field is a string.
 
 .. _sapi_rest_get_problem_answer:
 
@@ -1661,6 +1635,9 @@ Retrieve Available Solvers
 To retrieve a list of available solvers from the Leap service, send an HTTP GET
 request to the ``solvers/remote`` endpoint.
 
+The ``Accept`` header should be set to
+``application/vnd.dwave.sapi.solver-definition-list+json; version=3``.
+
 The request should contain no body.
 
 The request supports the use of the ``If-None-Match`` request header. If the
@@ -1698,20 +1675,6 @@ to get a subset of solver fields.
             $ accept="Accept: application/vnd.dwave.sapi.solver-definition-list+json; version=3"
             $ url="$SAPI_HOME/solvers/remote/"
             $ curl -H "$auth" -H "$accept" -G "$url" --data-urlencode "$filter"
-
-.. dropdown:: Optional ``Accept`` header
-
-    SAPI supports the resource representation in the response:
-
-    *   ``application/vnd.dwave.sapi.solver-definition-list+json; version=3``:
-        The solver ``identity`` field is a dict.
-
-    For information, see the "Solver Resource Fields" table in the
-    :ref:`available_solvers_2xx` tab.
-
-    No longer supported:
-
-    *   ``version=2``: The ``solver`` field is a string.
 
 .. dropdown:: 2xx response
     :color: success
@@ -1765,6 +1728,12 @@ to get a subset of solver fields.
 
     * ``304`` for unmodified resource
 
+.. dropdown:: Unsupported ``Accept`` header
+
+    No longer supported:
+
+    *   ``version=2``: The ``solver`` field is a string.
+
 .. _sapi_rest_get_remote_solver_config:
 
 Retrieve Solver Fields
@@ -1772,6 +1741,9 @@ Retrieve Solver Fields
 
 To retrieve the fields of a solver, send an HTTP GET request to the
 ``solvers/remote/<solver_name>`` endpoint.
+
+The ``Accept`` header should be set to
+``application/vnd.dwave.sapi.solver-definition+json; version=3``.
 
 The request supports the ``If-None-Match`` request header. If the ``ETag``
 (entity tag) value in the request header matches the one on the server, a
@@ -1807,20 +1779,6 @@ to get a subset of solver fields.
             $ auth="X-Auth-Token: $SAPI_TOKEN"
             $ accept="Accept: application/vnd.dwave.sapi.solver-definition+json; version=3"
             $ curl -H "$auth" -H "$accept" $SAPI_HOME/solvers/remote/$solver_name
-
-.. dropdown:: Optional ``Accept`` header
-
-    SAPI supports the resource representation in the response:
-
-    *   ``application/vnd.dwave.sapi.solver-definition+json; version=3``:
-        The solver ``identity`` field is a dict.
-
-    For information, see the "Solver Resource Fields" table in the
-    :ref:`solver_fields_2xx` tab.
-
-    No longer supported:
-
-    *   ``version=2``: The ``solver`` field is a string.
 
 .. dropdown:: 2xx response
     :color: success
@@ -1858,6 +1816,12 @@ to get a subset of solver fields.
     |general error responses|
 
     *   ``304`` for unmodified resource
+
+.. dropdown:: Unsupported ``Accept`` header
+
+    No longer supported:
+
+    *   ``version=2``: The ``solver`` field is a string.
 
 .. _sapi_rest_full_examples:
 

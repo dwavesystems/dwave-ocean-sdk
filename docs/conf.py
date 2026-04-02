@@ -270,6 +270,7 @@ intersphinx_mapping = {
     'networkx': ('https://networkx.org/documentation/stable/', None),
     'urllib3': ('https://urllib3.readthedocs.io/en/stable/', None),
     'requests': ('https://requests.readthedocs.io/en/stable/', None),
+    'ocean_rns': ('https://docs.dwavequantum.com/projects/leap_sapi/en/latest/', None),
     }
 
 

@@ -741,14 +741,12 @@ solvers. A QPU solver's current ``graph_id`` is displayed on the
 Leap dashboard (a solver's Properties and problem's Parameters modals)
 and available through the Ocean SDK.
 
-.. note:: Deployment dates are links to the related release note, if available.
-
 .. list-table:: Working-Graph Changes
     :name: qpu_graph_changes_table
     :header-rows: 1
 
     *   -   Solver Name
-        -   Deployment Date
+        -   Deployment Date\ [#]_
         -   Removed Qubits
 
     *   -   **Advantage2_system1**
@@ -871,3 +869,5 @@ and available through the Ocean SDK.
     *   -   Advantage2_research1.1
         -   2025-08-14
         -   First solver release
+
+.. [#] Deployment dates are links to the related release note, if available.
