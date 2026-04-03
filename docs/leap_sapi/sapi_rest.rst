@@ -759,7 +759,7 @@ query.\ [#]_
         params          Solver-specific
                         :ref:`hybrid parameters <opt_index_properties_parameters>`
                         or :ref:`QPU parameters <qpu_solver_parameters>`.
-        solver          Unique identifier (name) of the solver to be used.
+        solver          Unique identifier of the solver to be used.
                         For resource representation ``version=3``, the solver
                         identifier is represented by the following JSON
                         structure::
@@ -2235,6 +2235,7 @@ section.
 .. doctest:: rest_live
     :skipif: test_api_token_set == False or hss_spot_check == False
 
+    >>> session.headers['Accept'] = 'application/vnd.dwave.sapi.problem+json; version=3'
     >>> r9 = session.get(f"{SAPI_HOME}/problems/{problem_id}")
     >>> r9 = r9.json()
     >>> if r9['status'] == 'COMPLETED':       # doctest: +SKIP
