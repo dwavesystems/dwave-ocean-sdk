@@ -729,3 +729,145 @@ The standard annealing schedule for the QPU is shown in
 
     Standard annealing schedule for the QPU, showing energy changes
     as a function of scaled time.
+
+.. _qpu_graph_changes:
+
+Working-Graph Changes
+=====================
+
+The :ref:`qpu_graph_changes_table` table identifies changes to the
+:ref:`working graphs <topologies_working_graph>` for the generally available QPU
+solvers. A QPU solver's current ``graph_id`` is displayed on the
+Leap dashboard (a solver's **Properties** and a problem's **Parameters** modals)
+and available through the Ocean SDK.
+
+.. list-table:: Working-Graph Changes
+    :name: qpu_graph_changes_table
+    :header-rows: 1
+
+    *   -   Solver Name
+        -   Deployment Date\ [#]_
+        -   Removed Qubits
+
+    *   -   **Advantage2_system1**
+        -
+        -
+
+    *   -   Advantage2_system1.13
+        -   :ref:`2026-03-18 <adv2_1.13>`
+        -   249
+    
+    *   -   Advantage2_system1.12
+        -   :ref:`2026-03-04 <adv2_1.12>`
+        -   1871, 1895
+
+    *   -   Advantage2_system1.11
+        -   :ref:`2026-01-28 <adv2_1.11>`
+        -   380, 381, 441, 577, 4202, 4226, 4237
+        
+    *   -   Advantage2_system1.10
+        -   :ref:`2025-12-15 <adv2_1.10>`
+        -   2782
+        
+    *   -   Advantage2_system1.9
+        -   :ref:`2025-12-09 <adv2_1.9>`
+        -   2049
+        
+    *   -   Advantage2_system1.8
+        -   :ref:`2025-11-19 <adv2_1.8>`
+        -   484
+        
+    *   -   Advantage2_system1.7
+        -   :ref:`2025-11-04 <adv2_1.7>`
+        -   510
+        
+    *   -   Advantage2_system1.6
+        -   :ref:`2025-09-02 <adv2_1.6>`
+        -   3122
+        
+    *   -   Advantage2_system1.5
+        -   :ref:`2025-08-07 <adv2_1.5>`
+        -   4058, 4082
+        
+    *   -   Advantage2_system1.4
+        -   :ref:`2025-07-16 <adv2_1.4>`
+        -   769
+        
+    *   -   Advantage2_system1.3
+        -   :ref:`2025-06-20 <adv2_1.3>`
+        -   2838
+        
+    *   -   Advantage2_system1.2
+        -   :ref:`2025-06-17 <adv2_1.2>`
+        -   1283, 4686
+        
+    *   -   Advantage2_system1.1
+        -   :ref:`2025-05-20 <doc-898>`
+        -   First solver release
+        
+    *   -   **Advantage2_system4**
+        -
+        -
+
+    *   -   Advantage2_system4.3
+        -   :ref:`2025-12-22 <adv2_4.3>`
+        -   840
+        
+    *   -   Advantage2_system4.1
+        -   :ref:`2025-11-03 <adv2_na_east_new>`
+        -   First solver release
+        
+    *   -   **Advantage_system6**
+        -
+        -
+
+    *   -   Advantage_system6.4
+        -   :ref:`2024-02-28 <isi_6.4>`
+        -   104, 119
+        
+    *   -   Advantage_system6.3
+        -   :ref:`2023-10-18 <isi_6.3>`
+        -   Only couplers removed
+        
+    *   -   Advantage_system6.2
+        -   :ref:`2023-05-31 <adv6.2>`
+        -   727, 742
+        
+    *   -   Advantage_system6.1
+        -   :ref:`2022-05-12 <isi_new_qc>`
+        -   First solver release
+
+    *   -   **Advantage_system4**
+        -
+        -
+
+    *   -   Advantage_system4.1
+        -   :ref:`2021-10-05 <adv4_perf_update>`
+        -   First solver release
+        
+    *   -   **Advantage2_research1**
+        -
+        -
+
+    *   -   Advantage2_research1.5
+        -   2025-12-18
+        -   Only couplers removed
+
+    *   -   Advantage2_research1.4
+        -   2025-11-26
+        -   5, 11, 29, 34, 41, 53, 58, 70, 89, 94, 106, 113, 118,
+            125, 130, 131, 1134, 1140, 1141, 1146, 1153, 1164
+            
+    *   -   Advantage2_research1.3
+        -   2025-10-21
+        -   44, 466, 550, 622, 686, 735, 912, 1170, 1231
+        
+    *   -   Advantage2_research1.2
+        -   2025-09-10
+        -   90, 434, 663, 693, 780, 868
+        
+    *   -   Advantage2_research1.1
+        -   2025-08-14
+        -   First solver release
+
+.. [#] Deployment dates are links to the related release note, if available.
