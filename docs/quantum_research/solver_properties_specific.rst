@@ -738,7 +738,7 @@ Working-Graph Changes
 The :ref:`qpu_graph_changes_table` table identifies changes to the
 :ref:`working graphs <topologies_working_graph>` for the generally available QPU
 solvers. A QPU solver's current ``graph_id`` is displayed on the
-Leap dashboard (a solver's Properties and problem's Parameters modals)
+Leap dashboard (a solver's **Properties** and a problem's **Parameters** modals)
 and available through the Ocean SDK.
 
 .. list-table:: Working-Graph Changes
@@ -782,7 +782,7 @@ and available through the Ocean SDK.
         -   510
         
     *   -   Advantage2_system1.6
-        -   :ref:`2025-09-02 <ref:adv2_1.6>`
+        -   :ref:`2025-09-02 <adv2_1.6>`
         -   3122
         
     *   -   Advantage2_system1.5
