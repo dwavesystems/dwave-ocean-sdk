@@ -46,10 +46,10 @@ This information includes:
         access to all QPUs in the Leap service.
 
 
-Advantage2_system1.13
-=====================
+Advantage2_system1
+==================
 
-All data presented in this section are specific to the **Advantage2_system1.13**
+All data presented in this section are specific to the **Advantage2_system1**
 solver. The |adv2_tm| system QPU is based on a physical lattice of qubits and
 couplers known as the *Zephyr*\ |tm| topology. For information, see the
 :ref:`topology_intro_zephyr` section.
@@ -75,10 +75,10 @@ This table lists the physical properties of the calibrated QPU.
         - :math:`\text{Z12}`
 
     *   - Number of :ref:`qubits <property_qpu_qubits>`
-        - :math:`4579`
+        - :math:`4578`
 
     *   - Number of :ref:`couplers <property_qpu_couplers>`
-        - :math:`41549`
+        - :math:`41531`
 
     *   - :ref:`Qubit temperature <qpu_errors_temperature>`
         - :math:`20 \pm 1.0\ \text{mK}`
@@ -139,7 +139,7 @@ Annealing Schedule
 ------------------
 
 Download the annealing schedule for the QPU here:
-:download:`Advantage2_system1.13 Excel spreadsheet <../downloadables/09-1312A-M_Advantage2_system1_13_annealing_schedule.xlsx>`.
+:download:`Advantage2_system1 Excel spreadsheet <../downloadables/09-1312A-N_Advantage2_system1_annealing_schedule.xlsx>`.
 
 The standard annealing schedule for the QPU is shown in
 :numref:`Figure %s <annealing-schedule-adv2-1.1>`.
@@ -745,13 +745,17 @@ and available through the Ocean SDK.
     :name: qpu_graph_changes_table
     :header-rows: 1
 
-    *   -   Solver Name
+    *   -   Solver Name\ [#]_
         -   Deployment Date\ [#]_
         -   Removed Qubits
 
     *   -   **Advantage2_system1**
         -
         -
+
+    *   -   Advantage2_system1
+        -   :ref:`2026-04-10 <adv2_1_4578>`
+        -   4374
 
     *   -   Advantage2_system1.13
         -   :ref:`2026-03-18 <adv2_1.13>`
@@ -870,4 +874,7 @@ and available through the Ocean SDK.
         -   2025-08-14
         -   First solver release
 
-.. [#] Deployment dates are links to the related release note, if available.
+.. [#]  Starting with the first time a solver's working graph changes after
+    2026-04-06, a solver's minor version is no longer used in the solver name;
+    for information, see the :ref:`solver-id-v2-v3` release note.
+.. [#]  Deployment dates are links to the related release note, if available.
