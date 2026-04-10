@@ -874,6 +874,6 @@ and available through the Ocean SDK.
         -   2025-08-14
         -   First solver release
 
-.. [#]  Starting with the first time a solver's working graph changes after
-    2026-04-06, a solver's minor version is no longer used in the solver name.
+.. [#]  Since 2026-04-06, solvers that have their working graph updated no
+    longer have a minor version in the solver name.
 .. [#]  Deployment dates are links to the related release note, if available.
