@@ -1413,7 +1413,7 @@ The request should contain no body.
       'quad': None,
       'data': '8863e118-2cea-447c-b5f3-b874bce05ba9'},
      'params': {'time_limit': 5},
-     'metadata': {'submitted_by': 'DWV-9f7125b0d8407f3b8d6d61f38758659fc4b17d50',
+     'metadata': {'submitted_by': 'ABC-1234567...345678',
       'solver': {'name': 'hybrid_binary_quadratic_model_version2p'},
       'type': 'bqm',
       'submitted_on': '2025-09-29T18:04:12.237828Z',
