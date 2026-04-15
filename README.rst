@@ -1,4 +1,4 @@
-.. image:: docs/_static/Ocean_SDK_Banner.png
+.. image:: https://raw.githubusercontent.com/dwavesystems/dwave-ocean-sdk/master/docs/_static/Ocean_SDK_Banner.png
 
 .. image:: https://img.shields.io/pypi/v/dwave-ocean-sdk.svg
     :target: https://pypi.python.org/pypi/dwave-ocean-sdk
