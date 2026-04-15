@@ -626,11 +626,11 @@ respectively, for this system.
     Typical quantization on the :math:`J` DAC control.
 
 
-Advantage2_research1.5
-======================
+Advantage2_research1
+====================
 
 All data presented in this section are specific to the
-**Advantage2_research1.5** solver, which is based on
+**Advantage2_research1** solver, which is based on
 a physical lattice of qubits and couplers known as the *Zephyr*\ |tm| topology.
 For information, see the :ref:`topology_intro_zephyr` section.
 
@@ -719,7 +719,7 @@ Annealing Schedule
 ------------------
 
 Download the annealing schedule for the QPU here:
-:download:`Advantage2_research1.5 Excel spreadsheet <../downloadables/09-1317A-E_Advantage2_research1_5_annealing_schedule.xlsx>`.
+:download:`Advantage2_research1 Excel spreadsheet <../downloadables/09-1317A-F_Advantage2_research1_annealing_schedule.xlsx>`.
 
 The standard annealing schedule for the QPU is shown in
 :numref:`Figure %s <annealing-schedule-adv2-research-1.1>`.
@@ -852,6 +852,10 @@ and available through the Ocean SDK.
     *   -   **Advantage2_research1**
         -
         -
+
+    *   -   Advantage2_research1
+        -   2026-04-16
+        -   406
 
     *   -   Advantage2_research1.5
         -   2025-12-18
