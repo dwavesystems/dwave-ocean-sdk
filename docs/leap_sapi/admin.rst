@@ -309,32 +309,31 @@ Logging in to Leap Admin
 Inviting People to a Project
 ----------------------------
 
-#.  Click **Invite** > *role*.
+#.  Click **+** (in the upper-right corner) > **Invite User** and make the
+    appropriate selections.
 
-    A *role* gives a member the privileges to perform specific actions in a
-    project. For more information, see :ref:`admin_user_roles`.
+    Descriptions of the following selections may be helpful:
 
-    .. tip:: As a best practice, invite additional project and organization
-        administrators as backups.
+    *   **Role**: A *role* gives a member the privileges to perform specific
+        actions in a project. For more information, see :ref:`admin_user_roles`.
 
-2.  Select the seat type for the people to be invited in the
-    **Seat Type** field.
+    *   **Seat Type**: For more information, see the following sections:
 
-    For more information, see the following sections:
+        *   :ref:`admin_seat_types`
 
-    *   :ref:`admin_seat_types`
+        *   :ref:`admin_inviting_users_join`
 
-    *   :ref:`admin_inviting_users_join`
+    .. tip:: 
+        
+        *   As a best practice, invite additional project and organization
+            administrators as backups.
 
-3.  Specify the email addresses of the people to add to the project.
-
-    If an error occurs when specifying an email address, ensure that the email
-    address is allowed as specified (individually or by pattern) in the
-    **Allowed Email Settings** section.
-
-    If the email address is not permitted in the **Allowed Email Settings**
-    section on the **Overview** page, contact your organization administrator
-    or |support_email|_.
+        *   If the desired email address does not display, ensure that the
+            email address is allowed as specified (individually or by pattern)
+            in the **Allowed Email Settings** section. If the email address is
+            not permitted in the **Allowed Email Settings** section on the
+            **Overview** page, contact your organization or project
+            administrator, or |support_email|_.
 
 
 .. _admin_managing_organizations:
