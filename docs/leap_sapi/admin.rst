@@ -345,28 +345,37 @@ Logging in to Leap Admin
 Inviting People to a Project
 ----------------------------
 
-#.  In the upper-right corner, click |plus_icon| > **Invite User** and make the
+#.  Click **+** (in the upper-right corner) > **Invite User** and make the
     appropriate selections.
 
-    You may find the following field descriptions helpful:
+    Descriptions of the following selections may be helpful:
 
+    *   **Role**: A *role* gives a member the privileges to perform specific
+        actions in a project. For more information, see :ref:`admin_user_roles`.
     *   **Role**: A *role* gives a member the privileges to perform specific
         actions in a project. For more information, see :ref:`admin_user_roles`.
 
     *   **Seat Type**: For more information, see the following sections:
+    *   **Seat Type**: For more information, see the following sections:
 
+        *   :ref:`admin_seat_types`
         *   :ref:`admin_seat_types`
 
         *   :ref:`admin_inviting_users_join`
+        *   :ref:`admin_inviting_users_join`
 
-    .. tip::
-    
+    .. tip:: 
+        
         *   As a best practice, invite additional project and organization
             administrators as backups.
 
-        *   If the desired email address is not allowed as specified
-            (individually or by pattern) in the **Allowed Email Settings**
-            section on the **Overview** page, contact |support_email|_.
+        *   If the desired email address does not display, ensure that the
+            email address is allowed as specified (individually or by pattern)
+            in the **Allowed Email Settings** section. If the email address is
+            not permitted in the **Allowed Email Settings** section on the
+            **Overview** page, contact your organization or project
+            administrator, or |support_email|_.
+
 
 .. _admin_managing_organizations:
 
