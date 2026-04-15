@@ -184,7 +184,7 @@ Welcome to |dwave_short|
             including electrical, cooling, environmental, and networking
             requirements, download
             :download:`System Specifications for D-Wave Quantum Computers
-            <downloadables/09-1313B-A_System_Specifications_for_D-Wave_Quantum_Computers.pdf>`.
+            <downloadables/09-1313B-D_System_Specifications_for_D-Wave_Quantum_Computers.pdf>`.
 
             For customers who directly access quantum computer hardware, see the
             |doc_operations| manual, which includes essential safety
