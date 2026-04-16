@@ -84,7 +84,7 @@ connecting lines represent values of the quadratic coefficients for each pair of
 variables. The right side shows the qubits representing these variables on a
 quantum processing unit.
 
-.. image:: docs/_static/inspector_bqm_ran_r_20.png
+.. image:: https://raw.githubusercontent.com/dwavesystems/dwave-ocean-sdk/master/docs/_static/inspector_bqm_ran_r_20.png
 
 You can find introductory examples in the
 `documentation <https://docs.dwavequantum.com/en/latest/quantum_research/index_examples_beginner.html>`_
