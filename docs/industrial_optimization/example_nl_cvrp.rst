@@ -127,15 +127,15 @@ maximum capacity.
 ...     print(f"Objective value {int(model.objective.state(i))} for \n" \
 ...     f"\t Route 1: {route1.state(i)} \t Route 2: {route2.state(i)} \n" \
 ...     f"\t Feasible: {all(sym.state(i) for sym in model.iter_constraints())}")   # doctest: +SKIP
-Objective value 484 for
-	 Route 1: [4. 3. 7. 1. 5.] 	 Route 2: [4. 3. 7. 1. 5.]
-	 Feasible: True
 Objective value 423 for
-	 Route 1: [0. 6. 8. 3. 4.] 	 Route 2: [0. 6. 8. 3. 4.]
-	 Feasible: True
+         Route 1: [4. 3. 8. 6. 0.]       Route 2: [5. 1. 7. 2.]
+         Feasible: True
 Objective value 423 for
-	 Route 1: [2. 7. 1. 5.] 	 Route 2: [2. 7. 1. 5.]
-	 Feasible: True
+         Route 1: [4. 3. 8. 6. 0.]       Route 2: [5. 1. 7. 2.]
+         Feasible: True
+Objective value 423 for
+         Route 1: [5. 1. 7. 2.]          Route 2: [4. 3. 8. 6. 0.]
+         Feasible: True
 
 Providing an Initial State
 --------------------------
