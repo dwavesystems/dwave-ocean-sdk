@@ -1087,7 +1087,7 @@ To cancel a previously submitted problem, make an HTTP DELETE request to the
 ``problems/<problem_id>`` endpoint.
 
 The ``Accept`` header should be set to
-``application/vnd.dwave.sapi.problems+json; version=3``.
+``application/vnd.dwave.sapi.problem+json; version=3``.
 
 The request should contain no body.
 
