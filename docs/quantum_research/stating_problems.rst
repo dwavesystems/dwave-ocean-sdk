@@ -592,8 +592,8 @@ both Boltzmann machines and quantum neural networks [Kak1995]_, [Chr1995]_.
 
 .. _boltzmann_machines_quantum_generalization:
 
-Boltzmann Machines and its Quantum Generalization
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Boltzmann Machines: Quantum Generalization
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Boltzmann machines model high-dimensional binary data. A Boltzmann machine is
 defined by its probability mass function,
@@ -644,7 +644,7 @@ When only a subset of variables are observed, denoted :math:`v`, the remaining
 unobserved variables are referred to as *hidden units* :math:`h`.
 
 The marginal distribution of observed variables can be far more expressive due
-to the marginalization of hidden units, i.e.,
+to the marginalization of hidden units; i.e.,
 
 .. math::
 
@@ -672,7 +672,6 @@ The gradient of the log likelihood function itself is intractable:
 
 Its intractability stems from the expectation term, with respect to the model,
 which requires an evaluation of the partition function :math:`Z(\theta)`.
-
 This motivates the need for Monte Carlo algorithms [Rob2004]_; i.e., sample
 approximations of the expectation.
 
@@ -691,7 +690,7 @@ defined by Hamiltonians.
 In practice today (2026, the time of writing), at D-Wave the annealing quantum
 computer is utilized as an approximate sampler of quantum Boltzmann machines.
 Thus the following introductory definition only serves to satisfy one's
-curiosity. Refer to [Ami2018]_ for a complete treatment.
+curiosity: Refer to [Ami2018]_ for a complete treatment.
 
 In D-Wave's implementation, these Hamiltonians take the form:\ [#]_
 
@@ -727,7 +726,7 @@ matrix,
     \end{align}
 
 For intuition, consider a diagonal Hamiltonian---diagonal Hamiltonian
-(:math:`\gamma_i = 0` for all :math:`$i`) corresponds to the classical definition of a
+(:math:`\gamma_i = 0` for all :math:`i`) corresponds to the classical definition of a
 Boltzmann machine. By construction of the Hamiltonian, the summation over
 :math:`Z_i` and :math:`Z_iZ_j` matrices result in a matrix whose diagonal
 entries correspond to each of the :math:`2^{\lvert V\rvert}` binary strings'
@@ -899,7 +898,7 @@ rule and its generalizations [Mit2018]_, [Wie2022]_.
 
 A more relevant approach to training quantum annealing-based neural networks is
 via equilibrium propagation [Sce2017]_, a gradient-estimation technique
-originally introduced in the context of training energy-based models [teh2003]_.
+originally introduced in the context of training energy-based models [Teh2003]_.
 Generalizations to quantum equilibrium propagation have been proposed in
 [Mas2025]_, [Sce2024]_. The parameter update rule can be described as follows.
 
@@ -942,7 +941,7 @@ where :math:`S, S'` are spin-valued random vectors with distribution prescribed
 by :math:`H(x), H_\text{nudge}(x, y)` respectively, :math:`\theta = (h, J)` (as
 defined in the :ref:`boltzmann_machines_quantum_generalization` section),
 :math:`T` is the sufficient statistic of :math:`H` (as defined in the
-:ref:`boltzmann_machines_quantum_generalization` section), and
+same section), and
 :math:`C: \mathbb{R}^{|V| + |E|} \times \mathbb{R}^d \times \mathbb{R}^{d_2} \mapsto \mathbb{R}`
 is a differentiable cost function (with respect to the first argument).
 The gradient, expressed as a difference of expectations, can be readily
@@ -954,7 +953,7 @@ distributions for one gradient computation.
 The applicability of quantum annealing-based neural networks has been
 demonstrated in MNIST [Den2012]_ image classification tasks [Zha2025]_,
 [Lay2024]_. Notably, [Lay2024]_ exploited the hardware topology of quantum
-annealers [Boo2019]_ ,[Boo2021]_ to implement a convolutional neural network
+annealers [Boo2019]_, [Boo2021]_ to implement a convolutional neural network
 [Fuk1979]_, [Sch2015]_.
 
 A closely related approach is quantum reservoir computing [Kor2024]_.
@@ -1016,7 +1015,7 @@ from the same Boltzmann machine as the annealing quantum computer for an
 equivalent effective sample size [Vat2021]_.
 
 For complex models, more sophisticated and compute-intensive methods such as
-parallel tempering [Gey1991]_ and annealed importance sampling [nea2001]_ are
+parallel tempering [Gey1991]_ and annealed importance sampling [Nea2001]_ are
 required.
 
 Other alternatives include autoregressive models [Van2016]_, [Vas2017]_,

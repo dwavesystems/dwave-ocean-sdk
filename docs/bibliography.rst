@@ -993,7 +993,7 @@ Bibliography
     https://1qbit.com/our-thinking/research-papers
     arXiv:1708.03439
 
-.. [Nea]
+.. [Nea2001]
     Neal, Radford M.
     "Annealed importance sampling."
     Statistics and Computing 11, 125-139
