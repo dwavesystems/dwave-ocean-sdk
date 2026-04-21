@@ -575,15 +575,15 @@ section.
 Generative and Discriminative Modeling
 --------------------------------------
 
-*Generative* modelling is concerned with the modeling the joint distribution of
+*Generative* modeling is concerned with the modeling the joint distribution of
 random variables :math:`X, Y`, whereas *discriminative* modeling is concerned
 with the conditional distribution of :math:`X \mid Y`.
 
-Generative modelling with annealing quantum computers is modeled by Boltzmann
+Generative modeling with annealing quantum computers is modeled by Boltzmann
 machines and quantum Boltzmann machines [Ami2018]_, [Ack1985]_---families of
 learnable probability models over binary data.\ [#]_
 
-Discriminative modelling with annealing quantum computers can be modelled using
+Discriminative modeling with annealing quantum computers can be modeled using
 both Boltzmann machines and quantum neural networks [Kak1995]_, [Chr1995]_.
 
 .. [#]
@@ -682,7 +682,7 @@ annealing quantum computer excels.
 The restricted Boltzmann machine [Hin2002]_, [Smo1986]_ is a special case of the
 graph-restricted Boltzmann machine in which the graph is a complete bipartite
 graph. Furthermore, partial observations are restricted to be on one and only
-one partite set of the graph. These modelling constraints were motivated by the
+one partite set of the graph. These modeling constraints were motivated by the
 need for an efficient training algorithm [Hin2002]_, [Hin2010]_.
 
 Quantum Boltzmann machines offer a generalization of Boltzmann machines and are
@@ -801,7 +801,7 @@ and the second case for :math:`f` comes from the inverse CDF of the exponential
 distribution. Because :math:`f` is differentiable with nonzero gradients, one
 can meaningfully backpropagate through the discretization layer.
 
-Another approach to modelling data with binary random variables is to use
+Another approach to modeling data with binary random variables is to use
 approximations proposed by [Jan2016]_, [Mad2016]_. The approach is based on a
 limiting argument with annealed Gumbel distributions combined with a
 straight-through estimator [Ben2013]_,
@@ -850,7 +850,7 @@ estimator. See [Jan2016]_ for a summary of relevant variance-reduction
 techniques based on control variates.
 
 Boltzmann machines can also be used as discriminative models or, equivalently,
-used for modelling conditional distributions :math:`Y \mid X`. See [Cal2019]_
+used for modeling conditional distributions :math:`Y \mid X`. See [Cal2019]_
 for an applied example using annealing quantum computers. Training of Boltzmann
 machines for discriminative tasks is no different from training generative
 models. Variables :math:`X` and :math:`Y` are both assigned to variables of a
@@ -858,7 +858,7 @@ Boltzmann machine during training.\ [#]_
 
 At inference, however, only variables associated with :math:`X` are fixed at
 their observed value and predictions are computed by sampling :math:`Y\mid X`.
-In practice, discriminative modelling with sparse graph-restricted Boltzmann
+In practice, discriminative modeling with sparse graph-restricted Boltzmann
 machines poses a subtle variable-assignment problem to be discussed in the
 :ref:`generative_discriminative_conclusion` section.
 
@@ -974,7 +974,7 @@ Opportunities and Limitations
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Boltzmann machines and quantum neural networks provide powerful frameworks for
-generative and discriminative modelling using annealing quantum computers.
+generative and discriminative modeling using annealing quantum computers.
 Naturally, these models can be readily inserted
 into---or substitute for---subcomponents of existing models: for example,
 linear layers, activation functions, and attention modules. Thus there is
@@ -1006,7 +1006,7 @@ A comprehensive breakdown of timing information is in the
 :ref:`qpu_operation_timing` section.
 
 To put this timing into context, consider both generative and discriminative
-modelling tasks.
+modeling tasks.
 
 In a generative model setup where annealing quantum computers are utilized as
 Boltzmann machine samplers, the natural comparators are Monte Carlo samplers
