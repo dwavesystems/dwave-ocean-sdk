@@ -575,7 +575,7 @@ section.
 Generative and Discriminative Modeling
 --------------------------------------
 
-*Generative* modeling is concerned with the modeling the joint distribution of
+*Generative* modeling is concerned with modeling the joint distribution of
 random variables :math:`X, Y`, whereas *discriminative* modeling is concerned
 with the conditional distribution of :math:`X \mid Y`.
 
@@ -588,7 +588,7 @@ both Boltzmann machines and quantum neural networks [Kak1995]_, [Chr1995]_.
 
 .. [#]
     Closely related to Boltzmann machines are the exponential family [Wai2008]_
-    Markov random fields [Dob1968]_, and Ising models [Isi1925]_.
+    Markov random fields [Dob1968]_ and Ising models [Isi1925]_.
 
 .. _boltzmann_machines_quantum_generalization:
 
@@ -642,7 +642,6 @@ and :math:`z_{e_i} = x_{e_{i_1}}x_{e_{i_2}}`,
 
 When only a subset of variables are observed, denoted :math:`v`, the remaining
 unobserved variables are referred to as *hidden units* :math:`h`.
-
 The marginal distribution of observed variables can be far more expressive due
 to the marginalization of hidden units; i.e.,
 
@@ -657,7 +656,6 @@ discussed in the :ref:`generative_discriminative_conclusion` section.
 
 Given a binary dataset, one can fit a Boltzmann machine to the model using, for
 example, maximum likelihood estimates [Cas2002]_.
-
 However, the maximum likelihood estimate for a Boltzmann machine is nontrivial
 to evaluate. The standard approach [Hin2002]_, [Ack1985]_ is to optimize the
 model using stochastic gradient descent [Boy2004]_.
@@ -711,10 +709,10 @@ In D-Wave's implementation, these Hamiltonians take the form:\ [#]_
                 \end{bmatrix} \\
         Z   & = \begin{bmatrix}
                     1 & 0 \\ 0 & -1
-                \end{bmatrix}.
+                \end{bmatrix},
     \end{align}
 
-The product :math:`\bigotimes` denotes the Kronecker product [Str2012]_.
+where the product :math:`\bigotimes` denotes the Kronecker product [Str2012]_.
 The probability measure is now defined by the diagonal elements of the density
 matrix,
 
@@ -725,7 +723,7 @@ matrix,
         \mathcal{Z} & = \Tr\left[\exp\{-H\}\right].
     \end{align}
 
-For intuition, consider a diagonal Hamiltonian---diagonal Hamiltonian
+To gain an intuitive understanding, consider a diagonal Hamiltonian---diagonal Hamiltonian
 (:math:`\gamma_i = 0` for all :math:`i`) corresponds to the classical definition of a
 Boltzmann machine. By construction of the Hamiltonian, the summation over
 :math:`Z_i` and :math:`Z_iZ_j` matrices result in a matrix whose diagonal
@@ -741,7 +739,7 @@ the log likelihood [Ami2018]_.
 
     The Hamiltonian is time-dependent but, motivated by ease of exposition, the
     dependence on time has been omitted here. For a more complete treatment,
-    see, for example, the :ref:`qpu_quantum_annealing_intro` section.
+    see the :ref:`qpu_quantum_annealing_intro` section.
 
 Quantum Boltzmann Machines: Applications
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -858,7 +856,7 @@ Boltzmann machine during training.\ [#]_
 At inference, however, only variables associated with :math:`X` are fixed at
 their observed value and predictions are computed by sampling :math:`Y\mid X`.
 In practice, discriminative modeling with sparse graph-restricted Boltzmann
-machines poses a subtle variable-assignment problem to be discussed in the
+machines poses a subtle variable-assignment problem, which is discussed in the
 :ref:`generative_discriminative_conclusion` section.
 
 .. [#]
@@ -868,10 +866,10 @@ machines poses a subtle variable-assignment problem to be discussed in the
 Quantum Neural Networks
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-Quantum neural networks [Kak1995]_, [Chr1995]_ are families of functions
+Quantum neural networks ([Kak1995]_, [Chr1995]_) are families of functions
 evaluated via parameterized quantum systems.\ [#]_
 That is, a quantum neural network, :math:`f_\theta`, parameterized by
-:math:`\theta` is defined as,
+:math:`\theta` is defined as
 
 .. math::
 
@@ -889,7 +887,6 @@ quantum observable.
 Essentially, a quantum neural network is a parameterized function whose outputs
 are expected values of the quantum system. A difficulty in applying quantum
 neural networks to real-world applications is in training.
-
 Evaluating or even approximating gradients of a loss function with respect to
 the network parameters is nontrivial due to the intractability of densities and
 expectations. Much of the literature on training quantum neural networks has
@@ -912,12 +909,12 @@ Consider an example Hamiltonian of the form,
 
 where :math:`Z_i` are as defined in the
 :ref:`boltzmann_machines_quantum_generalization` section, :math:`J_{i,j}, h_i`
-are scalar functions of the input data :math:`x`; that is
+are scalar functions of the input data :math:`x`; that is,
 :math:`h_i: \mathbb{R}^d \mapsto \mathbb{R}` and
-:math:`J_{i, j}:\mathbb{R}^d \mapsto \mathbb{R}`. Note, :math:`h_i` and
+:math:`J_{i, j}:\mathbb{R}^d \mapsto \mathbb{R}`. Note :math:`h_i` and
 :math:`J_{i, j}` include constant functions independent of :math:`x`.
 Equilibrium propagation approximates the gradients by introducing another
-Hamiltonian, a nudge Hamiltonian, defined as,
+Hamiltonian, a nudge Hamiltonian, defined as
 
 .. math::
 
@@ -928,7 +925,7 @@ Hamiltonian, a nudge Hamiltonian, defined as,
 where :math:`y \in \mathbb{R}^{d_2}` are the desired network outputs, and
 :math:`\tilde h_i` is similarly defined to :math:`h`,
 :math:`\tilde h_i: \mathbb{R}^d \mapsto \mathbb{R}`. The gradient is expressed
-as,
+as
 
 .. math::
 
@@ -959,8 +956,8 @@ annealers [Boo2019]_, [Boo2021]_ to implement a convolutional neural network
 A closely related approach is quantum reservoir computing [Kor2024]_.
 Informally but practically, quantum reservoir computing equates to evaluating an
 untrained quantum neural network, as an activation function, followed by a
-trained linear function. The difficulty in applying quantum reservoirs is the
-domain-expertise required in defining a base Hamiltonian and a mapping of inputs
+trained linear function. The difficulty in applying quantum reservoirs is that it
+requires domain-expertise to define a base Hamiltonian and a mapping of inputs
 to the base Hamiltonian.
 
 .. [#]
@@ -975,12 +972,12 @@ Opportunities and Limitations
 Boltzmann machines and quantum neural networks provide powerful frameworks for
 generative and discriminative modeling using annealing quantum computers.
 Naturally, these models can be readily inserted
-into---or substitute for---subcomponents of existing models: for example,
+into---or substitute for---subcomponents of existing models, such as
 linear layers, activation functions, and attention modules. Thus there is
 interest in identifying areas for which practical benefits can be realized with
 quantum annealing-based machine learning methods.
 
-This section considers three performance indicators in which a annealing quantum
+This section considers three performance indicators in which an annealing quantum
 computer has potential to improve upon classical baselines.
 
 1)  Runtime
@@ -989,7 +986,6 @@ computer has potential to improve upon classical baselines.
 
 First, a description of timing information of D-Wave's annealing quantum
 computers at a coarsened but practically relevant granularity.
-
 Quantum annealing protocols can operate in time spans as short as nanoseconds to
 as long as milliseconds. Once the protocol has run its course, reading out the
 classical states takes on the order of hundreds of microseconds. The bottleneck
@@ -1004,7 +1000,7 @@ is on the order of tens of milliseconds.
 A comprehensive breakdown of timing information is in the
 :ref:`qpu_operation_timing` section.
 
-To put this timing into context, consider both generative and discriminative
+To put this timing in context, consider both generative and discriminative
 modeling tasks.
 
 In a generative model setup where annealing quantum computers are utilized as
@@ -1049,7 +1045,7 @@ section.
 The two families of graphs are visualized in the :ref:`qpu_topologies` section.
 A key observation relevant to the discussion of expressivity is the locality of
 interactions. In both family of graphs, edges are locally connected in a
-two-dimensional plane; long range interactions do not exist. These locality
+two-dimensional plane and long-range interactions do not exist. These locality
 constraints motivate techniques for maximizing expressivity, which are discussed
 next.
 
@@ -1058,9 +1054,9 @@ Several approaches exist to increase model expressivity.
 1)  Minor embeddings [Cho2008]_: represent logical variables by chaining
     multiple physical qubits through strong pairwise interaction terms.
 2)  Hidden units: marginalize a distribution over its hidden units.
-3)  Optimize variable-to-qubit mappings.
+3)  Optimization of variable-to-qubit mappings.
 
-Minor embedding can increase connectivity and introduce long-range interactions,
+Minor embedding can increase connectivity and introduce long-range interactions
 but introduces its own challenges such as early freezeout and chain
 breakages.\ [#]_
 
