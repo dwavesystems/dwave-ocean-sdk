@@ -621,9 +621,9 @@ statistic [Wai2008]_ of the model; i.e.,
         \end{bmatrix}^\intercal.
     \end{equation}
 
-More generally, given a graph :math:`G=(V, E)`, define a graph-restricted
-Boltzmann machine specified by :math:`G` to have sufficient statistics defined
-by,
+More generally, given a graph :math:`G=(V, E)`, you can define a
+graph-restricted Boltzmann machine specified by :math:`G` to have sufficient
+statistics defined by,
 
 .. math::
 
@@ -685,10 +685,9 @@ need for an efficient training algorithm [Hin2002]_, [Hin2010]_.
 Quantum Boltzmann machines offer a generalization of Boltzmann machines and are
 defined by Hamiltonians.
 
-In practice today (2026, the time of writing), at D-Wave the annealing quantum
-computer is utilized as an approximate sampler of quantum Boltzmann machines.
-Thus the following introductory definition only serves to satisfy one's
-curiosity: Refer to [Ami2018]_ for a complete treatment.
+In practice at D-Wave in 2026, the annealing quantum computer is used as an
+approximate sampler of quantum Boltzmann machines, as described briefly here and
+in detail in [Ami2018]_.
 
 In D-Wave's implementation, these Hamiltonians take the form:\ [#]_
 
@@ -732,14 +731,13 @@ probability (when normalized).
 When qubits are measured in the :math:`z`-basis, or with respect to each
 :math:`Z_i`, binary strings are observed with their corresponding probabilities.
 The quantum Boltzmann machine can be trained using the same expressions or
-quantities as in classical Boltzmann machines, albeit based on a lower bound of
-the log likelihood [Ami2018]_.
+quantities used in classical Boltzmann machines, albeit based on a lower bound
+of the log likelihood [Ami2018]_.
 
 .. [#]
 
-    The Hamiltonian is time-dependent but, motivated by ease of exposition, the
-    dependence on time has been omitted here. For a more complete treatment,
-    see the :ref:`qpu_quantum_annealing_intro` section.
+    The time-dependence of the Hamiltonian is omitted here for simplicity; for a
+    more complete treatment, see the :ref:`qpu_quantum_annealing_intro` section.
 
 Quantum Boltzmann Machines: Applications
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -984,27 +982,24 @@ computer has potential to improve upon classical baselines.
 2)  Model complexity
 3)  Power consumption
 
-First, a description of timing information of D-Wave's annealing quantum
-computers at a coarsened but practically relevant granularity.
-Quantum annealing protocols can operate in time spans as short as nanoseconds to
+A comprehensive description of timing information for D-Wave's annealing quantum
+computers is in the :ref:`qpu_operation_timing` section. Roughly, quantum
+annealing protocols can operate in time spans as short as nanoseconds to
 as long as milliseconds. Once the protocol has run its course, reading out the
 classical states takes on the order of hundreds of microseconds. The bottleneck
 in this protocol is in programming the Hamiltonian to the annealing quantum
-computer, which is on the order of tens of milliseconds.
-
-Because D-Wave's annealing quantum computers are accessed via |cloud_tm|_, a
-quantum cloud platform, there may be additional network latencies in the order
-of hundreds of milliseconds. In principle, communication latency can be
-mitigated and programming time optimized such that the effective processing time
-is on the order of tens of milliseconds.
-A comprehensive breakdown of timing information is in the
-:ref:`qpu_operation_timing` section.
+computer, which is on the order of tens of milliseconds. Because D-Wave's
+annealing quantum computers are accessed via |cloud_tm|_, a quantum cloud
+platform, there may be additional network latencies in the order of hundreds of
+milliseconds. In principle, communication latency can be mitigated and
+programming time optimized such that the effective processing time is on the
+order of tens of milliseconds.
 
 To put this timing in context, consider both generative and discriminative
 modeling tasks.
 
-In a generative model setup where annealing quantum computers are utilized as
-Boltzmann machine samplers, the natural comparators are Monte Carlo samplers
+In a generative-model setup where annealing quantum computers are used as
+Boltzmann machine samplers, the natural comparison is to Monte Carlo samplers,
 such as the Metropolis algorithm [Met1953]_ [Rob2004]_. Metropolis algorithm
 sampling times can range from hundreds of milliseconds to seconds when sampling
 from the same Boltzmann machine as the annealing quantum computer for an
