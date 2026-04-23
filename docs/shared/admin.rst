@@ -13,6 +13,23 @@
     the project's total amount of solver-access time, which is unlimited for
     most seat-based projects.
 
+.. |filter_single| image:: ../_images/leap_admin_filter_single.png
+    :alt: Single filter
+    :scale: 66 %
+
+.. |filter_combo| image:: ../_images/leap_admin_filter_combo.png
+    :alt: Multiple filters
+    :scale: 75 %
+
+.. |sort_col| image:: ../_images/leap_admin_sort_col.png
+    :alt: Sort column
+
+.. |filter_col| image:: ../_images/leap_admin_filter_col.png
+    :alt: Filter column
+
+.. |gear_col| image:: ../_images/leap_admin_gear_col.png
+    :alt: Single-selection gear icon
+
 .. |meatball_menu| image:: ../_images/leap_kebab_menu.png
     :scale: 50 %
 
@@ -21,9 +38,6 @@
 .. |copy_icon| image:: ../_images/leap_admin_copy_icon.png
 
 .. |plus_icon| image:: ../_images/leap_admin_plus_invite_user.png
-    :scale: 45
-
-.. |profile_avatar_icon| image:: ../_images/leap_profile_avatar.png
     :scale: 45
 
 .. |refresh_icon| image:: ../_images/leap_admin_refresh.png
