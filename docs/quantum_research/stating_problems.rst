@@ -575,9 +575,11 @@ section.
 Generative and Discriminative Modeling
 --------------------------------------
 
-*Generative* modeling is concerned with modeling the joint distribution of
-random variables :math:`X, Y`, whereas *discriminative* modeling is concerned
-with the conditional distribution of :math:`X \mid Y`.
+`Generative <https://en.wikipedia.org/wiki/Discriminative_model#Contrast_with_generative_model>`_
+modeling is concerned with modeling the joint distribution of random variables
+:math:`X, Y`, whereas
+`discriminative <https://en.wikipedia.org/wiki/Discriminative_model>`_
+modeling is concerned with the conditional distribution of :math:`X \mid Y`.
 
 Generative modeling with annealing quantum computers is modeled by Boltzmann
 machines and quantum Boltzmann machines [Ami2018]_, [Ack1985]_---families of
@@ -587,8 +589,11 @@ Discriminative modeling with annealing quantum computers can be modeled using
 both Boltzmann machines and quantum neural networks [Kak1995]_, [Chr1995]_.
 
 .. [#]
-    Closely related to Boltzmann machines are the exponential family [Wai2008]_
-    Markov random fields [Dob1968]_ and Ising models [Isi1925]_.
+    Closely related to Boltzmann machines are the
+    `exponential family <https://en.wikipedia.org/wiki/Exponential_family>`_
+    [Wai2008]_,
+    `Markov random fields <https://en.wikipedia.org/wiki/Markov_random_field>`_
+    [Dob1968]_, and :term:`Ising` models [Isi1925]_.
 
 .. _boltzmann_machines_quantum_generalization:
 
@@ -609,8 +614,9 @@ defined by its probability mass function,
 
 where :math:`x \in \{\pm 1\}^n` for some dimension
 :math:`n`, :math:`\theta \in \mathbb{R}^{n+n(n-1)/2}` are the model parameters,
-and :math:`T: \{\pm 1\}^n \mapsto \{\pm 1\}^{n+n(n-1)/2}` is the sufficient
-statistic [Wai2008]_ of the model; i.e.,
+and :math:`T: \{\pm 1\}^n \mapsto \{\pm 1\}^{n+n(n-1)/2}` is the
+`sufficient statistic <https://en.wikipedia.org/wiki/Sufficient_statistic>`_
+[Wai2008]_ of the model; i.e.,
 
 .. math::
 
@@ -655,10 +661,13 @@ The inclusion of hidden units can potentially introduce challenges to be
 discussed in the :ref:`generative_discriminative_conclusion` section.
 
 Given a binary dataset, one can fit a Boltzmann machine to the model using, for
-example, maximum likelihood estimates [Cas2002]_.
-However, the maximum likelihood estimate for a Boltzmann machine is nontrivial
-to evaluate. The standard approach [Hin2002]_, [Ack1985]_ is to optimize the
-model using stochastic gradient descent [Boy2004]_.
+example,
+`maximum likelihood <https://en.wikipedia.org/wiki/Maximum_likelihood_estimation>`_
+estimates [Cas2002]_. However, the maximum likelihood estimate for a Boltzmann
+machine is nontrivial to evaluate. The standard approach [Hin2002]_, [Ack1985]_
+is to optimize the model using
+`stochastic gradient descent <https://en.wikipedia.org/wiki/Stochastic_gradient_descent>`_
+[Boy2004]_.
 
 The gradient of the log likelihood function itself is intractable:
 
@@ -684,10 +693,6 @@ need for an efficient training algorithm [Hin2002]_, [Hin2010]_.
 
 Quantum Boltzmann machines offer a generalization of Boltzmann machines and are
 defined by Hamiltonians.
-
-In practice at D-Wave in 2026, the annealing quantum computer is used as an
-approximate sampler of quantum Boltzmann machines, as described briefly here and
-in detail in [Ami2018]_.
 
 In D-Wave's implementation, these Hamiltonians take the form:\ [#]_
 
@@ -752,9 +757,10 @@ applications raises at least two challenges.
     graph-restricted Boltzmann machines.
 
 Identifying a mapping of input variables to model variables is at least as
-difficult as the quadratic assignment problem [Law1963]_---an NP-hard problem.
-The problem can be formulated as maximizing the likelihood function over both
-mappings and parameters.
+difficult as the
+`quadratic assignment problem <https://en.wikipedia.org/wiki/Quadratic_assignment_problem>`_
+[Law1963]_---an NP-hard problem. The problem can be formulated as maximizing the
+likelihood function over both mappings and parameters.
 
 Both challenges can be addressed via several approaches.
 One solution is to leverage variants of (variational) autoencoders [Sch2015]_,
@@ -792,9 +798,11 @@ Using the inverse conditional distribution function (CDF) sampling method
     \end{align}
 
 where :math:`u` is the *noise variable*, :math:`x` is the encoded data input,
-and the second case for :math:`f` comes from the inverse CDF of the exponential
-distribution. Because :math:`f` is differentiable with nonzero gradients, one
-can meaningfully backpropagate through the discretization layer.
+and the second case for :math:`f` comes from the
+`inverse CDF <https://en.wikipedia.org/wiki/Inverse_transform_sampling>`_
+of the exponential distribution. Because :math:`f` is differentiable with
+nonzero gradients, one can meaningfully backpropagate through the discretization
+layer.
 
 Another approach to modeling data with binary random variables is to use
 approximations proposed by [Jan2016]_, [Mad2016]_. The approach is based on a
@@ -840,9 +848,9 @@ gradients through discretization layers,
 
 A drawback of REINFORCE is that the estimator is effectively computed by
 expressions akin to finite differences, resulting in high variance. Bespoke
-variance-reduction techniques [Rob2004]_ are often required to stabilize the
-estimator. See [Jan2016]_ for a summary of relevant variance-reduction
-techniques based on control variates.
+`variance-reduction techniques <https://en.wikipedia.org/wiki/Variance_reduction>`_
+[Rob2004]_ are often required to stabilize the estimator. See [Jan2016]_ for a
+summary of relevant variance-reduction techniques based on control variates.
 
 Boltzmann machines can also be used as discriminative models or, equivalently,
 used for modeling conditional distributions :math:`Y \mid X`. See [Cal2019]_
@@ -864,10 +872,10 @@ machines poses a subtle variable-assignment problem, which is discussed in the
 Quantum Neural Networks
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-Quantum neural networks ([Kak1995]_, [Chr1995]_) are families of functions
-evaluated via parameterized quantum systems.\ [#]_
-That is, a quantum neural network, :math:`f_\theta`, parameterized by
-:math:`\theta` is defined as
+`Quantum neural networks <https://en.wikipedia.org/wiki/Quantum_neural_network>`_
+([Kak1995]_, [Chr1995]_) are families of functions evaluated via parameterized
+quantum systems.\ [#]_ That is, a quantum neural network, :math:`f_\theta`,
+parameterized by :math:`\theta` is defined as
 
 .. math::
 
@@ -935,20 +943,19 @@ as
 where :math:`S, S'` are spin-valued random vectors with distribution prescribed
 by :math:`H(x), H_\text{nudge}(x, y)` respectively, :math:`\theta = (h, J)` (as
 defined in the :ref:`boltzmann_machines_quantum_generalization` section),
-:math:`T` is the sufficient statistic of :math:`H` (as defined in the
-same section), and
+:math:`T` is the
+`sufficient statistic <https://en.wikipedia.org/wiki/Sufficient_statistic>`_ of
+:math:`H` (as defined in the same section), and
 :math:`C: \mathbb{R}^{|V| + |E|} \times \mathbb{R}^d \times \mathbb{R}^{d_2} \mapsto \mathbb{R}`
 is a differentiable cost function (with respect to the first argument).
 The gradient, expressed as a difference of expectations, can be readily
 estimated by sampling from a quantum computer.
 
-An inefficiency of the approach is the need to sample from two separate
-distributions for one gradient computation.
-
 The applicability of quantum annealing-based neural networks has been
 demonstrated in MNIST [Den2012]_ image classification tasks [Zha2025]_,
 [Lay2024]_. Notably, [Lay2024]_ exploited the hardware topology of quantum
-annealers [Boo2019]_, [Boo2021]_ to implement a convolutional neural network
+annealers [Boo2019]_, [Boo2021]_ to implement a
+`convolutional neural network <https://en.wikipedia.org/wiki/Convolutional_neural_network>`_
 [Fuk1979]_, [Sch2015]_.
 
 A closely related approach is quantum reservoir computing [Kor2024]_.
@@ -1000,10 +1007,12 @@ modeling tasks.
 
 In a generative-model setup where annealing quantum computers are used as
 Boltzmann machine samplers, the natural comparison is to Monte Carlo samplers,
-such as the Metropolis algorithm [Met1953]_ [Rob2004]_. Metropolis algorithm
-sampling times can range from hundreds of milliseconds to seconds when sampling
-from the same Boltzmann machine as the annealing quantum computer for an
-equivalent effective sample size [Vat2021]_.
+such as the
+`Metropolis <https://en.wikipedia.org/wiki/Metropolis%E2%80%93Hastings_algorithm>`_
+algorithm [Met1953]_ [Rob2004]_. Metropolis algorithm sampling times can range
+from hundreds of milliseconds to seconds when sampling from the same Boltzmann
+machine as the annealing quantum computer for an equivalent effective sample
+size [Vat2021]_.
 
 For complex models, more sophisticated and compute-intensive methods such as
 parallel tempering [Gey1991]_ and annealed importance sampling [Nea2001]_ are
@@ -1039,10 +1048,9 @@ section.
 
 The two families of graphs are visualized in the :ref:`qpu_topologies` section.
 A key observation relevant to the discussion of expressivity is the locality of
-interactions. In both family of graphs, edges are locally connected in a
-two-dimensional plane and long-range interactions do not exist. These locality
-constraints motivate techniques for maximizing expressivity, which are discussed
-next.
+interactions: edges are locally connected in a two-dimensional plane and
+long-range interactions do not exist. These locality constraints motivate
+techniques for maximizing expressivity, which are discussed next.
 
 Several approaches exist to increase model expressivity.
 
