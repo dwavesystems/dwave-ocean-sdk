@@ -572,6 +572,518 @@ section.
     "weak" predictors in such a way as to produce a more powerful, "strong"
     predictor.
 
+Generative and Discriminative Modeling
+--------------------------------------
+
+`Generative <https://en.wikipedia.org/wiki/Discriminative_model#Contrast_with_generative_model>`_
+modeling is concerned with modeling the joint distribution of random variables
+:math:`X, Y`, whereas
+`discriminative <https://en.wikipedia.org/wiki/Discriminative_model>`_
+modeling is concerned with the conditional distribution of :math:`X \mid Y`.
+
+Generative modeling with annealing quantum computers is modeled by Boltzmann
+machines and quantum Boltzmann machines [Ami2018]_, [Ack1985]_---families of
+learnable probability models over binary data.\ [#]_
+
+Discriminative modeling with annealing quantum computers can be modeled using
+both Boltzmann machines and quantum neural networks [Kak1995]_, [Chr1995]_.
+
+.. [#]
+    Closely related to Boltzmann machines are the
+    `exponential family <https://en.wikipedia.org/wiki/Exponential_family>`_
+    [Wai2008]_,
+    `Markov random fields <https://en.wikipedia.org/wiki/Markov_random_field>`_
+    [Dob1968]_, and :term:`Ising` models [Isi1925]_.
+
+.. _boltzmann_machines_quantum_generalization:
+
+Boltzmann Machines: Quantum Generalization
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Boltzmann machines model high-dimensional binary data. A Boltzmann machine is
+defined by its probability mass function,
+
+.. math::
+
+    \begin{align}
+        P_\theta(x) &= \frac{1}{Z(\theta)}\exp\{\langle T(x) ,
+            \theta \rangle \} \\
+        Z(\theta) & = \sum_{s \in \{\pm 1\} ^n}\exp\{\langle T(s) ,
+            \theta \rangle \},
+    \end{align}
+
+where :math:`x \in \{\pm 1\}^n` for some dimension
+:math:`n`, :math:`\theta \in \mathbb{R}^{n+n(n-1)/2}` are the model parameters,
+and :math:`T: \{\pm 1\}^n \mapsto \{\pm 1\}^{n+n(n-1)/2}` is the
+`sufficient statistic <https://en.wikipedia.org/wiki/Sufficient_statistic>`_
+[Wai2008]_ of the model; i.e.,
+
+.. math::
+
+    \begin{equation}
+        T(x) = \begin{bmatrix}
+            x_1 & x_2 & \dots & x_n & x_1x_2 & x_1 x_3 & \dots & x_2 x_3 &
+            \dots & x_{n-1} x_n
+        \end{bmatrix}^\intercal.
+    \end{equation}
+
+More generally, given a graph :math:`G=(V, E)`, you can define a
+graph-restricted Boltzmann machine specified by :math:`G` to have sufficient
+statistics defined by,
+
+.. math::
+
+    \begin{align}
+        T(x) & =
+        \begin{bmatrix}
+            x_{v_1} & \dots & x_{n} & z_{e_1} & \dots & z_{e_m},
+        \end{bmatrix}^\intercal,
+    \end{align}
+
+where :math:`v_i \in V` for :math:`i \in \{1, \dots, \lvert V\rvert\}`,
+and :math:`z_{e_i} = x_{e_{i_1}}x_{e_{i_2}}`,
+:math:`e_i = (e_{i_1}, e_{i_2}) \in E` for
+:math:`i \in \{1, \dots, \lvert E \rvert \}`, and
+:math:`\theta \in \mathbb{R}^{\lvert V \rvert + \lvert E \rvert}`.
+
+When only a subset of variables are observed, denoted :math:`v`, the remaining
+unobserved variables are referred to as *hidden units* :math:`h`.
+The marginal distribution of observed variables can be far more expressive due
+to the marginalization of hidden units; i.e.,
+
+.. math::
+
+    \begin{align}
+        P_\theta^\text{m}(v) & = \sum_{h} P_\theta(x=(v, h)).
+    \end{align}
+
+The inclusion of hidden units can potentially introduce challenges to be
+discussed in the :ref:`generative_discriminative_conclusion` section.
+
+Given a binary dataset, one can fit a Boltzmann machine to the model using, for
+example,
+`maximum likelihood <https://en.wikipedia.org/wiki/Maximum_likelihood_estimation>`_
+estimates [Cas2002]_. However, the maximum likelihood estimate for a Boltzmann
+machine is nontrivial to evaluate. The standard approach [Hin2002]_, [Ack1985]_
+is to optimize the model using
+`stochastic gradient descent <https://en.wikipedia.org/wiki/Stochastic_gradient_descent>`_
+[Boy2004]_.
+
+The gradient of the log likelihood function itself is intractable:
+
+.. math::
+
+    \begin{align}
+        \nabla_\theta \log P_\theta(v) & = T(v) - \mathbb{E}\left[ T(X)\right].
+    \end{align}
+
+Its intractability stems from the expectation term, with respect to the model,
+which requires an evaluation of the partition function :math:`Z(\theta)`.
+This motivates the need for Monte Carlo algorithms [Rob2004]_; i.e., sample
+approximations of the expectation.
+
+Sampling from Boltzmann machines is notoriously difficult and is where the
+annealing quantum computer excels.
+
+The restricted Boltzmann machine [Hin2002]_, [Smo1986]_ is a special case of the
+graph-restricted Boltzmann machine in which the graph is a complete bipartite
+graph. Furthermore, partial observations are restricted to be on one and only
+one partite set of the graph. These modeling constraints were motivated by the
+need for an efficient training algorithm [Hin2002]_, [Hin2010]_.
+
+Quantum Boltzmann machines offer a generalization of Boltzmann machines and are
+defined by Hamiltonians.
+
+In D-Wave's implementation, these Hamiltonians take the form:\ [#]_
+
+.. math::
+
+    \begin{align}
+        H   & = \sum_{i \in V} h_i Z_i + \sum_{(i, j)\in E} J_{i,j} Z_i Z_j +
+                \sum_{i\in V} \gamma_i X_i \\
+        Z_i & = \left( \bigotimes_{j=1}^{j=i-1} I_2 \right)
+                Z \left( \bigotimes_{j=i+1}^{j=\lvert V \rvert} I_2 \right) \\
+        X_i & = \left( \bigotimes_{j=1}^{j=i-1} I_2 \right)
+                X \left( \bigotimes_{j=i+1}^{j=\lvert V \rvert} I_2 \right) \\
+        I_2 & = \begin{bmatrix}
+                    1 & 0 \\ 0 & 1
+                \end{bmatrix} \\
+        X   & = \begin{bmatrix}
+                    0 & 1 \\ -1 & 0
+                \end{bmatrix} \\
+        Z   & = \begin{bmatrix}
+                    1 & 0 \\ 0 & -1
+                \end{bmatrix},
+    \end{align}
+
+where the product :math:`\bigotimes` denotes the Kronecker product [Str2012]_.
+The probability measure is now defined by the diagonal elements of the density
+matrix,
+
+.. math::
+
+    \begin{align}
+        \rho & = \frac{1}{\mathcal{Z}}\exp\{-H\} \\
+        \mathcal{Z} & = \Tr\left[\exp\{-H\}\right].
+    \end{align}
+
+To gain an intuitive understanding, consider a diagonal Hamiltonian---diagonal Hamiltonian
+(:math:`\gamma_i = 0` for all :math:`i`) corresponds to the classical definition of a
+Boltzmann machine. By construction of the Hamiltonian, the summation over
+:math:`Z_i` and :math:`Z_iZ_j` matrices result in a matrix whose diagonal
+entries correspond to each of the :math:`2^{\lvert V\rvert}` binary strings'
+probability (when normalized).
+When qubits are measured in the :math:`z`-basis, or with respect to each
+:math:`Z_i`, binary strings are observed with their corresponding probabilities.
+The quantum Boltzmann machine can be trained using the same expressions or
+quantities used in classical Boltzmann machines, albeit based on a lower bound
+of the log likelihood [Ami2018]_.
+
+.. [#]
+
+    The time-dependence of the Hamiltonian is omitted here for simplicity; for a
+    more complete treatment, see the :ref:`qpu_quantum_annealing_intro` section.
+
+Quantum Boltzmann Machines: Applications
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Applying arbitrary graph-restricted Boltzmann machines to real-world
+applications raises at least two challenges.
+
+1)  Data are seldom natively binary. For example, image data are continuous and
+    text data are categorical.
+2)  Correlations are not guaranteed to be local and quadratic even when data are
+    binary, thereby limiting the expressivity and goodness-of-fit of
+    graph-restricted Boltzmann machines.
+
+Identifying a mapping of input variables to model variables is at least as
+difficult as the
+`quadratic assignment problem <https://en.wikipedia.org/wiki/Quadratic_assignment_problem>`_
+[Law1963]_---an NP-hard problem. The problem can be formulated as maximizing the
+likelihood function over both mappings and parameters.
+
+Both challenges can be addressed via several approaches.
+One solution is to leverage variants of (variational) autoencoders [Sch2015]_,
+[Bal1987]_, [Kin2013]_, for example, [Rol2016]_, [Li2016]_, [Zha2017]_,
+[Van2017]_, [Jan2016]_, [Kho2018]_.
+The idea underpinning these approaches is to enforce a discrete-latent-space
+constraint in the model.
+
+Defining variational autoencoders [Kin2013]_ with discrete latent variables is
+not a problem because the reparameterization trick [Kin2013]_ is not limited to
+real-valued random variables [Rol2016]_.
+However, a problem arises in training such a discrete model via gradient
+descent: gradients are zero for discrete random variables. [Rol2016]_ addresses
+this training problem by augmenting binary latent variables with real-valued
+random variables. The auxiliary variables are equipped with distributions
+conditioned on the binary variables, resulting in nonzero gradients in
+backpropagation [Sch2015]_.
+
+For example, consider the random variable :math:`Z \mid B` where :math:`B` is a
+Bernoulli random variable and :math:`Z \mid B = 0` is :math:`0`, and
+:math:`Z \mid B = 1 \sim \text{Exponential}(1)`.
+
+Using the inverse conditional distribution function (CDF) sampling method
+[Rob2004]_, you have,
+
+.. math::
+
+    \begin{align}
+        u & \sim \text{Uniform}(0, 1) \\
+        x & \in [0, 1] \\
+        f(x, u) & = \begin{cases}
+                        0  & u > x \\
+                        \log \left[ \frac{u+x-1}{x}(e-1) +1	\right] & u \leq x
+                    \end{cases},
+    \end{align}
+
+where :math:`u` is the *noise variable*, :math:`x` is the encoded data input,
+and the second case for :math:`f` comes from the
+`inverse CDF <https://en.wikipedia.org/wiki/Inverse_transform_sampling>`_
+of the exponential distribution. Because :math:`f` is differentiable with
+nonzero gradients, one can meaningfully backpropagate through the discretization
+layer.
+
+Another approach to modeling data with binary random variables is to use
+approximations proposed by [Jan2016]_, [Mad2016]_. The approach is based on a
+limiting argument with annealed Gumbel distributions combined with a
+straight-through estimator [Ben2013]_,
+
+.. math::
+
+    \begin{align}
+        z_i & = \frac{\exp (\frac{\log (\pi_i ) + g_i}{\tau})}
+        {\sum_j \exp (\frac{\log (\pi_j ) + g_j}{\tau})} \\
+        z & = \begin{bmatrix}
+                z_1 & z_2 & \dots & z_K
+              \end{bmatrix} \\
+        i & \in \{1, \dots, K\},
+    \end{align}
+
+where :math:`K` represents the number of discrete values (:math:`K=2` for
+binary) and :math:`\tau` is an annealing parameter. When :math:`\tau \to 0`,
+:math:`z` becomes a one-hot vector; i.e., :math:`z_i = 1` for some index
+:math:`i` and :math:`0` for all other indices not equal to :math:`i`.
+
+In a recent molecular-design application, [Kun2026]_ leveraged ideas from the
+neural hash function of [Eri2015]_ to discretize data. The binarization strategy
+applied in [Eri2015]_ penalizes the encoding network, during training, when
+latent variables deviate from :math:`\pm 1`. That is, the following loss
+function is added as a regularizer to the neural network training objective:
+
+.. math::
+
+    \begin{equation}
+        L_\text{quant}(z) = \lvert \lvert z - \text{sign}(z)\rvert \rvert ^2.
+    \end{equation}
+
+Finally, *REINFORCE* [Wil1992]_, [Gly1990]_ can also be used to backpropagate
+gradients through discretization layers,
+
+.. math::
+
+    \begin{equation}
+        \nabla_x \mathbb{E}_Z[f(Z)] = \mathbb{E}_Z[f(Z)\nabla_x \log p_x(Z)].
+    \end{equation}
+
+A drawback of REINFORCE is that the estimator is effectively computed by
+expressions akin to finite differences, resulting in high variance. Bespoke
+`variance-reduction techniques <https://en.wikipedia.org/wiki/Variance_reduction>`_
+[Rob2004]_ are often required to stabilize the estimator. See [Jan2016]_ for a
+summary of relevant variance-reduction techniques based on control variates.
+
+Boltzmann machines can also be used as discriminative models or, equivalently,
+used for modeling conditional distributions :math:`Y \mid X`. See [Cal2019]_
+for an applied example using annealing quantum computers. Training of Boltzmann
+machines for discriminative tasks is no different from training generative
+models. Variables :math:`X` and :math:`Y` are both assigned to variables of a
+Boltzmann machine during training.\ [#]_
+
+At inference, however, only variables associated with :math:`X` are fixed at
+their observed value and predictions are computed by sampling :math:`Y\mid X`.
+In practice, discriminative modeling with sparse graph-restricted Boltzmann
+machines poses a subtle variable-assignment problem, which is discussed in the
+:ref:`generative_discriminative_conclusion` section.
+
+.. [#]
+    This assignment or mapping of variables can be performed via an encoder or
+    by manual assignment.
+
+Quantum Neural Networks
+^^^^^^^^^^^^^^^^^^^^^^^
+
+`Quantum neural networks <https://en.wikipedia.org/wiki/Quantum_neural_network>`_
+([Kak1995]_, [Chr1995]_) are families of functions evaluated via parameterized
+quantum systems.\ [#]_ That is, a quantum neural network, :math:`f_\theta`,
+parameterized by :math:`\theta` is defined as
+
+.. math::
+
+    \begin{equation}
+        f_\theta(x) = \langle \psi_0 \lvert U^\dagger_\theta(x) \hat F
+            U_\theta(x) \rvert \psi_0 \rangle,
+    \end{equation}
+
+where :math:`x \in \mathbb{R}^d` represents input data, :math:`U_\theta`
+represents a unitary transformation, :math:`U_\theta^\dagger` its conjugate
+transpose, :math:`\lvert \psi_0 \rangle` is an initial state of the system,
+:math:`\langle \psi_0 \rvert` its conjugate transpose, and :math:`\hat F` is a
+quantum observable.
+
+Essentially, a quantum neural network is a parameterized function whose outputs
+are expected values of the quantum system. A difficulty in applying quantum
+neural networks to real-world applications is in training.
+Evaluating or even approximating gradients of a loss function with respect to
+the network parameters is nontrivial due to the intractability of densities and
+expectations. Much of the literature on training quantum neural networks has
+been dedicated to gate-model systems, using, for example, the parameter-shift
+rule and its generalizations [Mit2018]_, [Wie2022]_.
+
+A more relevant approach to training quantum annealing-based neural networks is
+via equilibrium propagation [Sce2017]_, a gradient-estimation technique
+originally introduced in the context of training energy-based models [Teh2003]_.
+Generalizations to quantum equilibrium propagation have been proposed in
+[Mas2025]_, [Sce2024]_. The parameter update rule can be described as follows.
+
+Consider an example Hamiltonian of the form,
+
+.. math::
+
+    \begin{equation}
+        H(x) = \sum_{i, j} J_{i,j}(x) Z_iZ_j + \sum_i h_i(x) Z_i,
+    \end{equation}
+
+where :math:`Z_i` are as defined in the
+:ref:`boltzmann_machines_quantum_generalization` section, :math:`J_{i,j}, h_i`
+are scalar functions of the input data :math:`x`; that is,
+:math:`h_i: \mathbb{R}^d \mapsto \mathbb{R}` and
+:math:`J_{i, j}:\mathbb{R}^d \mapsto \mathbb{R}`. Note :math:`h_i` and
+:math:`J_{i, j}` include constant functions independent of :math:`x`.
+Equilibrium propagation approximates the gradients by introducing another
+Hamiltonian, a nudge Hamiltonian, defined as
+
+.. math::
+
+    \begin{equation}
+        H_\text{nudge}(x, y) = H(x) - \sum_i \tilde h_i(y) Z_i,
+    \end{equation}
+
+where :math:`y \in \mathbb{R}^{d_2}` are the desired network outputs, and
+:math:`\tilde h_i` is similarly defined to :math:`h`,
+:math:`\tilde h_i: \mathbb{R}^d \mapsto \mathbb{R}`. The gradient is expressed
+as
+
+.. math::
+
+    \begin{equation}
+        \nabla_\theta C(\theta, (x, y)) = \mathbb{E}_S[T(S)] -
+        \mathbb{E}_{S'}[T(S')],
+    \end{equation}
+
+where :math:`S, S'` are spin-valued random vectors with distribution prescribed
+by :math:`H(x), H_\text{nudge}(x, y)` respectively, :math:`\theta = (h, J)` (as
+defined in the :ref:`boltzmann_machines_quantum_generalization` section),
+:math:`T` is the
+`sufficient statistic <https://en.wikipedia.org/wiki/Sufficient_statistic>`_ of
+:math:`H` (as defined in the same section), and
+:math:`C: \mathbb{R}^{|V| + |E|} \times \mathbb{R}^d \times \mathbb{R}^{d_2} \mapsto \mathbb{R}`
+is a differentiable cost function (with respect to the first argument).
+The gradient, expressed as a difference of expectations, can be readily
+estimated by sampling from a quantum computer.
+
+The applicability of quantum annealing-based neural networks has been
+demonstrated in MNIST [Den2012]_ image classification tasks [Zha2025]_,
+[Lay2024]_. Notably, [Lay2024]_ exploited the hardware topology of quantum
+annealers [Boo2019]_, [Boo2021]_ to implement a
+`convolutional neural network <https://en.wikipedia.org/wiki/Convolutional_neural_network>`_
+[Fuk1979]_, [Sch2015]_.
+
+A closely related approach is quantum reservoir computing [Kor2024]_.
+Informally but practically, quantum reservoir computing equates to evaluating an
+untrained quantum neural network, as an activation function, followed by a
+trained linear function. The difficulty in applying quantum reservoirs is that it
+requires domain-expertise to define a base Hamiltonian and a mapping of inputs
+to the base Hamiltonian.
+
+.. [#]
+    "Quantum neural networks" are often used synonymously with "variational quantum circuits" or
+    "parameterized quantum circuits".
+
+.. _generative_discriminative_conclusion:
+
+Opportunities and Limitations
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Boltzmann machines and quantum neural networks provide powerful frameworks for
+generative and discriminative modeling using annealing quantum computers.
+Naturally, these models can be readily inserted
+into---or substitute for---subcomponents of existing models, such as
+linear layers, activation functions, and attention modules. Thus there is
+interest in identifying areas for which practical benefits can be realized with
+quantum annealing-based machine learning methods.
+
+This section considers three performance indicators in which an annealing quantum
+computer has potential to improve upon classical baselines.
+
+1)  Runtime
+2)  Model complexity
+3)  Power consumption
+
+A comprehensive description of timing information for D-Wave's annealing quantum
+computers is in the :ref:`qpu_operation_timing` section. Roughly, quantum
+annealing protocols can operate in time spans as short as nanoseconds to
+as long as milliseconds. Once the protocol has run its course, reading out the
+classical states takes on the order of hundreds of microseconds. The bottleneck
+in this protocol is in programming the Hamiltonian to the annealing quantum
+computer, which is on the order of tens of milliseconds. Because D-Wave's
+annealing quantum computers are accessed via |cloud_tm|_, a quantum cloud
+platform, there may be additional network latencies in the order of hundreds of
+milliseconds. In principle, communication latency can be mitigated and
+programming time optimized such that the effective processing time is on the
+order of tens of milliseconds.
+
+To put this timing in context, consider both generative and discriminative
+modeling tasks.
+
+In a generative-model setup where annealing quantum computers are used as
+Boltzmann machine samplers, the natural comparison is to Monte Carlo samplers,
+such as the
+`Metropolis <https://en.wikipedia.org/wiki/Metropolis%E2%80%93Hastings_algorithm>`_
+algorithm [Met1953]_ [Rob2004]_. Metropolis algorithm sampling times can range
+from hundreds of milliseconds to seconds when sampling from the same Boltzmann
+machine as the annealing quantum computer for an equivalent effective sample
+size [Vat2021]_.
+
+For complex models, more sophisticated and compute-intensive methods such as
+parallel tempering [Gey1991]_ and annealed importance sampling [Nea2001]_ are
+required.
+
+Other alternatives include autoregressive models [Van2016]_, [Vas2017]_,
+[Gu2024]_, which are model-dependent but generally slow due to repeated neural
+network evaluations.
+
+In a discriminative model where an annealing quantum computer is utilized as a
+quantum Boltzmann machine or a quantum neural network, it is sensible to
+consider classical neural network module runtimes for reference. For example, a
+self-attention [Vas2017]_ module requires approximately half a millisecond
+to evaluate a sequence of length :math:`1024` by :math:`1024` dimensions using a
+modern graphical processing unit (GPU; NVIDIA L4).\ [#]_
+
+Flash attention [Dao2022]_---a hardware-optimized attention module---reported
+runtimes of :math:`1`\--\ :math:`10`\ s of milliseconds (including
+backpropagation) for inputs of length ranging from :math:`1000`\ s to
+:math:`8000`\ s. If, however, one insists on sampling from the quantum neural
+network via, say, classical simulations and approximations, then annealing
+quantum computers are likely to perform favorably.
+
+While restricted Boltzmann machines are universal approximators [Ler2008]_,
+[Mon2020]_, D-Wave's annealing quantum computers are implemented with sparse
+connectivity and are thus limited in their expressivity.
+The |dwave_5kq_tm| system and |adv2_tm| system's topologies are defined by the
+:term:`Pegasus` and :term:`Zephyr` family of graphs respectively [Boo2019]_,
+[Boo2021]_. Each vertex represents a qubit, and each edge represents a coupler.
+In other words, these graphs are used to define graph-restricted Boltzmann
+machines described in the :ref:`boltzmann_machines_quantum_generalization`
+section.
+
+The two families of graphs are visualized in the :ref:`qpu_topologies` section.
+A key observation relevant to the discussion of expressivity is the locality of
+interactions: edges are locally connected in a two-dimensional plane and
+long-range interactions do not exist. These locality constraints motivate
+techniques for maximizing expressivity, which are discussed next.
+
+Several approaches exist to increase model expressivity.
+
+1)  Minor embeddings [Cho2008]_: represent logical variables by chaining
+    multiple physical qubits through strong pairwise interaction terms.
+2)  Hidden units: marginalize a distribution over its hidden units.
+3)  Optimization of variable-to-qubit mappings.
+
+Minor embedding can increase connectivity and introduce long-range interactions
+but introduces its own challenges such as early freezeout and chain
+breakages.\ [#]_
+
+Hidden units can be interpreted similarly to embeddings where the embeddings are
+learned implicitly. However, this also introduces complexity to training
+methods. For example, when using tractable closed-form expressions for
+marginalization, the effective inverse temperature must be estimated [Ray2016]_.
+When using sample approximations for marginalization, multiple invocations of
+the annealing quantum computer will be required.
+
+The competitive runtime and model expressivity is further complemented by a
+constant power consumption [Dwave8]_ independent of model complexity.
+This constant power consumption is because almost all power drawn from D-Wave's
+systems goes toward cryogenic refrigeration; the bulk of the computation is
+analog. This suggests model complexity can be further enhanced through a liberal
+composition of quantum Boltzmann machines and quantum neural networks.
+
+.. [#]
+    The implementation is a compiled PyTorch module [Pas2019]_.
+
+.. [#]
+    See the :ref:`qpu_qa_freezeout` and
+    :ref:`chain breaks <qpu_embedding_intro_chains>` sections.
+
 Code Examples
 -------------
 
