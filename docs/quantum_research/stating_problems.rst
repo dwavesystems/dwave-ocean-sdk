@@ -1048,9 +1048,9 @@ section.
 
 The two families of graphs are visualized in the :ref:`qpu_topologies` section.
 A key observation relevant to the discussion of expressivity is the locality of
-interactions: edges are locally connected in a two-dimensional plane and
-long-range interactions do not exist. These locality constraints motivate
-techniques for maximizing expressivity, which are discussed next.
+interactions: are connected in a quasi-2D lattice and long-range interactiond do
+not exist. These locality constraints motivate techniques for maximizing
+expressivity, which are discussed next.
 
 Several approaches exist to increase model expressivity.
 
