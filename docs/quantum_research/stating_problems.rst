@@ -581,7 +581,7 @@ modeling is concerned with modeling the joint distribution of random variables
 `discriminative <https://en.wikipedia.org/wiki/Discriminative_model>`_
 modeling is concerned with the conditional distribution of :math:`X \mid Y`.
 
-Generative modeling with annealing quantum computers is modeled by Boltzmann
+Generative modeling with annealing quantum computers can be modeled by Boltzmann
 machines and quantum Boltzmann machines [Ami2018]_, [Ack1985]_---families of
 learnable probability models over binary data.\ [#]_
 
