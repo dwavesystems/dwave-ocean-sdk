@@ -777,14 +777,15 @@ descent: gradients are zero for discrete random variables. [Rol2016]_ addresses
 this training problem by augmenting binary latent variables with real-valued
 random variables. The auxiliary variables are equipped with distributions
 conditioned on the binary variables, resulting in nonzero gradients in
-backpropagation [Sch2015]_.
+`backpropagation <https://en.wikipedia.org/wiki/Backpropagation>`_ [Sch2015]_.
 
 For example, consider the random variable :math:`Z \mid B` where :math:`B` is a
 Bernoulli random variable and :math:`Z \mid B = 0` is :math:`0`, and
 :math:`Z \mid B = 1 \sim \text{Exponential}(1)`.
 
-Using the inverse conditional distribution function (CDF) sampling method
-[Rob2004]_, you have,
+Using the
+`inverse conditional distribution function <https://en.wikipedia.org/wiki/Inverse_transform_sampling>`_
+(CDF) sampling method [Rob2004]_, you have,
 
 .. math::
 
@@ -798,11 +799,9 @@ Using the inverse conditional distribution function (CDF) sampling method
     \end{align}
 
 where :math:`u` is the *noise variable*, :math:`x` is the encoded data input,
-and the second case for :math:`f` comes from the
-`inverse CDF <https://en.wikipedia.org/wiki/Inverse_transform_sampling>`_
-of the exponential distribution. Because :math:`f` is differentiable with
-nonzero gradients, one can meaningfully backpropagate through the discretization
-layer.
+and the second case for :math:`f` comes from the inverse CDF of the exponential
+distribution. Because :math:`f` is differentiable with nonzero gradients, one
+can meaningfully backpropagate through the discretization layer.
 
 Another approach to modeling data with binary random variables is to use
 approximations proposed by [Jan2016]_, [Mad2016]_. The approach is based on a
