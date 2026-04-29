@@ -4,10 +4,19 @@
 Bibliography
 ============
 
+.. [Ack1985]
+    Ackley, David H and Hinton, Geoffrey E and Sejnowski, Terrence J.
+    "A learning algorithm for boltzmann machines."
+    Cognitive Science
+    Volume 9, Issue 1, Pages 147-169.
+    1985
+    https://doi.org/10.1016/S0364-0213(85)80012-4
+
 .. [Ada2015]
     Steven H. Adachi, Maxwell P. Henderson.
     "Application of Quantum Annealing to Training of Deep Neural Networks."
-    arXiv:1510.06356. 21 Oct 2015. https://arxiv.org/abs/1510.06356
+   21 Oct 2015
+   https://arxiv.org/abs/1510.06356
 
 .. [Ahu2000]
     Ahuja, R. K., Orlin, J. B., and Sharma, D.
@@ -15,10 +24,19 @@ Bibliography
     International Transactions in Operational Research 7 (4-5): 301-317. 2000.
     https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1475-3995.2000.tb00201.x
 
+.. [Ami2018]
+    Amin, Mohammad H and Andriyash, Evgeny and Rolfe, Jason and Kulchytskyy,
+    Bohdan and Melko, Roger.
+    "Quantum Boltzmann Machine."
+    Phys. Rev. X 8, 021050.
+    23 May, 2018
+    https://doi.org/10.1103/PhysRevX.8.021050
+
 .. [Ami2015]
     Mohammad H. Amin
     "Searching for quantum speedup in quasistatic quantum annealers."
-    Phys. Rev. A 92, 052323 – Published 19 November 2015
+    Phys. Rev. A 92, 052323
+    19 November 2015
     https://doi.org/10.1103/PhysRevA.92.052323
     arXiv:1503.04216v2
 
@@ -38,13 +56,21 @@ Bibliography
 .. [Bac2002]
     Fahiem Bacchus, Xinguang Chen, Peter van Beek, and Toby Walsh.
     "Binary vs. non-binary constraints."
-    Artificial Intelligence 140 (2002) 1–37. 17 January 2001.
+    Artificial Intelligence 140 (2002) 1-37. 17 January 2001.
     https://www.sciencedirect.com/science/article/pii/S0004370202002102
+
+.. [Bal1987]
+    Ballard, Dana H.
+    "Modular learning in neural networks."
+    AAAI'87: Proceedings of the sixth National conference on Artificial
+    intelligence, Volume 1, Pages 279 - 284
+    13 July 1987
 
 .. [Bar1982]
     F. Barahona.
     "On the Computational Complexity of Ising Spin Glass Models."
-    J. Phys. A, 15, 3241-3253, 1982.
+    J. Phys. A, 15, 3241-3253
+    1982
 
 .. [Bas2020]
     Gideon Bass, Max Henderson, Joshua Heath, Joseph Dulny III.
@@ -52,6 +78,13 @@ Bibliography
     Quantum Mach. Intell. 3, 10 (2021).
     https://doi.org/10.1007/s42484-021-00039-9
     https://arxiv.org/abs/2001.06079
+
+.. [Ben2013]
+    Bengio, Yoshua and Léonard, Nicholas and Courville, Aaron.
+    "Estimating or propagating gradients through stochastic neurons for
+    conditional computation."
+    2013
+    arXiv:1308.3432
 
 .. [Ben2017]
     Marcello Benedetti, John Realpe-G´omez, Rupak Biswas,
@@ -123,7 +156,7 @@ Bibliography
 .. [Boo2016]
     Kelly Boothby, Andrew D. King, and Aidan Roy.
     "Fast clique minor generation in Chimera qubit connectivity graphs."
-    *Quantum Inf Process* Volume 15, Issue 1,  pp 495–508. January 2016.
+    *Quantum Inf Process* Volume 15, Issue 1,  pp 495-508. January 2016.
     https://link.springer.com/article/10.1007/s11128-015-1150-6
     https://arxiv.org/abs/1507.04774
 
@@ -154,6 +187,12 @@ Bibliography
     binary optimization (QUBO)."
     *Discrete Optimization* 5, no. 2 (May 2008): 501-529.
     https://doi.org/10.1016/j.disopt.2007.02.001.
+
+.. [Boy2004]
+    Boyd, Stephen and Vandenberghe, Lieven.
+    "Convex Optimization."
+    Cambridge: Cambridge University Press.
+    2004
 
 .. [Boy2007]
     S. Boyd and A. Mutapcic.
@@ -191,6 +230,19 @@ Bibliography
     "A practical heuristic for finding graph minors."
     *arXiv*. 10 Jun 2014. https://arxiv.org/abs/1406.2741
 
+.. [Cal2019]
+    Caldeira, João and Job, Joshua and Adachi, Steven H and Nord, Brian and Perdue, Gabriel N
+    "Restricted Boltzmann Machines for galaxy morphology classification with a quantum annealer."
+    2019
+    arXiv:1911.06259
+
+.. [Cas2002]
+    Casella, George and Berger, Roger L.
+    "Statistical Inference."
+    Chapman and Hall/CRC.
+    2024
+    https://doi.org/10.1201/9781003456285
+
 .. [Cha2019]
     Nicholas Chancellor.
     "Domain wall encoding of discrete variables for quantum annealing and QAOA."
@@ -208,6 +260,19 @@ Bibliography
     "Tutorial: Calibration refinement in quantum annealing".
     20 April 2023.
     https://arxiv.org/abs/2304.10352
+
+.. [Cho2008]
+    Choi, Vicky
+    "Minor-embedding in adiabatic quantum computation: I. The parameter setting problem."
+    Quantum Inf Process 7, 193-209
+    2008
+    https://doi.org/10.1007/s11128-008-0082-9
+
+.. [Chr1995]
+    Chrisley, Ronald.
+    "New directions in cognitive science."
+    Proceedings of the international symposium, Saariselka
+    1995
 
 .. [Coh2020]
     Jeffrey Cohen, Alex Khan, Clark Alexander
@@ -238,6 +303,13 @@ Bibliography
     Programming the D-Wave: Map Coloring Problem. November 2013.
     https://www.dwavesys.com/media/htfgw5bk/map-coloring-wp2.pdf
 
+.. [Dao2022]
+    Dao, Tri and Fu, Dan and Ermon, Stefano and Rudra, Atri and Ré, Christopher.
+    "FlashAttention: Fast and Memory-Efficient Exact Attention with
+    IO-Awareness."
+    Advances in neural information processing systems Vol 35 pages 16344--16359
+    2022
+
 .. [Das2019]
     Samudra Dasgupta, Arnab Banerjee.
     "Quantum Annealing Algorithm for Expected Shortfall based Dynamic Asset
@@ -260,6 +332,13 @@ Bibliography
     Morgan Kaufmann.
     2003.
 
+.. [Den2012]
+    Deng, Li.
+    "The MNIST Database of Handwritten Digit Images for Machine Learning
+    Research [Best of the Web]."
+    IEEE Signal Processing Magazine, vol. 29, no. 6, pp. 141-142.
+    Nov. 2012
+
 .. [Dic2013]
     N. G. Dickson et al.
     “Thermally assisted quantum annealing of a 16-qubit problem.”
@@ -270,6 +349,13 @@ Bibliography
     Yongcheng Ding, Xi Chen, Lucas Lamata, Enrique Solano, Mikel Sanz
     "Implementation of a Hybrid Classical-Quantum Annealing Algorithm
     for Logistic Network Design." arXiv:1906.10074 [quant-ph]
+
+.. [Dob1968]
+    Dobruschin, PL.
+    "The Description of a Random Field by Means of Conditional Probabilities and
+    Conditions of Its Regularity."
+    Theory of Probability & Its Applications. Vol. 13, Iss. 2.
+    1968
 
 .. [Dou2015]
     Adam Douglass, Andrew D. King, and Jack Raymond.
@@ -327,6 +413,11 @@ Bibliography
     D-Wave Technical Report, no. 14-1048A-A, 2020.
     https://www.dwavesys.com/media/m2xbmlhs/14-1048a-a_d-wave_hybrid_solver_service_plus_advantage_technology_update.pdf
 
+.. [Dwave8]
+    "Computational Power Consumption and Speedup."
+    D-Wave Technical Report, no. 14-1005A-D, 2017.
+    https://www.dwavequantum.com/media/ivelyjij/14-1005a_d_wp_computational_power_consumption_and_speedup.pdf
+
 .. [Efr1982]
     B. Efron, (1982).
     "The Jackknife, the Bootstrap, and Other Resampling Plans."
@@ -339,6 +430,14 @@ Bibliography
     "Financial Portfolio Management using D-Wave’s Quantum Optimizer:
     The Case of Abu Dhabi Securities Exchange."
 
+.. [Eri2015]
+    Erin Liong, Venice and Lu, Jiwen and Wang, Gang and Moulin, Pierre and Zhou, Jie.
+    "Deep hashing for compact binary codes learning."
+    IEEE Conference on Computer Vision and Pattern Recognition (CVPR), Boston, MA
+    pp. 2475-2483
+    2015
+    doi: 10.1109/CVPR.2015.7298862.
+
 .. [Flo2017]
     Florian Neukart, Gabriele Compostella, Christian Seidel, David von Dollen,
     Sheir Yarkoni, and Bob Parney.
@@ -349,6 +448,20 @@ Bibliography
     Francesca Rossi, Charles Petrie, and Vasant Dhar.
     "On the Equivalence of Constraint Satisfaction Problems."
     Technical Report ACTAI-222-89, MCC, Austin, TX. 1989.
+
+.. [Fuk1979]
+    Fukushima, Kunihiko
+    Neural network model for a mechanism of pattern recognition un affected by
+    shift in position-neocognitron.
+    IEICE Technical Report, A Vol 62 Num 10 pages 658--665
+    1979
+
+.. [Gey1991]
+    Geyer, Charles J
+    Markov Chain Monte Carlo Maximum Likelihood.
+    Interface Foundation of North America
+    1991
+    https://conservancy.umn.edu/handle/11299/58440
 
 .. [Glo1990]
     Glover, F.
@@ -362,6 +475,13 @@ Bibliography
     of Quadratic Unconstrained Binary Optimization Problems."
     arXiv:1705.09545.
     https://arxiv.org/abs/1705.09545
+
+.. [Gly1990]
+    Glynn, Peter W
+    "Likelihood ratio gradient estimation for stochastic systems."
+    Communications of the ACM, Volume 33, Issue 10, Pages 75 - 84
+    01 October 1990
+    https://doi.org/10.1145/84537.84552
 
 .. [Gog2004]
     Gogate V. and R. Dechter.
@@ -385,6 +505,12 @@ Bibliography
     P. Grassberger, (2008).
     "Entropy Estimates from Insufficient Samplings."
     arXiv:physics/0307138v2.
+
+.. [Gu2024]
+    Gu, Albert and Dao, Tri.
+    "Linear-time sequence modeling with selective state spaces."
+    First conference on language modeling
+    2024
 
 .. [Gue2018]
     G. G. Guerreschi, A. Y. Matsuura.
@@ -425,10 +551,23 @@ Bibliography
     on a Quantum Annealer."
     arXiv:2201.01543 [cs.SI]
 
+.. [Hin2002]
+    Hinton, Geoffrey E.
+    "Training Products of Experts by Minimizing Contrastive Divergence."
+    Neural Computation, vol. 14, no. 8, pp. 1771-1800.
+    1 Aug. 2002
+    doi: 10.1162/089976602760128018.
+
+.. [Hin2010]
+    Hinton, Geoffrey.
+    "A Practical Guide to Training Restricted Boltzmann Machines."
+    August 2010
+    doi: 10.1007/978-3-642-35289-8_32
+
 .. [Hin2012]
     Geoffrey E. Hinton.
     "A Practical Guide to Training Restricted Boltzmann Machines."
-    Pages 599–619, Springer, Berlin, Heidelberg.
+    Pages 599-619, Springer, Berlin, Heidelberg.
     2012.
     https://www.cs.toronto.edu/~hinton/absps/guideTR.pdf
 
@@ -451,11 +590,24 @@ Bibliography
     NO. 6. June 2011.
     https://ieeexplore.ieee.org/document/5444874/
 
+.. [Isi1925]
+    Ising, Ernst.
+    "Beitrag zur Theorie des Ferromagnetismus."
+    Z. Physik 31, 253-258
+    1925
+    https://doi.org/10.1007/BF02980577
+
 .. [Izq2022]
     Zoe Gonzalez Izquierdo, Shon Grabbe, Husni Idris, Zhihui Wang,
     Jeffrey Marshall, and Eleanor Rieffel.
     "The Advantage of pausing: parameter setting for quantum annealers."
     arXiv:2205.12936 [quant-ph]
+
+.. [Jan2016]
+    Jang, Eric and Gu, Shixiang and Poole, Ben.
+    "Categorical reparameterization with gumbel-softmax."
+    2016
+    arXiv:1611.01144
 
 .. [Jas2019]
     Tim Jaschek, Marko Bucyk, and Jaspreet S. Oberoi.
@@ -491,8 +643,6 @@ Bibliography
     M. W. Johnson et al. "Quantum annealing with manufactured spins."
     *Nature* 473 (May 12, 2011), pp. 194--198.
 
-
-
 .. [Jor2011]
     Stephen Jordan.
     "Quantum Algorithm Zoo."
@@ -503,6 +653,13 @@ Bibliography
     "A quantum annealing approach for Boolean Satisfiability problem."
     Design Automation Conference (DAC), 2016 53nd ACM/EDAC/IEEE.
     https://ieeexplore.ieee.org/document/7544390/
+
+.. [Kak1995]
+    Kak, Subhash C.
+    "Quantum Neural Computing."
+    Advances in Imaging and Electron Physics, Volume 94, Pages 259-313
+    1995
+    https://doi.org/10.1016/S1076-5670(08)70147-2
 
 .. [Kal2019]
     Angad Kalra, Faisal Qureshi, Michael Tisi.
@@ -523,6 +680,20 @@ Bibliography
     combinatorial optimization problems: A state-of-the-art."
     European Journal of Operational Research 296, No. 2 (January 2022): 393-422. 
     https://doi.org/10.1016/j.ejor.2021.04.032
+
+.. [Kho2018]
+    Khoshaman, Amir and Vinci, Walter and Denis, Brandon and Andriyash, Evgeny
+    and Sadeghi, Hossein and Amin, Mohammad H.
+    "Quantum variational autoencoder."
+    Quantum Sci. Technol. 4 014001
+    2018
+    doi: 10.1088/2058-9565/aada1f
+
+.. [Kin2013]
+    Kingma, Diederik P.
+    "Auto-encoding variational bayes."
+    2013
+    arXiv:1312.6114
 
 .. [Kin2014]
     A. D. King and C. C. McGeoch.
@@ -581,6 +752,23 @@ Bibliography
     *arXiv:1611.04528*. 14 Nov 2016.
     https://arxiv.org/abs/1611.04528
 
+.. [Kor2024]
+    Kornja{\v{c}}a, Milan and Hu, Hong-Ye and Zhao, Chen and Wurtz, Jonathan and
+    Weinberg, Phillip and Hamdan, Majd and Zhdanov, Andrii and Cantu, Sergio H
+    and Zhou, Hengyun and Bravo, Rodrigo Araiza and others.
+    "Large-scale quantum reservoir learning with an analog quantum computer."
+    2024
+    arXiv:1609.02907
+
+.. [Kun2026]
+    Kunugi, Hayato and Rahmani, Mohsen and Iyama, Yosuke and Hirono, Yutaro and
+    Suma, Akira and Woolway, Matthew and Vargas-Calder{\'o}n, Vladimir and Kim,
+    William and Chern, Kevin and Amin, Mohammad and others.
+    "Molecular Design beyond Training Data with Novel Extended Objective Functionals
+    of Generative AI Models Driven by Quantum Annealing Computer."
+    2026
+    arXiv:2602.15451
+
 .. [Kur2020]
     Kurowski K., Weglarz J., Subocz M., Rozycki R., Waligora G. (2020)
     "Hybrid Quantum Annealing Heuristic Method for Solving Job Shop Scheduling
@@ -595,11 +783,31 @@ Bibliography
     non-uniform driver Hamiltonians."
     Phys. Rev. A 96, 042322 (2017)   https://arxiv.org/abs/1708.03049
 
+.. [Law1963]
+    Lawler, Eugene L.
+    "The Quadratic Assignment Problem."
+    Management Science, INFORMS, vol. 9(4), pages 586-599.
+    July 1963
+
+.. [Lay2024]
+    Laydevant, Jérémie and Markovic, Danijela and Grollier, Julie.
+    "Training an Ising machine with equilibrium propagation."
+    Nat Commun 15, 3671
+    2024
+    https://doi.org/10.1038/s41467-024-46879-4
+
 .. [Lec2006]
     Yann LeCun.
     "Predicting structured outputs."
     A Tutorial on Energy-Based Learning, MIT Press.
     2006.
+
+.. [Ler2008]
+    Le Roux, Nicolas and Bengio, Yoshua.
+    "Representational power of restricted Boltzmann machines and deep belief networks."
+    Neural computation vol. 20, no. 6, pp. 1631-1649
+    June 2008
+    doi: 10.1162/neco.2008.04-07-510
 
 .. [Lev1973]
     Leonid Levin.
@@ -609,6 +817,12 @@ Bibliography
     "A survey of Russian approaches to perebor (brute-force searches)
     algorithms."
     Annals of the History of Computing 6(4),384-400. 1984.
+
+.. [Li2016]
+    Li, Yujia and Swersky, Kevin and Zemel, Rich
+    ICML'15: Proceedings of the 32nd International Conference on Machine Learning
+    Volume 37 Pages 1718 - 1727
+    2016
 
 .. [Li2020]
     Junde Li and Swaroop Ghosh.
@@ -661,6 +875,12 @@ Bibliography
     "Mutual Information, Neural Networks and the Renormalization Group."
     24 Sep 2018. https://arxiv.org/pdf/1704.06279.pdf
 
+.. [Mad2016]
+    Maddison, Chris J and Mnih, Andriy and Teh, Yee Whye.
+    "The concrete distribution: A continuous relaxation of discrete random variables."
+    2016
+    arXiv:1611.00712
+
 .. [Man1960]
     Alan S. Manne.
     "On the job-shop scheduling problem."
@@ -672,7 +892,7 @@ Bibliography
     "An effective multi-start iterated greedy algorithm to minimize makespan
     for the distributed permutation flowshop scheduling problem with preventative
     maintenance."
-    Expert Systems with Applications 169, No. 114495 (May 2021). 
+    Expert Systems with Applications 169, No. 114495 (May 2021).
     https://doi.org/10.1016/j.eswa.2020.114495
 
 .. [Mar1957]
@@ -702,6 +922,28 @@ Bibliography
     “Practical and efficient multi-view matching.”
     Proceedings of the IEEE International Conference on Computer Vision (2017).
 
+.. [Mas2025]
+    Massar, Serge and Mognetti, Bortolo Matteo.
+    "Equilibrium propagation: the quantum and the thermal cases."
+    Quantum Stud.: Math. Found. 12, 6
+    2025
+    https://doi.org/10.1007/s40509-024-00351-6
+
+.. [Met1953]
+    Metropolis, Nicholas and Rosenbluth, Arianna W and Rosenbluth, Marshall N and
+    Teller, Augusta H and Teller, Edward.
+    "Equation of state calculations by fast computing machines."
+    The journal of chemical physics 21, 1087
+    1953
+    doi: 10.1063/1.1699114
+
+.. [Mit2018]
+    Mitarai, Kosuke and Negoro, Makoto and Kitagawa, Masahiro and Fujii, Keisuke.
+    "Quantum circuit learning."
+    Phys. Rev. A 98, 032309
+    10 September, 2018
+    doi: https://doi.org/10.1103/PhysRevA.98.032309
+
 .. [Mni2021]
     Susan M. Mniszewski, Pavel A. Dub, Sergei Tretiak, Petr M. Anisimov,
     Yu Zhang and Christian F. A. Negre.
@@ -710,6 +952,13 @@ Bibliography
     Sci Rep 11, 4099 (2021). https://doi.org/10.1038/s41598-021-83561-x
     https://www.ics.uci.edu/~csp/r140.pdf.
     https://www.nature.com/articles/s41598-021-83561-x
+
+.. [Mon2011]
+    G. Montufar and N. Ay
+    "Refinements of Universal Approximation Results for Deep Belief Networks and Restricted Boltzmann Machines."
+    Neural Computation, vol. 23, no. 5, pp. 1306-1319
+    May 2011
+    doi: 10.1162/NECO_a_00113.
 
 .. [Mon2020]
     Montanaro, A. "Quantum speedup of branch-and-bound algorithms."
@@ -744,10 +993,17 @@ Bibliography
     https://1qbit.com/our-thinking/research-papers
     arXiv:1708.03439
 
+.. [Nea2001]
+    Neal, Radford M.
+    "Annealed importance sampling."
+    Statistics and Computing 11, 125-139
+    2001.
+    https://doi.org/10.1023/A:1008923215028
+
 .. [Nel2010]
     Nielsen, Michael A. and Isaac Chuang.
     "Quantum Computation and Quantum Information."
-    Cambridge University Press. 2010. 
+    Cambridge University Press. 2010.
 
 .. [Nev2012]
     Neven, H., Denchev, V. S., Rose, G., and Macready, W. G.
@@ -792,6 +1048,15 @@ Bibliography
     Pseudo-Boolean Programming."
     IEEE Transactions on Computers > Volume: C-26 Issue: 6. 24 May 1976.
     https://ieeexplore.ieee.org/document/1674880/?arnumber=1674880
+
+.. [Pas2019]
+    Paszke, Adam and Gross, Sam and Massa, Francisco and Lerer, Adam and
+    Bradbury, James and Chanan, Gregory and Killeen, Trevor and Lin, Zeming and
+    Gimelshein, Natalia and Antiga, Luca and others.
+    "PyTorch: an imperative style, high-performance deep learning library."
+    Proceedings of the 33rd International Conference on Neural Information
+    Processing Systems, Article No.: 721, Pages 8026 - 8037.
+    December 2019
 
 .. [Pea2008]
     J. Pearl.
@@ -896,6 +1161,12 @@ Bibliography
     arXiv:1407.2887 [quant-ph] 10 Jul 2014
     https://arxiv.org/abs/1407.2887v1
 
+.. [Rob2004]
+    Robert, Christian P and Casella, George and Casella, George.
+    "Monte Carlo statistical methods."
+    Springer-VerlagBerlin, Heidelberg. ISBN:978-0-387-21239-5
+    01 June 2005
+
 .. [Rol2016]
     Jason Tyler Rolfe. "Discrete Variational Autoencoders." *arXiv:1609.02200*.
     7 Sep 2016. https://arxiv.org/abs/1609.02200
@@ -925,6 +1196,20 @@ Bibliography
     The International Machine Learning Society.
     2007.
 
+.. [Sce2017]
+    Scellier, Benjamin and Bengio, Yoshua.
+    "Bridging the Gap between Energy-Based Models and Backpropagation."
+    Front. Comput. Neurosci. 11:24.
+    2017
+    doi: 10.3389/fncom.2017.00024
+
+.. [Sce2024]
+    Scellier, Benjamin
+    "Quantum equilibrium propagation: Gradient-descent training of quantum
+    systems."
+    2024
+    arXiv:2406.00879
+
 .. [Sch2009]
     Nicol N. Schraudolph and Dmitry Kamenetsky.
     "Efficient exact inference in planar Ising models."
@@ -932,12 +1217,31 @@ Bibliography
     2009.
     http://users.cecs.anu.edu.au/~dkamen/nips08.pdf.
 
+.. [Sch2015]
+    Schmidhuber, J{\"u}rgen.
+    "Deep learning in neural networks: An overview."
+    Neural Networks Volume 61, Pages 85-117
+    January 2015
+    https://doi.org/10.1016/j.neunet.2014.09.003
+
+.. [Smo1986]
+    Smolensky, Paul.
+    "Information Processing in Dynamical Systems: Foundations of Harmony
+    Theory."
+    1986
+    doi: https://doi.org/10.7551/mitpress/5236.003.0009
+
 .. [Spa1991]
     Susan B. Spalti, et al.
     "Modeling the satellite placement problem as a network flow problem with one
     side constraint."
     OR Spektrum, Vol. 13, no. 1 (March 1991): 1-14.
     https://doi.org/10.1007/BF01719766
+
+.. [Str2012]
+    Strang, Gilbert.
+    "Linear Algebra and Its Applications."
+    2012
 
 .. [Tai1991]
     E. D. Taillard.
@@ -971,6 +1275,12 @@ Bibliography
     its application to quantum factorization of numbers."
     arXiv:1508.04816 19 Aug 2015 https://arxiv.org/abs/1508.04816
 
+.. [Teh2003]
+    Teh, Yee Whye and Welling, Max and Osindero, Simon and Hinton, Geoffrey E.
+    "Energy-based models for sparse overcomplete representations."
+    Journal of Machine Learning Research, Num 4, December, pages 1235--1260.
+    2003
+
 .. [Tep2021]
     Alexander Teplukhin, Brian K. Kendrick, Susan M. Mniszewski, Yu Zhang,
     Ashutosh Kumar, Christian F.A. Negre, Petr M. Anisimov, Sergei Tretiak and
@@ -996,6 +1306,39 @@ Bibliography
     "Toward Robustness against Label Noise in Training Deep Discriminative
     Neural Networks." *arXiv:1706.00038*. 27 May 2017.
     https://arxiv.org/abs/1706.00038
+
+.. [Van2016]
+    Van Den Oord, A{\"a}ron and Kalchbrenner, Nal and Kavukcuoglu, Koray.
+    "Pixel recurrent neural networks."
+    International conference on machine learning
+    Pages 1747--1756
+    2016
+    arXiv:1601.06759
+    doi: 10.48550/arXiv.1601.06759
+
+.. [Van2017]
+    Van Den Oord, Aaron and Vinyals, Oriol and others.
+    "Neural discrete representation learning."
+    NIPS'17: Proceedings of the 31st International Conference on Neural
+    Information Processing Systems
+    Pages 6309 - 6318
+    04 December 2017
+
+.. [Vas2017]
+    Vaswani, Ashish and Shazeer, Noam and Parmar, Niki and Uszkoreit, Jakob and
+    Jones, Llion and Gomez, Aidan N and Kaiser, {\L}ukasz and Polosukhin, Illia.
+    "Attention is all you need."
+    NIPS'17: Proceedings of the 31st International Conference on Neural
+    Information Processing Systems
+    Pages 6000 - 6010
+    04 December 2017
+
+.. [Vat2021]
+    Vats, Dootika and Knudson, Christina
+    "Revisiting the Gelman-Rubin Diagnostic."
+    Statist. Sci. 36 (4) 518 - 529
+    November 2021
+    https://doi.org/10.1214/20-STS812
 
 .. [Ven2015]
     Davide Venturelli, Dominic J.J. Marchand, and Galo Roj.
@@ -1029,6 +1372,13 @@ Bibliography
     on a 5,564-qubit quantum annealer." (2025) Nature Physics 21, 386.
     https://doi.org/10.1038/s41567-024-02765-w
 
+.. [Wai2008]
+    Wainwright, Martin J and Jordan, Michael I and others.
+    "Graphical Models, Exponential Families, and Variational Inference."
+    Found. Trends Mach. Learn. 1, 1-2, 1-305.
+    January 2008
+    https://doi.org/10.1561/2200000001
+
 .. [Wan2020]
     Wang, B., Hu, F., Yao, H. et al.
     "Prime factorization algorithm based on parameter optimization of
@@ -1049,6 +1399,21 @@ Bibliography
     "Satisfiability based set membership filters." Journal on Satisfiability,
     Boolean Modeling and Computation 8, 129 (2014).
     https://www.cs.uky.edu/~marek/papers.dir/11.dir/JSAT8_10_Weaver.pdf
+
+.. [Wie2022]
+    Wierichs, David and Izaac, Josh and Wang, Cody and Lin, Cedric Yen-Yu.
+    "General parameter-shift rules for quantum gradients."
+    Quantum 6, 677
+    2022
+    https://doi.org/10.22331/q-2022-03-30-677
+
+.. [Wil1992]
+    Williams, Ronald J
+    "Simple statistical gradient-following algorithms for connectionist
+    reinforcement learning."
+    Machine Learning, Volume 8, Issue 3-4, Pages 229 - 256
+    01 May 1992
+    https://doi.org/10.1007/BF00992696
 
 .. [Wil2019]
     D. Willsch, M. Willsch, H. De Raedt et al.,
@@ -1084,3 +1449,16 @@ Bibliography
     High Performance Computing. ISC High Performance 2020. Lecture Notes in
     Computer Science (LNCS), vol 12151. Springer, Cham.
     https://doi.org/10.1007/978-3-030-50743-5_10
+
+.. [Zha2017]
+    Zhao, Shengjia and Song, Jiaming and Ermon, Stefano.
+    "InfoVAE: Information maximizing variational autoencoders."
+    2017
+    arXiv:1706.02262
+
+.. [Zha2025]
+    Zhang, Hao and Kamenev, Alex.
+    "Quantum sequel of neural network training."
+    Commun Phys 8, 478
+    2025
+    https://doi.org/10.1038/s42005-025-02384-8
