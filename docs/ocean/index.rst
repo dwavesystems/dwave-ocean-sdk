@@ -14,6 +14,7 @@ Ocean SDK
     source_code
     release_notes
     contribute
+    ai_policy
 
 Ocean\ |tm| software is a suite of tools for using
 `D-Wave Quantum Inc. <https://www.dwavesys.com>`_ quantum computers and
