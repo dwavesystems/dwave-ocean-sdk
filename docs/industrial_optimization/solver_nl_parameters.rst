@@ -1,8 +1,8 @@
 .. _opt_solver_nl_parameters:
 
-===========================
-Nonlinear Solver Parameters
-===========================
+========================
+Stride Solver Parameters
+========================
 
 This section describes the parameters of quantum-classical hybrid
 :ref:`nonlinear-model <concept_models_nonlinear>` solvers such as the Leap

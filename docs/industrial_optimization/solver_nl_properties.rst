@@ -1,8 +1,8 @@
 .. _opt_solver_nl_properties:
 
-===========================
-Nonlinear Solver Properties
-===========================
+========================
+Stride Solver Properties
+========================
 
 This section describes the properties of quantum-classical hybrid
 :ref:`nonlinear-model <concept_models_nonlinear>` solvers such as the Leap
