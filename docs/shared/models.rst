@@ -6,9 +6,9 @@ optimization problems with an :term:`objective function` and/or one or more
 constraints over integer and/or binary variables; the model supports constraints
 natively.
 
-This model is especially suited for use with decision variables that represent
-a common logic, such as subsets of choices or permutations of ordering. For
-example, in a
+This model is especially suited for use with :term:`decision variables` that
+represent a common logic, such as subsets of choices or permutations of
+ordering. For example, in a
 `traveling salesperson problem <https://en.wikipedia.org/wiki/Travelling_salesman_problem>`_
 permutations of the variables representing cities can signify the order of the
 route being optimized and in a
