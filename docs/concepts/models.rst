@@ -7,55 +7,6 @@ Models
 To express your problem as an objective function and submit to a |dwave_short|
 sampler for solution, you formulate a model.
 
-.. _concept_models_constrained_vs_unconstrained:
-
-Constrained Versus Unconstrained
-================================
-
-Many real-world problems include :term:`constraints <constraint>`. For example,
-a routing problem might limit the number of airplanes on the ground at an
-airport and a scheduling problem might require a minimum interval between
-shifts.
-
-Constrained models such as the :class:`~dimod.ConstrainedQuadraticModel` model
-can support constraints by encoding both an :term:`objective` and its set of
-constraints, as models or in symbolic form.
-
-Unconstrained quadratic models are used to submit problems to
-:term:`samplers <sampler>` such as |dwave_short| quantum computers\ [#]_ and
-some quantum-classical :term:`hybrid` samplers\ [#]_. When using such samplers
-to handle problems with constraints, you typically formulate the constraints as
-:ref:`penalty models <concept_penalty>`.
-
-The :ref:`concept_models_supported` section below lists constrained and
-unconstrained models.
-
-.. [#]
-    |dwave_short| quantum computers accept unconstrained binary quadratic
-    models, such as quadratic unconstrained binary optimization (:term:`QUBO`)
-    models: binary because variables are represented by qubits that return two
-    states and quadratic because polynomial terms of two variables can be
-    represented by pairs of coupled qubits.
-
-.. [#]
-    Some hybrid samplers accept constrained and non-binary models; for example,
-    a quadratic model with an integer variable that must be smaller than some
-    configured value. See the :ref:`opt_index_properties_parameters` section For
-    the available hybrid solvers and their capabilities.
-
-.. _concept_models_supported:
-
-Supported Models
-================
-
-The following table shows the models currently supported by Ocean software,
-the variables you can use with each, and some related classes.
-
-.. |models_variables_table| replace:: Supported Models
-
-.. include:: ../shared/models.rst
-    :start-after: start_models_variables_table
-    :end-before: end_models_variables_table
 
 .. _concept_models_nonlinear:
 
@@ -69,42 +20,6 @@ Nonlinear Model
 For an introduction to Ocean software's nonlinear model, see the
 :ref:`opt_model_construction_nl` section.
 
-.. _concept_models_cqm:
-
-Constrained Quadratic Model
-===========================
-
-.. include:: ../shared/models.rst
-    :start-after: start_models_cqm
-    :end-before: end_models_cqm
-
-The constrained quadratic model (CQM) are problems of the form:
-
-.. math::
-
-    \begin{align}
-        \text{Minimize an objective:} & \\
-        & \sum_{i} a_i x_i + \sum_{i \le j} b_{ij} x_i x_j + c, \\
-        \text{Subject to constraints:} & \\
-        & \sum_i a_i^{(m)} x_i + \sum_{i \le j} b_{ij}^{(m)} x_i x_j+ c^{(m)} \circ 0,
-        \quad m=1, \dots, M,
-    \end{align}
-
-where :math:`\{ x_i\}_{i=1, \dots, N}` can be binary\ [#]_, integer, or
-continuous\ [#]_ variables, :math:`a_{i}, b_{ij}, c` are real values,
-:math:`\circ \in \{ \ge, \le, = \}` and  :math:`M` is the total number of
-constraints.
-
-.. [#]
-    For binary variables, the range of the quadratic-term summation is
-    :math:`i < j` because :math:`x^2 = x` for binary values :math:`\{0, 1\}`
-    and :math:`s^2 = 1` for spin values :math:`\{-1, 1\}`.
-
-.. [#]
-    Real-valued variables are currently not supported in quadratic interactions.
-
-For constructing quadratic models in  Ocean software, see the
-:ref:`opt_model_construction_qm` section.
 
 .. _concept_models_bqm:
 
@@ -149,10 +64,83 @@ QUBO
     :start-after: start_models_qubo_formula
     :end-before: end_models_qubo_formula
 
+
+.. _concept_models_constrained_vs_unconstrained:
+
+Constrained Versus Unconstrained
+================================
+
+Many real-world problems include :term:`constraints <constraint>`. For example,
+a routing problem might limit the number of airplanes on the ground at an
+airport and a scheduling problem might require a minimum interval between
+shifts.
+
+Constrained models such as the :class:`~dwave.optimization.model.Model` model
+can support constraints by encoding both an :term:`objective` and its set of
+constraints.
+
+Unconstrained quadratic models are used to submit problems to
+:term:`samplers <sampler>` such as |dwave_short| quantum computers\ [#]_ and
+some quantum-classical :term:`hybrid` samplers\ [#]_. When using such samplers
+to handle problems with constraints, you typically formulate the constraints as
+:ref:`penalty models <concept_penalty>`.
+
+
+.. [#]
+    |dwave_short| quantum computers accept unconstrained binary quadratic
+    models, such as quadratic unconstrained binary optimization (:term:`QUBO`)
+    models: binary because variables are represented by qubits that return two
+    states and quadratic because polynomial terms of two variables can be
+    represented by pairs of coupled qubits.
+
+.. [#]
+    Some hybrid samplers accept constrained and non-binary models; for example,
+    a nonlinear model with an integer variable that must be smaller than some
+    configured value. See the :ref:`opt_index_hybrid` section for available
+    hybrid solvers and their capabilities.
+
+
 Other Models
 ============
 
 Ocean software also supports these additional models.
+
+.. _concept_models_cqm:
+
+Constrained Quadratic Model
+---------------------------
+
+.. include:: ../shared/models.rst
+    :start-after: start_models_cqm
+    :end-before: end_models_cqm
+
+The constrained quadratic model (CQM) are problems of the form:
+
+.. math::
+
+    \begin{align}
+        \text{Minimize an objective:} & \\
+        & \sum_{i} a_i x_i + \sum_{i \le j} b_{ij} x_i x_j + c, \\
+        \text{Subject to constraints:} & \\
+        & \sum_i a_i^{(m)} x_i + \sum_{i \le j} b_{ij}^{(m)} x_i x_j+ c^{(m)} \circ 0,
+        \quad m=1, \dots, M,
+    \end{align}
+
+where :math:`\{ x_i\}_{i=1, \dots, N}` can be binary\ [#]_, integer, or
+continuous\ [#]_ variables, :math:`a_{i}, b_{ij}, c` are real values,
+:math:`\circ \in \{ \ge, \le, = \}` and  :math:`M` is the total number of
+constraints.
+
+.. [#]
+    For binary variables, the range of the quadratic-term summation is
+    :math:`i < j` because :math:`x^2 = x` for binary values :math:`\{0, 1\}`
+    and :math:`s^2 = 1` for spin values :math:`\{-1, 1\}`.
+
+.. [#]
+    Real-valued variables are currently not supported in quadratic interactions.
+
+For constructing quadratic models in  Ocean software, see the
+:ref:`opt_model_construction_qm` section.
 
 .. _concept_models_quadratic:
 
@@ -238,6 +226,7 @@ by Ocean tools.
 The :class:`dimod.DiscreteQuadraticModel` class can contain this model and its
 methods provide convenient utilities for working with representations
 of a problem.
+
 
 Related Information
 ===================

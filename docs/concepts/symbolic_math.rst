@@ -4,7 +4,7 @@
 Symbolic Math
 =============
 
-.. note::
+.. attention::
 
     This section currently describes symbolic math used for
     :term:`quadratic models <quadratic model>` such as the constrained quadratic

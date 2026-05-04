@@ -224,6 +224,12 @@ Concepts and Terminology
         same classical state---both 0 or both 1---or in opposite states. The
         correlation between coupled qubits is controlled programmatically.
 
+    decision variable
+    decision variables
+        Variables that represent controllable decisions you can make about the
+        problem. These variables represent individual decisions that, when
+        combined, make up the full problem solution.
+
     directed acyclic graph
     DAG
         A `DAG <https://en.wikipedia.org/wiki/Directed_acyclic_graph>`_ is a
