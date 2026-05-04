@@ -39,14 +39,20 @@ Supported Models
 ----------------
 
 To express your problem as an objective function and submit to a |dwave_short|
-:term:`hybrid` sampler for solution, you typically use one of the
-:ref:`Ocean software <index_ocean_sdk>`
-:term:`quadratic models <quadratic model>` or :term:`nonlinear model` supported
-by the `Leap <https://cloud.dwavesys.com/leap/>`_ service's hybrid solvers:
+:term:`hybrid` sampler for solution, you typically use
+:ref:`Ocean software's <index_ocean_sdk>` nonlinear model.
 
-*   .. include:: ../shared/models.rst
+.. include:: ../shared/models.rst
         :start-after: start_models_nonlinear
         :end-before: end_models_nonlinear
+
+Other Models
+~~~~~~~~~~~~
+
+Ocean software also supports some :term:`quadratic models <quadratic model>`
+that can be submitted to hybrid solvers in the
+`Leap <https://cloud.dwavesys.com/leap/>`_ service. These might currently be
+more suited to some problems.
 
 *   .. include:: ../shared/models.rst
         :start-after: start_models_cqm
@@ -85,47 +91,46 @@ Simple Workflow Example
 
 This example uses :ref:`Ocean software <index_ocean_sdk>` tools to
 demonstrate the solution workflow described in this section on a simple problem
-of finding the rectangle with the greatest area when the perimeter is limited.
+of of finding the minimum of a function of an integer variable, the polynomial
+:math:`y = i^2 - 4i`.
 
-In this example, the perimeter of the rectangle is set to 8 (meaning the
-largest area is for the :math:`2X2` square).
+.. figure:: ../_images/simple_polynomial_minimization.png
+    :name: simplePolynomialMinimizationHybridWorkflow
+    :alt: Plot of :math:`y = i^2 - 4i` with the x-axis from about -2 to +3 and
+        the y-axis from -5 to +5, showing a parabola with its minimum at
+        (i,y) of (+2,-4).
+    :align: center
+    :scale: 100%
 
-A CQM is created that will have two integer variables, :math:`i, j`, each
-limited to half the maximum perimeter length of 8, to represent the lengths of
-the rectangle's sides:
+    Minimum point of a simple polynomial, :math:`y = i^2 - 4i`.
 
->>> from dimod import ConstrainedQuadraticModel, Integer
+The :ref:`dwave-optimization <index_optimization>` package can formulate the
+problem as nonlinear model as follows:
+
+>>> from dwave.optimization import Model
 ...
->>> i = Integer('i', upper_bound=4)
->>> j = Integer('j', upper_bound=4)
->>> cqm = ConstrainedQuadraticModel()
+>>> model = Model()
+>>> i = model.integer(lower_bound=-5, upper_bound=5)
+>>> y = i**2 - 4*i
+>>> model.minimize(y)
 
-The area of the rectangle is given by the multiplication of side :math:`i` by
-side :math:`j`. The goal is to maximize the area, :math:`i*j`. Because
-|dwave_short| samplers minimize, the objective should have its lowest value when
-this goal is met. Objective :math:`-i*j` has its minimum value when :math:`i*j`,
-the area, is greatest:
+Instantiate a hybrid nonlinear sampler and submit the problem for solution by a
+remote solver provided by the Leap quantum cloud service:
 
->>> cqm.set_objective(-i*j)
-
-Finally, the requirement that the sum of both sides must not exceed the
-perimeter is represented as constraint :math:`2i + 2j <= 8`:
-
->>> cqm.add_constraint(2*i+2*j <= 8, "Max perimeter")
-'Max perimeter'
-
-Instantiate a hybrid CQM sampler and submit the problem for solution by a remote
-solver provided by the Leap quantum cloud service:
-
->>> from dwave.system import LeapHybridCQMSampler
+>>> from dwave.system import LeapHybridNLSampler
 ...
->>> with LeapHybridCQMSampler() as sampler:         # doctest: +SKIP
-...     sampleset = sampler.sample_cqm(cqm)
-...     feasible_results = sampleset.filter(lambda d: d.is_feasible)
-...     print(feasible_results.first)
-Sample(sample={'i': 2.0, 'j': 2.0}, energy=-4.0, num_occurrences=1, is_satisfied=array([ True]), is_feasible=True)
+>>> with LeapHybridNLSampler() as sampler:                  # doctest: +SKIP
+...     results = sampler.sample(
+...         model,
+...         label='SDK Examples - Polynomial')
 
-The best (lowest-energy) solution found has :math:`i=j=2` as expected, a
-solution that is feasible because all the constraints (one in this example)
-are satisfied.
+Solutions are the assignment of values to the model's
+:term:`decision variables`, which are represented as
+:ref:`states <opt_model_construction_nl_states>` of the model. Print the best
+solution, which is typically the first returned state.
 
+>>> with model.lock():                                      # doctest: +SKIP
+...     print(f"At i={i.state(0)}, lowest value of y is {model.objective.state(0)}")
+At i=2.0, lowest value of y is -4.0
+
+The best (lowest-energy) solution found has :math:`i=2` as expected.

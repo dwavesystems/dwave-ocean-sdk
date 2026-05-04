@@ -78,18 +78,16 @@ Submitting problems
 
 Ocean software's :ref:`dwave-system <index_system>` provides the
 :class:`~dwave.system.samplers.LeapHybridNLSampler` class for submitting
-nonlinear models to the |nlstride_short|.
+nonlinear models to the |nlstride_short|. Submit the CVRP model to the selected
+solver.
 
 >>> from dwave.system import LeapHybridNLSampler
->>> sampler = LeapHybridNLSampler()                  # doctest: +SKIP
->>> sampler.solver.name                              # doctest: +SKIP
+>>> with LeapHybridNLSampler() as sampler:          # doctest: +SKIP
+...     print(sampler.solver.name)
+...     results = sampler.sample(
+...         model,
+...         label='SDK Examples - CVRP')
 hybrid_nonlinear_program_version1
-
-Submit the CVRP model to the selected solver.
-
->>> results = sampler.sample(
-...     model,
-...     label='SDK Examples - CVRP')                # doctest: +SKIP
 
 Timing & Charges
 ----------------
@@ -105,7 +103,8 @@ Properties & Parameters
 
 Real-world problems can be complex and models representing such problems can
 quickly grow large. The :ref:`opt_solver_nl_properties` section provides
-limitations on your model. For example, the state size of the decision variables
+limitations on your model. For example, the state size of the
+:term:`decision variables`
 (:meth:`~dwave.optimization.model.Model.decision_state_size`) must not exceed
 the maximum supported by the solver (:ref:`maximum_decision_state_size`):
 
@@ -116,10 +115,11 @@ The :ref:`opt_solver_nl_parameters` section describes the parameters you can
 configure when submitting problems to the solver. For example, you might
 experiment with various processing times:
 
->>> results = sampler.sample(
-...     model,
-...     time_limit=10,
-...     label='SDK Examples - CVRP')  	# doctest: +SKIP
+>>> with LeapHybridNLSampler() as sampler:          # doctest: +SKIP
+...     results = sampler.sample(
+...         model,
+...         time_limit=10,
+...         label='SDK Examples - CVRP')
 
 
 Getting Solutions
@@ -130,9 +130,10 @@ The |nlstride_short| returns a nondeterministic number of solutions. Any
 low to high), and precede infeasible states. While the first sample is the best,
 other feasible solutions may be useful.
 
-Solutions are the assignment of values to the model's decision variables. You
-access these by iterating through the model's decision variables for each state
-you are interested in, typically filtered by feasibility.
+Solutions are the assignment of values to the model's
+:term:`decision variables`. You access these by iterating through the model's
+decision variables for each state you are interested in, typically filtered by
+feasibility.
 
 Use the model's :meth:`~dwave.optimization.model.Model.iter_decisions` and
 :meth:`~dwave.optimization.model.Model.iter_constraints` methods to do so. For

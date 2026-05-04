@@ -71,17 +71,22 @@ hybrid solvers in the |cloud|_ service.
     to contribute to the solution. On the large, complex problems for which
     hybrid solvers are intended, this is unlikely to occur.
 
-You can access this information via the :ref:`dimod <index_dimod>`
-:class:`~dimod.SampleSet` class, as in the example below.
+You can access this information in the returned
+:class:`~dwave.cloud.computation.Future` object from the hybrid nonlinear solver
+(or via the :ref:`dimod <index_dimod>` :class:`~dimod.SampleSet` class for other
+hybrid solvers), as in the example below.
 
->>> import dimod
->>> from dwave.system import LeapHybridSampler
+>>> from dwave.optimization.generators import bin_packing
+>>> from dwave.system import LeapHybridNLSampler
 ...
->>> sampler = LeapHybridSampler(solver={'category': 'hybrid'})  # doctest: +SKIP
->>> bqm = dimod.generators.ran_r(1, 300)
->>> sampleset = sampler.sample(bqm)     # doctest: +SKIP
->>> sampleset.info     # doctest: +SKIP
-{'qpu_access_time': 41990, 'charge_time': 2991424, 'run_time': 2991424}
+>>> model = bin_packing([3, 5, 1, 3], 7)
+>>> with LeapHybridNLSampler() as sampler:                        # doctest: +SKIP
+...     results = sampler.sample(
+...         model,
+...         label='SDK Examples - Knapsack')
+>>> results.result().info["timing"]                             # doctest: +SKIP
+{'qpu_access_time': 319883, 'charge_time': 5000000, 'run_time': 5026351}
+
 
 .. _leap_hybrid_usage_charges:
 
@@ -97,8 +102,8 @@ your account's quota is consumed for a particular solver in the solver's
 You can see the time you are charged for in the responses returned for your
 submitted problems. The relevant field in the response is :code:`'charge_time'`.
 The example in the :ref:`opt_leap_hybrid_timing` section shows
-:code:`'charge_time': 2991424'` in the returned response, meaning almost 3
-seconds are being charged.
+:code:`'charge_time': 5000000'` in the returned response, meaning five seconds
+are being charged.
 
 Instantiating the needed compute resources for your problem can introduce
 a delay before the problem is processed. This delay tends to be small compared
