@@ -106,7 +106,8 @@ quickly grow large. The :ref:`opt_solver_nl_properties` section provides
 limitations on your model. For example, the state size of the
 :term:`decision variables`
 (:meth:`~dwave.optimization.model.Model.decision_state_size`) must not exceed
-the maximum supported by the solver (:ref:`maximum_decision_state_size`):
+the maximum supported by the solver
+(:ref:`property_nl_maximum_decision_state_size`):
 
 >>> model.decision_state_size() < sampler.properties["maximum_decision_state_size"]   # doctest: +SKIP
 True

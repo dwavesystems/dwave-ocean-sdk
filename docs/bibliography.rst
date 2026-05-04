@@ -15,8 +15,8 @@ Bibliography
 .. [Ada2015]
     Steven H. Adachi, Maxwell P. Henderson.
     "Application of Quantum Annealing to Training of Deep Neural Networks."
-   21 Oct 2015
-   https://arxiv.org/abs/1510.06356
+    21 Oct 2015
+    https://arxiv.org/abs/1510.06356
 
 .. [Ahu2000]
     Ahuja, R. K., Orlin, J. B., and Sharma, D.
