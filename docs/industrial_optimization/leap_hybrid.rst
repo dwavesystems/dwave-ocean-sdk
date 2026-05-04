@@ -6,10 +6,11 @@ Using the Stride Solver
 
 This section describes the |cloud|_ service's quantum-classical :term:`hybrid`
 nonlinear :term:`solver <solver>`, also known as the |nlstride_tm| (e.g.,
-``hybrid_nonlinear_program_version1``) and provides usage information.
+``hybrid_nonlinear_program_version1``), and provides usage information.
 
 .. note::
     Not all accounts have access to this type of solver.
+
 
 When to Use this Solver
 =======================
@@ -18,8 +19,8 @@ When to Use this Solver
     :start-after: start_models_nonlinear
     :end-before: end_models_nonlinear
 
-These solvers accept arbitrarily structured problems formulated as nonlinear
-models, with any constraints represented natively.
+The |nlstride_short| accepts arbitrarily structured problems formulated as
+nonlinear models, with any constraints represented natively.
 
 Solver Design Philosophy
 ------------------------
@@ -34,6 +35,7 @@ following areas:
 *   :ref:`Tensor programming <optimization_philosophy_tensor_programming>`
 
 For a detailed description, see the :ref:`optimization_philosophy` section.
+
 
 Modeling Problems
 =================
@@ -70,6 +72,7 @@ vehicles delivering from a depot to nine sites with maximum vehicle capacity
 For more details on this and other model generators, see the
 :ref:`optimization_generators` section.
 
+
 Submitting problems
 ===================
 
@@ -79,24 +82,34 @@ nonlinear models to the |nlstride_short|.
 
 >>> from dwave.system import LeapHybridNLSampler
 >>> sampler = LeapHybridNLSampler()                  # doctest: +SKIP
+>>> sampler.solver.name                              # doctest: +SKIP
+hybrid_nonlinear_program_version1
 
 Submit the CVRP model to the selected solver.
 
 >>> results = sampler.sample(
 ...     model,
-...     label='SDK Examples - CVRP')  	# doctest: +SKIP
+...     label='SDK Examples - CVRP')                # doctest: +SKIP
 
+Timing & Charges
+----------------
+
+The :ref:`opt_leap_hybrid_timing` and :ref:`leap_hybrid_usage_charges`
+sections provide information on how solver usage is charged to your account.
+
+>>> results.result().info["timing"]["run_time"]     # doctest: +SKIP
+5024685
 
 Properties & Parameters
 -----------------------
 
 Real-world problems can be complex and models representing such problems can
 quickly grow large. The :ref:`opt_solver_nl_properties` section provides
-limitations on your model. For example, the size of the decision variables
+limitations on your model. For example, the state size of the decision variables
 (:meth:`~dwave.optimization.model.Model.decision_state_size`) must not exceed
 the maximum supported by the solver (:ref:`maximum_decision_state_size`):
 
->>> model.decision_state_size() < sampler.properties["maximum_decision_state_size"]
+>>> model.decision_state_size() < sampler.properties["maximum_decision_state_size"]   # doctest: +SKIP
 True
 
 The :ref:`opt_solver_nl_parameters` section describes the parameters you can
@@ -108,11 +121,6 @@ experiment with various processing times:
 ...     time_limit=10,
 ...     label='SDK Examples - CVRP')  	# doctest: +SKIP
 
-Timing & Charges
-----------------
-
-See the :ref:`opt_leap_hybrid_timing` and :ref:`leap_hybrid_usage_charges`
-sections
 
 Getting Solutions
 =================
@@ -127,27 +135,26 @@ access these by iterating through the model's decision variables for each state
 you are interested in, typically filtered by feasibility.
 
 Use the model's :meth:`~dwave.optimization.model.Model.iter_decisions` and
-:meth:`~dwave.optimization.model.Model.iter_constraints` to do so. For this
-example, there is a single decision variable (a
+:meth:`~dwave.optimization.model.Model.iter_constraints` methods to do so. For
+this example, there is a single decision variable (a
 :class:`~dwave.optimization.symbols.DisjointLists`).
 
 >>> routes = next(model.iter_decisions())
 
-.. doctest::
-    :skipif: True
+.. testcode::
+    :hide:
 
-    >>> model.states.resize(1)
-    >>> routes.set_state(0, [[2., 7., 1., 5.], [4., 3., 8., 6., 0.]])
+    model.states.resize(1)
+    routes.set_state(0, [[2., 7., 1., 5.], [4., 3., 8., 6., 0.]])
 
 The best state (state zero) might look like this:
 
->>> routes = next(model.iter_decisions())
+>>> print(f"Feasibility is {all(sym.state(0) for sym in model.iter_constraints())}")
+Feasibility is True
 >>> print((f"Objective value #0 is {model.objective.state(0).round(2)} for routes\n"
 ...        f"    {[r.state(0).tolist() for r in routes.iter_successors()]}"))
->>> print(f"Feasibility is {all(sym.state(0) for sym in model.iter_constraints())}")
 Objective value #0 is 423.8 for routes
     [[2.0, 7.0, 1.0, 5.0], [4.0, 3.0, 8.0, 6.0, 0.0]]
-Feasibility is True
 
 The :ref:`optimization_generators` section explains the returned solutions and
 gives more details on accessing them.
@@ -155,21 +162,23 @@ gives more details on accessing them.
 You can iterate over all the states returned by the solver (the
 :meth:`~dwave.optimization.states.States.size` method gives the number of
 returned states). For some models it can be helpful to retrieve non-decision
-variable that calculate useful information: use the
+variables that calculate useful information: use the
 :meth:`~dwave.optimization.model.Model.iter_symbols` method to retrieve such
 additional symbols.
+
 
 Improving Solutions and Productizing
 ====================================
 
 There can be a significant gap between solving an initial model for your
-problem, perhaps reduced in scope, and an application in production. Once you
-have completed the steps above, the following resources can be useful:
+problem, perhaps simplified and reduced in scale, and an application in
+production. The following resources can be useful:
 
 *   The :ref:`opt_model_construction_nl_guidance` subsection of the
     :ref:`opt_model_construction_nl` section discusses guidelines improving
     models.
-*   You might have an :ref:`initial guess <opt_model_construction_nl_states>` or
-    non-optimal solution you can provide the solver.
+*   You might have a guess or non-optimal solution you can provide the solver as
+    an :ref:`initial state <opt_model_construction_nl_states>` that may reduce
+    solution time.
 *   The :ref:`opt_index_improving_solutions` section discusses scaling and
     productizing applications.
