@@ -91,10 +91,10 @@ using a quantum-classical hybrid solver in the Leap service.
 ...     [489, 170, 705, 161, 0]]
 ...
 >>> model = traveling_salesperson(distance_matrix=DISTANCE_MATRIX)
->>> sampler = LeapHybridNLSampler()     # doctest: +SKIP
->>> results = sampler.sample(
-...     model,
-...     label='SDK Examples - TSP')  	# doctest: +SKIP
+>>> with LeapHybridNLSampler() as sampler:     # doctest: +SKIP
+...     results = sampler.sample(
+...         model,
+...         label='SDK Examples - TSP')
 
 .. end_nl1
 

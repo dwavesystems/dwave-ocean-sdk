@@ -224,6 +224,12 @@ Concepts and Terminology
         same classical state---both 0 or both 1---or in opposite states. The
         correlation between coupled qubits is controlled programmatically.
 
+    decision variable
+    decision variables
+        Variables that represent controllable decisions you can make about the
+        problem. These variables represent individual decisions that, when
+        combined, make up the full problem solution.
+
     directed acyclic graph
     DAG
         A `DAG <https://en.wikipedia.org/wiki/Directed_acyclic_graph>`_ is a
@@ -361,8 +367,6 @@ Concepts and Terminology
 
         *   :ref:`concept_hybrid` for an introduction
         *   :ref:`opt_index_hybrid` gets you started with hybrid samplers
-        *   :ref:`opt_index_properties_parameters` describes the supported
-            hybrid solvers in the :term:`Leap service`
         *   :ref:`opt_index_improving_solutions` describes best practices
 
     ICE

@@ -26,8 +26,6 @@ Related Information
 ===================
 
 *   The :ref:`opt_index_hybrid` section gets you started with hybrid samplers.
-*   The :ref:`opt_index_properties_parameters` section describes the supported
-    hybrid solvers in the |cloud|_ service.
 *   The :ref:`opt_index_improving_solutions` section describes best practices.
 *   The :ref:`opt_index_examples_beginner` and
     :ref:`opt_index_examples_advanced` sections give usage examples.

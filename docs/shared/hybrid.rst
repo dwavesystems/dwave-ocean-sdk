@@ -15,8 +15,8 @@ For an overview of, and motivation for, hybrid computing, see this
 .. start_leap_intro
 
 The quantum-classical hybrid solvers in the |cloud|_ service are intended to
-solve arbitrary application problems formulated as a :term:`quadratic model` or
-:term:`nonlinear model`\ [#]_.
+solve arbitrary application problems formulated as a :term:`nonlinear model` or
+:term:`quadratic model`\ [#]_.
 
 .. [#]
     Problems submitted **directly** to |dwave_short| quantum computers are in
@@ -54,57 +54,3 @@ best solve your problem. You can also develop your own hybrid components to
 optimize performance.
 
 .. end_dwave_hybrid_intro
-
-
-.. start_generally_available_solvers
-
-The generally available hybrid solvers depend on your account in the Leap
-service. Check your dashboard to see which hybrid solvers are available to you.
-
-Generally available hybrid solvers currently supported include:
-
-*   Hybrid nonlinear solver, also known as the |nlstride_tm| (e.g.,
-    ``hybrid_nonlinear_program_version1``)
-
-    .. include:: ../shared/models.rst
-        :start-after: start_models_nonlinear
-        :end-before: end_models_nonlinear
-
-    These solvers accept arbitrarily structured problems formulated as nonlinear
-    models, with any constraints represented natively.
-
-*   Hybrid CQM solver (e.g., ``hybrid_constrained_quadratic_model_version1``)
-
-    .. include:: ../shared/models.rst
-        :start-after: start_models_cqm
-        :end-before: end_models_cqm
-
-    These solvers accept arbitrarily structured problems formulated as CQMs,
-    with any constraints represented natively.
-
-*   Hybrid BQM solver (e.g., ``hybrid_binary_quadratic_model_version2``)
-
-    .. include:: ../shared/models.rst
-        :start-after: start_models_bqm
-        :end-before: end_models_bqm
-
-    These solvers accept arbitrarily structured, unconstrained problems
-    formulated as BQMs, with any constraints typically represented through
-    :ref:`penalty models <concept_penalty>`.
-
-*   Hybrid DQM solver (e.g., ``hybrid_discrete_quadratic_model_version1``)
-
-    .. include:: ../shared/models.rst
-        :start-after: start_models_dqm
-        :end-before: end_models_dqm
-
-    These solvers accept arbitrarily structured, unconstrained problems
-    formulated as DQMs, with any constraints typically represented through
-    :ref:`penalty models <concept_penalty>`.
-
-
-Contact |dwave_short| at sales@dwavesys.com if your application requires scale
-or performance that exceeds the currently advertised capabilities of the
-generally available hybrid solvers.
-
-.. end_generally_available_solvers

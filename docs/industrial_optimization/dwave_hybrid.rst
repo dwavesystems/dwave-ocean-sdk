@@ -1,6 +1,106 @@
 .. _opt_dwave_hybrid:
 
-==================================
+====================
+Other Hybrid Solvers
+====================
+
+|dwave_short| provides two categories of :ref:`hybrid <concept_hybrid>`
+resources:
+
+*   |cloud|_ service solvers
+
+    Quantum-classical hybrid solvers intended to solve arbitrary application
+    problems. The |nlstride_tm| solver is described in the
+    :ref:`opt_leap_hybrid` section; additional supported solvers are described
+    below.
+*   :ref:`dwave-hybrid <index_hybrid>` samplers
+
+    A Python framework for building a variety of flexible hybrid workflows. The
+    :ref:`opt_dwave_hybrid_development_framework` subsection describes this
+    framework.
+
+.. _opt_leap_hybrid_supported_solvers:
+
+Other Solvers in the Leap Service
+=================================
+
+.. start_generally_available_solvers
+
+The generally available hybrid solvers depend on your account in the Leap
+service. Check your dashboard to see which hybrid solvers are available to you.
+
+.. note::
+    Not all accounts have access to all types of solver.
+
+In addition to the hybrid nonlinear solver, also known as the Stride solver,
+described in the :ref:`opt_leap_hybrid` section, generally available hybrid
+solvers currently supported include:
+
+*   Hybrid CQM solver (e.g., ``hybrid_constrained_quadratic_model_version1``)
+
+    .. include:: ../shared/models.rst
+        :start-after: start_models_cqm
+        :end-before: end_models_cqm
+
+    These solvers accept arbitrarily structured problems formulated as CQMs,
+    with any constraints represented natively.
+
+*   Hybrid BQM solver (e.g., ``hybrid_binary_quadratic_model_version2``)
+
+    .. include:: ../shared/models.rst
+        :start-after: start_models_bqm
+        :end-before: end_models_bqm
+
+    These solvers accept arbitrarily structured, unconstrained problems
+    formulated as BQMs, with any constraints typically represented through
+    :ref:`penalty models <concept_penalty>`.
+
+*   Hybrid DQM solver (e.g., ``hybrid_discrete_quadratic_model_version1``)
+
+    .. include:: ../shared/models.rst
+        :start-after: start_models_dqm
+        :end-before: end_models_dqm
+
+    These solvers accept arbitrarily structured, unconstrained problems
+    formulated as DQMs, with any constraints typically represented through
+    :ref:`penalty models <concept_penalty>`.
+
+
+Contact |dwave_short| at sales@dwavesys.com if your application requires scale
+or performance that exceeds the currently advertised capabilities of the
+generally available hybrid solvers.
+
+.. end_generally_available_solvers
+
+.. _opt_leap_hybrid_properties_params:
+
+Solver Properties and Parameters
+--------------------------------
+
+The following table provides links to documentation for the properties and
+parameters of the hybrid solvers in the Leap service.
+
+.. list-table:: Hybrid Solver Properties and Parameters
+    :header-rows: 1
+
+    *   -   **Solver for Model**
+        -   **Properties**
+        -   **Parameters**
+    *   -   :ref:`Nonlinear models <concept_models_nonlinear>`
+        -   :ref:`opt_solver_nl_properties`
+        -   :ref:`opt_solver_nl_parameters`
+    *   -   :ref:`Constrained quadratic models <concept_models_cqm>`
+        -   :ref:`opt_solver_cqm_properties`
+        -   :ref:`opt_solver_cqm_parameters`
+    *   -   :ref:`Constrained quadratic models <concept_models_bqm>`
+        -   :ref:`opt_solver_bqm_properties`
+        -   :ref:`opt_solver_bqm_parameters`
+    *   -   :ref:`Nonlinear models <concept_models_dqm>`
+        -   :ref:`opt_solver_dqm_properties`
+        -   :ref:`opt_solver_dqm_parameters`
+
+.. _opt_dwave_hybrid_development_framework:
+
 dwave-hybrid Development Framework
 ==================================
 
@@ -39,7 +139,7 @@ Jupyter notebook.
 .. _opt_dwave_hybrid_overview:
 
 Overview
-========
+--------
 
 The :ref:`dwave-hybrid <index_hybrid>` framework enables you to quickly design
 and test workflows that iterate sets of samples through samplers to solve
@@ -74,14 +174,14 @@ your workflow.
 .. _opt_dwave_hybrid_using_framework:
 
 Using the Framework
-===================
+-------------------
 
 This section helps you quickly use a provided reference sampler to solve
 arbitrary-sized problems and then shows you how to build (hybrid) workflows
 using provided components.
 
 Reference Hybrid Sampler: Kerberos
-----------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The :ref:`dwave-hybrid <index_hybrid>` package includes a reference example
 sampler built using the framework: Kerberos is a
@@ -104,7 +204,7 @@ The example below uses Kerberos to solve a large QUBO.
 -4647.0
 
 Building Workflows
-------------------
+~~~~~~~~~~~~~~~~~~
 
 As shown in the :ref:`opt_dwave_hybrid_overview` section, you build hybrid
 solvers by arranging components such as samplers in a workflow.
@@ -140,7 +240,7 @@ solution, `new_state`, is derived from a single iteration of the
 ['SPIN', 1 rows, 1 samples, 3 variables]
 
 Flow Structuring
-~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^
 
 The framework provides classes for structuring workflows that use the
 "building-block" components. As shown in the :ref:`opt_dwave_hybrid_overview`
@@ -193,7 +293,7 @@ branches.
     :end-before: end_hybrid_example
 
 Flow Refining
-~~~~~~~~~~~~~
+^^^^^^^^^^^^^
 
 The framework enables quick modification of work flows to improve solutions and
 performance. For example, after verifying the :ref:`racingBranches1` workflow
@@ -290,10 +390,10 @@ examples below to better fit it to problems with large numbers of variables.
     Traversal by BFS or PFS
 
 Additional Examples
--------------------
+~~~~~~~~~~~~~~~~~~~
 
 Tailoring State Selection
-~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The next example tailors a state selector for a sampler that does some
 post-processing and can alert upon suspect samples. Sampler output modified by
@@ -325,7 +425,7 @@ energy of zero):
 dtype=[('sample', 'i1', (3,)), ('energy', '<f8'), ('num_occurrences', '<i4')]), ['a', 'b', 'c'], {}, 'SPIN')}
 
 Parallel Sampling
-~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^
 
 The code snippet below uses :class:`~hybrid.flow.Map` to run a tabu search on
 two states in parallel.
@@ -345,7 +445,7 @@ two states in parallel.
 
 
 Logging and Execution Information
-=================================
+---------------------------------
 
 You can see detailed execution information by setting the level of logging.
 
@@ -383,7 +483,7 @@ The previous example above might output something like the following:
 .. _opt_dwave_hybrid_dev_components:
 
 Developing New Components
-=========================
+-------------------------
 
 The :ref:`dwave-hybrid <index_hybrid>` framework enables you to build your own
 components to incorporate into your workflow.
@@ -425,7 +525,7 @@ The :ref:`hybrid_utilities` section provides a list of useful utility methods.
 .. _opt_dwave_hybrid_ref_examples:
 
 Reference Examples
-==================
+------------------
 
 The
 `examples <https://github.com/dwavesystems/dwave-hybrid/tree/master/examples>`_

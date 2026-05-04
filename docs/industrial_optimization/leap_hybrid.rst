@@ -1,152 +1,186 @@
 .. _opt_leap_hybrid:
 
-=============================
-Leap Service's Hybrid Solvers
-=============================
+=======================
+Using the Stride Solver
+=======================
 
-This section introduces the |cloud|_ service's quantum-classical :term:`hybrid`
-:term:`solvers <solver>` and provides references to usage information.
+This section describes the |cloud|_ service's quantum-classical :term:`hybrid`
+nonlinear :term:`solver <solver>`, also known as the |nlstride_tm| (e.g.,
+``hybrid_nonlinear_program_version1``), and provides usage information.
 
 .. note::
     Not all accounts have access to this type of solver.
 
-.. _opt_leap_hybrid_supported_solvers:
 
-Supported Solvers
+When to Use this Solver
+=======================
+
+.. include:: ../shared/models.rst
+    :start-after: start_models_nonlinear
+    :end-before: end_models_nonlinear
+
+The |nlstride_short| accepts arbitrarily structured problems formulated as
+nonlinear models, with any constraints represented natively.
+
+Solver Design Philosophy
+------------------------
+
+The :ref:`dwave-optimization <index_optimization>` package and
+the |nlstride_short| incorporate features and design principles from each of the
+following areas:
+
+*   :ref:`Quantum optimization <optimization_philosophy_quantum_optimization>`
+*   :ref:`(Mixed-integer) linear programming <optimization_philosophy_linear_programming>`
+*   :ref:`Lists, sets, and other combinatorial variables <optimization_philosophy_combinatorial_variables>`
+*   :ref:`Tensor programming <optimization_philosophy_tensor_programming>`
+
+For a detailed description, see the :ref:`optimization_philosophy` section.
+
+
+Modeling Problems
 =================
 
-.. include:: ../shared/hybrid.rst
-    :start-after: start_leap_intro
-    :end-before: end_leap_intro
+The :ref:`opt_developing_quantum_applications` section describes the process
+used by |dwave_short| and other companies to develop successful quantum
+applications, which includes such steps as identifying problems that can benefit
+from quantum technology, describing such problems in a way that enables
+developers to model it, developing mathematical models, and implementing code.
 
-.. include:: ../shared/hybrid.rst
-    :start-after: start_generally_available_solvers
-    :end-before: end_generally_available_solvers
+The :ref:`opt_model_construction_nl` section explains the nonlinear model.
 
-.. _opt_leap_hybrid_properties_params:
+The :ref:`dwave-optimization <index_optimization>` package provides a class for
+nonlinear models and model generators for common optimization problems. For
+example, the capacitated vehicle routing problem,
+`CVRP <https://en.wikipedia.org/wiki/Vehicle_routing_problem>`_, is to find the
+shortest possible routes for a fleet of vehicles delivering to multiple customer
+locations from a central depot. The model below finds delivery routes for two
+vehicles delivering from a depot to nine sites with maximum vehicle capacity
+200.
 
-Solver Properties and Parameters
-================================
-
-The following table provides links to documentation for the properties and
-parameters of the hybrid solvers in the Leap service.
-
-.. list-table:: Hybrid Solver Properties and Parameters
-    :header-rows: 1
-
-    *   -   **Solver for Model**
-        -   **Properties**
-        -   **Parameters**
-    *   -   :ref:`Nonlinear models <concept_models_nonlinear>`
-        -   :ref:`opt_solver_nl_properties`
-        -   :ref:`opt_solver_nl_parameters`
-    *   -   :ref:`Constrained quadratic models <concept_models_cqm>`
-        -   :ref:`opt_solver_cqm_properties`
-        -   :ref:`opt_solver_cqm_parameters`
-    *   -   :ref:`Constrained quadratic models <concept_models_bqm>`
-        -   :ref:`opt_solver_bqm_properties`
-        -   :ref:`opt_solver_bqm_parameters`
-    *   -   :ref:`Nonlinear models <concept_models_dqm>`
-        -   :ref:`opt_solver_dqm_properties`
-        -   :ref:`opt_solver_dqm_parameters`
-
-.. _opt_leap_hybrid_timing:
-
-Solver Timing
-=============
-
-The table below lists the timing information returned from quantum-classical
-hybrid solvers in the |cloud|_ service.
-
-.. tabularcolumns:: |p{3cm}|p{10cm}|
-
-.. table:: Timing Information from Hybrid Solvers
-
-    =================== ========================================================
-    Field               Meaning
-    =================== ========================================================
-    *run_time*          Time, in microseconds, the hybrid solver spent
-                        working on the problem.
-    *charge_time*       Time, in microseconds, charged to the account.\ [#]_
-    *qpu_access_time*   QPU time, in microseconds, used by the hybrid
-                        solver.\ [#]_
-    =================== ========================================================
-
-.. [#]
-    *charge_time* and *run_time* may differ due to the time granularity
-    of the solver. For example, if a hybrid solver has a time granularity
-    of 0.5 sec and your submission specifies 4.7 sec, *run_time* might be 5 sec
-    and *charge_time* 4.5 sec.
-
-.. [#]
-    *qpu_access_time* might be zero for submissions with short *run_time*.
-    Because the QPU is a shared, remote resource, the first set of samples
-    from the QPU might not be received before a short explicitly-specified
-    or default *time_limit* is reached. In such cases, the hybrid solver
-    respects the time limitation and returns without the QPU having a chance
-    to contribute to the solution. On the large, complex problems for which
-    hybrid solvers are intended, this is unlikely to occur.
-
-You can access this information via the :ref:`dimod <index_dimod>`
-:class:`~dimod.SampleSet` class, as in the example below.
-
->>> import dimod
->>> from dwave.system import LeapHybridSampler
+>>> from dwave.optimization.generators import capacitated_vehicle_routing
 ...
->>> sampler = LeapHybridSampler(solver={'category': 'hybrid'})  # doctest: +SKIP
->>> bqm = dimod.generators.ran_r(1, 300)
->>> sampleset = sampler.sample(bqm)     # doctest: +SKIP
->>> sampleset.info     # doctest: +SKIP
-{'qpu_access_time': 41990, 'charge_time': 2991424, 'run_time': 2991424}
+>>> demand = [0, 34, 12, 65, 10, 43, 27, 55, 61, 22]
+>>> sites = [(15, 38), (23, -19), (44, 62), (3, 12), (-56, -21), (-53, 2),
+...          (33, 63), (14, -33), (42, 41), (13, -62)]
+>>> model = capacitated_vehicle_routing(
+...     demand=demand,
+...     number_of_vehicles=2,
+...     vehicle_capacity=200,
+...     locations_x=[x for x,y in sites],
+...     locations_y=[y for x,y in sites])
 
-.. _leap_hybrid_usage_charges:
+For more details on this and other model generators, see the
+:ref:`optimization_generators` section.
 
-Solver Usage Charges
-====================
 
-|dwave_short| charges you for time that solvers run your problems,
-with rates depending on QPU usage. You can see the rate at which
-your account's quota is consumed for a particular solver in the solver's
-``property_quota_rate`` property; for example,
-:ref:`property_nl_quota_conversion_rate` for the nonlinear solver.
+Submitting problems
+===================
 
-You can see the time you are charged for in the responses returned for your
-submitted problems. The relevant field in the response is :code:`'charge_time'`.
-The example in the :ref:`opt_leap_hybrid_timing` section shows
-:code:`'charge_time': 2991424'` in the returned response, meaning almost 3
-seconds are being charged.
+Ocean software's :ref:`dwave-system <index_system>` provides the
+:class:`~dwave.system.samplers.LeapHybridNLSampler` class for submitting
+nonlinear models to the |nlstride_short|. Submit the CVRP model to the selected
+solver.
 
-Instantiating the needed compute resources for your problem can introduce
-a delay before the problem is processed. This delay tends to be small compared
-to the overall solution time for large problems. The *charge_time*
-does not include this delay.
+>>> from dwave.system import LeapHybridNLSampler
+>>> with LeapHybridNLSampler() as sampler:          # doctest: +SKIP
+...     print(sampler.solver.name)
+...     results = sampler.sample(
+...         model,
+...         label='SDK Examples - CVRP')
+hybrid_nonlinear_program_version1
 
-Usage Examples
-==============
+Timing & Charges
+----------------
 
-Use a hybrid solver as you would any Ocean SDK sampler. For example,
-given a 1000-variable problem formulated as a quadratic unconstrained binary
-optimization (QUBO) model, :math:`Q`, you can submit it for solution
-to a hybrid BQM solver as follows:
+The :ref:`opt_leap_hybrid_timing` and :ref:`leap_hybrid_usage_charges`
+sections provide information on how solver usage is charged to your account.
 
-.. code-block:: python
+>>> results.result().info["timing"]["run_time"]     # doctest: +SKIP
+5024685
 
-    from dwave.system import LeapHybridSampler
+Properties & Parameters
+-----------------------
 
-    # Select a solver
-    sampler = LeapHybridSampler()
+Real-world problems can be complex and models representing such problems can
+quickly grow large. The :ref:`opt_solver_nl_properties` section provides
+limitations on your model. For example, the state size of the
+:term:`decision variables`
+(:meth:`~dwave.optimization.model.Model.decision_state_size`) must not exceed
+the maximum supported by the solver
+(:ref:`property_nl_maximum_decision_state_size`):
 
-    # Submit for solution
-    answer = sampler.sample_qubo(Q)
+>>> model.decision_state_size() < sampler.properties["maximum_decision_state_size"]   # doctest: +SKIP
+True
 
-You can find more usage examples here:
+The :ref:`opt_solver_nl_parameters` section describes the parameters you can
+configure when submitting problems to the solver. For example, you might
+experiment with various processing times:
 
-*   :ref:`opt_example_nl_tsp` for the nonlinear solver.
-*   :ref:`opt_example_nl_cvrp` for the nonlinear solver.
-*   :ref:`opt_example_cqm_binpacking` for the CQM solver.
-*   :ref:`opt_example_cqm_stockselling` for the CQM solver.
-*   :ref:`opt_example_bqm_structuralimbalance` for the BQM solver.
-*   |dwave_short|'s GitHub repository,
-    `dwave-examples <https://github.com/dwave-examples>`_\ , which includes
-    Jupyter notebooks and code examples for various types of problems, such as
-    the knapsack problem.
+>>> with LeapHybridNLSampler() as sampler:          # doctest: +SKIP
+...     results = sampler.sample(
+...         model,
+...         time_limit=10,
+...         label='SDK Examples - CVRP')
+
+
+Getting Solutions
+=================
+
+The |nlstride_short| returns a nondeterministic number of solutions. Any
+:term:`feasible states <feasible state>` returned are ordered by objective (from
+low to high), and precede infeasible states. While the first sample is the best,
+other feasible solutions may be useful.
+
+Solutions are the assignment of values to the model's
+:term:`decision variables`. You access these by iterating through the model's
+decision variables for each state you are interested in, typically filtered by
+feasibility.
+
+Use the model's :meth:`~dwave.optimization.model.Model.iter_decisions` and
+:meth:`~dwave.optimization.model.Model.iter_constraints` methods to do so. For
+this example, there is a single decision variable (a
+:class:`~dwave.optimization.symbols.DisjointLists`).
+
+>>> routes = next(model.iter_decisions())
+
+.. testcode::
+    :hide:
+
+    model.states.resize(1)
+    routes.set_state(0, [[2., 7., 1., 5.], [4., 3., 8., 6., 0.]])
+
+The best state (state zero) might look like this:
+
+>>> print(f"Feasibility is {all(sym.state(0) for sym in model.iter_constraints())}")
+Feasibility is True
+>>> print((f"Objective value #0 is {model.objective.state(0).round(2)} for routes\n"
+...        f"    {[r.state(0).tolist() for r in routes.iter_successors()]}"))
+Objective value #0 is 423.8 for routes
+    [[2.0, 7.0, 1.0, 5.0], [4.0, 3.0, 8.0, 6.0, 0.0]]
+
+The :ref:`optimization_generators` section explains the returned solutions and
+gives more details on accessing them.
+
+You can iterate over all the states returned by the solver (the
+:meth:`~dwave.optimization.states.States.size` method gives the number of
+returned states). For some models it can be helpful to retrieve non-decision
+variables that calculate useful information: use the
+:meth:`~dwave.optimization.model.Model.iter_symbols` method to retrieve such
+additional symbols.
+
+
+Improving Solutions and Productizing
+====================================
+
+There can be a significant gap between solving an initial model for your
+problem, perhaps simplified and reduced in scale, and an application in
+production. The following resources can be useful:
+
+*   The :ref:`opt_model_construction_nl_guidance` subsection of the
+    :ref:`opt_model_construction_nl` section discusses guidelines improving
+    models.
+*   You might have a guess or non-optimal solution you can provide the solver as
+    an :ref:`initial state <opt_model_construction_nl_states>` that may reduce
+    solution time.
+*   The :ref:`opt_index_improving_solutions` section discusses scaling and
+    productizing applications.
