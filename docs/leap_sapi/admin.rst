@@ -9,20 +9,8 @@
 Leap Administration
 ===================
 
-This section includes the following information:
-
-*   :ref:`admin_overview` provides an overview of Leap administration, including
-    terminology.
-*   :ref:`admin_quick_start` describes how to easily invite people to a
-    :ref:`seat-based project <admin_project_seat_time>`.
-*   :ref:`admin_managing_organizations` describes how to view organization-related
-    information.
-*   :ref:`admin_managing_projects` describes how to update and view your projects.
-*   :ref:`admin_managing_project_members` describes how to invite and manage
-    members of your projects.
-*   :ref:`admin_problem_status` describes how to view and cancel problem
-    submissions.
-*   :ref:`admin_reports` describes how to generate reports.
+If you have project or organization administrator privileges, you can use Leap
+Admin to manage your projects or organizations.
 
 .. _admin_overview:
 
@@ -46,11 +34,6 @@ perform the following tasks:
 
 For information about |dwave_short| quantum computers, problems, and solvers,
 see the :ref:`opt_index_get_started` or :ref:`qpu_index_get_started` topics.
-
-If you have access to Leap Admin, you have been designated as a project or
-organization administrator with privileges to manage one or more projects or
-organizations that have been created by |dwave_short| in accordance with your
-customer contract.
 
 To get started quickly, go to the :ref:`admin_quick_start` topic.
 
@@ -86,6 +69,33 @@ Administration Tasks
 
     You can generate usage reports and export them to `XLSX` and `CSV` files.
 
+Searching Globally
+------------------
+
+Via the Global Search field as shown in :numref:`Figure %s <AdminGlobalSearch>`,
+you can search for organizations, projects, and members across all organizations
+and projects. The text matches any part of an organization, project, or member
+name (including an email address).
+
+.. figure:: ../_images/leap_admin_global_search.png
+    :name: AdminGlobalSearch
+    :alt: Global Search
+
+    Global Search
+
+.. admonition:: Some Limitations
+    :name: global_search_limits
+
+    *   The search is case-insensitive.
+
+    *   Only the Latin-1 character set is supported.
+
+    *   The maximum number of characters is 254.
+
+.. tip::
+    *   Use the `Up` and `Down` arrow keys to select an item in the results list
+        and press `Enter` to go to the selection.
+
 Organization Page
 -----------------
 
@@ -113,7 +123,8 @@ Tabs that organize tasks into logical groups are as follows:
 *   **Problem Status**
 
     Displays a summary of the statuses of all submitted problems. You can
-    display a problem's parameters and its sample set by clicking its problem ID.
+    display a problem's parameters and, if available for the solver, the sample
+    set by clicking the problem ID.
 
 Project Page
 ------------
@@ -141,38 +152,12 @@ Tabs that organize tasks into logical groups are as follows:
 *   **Problem Status**
 
     Displays a summary of the statuses of all submitted problems. You can
-    display a problem's parameters and its sample set by clicking its problem ID.
+    display a problem's parameters and, if available for the solver, the
+    problem's sample set by clicking the problem ID.
 
 *   **Reporting**
 
     Enables generating CSV or Excel reports on solver usage statistics.
-
-Searching Globally
-------------------
-
-Via the Global Search field as shown in :numref:`Figure %s <AdminGlobalSearch>`,
-you can search for organizations, projects, and members across all organizations
-and projects. The text matches any part of an organization, project, or member
-name (including an email address).
-
-.. figure:: ../_images/leap_admin_global_search.png
-    :name: AdminGlobalSearch
-    :alt: Global Search
-
-    Global Search
-
-.. admonition:: Some Limitations
-    :name: global_search_limits
-
-    *   The search is case-insensitive.
-
-    *   Only the Latin-1 character set is supported.
-
-    *   The maximum number of characters is 254.
-
-.. tip::
-    *   Use the `Up` and `Down` arrow keys to select an item in the results list
-        and press `Enter` to go to the selection.
 
 Filtering and Sorting Data
 --------------------------
@@ -333,7 +318,7 @@ Inviting People to a Project
 #.  In the upper-right corner, click |plus_icon| > **Invite User** and make the
     appropriate selections.
 
-    Descriptions of the following selections may be helpful:
+    You may find the following field descriptions helpful:
 
     *   **Role**: A *role* gives a member the privileges to perform specific
         actions in a project. For more information, see :ref:`admin_user_roles`.
@@ -349,13 +334,9 @@ Inviting People to a Project
         *   As a best practice, invite additional project and organization
             administrators as backups.
 
-        *   If the desired email address does not display, ensure that the
-            email address is allowed as specified (individually or by pattern)
-            in the **Allowed Email Settings** section. If the email address is
-            not permitted in the **Allowed Email Settings** section on the
-            **Overview** page, contact your organization or project
-            administrator, or |support_email|_.
-
+        *   If the desired email address is not allowed as specified
+            (individually or by pattern) in the **Allowed Email Settings**
+            section on the **Overview** page, contact |support_email|_.
 
 .. _admin_managing_organizations:
 
@@ -374,8 +355,7 @@ Organization Administrators
 :ref:`Organization administrators <admin_def_organization_administrator>` can
 invite people to the Leap service in any :ref:`role <admin_def_role>` as well as
 administer many aspects of the projects contained in their organization,
-including specifying a project's allowed email addresses and performing all
-tasks that a project administrator can.
+including performing all tasks that a project administrator can.
 
 Viewing Summary Information for Projects
 ----------------------------------------
@@ -383,7 +363,7 @@ Viewing Summary Information for Projects
 The organization's **Projects** tab displays summary information for all
 projects in an organization.
 
-Descriptions of the following columns may be helpful:
+You may find the following field descriptions helpful:
 
 *   **Monthly Usage**: Amount of solver-access time that has been consumed in
     the project for the month.
@@ -391,7 +371,7 @@ Descriptions of the following columns may be helpful:
 *   **Solver Access Time**: Amount of solver-access time aggregated over all
     active records for the project.
 
-*   **Project Status**: Status of the project. For a description of project
+*   **Status**: Status of the project. For a description of project
     statuses, see the :ref:`admin_proj_status_viewing` section.
 
 .. _admin_managing_organizations_status_viewing:
@@ -463,8 +443,9 @@ Viewing Basic Information
 -------------------------
 
 Basic information about the project, such as its status is displayed on the
-title banner and on the **Overview** tab; descriptions of the following fields
-on the **Overview** tab may be helpful:
+title banner and on the **Overview** tab.
+
+You may find the following field descriptions helpful.
 
 .. tabularcolumns:: |l|L|
 
@@ -495,8 +476,9 @@ Each project member, whether a person or an application, occupies a single seat
 of a given type. The number of seats and seat types are determined by the
 customer contract. Each row in the **Project Seats** section represents a
 particular seat type, including such information as the number of seats
-currently occupied and the limit on solver-access time. Descriptions of the
-following columns may be helpful:
+currently occupied and the limit on solver-access time.
+
+You may find the following field descriptions helpful.
 
 .. tabularcolumns:: |l|L|
 
@@ -506,12 +488,7 @@ following columns may be helpful:
         -   The name of the seat type.
 
     *   -   **Seats Occupied**
-        -   The number of seats that are currently allocated to members or
-            applications out of the maximum number of seats that can be
-            occupied; for example, ``2 of 5`` means that 2 seats are occupied
-            out of the 5 available.
-
-            A seat is considered to be occupied once an invitation has been
+        -   A seat is considered to be occupied once an invitation has been
             sent.
 
             The number of members in a project at any one time cannot exceed
@@ -519,10 +496,6 @@ following columns may be helpful:
 
     *   -   **Solver Access Limit**
         -   |solver_access_limit|
-
-    *   -   **Description**
-        -   The description for the seat type. For more information, see
-            :ref:`admin_seat_types`.
 
 To change a member's seat type, see the :ref:`admin_seat_changing_user` section.
 
@@ -571,7 +544,7 @@ records as determined by the customer contract.
 .. tip:: A project administrator receives a notification when the project's
     solver-access time reaches 80%.
 
-Descriptions of the following columns may be helpful:
+You may find the following field descriptions helpful.
 
 .. tabularcolumns:: |l|L|
 
@@ -623,14 +596,13 @@ Thus, record periods (in units of whole days) can be contiguous, overlap, or
 have gaps between them. :numref:`Figure %s <ExampleSolverAccessTimeRecords>`
 illustrates the following:
 
-*   A gap occurs between record 1 and the set of records 2 because the start
-    date in record 1 is not contiguous with the closest end date in the set of
-    records 2.
+*   A gap occurs between the set of records 1 and record 2 because the latest
+    end date in the set of records 1 is not contiguous with the start date in
+    record 2.
 
-*   The records in the set of records 2 are contiguous.
+*   The records in the set of records 1 are contiguous.
 
-*   In the set of records 2, the middle record overlaps with the previous
-    record.
+*   In the set of records 1, the first and second records overlap.
 
 .. figure:: ../_images/leap_admin_solver_time_alloc_record.png
     :name: ExampleSolverAccessTimeRecords
@@ -669,41 +641,6 @@ follows:
 *   The anniversary date is the same as the existing active or scheduled records
     if the new record is contiguous with those existing records.
 
-
-.. _admin_allowed_email_addresses:
-
-Changing the Allowed Email Addresses for Members
-------------------------------------------------
-
-If you are an organization administrator, you can change the email addresses
-that are allowed for members.
-
-You specify email addresses either individually or by pattern via the wildcard
-(``*`` (asterisk)) symbol in the list of the **Allowed Email Settings** section.
-Although patterns are flexible, they typically map to domains or subdomains. For
-example, to allow all email addresses at ``mycompany.com``, specify
-``*@mycompany.com``; to allow all email addresses at ``mycompany.com`` and any
-of its subdomains, in addition to ``*@mycompany.com``, specify
-``*.mycompany.com``.
-
-The project's parent organization also limits the allowed email addresses. You
-can invite only people whose email addresses are allowed by both. For example,
-if ``*@quantumcompany.com`` only is specified for the organization, but you
-specify ``*@classiccompany.com`` only for the project, then you cannot invite
-anyone.
-
-You add and remove an email address or pattern in the **Overview** >
-**Allowed Email Settings** section as follows:
-
-*   To add an email address or pattern, click **+**, enter the email address or
-    pattern, press ``Return``, and click **Add**.
-
-*   To remove an email address or pattern, select it and click **X**.
-
-    **Note:** This action does not affect existing members of the project.
-
-.. tip:: You cannot edit an existing allowed email; you must delete it and
-    add new one.
 
 Viewing Available Solvers
 -------------------------
@@ -802,7 +739,10 @@ remove members from projects.
 Member Roles and Privileges
 ---------------------------
 
-A member has one of the following roles and associated privileges.
+A member has one of the following roles and associated privileges. The roles are
+hierarchical in the following order, with *Organization Admin* at the
+highest level; as such, you can only perform actions for others who are at
+your role level and below.
 
 .. tabularcolumns:: |l|p{10.5cm}|
 
@@ -843,14 +783,7 @@ A member has one of the following roles and associated privileges.
 
             *   Perform any project administrator tasks.
 
-            *   Invite organization administrators.
-
-            *   Assign the Organization Admin role to and remove it from
-                a member.
-
             *   Change a project's name.
-
-            *   Change a project's allowed email addresses for members.
 
 .. _admin_inviting_users_join:
 
@@ -885,7 +818,7 @@ Procedure
 To invite people to join a project or organization, click |plus_icon| >
 **Invite User** and specify the fields.
 
-Descriptions of the following fields may be helpful:
+You may find the following field descriptions helpful.
 
 .. tabularcolumns:: |l|p{9cm}|
 
@@ -906,9 +839,9 @@ Descriptions of the following fields may be helpful:
                 space-, new line-, or comma-delimited list (for example, a
                 CSV file).
 
-            **Note:** The email addresses to be added must be allowed as
-            specified in the **Overview** tab > **Allowed Email Settings** section.
-            For more information, see :ref:`admin_allowed_email_addresses`.
+            **Note:** If the desired email address is not allowed as specified
+            (individually or by pattern) in the **Allowed Email Settings**
+            section on the **Overview** page, contact |support_email|_.
 
     *   -   **Role**
     
@@ -987,8 +920,8 @@ Sending Reminders
 On the **Memberships** tab, you can send invitation reminders to one or more
 invitees.
 
-*   To send an invitation reminder to an invitee,  in the **Actions** column,
-    click |meatball_menu| > **Send Invitation Reminder**.
+*   To send an invitation reminder to an invitee, click |meatball_menu| >
+    **Send Invitation Reminder**.
 
 *   To send invitation reminders to multiple invitees simultaneously, select the
     invitees to which to send invitation reminders and use the *Manage Selected*
@@ -1159,9 +1092,6 @@ On the **Memberships** tab, you can remove one or more members simultaneously.
 *   To remove multiple members simultaneously, select the members to remove and
     use the *Manage Selected* icon |multiselect_menu|.
 
-    If you do not want to send notifications to members, deselect the
-    **Send user an email notification** option.
-
 When members are removed, their statuses change to `Inactive` for the project
 and they can no longer use the solvers in the project. However, their usage
 statistics are preserved for historical purposes.
@@ -1197,27 +1127,27 @@ To view the status of problems submitted to a project's solvers, go to the
 
 .. tip::
 
-    *   To display the most up-to-date status, click *Refresh Table*
-        |refresh_icon|.
+    *   To display the most up-to-date status, click the *Refresh Table*
+        icon |refresh_icon|.
 
     *   To copy a problem ID to the clipboard, place the pointer over the
         problem ID and click the copy icon |copy_icon| that is displayed.
 
-    *   To set the solver region (for example, Europe or North America) to
-        display the problems submitted only to that region's solvers, use the
-        *Regions* icon |region_icon|.
+    *   If multiple regions are available, you can display the problems
+        submitted only to a specific region's solvers by using the *Regions*
+        icon |region_icon|.
 
-Descriptions of the following columns may be helpful:
+You may find the following field descriptions helpful.
 
 .. tabularcolumns:: |l|L|
 
 .. list-table:: **Problem Status** Tab
     :widths: 1 3
 
-    *   -   **Problem ID/Problem Label**
+    *   -   **Problem**
         -   The problem's ID or label. The ID is system-generated.
 
-    *   -   **Problem Status**
+    *   -   **Status**
         -   The status of the submitted problem. For more information, see
             :ref:`admin_problem_submission_status`.
 
@@ -1273,8 +1203,8 @@ To view a problem's details, click a problem ID or problem label on the
             sections.
 
     *   -   **Solution**
-        -   Displays the resulting sample set, which you can export along with a
-            sample set visualization.
+        -   Displays the resulting sample set, if available for the solver. You
+            can export the sample set along with its visualization.
 
     *   -   **Timing**
         -   Displays timing parameters for the problem. For more information,
@@ -1283,18 +1213,16 @@ To view a problem's details, click a problem ID or problem label on the
 Cancelling Problem Submissions
 ------------------------------
 
-To cancel a pending or in-progress problem, click the **X** in the problem's
-**Problem Status** column.
+To cancel pending or in-progress problems, select the problems and click the
+*Cancel Problems* icon **X**.
 
-To cancel multiple pending or in-progress problems, select the checkbox for each
-problem and click **Cancel Problems** > **Cancel Selected**. Cancelled problems
-do not use any solver-access time.
+Cancelled problems do not use any solver-access time.
 
 .. tip::
     *   Before cancelling problem submissions, display the most up-to-date
-        status by clicking **Refresh Table** |refresh_icon|.
+        status by clicking the *Refresh Table* icon |refresh_icon|.
 
-    *   If you run scripts to continuously submit problems, refresh the table
+    *   If you run scripts to continually submit problems, refresh the table
         after cancelling problem submissions to confirm that the cancellation
         attempts succeeded.
 
@@ -1312,7 +1240,7 @@ statistics are organized into the following categories:
 
 *   Number of submitted problems
 
-*   Solver times; they are further described as follows:
+*   Solver times with the following details:
 
     *   Solver category: QPU, hybrid, or custom
 
@@ -1320,61 +1248,21 @@ statistics are organized into the following categories:
 
     *   Totals and subtotals of solver-access times
 
-    *   The unit of time scale (for example, daily, monthly, and so forth)
-        as displayed in the **Aggregate Time Scale** field.
+    *   The unit-of-time scale (for example, daily, monthly, and so forth)
+        as specified in the **Aggregate Time Scale** field. For example, if
+        **Daily** is selected, then solver usage is expressed as separate daily
+        totals within the date range.
 
 The statistics are exported as either an `XLSX` and `CSV` file. See the
 spreadsheet column headings for the exact statistics. On the **Reporting** tab,
 you specify filters for the statistics.
 
 To configure and generate solver usage reports, go to the **Reporting** tab and
-specify the following filter fields:
-
-.. tabularcolumns:: |p{2.5cm}|p{11cm}|
-
-.. list-table:: **Reporting** tab
-    :widths: 1 3
-
-    *   -   **Projects**
-        -   (Read-only) The project to be included in the report.
-
-    *   -   **Users**
-        -   The members whose solver usage is to be included in the report.
-
-    *   -   **Date Range**
-        -   *   **Preset Range**: A set of common ranges (UTC).
-
-            *   **Custom Range**: A date range (UTC) that you specify.
-
-    *   -   **Solvers**
-        -   The solvers for which their usage is to be included in the report.
-
-            Solvers are specific to a region (for example, Europe or North
-            America). To select the solvers for a region, click the region name
-            and select the desired solvers.
-
-    *   -   **Format**
-        -   *   **Export File Format**
-
-                The file format of the exported report.
-
-                **Note:** The `XLSX` format contains formulas for totals and
-                subtotals whereas the `CSV` format contains data only.
-
-            *   **Usage Time Units**
-
-                The unit of time in which solver usage is to be expressed.
-
-            *   **Aggregate Time Scale**
-
-                The scale, expressed as a unit of time, for solver usage in the
-                date range. For example, if **Daily** is selected, then solver
-                usage is expressed as separate daily totals within the date
-                range.
+specify the desired filter fields.
 
 .. tip::
-    *   To reset the filter fields to their default values, click
-        **Reset Template**.
-
     *   To get all values for a field, leave it blank. For example, to generate
         statistics for all members, leave the **Users** field blank.
+
+    *   To reset the filter fields to their default values, click
+        **Reset Template**.
