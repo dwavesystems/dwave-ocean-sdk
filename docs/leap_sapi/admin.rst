@@ -1166,7 +1166,7 @@ Cancelled problems do not use any solver-access time.
 
 .. tip::
     *   Before cancelling problem submissions, display the most up-to-date
-        status by clicking **Refresh Table** |refresh_icon|.
+        status by clicking the *Refresh Table* icon |refresh_icon|.
 
     *   If you run scripts to continually submit problems, refresh the table
         after cancelling problem submissions to confirm that the cancellation
