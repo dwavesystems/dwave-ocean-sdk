@@ -256,7 +256,7 @@ bin has a weight capacity:
 
 The previous two lines of code provide a model for bin packing four items with
 various weights into bins with maximum capacity 7. You can submit the model to
-the |nlstride_short|, as shown in the :re:`opt_leap_hybrid` section, and the
+the |nlstride_short|, as shown in the :ref:`opt_leap_hybrid` section, and the
 solver sets some number of states in the model. To see the returned solutions,
 you select the model's decision variable with the
 :meth:`~dwave.optimization.model.Model.iter_decisions` method:
@@ -268,82 +268,156 @@ you select the model's decision variable with the
 Constructing Models
 ===================
 
-Typically, you construct your model by instantiating decision-variable symbols
-("primitives"), using such model methods as
+Typically, you construct your model by instantiating decision-variable symbols,
+using such model methods as
 :meth:`~dwave.optimization.model.Model.integer` and
-:meth:`~dwave.optimization.model.Model.disjoint_lists`, and constants
-(:meth:`~dwave.optimization.model.Model.constant`).
+:meth:`~dwave.optimization.model.Model.set`, and constants
+(:meth:`~dwave.optimization.model.Model.constant`). You then perform operations
+on these symbols, using functions such as matrix multiplication,
+:func:`~dwave.optimization.mathematical.matmul`, creating successor symbols. In
+this way you formulate objectives and constraints. You can use the
+:func:`~dwave.optimization.model.Model.minimize` method to specify the symbol
+representing an objective to minimize.
 
-The example below, uses the :meth:`~dwave.optimization.model.Model.integer`
-method to instantiate an :class:`~dwave.optimization.symbols.numbers.IntegerVariable`
-symbol.
+The example below, a model for the
+`traveling salesperson <https://en.wikipedia.org/wiki/Travelling_salesman_problem>`_
+problem, uses the :meth:`~dwave.optimization.model.Model.list` method to
+instantiate a :class:`~dwave.optimization.symbols.ListVariable` symbol, as the
+decision variable, and the :meth:`~dwave.optimization.model.Model.constant`
+method to hold a distance matrix as a
+:class:`~dwave.optimization.symbols.Constant` symbol. The list decision variable
+is used for this problem because any itinerary of cities, each visited once, is
+a `permutation <https://en.wikipedia.org/wiki/Permutation>`_ of the cities to be
+visited (with each city represented by an integer).
 
 >>> from dwave.optimization import Model
 ...
 >>> model = Model()
->>> i = model.integer(100, lower_bound=0, upper_bound=20)
+>>> ordered_cities = model.list(3)          # decision variable
+>>> DM = model.constant([                   # constant distance matrix
+...     [0, 3, 1],
+...     [1, 0, 3],
+...     [3, 1, 0]])
 
-These decision-variable and constant symbols form the "root" of the directed
-acyclic graph.
+Such decision-variable and constant symbols form the "root" of the
+:term:`directed acyclic graph` underlying the model.
 
-.. figure:: ../_images/primitive_DAG.png
-    :name: PrimitiveDAG
-    :alt: Illustrative directed acyclic graph of the model. The single circle
-        is the :math:`i` symbol.
+.. figure:: ../_images/nl_model_construct_root.svg
+    :name: nlModelConstructRoot
+    :alt: Illustrative directed acyclic graph of the model. One circle
+        is the :code:`ordered_cities` symbol and the other is the distance
+        matrix.
     :align: center
-    :scale: 100%
 
-    An directed acyclic graph that shows a single primitive, decision variable
-    :math:`i`, an :class:`~dwave.optimization.symbols.numbers.IntegerVariable`.
+    A directed acyclic graph that shows a single decision variable,
+    :code:`ordered_cities`, represented by a
+    :class:`~dwave.optimization.symbols.ListVariable` symbol, and a
+    constant, ``DM``, represented by a
+    :class:`~~dwave.optimization.symbols.Constant` symbol, which holds the
+    distance matrix.
 
-Operations on these symbols, create new symbols, which form the model's full
-directed acyclic graph. The :class:`~dwave.optimization.symbols.reduce.Sum` symbol, for
-example, sums the 100 integer elements of the
-:math:`1 \times 100`-shaped :class:`~dwave.optimization.symbols.numbers.IntegerVariable`
-:math:`i`.
+Typically, you add symbols to the model through
+:ref:`mathematical operations <optimization_math>` between symbols. The
+:class:`~dwave.optimization.symbols.BasicIndexing` symbol, for example, is
+created by operations similar to those of
+:ref:`NumPy's basic indexing <numpy:basic-indexing>`. These symbols are
+successors of the root symbols on the directed acyclic graph, and form part of
+the mathematical formulation.
 
->>> sum_i = i.sum()
+>>> from_city = ordered_cities[:-1]
+>>> to_city = ordered_cities[1:]
+>>> first_city = ordered_cities[0]
+>>> last_city = ordered_cities[-1]
 
-.. figure:: ../_images/primitive_and_symbol_DAG.png
-    :name: PrimitiveAndSymbolDAG
-    :alt: Illustrative directed acyclic graph of the model. The bottom circle
-        is the :math:`i` symbol and the top one is :math:`sum_i`.
+.. figure:: ../_images/nl_model_construct_root_basicindex.svg
+    :name: nlModelConstructRootBasicIndex
+    :alt: Illustrative directed acyclic graph of the model. The bottom circles
+        are the :code:`ordered_cities` symbol and distance matrix; the next four
+        circles are basic indexing.
     :align: center
-    :scale: 100%
 
-    An directed acyclic graph that shows a primitive, decision variable
-    :math:`i`, an :class:`~dwave.optimization.symbols.numbers.IntegerVariable`, and
-    :math:`sum_i`, a :class:`~dwave.optimization.symbols.reduce.Sum` symbol.
+    A directed acyclic graph that shows the root symbols at the bottom and the
+    :class:`~dwave.optimization.symbols.BasicIndexing` symbols above those.
 
 You can access these symbols by iterating on the model's symbols.
 
 >>> with model.lock():
 ...     for symbol in model.iter_symbols():
 ...         print(f"Symbol {type(symbol)} is node {symbol.topological_index()}")
-Symbol <class 'dwave.optimization.symbols.numbers.IntegerVariable'> is node 0
-Symbol <class 'dwave.optimization.symbols.reduce.Sum'> is node 1
+Symbol <class 'dwave.optimization.symbols.collections.ListVariable'> is node 0
+Symbol <class 'dwave.optimization.symbols.constants.Constant'> is node 1
+Symbol <class 'dwave.optimization.symbols.indexing.BasicIndexing'> is node 2
+Symbol <class 'dwave.optimization.symbols.indexing.BasicIndexing'> is node 3
+Symbol <class 'dwave.optimization.symbols.indexing.BasicIndexing'> is node 4
+Symbol <class 'dwave.optimization.symbols.indexing.BasicIndexing'> is node 5
 
-Typically, you add symbols to the model through mathematical operations between
-symbols. The code below adds a symbol that checks that only one of the 100
-values assigned to symbol :math:`i` is a nonzero positive integer.
+The :class:`~dwave.optimization.symbols.AdvancedIndexing` symbol is created
+by operations similar to those of
+:ref:`NumPy's advanced indexing <numpy:advanced-indexing>`. It is used here to
+represent the distances between cities for the selected itinerary and the
+distance to return from the last city to the first.
 
->>> max_i = i.max()
->>> one_nozero = (sum_i == max_i).sum()
+>>> itinerary = DM[from_city, to_city]
+>>> return_to_origin = DM[last_city, first_city]
 
-.. figure:: ../_images/primitive_and_symbols_DAG.png
-    :name: PrimitiveAndSymbolsDAG
-    :alt: Illustrative directed acyclic graph of the model. The bottom circle
-        is the :math:`i` symbol, next are MAx and Sum circles, and then Equal,
-        and the top circle is SUM.
+.. figure:: ../_images/nl_model_construct_root_advancedindex.svg
+    :name: nlModelConstructRootAdvancedIndex
+    :alt: Illustrative directed acyclic graph of the model. The bottom circles
+        are the :code:`ordered_cities` symbol and distance matrix; the four up
+        and to the right are basic indexing; the two up and to the left are
+        advanced indexing.
     :align: center
-    :scale: 100%
 
-    An directed acyclic graph that shows a primitive, decision variable
-    :math:`i`, an :class:`~dwave.optimization.symbols.numbers.IntegerVariable`, and
-    additional mathematical-operation symbols.
+    A directed acyclic graph that shows the root symbols at the bottom and the
+    :class:`~dwave.optimization.symbols.BasicIndexing` and
+    :class:`~dwave.optimization.symbols.AdvancedIndexing` symbols above those.
 
->>> symbols = {}
->>> one_one = 100*[0]
+Next, sum the distances. Note that the total sum uses the ``+`` operation,
+which is equivalent to the :func:`~dwave.optimization.mathematical.add`
+function.
+
+>>> distance_itinerary = itinerary.sum()
+>>> distance_return = return_to_origin.sum()
+>>> distance_total = distance_itinerary + distance_return
+
+.. figure:: ../_images/nl_model_construct_root_sum.svg
+    :name: nlModelConstructRootSum
+    :alt: Illustrative directed acyclic graph of the model. The bottom circles
+        are the :code:`ordered_cities` symbol and distance matrix; the four up
+        and to the right are basic indexing; the two up and to the left are
+        advanced indexing; the top three are sums.
+    :align: center
+
+    A directed acyclic graph that shows the root symbols at the bottom, the
+    :class:`~dwave.optimization.symbols.BasicIndexing` and
+    :class:`~dwave.optimization.symbols.AdvancedIndexing` symbols above those,
+    and the :class:`~dwave.optimization.symbols.Sum` and
+    :class:`~dwave.optimization.symbols.Add` symbols.
+
+Finally, you can define the objective, which is to minimize the distance
+traveled.
+
+>>> model.minimize(distance_total)
+
+Again, as in the :ref:`opt_model_construction_nl_symbols` section above, you can
+use `DAGVIZ <https://wimyedema.github.io/dagviz/>`_ to draw the NetworkX graph
+of the model in just a few lines of code.
+
+.. figure:: ../_images/nl_model_construct_tsp.svg
+    :name: nlModelConstructTSP
+    :alt: Illustrative directed acyclic graph of the model. The bottom circles
+        are the :code:`ordered_cities` symbol and distance matrix; the four up
+        and to the right are basic indexing; the two up and to the left are
+        advanced indexing; the top three are sums.
+    :align: center
+
+    A directed acyclic graph that shows the root symbols at the bottom, the
+    :class:`~dwave.optimization.symbols.BasicIndexing` and
+    :class:`~dwave.optimization.symbols.AdvancedIndexing` symbols above those,
+    and the :class:`~dwave.optimization.symbols.Sum` and
+    :class:`~dwave.optimization.symbols.Add` symbols.
+
+
 >>> with model.lock():
 ...     for symbol in model.iter_symbols():
 ...         symbols[symbol.topological_index()] = symbol
