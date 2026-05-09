@@ -12,6 +12,7 @@ in this section.
     :maxdepth: 1
 
     best_practices
+    model_construction_nl_improve
     scaling
     deploying_apps_prod
     index_examples_advanced
@@ -22,6 +23,12 @@ in this section.
     .. grid-item-card:: :ref:`opt_best_practices`
 
         Simple guidance for using the hybrid solvers.
+
+    .. grid-item-card:: :ref:`opt_model_construction_nl_improve`
+        :link: opt_model_construction_nl_improve
+        :link-type: ref
+
+        Improving your nonlinear models for performance.
 
     .. grid-item-card:: :ref:`opt_scaling`
         :link: opt_scaling
