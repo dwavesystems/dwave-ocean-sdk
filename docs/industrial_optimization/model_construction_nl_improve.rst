@@ -9,57 +9,207 @@ The :ref:`opt_model_construction_nl` section explained the basics of using the
 models for the |nlstride_tm|. This section provides guidance for improving your
 models for performance.
 
-Selecting Decision variables
+Selecting Decision Variables
 ============================
 
-To assist in selecting the implicitly constrained symbol most appropriate for a
-given problem, the table below compares the key characteristics and typical
-applications of each.
+When formulating optimization problems, your choice of
+:term:`decision variables` significantly affects the model's clarity, size of
+the solution space, and, ultimately, the solver's performance.
 
-.. list-table:: Comparative Summary of Implicitly Constrained Symbols
+Ocean software's :class:`~dwave.optimization.model.Model` class provides several
+types of decision variables that encode "implicit constraints." These
+:ref:`symbols <opt_model_construction_nl_symbols>` inherently represent
+common combinatorial structures such as permutations, subsets, or partitions,
+guiding the solver to explore only valid configurations.
+
+Using implicitly constrained decision variables offers several advantages:
+
+*   **Simplified Model Formulation:** Complex constraints (e.g., ensuring
+    all elements are unique and used in a sequence) are handled implicitly
+    by the variable type itself, leading to more concise and readable
+    models.
+
+*   **Reduced Solution Space:** The solver's search space is drastically
+    reduced because it only considers arrangements that satisfy the
+    inherent nature of the symbol (e.g., permutations instead of all
+    possible lists).
+
+*   **Potential for Improved Performance:** A smaller, more structured search
+    space can lead to faster solution times and better quality solutions.
+
+The table below compares characteristics and typical applications of such
+decision variables.
+
+.. list-table:: Implicitly Constrained Decision Variables
     :widths: 15 20 20 22 22
     :header-rows: 1
 
-    *   - **Feature**
-        - ``list(N)``
-        - ``set(N)``
-        - ``disjoint_lists(...)``
-        - ``disjoint_bit_sets(...)``
-    *   - **Primary Purpose**
+    *   - **Decision Variable**
+        - :meth:`~dwave.optimization.model.Model.list`
+        - :meth:`~dwave.optimization.model.Model.set`
+        - :meth:`~dwave.optimization.model.Model.disjoint_lists_symbol`
+        - :meth:`~dwave.optimization.model.Model.disjoint_bit_sets`
+    *   - **Description**
         - Ordered permutation of ``range(N)``
         - Unordered subset of ``range(N)``
-        - Disjoint ordered partitions of ``range(primary_set_size)``
-        - Disjoint unordered partitions of ``range(primary_set_size)``
-    *   - **Order Within Group/List**
+        - Disjoint ordered partitions of ``range(N)``
+        - Disjoint unordered partitions of ``range(N)``
+    *   - **Ordered?**
         - Yes
         - No
         - Yes (within each list)
         - No (within each set)
     *   - **Item Uniqueness**
         - All ``N`` items appear exactly once in the list
-        - Unique subset from universe
+        - Unique subset from domain
         - Each item appears in at most one list; lists are permutations
         - Each item appears in at most one set; sets contain unique items
     *   - **Number of Collections**
         - 1 list
         - 1 set
-        - ``num_disjoint_lists``
-        - ``num_disjoint_sets``
-    *   - **Creation Returns**
-        - Single decision variable
-        - Single decision variable
-        - Main variable + collection of lists
-        - Main variable + collection of sets
-    *   - **Typical Problem Type**
-        - TSP, QAP, sequencing
-        - Knapsack, feature selection
-        - CVRP, task assignment, multi-machine scheduling
-        - Bin packing, clustering, set partitioning
-    *   - **Input Parameters**
-        - ``N``
-        - ``N``
-        - ``primary_set_size``, ``num_disjoint_lists``
-        - ``primary_set_size``, ``num_disjoint_sets``
+        - Configurable
+        - Configurable
+
+Permutation: ``ListVariable`` Symbol
+------------------------------------
+
+The :meth:`~dwave.optimization.model.Model.list` method creates a decision
+variable representing an ordered arrangement (a permutation) of :math:`N`
+distinct items. These items are implicitly the integers
+:math:`[0, 1, \ldots, N-1]`.
+
+Implicit constraints:
+
+*   All :math:`N` items (integers :math:`0` to :math:`N-1`) are present exactly
+    once.
+*   Order matters.
+*   Elements are unique.
+
+:meth:`~dwave.optimization.model.Model.list` is ideal for problems where the
+core decision involves finding the optimal order or sequence of a set of items.
+It replaces the creation of :math:`N` integer variables and adding
+"all-different" constraints along with range constraints. The solver explores
+the :math:`N!` possible permutations rather than the :math:`N^N` combinations
+possible with :math:`N` unrestricted integer variables.
+If your actual items are not integers :math:`0` to :math:`N-1` (e.g., city
+names), map them to these integer indices before defining the model and map back
+when interpreting the solution. Note that the solver might return indices as
+floats, requiring casting to ``int``.
+
+Common use cases:
+
+*   `Traveling salesperson <https://en.wikipedia.org/wiki/Travelling_salesman_problem>`_:
+    Finding the shortest tour.
+*   `Quadratic assignment <https://en.wikipedia.org/wiki/Quadratic_assignment_problem>`_:
+    Assigning :math:`N` facilities to :math:`N` locations where the interaction
+    cost depends on flow and distance, and the assignment is a permutation.
+*   `Flow-shop scheduling <https://en.wikipedia.org/wiki/Flow-shop_scheduling>`_:
+    Determining the sequence of jobs on a series of machines to minimize
+    makespan.
+
+*   Single-machine scheduling: Ordering tasks on a single resource.
+
+Subset: ``SetVariable`` Symbol
+------------------------------
+
+The :meth:`~dwave.optimization.model.Model.set` method creates a decision
+variable representing an unordered collection (a subset) of unique items chosen
+from a universe of :math:`N` items (integers :math:`0` to :math:`N-1`).
+
+Implicit constraints:
+
+*   Elements selected are unique.
+*   Order of elements within the set does not matter.
+*   Items are chosen from the universe :math:`[0, \ldots, N-1]`.
+
+:meth:`~dwave.optimization.model.Model.set` is used when the decision involves
+selecting a group of items, and the order of selection is irrelevant. The symbol
+inherently handles the uniqueness of selected items. Constraints on the size
+(cardinality) of the set or other properties based on the selected items are
+typically added explicitly. As with
+:meth:`~dwave.optimization.model.Model.list`, if the actual items are not
+:math:`0` to :math:`N-1`, a mapping is necessary. Note that the solver might
+return indices as floats, requiring casting to ``int``.
+
+Common use cases:
+
+*   `knapsack problem <https://en.wikipedia.org/wiki/Knapsack_problem>`_:
+    Selecting items to maximize value/utility within a budget/capacity.
+*   Set-covering, packing, and partitioning Problems: Selecting subsets
+    to satisfy coverage or disjointness requirements.
+*   Feature selection:** Choosing a subset of features in machine
+    learning.
+*   Committee selection: Forming a team or committee with specific
+    properties from a larger pool.
+
+Disjoint Ordered Lists: ``DisjointLists`` Symbol
+------------------------------------------------
+
+The :meth:`~dwave.optimization.model.Model.disjoint_lists` method creates a
+complex decision variable. It partitions items from a primary set (integers
+:math:`0` to ``primary_set_size-1``) into a specified number of lists,
+``num_disjoint_lists``. Each of these lists is an ordered sequence (permutation)
+of a subset of the primary set, and no item from the primary set can appear in
+more than one list.
+
+Implicit constraints:
+
+*   Each item from the primary set (indices :math:`0` to ``primary_set_size-1``)
+    appears in at most one list.
+*   Order matters within each list.
+*   Lists are disjoint regarding item membership.
+
+This symbol is exceptionally powerful for problems such as vehicle routing,
+where a set of customers needs to be divided among several vehicles, and each
+vehicle follows a specific ordered route. The returned object allows you to
+access and constrain each list individually. Note that the solver might return
+indices as floats, requiring casting to ``int``.
+
+Common use cases:
+
+*   Vehicle routing problems (
+    `CVRP <https://en.wikipedia.org/wiki/Vehicle_routing_problem>`_,
+    `CVRPTW <https://en.wikipedia.org/wiki/Vehicle_routing_problem>`_:
+    Assigning customers to vehicles and determining the optimal sequence of
+    visits for each vehicle.
+*   Multi-agent task assignment and scheduling: Allocating tasks to different
+    agents/robots where each agent performs a sequence of assigned tasks.
+*   Parallel machine scheduling: Assigning jobs to different machines and
+    sequencing them on each machine.
+
+Disjoint Unordered Sets: ``DisjointBitSets`` Symbol
+---------------------------------------------------
+
+The :meth:`~dwave.optimization.model.Model.disjoint_bit_sets` method is used to
+partition a universe of ``primary_set_size`` items (integers :math:`0` to
+``primary_set_size-1``) into ``num_disjoint_sets`` mutually exclusive, unordered
+sets.
+
+Implicit constraints:
+
+*   Each item from the universe (indices :math:`0` to ``primary_set_size-1``)
+    appears in at most one set.
+*   Order does not matter within each set.
+*   Sets are disjoint.
+
+This symbol is suited for problems where items need to be grouped into distinct
+categories or containers, and the order of items within a category does not
+matter. The returned object allows individual manipulation and constraint of
+each set. The items to be partitioned are integers from
+``range(primary_set_size)``. Note that the solver might return indices
+as floats, requiring casting to ``int``.
+
+Common use cases:
+
+*   `Bin packing <https://en.wikipedia.org/wiki/Bin_packing_problem>`_:
+    Assigning items to a minimum number of bins.
+*   Set-partitioning and clustering: Dividing items into disjoint, unordered
+    groups.
+*   Resource allocation: Grouping resources into pools where order within a pool
+    doesn't matter.
+*   Graph coloring (vertex coloring variant): Assigning vertices (items) to
+    color classes (sets) such that no two adjacent vertices share the same
+    color.
 
 .. _opt_model_construction_nl_guidance:
 

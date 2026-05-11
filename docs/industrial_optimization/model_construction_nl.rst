@@ -48,7 +48,7 @@ constants, and mathematical operations---are represented as nodes in the graph
 while the flow of operations upon these symbols are represented as the graph's
 edges.
 
-.. figure:: ../_images/nonlinear_model_DAG.png
+.. figure:: ../_images/nonlinear_model_DAG.svg
     :name: nonlinearModelDAG
     :alt: Illustrative figure of a directed acyclic graph, with circles
         representing symbols connected by directional lines with arrowheads.
@@ -117,7 +117,7 @@ minimizing polynomial :math:`y = i^2 - 4i`.
     :align: center
     :scale: 100%
 
-    An directed acyclic graph that illustrates one way of representing the model
+    A directed acyclic graph that illustrates one way of representing the model
     for minimizing polynomial :math:`y = i^2 - 4i`.
 
 The :ref:`dwave-optimization <index_optimization>` package's
@@ -146,8 +146,8 @@ you to select those most suited to an efficient formulation of your model.
 
 .. tip::
     Scan the :ref:`symbols <optimization_symbols>` section to see supported
-    symbols, and follow the links from a symbol you need to the model or
-    mathematical method used to instantiate it.
+    symbols, and follow the links from a symbol you need to the method used to
+    instantiate it.
 
 .. _opt_model_construction_nl_states:
 
@@ -282,9 +282,9 @@ this way you formulate objectives and constraints. You can use the
 :func:`~dwave.optimization.model.Model.minimize` method to specify the symbol
 representing an objective to minimize.
 
-The example below, a model for the
+You can create a model for the
 `traveling salesperson <https://en.wikipedia.org/wiki/Travelling_salesman_problem>`_
-problem, uses the :meth:`~dwave.optimization.model.Model.list` method to
+problem using the :meth:`~dwave.optimization.model.Model.list` method to
 instantiate a :class:`~dwave.optimization.symbols.ListVariable` symbol, as the
 decision variable, and the :meth:`~dwave.optimization.model.Model.constant`
 method to hold a distance matrix as a
