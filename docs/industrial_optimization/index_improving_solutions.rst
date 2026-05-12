@@ -24,8 +24,8 @@ in this section.
 
         Simple guidance for using the hybrid solvers.
 
-    .. grid-item-card:: :ref:`opt_model_construction_nl_improve`
-        :link: opt_model_construction_nl_improve
+    .. grid-item-card:: :ref:`opt_model_construction_nl_guidance`
+        :link: opt_model_construction_nl_guidance
         :link-type: ref
 
         Improving your nonlinear models for performance.

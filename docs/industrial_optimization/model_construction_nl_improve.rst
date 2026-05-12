@@ -1,16 +1,44 @@
-.. _opt_model_construction_nl_improve:
+.. _opt_model_construction_nl_guidance:
 
-======================
-Building Better Models
-======================
+====================
+Building Good Models
+====================
 
 The :ref:`opt_model_construction_nl` section explained the basics of using the
 :ref:`dwave-optimization <index_optimization>` package to create nonlinear
 models for the |nlstride_tm|. This section provides guidance for improving your
 models for performance.
 
-Selecting Decision Variables
-============================
+As much as possible, design models along these lines:
+
+1.  Exploit the implicit constraints of symbols such as
+    :class:`~dwave.optimization.symbols.ListVariable`,
+    :class:`~dwave.optimization.symbols.SetVariable`,
+    :class:`~dwave.optimization.symbols.DisjointLists`,
+    and :class:`~dwave.optimization.symbols.DisjointBitSets`.
+
+    Typically, solver performance strongly depends on the size of the solution
+    space for your modelled problem: models with smaller spaces of feasible
+    solutions tend to perform better than ones with larger spaces. A powerful
+    way to reduce the feasible-solutions space is by using variables that act
+    as implicit constraints. This is analogous to judicious typing of a variable
+    to meet but not exceed its required assignments: a Boolean variable, ``x``,
+    has a solution space of size 2 (:math:`\{True, False\}`) while a
+    finite-precision integer variable, ``i``, might have a solution space of
+    several billion values.
+
+2.  Use compact matrix operations in your formulations.
+
+    The `dwave-optimization` package enables you to formulate models using
+    linear-algebra conventions similar to `NumPy <https://numpy.org/>`_. Compact
+    matrix formulation are usually more efficient and should be preferred.
+
+See the formulations used by the package's
+:ref:`model generators <optimization_generators>` and relevant
+`GitHub examples <https://github.com/dwave-examples>`_ for reference.
+
+Implicitly Constrained Decision Variables
+=========================================
 
 When formulating optimization problems, your choice of
 :term:`decision variables` significantly affects the model's clarity, size of
@@ -211,41 +239,157 @@ Common use cases:
     color classes (sets) such that no two adjacent vertices share the same
     color.
 
-.. _opt_model_construction_nl_guidance:
+Example: Implicitly Constrained Symbols
+---------------------------------------
 
-Improving Your Models
-=====================
+Consider a problem of selecting a route for several destinations with the cost
+increasing on each leg of the itinerary; for the example formulated below, one
+can travel through four destinations in any order, one destination per day, with
+the transportation cost per unit of travel doubling every subsequent day.
 
-As much as possible, design models along these lines:
+The figure below shows four destinations as dots labeled ``0`` to
+``3``, and plots the least costly (green) and most costly (red) routes.
 
-1.  Use compact matrix operations in your formulations.
+.. figure:: ../_images/best_worst_routes.png
+    :name: bestWorstRoutes
+    :alt: Plot of two routes between four points, the green one, (3, 2, 1, 0) is
+          the least costly while the red one, (2, 1, 3, 0), is the most costly.
+    :align: center
+    :scale: 80%
 
-    The `dwave-optimization` package enables you to formulate models using
-    linear-algebra conventions similar to `NumPy <https://numpy.org/>`_. Compact
-    matrix formulation are usually more efficient and should be preferred.
+    Finding the optimal route between destinations.
 
-2.  Exploit the implicit constraints of symbols such as
-    :class:`~dwave.optimization.symbols.ListVariable`,
-    :class:`~dwave.optimization.symbols.SetVariable`,
-    :class:`~dwave.optimization.symbols.DisjointLists`,
-    and :class:`~dwave.optimization.symbols.DisjointBitSets`.
+The code snippet below defines the cost per leg and the distances between the
+four destinations, with values chosen for simple illustration.
 
-    Typically, solver performance strongly depends on the size of the solution
-    space for your modelled problem: models with smaller spaces of feasible
-    solutions tend to perform better than ones with larger spaces. A powerful
-    way to reduce the feasible-solutions space is by using variables that act
-    as implicit constraints. This is analogous to judicious typing of a variable
-    to meet but not exceed its required assignments: a Boolean variable, ``x``,
-    has a solution space of size 2 (:math:`\{True, False\}`) while a
-    finite-precision integer variable, ``i``, might have a solution space of
-    several billion values.
+>>> import numpy as np
+...
+>>> cost_per_day = [1, 2, 4]
+>>> distance_matrix = np.asarray([
+...     [0, 1, np.sqrt(10), np.sqrt(34)],
+...     [1, 0, 3, np.sqrt(25)],
+...     [np.sqrt(10), 3, 0, 4],
+...     [np.sqrt(34), np.sqrt(25), 4, 0]])
 
-See the formulations used by the package's
-:ref:`model generators <optimization_generators>` and relevant
-`GitHub examples <https://github.com/dwave-examples>`_ for reference.
+This section compares two formulations of this small routing problem: an
+intuitive model that uses the generic
+:class:`~dwave.optimization.symbols.BinaryVariable` symbol to represent decisions
+on ordering the destinations versus a model that uses the implicitly constrained
+:class:`~dwave.optimization.symbols.ListVariable` symbol, where the order of
+destinations is a permutation of values. The figure below compares the directed
+acyclic graphs for these two formulations.
 
-Example: Compact Matrix Formulation
------------------------------------
+
+.. figure:: ../_images/route_models.png
+    :name: RouteModels
+    :alt: Illustrative directed acyclic graph of two models. The left graph has
+        far fewer nodes than that one the right.
+    :align: center
+    :scale: 100%
+
+    Comparison between models using implicitly-constrained decision symbol
+    (left) and explicit constrains on a simple binary symbol (right) in
+    formulation. The first formulation has fewer symbols.
+
+It is expected that the more compact model that uses implicit constraints will
+perform better.
+
+The two tabs below provide the two formulations.
+
+.. tab-set::
+
+    .. tab-item:: Implicit Constraints
+
+        The model in this tab is formulated using the implicitly
+        constrained :class:`~dwave.optimization.symbols.List` symbol.
+
+        >>> model = Model()
+        >>> # Add the constants
+        >>> cost = model.constant(cost_per_day)
+        >>> distances = model.constant(distance_matrix)
+        >>> # Add the decision symbol
+        >>> route = model.list(4)
+        >>> # Optimize the objective
+        >>> model.minimize((cost * distances[route[:-1],route[1:]]).sum())
+
+        You can see the objective values for the least and most costly routes
+        as permutations of the :math:`[0, 1, 2, 3]` list as follows:
+
+        >>> with model.lock():
+        ...     model.states.resize(2)
+        ...     route.set_state(0, [3, 2, 1, 0])
+        ...     route.set_state(1, [2, 1, 3, 0])
+        ...     print(int(model.objective.state(0)), int(model.objective.state(1)))
+        14 36
+
+    .. tab-item:: Explicit Constraints
+
+        The model in this tab is formulated using explicit constraints on the
+        generic :class:`~dwave.optimization.symbols.BinaryVariable` symbol.
+
+        >>> from dwave.optimization.mathematical import add
+        ...
+        >>> model = Model()
+        >>> # Add the problem constants
+        >>> cost = model.constant(cost_per_day)
+        >>> distances = model.constant(distance_matrix)
+
+        Define constants that are used to formulate the explicit constraints.
+
+        >>> one = model.constant(1)
+        >>> indx_int = model.constant([0, 1, 2, 3])
+
+        Add the decision symbol: for each of the itinerary's four legs, each
+        of the four destinations is represented by a binary variable. If leg
+        1 should be to destination 2, for example, the value of row 1 is
+        :math:`False, False, True, False`. This is a representation known as
+        `one-hot encoding <https://en.wikipedia.org/wiki/One-hot>`_.
+
+        >>> itinerary_loc = model.binary((4, 4))
+
+        Add the objective. Here, the :code:`indx_int` constant converts the
+        binary one-hot variables to an index of the distance matrix.
+
+        >>> model.minimize(add(*(
+        ...     (itinerary_loc[u, pos] * itinerary_loc[v, (pos + 1) % 4] * distances[u, v] +
+        ...     itinerary_loc[v, pos] * itinerary_loc[u, (pos + 1) % 4] * distances[v, u]) *
+        ...     cost[pos]
+        ...     for u in range(4)
+        ...     for v in range(u+1, 4)
+        ...     for pos in range(3)
+        ... )))
+
+        Add explicit one-hot constraints: summing the columns of the decision
+        variable must give ones because each destination is visited once;
+        summing rows must give ones because each leg visits one destination.
+
+        >>> for i in range(distances.shape()[0]):
+        ...     model.add_constraint(itinerary_loc[i, :].sum() <= one)
+        ...     model.add_constraint(one <= itinerary_loc[i,:].sum())
+        ...     model.add_constraint(itinerary_loc[:, i].sum() <= one)
+        ...     model.add_constraint(one <= itinerary_loc[:, i].sum()) # doctest: +ELLIPSIS
+        <dwave.optimization.symbols.binaryop.LessEqual at ...>
+        ...
+
+        You can see the objective cost for the least costly route
+        as follows:
+
+        >>> with model.lock():
+        ...     model.states.resize(2)
+        ...     itinerary_loc.set_state(0, [
+        ...         [0, 0, 0, 1],
+        ...         [0, 0, 1, 0],
+        ...         [0, 1, 0, 0],
+        ...         [1, 0, 0, 0]])
+        ...     print(int(model.objective.state(0)))
+        14
+
+The directed acyclic graph for the implicitly constrained model has few nodes
+and the model is more efficient.
+
+
+Compact Matrix Formulation
+==========================
 
 Like a large class of real-world problems, optimally loading a truck to convey
 the most valuable merchandise while not exceeding limitations on carrying weight
@@ -366,152 +510,36 @@ The two tabs below provide the two formulations.
         28
 
 Compare the two formulations. Prefer compact-matrix formulations for your
-models. 
+models.
 
-Example: Implicitly Constrained Symbols
----------------------------------------
+Construction Vs. Solve Information
+==================================
 
-Consider a problem of selecting a route for several destinations with the cost
-increasing on each leg of the itinerary; for the example formulated below, one
-can travel through four destinations in any order, one destination per day, with
-the transportation cost per unit of travel doubling every subsequent day.
+Pay attention to when information in your model is available: is it already
+known when constructing the model or only at run-time.
 
-The figure below shows four destinations as dots labeled ``0`` to
-``3``, and plots the least costly (green) and most costly (red) routes.
+The following example attempts to make conditional use of the state of an
+integer variable, ``x`` during construction of a model. This fails because the
+state is set during solution, not construction.
 
-.. figure:: ../_images/best_worst_routes.png
-    :name: bestWorstRoutes
-    :alt: Plot of two routes between four points, the green one, (3, 2, 1, 0) is
-          the least costly while the red one, (2, 1, 3, 0), is the most costly.
-    :align: center
-    :scale: 80%
-
-    Finding the optimal route between destinations.
-
-The code snippet below defines the cost per leg and the distances between the
-four destinations, with values chosen for simple illustration.
-
->>> import numpy as np
+>>> from dwave.optimization import Model
 ...
->>> cost_per_day = [1, 2, 4]
->>> distance_matrix = np.asarray([
-...     [0, 1, np.sqrt(10), np.sqrt(34)],
-...     [1, 0, 3, np.sqrt(25)],
-...     [np.sqrt(10), 3, 0, 4],
-...     [np.sqrt(34), np.sqrt(25), 4, 0]])
+>>> model = Model()
+>>> x = model.integer()
+>>> c = model.constant(1)
+>>> try:
+...     z = 1 if x>=c else 2
+... except:
+...     print("Cannot set z")
+Cannot set z
 
-This section compares two formulations of this small routing problem: an
-intuitive model that uses the generic
-:class:`~dwave.optimization.symbols.BinaryVariable` symbol to represent decisions
-on ordering the destinations versus a model that uses the implicitly constrained
-:class:`~dwave.optimization.symbols.ListVariable` symbol, where the order of
-destinations is a permutation of values. The figure below compares the directed
-acyclic graphs for these two formulations.
+You can instead use the :func:`~dwave.optimization.mathematical.where` function
+to represent the choice in this model.
 
-
-.. figure:: ../_images/route_models.png
-    :name: RouteModels
-    :alt: Illustrative directed acyclic graph of two models. The left graph has
-        far fewer nodes than that one the right.
-    :align: center
-    :scale: 100%
-
-    Comparison between models using implicitly-constrained decision symbol
-    (left) and explicit constrains on a simple binary symbol (right) in
-    formulation. The first formulation has fewer symbols.
-
-It is expected that the more compact model that uses implicit constraints will
-perform better. 
-
-The two tabs below provide the two formulations.
-
-.. tab-set::
-
-    .. tab-item:: Implicit Constraints
-
-        The model in this tab is formulated using the implicitly
-        constrained :class:`~dwave.optimization.symbols.List` symbol.
-
-        >>> model = Model()
-        >>> # Add the constants
-        >>> cost = model.constant(cost_per_day)
-        >>> distances = model.constant(distance_matrix)
-        >>> # Add the decision symbol
-        >>> route = model.list(4)
-        >>> # Optimize the objective
-        >>> model.minimize((cost * distances[route[:-1],route[1:]]).sum())
-
-        You can see the objective values for the least and most costly routes
-        as permutations of the :math:`[0, 1, 2, 3]` list as follows:
-
-        >>> with model.lock():
-        ...     model.states.resize(2)
-        ...     route.set_state(0, [3, 2, 1, 0])
-        ...     route.set_state(1, [2, 1, 3, 0])
-        ...     print(int(model.objective.state(0)), int(model.objective.state(1)))
-        14 36
-
-    .. tab-item:: Explicit Constraints
-
-        The model in this tab is formulated using explicit constraints on the
-        generic :class:`~dwave.optimization.symbols.BinaryVariable` symbol.
-
-        >>> from dwave.optimization.mathematical import add
-        ...
-        >>> model = Model()
-        >>> # Add the problem constants
-        >>> cost = model.constant(cost_per_day)
-        >>> distances = model.constant(distance_matrix)
-
-        Define constants that are used to formulate the explicit constraints.
-
-        >>> one = model.constant(1)
-        >>> indx_int = model.constant([0, 1, 2, 3])
-
-        Add the decision symbol: for each of the itinerary's four legs, each
-        of the four destinations is represented by a binary variable. If leg
-        1 should be to destination 2, for example, the value of row 1 is
-        :math:`False, False, True, False`. This is a representation known as
-        `one-hot encoding <https://en.wikipedia.org/wiki/One-hot>`_.
-
-        >>> itinerary_loc = model.binary((4, 4))
-
-        Add the objective. Here, the :code:`indx_int` constant converts the
-        binary one-hot variables to an index of the distance matrix.
-
-        >>> model.minimize(add(*(
-        ...     (itinerary_loc[u, pos] * itinerary_loc[v, (pos + 1) % 4] * distances[u, v] +
-        ...     itinerary_loc[v, pos] * itinerary_loc[u, (pos + 1) % 4] * distances[v, u]) *
-        ...     cost[pos]
-        ...     for u in range(4)
-        ...     for v in range(u+1, 4)
-        ...     for pos in range(3)
-        ... )))
-
-        Add explicit one-hot constraints: summing the columns of the decision
-        variable must give ones because each destination is visited once;
-        summing rows must give ones because each leg visits one destination.
-
-        >>> for i in range(distances.shape()[0]):
-        ...     model.add_constraint(itinerary_loc[i, :].sum() <= one)
-        ...     model.add_constraint(one <= itinerary_loc[i,:].sum())
-        ...     model.add_constraint(itinerary_loc[:, i].sum() <= one)
-        ...     model.add_constraint(one <= itinerary_loc[:, i].sum()) # doctest: +ELLIPSIS
-        <dwave.optimization.symbols.binaryop.LessEqual at ...>
-        ...
-
-        You can see the objective cost for the least costly route
-        as follows:
-
-        >>> with model.lock():
-        ...     model.states.resize(2)
-        ...     itinerary_loc.set_state(0, [
-        ...         [0, 0, 0, 1],
-        ...         [0, 0, 1, 0],
-        ...         [0, 1, 0, 0],
-        ...         [1, 0, 0, 0]])
-        ...     print(int(model.objective.state(0)))
-        14
-
-The directed acyclic graph for the implicitly constrained model has few nodes
-and the model is more efficient.
+>>> from dwave.optimization import Model
+>>> from dwave.optimization.mathematical import where
+...
+>>> model = Model()
+>>> x = model.integer()
+>>> c = model.constant(1)
+>>> z = where(x >= c, model.constant(1), model.constant(2))
