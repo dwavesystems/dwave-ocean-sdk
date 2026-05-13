@@ -387,6 +387,7 @@ The two tabs below provide the two formulations.
 The directed acyclic graph for the implicitly constrained model has few nodes
 and the model is more efficient.
 
+.. _opt_model_construction_nl_compact:
 
 Compact Matrix Formulation
 ==========================
@@ -512,6 +513,8 @@ The two tabs below provide the two formulations.
 Compare the two formulations. Prefer compact-matrix formulations for your
 models.
 
+.. _opt_model_construction_nl_vs_solve:
+
 Construction Vs. Solve Information
 ==================================
 
@@ -543,3 +546,167 @@ to represent the choice in this model.
 >>> x = model.integer()
 >>> c = model.constant(1)
 >>> z = where(x >= c, model.constant(1), model.constant(2))
+
+Using Dynamic Arrays
+--------------------
+
+Some symbols are
+:ref:`dynamically sized array <optimization_philosophy_tensor_programming_dynamic>`,
+meaning arrays with a state-dependent size. For example, a
+:meth:`dwave.optimization.model.Model.set` variable, with a domain of the
+subsets of :math:`[0, n)`, encodes subsets with different lengths, therefore the
+set variable's state size also varies.
+
+>>> from dwave.optimization import Model
+...
+>>> model = Model()
+>>> model.states.resize(2)
+>>> s = model.set(5)
+>>> s.set_state(0, [0, 3])  # {0, 3} is a subset of [0, 5)
+>>> s.set_state(1, [0, 1, 2])  # {0, 1, 2} is also a subset of [0, 5)
+>>> print(f"State sizes:\n    0: {len(s.state(0))}\n    1: {len(s.state(1))}")
+State sizes:
+    0: 2
+    1: 3
+
+Indexing such symbols can be a bit tricky. For example, you cannot simply read
+an element of a set variable's state by directly indexing it because when
+constructing the model it is unknown whether or not such an index is valid.
+
+>>> try:
+...     t = s[2]
+... except:
+...     print("Cannot us an index on the first dimension of dynamic array")
+Cannot use an index on the first dimension of dynamic array
+
+Instead, as with NumPy,\ [#]_ you can use slicing.
+
+>>> t = s[2:3]                                  # t equals s[2] if it exists
+>>> with model.lock():
+...     model.states.resize(2)
+...     s.set_state(0, [0, 1, 2, 3, 4])         # s[2] = 2
+...     s.set_state(1, [0, 1])                  # index 2 is out of range
+...     print(t.state(0))
+...     print(t.state(1))
+[2.]
+[]
+
+Typically, the successor symbols in your model need values rather than an empty
+list or null. To ensure that inputs to operations on a set are always numerical,
+you can use the :func:`~dwave.optimization.mathematical.where` function
+conditioned on a :meth:`~dwave.optimization.model.ArraySymbol.size` method.
+
+>>> from dwave.optimization import Model
+>>> from dwave.optimization.mathematical import where
+...
+>>> model = Model()
+>>> s = model.set(5)
+...
+>>> t = s[2:3]                                  # t equals s[2] if it exists
+>>> index_2_in_range = s.size() >= 3            # index 2 exists if len(s) >= 3
+>>> t_known_size = t.resize(1)                  # explained below
+...
+>>> t_numerical = where(index_2_in_range, t_known_size, model.constant([99])
+...
+>>> with model.lock():
+...     model.states.resize(2)
+...     s.set_state(0, [0, 1, 2, 3, 4])         # s[2] = 2
+...     s.set_state(1, [0, 1])                  # index 2 is out of range
+...     print(t_numerical.state(0))
+...     print(t_numerical.state(1))
+[2.]
+[99.]
+
+The :func:`~dwave.optimization.mathematical.where` function expects that the
+values from which it chooses be the same the same size. Because slicing can
+return an array of varying size---though for for indices :math:`[i, i+1]`, used
+here, the actual size is 1---the code above uses the
+:meth:`~dwave.optimization.model.ArraySymbol.size` method to "declare" to the
+model that the size is 1.
+
+Example: Disjoint List
+~~~~~~~~~~~~~~~~~~~~~~
+
+The :meth:`dwave.optimization.model.Model.disjoint_list_symbol` variable, which
+instantiates successor lists that are dynamic arrays, can be used for
+`vehicle routing <https://en.wikipedia.org/wiki/Vehicle_routing_problem>`_
+problems as shown in the :ref:`optimization_generators` section. Below is code
+that might be part of such a model to illustrate indexing on a list variable.
+
+>>> import numpy as np
+>>> from dwave.optimization import Model
+>>> from dwave.optimization.mathematical import where
+...
+>>> model = Model()                 # Construct the model & decision variable
+>>> num_vehicles = 2
+>>> num_customers = 5
+...
+>>> disjoint_lists_symbol, lists = model.disjoint_lists(
+...     primary_set_size=num_customers,
+...     num_disjoint_lists=num_vehicles,
+... )
+...
+>>> list_lengths = {}               # Track lengths of dynamic arrays (lists)
+>>> for k, _ in enumerate(lists):
+...     list_lengths[k] = lists[k].size()
+...
+>>> rh = np.arange(num_customers).astype(int)   # Range helper for safe iteration
+>>> rh = np.append(rh, 99)
+>>> range_helper = model.constant(rh)
+...
+>>> nodes = []
+>>> for k in range(num_vehicles):
+...     vehicle_nodes = []
+...     for list_index in range(num_customers):
+...         index_in_range = list_lengths[k] >= range_helper[list_index] + model.constant(1)
+...         customer = where(
+...             index_in_range,
+...             lists[k][list_index:list_index + 1].sum(),
+...             range_helper[-1]
+...         )
+...         vehicle_nodes.append(customer)
+...     nodes.append(vehicle_nodes)
+
+Test with a solution:
+
+>>> with model.lock():
+...     model.states.resize(2)
+...     disjoint_lists_symbol.set_state(0, [[0, 3], [1, 2, 4]])
+...     for k in range(num_vehicles):
+...         print("vehicle ", k)
+...         vehicle_states = [int(node.state(0)) for node in nodes[k]]
+...         print(vehicle_states)
+vehicle  0
+[0, 3, 99, 99, 99]
+vehicle  1
+[1, 2, 4, 99, 99]
+
+Here, the dynamic list for vehicle 0 is of length 2 so the remaining elements
+use the default padding value 99; the list for vehicle 1 is length 3 and the
+last two elements use the default value.
+
+.. [#]
+    You can access index :math:`i` of an array, :math:`A`, by slicing the array
+    for indices :math:`[i, i+1]`.
+
+    >>> import numpy as np
+    ...
+    >>> A = np.asarray([0, 1, 2, 3, 4])
+    >>> print(A[2:3])
+    [3]
+
+    And whereas trying to directly access an index that is out of range raises
+    an error,
+
+    >>> try:
+    ...     b = A[55]
+    ... except:
+    ...     print("Error on out-of-range index")
+    Error on out-of-range index
+
+    slicing returns a result even for out-of-range indices:
+
+    >>> b = A[55:56]
+    >>> print(b)
+    []
+
