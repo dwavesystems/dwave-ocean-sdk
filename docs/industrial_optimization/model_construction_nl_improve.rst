@@ -4,7 +4,7 @@
 Building Good Models
 ====================
 
-The :ref:`opt_model_construction_nl` section explained the basics of using the
+The :ref:`opt_model_construction_nl` section explains the basics of using the
 :ref:`dwave-optimization <index_optimization>` package to create nonlinear
 models for the |nlstride_tm|. This section provides guidance for improving your
 models for performance.
@@ -14,11 +14,10 @@ As much as possible, design models along these lines:
 1.  Exploit the implicit constraints of symbols such as
     :class:`~dwave.optimization.symbols.ListVariable`,
     :class:`~dwave.optimization.symbols.SetVariable`,
-    :class:`~dwave.optimization.symbols.DisjointLists`,
-    and :class:`~dwave.optimization.symbols.DisjointBitSets`.
+    :class:`~dwave.optimization.symbols.DisjointLists`, etc.
 
     Typically, solver performance strongly depends on the size of the solution
-    space for your modelled problem: models with smaller spaces of feasible
+    space for your modeled problem: models with smaller spaces of feasible
     solutions tend to perform better than ones with larger spaces. A powerful
     way to reduce the feasible-solutions space is by using variables that act
     as implicit constraints. This is analogous to judicious typing of a variable
@@ -103,8 +102,7 @@ Permutation: ``ListVariable`` Symbol
 
 The :meth:`~dwave.optimization.model.Model.list` method creates a decision
 variable representing an ordered arrangement (a permutation) of :math:`N`
-distinct items. These items are implicitly the integers
-:math:`[0, 1, \ldots, N-1]`.
+distinct items. These items are implicitly integers.
 
 Implicit constraints:
 
@@ -113,16 +111,15 @@ Implicit constraints:
 *   Order matters.
 *   Elements are unique.
 
-:meth:`~dwave.optimization.model.Model.list` is ideal for problems where the
-core decision involves finding the optimal order or sequence of a set of items.
-It replaces the creation of :math:`N` integer variables and adding
-"all-different" constraints along with range constraints. The solver explores
-the :math:`N!` possible permutations rather than the :math:`N^N` combinations
-possible with :math:`N` unrestricted integer variables.
-If your actual items are not integers :math:`0` to :math:`N-1` (e.g., city
-names), map them to these integer indices before defining the model and map back
-when interpreting the solution. Note that the solver might return indices as
-floats, requiring casting to ``int``.
+The list variable is ideal for problems where the core decision is finding the
+optimal order or sequence of a set of items. It replaces :math:`N` integer
+variables and "all-different" constraints along with range constraints. The
+solver explores :math:`N!` possible permutations rather than :math:`N^N`
+combinations possible with :math:`N` unrestricted integer variables. If your
+problem's items are not integers :math:`0` to :math:`N-1` (e.g., city names),
+map them to integer indices before defining the model and map back when
+interpreting solutions. Note that the solver might return indices as floats,
+requiring casting to ``int``.
 
 Common use cases:
 
@@ -142,7 +139,7 @@ Subset: ``SetVariable`` Symbol
 
 The :meth:`~dwave.optimization.model.Model.set` method creates a decision
 variable representing an unordered collection (a subset) of unique items chosen
-from a universe of :math:`N` items (integers :math:`0` to :math:`N-1`).
+from a universe of :math:`N` items (implicitly integers).
 
 Implicit constraints:
 
@@ -150,23 +147,21 @@ Implicit constraints:
 *   Order of elements within the set does not matter.
 *   Items are chosen from the universe :math:`[0, \ldots, N-1]`.
 
-:meth:`~dwave.optimization.model.Model.set` is used when the decision involves
-selecting a group of items, and the order of selection is irrelevant. The symbol
-inherently handles the uniqueness of selected items. Constraints on the size
-(cardinality) of the set or other properties based on the selected items are
-typically added explicitly. As with
-:meth:`~dwave.optimization.model.Model.list`, if the actual items are not
-:math:`0` to :math:`N-1`, a mapping is necessary. Note that the solver might
-return indices as floats, requiring casting to ``int``.
+The set variable is used when the decision is selecting a group of items, and
+the order of selection is irrelevant. The symbol inherently handles the
+uniqueness of selected items. Constraints on the size (cardinality) of the set
+or other properties based on the selected items are typically added explicitly.
+As with the :meth:`~dwave.optimization.model.Model.list` method, if the
+problem's items are not :math:`0` to :math:`N-1`, you map them. Note that the
+solver might return indices as floats, requiring casting to ``int``.
 
 Common use cases:
 
 *   `knapsack problem <https://en.wikipedia.org/wiki/Knapsack_problem>`_:
     Selecting items to maximize value/utility within a budget/capacity.
-*   Set-covering, packing, and partitioning Problems: Selecting subsets
+*   Set-covering, packing, and partitioning problems: Selecting subsets
     to satisfy coverage or disjointness requirements.
-*   Feature selection:** Choosing a subset of features in machine
-    learning.
+*   Feature selection: Choosing a subset of features in machine learning.
 *   Committee selection: Forming a team or committee with specific
     properties from a larger pool.
 
@@ -175,19 +170,18 @@ Disjoint Ordered Lists: ``DisjointLists`` Symbol
 
 The :meth:`~dwave.optimization.model.Model.disjoint_lists` method creates a
 complex decision variable. It partitions items from a primary set (integers
-:math:`0` to ``primary_set_size-1``) into a specified number of lists,
-``num_disjoint_lists``. Each of these lists is an ordered sequence (permutation)
-of a subset of the primary set, and no item from the primary set can appear in
-more than one list.
+from :math:`0` and up) into a specified number of lists. Each of these lists is
+an ordered sequence (permutation) of a subset of the primary set, and no item
+from the primary set can appear in more than one list.
 
 Implicit constraints:
 
-*   Each item from the primary set (indices :math:`0` to ``primary_set_size-1``)
-    appears in at most one list.
+*   Each item from the primary set (indices :math:`0` to the configured size
+    minus 1) appears in at most one list.
 *   Order matters within each list.
 *   Lists are disjoint regarding item membership.
 
-This symbol is exceptionally powerful for problems such as vehicle routing,
+This variable is exceptionally powerful for problems such as vehicle routing,
 where a set of customers needs to be divided among several vehicles, and each
 vehicle follows a specific ordered route. The returned object allows you to
 access and constrain each list individually. Note that the solver might return
@@ -209,23 +203,21 @@ Disjoint Unordered Sets: ``DisjointBitSets`` Symbol
 ---------------------------------------------------
 
 The :meth:`~dwave.optimization.model.Model.disjoint_bit_sets` method is used to
-partition a universe of ``primary_set_size`` items (integers :math:`0` to
-``primary_set_size-1``) into ``num_disjoint_sets`` mutually exclusive, unordered
-sets.
+partition a universe of a specified number of items into a specified number of
+mutually exclusive, unordered sets.
 
 Implicit constraints:
 
-*   Each item from the universe (indices :math:`0` to ``primary_set_size-1``)
-    appears in at most one set.
+*   Each item from the universe (indices :math:`0` up to the configured size
+    minus 1) appears in at most one set.
 *   Order does not matter within each set.
 *   Sets are disjoint.
 
-This symbol is suited for problems where items need to be grouped into distinct
+This variable is suited for problems where items need to be grouped into distinct
 categories or containers, and the order of items within a category does not
 matter. The returned object allows individual manipulation and constraint of
-each set. The items to be partitioned are integers from
-``range(primary_set_size)``. Note that the solver might return indices
-as floats, requiring casting to ``int``.
+each set. Note that the solver might return indices as floats, requiring casting
+to ``int``.
 
 Common use cases:
 
@@ -239,8 +231,8 @@ Common use cases:
     color classes (sets) such that no two adjacent vertices share the same
     color.
 
-Example: Implicitly Constrained Symbols
----------------------------------------
+Example: Implicitly Constrained Variables
+-----------------------------------------
 
 Consider a problem of selecting a route for several destinations with the cost
 increasing on each leg of the itinerary; for the example formulated below, one
@@ -289,7 +281,10 @@ acyclic graphs for these two formulations.
 
     Comparison between models using implicitly-constrained decision symbol
     (left) and explicit constrains on a simple binary symbol (right) in
-    formulation. The first formulation has fewer symbols.
+    formulation. The first formulation has fewer symbols. (The
+    :ref:`dwave-optimization <index_optimization>` package's
+    :meth:`~dwave.optimization.model.Model.to_networkx` method can be used to
+    generate such graphs.)
 
 It is expected that the more compact model that uses implicit constraints will
 perform better.
@@ -301,8 +296,10 @@ The two tabs below provide the two formulations.
     .. tab-item:: Implicit Constraints
 
         The model in this tab is formulated using the implicitly
-        constrained :class:`~dwave.optimization.symbols.List` symbol.
+        constrained :class:`~dwave.optimization.symbols.ListVariable` symbol.
 
+        >>> from dwave.optimization import Model
+        ...
         >>> model = Model()
         >>> # Add the constants
         >>> cost = model.constant(cost_per_day)
@@ -424,8 +421,9 @@ acyclic graphs for these two formulations.
 
     Comparison between models using compact matrix operations (left) and
     less-compact operations (right) in formulation. The less-compact formulation
-    has triple the number of symbols. Graphs are created using the package's
-    :meth:`~dwave.optimization.model.Model.to_networkx` method.
+    has triple the number of symbols. (The
+    :meth:`~dwave.optimization.model.Model.to_networkx` method can be used to
+    generate such graphs.)
 
 The two tabs below provide the two formulations.
 
@@ -518,12 +516,12 @@ models.
 Construction Vs. Solve Information
 ==================================
 
-Pay attention to when information in your model is available: is it already
-known when constructing the model or only at run-time.
+When constructing a model, consider when information in your model is available:
+is a value already known during construction or only at run-time?
 
 The following example attempts to make conditional use of the state of an
-integer variable, ``x`` during construction of a model. This fails because the
-state is set during solution, not construction.
+integer variable, ``x`` in constructing a model. This fails because the state is
+set during solution, not construction.
 
 >>> from dwave.optimization import Model
 ...
@@ -536,8 +534,9 @@ state is set during solution, not construction.
 ...     print("Cannot set z")
 Cannot set z
 
-You can instead use the :func:`~dwave.optimization.mathematical.where` function
-to represent the choice in this model.
+A valid alternative in such situations is to use the
+:func:`~dwave.optimization.mathematical.where` function to represent the
+dependency.
 
 >>> from dwave.optimization import Model
 >>> from dwave.optimization.mathematical import where
@@ -547,13 +546,16 @@ to represent the choice in this model.
 >>> c = model.constant(1)
 >>> z = where(x >= c, model.constant(1), model.constant(2))
 
+When processing the model, the solver assigns values to the state of ``z`` based
+on the value it has assigned to the state of ``x``.
+
 Using Dynamic Arrays
 --------------------
 
 Some symbols are
-:ref:`dynamically sized array <optimization_philosophy_tensor_programming_dynamic>`,
+:ref:`dynamically sized arrays <optimization_philosophy_tensor_programming_dynamic>`,
 meaning arrays with a state-dependent size. For example, a
-:meth:`dwave.optimization.model.Model.set` variable, with a domain of the
+:meth:`~dwave.optimization.model.Model.set` variable, with a domain of the
 subsets of :math:`[0, n)`, encodes subsets with different lengths, therefore the
 set variable's state size also varies.
 
@@ -562,12 +564,13 @@ set variable's state size also varies.
 >>> model = Model()
 >>> model.states.resize(2)
 >>> s = model.set(5)
->>> s.set_state(0, [0, 3])  # {0, 3} is a subset of [0, 5)
->>> s.set_state(1, [0, 1, 2])  # {0, 1, 2} is also a subset of [0, 5)
->>> print(f"State sizes:\n    0: {len(s.state(0))}\n    1: {len(s.state(1))}")
+>>> s.set_state(0, [0, 3])              # {0, 3} is a subset of [0, 5)
+>>> s.set_state(1, [0, 1, 2])           # {0, 1, 2} is also a subset of [0, 5)
+...
+>>> print(f"State sizes:\n0: {len(s.state(0))}\n1: {len(s.state(1))}")
 State sizes:
-    0: 2
-    1: 3
+0: 2
+1: 3
 
 Indexing such symbols can be a bit tricky. For example, you cannot simply read
 an element of a set variable's state by directly indexing it because when
@@ -576,7 +579,7 @@ constructing the model it is unknown whether or not such an index is valid.
 >>> try:
 ...     t = s[2]
 ... except:
-...     print("Cannot us an index on the first dimension of dynamic array")
+...     print("Cannot use an index on the first dimension of dynamic array")
 Cannot use an index on the first dimension of dynamic array
 
 Instead, as with NumPy,\ [#]_ you can use slicing.
@@ -585,16 +588,19 @@ Instead, as with NumPy,\ [#]_ you can use slicing.
 >>> with model.lock():
 ...     model.states.resize(2)
 ...     s.set_state(0, [0, 1, 2, 3, 4])         # s[2] = 2
-...     s.set_state(1, [0, 1])                  # index 2 is out of range
 ...     print(t.state(0))
+...
+...     s.set_state(1, [0, 1])                  # index 2 is out of range
 ...     print(t.state(1))
 [2.]
 []
 
 Typically, the successor symbols in your model need values rather than an empty
-list or null. To ensure that inputs to operations on a set are always numerical,
-you can use the :func:`~dwave.optimization.mathematical.where` function
-conditioned on a :meth:`~dwave.optimization.model.ArraySymbol.size` method.
+list or null. To ensure that inputs to operations on a set, when slicing, are
+always numerical, you can use the :func:`~dwave.optimization.mathematical.where`
+function conditioned on a :meth:`~dwave.optimization.model.ArraySymbol.size`
+method. The following code replaces the null value with an out-of-range value,
+:math:`99`, to signal that the index is invalid for the set.
 
 >>> from dwave.optimization import Model
 >>> from dwave.optimization.mathematical import where
@@ -606,29 +612,31 @@ conditioned on a :meth:`~dwave.optimization.model.ArraySymbol.size` method.
 >>> index_2_in_range = s.size() >= 3            # index 2 exists if len(s) >= 3
 >>> t_known_size = t.resize(1)                  # explained below
 ...
->>> t_numerical = where(index_2_in_range, t_known_size, model.constant([99])
+>>> t_numerical = where(index_2_in_range, t_known_size, model.constant([99]))
 ...
 >>> with model.lock():
 ...     model.states.resize(2)
 ...     s.set_state(0, [0, 1, 2, 3, 4])         # s[2] = 2
-...     s.set_state(1, [0, 1])                  # index 2 is out of range
 ...     print(t_numerical.state(0))
+...
+...     s.set_state(1, [0, 1])                  # index 2 is out of range
 ...     print(t_numerical.state(1))
 [2.]
 [99.]
 
 The :func:`~dwave.optimization.mathematical.where` function expects that the
 values from which it chooses be the same the same size. Because slicing can
-return an array of varying size---though for for indices :math:`[i, i+1]`, used
-here, the actual size is 1---the code above uses the
+return an array of varying size---though for indices :math:`[i, i+1]`, used
+here, the resulting size is :math:`1` when the index is in range and :math:`0`
+otherwise---the code above uses the
 :meth:`~dwave.optimization.model.ArraySymbol.size` method to "declare" to the
-model that the size is 1.
+model that the size is :math:`1`.
 
 Example: Disjoint List
 ~~~~~~~~~~~~~~~~~~~~~~
 
-The :meth:`dwave.optimization.model.Model.disjoint_list_symbol` variable, which
-instantiates successor lists that are dynamic arrays, can be used for
+The :meth:`~dwave.optimization.model.Model.disjoint_lists_symbol` variable,
+which instantiates successor lists that are dynamic arrays, can be used for
 `vehicle routing <https://en.wikipedia.org/wiki/Vehicle_routing_problem>`_
 problems as shown in the :ref:`optimization_generators` section. Below is code
 that might be part of such a model to illustrate indexing on a list variable.
@@ -661,11 +669,17 @@ that might be part of such a model to illustrate indexing on a list variable.
 ...         index_in_range = list_lengths[k] >= range_helper[list_index] + model.constant(1)
 ...         customer = where(
 ...             index_in_range,
-...             lists[k][list_index:list_index + 1].sum(),
+...             lists[k][list_index:list_index + 1].sum(),      # sum for scalar
 ...             range_helper[-1]
 ...         )
 ...         vehicle_nodes.append(customer)
 ...     nodes.append(vehicle_nodes)
+
+The code above uses the :meth:`~dwave.optimization.model.ArraySymbol.sum` method
+to turn the returned array into a scalar, providing the
+:func:`~dwave.optimization.mathematical.where` function with alternative values
+of the same size, from which it chooses based on whether the index is in range
+of the list.
 
 Test with a solution:
 
@@ -693,7 +707,7 @@ last two elements use the default value.
     ...
     >>> A = np.asarray([0, 1, 2, 3, 4])
     >>> print(A[2:3])
-    [3]
+    [2]
 
     And whereas trying to directly access an index that is out of range raises
     an error,

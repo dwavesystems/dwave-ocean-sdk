@@ -177,11 +177,12 @@ There can be a significant gap between solving an initial model for your
 problem, perhaps simplified and reduced in scale, and an application in
 production. The following resources can be useful:
 
-*   The :ref:`opt_model_construction_nl_guidance` subsection of the
-    :ref:`opt_model_construction_nl` section discusses guidelines improving
-    models.
+*   The :ref:`opt_model_construction_nl_guidance` section discusses guidelines
+    for improving models.
 *   You might have a guess or non-optimal solution you can provide the solver as
     an :ref:`initial state <opt_model_construction_nl_states>` that may reduce
     solution time.
 *   The :ref:`opt_index_improving_solutions` section discusses scaling and
     productizing applications.
+
+.. todo:: Add a code example of submitting an initial state

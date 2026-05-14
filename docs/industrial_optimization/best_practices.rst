@@ -10,7 +10,8 @@ good starting points in developing your application code, and this section
 provides some usage guidance.
 
 |dwave_short| offers two complementary approaches to quantum-classical hybrid
-computing, :ref:`opt_leap_hybrid` and :ref:`opt_dwave_hybrid`.
+computing, the |cloud|_ service's :ref:`hybrid solvers <opt_leap_hybrid>` and
+the :ref:`dwave-hybrid framework <opt_dwave_hybrid_development_framework>`.
 
 Reformulation
 =============

@@ -11,8 +11,6 @@ is the process of solving an optimization problem where some of the
 are pervasive in business and logistics: inventory management, scheduling
 employees, equipment delivery, and many more.
 
-For other models (e.g., :term:`CQM`), see the :ref:`opt_model_construction_qm`
-section.
 
 .. _opt_model_construction_nl_intro:
 
@@ -41,7 +39,8 @@ section.
 Symbols
 =======
 
-Nonlinear models can be mapped to a
+:ref:`dwave-optimization <index_optimization>` nonlinear models can be mapped to
+a
 `directed acyclic graph <https://en.wikipedia.org/wiki/Directed_acyclic_graph>`_.
 The model's symbols---:term:`decision variables`, intermediate variables,
 constants, and mathematical operations---are represented as nodes in the graph
@@ -127,6 +126,7 @@ that represents the model. The following code uses
 for the :math:`y = i^2 - 4i` polynomial.
 
 >>> import dagviz                      # doctest: +SKIP
+...
 >>> G = model.to_networkx()
 >>> r = dagviz.render_svg(G)           # doctest: +SKIP
 >>> with open("model.svg", "w") as f:  # doctest: +SKIP
@@ -184,11 +184,14 @@ the states of symbols in a model. You can set states for two purposes:
     initial state of the model, you may accelerate the solution.
 *   Testing and developing your models.
 
+Setting States
+--------------
+
 A newly created model has a state size of zero. After the |nlstride_short|
 returns solutions, the model's state size is the number of states returned for
 your problem. The following code, as an example of testing, sets a state size of
-five for the :code:`i` decision variable of the :math:`y = i^2 - 4i`
-polynomial's model.
+five for the :math:`y = i^2 - 4i` polynomial's model (meaning decision variable
+:code:`i` has five assigned solution values).
 
 >>> print(model.states.size())
 0
@@ -205,18 +208,19 @@ Cannot access variable y
 
 States for the decision variable have been initialized (to zero for the
 :class:`~dwave.optimization.symbols.numbers.IntegerVariable` of this example),
-states for the constant states always have an invariable value, but states of
-intermediate symbols, which are implicitly constrained, depend on the states of
-predecessor symbols; in this example, the state of :math:`y` is set based on
-the states of :math:`i` and :math:`c`. This is calculated only when the model
-is locked using the :meth:`~dwave.optimization.model.Model.lock` method.
+states for the constant symbols have an invariable value, but states of
+intermediate (successor) symbols, which are implicitly constrained, depend on
+the states of predecessor symbols; in this example, the state of :math:`y` is
+set based on the states of :math:`i` and :math:`c`. This is calculated only when
+the model is locked using the :meth:`~dwave.optimization.model.Model.lock`
+method.
 
 >>> with model.lock():
 ...     print(f"Variable y has value {y.state(0)} for state 0")
 Variable y has value 0.0 for state 0
 
-The following code sets values for states 0 to 4 of the decision variable
-:code:`i` and prints the resulting value of the model's objective function for
+The following code sets values for states 0 to 4 of decision variable :code:`i`
+and prints the resulting value of the model's :term:`objective function` for
 each state.
 
 >>> with model.lock():
@@ -229,40 +233,47 @@ For state 2, i=2.0 results in objective -4.0
 For state 3, i=3.0 results in objective -3.0
 For state 4, i=4.0 results in objective 0.0
 
+Accessing States
+----------------
+
 The code above selects a symbol by label ('``i``'); however, you can also
 select symbols in a model without using labels. Use the
 :meth:`~dwave.optimization.model.Model.iter_decisions` method to iterate over a
-model's decision variables, or
+model's decision variables, or the
 :meth:`~dwave.optimization.model.Model.iter_symbols` and
 :meth:`~dwave.optimization.model.Model.iter_constraints` methods for all the
-model's symbols and constraints. In this case, the model has just one decision
-variable:
+model's symbols and constraints. The :math:`y = i^2 - 4i` polynomial's model has
+just one decision variable:
 
 >>> with model.lock():
+...     model.states.resize(1)
 ...     decision_var = next(model.iter_decisions())
 ...     decision_var.set_state(0, [2])
 ...     print(model.objective.state(0))
 -4.0
 
 This process of iterating through a model to select symbols of various types
-(decision variables, constraints, etc) is helpful when model construction is
-separated from model-instance solution, for example in application code or
-when using the package's :ref:`model generators <optimization_generators>`.
+(decision variables, constraints, etc) is helpful when constructing the model is
+separated from submitting the model to a solver for solutions, for example in
+a production application or when using the package's
+:ref:`model generators <optimization_generators>`.
 
-For example, the generator for a bin packing problem,
-:func:`~dwave.optimization.generators.bin_packing`, which seeks to find the
-smallest number of bins that will fit a set of weighted items given that each
+You might use a generator for a bin packing problem,
+:func:`~dwave.optimization.generators.bin_packing`, for example, to find the
+smallest number of bins that can hold a set of weighted items, given that each
 bin has a weight capacity:
 
 >>> from dwave.optimization.generators import bin_packing
 >>> model = bin_packing([3, 5, 1, 3], 7)
 
-The previous two lines of code provide a model for bin packing four items with
-various weights into bins with maximum capacity 7. You can submit the model to
-the |nlstride_short|, as shown in the :ref:`opt_leap_hybrid` section, and the
-solver sets some number of states in the model. To see the returned solutions,
-you select the model's decision variable with the
-:meth:`~dwave.optimization.model.Model.iter_decisions` method:
+Thees two lines of code instantiate a model for packing four items with various
+weights into bins with maximum capacity 7. With a generator, in contrast to a
+model you construct before using, you might not have direct access to its
+variables to inspect states. You can submit the model to the |nlstride_short|,
+as shown in the :ref:`opt_leap_hybrid` section, and the solver sets some number
+of states in the model. To see these returned solutions, you select the model's
+decision variable with the
+:meth:`~dwave.optimization.model.Model.iter_decisions` method.
 
 >>> items = next(model.iter_decisions())
 
@@ -280,7 +291,7 @@ on these symbols, using functions such as matrix multiplication,
 :func:`~dwave.optimization.mathematical.matmul`, creating successor symbols. In
 this way you formulate objectives and constraints. You can use the
 :func:`~dwave.optimization.model.Model.minimize` method to specify the symbol
-representing an objective to minimize.
+representing an objective to optimize for.
 
 You can create a model for the
 `traveling salesperson <https://en.wikipedia.org/wiki/Travelling_salesman_problem>`_
@@ -291,7 +302,7 @@ method to hold a distance matrix as a
 :class:`~dwave.optimization.symbols.Constant` symbol. The list decision variable
 is used for this problem because any itinerary of cities, each visited once, is
 a `permutation <https://en.wikipedia.org/wiki/Permutation>`_ of the cities to be
-visited (with each city represented by an integer).
+visited (with each city represented by an integer).\ [#]_
 
 >>> from dwave.optimization import Model
 ...
@@ -302,7 +313,11 @@ visited (with each city represented by an integer).
 ...     [1, 0, 3],
 ...     [3, 1, 0]])
 
-Such decision-variable and constant symbols form the "root" of the
+.. [#]
+    The :ref:`opt_model_construction_nl_guidance` section discusses how to
+    select decision variables.
+
+Such decision-variable symbols and constant symbols form the "root" of the
 :term:`directed acyclic graph` underlying the model.
 
 .. figure:: ../_images/nl_model_construct_root.svg
