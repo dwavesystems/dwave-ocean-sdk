@@ -72,7 +72,7 @@ maximum_number_of_states
 ========================
 
 Maximum number of initialized states\ [#]_,
-:meth:`~dwave.optimization.model.States.size`, accepted by the solver.
+:meth:`~dwave.optimization.states.States.size`, accepted by the solver.
 
 .. [#]
     Submitted models can include states, typically to provide initial
