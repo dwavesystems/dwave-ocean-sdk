@@ -76,6 +76,67 @@ strategies you can use for setting appropriate runtimes.
     application runs: cost, available time for processing, solution quality
     required, etc.
 
+.. _opt_best_practices_initial:
+
+Providing an Initial Solution
+=============================
+
+For some problems you might have estimates or guesses of solutions, and by
+providing to the solver, as part of your problem submission, such assignments of
+decision variables as an initial state of the model, you may accelerate the
+solution.
+
+As an illustrative example of providing an initial state, create a model for the
+`traveling salesperson <https://en.wikipedia.org/wiki/Travelling_salesman_problem>`_
+problem using the :func:`~dwave.optimization.generators.traveling_salesperson`
+generator.
+
+>>> from dwave.optimization.generators import traveling_salesperson
+...
+>>> distance_matrix = [
+...     [0, 3, 1],
+...     [1, 0, 3],
+...     [3, 1, 0]]
+>>> model = traveling_salesperson(distance_matrix=distance_matrix)
+
+This model has three best solutions (:math:`[0, 2, 1], [1, 0, 2], [2, 1, 0]`)
+out of six possible permutations of its
+:class:`~dwave.optimization.symbols.ListVariable` decision variable.
+
+For one particular submission, the nonlinear solver returned a roughly uniform
+distribution of these solutions:
+
+>>> from dwave.system import LeapHybridNLSampler
+...
+>>> with LeapHybridNLSampler() as sampler:          # doctest: +SKIP
+...     results = sampler.sample(model, label='SDK Examples - TSP')
+
+The returned states::
+
+    32 ground states of 32 returned states: {'021': 12, '102': 14, '210': 6}
+
+The :ref:`property_nl_maximum_number_of_states` property limits the number of
+initial states the nonlinear solver can make use of. The following code sets an
+initial state for the model, after clearing the states returned from the
+previous submission, and resubmits to the nonlinear solver.
+
+>>> model.states.clear()
+>>> model.states.resize(1)
+>>> itinerary = next(model.iter_decisions())    # This model has a single decision
+>>> itinerary.set_state(0, [0, 2, 1])           # sets the state of the decision
+>>> with LeapHybridNLSampler() as sampler:          # doctest: +SKIP
+...     results = sampler.sample(model, label='SDK Examples - TSP')
+
+The returned states::
+
+    32 ground states of 32 returned states: {'021': 32, '102': 0, '210': 0}
+
+Here, for a problem with only six possible states, with all optimal solutions
+having an identical objective value, the solver always returned the provided
+initial state. For more-complex problems, because it returns solutions that are
+at least as good as the initial state, providing such a state might result in
+better solutions.
+
 Further Information
 ===================
 

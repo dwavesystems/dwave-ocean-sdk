@@ -184,5 +184,3 @@ production. The following resources can be useful:
     solution time.
 *   The :ref:`opt_index_improving_solutions` section discusses scaling and
     productizing applications.
-
-.. todo:: Add a code example of submitting an initial state
