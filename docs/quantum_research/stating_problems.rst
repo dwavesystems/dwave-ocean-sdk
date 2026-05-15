@@ -1036,7 +1036,7 @@ network via, say, classical simulations and approximations, then annealing
 quantum computers are likely to perform favorably.
 
 While restricted Boltzmann machines are universal approximators [Ler2008]_,
-[Mon2020]_, D-Wave's annealing quantum computers are implemented with sparse
+[Mon2011]_, D-Wave's annealing quantum computers are implemented with sparse
 connectivity and are thus limited in their expressivity.
 The |dwave_5kq_tm| system and |adv2_tm| system's topologies are defined by the
 :term:`Pegasus` and :term:`Zephyr` family of graphs respectively [Boo2019]_,
