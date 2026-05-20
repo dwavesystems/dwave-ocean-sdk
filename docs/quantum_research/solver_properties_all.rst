@@ -826,7 +826,7 @@ and the range for the target normalized control bias :math:`c(s)` for a QPU.
     >>> from dwave.experimental import fast_reverse_anneal as fra
     >>> from dwave.system import DWaveSampler
     ...
-    >>> with DWaveSampler(solver="Advantage2_research1.4") as sampler:  # doctest: +SKIP
+    >>> with DWaveSampler(solver="Advantage2_research1") as sampler:  # doctest: +SKIP
     ...     param_info = fra.get_parameters(sampler)
 
     >>> print(param_info["x_nominal_pause_time"]["limits"])     # doctest: +SKIP
@@ -840,7 +840,7 @@ and the range for the target normalized control bias :math:`c(s)` for a QPU.
     >>> from dwave.cloud.client import Client
     ...
     >>> with Client.from_config() as client:                    # doctest: +SKIP
-    ...     solver = client.get_solver(name="Advantage2_research1.4")
+    ...     solver = client.get_solver(name="Advantage2_research1")
     ...     computation = solver.sample_ising(
     ...         {next(iter(solver.nodes)): 0}, {}, x_get_fast_reverse_anneal_exp_feature_info=True)
             result = computation.result()
@@ -977,7 +977,7 @@ This example prints the first 5 qubits on annealing line 0.
 
     >>> from dwave.cloud.client import Client
     >>> with Client.from_config() as client:            # doctest: +SKIP
-    ...     solver = client.get_solver(name="Advantage2_research1.4")
+    ...     solver = client.get_solver(name="Advantage2_research1")
     ...     computation = solver.sample_ising(
     ...         {next(iter(solver.nodes)): 0}, {}, x_get_multicolor_annealing_exp_feature_info=True)
     ...     result = computation.result()

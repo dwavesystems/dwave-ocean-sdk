@@ -354,7 +354,7 @@ state and reverse anneal from there.
 This experimental feature, multicolor annealing, lets you set a different anneal
 schedule for each of several subsets of qubits. You can also configure a
 schedule for large positive or negative polarizing
-:ref:`flux biases <parameter_qpu_flux_biases>` to each subset of qubits.
+:ref:`flux biases <parameter_qpu_flux_biases>` to the qubits.
 
 :numref:`Figure %s <multicoloredAnnealZ6Lines>` shows the subsets of the QPU's
 qubits on each of the six annealing lines of a particular |adv2_tm| QPU with a

@@ -1349,7 +1349,7 @@ Disable filtering for a submission.
 >>> from dwave.system import DWaveSampler
 >>> from dwave.experimental import multicolor_anneal as mca
 ...
->>> qpu = DWaveSampler(solver="Advantage2_research1.4")     # doctest: +SKIP
+>>> qpu = DWaveSampler(solver="Advantage2_research1")     # doctest: +SKIP
 ...
 >>> exp_feature_info = mca.get_properties(qpu)              # doctest: +SKIP
 >>> num_lines = len(exp_feature_info)                       # doctest: +SKIP
@@ -1487,7 +1487,7 @@ Example
 
 >>> from dwave.system import DWaveSampler
 ...
->>> qpu = DWaveSampler(solver="Advantage2_research1.4")     # doctest: +SKIP
+>>> qpu = DWaveSampler(solver="Advantage2_research1")     # doctest: +SKIP
 >>> sampleset = qpu.sample_ising(                           # doctest: +SKIP
 ...     {},
 ...     {qpu.edgelist[0]: -1},
@@ -1532,7 +1532,7 @@ This example assumes a previously calculated anneal schedule,
 >>> from dwave.system import DWaveSampler
 >>> from dwave.experimental import multicolor_anneal as mca
 ...
->>> qpu = DWaveSampler(solver="Advantage2_research1.4")     # doctest: +SKIP
+>>> qpu = DWaveSampler(solver="Advantage2_research1")     # doctest: +SKIP
 ...
 ... exp_feature_info = mca.get_properties(qpu)              # doctest: +SKIP
 ... num_anneal_lines = len(exp_feature_info)                # doctest: +SKIP
@@ -1594,7 +1594,7 @@ Example
 
 >>> from dwave.system import DWaveSampler
 ...
->>> qpu = DWaveSampler(solver="Advantage2_research1.4")     # doctest: +SKIP
+>>> qpu = DWaveSampler(solver="Advantage2_research1")     # doctest: +SKIP
 >>> sampleset = qpu.sample_ising(                           # doctest: +SKIP
 ...     {},
 ...     {qpu.edgelist[0]: -1},
