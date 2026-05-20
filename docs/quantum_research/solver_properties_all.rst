@@ -893,7 +893,7 @@ The returned information contains the following fields.
     *   -   ``minPolarizingTimeStep``
         -   Float
         -   Minimum supported time step, in microseconds, for the
-            :ref:`parameter_polarizing_schedules` parameter. Values specified
+            :ref:`parameter_polarizing_schedule` parameter. Values specified
             with greater precision are rounded.
     *   -   ``holdOvershootFor``
         -   Float

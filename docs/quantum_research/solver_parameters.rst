@@ -1369,31 +1369,25 @@ Disable filtering for a submission.
 ...     x_anneal_schedules = anneal_schedules)
 
 
-.. _parameter_polarizing_schedules:
+.. _parameter_polarizing_schedule:
 
-x_polarizing_schedules
-======================
+x_polarizing_schedule
+=====================
 
 Schedules the application of high (positive or negative) and zero flux bias on
-the subsets of qubits associated with each of the QPU's annealing lines.
+all qubits.
 
 .. note:: |research_parameter_note|
 
-Each polarization schedule is defined by a series of tuples, where the first
+The polarization schedule is defined by a series of tuples, where the first
 element is time, :math:`t`, in microseconds, formatted as a floating-point
 number, and the second is polarity, an integer with supported values :math:`-1`,
 :math:`+1`, and :math:`0`. The resulting schedule applies the specified
-time-dependent flux bias to the qubits of the anneal line.
+time-dependent flux bias to all qubits.
 
-Supported values are three-dimensional arrays with the following indices:
-
-*   Anneal line in the range 0 to :math:`N - 1`, where :math:`N` is the number
-    of anneal lines for the QPU.
-*   :math:`(t, p(t))` pair point of the selected line's anneal schedule, in a
-    range of 0 to the maximum number of supported points specified in the
-    :ref:`property_qpu_max_anneal_schedule_points` property.
-*   :math:`t` or polarity for the selected point of the polarization schedule on
-    the selected anneal line, with 0 indexing time and 1 indexing polarity.
+Supported format is a two-dimensional array of :math:`(t, p(t))` pairs of a
+length up to the maximum number of supported points specified in the
+:ref:`property_qpu_max_anneal_schedule_points` property.
 
 The following rules apply to each of the polarization schedules you specify:
 
@@ -1401,31 +1395,29 @@ The following rules apply to each of the polarization schedules you specify:
     ``minPolarizingTimeStep`` field in the
     :ref:`property_qpu_get_multicolor_annealing_exp_feature_info` property, must
     strictly increase for all points in the schedule.
-*   In the final schedule pair point for each anneal line, time :math:`t` must
-    be identical to the last time set in the
-    :ref:`parameter_qpu_anneal_schedules` parameter.
+*   In the final schedule pair point, time :math:`t` must be identical to the
+    last time set in the :ref:`parameter_qpu_anneal_schedules` parameter.
 *   The number of points must be :math:`\geq 2`.
-*   The upper bound on the number of anneal-schedule points allowed for an
-    anneal line is specified in the
-    :ref:`property_qpu_max_anneal_schedule_points` property.
+*   The upper bound on the number of anneal-schedule points allowed is specified
+    in the :ref:`property_qpu_max_anneal_schedule_points` property.
 *   Your :ref:`parameter_qpu_anneal_schedules` parameter must not change the
     value of the normalized control bias, :math:`c(s)`, for a duration of
     ``depolarizationAnnealScheduleRequiredDelay``, in microseconds, for an
-    anneal, after your :ref:`parameter_polarizing_schedules` parameter changes
+    anneal, after your :ref:`parameter_polarizing_schedule` parameter changes
     the polarization value from :math:`-1` to :math:`0` or :math:`+1` to
-    :math:`0` for the qubits of that same anneal line.
+    :math:`0`.
 
-By default, no flux biases are set for the anneal lines.
+By default, no flux biases are set.
 
 Interacts with Parameters
 -------------------------
 
 *   |meet_run_duration|
-    In this case, substitute your :ref:`parameter_polarizing_schedules` values
+    In this case, substitute your :ref:`parameter_polarizing_schedule` values
     for :ref:`parameter_qpu_anneal_schedule` and
     :ref:`parameter_qpu_annealing_time`.
 *   The :ref:`parameter_qpu_flux_biases` values are added to values set by
-    the :ref:`parameter_polarizing_schedules` parameter, but due to the large
+    the :ref:`parameter_polarizing_schedule` parameter, but due to the large
     value of the latter (when non-zero), have no noticeable effect.
 *   In the final schedule pair point for each anneal line, time :math:`t` must
     be identical to the last time set in the
@@ -1434,7 +1426,7 @@ Interacts with Parameters
 Example
 -------
 
-Polarize qubits on line 0 from halfway through the anneal.
+Polarize qubits from halfway through the anneal.
 
 |realistic_mca_example|
 
@@ -1444,12 +1436,7 @@ Polarize qubits on line 0 from halfway through the anneal.
 >>> exp_feature_info = mca.get_properties()             # doctest: +SKIP
 >>> num_lines = len(exp_feature_info)                   # doctest: +SKIP
 ...
->>> polarizing = [[0.0, 0.0], [5.0, -1], [10.0, -1]]
->>> nonpolarizing = [[0.0, 0.0], [5.0, 0.0], [10.0, 0.0]]
-...
->>> # Fill in schedules for all lines by duplicating nonpolarizing, then set for line 0
->>> polarization_schedules = np.tile(nonpolarizing, (num_lines, 1, 1))  # doctest: +SKIP
->>> polarization_schedules[0, :, :] = polarizing        # doctest: +SKIP
+>>> polarization_schedule = np.asarray([[0.0, 0.0], [5.0, -1], [10.0, -1]]) # doctest: +SKIP
 
 
 .. _parameter_qpu_nominal_pause_time:
