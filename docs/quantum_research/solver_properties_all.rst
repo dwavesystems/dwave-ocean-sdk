@@ -948,7 +948,7 @@ The returned information contains the following fields.
             ``ScheduleRequiredDelay``
         -   Float
         -   Time, in microseconds, after the
-            :ref:`parameter_polarizing_schedules` parameter changes the
+            :ref:`parameter_polarizing_schedule` parameter changes the
             polarization value from :math:`\pm 1` to :math:`0` for the qubits of
             an anneal line, during which the
             :ref:`parameter_qpu_anneal_schedules` parameter must not set a new
