@@ -409,7 +409,7 @@ rst_epilog = """
 .. |nlstride_short| unicode:: Stride U+00A0 solver
 .. |nlstride_tm| unicode:: Stride U+2122 U+00A0 hybrid U+00A0 solver
 
-.. |support_email| replace:: D U+2011 Wave Customer Support
+.. |support_email| unicode:: D U+2011 Wave U+00A0 Customer U+00A0 Support
 .. _support_email: support@dwavesys.com
 
 .. |doc_operations| replace:: *D-Wave Quantum Computer Operations*
