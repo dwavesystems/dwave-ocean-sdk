@@ -992,8 +992,7 @@ DELETE request to the ``problems`` endpoint.
 The ``Accept`` header should be set to
 ``application/vnd.dwave.sapi.problems+json; version=3``.
 
-The request body should be a JSON-encoded list of problem IDs; if the request
-body is omitted or contains an empty list, an error is returned.
+The request body should be a JSON-encoded list of problem IDs.
 
 When possible, if you have more than one problem to cancel, submit them in a
 single query.
