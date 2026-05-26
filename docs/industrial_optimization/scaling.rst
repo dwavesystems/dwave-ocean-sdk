@@ -9,7 +9,7 @@ problems of the industrial scale supported by quantum-classical hybrid solvers
 in the `Leap <https://cloud.dwavesys.com/leap>`_ service.
 
 The code examples below focus on
-:ref:`constrained quadratic models (CQMs) <concept_models_cqm>`, non
+:ref:`constrained quadratic models (CQMs) <concept_models_cqm>`, not
 :ref:`nonlinear models <concept_models_nonlinear>`. (Most the guidance is also
 applicable to :ref:`binary quadratic models (BQMs) <concept_models_bqm>` and
 :ref:`quadratic models (QMs) <concept_models_quadratic>` in general.)
