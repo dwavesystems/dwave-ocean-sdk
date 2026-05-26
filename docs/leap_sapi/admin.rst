@@ -329,8 +329,8 @@ Inviting People to a Project
 
         *   :ref:`admin_inviting_users_join`
 
-    .. tip:: 
-        
+    .. tip::
+    
         *   As a best practice, invite additional project and organization
             administrators as backups.
 
@@ -844,10 +844,8 @@ You may find the following field descriptions helpful.
             section on the **Overview** page, contact |support_email|_.
 
     *   -   **Role**
-    
         -   One of the project member :ref:`roles <admin_user_roles>` to assign
             to a person: **User**, **Project Admin**, or **Organization Admin**.
-    
             Only an organization administrator can assign the
             **Organization Admin** role.
 
