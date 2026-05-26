@@ -993,7 +993,7 @@ The ``Accept`` header should be set to
 ``application/vnd.dwave.sapi.problems+json; version=3``.
 
 The request body should be a JSON-encoded list of problem IDs; if the request
-body is empty, the request has no effect.
+body is omitted or contains an empty list, an error is returned.
 
 When possible, if you have more than one problem to cancel, submit them in a
 single query.
@@ -1063,6 +1063,7 @@ single query.
 
     |general error responses|
 
+    *   ``400`` for no list or an empty list of problem IDs
     *   ``404`` for nonexistent problem ID
     *   ``409`` for a problem that reached a terminal states before the request
 
