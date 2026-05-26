@@ -397,8 +397,11 @@ Current Limitations
     when the normalized control bias is changed on the polarized qubits.
 
     .. note::
-        It is recommended that you wait at least :math:`20\ \text{µs}` before
-        setting a new value of :math:`c(s)`.
+        It is recommended that after changing the polarization value from
+        :math:`\pm 1` to :math:`0`, you wait at least :math:`20\ \text{µs}`
+        before setting a new value of :math:`c(s)`. (The minimum wait time,
+        :math:`2\ \text{µs}`, is sufficient for the :math:`0 \rightarrow \pm 1`
+        direction.)
 *   The range of values supported for the :ref:`parameter_qpu_schedule_delays`
     parameter, :math:`[-100, 100]` is not available in the information provided
     by the :ref:`property_qpu_get_multicolor_annealing_exp_feature_info`
