@@ -860,6 +860,10 @@ and available through the Ocean SDK.
         -
         -
 
+    *   -   Advantage_system4
+        -   :ref:`2026-05-26 <adv_sys4>`
+        -   Name change
+
     *   -   Advantage_system4.1
         -   :ref:`2021-10-05 <adv4_perf_update>`
         -   First solver release
