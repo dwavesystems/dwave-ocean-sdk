@@ -1,0 +1,538 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   height="100%"
+   version="1.1"
+   viewBox="25.0,5.0,475.0,220.0"
+   width="100%"
+   id="svg44"
+   sodipodi:docname="nl_model_construct_tsp.svg"
+   inkscape:version="1.4.4 (dcaf3e7, 2026-05-05)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview44"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="1.0378947"
+     inkscape:cx="237.5"
+     inkscape:cy="110.31947"
+     inkscape:window-width="1024"
+     inkscape:window-height="958"
+     inkscape:window-x="292"
+     inkscape:window-y="51"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg44" />
+  <defs
+     id="defs1" />
+  <g
+     id="g11">
+    <line
+       stroke="lightgrey"
+       stroke-dasharray="2"
+       x1="130.0"
+       x2="129.0"
+       y1="15.0"
+       y2="15.0"
+       id="line1" />
+    <line
+       stroke="lightgrey"
+       stroke-dasharray="2"
+       x1="110.0"
+       x2="129.0"
+       y1="35.0"
+       y2="35.0"
+       id="line2" />
+    <line
+       stroke="lightgrey"
+       stroke-dasharray="2"
+       x1="90.0"
+       x2="129.0"
+       y1="55.0"
+       y2="55.0"
+       id="line3" />
+    <line
+       stroke="lightgrey"
+       stroke-dasharray="2"
+       x1="70.0"
+       x2="129.0"
+       y1="75.0"
+       y2="75.0"
+       id="line4" />
+    <line
+       stroke="lightgrey"
+       stroke-dasharray="2"
+       x1="50.0"
+       x2="129.0"
+       y1="95.0"
+       y2="95.0"
+       id="line5" />
+    <line
+       stroke="lightgrey"
+       stroke-dasharray="2"
+       x1="130.0"
+       x2="129.0"
+       y1="115.0"
+       y2="115.0"
+       id="line6" />
+    <line
+       stroke="lightgrey"
+       stroke-dasharray="2"
+       x1="70.0"
+       x2="129.0"
+       y1="135.0"
+       y2="135.0"
+       id="line7" />
+    <line
+       stroke="lightgrey"
+       stroke-dasharray="2"
+       x1="130.0"
+       x2="129.0"
+       y1="155.0"
+       y2="155.0"
+       id="line8" />
+    <line
+       stroke="lightgrey"
+       stroke-dasharray="2"
+       x1="70.0"
+       x2="129.0"
+       y1="175.0"
+       y2="175.0"
+       id="line9" />
+    <line
+       stroke="lightgrey"
+       stroke-dasharray="2"
+       x1="130.0"
+       x2="129.0"
+       y1="195.0"
+       y2="195.0"
+       id="line10" />
+    <line
+       stroke="lightgrey"
+       stroke-dasharray="2"
+       x1="130.0"
+       x2="129.0"
+       y1="215.0"
+       y2="215.0"
+       id="line11" />
+  </g>
+  <g
+     id="g21">
+    <line
+       stroke="#c65353"
+       stroke-width="2.0"
+       x1="115.0"
+       x2="115.0"
+       y1="15.0"
+       y2="115.0"
+       id="line12" />
+    <line
+       stroke="#53c6c6"
+       stroke-width="2.0"
+       x1="55.0"
+       x2="55.0"
+       y1="75.0"
+       y2="135.0"
+       id="line13" />
+    <line
+       stroke="#53c653"
+       stroke-width="2.0"
+       x1="75.0"
+       x2="75.0"
+       y1="55.0"
+       y2="120.0"
+       id="line14" />
+    <line
+       stroke="#5353c6"
+       stroke-width="2.0"
+       x1="35.0"
+       x2="35.0"
+       y1="95.0"
+       y2="140.0"
+       id="line15" />
+    <line
+       stroke="#c6c653"
+       stroke-width="2.0"
+       x1="95.0"
+       x2="95.0"
+       y1="35.0"
+       y2="140.0"
+       id="line16" />
+    <line
+       stroke="#c653c6"
+       stroke-width="2.0"
+       x1="115.0"
+       x2="115.0"
+       y1="115.0"
+       y2="155.0"
+       id="line17" />
+    <line
+       stroke="#c65353"
+       stroke-width="2.0"
+       x1="55.0"
+       x2="55.0"
+       y1="135.0"
+       y2="175.0"
+       id="line18" />
+    <line
+       stroke="#d98c8c"
+       stroke-width="2.0"
+       x1="115.0"
+       x2="115.0"
+       y1="155.0"
+       y2="195.0"
+       id="line19" />
+    <line
+       stroke="#d9d98c"
+       stroke-width="2.0"
+       x1="55.0"
+       x2="55.0"
+       y1="175.0"
+       y2="200.0"
+       id="line20" />
+    <line
+       stroke="#8cd98c"
+       stroke-width="2.0"
+       x1="115.0"
+       x2="115.0"
+       y1="195.0"
+       y2="215.0"
+       id="line21" />
+  </g>
+  <g
+     id="g27">
+    <line
+       stroke="white"
+       stroke-width="6.0"
+       x1="75.0"
+       x2="100.0"
+       y1="55.0"
+       y2="55.0"
+       id="line22" />
+    <line
+       stroke="white"
+       stroke-width="6.0"
+       x1="55.0"
+       x2="100.0"
+       y1="75.0"
+       y2="75.0"
+       id="line23" />
+    <line
+       stroke="white"
+       stroke-width="6.0"
+       x1="35.0"
+       x2="100.0"
+       y1="95.0"
+       y2="95.0"
+       id="line24" />
+    <line
+       stroke="white"
+       stroke-width="6.0"
+       x1="55.0"
+       x2="80.0"
+       y1="135.0"
+       y2="135.0"
+       id="line25" />
+    <line
+       stroke="white"
+       stroke-width="6.0"
+       x1="50.0"
+       x2="115.0"
+       y1="155.0"
+       y2="155.0"
+       id="line26" />
+    <line
+       stroke="white"
+       stroke-width="6.0"
+       x1="70.0"
+       x2="115.0"
+       y1="215.0"
+       y2="215.0"
+       id="line27" />
+  </g>
+  <g
+     id="g34">
+    <path
+       d="M 115.0,40.0 a15.0,15.0 0 0,1 -15.0,15.0"
+       fill="none"
+       stroke="#c65353"
+       stroke-width="2.0"
+       id="path27" />
+    <line
+       stroke="#c65353"
+       stroke-width="2.0"
+       x1="75.0"
+       x2="100.0"
+       y1="55.0"
+       y2="55.0"
+       id="line28" />
+    <path
+       d="M 115.0,60.0 a15.0,15.0 0 0,1 -15.0,15.0"
+       fill="none"
+       stroke="#c65353"
+       stroke-width="2.0"
+       id="path28" />
+    <line
+       stroke="#c65353"
+       stroke-width="2.0"
+       x1="55.0"
+       x2="100.0"
+       y1="75.0"
+       y2="75.0"
+       id="line29" />
+    <path
+       d="M 115.0,80.0 a15.0,15.0 0 0,1 -15.0,15.0"
+       fill="none"
+       stroke="#c65353"
+       stroke-width="2.0"
+       id="path29" />
+    <line
+       stroke="#c65353"
+       stroke-width="2.0"
+       x1="35.0"
+       x2="100.0"
+       y1="95.0"
+       y2="95.0"
+       id="line30" />
+    <path
+       d="M 75.0,120.0 a15.0,15.0 0 0,1 -15.0,15.0"
+       fill="none"
+       stroke="#53c653"
+       stroke-width="2.0"
+       id="path30" />
+    <path
+       d="M 95.0,120.0 a15.0,15.0 0 0,1 -15.0,15.0"
+       fill="none"
+       stroke="#c6c653"
+       stroke-width="2.0"
+       id="path31" />
+    <line
+       stroke="#c6c653"
+       stroke-width="2.0"
+       x1="55.0"
+       x2="80.0"
+       y1="135.0"
+       y2="135.0"
+       id="line31" />
+    <path
+       d="M 35.0,140.0 a15.0,15.0 0 0,0 15.0,15.0"
+       fill="none"
+       stroke="#5353c6"
+       stroke-width="2.0"
+       id="path32" />
+    <path
+       d="M 95.0,140.0 a15.0,15.0 0 0,0 15.0,15.0"
+       fill="none"
+       stroke="#c6c653"
+       stroke-width="2.0"
+       id="path33" />
+    <line
+       stroke="#5353c6"
+       stroke-width="2.0"
+       x1="50.0"
+       x2="115.0"
+       y1="155.0"
+       y2="155.0"
+       id="line33" />
+    <path
+       d="M 55.0,200.0 a15.0,15.0 0 0,0 15.0,15.0"
+       fill="none"
+       stroke="#d9d98c"
+       stroke-width="2.0"
+       id="path34" />
+    <line
+       stroke="#d9d98c"
+       stroke-width="2.0"
+       x1="70.0"
+       x2="115.0"
+       y1="215.0"
+       y2="215.0"
+       id="line34" />
+  </g>
+  <g
+     id="g44">
+    <circle
+       cx="115.0"
+       cy="15.0"
+       fill="#c65353"
+       id="NdwaveoptimizationsymbolscollectionsListVariableat0x1051e6ef8"
+       r="6.0"
+       stroke="white"
+       stroke-width="2.0" />
+    <text
+       dominant-baseline="middle"
+       fill="currentColor"
+       font-family="sans-serif"
+       font-size="inherit"
+       x="135.0"
+       y="15.0"
+       id="text34">&lt;dwave.optimization.symbols.collections.ListVariable at 0x1051e6ef8&gt;</text>
+    <circle
+       cx="95.0"
+       cy="35.0"
+       fill="#c6c653"
+       id="NdwaveoptimizationsymbolsconstantsConstantat0xc27007b10"
+       r="6.0"
+       stroke="white"
+       stroke-width="2.0" />
+    <text
+       dominant-baseline="middle"
+       fill="currentColor"
+       font-family="sans-serif"
+       font-size="inherit"
+       x="135.0"
+       y="35.0"
+       id="text35">&lt;dwave.optimization.symbols.constants.Constant at 0xc27007b10&gt;</text>
+    <circle
+       cx="75.0"
+       cy="55.0"
+       fill="#53c653"
+       id="NdwaveoptimizationsymbolsindexingBasicIndexingat0x1051e7010"
+       r="6.0"
+       stroke="white"
+       stroke-width="2.0" />
+    <text
+       dominant-baseline="middle"
+       fill="currentColor"
+       font-family="sans-serif"
+       font-size="inherit"
+       x="135.0"
+       y="55.0"
+       id="text36">&lt;dwave.optimization.symbols.indexing.BasicIndexing at 0x1051e7010&gt;</text>
+    <circle
+       cx="55.0"
+       cy="75.0"
+       fill="#53c6c6"
+       id="NdwaveoptimizationsymbolsindexingBasicIndexingat0x1051e7150"
+       r="6.0"
+       stroke="white"
+       stroke-width="2.0" />
+    <text
+       dominant-baseline="middle"
+       fill="currentColor"
+       font-family="sans-serif"
+       font-size="inherit"
+       x="135.0"
+       y="75.0"
+       id="text37">&lt;dwave.optimization.symbols.indexing.BasicIndexing at 0x1051e7150&gt;</text>
+    <circle
+       cx="35.0"
+       cy="95.0"
+       fill="#5353c6"
+       id="NdwaveoptimizationsymbolsindexingBasicIndexingat0x1051e7290"
+       r="6.0"
+       stroke="white"
+       stroke-width="2.0" />
+    <text
+       dominant-baseline="middle"
+       fill="currentColor"
+       font-family="sans-serif"
+       font-size="inherit"
+       x="135.0"
+       y="95.0"
+       id="text38">&lt;dwave.optimization.symbols.indexing.BasicIndexing at 0x1051e7290&gt;</text>
+    <circle
+       cx="115.0"
+       cy="115.0"
+       fill="#c653c6"
+       id="NdwaveoptimizationsymbolsindexingBasicIndexingat0x1051e73d0"
+       r="6.0"
+       stroke="white"
+       stroke-width="2.0" />
+    <text
+       dominant-baseline="middle"
+       fill="currentColor"
+       font-family="sans-serif"
+       font-size="inherit"
+       x="135.0"
+       y="115.0"
+       id="text39">&lt;dwave.optimization.symbols.indexing.BasicIndexing at 0x1051e73d0&gt;</text>
+    <circle
+       cx="55.0"
+       cy="135.0"
+       fill="#c65353"
+       id="NdwaveoptimizationsymbolsindexingAdvancedIndexingat0x1051e74d8"
+       r="6.0"
+       stroke="white"
+       stroke-width="2.0" />
+    <text
+       dominant-baseline="middle"
+       fill="currentColor"
+       font-family="sans-serif"
+       font-size="inherit"
+       x="135.0"
+       y="135.0"
+       id="text40">&lt;dwave.optimization.symbols.indexing.AdvancedIndexing at 0x1051e74d8&gt;</text>
+    <circle
+       cx="115.0"
+       cy="155.0"
+       fill="#d98c8c"
+       id="NdwaveoptimizationsymbolsindexingAdvancedIndexingat0x1051e75b8"
+       r="6.0"
+       stroke="white"
+       stroke-width="2.0" />
+    <text
+       dominant-baseline="middle"
+       fill="currentColor"
+       font-family="sans-serif"
+       font-size="inherit"
+       x="135.0"
+       y="155.0"
+       id="text41">&lt;dwave.optimization.symbols.indexing.AdvancedIndexing at 0x1051e75b8&gt;</text>
+    <circle
+       cx="55.0"
+       cy="175.0"
+       fill="#d9d98c"
+       id="NdwaveoptimizationsymbolsreduceSumat0xc278f8078"
+       r="6.0"
+       stroke="white"
+       stroke-width="2.0" />
+    <text
+       dominant-baseline="middle"
+       fill="currentColor"
+       font-family="sans-serif"
+       font-size="inherit"
+       x="135.0"
+       y="175.0"
+       id="text42">&lt;dwave.optimization.symbols.reduce.Sum at 0xc278f8078&gt;</text>
+    <circle
+       cx="115.0"
+       cy="195.0"
+       fill="#8cd98c"
+       id="NdwaveoptimizationsymbolsreduceSumat0xc278f8158"
+       r="6.0"
+       stroke="white"
+       stroke-width="2.0" />
+    <text
+       dominant-baseline="middle"
+       fill="currentColor"
+       font-family="sans-serif"
+       font-size="inherit"
+       x="135.0"
+       y="195.0"
+       id="text43">&lt;dwave.optimization.symbols.reduce.Sum at 0xc278f8158&gt;</text>
+    <circle
+       cx="115.0"
+       cy="215.0"
+       fill="#8cd9d9"
+       id="NdwaveoptimizationsymbolsbinaryopAddat0xc25e0c0a0"
+       r="6.0"
+       stroke="white"
+       stroke-width="2.0" />
+    <text
+       dominant-baseline="middle"
+       fill="currentColor"
+       font-family="sans-serif"
+       font-size="inherit"
+       x="135.0"
+       y="215.0"
+       id="text44">&lt;dwave.optimization.symbols.binaryop.Add at 0xc25e0c0a0&gt;</text>
+  </g>
+</svg>
