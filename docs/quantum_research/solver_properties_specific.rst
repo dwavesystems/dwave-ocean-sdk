@@ -496,10 +496,10 @@ respectively, for this system.
 
     Typical quantization on the :math:`J` DAC control.
 
-Advantage_system4.1
-===================
+Advantage_system4
+=================
 
-All data presented in this section are specific to the **Advantage_system4.1**
+All data presented in this section are specific to the **Advantage_system4**
 solver. The |dwave_5kq| QPU is based on a physical lattice of qubits and
 couplers known as the *Pegasus*\ |tm| topology. For information,
 see the :ref:`topology_intro_pegasus` section.
@@ -592,7 +592,7 @@ Annealing Schedule
 ------------------
 
 Download the annealing schedule for the QPU here:
-:download:`Advantage_system4.1 <../downloadables/09-1263A-B_Advantage_system4_1_annealing_schedule.xlsx>`.
+:download:`Advantage_system4 <../downloadables/09-1263A-C_Advantage_system4_annealing_schedule.xlsx>`.
 
 The standard annealing schedule for this QPU is shown in
 :numref:`Figure %s <annealing-schedule-adv4>`.
