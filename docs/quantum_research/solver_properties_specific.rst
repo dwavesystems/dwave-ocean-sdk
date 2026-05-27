@@ -364,10 +364,10 @@ The standard annealing schedule for the QPU is shown in
     as a function of scaled time.
 
 
-Advantage_system6.4
-===================
+Advantage_system6
+=================
 
-All data presented in this section are specific to the **Advantage_system6.4**
+All data presented in this section are specific to the **Advantage_system6**
 solver. The |dwave_5kq| QPU is based on a physical lattice of qubits and
 couplers known as the *Pegasus*\ |tm| topology. For information,
 see the :ref:`topology_intro_pegasus` section.
@@ -460,7 +460,7 @@ Annealing Schedule
 ------------------
 
 Download the annealing schedule for the QPU here:
-:download:`Advantage_system6.4 Excel spreadsheet <../downloadables/09-1273A-E_Advantage_system6_4_annealing_schedule.xlsx>`.
+:download:`Advantage_system6 Excel spreadsheet <../downloadables/09-1273A-F_Advantage_system6_annealing_schedule.xlsx>`.
 
 The standard annealing schedule for this QPU is shown in
 :numref:`Figure %s <annealing-schedule-adv6>`.
@@ -839,6 +839,10 @@ and available through the Ocean SDK.
     *   -   **Advantage_system6**
         -
         -
+
+    *   -   Advantage_system6
+        -   :ref:`2026-05-27 <adv_sys6>`
+        -   Name change
 
     *   -   Advantage_system6.4
         -   :ref:`2024-02-28 <isi_6.4>`
