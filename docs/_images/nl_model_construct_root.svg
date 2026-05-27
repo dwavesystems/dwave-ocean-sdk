@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="181.00151mm"
+   height="51.691055mm"
+   viewBox="0 0 181.00151 51.691055"
+   version="1.1"
+   id="svg8"
+   inkscape:version="1.4.4 (dcaf3e7, 2026-05-05)"
+   sodipodi:docname="nl_model_construct_list_constant.svg"
+   inkscape:export-filename="C:\Users\jpasvolsky\pyenv\ocean_repos\nlsolver_2nd_3_10_2\nonlinear_model_DAG.png"
+   inkscape:export-xdpi="59.5313"
+   inkscape:export-ydpi="59.5313"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <defs
+     id="defs2">
+    <marker
+       inkscape:stockid="Arrow1Lend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker5377"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         id="path5375"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         transform="matrix(-0.8,0,0,-0.8,-10,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Lstart"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Lstart"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         id="path4587"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         transform="matrix(0.8,0,0,0.8,10,0)" />
+    </marker>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.71"
+     inkscape:cx="332.39437"
+     inkscape:cy="-86.619718"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     inkscape:measure-start="0,0"
+     inkscape:measure-end="0,0"
+     inkscape:window-width="1355"
+     inkscape:window-height="826"
+     inkscape:window-x="440"
+     inkscape:window-y="30"
+     inkscape:window-maximized="0"
+     inkscape:showpageshadow="2"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid4524"
+       originx="20.97601"
+       originy="-185.68967"
+       spacingy="1"
+       spacingx="1"
+       units="mm" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(20.976014,-185.68966)">
+    <ellipse
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:1.05458;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path3713-8"
+       cx="117.01291"
+       cy="201.04195"
+       rx="11.52494"
+       ry="10.593307" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.5284px;line-height:0.75;font-family:'.ADT Slab Numeric';-inkscape-font-specification:'.ADT Slab Numeric';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.288211"
+       x="82.89135"
+       y="204.94191"
+       id="text5329"
+       transform="scale(0.91801687,1.0893046)"><tspan
+         sodipodi:role="line"
+         id="tspan5327"
+         x="82.89135"
+         y="204.94191"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.37996px;line-height:0.75;font-family:'.ADT Slab Numeric';-inkscape-font-specification:'.ADT Slab Numeric';stroke-width:0.288211">Decision Variable: ordered_cities </tspan><tspan
+         sodipodi:role="line"
+         x="82.89135"
+         y="213.58821"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.37996px;line-height:0.75;font-family:'.ADT Slab Numeric';-inkscape-font-specification:'.ADT Slab Numeric';stroke-width:0.288211"
+         id="tspan1">Symbol: ListVariable</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:3.175px;writing-mode:lr-tb;direction:ltr;fill:#000000;stroke-width:0.264583"
+       x="75.648476"
+       y="220.61032"
+       id="text2"><tspan
+         sodipodi:role="line"
+         id="tspan2"
+         style="stroke-width:0.264583"
+         x="75.648476"
+         y="220.61032"></tspan></text>
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:0.38096;stroke-dasharray:none;stroke-opacity:1"
+       id="rect2"
+       width="180.62054"
+       height="51.310097"
+       x="-20.785534"
+       y="185.88014" />
+    <ellipse
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:1.05458;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path3713-8-0"
+       cx="30.391064"
+       cy="201.74417"
+       rx="11.52494"
+       ry="10.593307" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.5284px;line-height:0.75;font-family:'.ADT Slab Numeric';-inkscape-font-specification:'.ADT Slab Numeric';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.288211"
+       x="13.101235"
+       y="203.65631"
+       id="text5329-9"
+       transform="scale(0.91801687,1.0893046)"><tspan
+         sodipodi:role="line"
+         id="tspan5327-3"
+         x="13.101235"
+         y="203.65631"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.37996px;line-height:0.75;font-family:'.ADT Slab Numeric';-inkscape-font-specification:'.ADT Slab Numeric';stroke-width:0.288211">Constant: DM </tspan><tspan
+         sodipodi:role="line"
+         x="13.101235"
+         y="212.30261"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.37996px;line-height:0.75;font-family:'.ADT Slab Numeric';-inkscape-font-specification:'.ADT Slab Numeric';stroke-width:0.288211"
+         id="tspan1-7">Symbol: Constant</tspan></text>
+  </g>
+</svg>
