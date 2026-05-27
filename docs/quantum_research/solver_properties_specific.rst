@@ -259,10 +259,10 @@ The standard annealing schedule for the QPU is shown in
     as a function of scaled time.
 
 
-Advantage2_system4.3
-====================
+Advantage2_system4
+==================
 
-All data presented in this section are specific to the **Advantage2_system4.3**
+All data presented in this section are specific to the **Advantage2_system4**
 solver. The |adv2_tm| system QPU is based on a physical lattice of qubits and
 couplers known as the *Zephyr*\ |tm| topology. For information, see the
 :ref:`topology_intro_zephyr` section.
@@ -352,7 +352,7 @@ Annealing Schedule
 ------------------
 
 Download the annealing schedule for the QPU here:
-:download:`Advantage2_system4.3 Excel spreadsheet <../downloadables/09-1323A-C_Advantage2_system4_3_annealing_schedule.xlsx>`.
+:download:`Advantage2_system4 Excel spreadsheet <../downloadables/09-1323A-D_Advantage2_system4_annealing_schedule.xlsx>`.
 
 The standard annealing schedule for the QPU is shown in
 :numref:`Figure %s <annealing-schedule-adv2-4.1>`.
@@ -827,6 +827,10 @@ and available through the Ocean SDK.
     *   -   **Advantage2_system4**
         -
         -
+
+    *   -   Advantage2_system4
+        -   :ref:`2026-05-27 <adv2_sys4>`
+        -   Name change
 
     *   -   Advantage2_system4.3
         -   :ref:`2025-12-22 <adv2_4.3>`
