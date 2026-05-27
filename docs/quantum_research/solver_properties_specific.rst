@@ -829,7 +829,7 @@ and available through the Ocean SDK.
         -
 
     *   -   Advantage2_system4
-        -   :ref:`2026-05-27 <adv2_sys4>`
+        -   :ref:`2026-05-27 <rename_solver>`
         -   Name change
 
     *   -   Advantage2_system4.3
@@ -845,7 +845,7 @@ and available through the Ocean SDK.
         -
 
     *   -   Advantage_system6
-        -   :ref:`2026-05-27 <adv_sys6>`
+        -   :ref:`2026-05-27 <rename_solver>`
         -   Name change
 
     *   -   Advantage_system6.4
