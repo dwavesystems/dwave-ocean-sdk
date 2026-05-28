@@ -144,9 +144,9 @@ You can select a QPU and verify the selection as follows.
 
 >>> from dwave.system import DWaveSampler
 ...
->>> qpu = DWaveSampler(solver="Advantage2_research1.4")     # doctest: +SKIP
+>>> qpu = DWaveSampler(solver="Advantage2_research1")     # doctest: +SKIP
 >>> print(qpu.solver.name)                                  # doctest: +SKIP
-Advantage2_research1.4
+Advantage2_research1
 
 Embed the FM Ring
 ~~~~~~~~~~~~~~~~~
@@ -354,11 +354,12 @@ state and reverse anneal from there.
 This experimental feature, multicolor annealing, lets you set a different anneal
 schedule for each of several subsets of qubits. You can also configure a
 schedule for large positive or negative polarizing
-:ref:`flux biases <parameter_qpu_flux_biases>` to each subset of qubits.
+:ref:`flux biases <parameter_qpu_flux_biases>` to the qubits.
 
 :numref:`Figure %s <multicoloredAnnealZ6Lines>` shows the subsets of the QPU's
 qubits on each of the six annealing lines of a particular |adv2_tm| QPU with a
-:ref:`Zephyr <topology_intro_zephyr>` :math:`Z_6` topology.
+:ref:`Zephyr <topology_intro_zephyr>` :math:`Z_6` topology. The number of
+annealing lines may vary among QPUs.
 
 .. figure:: ../_images/multicolored_anneal_z6_lines.png
     :name: multicoloredAnnealZ6Lines
@@ -385,16 +386,22 @@ Current Limitations
     :math:`0.02\ \text{µs}`. (You may do so to increase the generated waveform's
     rate of change; see the
     :ref:`property_qpu_get_multicolor_annealing_exp_feature_info` section.)
-*   Scheduled flux biases applied to the qubits of an annealing line are limited
-    to one very high or low value (polarization), and to zero (no polarization),
-    in contrast to a range of flux biases that can be statically applied through
-    the :ref:`parameter_qpu_flux_biases` parameter.
+*   Scheduled flux biases applied to qubits are limited to one very high or low
+    value (polarization), and to zero (no polarization), in contrast to a range
+    of flux biases that can be statically applied through the
+    :ref:`parameter_qpu_flux_biases` parameter.
 *   For 2 microseconds after changing the polarization value from :math:`\pm 1`
-    to :math:`0` for the qubits of an annealing line, you must not set a new
-    value of the normalized control bias, :math:`c(s)`, through the
-    :ref:`parameter_qpu_anneal_schedules` parameter, on that same line. This
-    ensures that the flux biases are applying the expected offset value when the
-    normalized control bias is changed on the polarized qubits.
+    to :math:`0`, you must not set a new value of the normalized control bias,
+    :math:`c(s)`, through the :ref:`parameter_qpu_anneal_schedules` parameter.
+    This ensures that the flux biases are applying the expected offset value
+    when the normalized control bias is changed on the polarized qubits.
+
+    .. note::
+        It is recommended that after changing the polarization value from
+        :math:`\pm 1` to :math:`0`, you wait at least :math:`20\ \text{µs}`
+        before setting a new value of :math:`c(s)`. (The minimum wait time,
+        :math:`2\ \text{µs}`, is sufficient for the :math:`0 \rightarrow \pm 1`
+        direction.)
 *   The range of values supported for the :ref:`parameter_qpu_schedule_delays`
     parameter, :math:`[-100, 100]` is not available in the information provided
     by the :ref:`property_qpu_get_multicolor_annealing_exp_feature_info`
@@ -403,7 +410,7 @@ Current Limitations
     if your solver returns an error that ``Time points must be quantized....``,
     try rounding down your schedules::
 
-        polarization_schedules[:, :, 0] = np.round(polarization_schedules[:, :, 0], 2)
+        polarization_schedule[:, 0] = np.round(polarization_schedule[:, 0], 2)
 
 Usage
 -----
@@ -421,8 +428,8 @@ experimental parameters:
 *   :ref:`parameter_qpu_anneal_schedules`: Sets the anneal schedule for each
     subset of qubits.
 
-*   :ref:`parameter_polarizing_schedules`: Sets the schedule for flux biases to
-    polarize each subset of qubits.
+*   :ref:`parameter_polarizing_schedule`: Sets the schedule for flux biases to
+    polarize all qubits.
 
 *   :ref:`parameter_qpu_disable_filtering`: Disables software filtering of
     waveforms to match channel bandwidth, allowing faster anneal schedules.
@@ -508,9 +515,9 @@ You can select a QPU and verify the selection as follows.
 
 >>> from dwave.system import DWaveSampler, FixedEmbeddingComposite
 ...
->>> qpu = DWaveSampler(solver="Advantage2_research1.4")     # doctest: +SKIP
+>>> qpu = DWaveSampler(solver="Advantage2_research1")     # doctest: +SKIP
 >>> print(qpu.solver.name)                                  # doctest: +SKIP
-Advantage2_research1.4
+Advantage2_research1
 
 Obtain Multicolor-Anneal Information
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -538,7 +545,7 @@ needed to use multicolor annealing on your selected QPU, either through the
     num_anneal_lines = len(exp_feature_info)
 
 >>> print(f"QPU {qpu.solver.name} has {num_anneal_lines} annealing lines.") # doctest: +SKIP
-QPU Advantage2_research1.4 has 6 annealing lines.
+QPU Advantage2_research1 has 6 annealing lines.
 
 
 2.  Alternatively, use the
@@ -558,7 +565,7 @@ QPU Advantage2_research1.4 has 6 annealing lines.
     num_anneal_lines = len(exp_feature_info)
 
 >>> print(f"QPU {qpu.solver.name} has {num_anneal_lines} annealing lines.") # doctest: +SKIP
-QPU Advantage2_research1.4 has 6 annealing lines.
+QPU Advantage2_research1 has 6 annealing lines.
 
 Embed the Experiment Qubits
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -575,7 +582,9 @@ across the full set of the QPU's physical qubits in order to make best use
 of the system.
 
 See the `multicolor annealing example <https://github.com/dwavesystems/dwave-experimental/tree/main/examples>`_
-in the ``dwave-experimental`` repository.
+in the
+`dwave-experimental <https://github.com/dwavesystems/dwave-experimental>`_
+repository.
 
 .. testcode::
     :skipif: True
@@ -697,39 +706,34 @@ qubit's state by quenching the detector qubit.
 
     target_c = 0.37
 
-    anneal_schedules = np.zeros((6, 8, 2))
+    anneal_schedules = np.zeros((num_anneal_lines, 8, 2))
     anneal_schedules[line_source] = [
-        [0.0, 0.0],[1.0, Q_source_max_c], [2.0, Q_source_max_c], [3.0, Q_source_max_c],
-        [4.0, Q_source_max_c], [4.0 + min_time_step, Q_source_min_c],
-        [5.0, Q_source_min_c], [6.0, 1.0]]
+        [0.0, 0.0],[1.0, Q_source_max_c], [20.0, Q_source_max_c], [21.0, Q_source_max_c],
+        [22.0, Q_source_max_c], [22.0 + min_time_step, Q_source_min_c],
+        [23.0, Q_source_min_c], [24.0, 1.0]]
 
     # Set supported time increments that can serve any non-participating annealing lines
     anneal_schedules[:, :, 0] = anneal_schedules[line_source][:, 0]
 
     anneal_schedules[line_target] = [
-        [0.0, 0.0],[1.0, 0.0], [2.0, 0.0], [3.0, target_c],[4.0, target_c],
-        [4.0 + min_time_step, target_c],[5.0, target_c], [6.0, 1.0]]
+        [0.0, 0.0],[1.0, 0.0], [20.0, 0.0], [21.0, target_c],[22.0, target_c],
+        [22.0 + min_time_step, target_c],[23.0, target_c], [24.0, 1.0]]
 
     anneal_schedules[line_detector] = [
-        [0.0, 0.0],[1.0, Q_detector_min_c], [2.0, Q_detector_min_c],
-        [3.0, Q_detector_min_c], [4.0, Q_detector_min_c],
-        [4.0 + min_time_step, Q_detector_max_c],[5.0, Q_detector_max_c], [6.0, 1.0]]
+        [0.0, 0.0],[1.0, Q_detector_min_c], [20.0, Q_detector_min_c],
+        [21.0, Q_detector_min_c], [22.0, Q_detector_min_c],
+        [22.0 + min_time_step, Q_detector_max_c],[23.0, Q_detector_max_c], [24.0, 1.0]]
 
-    # Set supported time increments for any non-participating lines
-    polarization_schedules = np.zeros((6, 8, 2))
-    polarization_schedules[:, :, 0] = np.linspace(
-        0.0, anneal_schedules[0][-1][0], anneal_schedules.shape[1])
-
-    polarization_schedules[line_source] = [
-        [0.0, 1],[1.0, 1], [2.0, 0], [3.0, 0], [4.0, 0],
-        [4.5, 0], [5.0, 0], [6.0, 0]]
+    polarization_schedule = np.asarray([
+        [0.0, 1],[1.0, 1], [2.0, 0], [21.0, 0], [22.0, 0],
+        [22.5, 0], [23.0, 0], [24.0, 0]])
 
 You can visually validate your schedules by plotting them as shown in
 :numref:`Figure %s <mca3QubitSchedules>`.
 
-.. figure:: ../_images/mca_3qubit_schedules.png
+.. figure:: ../_images/mca_3qubit_schedules.svg
     :name: mca3QubitSchedules
-    :scale: 100%
+    :scale: 80%
     :alt: Anneal and polarization schedules.
 
     Anneal and polarization schedules for three qubits.
@@ -757,7 +761,7 @@ and shows a Larmor precession that corresponds to the chosen transverse energy,
         x_disable_filtering = True,
         x_schedule_delays = num_anneal_lines * [0.0],
         x_anneal_schedules = anneal_schedules,
-        x_polarizing_schedules = polarization_schedules)
+        x_polarizing_schedule = polarization_schedule)
 
     delay_sweep = np.arange(0.0, 0.02, 40*exp_feature_info[0]["scheduleDelayStep"])
 
@@ -809,7 +813,7 @@ To view schedules, you can use code such as the following.
             ax[indx].set_title(title[indx])
 
             ax_twin = ax[indx].twinx()
-            ax_twin.plot(fb[line][:,0], fb[line][:,1], 'orange', label="Flux Bias")
+            ax_twin.plot(fb[:,0], fb[:,1], 'orange', label="Flux Bias")
             ax[indx].grid(axis='both', linestyle='--')
 
         ax[2].set_xlabel('Time $\\mu s$')

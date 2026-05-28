@@ -826,7 +826,7 @@ and the range for the target normalized control bias :math:`c(s)` for a QPU.
     >>> from dwave.experimental import fast_reverse_anneal as fra
     >>> from dwave.system import DWaveSampler
     ...
-    >>> with DWaveSampler(solver="Advantage2_research1.4") as sampler:  # doctest: +SKIP
+    >>> with DWaveSampler(solver="Advantage2_research1") as sampler:  # doctest: +SKIP
     ...     param_info = fra.get_parameters(sampler)
 
     >>> print(param_info["x_nominal_pause_time"]["limits"])     # doctest: +SKIP
@@ -840,7 +840,7 @@ and the range for the target normalized control bias :math:`c(s)` for a QPU.
     >>> from dwave.cloud.client import Client
     ...
     >>> with Client.from_config() as client:                    # doctest: +SKIP
-    ...     solver = client.get_solver(name="Advantage2_research1.4")
+    ...     solver = client.get_solver(name="Advantage2_research1")
     ...     computation = solver.sample_ising(
     ...         {next(iter(solver.nodes)): 0}, {}, x_get_fast_reverse_anneal_exp_feature_info=True)
             result = computation.result()
@@ -893,7 +893,7 @@ The returned information contains the following fields.
     *   -   ``minPolarizingTimeStep``
         -   Float
         -   Minimum supported time step, in microseconds, for the
-            :ref:`parameter_polarizing_schedules` parameter. Values specified
+            :ref:`parameter_polarizing_schedule` parameter. Values specified
             with greater precision are rounded.
     *   -   ``holdOvershootFor``
         -   Float
@@ -948,7 +948,7 @@ The returned information contains the following fields.
             ``ScheduleRequiredDelay``
         -   Float
         -   Time, in microseconds, after the
-            :ref:`parameter_polarizing_schedules` parameter changes the
+            :ref:`parameter_polarizing_schedule` parameter changes the
             polarization value from :math:`\pm 1` to :math:`0` for the qubits of
             an anneal line, during which the
             :ref:`parameter_qpu_anneal_schedules` parameter must not set a new
@@ -977,7 +977,7 @@ This example prints the first 5 qubits on annealing line 0.
 
     >>> from dwave.cloud.client import Client
     >>> with Client.from_config() as client:            # doctest: +SKIP
-    ...     solver = client.get_solver(name="Advantage2_research1.4")
+    ...     solver = client.get_solver(name="Advantage2_research1")
     ...     computation = solver.sample_ising(
     ...         {next(iter(solver.nodes)): 0}, {}, x_get_multicolor_annealing_exp_feature_info=True)
     ...     result = computation.result()
