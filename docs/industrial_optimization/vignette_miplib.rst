@@ -52,6 +52,8 @@ the need for constraints in the model. You can use the list variable to re-index
 rows and columns of the distance matrix so that the objective function is just a sum
 over all entries of the product of the flow and re-indexed distance matrix.
 
+Numpy arrays `flows` and `distances` are created from the data and added to the model as constants.
+
 The Python code for the nonlinear model is as follows:
 
 .. testsetup::
