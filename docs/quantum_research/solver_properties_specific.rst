@@ -259,10 +259,10 @@ The standard annealing schedule for the QPU is shown in
     as a function of scaled time.
 
 
-Advantage2_system4.3
-====================
+Advantage2_system4
+==================
 
-All data presented in this section are specific to the **Advantage2_system4.3**
+All data presented in this section are specific to the **Advantage2_system4**
 solver. The |adv2_tm| system QPU is based on a physical lattice of qubits and
 couplers known as the *Zephyr*\ |tm| topology. For information, see the
 :ref:`topology_intro_zephyr` section.
@@ -352,7 +352,7 @@ Annealing Schedule
 ------------------
 
 Download the annealing schedule for the QPU here:
-:download:`Advantage2_system4.3 Excel spreadsheet <../downloadables/09-1323A-C_Advantage2_system4_3_annealing_schedule.xlsx>`.
+:download:`Advantage2_system4 Excel spreadsheet <../downloadables/09-1323A-D_Advantage2_system4_annealing_schedule.xlsx>`.
 
 The standard annealing schedule for the QPU is shown in
 :numref:`Figure %s <annealing-schedule-adv2-4.1>`.
@@ -364,10 +364,10 @@ The standard annealing schedule for the QPU is shown in
     as a function of scaled time.
 
 
-Advantage_system6.4
-===================
+Advantage_system6
+=================
 
-All data presented in this section are specific to the **Advantage_system6.4**
+All data presented in this section are specific to the **Advantage_system6**
 solver. The |dwave_5kq| QPU is based on a physical lattice of qubits and
 couplers known as the *Pegasus*\ |tm| topology. For information,
 see the :ref:`topology_intro_pegasus` section.
@@ -460,7 +460,7 @@ Annealing Schedule
 ------------------
 
 Download the annealing schedule for the QPU here:
-:download:`Advantage_system6.4 Excel spreadsheet <../downloadables/09-1273A-E_Advantage_system6_4_annealing_schedule.xlsx>`.
+:download:`Advantage_system6 Excel spreadsheet <../downloadables/09-1273A-F_Advantage_system6_annealing_schedule.xlsx>`.
 
 The standard annealing schedule for this QPU is shown in
 :numref:`Figure %s <annealing-schedule-adv6>`.
@@ -828,6 +828,10 @@ and available through the Ocean SDK.
         -
         -
 
+    *   -   Advantage2_system4
+        -   :ref:`2026-05-27 <rename_solver>`
+        -   Name change
+
     *   -   Advantage2_system4.3
         -   :ref:`2025-12-22 <adv2_4.3>`
         -   840
@@ -839,6 +843,10 @@ and available through the Ocean SDK.
     *   -   **Advantage_system6**
         -
         -
+
+    *   -   Advantage_system6
+        -   :ref:`2026-05-27 <rename_solver>`
+        -   Name change
 
     *   -   Advantage_system6.4
         -   :ref:`2024-02-28 <isi_6.4>`
