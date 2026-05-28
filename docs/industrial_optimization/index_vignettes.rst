@@ -9,6 +9,7 @@ Performance Benchmarks
     :maxdepth: 1
 
     vignette_fss
+    vignette_miplib
     vignette_object-tracking
     vignette_qap
     vignette_satellite
@@ -25,6 +26,12 @@ range of optimization applications.
         :link-type: ref
 
         Flow-shop scheduling.
+
+    .. grid-item-card:: :ref:`opt_vignette_miplib`
+        :link: opt_vignette_miplib
+        :link-type: ref
+
+        MIPLIB problems.
 
     .. grid-item-card:: :ref:`opt_vignette_object-tracking`
         :link: opt_vignette_object-tracking

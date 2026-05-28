@@ -1,0 +1,342 @@
+problem,time_limit,solver,energy
+qap,5.0,Stride solver,340.0
+qap,5.0,Stride solver,340.0
+qap,5.0,Stride solver,340.0
+qap,5.0,Stride solver,340.0
+qap,5.0,Stride solver,340.0
+qap,15.0,Stride solver,340.0
+qap,15.0,Stride solver,340.0
+qap,15.0,Stride solver,340.0
+qap,15.0,Stride solver,340.0
+qap,15.0,Stride solver,340.0
+qap,30.0,Stride solver,340.0
+qap,30.0,Stride solver,340.0
+qap,30.0,Stride solver,340.0
+qap,30.0,Stride solver,340.0
+qap,30.0,Stride solver,340.0
+qap,90.0,Stride solver,340.0
+qap,90.0,Stride solver,340.0
+qap,90.0,Stride solver,340.0
+qap,90.0,Stride solver,340.0
+qap,90.0,Stride solver,340.0
+qap,0.5,Stride solver,340.0
+qap,0.5,Stride solver,340.0
+qap,0.5,Stride solver,340.0
+qap,0.5,Stride solver,340.0
+qap,0.5,Stride solver,340.0
+qap,1.0,Stride solver,340.0
+qap,1.0,Stride solver,340.0
+qap,1.0,Stride solver,340.0
+qap,1.0,Stride solver,340.0
+qap,1.0,Stride solver,340.0
+qap,5.0,HiGHS,482.0
+qap,15.0,HiGHS,482.0
+qap,30.0,HiGHS,482.0
+qap,45.0,HiGHS,348.0
+qap,60.0,HiGHS,348.0
+qap,90.0,HiGHS,340.0
+qap,1.0,HiGHS,482.0
+qap,0.5,HiGHS,482.0
+qap,30.0,COIN-OR CBC,376.0
+qap,30.0,COIN-OR CBC,376.0
+qap,30.0,COIN-OR CBC,376.0
+qap,30.0,COIN-OR CBC,376.0
+qap,30.0,COIN-OR CBC,376.0
+qap,15.0,COIN-OR CBC,486.0
+qap,15.0,COIN-OR CBC,486.0
+qap,15.0,COIN-OR CBC,486.0
+qap,15.0,COIN-OR CBC,486.0
+qap,15.0,COIN-OR CBC,486.0
+qap,5.0,COIN-OR CBC,508.0
+qap,5.0,COIN-OR CBC,508.0
+qap,5.0,COIN-OR CBC,508.0
+qap,5.0,COIN-OR CBC,508.0
+qap,5.0,COIN-OR CBC,508.0
+qap,45.0,COIN-OR CBC,340.0
+qap,45.0,COIN-OR CBC,340.0
+qap,45.0,COIN-OR CBC,340.0
+qap,45.0,COIN-OR CBC,340.0
+qap,45.0,COIN-OR CBC,340.0
+qap,60.0,COIN-OR CBC,340.0
+qap,60.0,COIN-OR CBC,340.0
+qap,60.0,COIN-OR CBC,340.0
+qap,60.0,COIN-OR CBC,340.0
+qap,60.0,COIN-OR CBC,340.0
+qap,90.0,COIN-OR CBC,340.0
+qap,90.0,COIN-OR CBC,340.0
+qap,90.0,COIN-OR CBC,340.0
+qap,90.0,COIN-OR CBC,340.0
+qap,90.0,COIN-OR CBC,340.0
+qap,1.0,COIN-OR CBC,inf
+qap,1.0,COIN-OR CBC,inf
+qap,1.0,COIN-OR CBC,inf
+qap,1.0,COIN-OR CBC,inf
+qap,1.0,COIN-OR CBC,inf
+qap,0.5,COIN-OR CBC,inf
+qap,0.5,COIN-OR CBC,inf
+qap,0.5,COIN-OR CBC,inf
+qap,0.5,COIN-OR CBC,inf
+qap,0.5,COIN-OR CBC,inf
+qap,5.0,SCIP,454.0
+qap,15.0,SCIP,454.0
+qap,30.0,SCIP,454.0
+qap,60.0,SCIP,340.0
+qap,45.0,SCIP,454.0
+qap,90.0,SCIP,340.0
+qap,0.5,SCIP,inf
+qap,1.0,SCIP,inf
+csched,5.0,Stride solver,410.0
+csched,10.0,Stride solver,408.0
+csched,30.0,Stride solver,365.0
+csched,60.0,Stride solver,356.0
+csched,120.0,Stride solver,352.0
+csched,300.0,Stride solver,351.0
+csched,5.0,Stride solver,417.0
+csched,10.0,Stride solver,419.0
+csched,30.0,Stride solver,368.0
+csched,60.0,Stride solver,370.0
+csched,120.0,Stride solver,356.0
+csched,300.0,Stride solver,352.0
+csched,5.0,Stride solver,416.0
+csched,10.0,Stride solver,390.0
+csched,30.0,Stride solver,371.0
+csched,60.0,Stride solver,364.0
+csched,120.0,Stride solver,356.0
+csched,300.0,Stride solver,352.0
+csched,5.0,Stride solver,417.0
+csched,10.0,Stride solver,415.0
+csched,30.0,Stride solver,364.0
+csched,60.0,Stride solver,364.0
+csched,120.0,Stride solver,352.0
+csched,300.0,Stride solver,351.0
+csched,5.0,Stride solver,384.0
+csched,10.0,Stride solver,377.0
+csched,30.0,Stride solver,365.0
+csched,60.0,Stride solver,364.0
+csched,120.0,Stride solver,356.0
+csched,300.0,Stride solver,358.0
+csched,600.0,Stride solver,352.0
+csched,600.0,Stride solver,351.0
+csched,600.0,Stride solver,351.0
+csched,600.0,Stride solver,351.0
+csched,600.0,Stride solver,351.0
+csched,5.0,HiGHS,inf
+csched,5.0,HiGHS,inf
+csched,5.0,HiGHS,inf
+csched,5.0,HiGHS,inf
+csched,5.0,HiGHS,inf
+csched,10.0,HiGHS,inf
+csched,10.0,HiGHS,inf
+csched,10.0,HiGHS,inf
+csched,10.0,HiGHS,inf
+csched,10.0,HiGHS,inf
+csched,30.0,HiGHS,387.0000000000002
+csched,30.0,HiGHS,387.0000000000002
+csched,30.0,HiGHS,387.0000000000002
+csched,30.0,HiGHS,387.0000000000002
+csched,30.0,HiGHS,387.0000000000002
+csched,60.0,HiGHS,387.0000000000002
+csched,60.0,HiGHS,387.0000000000002
+csched,60.0,HiGHS,387.0000000000002
+csched,60.0,HiGHS,387.0000000000002
+csched,60.0,HiGHS,387.0000000000002
+csched,120.0,HiGHS,387.0000000000002
+csched,120.0,HiGHS,387.0000000000002
+csched,120.0,HiGHS,387.0000000000002
+csched,120.0,HiGHS,387.0000000000002
+csched,120.0,HiGHS,387.0000000000002
+csched,300.0,HiGHS,378.0000000000038
+csched,300.0,HiGHS,378.0000000000038
+csched,300.0,HiGHS,378.0000000000038
+csched,300.0,HiGHS,378.0000000000038
+csched,300.0,HiGHS,378.0000000000038
+csched,600.0,HiGHS,356.0
+csched,600.0,HiGHS,356.0
+csched,600.0,HiGHS,356.0
+csched,600.0,HiGHS,356.0
+csched,600.0,HiGHS,356.0
+csched,300.0,COIN-OR CBC,399.0
+csched,300.0,COIN-OR CBC,399.0
+csched,300.0,COIN-OR CBC,399.0
+csched,300.0,COIN-OR CBC,399.0
+csched,300.0,COIN-OR CBC,399.0
+csched,600.0,COIN-OR CBC,398.0
+csched,600.0,COIN-OR CBC,398.0
+csched,600.0,COIN-OR CBC,398.0
+csched,600.0,COIN-OR CBC,398.0
+csched,600.0,COIN-OR CBC,398.0
+csched,5.0,SCIP,1e+20
+csched,5.0,SCIP,1e+20
+csched,5.0,SCIP,1e+20
+csched,5.0,SCIP,1e+20
+csched,5.0,SCIP,1e+20
+csched,10.0,SCIP,1e+20
+csched,10.0,SCIP,1e+20
+csched,10.0,SCIP,1e+20
+csched,10.0,SCIP,1e+20
+csched,10.0,SCIP,1e+20
+csched,30.0,SCIP,1e+20
+csched,30.0,SCIP,1e+20
+csched,30.0,SCIP,1e+20
+csched,30.0,SCIP,1e+20
+csched,30.0,SCIP,1e+20
+csched,60.0,SCIP,1e+20
+csched,60.0,SCIP,1e+20
+csched,60.0,SCIP,1e+20
+csched,60.0,SCIP,1e+20
+csched,60.0,SCIP,1e+20
+csched,120.0,SCIP,424.0
+csched,120.0,SCIP,424.0
+csched,120.0,SCIP,424.0
+csched,120.0,SCIP,424.0
+csched,120.0,SCIP,424.0
+csched,300.0,SCIP,384.0
+csched,300.0,SCIP,384.0
+csched,300.0,SCIP,384.0
+csched,300.0,SCIP,384.0
+csched,300.0,SCIP,384.0
+csched,600.0,SCIP,360.0
+csched,600.0,SCIP,360.0
+csched,600.0,SCIP,360.0
+csched,600.0,SCIP,360.0
+csched,600.0,SCIP,360.0
+rcpsp,,Stride solver,402.0
+rcpsp,,Stride solver,353.0
+rcpsp,,Stride solver,353.0
+rcpsp,,Stride solver,353.0
+rcpsp,,Stride solver,353.0
+rcpsp,,Stride solver,302.0
+rcpsp,,Stride solver,302.0
+rcpsp,,Stride solver,353.0
+rcpsp,,Stride solver,302.0
+rcpsp,,Stride solver,302.0
+rcpsp,,Stride solver,302.0
+rcpsp,,Stride solver,302.0
+rcpsp,,Stride solver,302.0
+rcpsp,,Stride solver,302.0
+rcpsp,,Stride solver,302.0
+rcpsp,,Stride solver,302.0
+rcpsp,,Stride solver,353.0
+rcpsp,,Stride solver,302.0
+rcpsp,,Stride solver,302.0
+rcpsp,,Stride solver,302.0
+rcpsp,,Stride solver,302.0
+rcpsp,,Stride solver,302.0
+rcpsp,,Stride solver,302.0
+rcpsp,,Stride solver,302.0
+rcpsp,,Stride solver,302.0
+rcpsp,,Stride solver,302.0
+rcpsp,,Stride solver,302.0
+rcpsp,,Stride solver,302.0
+rcpsp,,Stride solver,302.0
+rcpsp,,Stride solver,302.0
+rcpsp,,Stride solver,302.0
+rcpsp,,Stride solver,302.0
+rcpsp,,Stride solver,302.0
+rcpsp,,Stride solver,302.0
+rcpsp,,Stride solver,302.0
+rcpsp,,Stride solver,302.0
+rcpsp,,Stride solver,302.0
+rcpsp,,Stride solver,302.0
+rcpsp,,Stride solver,302.0
+rcpsp,,Stride solver,302.0
+rcpsp,,HiGHS,453.0
+rcpsp,,HiGHS,453.0
+rcpsp,,HiGHS,453.0
+rcpsp,,HiGHS,453.0
+rcpsp,,HiGHS,453.0
+rcpsp,,HiGHS,552.999999999983
+rcpsp,,HiGHS,552.999999999983
+rcpsp,,HiGHS,552.999999999983
+rcpsp,,HiGHS,552.999999999983
+rcpsp,,HiGHS,552.999999999983
+rcpsp,,HiGHS,655.0
+rcpsp,,HiGHS,655.0
+rcpsp,,HiGHS,655.0
+rcpsp,,HiGHS,655.0
+rcpsp,,HiGHS,655.0
+rcpsp,,HiGHS,inf
+rcpsp,,HiGHS,inf
+rcpsp,,HiGHS,inf
+rcpsp,,HiGHS,inf
+rcpsp,,HiGHS,inf
+rcpsp,,HiGHS,inf
+rcpsp,,HiGHS,inf
+rcpsp,,HiGHS,inf
+rcpsp,,HiGHS,inf
+rcpsp,,HiGHS,inf
+rcpsp,,HiGHS,inf
+rcpsp,,HiGHS,inf
+rcpsp,,HiGHS,inf
+rcpsp,,HiGHS,inf
+rcpsp,,HiGHS,inf
+rcpsp,,HiGHS,inf
+rcpsp,,HiGHS,inf
+rcpsp,,HiGHS,inf
+rcpsp,,HiGHS,inf
+rcpsp,,HiGHS,inf
+rcpsp,,HiGHS,inf
+rcpsp,,HiGHS,inf
+rcpsp,,HiGHS,inf
+rcpsp,,HiGHS,inf
+rcpsp,,HiGHS,inf
+rcpsp,,SCIP,1e+20
+rcpsp,,SCIP,1e+20
+rcpsp,,SCIP,1e+20
+rcpsp,,SCIP,1e+20
+rcpsp,,SCIP,1e+20
+rcpsp,,SCIP,1e+20
+rcpsp,,SCIP,1e+20
+rcpsp,,SCIP,1e+20
+rcpsp,,SCIP,1e+20
+rcpsp,,SCIP,1e+20
+rcpsp,,SCIP,1e+20
+rcpsp,,SCIP,1e+20
+rcpsp,,SCIP,1e+20
+rcpsp,,SCIP,1e+20
+rcpsp,,SCIP,1e+20
+rcpsp,,SCIP,1e+20
+rcpsp,,SCIP,1e+20
+rcpsp,,SCIP,1e+20
+rcpsp,,SCIP,1e+20
+rcpsp,,SCIP,1e+20
+rcpsp,,SCIP,302.0
+rcpsp,,SCIP,302.0
+rcpsp,,SCIP,302.0
+rcpsp,,SCIP,302.0
+rcpsp,,SCIP,302.0
+rcpsp,,SCIP,302.0
+rcpsp,,SCIP,302.0
+rcpsp,,SCIP,302.0
+rcpsp,,SCIP,302.0
+rcpsp,,SCIP,302.0
+rcpsp,,COIN-OR CBC,inf
+rcpsp,,COIN-OR CBC,inf
+rcpsp,,COIN-OR CBC,inf
+rcpsp,,COIN-OR CBC,inf
+rcpsp,,COIN-OR CBC,inf
+rcpsp,,COIN-OR CBC,inf
+rcpsp,,COIN-OR CBC,inf
+rcpsp,,COIN-OR CBC,inf
+rcpsp,,COIN-OR CBC,inf
+rcpsp,,COIN-OR CBC,inf
+rcpsp,,COIN-OR CBC,inf
+rcpsp,,COIN-OR CBC,inf
+rcpsp,,COIN-OR CBC,inf
+rcpsp,,COIN-OR CBC,inf
+rcpsp,,COIN-OR CBC,inf
+rcpsp,,COIN-OR CBC,inf
+rcpsp,,COIN-OR CBC,inf
+rcpsp,,COIN-OR CBC,inf
+rcpsp,,COIN-OR CBC,inf
+rcpsp,,COIN-OR CBC,inf
+rcpsp,,COIN-OR CBC,inf
+rcpsp,,COIN-OR CBC,inf
+rcpsp,,COIN-OR CBC,inf
+rcpsp,,COIN-OR CBC,inf
+rcpsp,,COIN-OR CBC,inf
+rcpsp,,COIN-OR CBC,inf
+rcpsp,,COIN-OR CBC,inf
+rcpsp,,COIN-OR CBC,inf
+rcpsp,,COIN-OR CBC,inf
+rcpsp,,COIN-OR CBC,inf
