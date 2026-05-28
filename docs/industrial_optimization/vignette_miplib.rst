@@ -4,8 +4,8 @@
 MIPLIB Benchmarks
 =================
 
-The Mixed-Integer Programming Library (MIPLIB) is a collection of
-problems used to compare the performance of mixed integer
+The `Mixed-Integer Programming Library (MIPLIB) <https://miplib.zib.de/>`_ is a collection of
+problems used to compare the performance of mixed-integer
 optimization solvers. Often these problems are highly nonlinear in
 nature, but they are reformulated as linear programs for
 solvers that do not have more extensive modeling capabilities.
@@ -14,18 +14,16 @@ constraints, which can make the problem more difficult to solve.
 The Stride solver can handle the nonlinear formulations of these problems
 directly, and by taking advantage of combinatorial structures, it can
 greatly reduce the search space to find better solutions in less time.
-We take three MIPs from this library and show that we can reformulate
-them as nonlinear models for the Stride solver to achieve superior
-performance in comparison to using the original linear formulation on
-open-source MIP solvers.
+
+This section reformulates three mixed-integer programs (MIPs) from this library
+as nonlinear models. The Stride solver demonstrates superior performance on
+these nonlinear models compared to open-source MIP solvers on the original
+linear formulations.
 
 Quadratic Assignment
 ====================
 
-Problem Description
--------------------
-
-The first problem is an instance of quadratic assignment.
+The first problem is an instance of `quadratic assignment <https://en.wikipedia.org/wiki/Quadratic_assignment_problem>`_.
 Given a set of locations and facilities, each with a set of flows (for
 example, the amount of supplies transported) between each pair, the goal is to
 determine the optimal placement of the facilities so that the sum of the flows
@@ -36,10 +34,10 @@ Model Formulation
 
 The problem instance is "qap10" from MIPLIB. The problem data (set of flows and
 distances) is extracted from the file given knowledge of the model. The MIP
-model has 4,150 binary variables. 100 of these variables are (after relabeling)
-of the form :math:`x_{ij}`, equal to 1 if facility :math:`i` is in
+model has 4,150 binary variables. 100 of these variables, relabeled to
+:math:`x_{ij}`, are equal to 1 if facility :math:`i` is in
 location :math:`j` and 0 otherwise. Since the objective is naturally formulated
-as a quadratic function :math:`\sum_{i,j,k,l} F_{i,k} D_{j,l} x_{ij} x_{kl}`,
+as a quadratic function, :math:`\sum_{i,j,k,l} F_{i,k} D_{j,l} x_{ij} x_{kl}`,
 the other 4,050 variables are needed to linearize the model. This introduces
 1,820 constraints. HiGHS, SCIP, and COIN-OR CBC CMD (with Pulp) were run by loading the
 .mps file as a model.
@@ -50,7 +48,7 @@ in the state of the list variable, element :math:`i` is the location of facility
 :math:`i`. Since every state of a list variable of length :math:`n` is a permutation
 of the integers 0 through :math:`n-1`, every state gives a one-to-one matching
 between facilities and locations. This means every state is feasible, eliminating
-the need for constraints in the model. We can use the list variable to re-index the
+the need for constraints in the model. You can use the list variable to re-index the
 rows and columns of the distance matrix so that the objective function is just a sum
 over all entries of the product of the flow and re-indexed distance matrix.
 
@@ -111,11 +109,8 @@ Performance Benchmark.
 Cumulative Scheduling
 =====================
 
-Problem Description
--------------------
-
-The second problem is an instance of cumulative scheduling. We are given
-a set of jobs that we want to run on a machine with a processing capacity.
+The second problem is an instance of cumulative scheduling. There is a
+given set of jobs to run on a machine with some processing capacity.
 Each job has a machine utilization, processing time, release date, and
 due date. The goal is to schedule the jobs on the machine so that the
 sum of the delays (the differences between the start times and the release
@@ -126,17 +121,18 @@ Model Formulation
 -----------------
 
 The problem instance is "csched007" from MIPLIB and is given as an .mps
-file. The formulation for the MIP uses binary variables :math:`x_{ij}`, equal to
+file. The formulation for the MIP uses binary variables, :math:`x_{ij}`, equal to
 1 if job :math:`i` starts at time :math:`j` and 0 otherwise. It also uses continuous
 variables for the delay times and machine utilizations. The number of jobs,
 release dates, and due dates, processing times, machine utilizations, and
 processing capacity are extracted from the file with the knowledge of the model.
 HiGHS, SCIP, and COIN-OR's CBC CMD solver were run on the model with the .mps
-file as input. 
+file as input.
 
 The nonlinear model for the Stride solver uses integer variables for
-the start times of the jobs. The cumulative consumption is tracked with the AccumulateZip
-node, which adds the consumption of a job when it starts and subtracts it when it ends.
+the start times of the jobs. The cumulative consumption is tracked with the
+:class:`~dwave.optimization.symbols.AccumulateZip` symbol,
+which adds the consumption of a job when it starts and subtracts it when it ends.
 The objective function is the sum of the delays, which are given by the start times minus the
 release times.
 
@@ -155,8 +151,8 @@ The Python code for the nonlinear model is as follows:
 
 .. testcode::
 
-    from dwave.optimization import Model, put, arange, symbols
-    from dwave.optimization.mathematical import concatenate, argsort, resize, minimum
+    from dwave.optimization import Model, symbols
+    from dwave.optimization.mathematical import concatenate, argsort
 
     model = Model()
 
@@ -192,7 +188,7 @@ Results
 The problem was run five times for each solver and each time limit shown in the
 figures. :numref:`Figure %s <vignetteMIPLIBcsched>` shows the minimum energy out
 of the five runs for each time limit. D-Wave's Stride solver (version 1.31.0)
-benchmarks were run on D-Wave's |cloud_tm|_ quantum cloud
+benchmarks were run on D-Wave's |cloud|_ quantum cloud
 service. The classical solvers were run on an AMD EPYC 9534
 64-Core Processor @ 2.45 GHz with 128 GB of memory. The optimal energy is 351,
 as reported by MIPLIB.
@@ -208,11 +204,8 @@ as reported by MIPLIB.
 Resource-Constrained Project Scheduling
 =======================================
 
-Problem Description
--------------------
-
 The third problem is an instance of resource-constrained project scheduling.
-Here we are given a set of jobs that can be run in one of multiple modes, and each
+Here there is a given set of jobs that can be run in one of multiple modes, and each
 job uses a certain amount of resources depending on that mode. The goal is to determine
 start times for the jobs so that the maximum amount of each resource consumed at any
 given time is minimized. There are also precedence constraints on the jobs.
@@ -221,19 +214,20 @@ All jobs must be completed within a fixed time horizon.
 Model Formulation
 -----------------
 
-The problem instance from MIPLIB is "30n20b8" and is again given as an .mps file. 
+The problem instance from MIPLIB is "30n20b8" and is again given as an .mps file.
 The problem data, including runtimes, resource usage, time horizon, precedence
-constraints, and bounds on job runtimes, is extracted from the file. 
+constraints, and bounds on job runtimes, is extracted from the file.
 HiGHS, SCIP, and COIN-OR (with Pulp) were run by loading the .mps file as a model.
 
-The Stride model formulation follows a pattern similar to that of cumulative scheduling.
-We use integer variables for the start times and the modes of the jobs and add the
-precedence constraints. We also use integer variables for the maximum amount of each 
-resource consumed over all time steps. We create a set of events for each resource
-which is the start and end times of each job run in its selected mode. Again using 
-AccumulateZip, we determine the cumulative consumption at each event, adding 
-constraints to ensure the consumption is less than or equal the integer decision variable
-for each resource. The objective to minimize is a weighted sum of the maximum resource
+The Stride model formulation follows a pattern similar to that of cumulative
+scheduling, using integer variables for start times and modes of the jobs, but
+also for the maximum amount of each resource consumed over all time steps. It
+adds precedence constraints and creates a set of events for each resource, which
+is the start and end times of each job run in its selected mode. Again, it uses
+the :class:`~dwave.optimization.symbols.AccumulateZip` symbol, here to determine
+the cumulative consumption at each event, adding constraints to ensure the
+consumption is less than or equal the integer decision variable for each
+resource. The objective to minimize is a weighted sum of the maximum resource
 consumptions.
 
 The Python code for the nonlinear model is as follows:
@@ -256,7 +250,7 @@ The Python code for the nonlinear model is as follows:
 
 .. testcode::
 
-    from dwave.optimization import Model, put, symbols 
+    from dwave.optimization import Model, put
     from dwave.optimization.mathematical import concatenate, argsort
 
     model = Model()
@@ -276,11 +270,10 @@ The Python code for the nonlinear model is as follows:
 
     # create precedence constraints
     for (j1,j2) in precedence_pairs:
-        model.add_constraint(starts[model.constant(j1-1)] 
+        model.add_constraint(starts[model.constant(j1-1)]
                             + runtimes_matrix_c[model.constant(j1-1),modes[model.constant(j1-1)]]
                             - starts[model.constant(j2-1)] <= 0)
-        
-    # create integer variables for the maximum amount of each resource consumed 
+    # create integer variables for the maximum amount of each resource consumed
     r_mechaniker = model.integer(1, lower_bound=0, upper_bound=40)
     r_techniker = model.integer(1, lower_bound=0, upper_bound=30)
 
@@ -341,7 +334,7 @@ Results
 The problem was run five times for each solver and each time limit shown in the
 figures. :numref:`Figure %s <vignetteMIPLIBrcpsp>` shows the median energy out of the five 
 runs for each time limit. The optimal energy is 302, as reported by MIPLIB. D-Wave's Stride
-solver (version 1.32.0) benchmarks were run on D-Wave's |cloud_tm|_ quantum cloud
+solver (version 1.32.0) benchmarks were run on D-Wave's |cloud|_ quantum cloud
 service. The classical solvers were run on an AMD EPYC 9534
 64-Core Processor @ 2.45 GHz with 128 GB of memory.
 Infeasible solutions and gaps above 100% are reported as 1.0.
