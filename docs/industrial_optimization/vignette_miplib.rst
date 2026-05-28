@@ -96,7 +96,7 @@ The optimal energy is 340, as reported by MIPLIB. The shortest runtime for which
 results are shown in the plot is 0.5s, at which time the Stride solver finds the
 optimal solution.
 
-.. figure:: ../_images/vignette_miplib_qap.png
+.. figure:: ../_images/vignette_miplib_qap.svg
     :name: vignetteMIPLIBQAP
     :width: 100%
     :alt: qap-lineplot
@@ -193,7 +193,7 @@ service. The classical solvers were run on an AMD EPYC 9534
 64-Core Processor @ 2.45 GHz with 128 GB of memory. The optimal energy is 351,
 as reported by MIPLIB.
 
-.. figure:: ../_images/vignette_miplib_csched.png
+.. figure:: ../_images/vignette_miplib_csched.svg
     :name: vignetteMIPLIBcsched
     :width: 100%
     :alt: csched-lineplot
@@ -340,7 +340,7 @@ service. The classical solvers were run on an AMD EPYC 9534
 Infeasible solutions and gaps above 100% are reported as 1.0.
 
 
-.. figure:: ../_images/vignette_miplib_rcpsp.png
+.. figure:: ../_images/vignette_miplib_rcpsp.svg
     :name: vignetteMIPLIBrcpsp
     :width: 100%
     :alt: rcpsp-lineplot
