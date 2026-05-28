@@ -78,7 +78,7 @@ The Python code for the nonlinear model is as follows:
     # Minimize the sum of the flows times the distances
     model.minimize((F*D[x,:][:,x]).sum())
 
-This model is available via the 
+This model is available via the
 :func:`~dwave.optimization.generators.quadratic_assignment` generator.
 
 Results
@@ -302,7 +302,7 @@ The Python code for the nonlinear model is as follows:
     t_consumption_pos = model.constant(np.zeros(num_jobs))
     # consumption depends on the mode a job runs in
     for i in range(num_jobs):
-        m_consumption_pos = put(m_consumption_pos, indices = model.constant(i).reshape((1)), 
+        m_consumption_pos = put(m_consumption_pos, indices = model.constant(i).reshape((1)),
             values = rm_use_matrix_c[i,modes[i]].reshape((1)))
         t_consumption_pos = put(t_consumption_pos, indices = model.constant(i).reshape((1)),
             values = rt_use_matrix_c[i, modes[i]].reshape((1)))
@@ -341,7 +341,7 @@ Results
 -------
 
 The problem was run five times for each solver and each time limit shown in the
-figures. :numref:`Figure %s <vignetteMIPLIBrcpsp>` shows the median gap out of the five 
+figures. :numref:`Figure %s <vignetteMIPLIBrcpsp>` shows the median gap out of the five
 runs for each time limit. The optimal energy is 302, as reported by MIPLIB. D-Wave's Stride
 solver (version 1.32.0) benchmarks were run on D-Wave's |cloud|_ quantum cloud
 service. The classical solvers were run on an AMD EPYC 9534
