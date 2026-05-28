@@ -12,7 +12,7 @@ solvers that do not have more extensive modeling capabilities.
 This often results in a large number of auxiliary variables and
 constraints, which can make the problem more difficult to solve.
 The Stride solver can handle the nonlinear formulations of these problems
-directly, and by taking advantage of combinatorial structures, it can
+natively, and by taking advantage of combinatorial structures, it can
 greatly reduce the search space to find better solutions in less time.
 
 This section reformulates three mixed-integer programs (MIPs) from this library
@@ -67,7 +67,7 @@ The Python code for the nonlinear model is as follows:
 
     model = Model()
 
-    # Add the flow and distance matrices
+    # Add the flow and distance numpy arrays as model constants
     F = model.constant(flows)
     D = model.constant(distances)
 
@@ -84,9 +84,12 @@ This model is available via the
 Results
 -------
 
+As is the case for all three problems in this study, performance is only reported
+on a single instance. This is due to lack of availability of other problems in the same
+class in MIPLIB and the fact that the data was extracted manually from each .mps file.
 The problem was run five times for each solver and each time limit shown in the
 figures. :numref:`Figure %s <vignetteMIPLIBQAP>` shows the
-minimum energy out of the five runs for each time limit. D-Wave's Stride solver (version 1.33.0)
+median gap out of the five runs for each time limit. D-Wave's Stride solver (version 1.33.0)
 benchmarks were run on D-Wave's |cloud_tm|_ quantum cloud
 service. The classical solvers were run on an AMD EPYC 9534
 64-Core Processor @ 2.45 GHz with 128 GB of memory. Infeasible solutions
@@ -123,9 +126,7 @@ Model Formulation
 The problem instance is "csched007" from MIPLIB and is given as an .mps
 file. The formulation for the MIP uses binary variables, :math:`x_{ij}`, equal to
 1 if job :math:`i` starts at time :math:`j` and 0 otherwise. It also uses continuous
-variables for the delay times and machine utilizations. The number of jobs,
-release dates, and due dates, processing times, machine utilizations, and
-processing capacity are extracted from the file with the knowledge of the model.
+variables for the delay times and machine utilizations.
 HiGHS, SCIP, and COIN-OR's CBC CMD solver were run on the model with the .mps
 file as input.
 
@@ -134,7 +135,12 @@ the start times of the jobs. The cumulative consumption is tracked with the
 :class:`~dwave.optimization.symbols.AccumulateZip` symbol,
 which adds the consumption of a job when it starts and subtracts it when it ends.
 The objective function is the sum of the delays, which are given by the start times minus the
-release times.
+release times (the earliest possible starts).
+
+The number of jobs, release dates, due dates, processing times, machine utilizations, and
+processing capacity are extracted from the file with the knowledge of the model.
+Numpy arrays `release_times`, `max_start_times`, `durations`, and `machine_uses` are
+created from this data and added to the model as constants.
 
 The Python code for the nonlinear model is as follows:
 
@@ -151,7 +157,7 @@ The Python code for the nonlinear model is as follows:
 
 .. testcode::
 
-    from dwave.optimization import Model, symbols
+    from dwave.optimization import Model, symbols, expression
     from dwave.optimization.mathematical import concatenate, argsort
 
     model = Model()
@@ -159,6 +165,7 @@ The Python code for the nonlinear model is as follows:
     # use integer variables for start times
     # keep track of both start times and end times of jobs
     start_times = model.integer(num_jobs, release_times, max_start_times)
+    # durations is a numpy array of values equal to the processing times minus 1
     durations = model.constant(durations)
     end_times = start_times + durations
 
@@ -171,8 +178,6 @@ The Python code for the nonlinear model is as follows:
 
     # track the cumulative consumption, adding consumption when a job starts
     #  and subtracting when it ends
-    from dwave.optimization import expression
-
     @expression
     def add(x, y):
         return x + y
@@ -186,7 +191,7 @@ Results
 -------
 
 The problem was run five times for each solver and each time limit shown in the
-figures. :numref:`Figure %s <vignetteMIPLIBcsched>` shows the minimum energy out
+figures. :numref:`Figure %s <vignetteMIPLIBcsched>` shows the median gap out
 of the five runs for each time limit. D-Wave's Stride solver (version 1.31.0)
 benchmarks were run on D-Wave's |cloud|_ quantum cloud
 service. The classical solvers were run on an AMD EPYC 9534
@@ -215,8 +220,6 @@ Model Formulation
 -----------------
 
 The problem instance from MIPLIB is "30n20b8" and is again given as an .mps file.
-The problem data, including runtimes, resource usage, time horizon, precedence
-constraints, and bounds on job runtimes, is extracted from the file.
 HiGHS, SCIP, and COIN-OR (with Pulp) were run by loading the .mps file as a model.
 
 The Stride model formulation follows a pattern similar to that of cumulative
@@ -229,6 +232,13 @@ the cumulative consumption at each event, adding constraints to ensure the
 consumption is less than or equal the integer decision variable for each
 resource. The objective to minimize is a weighted sum of the maximum resource
 consumptions.
+
+The problem data, including runtimes, resource usage, time horizon, precedence
+constraints, and bounds on job runtimes, is extracted from the file.
+Numpy arrays `lower_bounds`, `upper_bounds`, `durations`, `machine_uses`,
+`capacity`, `upper_bounds_modes`, `runtimes_matrix`, `rm_use_matrix`,
+`rt_use_matrix` and list of tuples `precedence_pairs` are created from this
+data and added to the model as constants.
 
 The Python code for the nonlinear model is as follows:
 
@@ -250,7 +260,7 @@ The Python code for the nonlinear model is as follows:
 
 .. testcode::
 
-    from dwave.optimization import Model, put
+    from dwave.optimization import Model, put, symbols, expression
     from dwave.optimization.mathematical import concatenate, argsort
 
     model = Model()
@@ -307,7 +317,6 @@ The Python code for the nonlinear model is as follows:
 
     # track the cumulative consumption, adding consumption when a job starts
     #  and subtracting when it ends
-    from dwave.optimization import expression
 
     @expression
     def add(x, y):
@@ -332,7 +341,7 @@ Results
 -------
 
 The problem was run five times for each solver and each time limit shown in the
-figures. :numref:`Figure %s <vignetteMIPLIBrcpsp>` shows the median energy out of the five 
+figures. :numref:`Figure %s <vignetteMIPLIBrcpsp>` shows the median gap out of the five 
 runs for each time limit. The optimal energy is 302, as reported by MIPLIB. D-Wave's Stride
 solver (version 1.32.0) benchmarks were run on D-Wave's |cloud|_ quantum cloud
 service. The classical solvers were run on an AMD EPYC 9534
