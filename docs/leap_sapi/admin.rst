@@ -117,6 +117,57 @@ your role level and below.
 
             Members that have the *User* role cannot access Leap Admin.
 
+.. _admin_user_roles:
+
+Member Roles and Privileges
+---------------------------
+
+A member has one of the following roles and associated privileges. The roles are
+hierarchical in the following order, with *Organization Admin* at the
+highest level; as such, you can only perform actions for others who are at
+your role level and below.
+
+.. tabularcolumns:: |l|p{10.5cm}|
+
+.. list-table:: Member Roles and Privileges
+    :widths: 1 3
+
+    *   -   **User**
+        -   Project member who has the following privileges in the project:
+
+            *   Manage and submit their problems to solvers.
+
+            *   Manage their own profile settings.
+
+            *   Reset their API token.
+
+            Members that have the *User* role cannot access Leap Admin.
+
+    *   -   **Project Admin**
+        -   Project member who has the following privileges in the project:
+
+            *   Perform any user tasks.
+
+            *   Manage invitations.
+
+            *   View limited project-level member information.
+
+            *   Remove members from a project.
+
+            *   Change a member's role.
+
+            *   Change a member's solver-access time.
+
+            *   Manage problems.
+
+    *   -   **Organization Admin**
+        -   Project member who has the following privileges in the organization
+            and its projects:
+
+            *   Perform any project administrator tasks.
+
+            *   Change a project's name.
+
 Filtering and Sorting Data
 --------------------------
 
