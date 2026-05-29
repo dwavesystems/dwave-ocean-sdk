@@ -53,32 +53,32 @@ To get started quickly, go to the :ref:`admin_quick_start` topic.
 Administration Tasks
 --------------------
 
-*   :ref:`Manage organizations <admin_managing_organizations>`
+*   :ref:`Managing organizations <admin_managing_organizations>`
 
-    You can view information about the organization, such as its name and
-    status, and summary information about its projects, such as their status
-    and number of members.
+    Organizaton administrators can view information about the organization,
+    such as its name and status, and summary information about its projects,
+    such as their status and number of members.
 
-*   :ref:`Manage projects <admin_managing_projects>`
+*   :ref:`Managing projects <admin_managing_projects>`
 
     You can view project information such as the project members, the solvers
     available in the project, and the project status. For time-based projects,
     you can also set the default limit for all members' individual solver-access
     time.
 
-*   :ref:`Add and manage project members <admin_managing_project_members>`
+*   :ref:`Managing project members <admin_managing_project_members>`
 
     You can add members by inviting them to join a project. You can also
     set a per-member limit on solver-access time that overrides the project
     default.
 
-*   :ref:`View and manage problems submitted to solvers in the projects
+*   :ref:`Managing problems submitted to solvers in the projects
     <admin_problem_status>`
 
     You can view and filter a list of problem submissions, access the details
     of any problem, and cancel pending submissions.
 
-*   :ref:`Generate and export usage reports <admin_reports>`
+*   :ref:`Generating solver usage reports <admin_reports>`
 
     You can generate usage reports and export them to `XLSX` and `CSV` files.
 
@@ -113,9 +113,10 @@ Organization Page
 -----------------
 
 When you open an organization, the organization page is displayed as shown in
-:numref:`Figure %s <AdminOrgPage>`.
+:numref:`Figure %s <AdminOrgPage>`. If you have more than one organization, you
+can select one via a dropdown list.
 
-.. figure:: ../_images/leap_admin_org_admin_org_page.png
+.. figure:: ../_images/leap_admin_org.png
     :name: AdminOrgPage
     :alt: Leap Admin Organization Page
 
@@ -165,6 +166,57 @@ Tabs that organize tasks into logical groups are as follows:
 *   **Reporting**
 
     Enables generating CSV or Excel reports on solver usage statistics.
+
+.. _admin_user_roles:
+
+Member Roles and Privileges
+---------------------------
+
+A member has one of the following roles and associated privileges. The roles are
+hierarchical in the following order, with *Organization Admin* at the
+highest level; as such, you can only perform actions for others who are at
+your role level and below.
+
+.. tabularcolumns:: |l|p{10.5cm}|
+
+.. list-table:: Member Roles and Privileges
+    :widths: 1 3
+
+    *   -   **User**
+        -   Project member who has the following privileges in the project:
+
+            *   Manage and submit their problems to solvers.
+
+            *   Manage their own profile settings.
+
+            *   Reset their API token.
+
+            Members that have the *User* role cannot access Leap Admin.
+
+    *   -   **Project Admin**
+        -   Project member who has the following privileges in the project:
+
+            *   Perform any user tasks.
+
+            *   Manage invitations.
+
+            *   View limited project-level member information.
+
+            *   Remove members from a project.
+
+            *   Change a member's role.
+
+            *   Change a member's solver-access time.
+
+            *   Manage problems.
+
+    *   -   **Organization Admin**
+        -   Project member who has the following privileges in the organization
+            and its projects:
+
+            *   Perform any project administrator tasks.
+
+            *   Change a project's name.
 
 Filtering and Sorting Data
 --------------------------
@@ -278,15 +330,6 @@ Terminology
 
     For more information, see :ref:`sat_record`.
 
-.. _admin_def_sat_record:
-
-*   **Solver-access time record**
-
-    A solver-access time record is an amount of solver-access time for a
-    specific period of days.
-
-    For more information, see :ref:`sat_record`.
-
 Conventions
 -----------
 
@@ -377,9 +420,10 @@ Managing Organizations
 A customer contract defines an organization, which represents a company or
 institution in the Leap service. An organization contains one or more projects.
 
-A customer contract defines an organization, which represents a company or
-institution in the Leap service. An organization contains one or more associated
-projects.
+.. note::
+    *   Only organization administrators can view organizations.
+
+    *   To create an organization, contact |support_email|_.
 
 Organization Administrators
 ---------------------------
@@ -400,9 +444,8 @@ You may find the following field descriptions helpful:
 *   **Monthly Usage**: Amount of solver-access time that has been consumed in
     the project for the month.
 
-    *   -   **Solver Access Time**
-        -   Amount of solver-access time aggregated over all active records for
-            the project.
+*   **Solver Access Time**: Amount of solver-access time aggregated over all
+    active :ref:`records <sat_record>` for the project.
 
 *   **Status**: Status of the project. For a description of project
     statuses, see the :ref:`admin_proj_status_viewing` section.
@@ -452,11 +495,9 @@ settings, such as its :ref:`customer reference ID <admin_project_info_viewing>`,
 members' limits on solver-access time, and
 :ref:`seat types <admin_seat_changing_user>`.
 
-.. tip::
-    *   To go to another project, select *your_profile_avatar* >
-        **Projects** > *project_name*.
-
-    *   To go to the organization, click the Home icon.
+.. note::
+    To create a project or change a project's allowed email list, contact
+    |support_email|_.
 
 .. _admin_project_seat_time:
 
@@ -621,6 +662,8 @@ You may find the following field descriptions helpful.
 
             **Expired**: The current date has passed the record's end date.
 
+.. _sat_record:
+
 Solver-Access Time Records
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -732,9 +775,8 @@ follows:
 Viewing Available Solvers
 -------------------------
 
-You view a list of solvers that are available in the project in the **Overview**
-> **Project Solvers** section. The status of solvers is displayed in the
-**Status** column.
+You view the solvers that are available in a project in its **Overview**
+> **Solver Access Summary** section.
 
 Solvers are specific to a region (for example, Europe or North America). To
 display the solvers for a region, click the region name. The solvers that are
@@ -795,24 +837,16 @@ By default, any one project member can use up all of a project's monthly
 solver-access time. If you want to change this default or set a different limit
 for an individual member, do the following:
 
-#.  Go to the project page's **Overview** tab >
-    **Solver Access Time Schedule** section >
-    **Project Member Default Solver Access Limit** field.
+#.  Edit the project page and deselect the **Set Default Solver Access to Unlimited** 
+    option.
 
-#.  |solver_time_default|
+#.  In the **Default Solver Access Limit** field, specify the default limit on
+    solver-access time for new members who accept the invitation for the project
+    after this field has been set. Existing members are not impacted; they retain
+    the current limit on their solver-access time.
 
-|set-default-to-unlimited-access| If you want to keep project members from using
-up all of the project's monthly solver-access time\ [#]_, deselect this option
-and enter a specific amount in the
-**Project Member Default Solver Access Limit** field. Consider an example where
-monthly solver-access time, which is the sum of the project's active
-solver-access time records, is 30 minutes. If you want to keep any one of your
-project members from using up all of this time and limit them to 5 minutes each
-per month, then you specify 5 minutes in the
-**Project Member Default Solver Access Limit** field.
-
-To override this default and specify a different amount of solver-access time
-for an individual member, see the :ref:`admin_user_solver_time` section.
+    You can override this default limit for an individual member; to do so, see
+    the :ref:`admin_user_solver_time` section.
 
 .. [#] Solvers have different usage rates. For more information, see the
     :ref:`qpu_operation_timing` section.
@@ -826,60 +860,8 @@ You manage project members by first inviting people to join a project and
 managing the invitation process, including sending them reminders to accept the
 invitation and revoking invitations. You can also change members'
 :ref:`roles <admin_user_roles>`, :ref:`seat types <admin_seat_types>`,
-:ref:`roles <admin_user_roles>`, :ref:`seat types <admin_seat_types>`,
 and :ref:`solver-access time limits <admin_def_solver_access_limit>` as well as
 remove members from projects.
-
-.. _admin_user_roles:
-
-Member Roles and Privileges
----------------------------
-
-A member has one of the following roles and associated privileges. The roles are
-hierarchical in the following order, with *Organization Admin* at the
-highest level; as such, you can only perform actions for others who are at
-your role level and below.
-
-.. tabularcolumns:: |l|p{10.5cm}|
-
-.. list-table:: Member Roles and Privileges
-    :widths: 1 3
-
-    *   -   **User**
-        -   Project member who has the following privileges in the project:
-
-            *   Manage and submit their problems to solvers.
-
-            *   Manage their own profile settings.
-
-            *   Reset their API token.
-
-            Members that have the *User* role cannot access Leap Admin.
-
-    *   -   **Project Admin**
-        -   Project member who has the following privileges in the project:
-
-            *   Perform any user tasks.
-
-            *   Manage invitations.
-
-            *   View limited project-level member information.
-
-            *   Remove members from a project.
-
-            *   Change a member's role.
-
-            *   Change a member's solver-access time.
-
-            *   Manage problems.
-
-    *   -   **Organization Admin**
-        -   Project member who has the following privileges in the organization
-            and its projects:
-
-            *   Perform any project administrator tasks.
-
-            *   Change a project's name.
 
 .. _admin_inviting_users_join:
 
