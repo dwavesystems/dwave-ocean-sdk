@@ -132,16 +132,13 @@ your role level and below.
 .. list-table:: Member Roles and Privileges
     :widths: 1 3
 
-    *   -   **User**
-        -   Project member who has the following privileges in the project:
+    *   -   **Organization Admin**
+        -   Project member who has the following privileges in the organization
+            and its projects:
 
-            *   Manage and submit their problems to solvers.
+            *   Perform any project administrator tasks.
 
-            *   Manage their own profile settings.
-
-            *   Reset their API token.
-
-            Members that have the *User* role cannot access Leap Admin.
+            *   Change a project's name.
 
     *   -   **Project Admin**
         -   Project member who has the following privileges in the project:
@@ -160,13 +157,16 @@ your role level and below.
 
             *   Manage problems.
 
-    *   -   **Organization Admin**
-        -   Project member who has the following privileges in the organization
-            and its projects:
+    *   -   **User**
+        -   Project member who has the following privileges in the project:
 
-            *   Perform any project administrator tasks.
+            *   Manage and submit their problems to solvers.
 
-            *   Change a project's name.
+            *   Manage their own profile settings.
+
+            *   Reset their API token.
+
+            Members that have the *User* role cannot access Leap Admin.
 
 Filtering and Sorting Data
 --------------------------
@@ -747,7 +747,6 @@ follows:
         -   The end date for the project's solver-access time has been reached.
             Project members can still log in to the project, but cannot run
             problems on the solvers.
-
 
 .. _admin_solver_time_default_all:
 
