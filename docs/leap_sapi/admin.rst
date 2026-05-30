@@ -2,19 +2,6 @@
     :start-after: start_substitutions
     :end-before: end_substitutions
 
-.. |set-default-to-unlimited-access| replace::
-
-   The **Set Default to Unlimited Access** option allows any project member to
-   use the full monthly solver-access time allocated to the project as
-   determined by the sum of the project's active solver-access time records.
-
-.. |solver_time_default| replace::
-
-   Specify the default limit on solver-access time for new members who accept
-   the invitation for the project after this field has been set. Existing
-   members are not impacted; they retain the current limit on their
-   solver-access time.
-
 .. _leap_admin:
 
 ===================
@@ -30,7 +17,6 @@ Overview
 ========
 
 Leap Admin is an easy-to-use cloud-based administration tool that you use to
-perform the following major tasks:
 perform the following major tasks:
 
 *   Manage multiple projects in multiple
@@ -50,45 +36,13 @@ see the :ref:`opt_index_get_started` or :ref:`qpu_index_get_started` topics.
 
 To get started quickly, go to the :ref:`admin_quick_start` topic.
 
-Administration Tasks
---------------------
-
-*   :ref:`Managing organizations <admin_managing_organizations>`
-
-    Organizaton administrators can view information about the organization,
-    such as its name and status, and summary information about its projects,
-    such as their status and number of members.
-
-*   :ref:`Managing projects <admin_managing_projects>`
-
-    You can view project information such as the project members, the solvers
-    available in the project, and the project status. For time-based projects,
-    you can also set the default limit for all members' individual solver-access
-    time.
-
-*   :ref:`Managing project members <admin_managing_project_members>`
-
-    You can add members by inviting them to join a project. You can also
-    set a per-member limit on solver-access time that overrides the project
-    default.
-
-*   :ref:`Managing problems submitted to solvers in the projects
-    <admin_problem_status>`
-
-    You can view and filter a list of problem submissions, access the details
-    of any problem, and cancel pending submissions.
-
-*   :ref:`Generating solver usage reports <admin_reports>`
-
-    You can generate usage reports and export them to `XLSX` and `CSV` files.
-
 Searching Globally
 ------------------
 
 Via the Global Search field as shown in :numref:`Figure %s <AdminGlobalSearch>`,
-you can search for organizations, projects, and members across all organizations
-and projects. The text matches any part of an organization, project, or member
-name (including an email address).
+you can search for projects and members across all organizations and projects.
+The text matches any part of a project, or member name (including an email
+address).
 
 .. figure:: ../_images/leap_admin_global_search.png
     :name: AdminGlobalSearch
@@ -99,73 +53,18 @@ name (including an email address).
 .. admonition:: Some Limitations
     :name: global_search_limits
 
-    *   The search is case-insensitive.
+    *   Searching is case-insensitive.
 
-    *   Only the Latin-1 character set is supported.
+    *   For project names, the Latin-1 character set and the Ä, ä, Ö, ö, ẞ, Ü, ü
+        characters are supported; however, diacritical marks are ignored.
+
+    *   For member names, only the Latin-1 character set is supported.
 
     *   The maximum number of characters is 254.
 
 .. tip::
     *   Use the `Up` and `Down` arrow keys to select an item in the results list
         and press `Enter` to go to the selection.
-
-Organization Page
------------------
-
-When you open an organization, the organization page is displayed as shown in
-:numref:`Figure %s <AdminOrgPage>`. If you have more than one organization, you
-can select one via a dropdown list.
-
-.. figure:: ../_images/leap_admin_org.png
-    :name: AdminOrgPage
-    :alt: Leap Admin Organization Page
-
-    Leap Admin: Organization Page
-
-Tabs that organize tasks into logical groups are as follows:
-
-*   **Overview**
-
-    Displays information about the organization.
-
-*   **Projects**
-
-    Displays summary information for the projects in the organization. To
-    display a project's project page, click its name.
-
-*   **Problem Status**
-
-    Displays a summary of the statuses of all submitted problems. You can
-    display a problem's parameters and, if available for the solver, the sample
-    set by clicking the problem ID.
-
-Project Page
-------------
-
-When you open a project, the project page is displayed as shown in
-:numref:`Figure %s <AdminProjectPage>`.
-
-.. figure:: ../_images/leap_admin_project_admin_project_page.png
-    :name: AdminProjectPage
-    :alt: Leap Admin Project Page
-
-    Leap Admin: Project Page
-
-Tabs that organize tasks into logical groups are as follows:
-
-*   **Overview**
-
-    Displays information about the project.
-
-*   **Problem Status**
-
-    Displays a summary of the statuses of all submitted problems. You can
-    display a problem's parameters and, if available for the solver, the
-    problem's sample set by clicking the problem ID.
-
-*   **Reporting**
-
-    Enables generating CSV or Excel reports on solver usage statistics.
 
 .. _admin_user_roles:
 
@@ -182,16 +81,13 @@ your role level and below.
 .. list-table:: Member Roles and Privileges
     :widths: 1 3
 
-    *   -   **User**
-        -   Project member who has the following privileges in the project:
+    *   -   **Organization Admin**
+        -   Project member who has the following privileges in the organization
+            and its projects:
 
-            *   Manage and submit their problems to solvers.
+            *   Perform any project administrator tasks.
 
-            *   Manage their own profile settings.
-
-            *   Reset their API token.
-
-            Members that have the *User* role cannot access Leap Admin.
+            *   Change a project's name.
 
     *   -   **Project Admin**
         -   Project member who has the following privileges in the project:
@@ -210,13 +106,16 @@ your role level and below.
 
             *   Manage problems.
 
-    *   -   **Organization Admin**
-        -   Project member who has the following privileges in the organization
-            and its projects:
+    *   -   **User**
+        -   Project member who has the following privileges in the project:
 
-            *   Perform any project administrator tasks.
+            *   Manage and submit their problems to solvers.
 
-            *   Change a project's name.
+            *   Manage their own profile settings.
+
+            *   Reset their API token.
+
+            Members that have the *User* role cannot access Leap Admin.
 
 Filtering and Sorting Data
 --------------------------
@@ -240,6 +139,15 @@ Some actions include the following:
 *   Sorting data in columns in ascending or descending order
 
 *   Hiding and showing columns
+
+.. note:: 
+    
+    *   Filtering and sorting is case-insensitive.
+        
+    *   When filtering and sorting on project names, diacritical marks on the
+        Ä, ä, Ö, ö, Ü, ü characters are ignored. Also, although project names
+        that differ only by diacritical mark are grouped together, they may not
+        always be sorted in the same order.
 
 Terminology
 -----------
@@ -295,9 +203,6 @@ Terminology
     problems.
     
     For more information, see :ref:`admin_user_roles`.
-    problems.
-    
-    For more information, see :ref:`admin_user_roles`.
 
 .. _admin_def_seat:
 
@@ -341,7 +246,6 @@ in italics; for example, **Leap Admin** > *project_name*.
 Quick Start
 ===========
 
-The goal of this topic is to invite people to a
 The goal of this topic is to invite people to a
 :ref:`seat-based project <admin_project_seat_time>`.
 
@@ -425,6 +329,16 @@ institution in the Leap service. An organization contains one or more projects.
 
     *   To create an organization, contact |support_email|_.
 
+When you open an organization, the organization page is displayed as shown in
+:numref:`Figure %s <AdminOrgPage>`, where tabs organize tasks into logical groups.
+If you have more than one organization, you can select one via a dropdown list.
+
+.. figure:: ../_images/leap_admin_org.png
+    :name: AdminOrgPage
+    :alt: Leap Admin Organization Page
+
+    Leap Admin: Organization Page
+
 Organization Administrators
 ---------------------------
 
@@ -498,6 +412,16 @@ members' limits on solver-access time, and
 .. note::
     To create a project or change a project's allowed email list, contact
     |support_email|_.
+
+When you open a project, the project page is displayed as shown in
+:numref:`Figure %s <AdminProjectPage>`, where tabs organize tasks into logical
+groups.
+
+.. figure:: ../_images/leap_admin_project_admin_project_page.png
+    :name: AdminProjectPage
+    :alt: Leap Admin Project Page
+
+    Leap Admin: Project Page
 
 .. _admin_project_seat_time:
 
@@ -723,55 +647,6 @@ follows:
 *   The anniversary date is the same as the existing active or scheduled records
     if the new record is contiguous with those existing records.
 
-.. tabularcolumns:: |l|L|
-
-.. list-table:: **Solver Access Time Schedule** Section
-
-    *   -   **Solver Access Time**
-        -   A record's amount of solver-access time available for each renewal
-            period. Consumption of solver-access time is aggregated across all
-            regions.
-
-            **Note:** The maximum number of problems per member that can be in
-            a solver queue is 1,000; if this maximum is exceeded, then problems
-            are rejected.
-
-    *   -   **Start Date (UTC)**
-        -   The date (inclusive) that access is provided to solvers. This date
-            is determined by the customer contract.
-
-    *   -   **End Date (UTC)**
-        -   The date (inclusive) that access to solvers ends. This date is
-            determined by the customer contract.
-
-    *   -   **Anniversary Date (UTC)**
-        -   The anniversary date is used to calculate the renewal date.
-
-    *   -   **Status**
-        -   **Active**: The current date is between the record's start and end
-            dates. Only active records contribute solver-access time.
-
-            **Disabled**: The record was disabled by |dwave_short|.
-
-            **Scheduled**: The record has been scheduled for activation beyond
-            the current date. When the current date reaches the record's start
-            date, then the record is activated.
-
-            **Expired**: The current date has passed the record's end date.
-
-    *   -   **Project Member Default Solver Access Limit**
-            (time-based projects only)
-        -   |solver_time_default|
-
-            |set-default-to-unlimited-access|
-
-            For more information, see the :ref:`admin_solver_time_default_all`
-            section.
-
-    *   -   **Project Allocation Summary** (time-based projects only)
-        -   The information in this section aggregates key information for the
-            active records in the project.
-
 Viewing Available Solvers
 -------------------------
 
@@ -824,7 +699,6 @@ follows:
         -   The end date for the project's solver-access time has been reached.
             Project members can still log in to the project, but cannot run
             problems on the solvers.
-
 
 .. _admin_solver_time_default_all:
 
@@ -950,28 +824,8 @@ You may find the following field descriptions helpful.
 
                 *   *Selected*
 
-                    Choose one of the following options:
-
-                    *   **Use Project Default** --- Sets the maximum amount
-                        of solver-access time to the lower of either the value
-                        in the **Project Member Default Solver Access Limit**
-                        field or the sum of the project's active solver-access
-                        time records.
-
-                    *   **Unlimited Access to Project Solver Time** ---
-                        Sets the maximum amount of solver-access time to the
-                        full monthly solver-access time allocated to the project
-                        as determined by the sum of the project's active
-                        solver-access time records.
-
-                    *   **Custom Amount** --- Sets the maximum amount of
-                        solver-access time to the lower of either this custom
-                        value or the sum of the project's active solver-access
-                        time records.
-
-Once people occupy seats in a project, they have the privileges associated with
-their role as described in :ref:`admin_user_roles`; for example, access to the
-project's solvers.
+                Sets the maximum amount of solver-access time to the same as
+                that of the project's **Default Solver Access Limit** field.
 
 .. _admin_member_status_viewing:
 
@@ -1135,56 +989,8 @@ A list of members is displayed on the **Project Members** tab as follows:
         -   The status of the member in the project. For more information, see
             :ref:`admin_member_status_viewing`.
 
-            **Tip:** In the **Membership Status** column filter, the number of
-            members in a particular status for the project is displayed in
-            parentheses next to the status name.
-
-To display information on a specific member, click the project's
-**Project Members** tab > *member_name*. The following information is displayed:
-
-.. tabularcolumns:: |l|p{10.5cm}|
-
-.. list-table:: Single **User** Tab
-    :widths: 1 3
-
-    *   -   **User Profile**
-        -   Basic information about the member.
-
-    *   -   **Problem Status**
-        -   The status of the problems that the member submitted to the solvers
-            in a project. For more information, see
-            :ref:`admin_problem_status_viewing`.
-
-    *   -   **Reporting**
-        -   Reports on the member's solver usage. For more information, see
-            :ref:`admin_reports`.
-
-Filtering and Sorting the Columns
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Clicking the icons in the table headings or selecting the fields above the table
-performs the following actions:
-
-.. tabularcolumns:: |l|L|
-
-.. list-table:: Columns: Filtering and Sorting
-    :widths: 1 3
-
-    *   -   |filter_single|
-        -   Filters the rows by matching a part of the member name.
-
-    *   -   |filter_combo|
-        -   Filters the rows by a combination of membership status, seat type,
-            role, and part of a member name.
-
-    *   -   |sort_col|
-        -   Sorts in ascending or descending order.
-
-    *   -   |filter_col|
-        -   Sets the filters for a column.
-
-    *   -   |gear_col|
-        -   Specifies the unit of time for the column.
+To display information about a specific member, click the project's
+**Memberships** tab > *member_name*.
 
 .. _admin_seat_changing_user:
 
@@ -1296,10 +1102,9 @@ administrator, send an invitation as described in
 :ref:`admin_inviting_users_join`.
 
 If you are the only organization administrator in an organization and you remove
-yourself from your last project, your Org Admin role is removed and you will not
-be able to access the organization in Leap Admin. To reinstate access, contact
-|support_email|_.
-
+yourself from your last project, your *Org Admin* role is removed and you will
+not be able to access the organization in Leap Admin. To reinstate access,
+contact |support_email|_.
 
 .. _admin_problem_status:
 
