@@ -36,6 +36,9 @@ See the formulations used by the package's
 :ref:`model generators <optimization_generators>` and relevant
 `GitHub examples <https://github.com/dwave-examples>`_ for reference.
 
+
+.. _opt_model_construction_nl_decisions:
+
 Implicitly Constrained Decision Variables
 =========================================
 

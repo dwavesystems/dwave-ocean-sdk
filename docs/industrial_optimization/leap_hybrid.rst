@@ -170,6 +170,46 @@ variables that calculate useful information: use the
 additional symbols.
 
 
+.. _opt_using_stride_solver_milp:
+
+Converting from MILP
+====================
+
+Mixed integer linear programs
+(`MILP <https://en.wikipedia.org/wiki/Linear_programming>`_) may represent
+problems that are, in fact, good candidates for solution by the nonlinear solver
+because often highly nonlinear problems are reformulated as linear programs for
+solvers that do not have more extensive modeling capabilities. The advanced
+modeling capability provided by :ref:`index_optimization` package, together with
+the Strides solver's ability to handle the nonlinear formulations natively,
+enable more efficient formulation and solution.
+
+However, naive conversion from linear program (LP) format to Ocean software's
+nonlinear-model format is unlikely to provide the best performance. Good
+performance requires the formulation of good models. Consider the following
+points to get started:
+
+*   Choose powerful decision variables
+
+    Your choice of :term:`decision variables` significantly affects the model's
+    clarity, size of the solution space, and, ultimately, the solver's
+    performance. The :ref:`opt_model_construction_nl_decisions` section can help
+    you make a good choice.
+*   Use compact matrix formulation
+
+    Compact matrix formulation is usually more efficient and should be
+    preferred. The :ref:`opt_model_construction_nl_compact` section explains and
+    demonstrates this.
+
+The :ref:`opt_vignette_miplib` section provides examples of converting problems
+from the `Mixed-Integer Programming Library (MIPLIB) <https://miplib.zib.de/>`_
+to nonlinear models and demonstrates how the Stride solver can outperform on
+such problems. You may also find formulation templates for several standard
+optimization problems in the :ref:`model generators <optimization_generators>`
+section of the :ref:`index_optimization` package, which you may be able to adapt
+to your problem.
+
+
 Improving Solutions and Productizing
 ====================================
 
