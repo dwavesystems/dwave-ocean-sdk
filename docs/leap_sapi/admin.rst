@@ -125,7 +125,7 @@ using similar actions on the various tabs and sections (e.g., **Projects**,
 **Problem Status**, and **Solver Access Time Schedule**) by clicking the icons
 in the table headings or above the table. Some icons are hidden until you place
 the pointer over data that you want to act on; for example, placing the pointer
-over a problem ID displays the copy icon |copy_icon|.
+over a problem ID displays **Copy** |copy_icon|.
 
 Some actions include the following:
 
@@ -271,8 +271,8 @@ Logging in to Leap Admin
 
 1.  Log in to the Leap service at `<https://cloud.dwavesys.com/leap/login/>`_.
 
-2.  In the upper right corner of the **dashboard**, select
-    *your_profile_avatar* > **Leap Admin** as shown in
+2.  In the upper right corner of the dashboard, select **Profile Avatar**
+    |profile_avatar_icon| > **Leap Admin** as shown in
     :numref:`Figure %s <DashboardLeapAdminLogin>`.
 
     .. _fig_dashboard_leap_admin_login:
@@ -286,7 +286,8 @@ Logging in to Leap Admin
 
 .. note::
     If you are a project administrator for multiple projects,
-    select *your_profile_avatar* > **Leap Admin** > *project_name*.
+    select **Profile Avatar** |profile_avatar_icon| > **Leap Admin** >
+    *project_name*.
 
 .. _admin_project_inviting_users_join:
 
@@ -877,21 +878,9 @@ You can send invitation reminders to one or more invitees.
 *   To send an invitation reminder to an invitee, click |meatball_menu| >
     **Send Invitation Reminder**.
 
-*   To send invitation reminders to multiple invitees simultaneously, perform
-    the following:
-
-    #.  On the **Project Members** tab, select the invitees to which to send
-        invitation reminders.
-
-        .. tip::
-            You can select all invitees on the page by selecting the checkbox in
-            the header row (next to **User**).
-
-    #.  Select the **Manage Selected** > **Send invitation reminder** menu.
-
-.. tip::
-    The |meatball_menu| context menu is displayed in an invitee's row on the far
-    right when you hover the pointer over the row.
+*   To send invitation reminders to multiple invitees simultaneously, select the
+    invitees to which to send invitation reminders and use **Manage Selected**
+    |multiselect_menu|.
 
 Resending Invitations
 ---------------------
@@ -901,18 +890,9 @@ You can resend invitations that have expired.
 *   To resend an invitation, click |meatball_menu| >
     **Resend invitation** in the table on the **Project Members** tab.
 
-*   To resend the invitation to multiple invitees simultaneously, perform the
-    following:
-
-    #.  On the **Project Members** tab, select the invitees for which to resend
-        invitations.
-
-        .. tip::
-
-            You can select all invitees on the page by selecting the checkbox in
-            the header row (next to **User**).
-
-    #.  Select the **Manage Selected** > **Resend invitation** menu.
+*   To resend the invitation to multiple invitees simultaneously, select the
+    invitees for which to resend invitations and use **Manage Selected**
+    |multiselect_menu|.
 
 Revoking Invitations
 --------------------
@@ -922,24 +902,9 @@ You can revoke invitations for one or more invitees.
 *   To revoke the invitation for an invitee, click |meatball_menu| >
     **Revoke invitation** in the table on the **Project Members** tab.
 
-*   To revoke the invitations for multiple invitees simultaneously, perform the
-    following:
-
-    #.  On the **Project Members** tab, select the invitees for which to revoke
-        invitations.
-
-        .. tip::
-            You can select all invitees on the page by selecting the checkbox in
-            the header row (next to **User**).
-
-    #.  Select the **Manage Selected** > **Revoke invitation** menu.
-
-Searching for Project Members
------------------------------
-
-To find a member in any project, use the global search field |global_search|
-at the top of the page. For more information, see
-:ref:`admin_projects_users_searching_for`.
+*   To revoke the invitations for multiple invitees simultaneously, select the 
+    invitees for which to revoke invitations and use **Manage Selected**
+    |multiselect_menu|.
 
 Viewing Member Information
 --------------------------
@@ -1017,7 +982,10 @@ Modifying the Limit on a Member's Solver-Access Time
 #.  On the **Project Members** tab, click |meatball_menu| for a member in the
     table and select **Modify Solver Access Limit**.
 
-2.  In the **Modify Solver Access Time** dialog box, select one of the following
+    *   For multiple members simultaneously, select the members to modify and
+        use **Manage Selected** |multiselect_menu|.
+
+#.  In the **Modify Solver Access Time** dialog box, select one of the following
     to set the desired limit on solver-access time:
 
     *   **Use Seat-Type Default** --- Sets the maximum amount of solver-access
@@ -1088,7 +1056,7 @@ You can remove one or more members simultaneously.
     select **Remove from project**.
 
 *   To remove multiple members simultaneously, select the members to remove and
-    use the *Manage Selected* icon |multiselect_menu|.
+    use **Manage Selected** |multiselect_menu|.
 
 When members are removed, their statuses change to `Inactive` for the project
 and they can no longer use the solvers in the project. However, their usage
@@ -1124,15 +1092,15 @@ To view the status of problems submitted to a project's solvers, go to the
 
 .. tip::
 
-    *   To display the most up-to-date status, click the *Refresh Table*
-        icon |refresh_icon|.
+    *   To display the most up-to-date status, click the **Refresh Table**
+        |refresh_icon|.
 
-    *   To copy a problem ID to the clipboard, hover over the problem ID and
-        click the copy icon that is displayed.
+    *   To copy a problem ID to the clipboard, place the pointer over the
+        problem ID and click the subsequently displayed **Copy** |copy_icon| icon.
 
     *   If multiple regions are available, you can display the problems
-        submitted only to a specific region's solvers by using the *Regions*
-        icon |region_icon|.
+        submitted only to a specific region's solvers by using **Regions**
+        |region_icon|.
 
 You may find the following field descriptions helpful.
 
@@ -1211,13 +1179,13 @@ Cancelling Problem Submissions
 ------------------------------
 
 To cancel pending or in-progress problems, select the problems and click the
-*Cancel Problems* icon **X**.
+**Cancel Problems** **X**.
 
 Cancelled problems do not use any solver-access time.
 
 .. tip::
     *   Before cancelling problem submissions, display the most up-to-date
-        status by clicking the *Refresh Table* icon |refresh_icon|.
+        status by clicking **Refresh Table** |refresh_icon|.
 
     *   If you run scripts to continually submit problems, refresh the table
         after cancelling problem submissions to confirm that the cancellation
