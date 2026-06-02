@@ -170,4 +170,10 @@ outperforms the other solvers.
     On FSS problems with 150 seconds of runtime, the median gap for solutions
     found by D-Wave's nonlinear solver beats the median gaps found by all other
     solvers tested on all sizes available in the Taillard benchmarking library.
-    
+
+
+Data
+====
+
+Solver runtimes and energies are available in CSV format
+:download:`here <../downloadables/vignette_fss.csv>`.

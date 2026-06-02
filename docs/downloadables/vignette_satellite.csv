@@ -1,0 +1,705 @@
+name,Solver,time_limit,energy,num_satellites
+3_0,CQM Solver,5,204.298,3
+3_0,CQM Solver,30,204.729,3
+3_0,CQM Solver,60,206.062,3
+3_1,CQM Solver,5,156.302,3
+3_1,CQM Solver,30,156.302,3
+3_1,CQM Solver,60,156.302,3
+3_2,CQM Solver,5,147.805,3
+3_2,CQM Solver,30,147.805,3
+3_2,CQM Solver,60,147.805,3
+3_3,CQM Solver,5,112.227,3
+3_3,CQM Solver,30,112.227,3
+3_3,CQM Solver,60,112.227,3
+3_4,CQM Solver,5,161.976,3
+3_4,CQM Solver,30,162.596,3
+3_4,CQM Solver,60,162.596,3
+3_5,CQM Solver,5,302.052,3
+3_5,CQM Solver,30,302.052,3
+3_5,CQM Solver,60,302.052,3
+3_6,CQM Solver,5,188.893,3
+3_6,CQM Solver,30,188.893,3
+3_6,CQM Solver,60,188.893,3
+3_7,CQM Solver,5,202.831,3
+3_7,CQM Solver,30,202.831,3
+3_7,CQM Solver,60,202.831,3
+3_8,CQM Solver,5,107.232,3
+3_8,CQM Solver,30,128.974,3
+3_8,CQM Solver,60,118.967,3
+3_9,CQM Solver,5,168.145,3
+3_9,CQM Solver,30,168.145,3
+3_9,CQM Solver,60,168.145,3
+3_10,CQM Solver,5,118.391,3
+3_10,CQM Solver,30,118.391,3
+3_10,CQM Solver,60,118.391,3
+5_0,CQM Solver,5,52.947,5
+5_0,CQM Solver,30,89.164,5
+5_0,CQM Solver,60,105.702,5
+5_1,CQM Solver,5,78.482,5
+5_1,CQM Solver,30,90.036,5
+5_1,CQM Solver,60,105.665,5
+5_2,CQM Solver,5,72.09400000000001,5
+5_2,CQM Solver,30,83.555,5
+5_2,CQM Solver,60,86.739,5
+5_3,CQM Solver,5,54.777,5
+5_3,CQM Solver,30,53.306,5
+5_3,CQM Solver,60,36.002,5
+5_4,CQM Solver,5,101.728,5
+5_4,CQM Solver,30,111.515,5
+5_4,CQM Solver,60,128.209,5
+5_5,CQM Solver,5,82.086,5
+5_5,CQM Solver,30,82.107,5
+5_5,CQM Solver,60,68.628,5
+5_6,CQM Solver,5,143.843,5
+5_6,CQM Solver,30,122.586,5
+5_6,CQM Solver,60,135.287,5
+5_7,CQM Solver,5,44.76,5
+5_7,CQM Solver,30,54.909,5
+5_7,CQM Solver,60,55.232,5
+5_8,CQM Solver,5,155.321,5
+5_8,CQM Solver,30,175.546,5
+5_8,CQM Solver,60,192.119,5
+5_9,CQM Solver,5,68.67,5
+5_9,CQM Solver,30,58.387,5
+5_9,CQM Solver,60,78.762,5
+5_10,CQM Solver,5,78.164,5
+5_10,CQM Solver,30,81.092,5
+5_10,CQM Solver,60,84.162,5
+7_0,CQM Solver,5,58.271,7
+7_0,CQM Solver,30,67.875,7
+7_0,CQM Solver,60,27.24,7
+7_1,CQM Solver,5,37.026,7
+7_1,CQM Solver,30,25.655,7
+7_1,CQM Solver,60,37.016,7
+7_2,CQM Solver,5,47.251,7
+7_2,CQM Solver,30,44.941,7
+7_2,CQM Solver,60,40.18,7
+7_3,CQM Solver,5,0.015,7
+7_3,CQM Solver,30,42.553,7
+7_3,CQM Solver,60,54.822,7
+7_4,CQM Solver,5,67.51,7
+7_4,CQM Solver,30,81.268,7
+7_4,CQM Solver,60,48.394,7
+7_5,CQM Solver,5,27.462,7
+7_5,CQM Solver,30,15.856,7
+7_5,CQM Solver,60,48.142,7
+7_6,CQM Solver,5,40.311,7
+7_6,CQM Solver,30,41.332,7
+7_6,CQM Solver,60,57.727,7
+7_7,CQM Solver,5,20.449,7
+7_7,CQM Solver,30,33.75,7
+7_7,CQM Solver,60,25.548,7
+7_8,CQM Solver,5,41.158,7
+7_8,CQM Solver,30,13.571,7
+7_8,CQM Solver,60,58.509,7
+7_9,CQM Solver,5,26.799,7
+7_9,CQM Solver,30,55.524,7
+7_9,CQM Solver,60,44.016,7
+7_10,CQM Solver,5,6.598,7
+7_10,CQM Solver,30,17.737000000000002,7
+7_10,CQM Solver,60,35.397,7
+10_0,CQM Solver,5,6.065,10
+10_0,CQM Solver,30,19.961,10
+10_0,CQM Solver,60,3.796,10
+10_1,CQM Solver,5,34.353,10
+10_1,CQM Solver,30,27.087,10
+10_1,CQM Solver,60,39.075,10
+10_2,CQM Solver,5,21.872,10
+10_2,CQM Solver,30,8.758000000000001,10
+10_2,CQM Solver,60,30.547,10
+10_3,CQM Solver,5,22.671,10
+10_3,CQM Solver,30,20.319,10
+10_3,CQM Solver,60,12.969,10
+10_4,CQM Solver,5,11.244,10
+10_4,CQM Solver,30,10.673,10
+10_4,CQM Solver,60,33.917,10
+10_5,CQM Solver,5,24.593,10
+10_5,CQM Solver,30,34.882,10
+10_5,CQM Solver,60,25.664,10
+10_6,CQM Solver,5,21.818,10
+10_6,CQM Solver,30,36.056,10
+10_6,CQM Solver,60,0.759,10
+10_7,CQM Solver,5,27.496,10
+10_7,CQM Solver,30,25.688,10
+10_7,CQM Solver,60,31.486,10
+10_8,CQM Solver,5,25.243,10
+10_8,CQM Solver,30,0.761,10
+10_8,CQM Solver,60,30.675,10
+10_9,CQM Solver,5,3.733,10
+10_9,CQM Solver,30,41.364,10
+10_9,CQM Solver,60,2.518,10
+10_10,CQM Solver,5,27.919,10
+10_10,CQM Solver,30,19.473,10
+10_10,CQM Solver,60,36.543,10
+12_0,CQM Solver,30,18.052,12
+12_1,CQM Solver,30,14.327,12
+12_2,CQM Solver,30,0.301,12
+12_3,CQM Solver,30,14.261,12
+12_4,CQM Solver,30,7.009,12
+12_5,CQM Solver,30,23.001,12
+12_6,CQM Solver,30,6.088,12
+12_7,CQM Solver,30,7.303,12
+12_8,CQM Solver,30,3.873,12
+12_9,CQM Solver,30,22.5,12
+12_10,CQM Solver,30,0.003,12
+15_0,CQM Solver,30,13.772,15
+15_1,CQM Solver,30,16.26,15
+15_2,CQM Solver,30,5.649,15
+15_3,CQM Solver,30,13.057,15
+15_4,CQM Solver,30,3.612,15
+15_5,CQM Solver,30,5.862,15
+15_6,CQM Solver,30,11.213,15
+15_7,CQM Solver,30,5.839,15
+15_8,CQM Solver,30,3.331,15
+15_9,CQM Solver,30,0.005,15
+15_10,CQM Solver,30,15.079,15
+12_0,CQM Solver,60,19.694,12
+12_1,CQM Solver,60,17.62,12
+12_2,CQM Solver,60,6.897,12
+12_3,CQM Solver,60,20.828,12
+12_4,CQM Solver,60,2.08,12
+12_5,CQM Solver,60,19.428,12
+12_6,CQM Solver,60,34.344,12
+12_7,CQM Solver,60,0.004,12
+12_8,CQM Solver,60,28.236,12
+12_9,CQM Solver,60,14.137,12
+12_10,CQM Solver,60,0.319,12
+15_0,CQM Solver,60,10.066,15
+15_1,CQM Solver,60,20.909,15
+15_2,CQM Solver,60,1.747,15
+15_3,CQM Solver,60,2.258,15
+15_4,CQM Solver,60,0.409,15
+15_5,CQM Solver,60,1.313,15
+15_6,CQM Solver,60,10.059,15
+15_7,CQM Solver,60,1.474,15
+15_8,CQM Solver,60,0.006,15
+15_9,CQM Solver,60,1.349,15
+15_10,CQM Solver,60,2.625,15
+3_0,Pyomo IPOpt initial state,30,196.3969427920603,3
+3_0,Pyomo IPOpt initial state,60,196.3969427920603,3
+3_1,Pyomo IPOpt initial state,30,156.30200559979014,3
+3_1,Pyomo IPOpt initial state,60,156.3020055997901,3
+3_2,Pyomo IPOpt initial state,30,147.80514056557078,3
+3_2,Pyomo IPOpt initial state,60,147.80514056557078,3
+3_3,Pyomo IPOpt initial state,30,112.22774720137964,3
+3_3,Pyomo IPOpt initial state,60,112.22774720137956,3
+3_4,Pyomo IPOpt initial state,30,145.55684400735487,3
+3_4,Pyomo IPOpt initial state,60,145.55684400735487,3
+3_5,Pyomo IPOpt initial state,30,302.05292527675266,3
+3_5,Pyomo IPOpt initial state,60,302.0529252767526,3
+3_6,Pyomo IPOpt initial state,30,188.89305735013872,3
+3_6,Pyomo IPOpt initial state,60,188.8930573501387,3
+3_7,Pyomo IPOpt initial state,30,148.25589909303926,3
+3_7,Pyomo IPOpt initial state,60,148.2558990930393,3
+3_8,Pyomo IPOpt initial state,30,136.39113992409207,3
+3_8,Pyomo IPOpt initial state,60,136.39113992409207,3
+3_9,Pyomo IPOpt initial state,30,102.4630015547936,3
+3_9,Pyomo IPOpt initial state,60,102.4630015547936,3
+3_10,Pyomo IPOpt initial state,30,98.00856308466912,3
+3_10,Pyomo IPOpt initial state,60,98.00856308466912,3
+5_0,Pyomo IPOpt initial state,30,104.598503288259,5
+5_0,Pyomo IPOpt initial state,60,104.59850328825898,5
+5_1,Pyomo IPOpt initial state,30,97.63669478470752,5
+5_1,Pyomo IPOpt initial state,60,97.63669478470756,5
+5_2,Pyomo IPOpt initial state,30,60.22468720433347,5
+5_2,Pyomo IPOpt initial state,60,60.22468720433347,5
+5_3,Pyomo IPOpt initial state,30,50.56639627638372,5
+5_3,Pyomo IPOpt initial state,60,50.56639627638372,5
+5_4,Pyomo IPOpt initial state,30,97.89572547795,5
+5_4,Pyomo IPOpt initial state,60,97.89572547795,5
+5_5,Pyomo IPOpt initial state,30,69.2499121664031,5
+5_5,Pyomo IPOpt initial state,60,69.24991216640309,5
+5_6,Pyomo IPOpt initial state,30,137.74905813635587,5
+5_6,Pyomo IPOpt initial state,60,137.74905813635584,5
+5_7,Pyomo IPOpt initial state,30,38.64804831818482,5
+5_7,Pyomo IPOpt initial state,60,38.64804831818447,5
+5_8,Pyomo IPOpt initial state,30,150.06948042380364,5
+5_8,Pyomo IPOpt initial state,60,150.06948042380367,5
+5_9,Pyomo IPOpt initial state,30,87.50012027790537,5
+5_9,Pyomo IPOpt initial state,60,87.50012027790537,5
+5_10,Pyomo IPOpt initial state,30,79.40571456710391,5
+5_10,Pyomo IPOpt initial state,60,79.40571456710391,5
+7_0,Pyomo IPOpt initial state,30,101.60206323097066,7
+7_0,Pyomo IPOpt initial state,60,101.60206323097064,7
+7_1,Pyomo IPOpt initial state,30,56.86617928372692,7
+7_1,Pyomo IPOpt initial state,60,56.86617928372666,7
+7_2,Pyomo IPOpt initial state,30,51.44269038487986,7
+7_2,Pyomo IPOpt initial state,60,51.44269038487887,7
+7_3,Pyomo IPOpt initial state,30,53.97257827112736,7
+7_3,Pyomo IPOpt initial state,60,53.97257827112736,7
+7_4,Pyomo IPOpt initial state,30,52.78322375886482,7
+7_4,Pyomo IPOpt initial state,60,52.78322375886482,7
+7_5,Pyomo IPOpt initial state,30,32.62191636694185,7
+7_5,Pyomo IPOpt initial state,60,32.621916366941846,7
+7_6,Pyomo IPOpt initial state,30,57.58942728777188,7
+7_6,Pyomo IPOpt initial state,60,57.58942728777188,7
+7_7,Pyomo IPOpt initial state,30,41.682840196186056,7
+7_7,Pyomo IPOpt initial state,60,41.682840196186056,7
+7_8,Pyomo IPOpt initial state,30,54.87727770376026,7
+7_8,Pyomo IPOpt initial state,60,54.877277703760285,7
+7_9,Pyomo IPOpt initial state,30,50.723762411206536,7
+7_9,Pyomo IPOpt initial state,60,50.72376241120699,7
+7_10,Pyomo IPOpt initial state,30,66.08947093813674,7
+7_10,Pyomo IPOpt initial state,60,66.08947093813673,7
+10_0,Pyomo IPOpt initial state,30,30.20850628426034,10
+10_0,Pyomo IPOpt initial state,60,30.20850628426037,10
+10_1,Pyomo IPOpt initial state,30,51.24159382623093,10
+10_1,Pyomo IPOpt initial state,60,51.241593826227984,10
+10_2,Pyomo IPOpt initial state,30,31.58340239105687,10
+10_2,Pyomo IPOpt initial state,60,31.58340239105496,10
+10_3,Pyomo IPOpt initial state,30,28.34514233104668,10
+10_3,Pyomo IPOpt initial state,60,28.345142331046706,10
+10_4,Pyomo IPOpt initial state,30,46.108841921789306,10
+10_4,Pyomo IPOpt initial state,60,46.108841921789285,10
+10_5,Pyomo IPOpt initial state,30,48.60190756155804,10
+10_5,Pyomo IPOpt initial state,60,48.60190756155877,10
+10_6,Pyomo IPOpt initial state,30,50.16820430638539,10
+10_6,Pyomo IPOpt initial state,60,50.168204306385405,10
+10_7,Pyomo IPOpt initial state,30,39.65974549123103,10
+10_7,Pyomo IPOpt initial state,60,39.65974549123104,10
+10_8,Pyomo IPOpt initial state,30,33.16888950149002,10
+10_8,Pyomo IPOpt initial state,60,33.16888950149021,10
+10_9,Pyomo IPOpt initial state,30,36.418922740376566,10
+10_9,Pyomo IPOpt initial state,60,36.41892274037756,10
+10_10,Pyomo IPOpt initial state,30,34.62426251008534,10
+10_10,Pyomo IPOpt initial state,60,34.62426251008182,10
+12_0,Pyomo IPOpt initial state,30,26.85472532416616,12
+12_0,Pyomo IPOpt initial state,60,26.85472532416579,12
+12_1,Pyomo IPOpt initial state,30,27.026385613032467,12
+12_1,Pyomo IPOpt initial state,60,27.026385613032488,12
+12_2,Pyomo IPOpt initial state,30,39.72201571383632,12
+12_2,Pyomo IPOpt initial state,60,39.72201571383338,12
+12_3,Pyomo IPOpt initial state,30,30.967906953581743,12
+12_3,Pyomo IPOpt initial state,60,30.96790695358398,12
+12_4,Pyomo IPOpt initial state,30,30.49037648117969,12
+12_4,Pyomo IPOpt initial state,60,30.49037648117932,12
+12_5,Pyomo IPOpt initial state,30,37.48598847415371,12
+12_5,Pyomo IPOpt initial state,60,37.485988474155526,12
+12_6,Pyomo IPOpt initial state,30,28.383806510125392,12
+12_6,Pyomo IPOpt initial state,60,28.383806510125424,12
+12_7,Pyomo IPOpt initial state,30,25.10205622440302,12
+12_7,Pyomo IPOpt initial state,60,25.10205622440305,12
+12_8,Pyomo IPOpt initial state,30,30.95078945187948,12
+12_8,Pyomo IPOpt initial state,60,30.950789451880084,12
+12_9,Pyomo IPOpt initial state,30,28.20400620899588,12
+12_9,Pyomo IPOpt initial state,60,28.20400620899592,12
+12_10,Pyomo IPOpt initial state,30,28.791294504789143,12
+12_10,Pyomo IPOpt initial state,60,28.791294504788222,12
+15_0,Pyomo IPOpt initial state,30,29.15114779400304,15
+15_0,Pyomo IPOpt initial state,60,29.151147793999264,15
+15_1,Pyomo IPOpt initial state,30,23.23201775655554,15
+15_1,Pyomo IPOpt initial state,60,23.2320177565558,15
+15_2,Pyomo IPOpt initial state,30,24.19880373912286,15
+15_2,Pyomo IPOpt initial state,60,24.198803739122813,15
+15_3,Pyomo IPOpt initial state,30,24.88924689005685,15
+15_3,Pyomo IPOpt initial state,60,24.889246890056533,15
+15_4,Pyomo IPOpt initial state,30,21.979731051404087,15
+15_4,Pyomo IPOpt initial state,60,21.979731051413545,15
+15_5,Pyomo IPOpt initial state,30,27.235705701754647,15
+15_5,Pyomo IPOpt initial state,60,27.23570570175457,15
+15_6,Pyomo IPOpt initial state,30,27.133775506613464,15
+15_6,Pyomo IPOpt initial state,60,27.133775506613468,15
+15_7,Pyomo IPOpt initial state,30,21.20234357012597,15
+15_7,Pyomo IPOpt initial state,60,21.202343570126025,15
+15_8,Pyomo IPOpt initial state,30,28.068335319516795,15
+15_8,Pyomo IPOpt initial state,60,28.068335319526987,15
+15_9,Pyomo IPOpt initial state,30,22.21855630494436,15
+15_9,Pyomo IPOpt initial state,60,22.218556304944816,15
+15_10,Pyomo IPOpt initial state,30,23.367320061060266,15
+15_10,Pyomo IPOpt initial state,60,23.36732006105984,15
+20_0,Pyomo IPOpt initial state,30,15.502581750989512,20
+20_0,Pyomo IPOpt initial state,60,15.502581751025769,20
+20_1,Pyomo IPOpt initial state,30,17.526533098719867,20
+20_1,Pyomo IPOpt initial state,60,17.526533098715486,20
+20_2,Pyomo IPOpt initial state,30,15.167648942101168,20
+20_2,Pyomo IPOpt initial state,60,15.16764894247438,20
+20_3,Pyomo IPOpt initial state,30,19.70975981308289,20
+20_3,Pyomo IPOpt initial state,60,19.709759813083423,20
+20_4,Pyomo IPOpt initial state,30,12.667238030390234,20
+20_4,Pyomo IPOpt initial state,60,12.667238030377376,20
+20_5,Pyomo IPOpt initial state,30,17.935844543352047,20
+20_5,Pyomo IPOpt initial state,60,17.935844543335982,20
+20_6,Pyomo IPOpt initial state,30,15.14025217251645,20
+20_6,Pyomo IPOpt initial state,60,15.140252172517664,20
+20_7,Pyomo IPOpt initial state,30,19.99233909354737,20
+20_7,Pyomo IPOpt initial state,60,19.99233909354204,20
+20_8,Pyomo IPOpt initial state,30,13.90000459721111,20
+20_8,Pyomo IPOpt initial state,60,13.900004597210316,20
+20_9,Pyomo IPOpt initial state,30,19.532165782248192,20
+20_9,Pyomo IPOpt initial state,60,19.532165782242743,20
+20_10,Pyomo IPOpt initial state,30,16.220415704154785,20
+20_10,Pyomo IPOpt initial state,60,16.220415704109985,20
+30_0,Pyomo IPOpt initial state,30,8.187221449098075,30
+30_0,Pyomo IPOpt initial state,60,8.187221449112307,30
+30_1,Pyomo IPOpt initial state,30,11.149974790217296,30
+30_1,Pyomo IPOpt initial state,60,11.149974789860067,30
+30_2,Pyomo IPOpt initial state,30,11.053551977213967,30
+30_2,Pyomo IPOpt initial state,60,11.053551977300163,30
+30_3,Pyomo IPOpt initial state,30,11.640970395792948,30
+30_3,Pyomo IPOpt initial state,60,11.640970395785,30
+30_4,Pyomo IPOpt initial state,30,9.785851242368414,30
+30_4,Pyomo IPOpt initial state,60,9.785851242125302,30
+30_5,Pyomo IPOpt initial state,30,11.64205139802004,30
+30_5,Pyomo IPOpt initial state,60,11.64205139831686,30
+30_6,Pyomo IPOpt initial state,30,11.26150239629299,30
+30_6,Pyomo IPOpt initial state,60,11.26150239612193,30
+30_7,Pyomo IPOpt initial state,30,12.112027114388209,30
+30_7,Pyomo IPOpt initial state,60,12.112027114922062,30
+30_8,Pyomo IPOpt initial state,30,10.150395905650472,30
+30_8,Pyomo IPOpt initial state,60,10.15039590564992,30
+30_9,Pyomo IPOpt initial state,30,11.437926165155888,30
+30_9,Pyomo IPOpt initial state,60,11.43792616486034,30
+30_10,Pyomo IPOpt initial state,30,11.24333446093996,30
+30_10,Pyomo IPOpt initial state,60,11.243334460936511,30
+50_0,Pyomo IPOpt initial state,30,6.179517132921905,50
+50_0,Pyomo IPOpt initial state,60,6.179517132918073,50
+50_1,Pyomo IPOpt initial state,30,6.623355150728844,50
+50_1,Pyomo IPOpt initial state,60,6.6233551507279245,50
+50_2,Pyomo IPOpt initial state,30,6.620606952931596,50
+50_2,Pyomo IPOpt initial state,60,6.620606952930425,50
+50_3,Pyomo IPOpt initial state,30,6.014992807965414,50
+50_3,Pyomo IPOpt initial state,60,6.014992807965586,50
+50_4,Pyomo IPOpt initial state,30,6.647751579124704,50
+50_4,Pyomo IPOpt initial state,60,6.6477515791376645,50
+50_5,Pyomo IPOpt initial state,30,6.744550401877337,50
+50_5,Pyomo IPOpt initial state,60,6.7445504018773015,50
+50_6,Pyomo IPOpt initial state,30,6.085551702933365,50
+50_6,Pyomo IPOpt initial state,60,6.085551702933365,50
+50_7,Pyomo IPOpt initial state,30,6.967100431125255,50
+50_7,Pyomo IPOpt initial state,60,6.967100431109359,50
+50_8,Pyomo IPOpt initial state,30,6.974610379764619,50
+50_8,Pyomo IPOpt initial state,60,6.974610379768567,50
+50_9,Pyomo IPOpt initial state,30,6.652030386501792,50
+50_9,Pyomo IPOpt initial state,60,6.652030386501944,50
+50_10,Pyomo IPOpt initial state,30,6.197584409747869,50
+50_10,Pyomo IPOpt initial state,60,6.197584409695548,50
+3_0,NL Solver initial state,5,206.0626166253525,3
+3_0,NL Solver initial state,30,206.0626166253525,3
+3_0,NL Solver initial state,60,206.0626166253525,3
+3_1,NL Solver initial state,5,156.3020040219986,3
+3_1,NL Solver initial state,30,156.3020040219986,3
+3_1,NL Solver initial state,60,156.3020040219986,3
+3_2,NL Solver initial state,5,147.8051379748374,3
+3_2,NL Solver initial state,30,147.8051379748374,3
+3_2,NL Solver initial state,60,147.8051379748374,3
+3_3,NL Solver initial state,5,112.227746066608,3
+3_3,NL Solver initial state,30,112.227746066608,3
+3_3,NL Solver initial state,60,112.227746066608,3
+3_4,NL Solver initial state,5,162.59650250407958,3
+3_4,NL Solver initial state,30,162.59650250407958,3
+3_4,NL Solver initial state,60,162.59650250407958,3
+3_5,NL Solver initial state,5,302.0529222260772,3
+3_5,NL Solver initial state,30,302.0529222260772,3
+3_5,NL Solver initial state,60,302.0529222260772,3
+3_6,NL Solver initial state,5,188.8930527810868,3
+3_6,NL Solver initial state,30,188.8930527810868,3
+3_6,NL Solver initial state,60,188.8930527810868,3
+3_7,NL Solver initial state,5,202.83111910341265,3
+3_7,NL Solver initial state,30,202.83111910341265,3
+3_7,NL Solver initial state,60,202.83111910341265,3
+3_8,NL Solver initial state,5,136.39113854747225,3
+3_8,NL Solver initial state,30,136.39113854747225,3
+3_8,NL Solver initial state,60,136.39113854747225,3
+3_9,NL Solver initial state,5,168.14578162299335,3
+3_9,NL Solver initial state,30,168.14578162299335,3
+3_9,NL Solver initial state,60,168.14578162299335,3
+3_10,NL Solver initial state,5,118.39165768632446,3
+3_10,NL Solver initial state,30,118.39165768632446,3
+3_10,NL Solver initial state,60,118.39165768632446,3
+5_0,NL Solver initial state,5,107.85714537159048,5
+5_0,NL Solver initial state,30,107.85714537159048,5
+5_0,NL Solver initial state,60,107.85714537159048,5
+5_1,NL Solver initial state,5,108.61766905634455,5
+5_1,NL Solver initial state,30,108.61766905634455,5
+5_1,NL Solver initial state,60,108.61766905634455,5
+5_2,NL Solver initial state,5,92.46580520990038,5
+5_2,NL Solver initial state,30,92.46580520990038,5
+5_2,NL Solver initial state,60,92.46580520990038,5
+5_3,NL Solver initial state,5,64.7982547189364,5
+5_3,NL Solver initial state,30,64.7982547189364,5
+5_3,NL Solver initial state,60,64.7982547189364,5
+5_4,NL Solver initial state,5,128.20922595443787,5
+5_4,NL Solver initial state,30,128.20922595443787,5
+5_4,NL Solver initial state,60,128.20922595443787,5
+5_5,NL Solver initial state,5,82.78775906746233,5
+5_5,NL Solver initial state,30,82.78775906746233,5
+5_5,NL Solver initial state,60,82.78775906746233,5
+5_6,NL Solver initial state,5,169.9031154498931,5
+5_6,NL Solver initial state,30,169.9031154498931,5
+5_6,NL Solver initial state,60,169.9031154498931,5
+5_7,NL Solver initial state,5,63.99656347593549,5
+5_7,NL Solver initial state,30,63.99656347593549,5
+5_7,NL Solver initial state,60,63.99656347593549,5
+5_8,NL Solver initial state,5,209.3815804219057,5
+5_8,NL Solver initial state,30,209.3815804219057,5
+5_8,NL Solver initial state,60,209.3815804219057,5
+5_9,NL Solver initial state,5,88.68197561983047,5
+5_9,NL Solver initial state,30,88.68197561983047,5
+5_9,NL Solver initial state,60,88.68197561983047,5
+5_10,NL Solver initial state,5,84.16277822668424,5
+5_10,NL Solver initial state,30,84.16277822668424,5
+5_10,NL Solver initial state,60,84.16277822668424,5
+7_0,NL Solver initial state,5,134.54811436541954,7
+7_0,NL Solver initial state,30,134.54811436541954,7
+7_0,NL Solver initial state,60,134.54811436541954,7
+7_1,NL Solver initial state,5,74.98106148349316,7
+7_1,NL Solver initial state,30,74.98106148349316,7
+7_1,NL Solver initial state,60,74.98106148349316,7
+7_2,NL Solver initial state,5,70.46189293038829,7
+7_2,NL Solver initial state,30,70.4618929303883,7
+7_2,NL Solver initial state,60,70.46189293038829,7
+7_3,NL Solver initial state,5,88.81998760963037,7
+7_3,NL Solver initial state,30,88.81998760963037,7
+7_3,NL Solver initial state,60,88.81998760963037,7
+7_4,NL Solver initial state,5,94.79360528319108,7
+7_4,NL Solver initial state,30,94.79360528319108,7
+7_4,NL Solver initial state,60,94.79360528319108,7
+7_5,NL Solver initial state,5,72.57083440606026,7
+7_5,NL Solver initial state,30,72.57083440606026,7
+7_5,NL Solver initial state,60,72.57083440606026,7
+7_6,NL Solver initial state,5,93.5876623203642,7
+7_6,NL Solver initial state,30,93.5876623203642,7
+7_6,NL Solver initial state,60,93.5876623203642,7
+7_7,NL Solver initial state,5,61.46949606666799,7
+7_7,NL Solver initial state,30,61.46949606666799,7
+7_7,NL Solver initial state,60,61.46949606666799,7
+7_8,NL Solver initial state,5,97.34390253844256,7
+7_8,NL Solver initial state,30,97.34390253844256,7
+7_8,NL Solver initial state,60,97.34390253844256,7
+7_9,NL Solver initial state,5,62.07492902335524,7
+7_9,NL Solver initial state,30,62.07492902335524,7
+7_9,NL Solver initial state,60,62.07492902335524,7
+7_10,NL Solver initial state,5,76.7742024552808,7
+7_10,NL Solver initial state,30,76.7742024552808,7
+7_10,NL Solver initial state,60,76.7742024552808,7
+10_0,NL Solver initial state,5,55.86973737634742,10
+10_0,NL Solver initial state,30,55.86973737634742,10
+10_0,NL Solver initial state,60,55.86973737634742,10
+10_1,NL Solver initial state,5,67.97115792813786,10
+10_1,NL Solver initial state,30,67.97115792813786,10
+10_1,NL Solver initial state,60,67.97115792813786,10
+10_2,NL Solver initial state,5,49.14281827007685,10
+10_2,NL Solver initial state,30,49.14281827007685,10
+10_2,NL Solver initial state,60,49.14281827007685,10
+10_3,NL Solver initial state,5,54.1885039943335,10
+10_3,NL Solver initial state,30,54.1885039943335,10
+10_3,NL Solver initial state,60,54.1885039943335,10
+10_4,NL Solver initial state,5,55.35050691586499,10
+10_4,NL Solver initial state,30,55.35050691586499,10
+10_4,NL Solver initial state,60,55.35050691586499,10
+10_5,NL Solver initial state,5,65.60321246419883,10
+10_5,NL Solver initial state,30,65.60321246419883,10
+10_5,NL Solver initial state,60,65.60321246419883,10
+10_6,NL Solver initial state,5,66.3694473913611,10
+10_6,NL Solver initial state,30,66.3694473913611,10
+10_6,NL Solver initial state,60,66.3694473913611,10
+10_7,NL Solver initial state,5,59.12131666311381,10
+10_7,NL Solver initial state,30,59.12131666311381,10
+10_7,NL Solver initial state,60,59.12131666311381,10
+10_8,NL Solver initial state,5,60.09757513950734,10
+10_8,NL Solver initial state,30,60.09757513950734,10
+10_8,NL Solver initial state,60,60.09757513950734,10
+10_9,NL Solver initial state,5,62.57933510818263,10
+10_9,NL Solver initial state,30,62.57933510818263,10
+10_9,NL Solver initial state,60,62.57933510818263,10
+10_10,NL Solver initial state,5,65.35094068481212,10
+10_10,NL Solver initial state,30,65.35094068481212,10
+10_10,NL Solver initial state,60,65.35094068481212,10
+12_0,NL Solver initial state,5,53.092657894951856,12
+12_0,NL Solver initial state,30,53.092657894951856,12
+12_0,NL Solver initial state,60,53.092657894951856,12
+12_1,NL Solver initial state,5,45.298089500341696,12
+12_1,NL Solver initial state,30,45.298089500341696,12
+12_1,NL Solver initial state,60,45.298089500341696,12
+12_2,NL Solver initial state,5,52.97932881936267,12
+12_2,NL Solver initial state,30,52.97932881936267,12
+12_2,NL Solver initial state,60,52.97932881936267,12
+12_3,NL Solver initial state,5,48.676331259981886,12
+12_3,NL Solver initial state,30,48.676331259981886,12
+12_3,NL Solver initial state,60,48.676331259981886,12
+12_4,NL Solver initial state,5,42.43224437413604,12
+12_4,NL Solver initial state,30,42.43224437413604,12
+12_4,NL Solver initial state,60,42.43224437413604,12
+12_5,NL Solver initial state,5,52.89876223623083,12
+12_5,NL Solver initial state,30,52.89876223623084,12
+12_5,NL Solver initial state,60,52.89876223623084,12
+12_6,NL Solver initial state,5,54.43959701872998,12
+12_6,NL Solver initial state,30,54.43959701872998,12
+12_6,NL Solver initial state,60,54.43959701872998,12
+12_7,NL Solver initial state,5,52.15606119375294,12
+12_7,NL Solver initial state,30,52.15606119375294,12
+12_7,NL Solver initial state,60,52.15606119375294,12
+12_8,NL Solver initial state,5,67.38737131384265,12
+12_8,NL Solver initial state,30,67.38737131384265,12
+12_8,NL Solver initial state,60,67.38737131384265,12
+12_9,NL Solver initial state,5,55.16208406709163,12
+12_9,NL Solver initial state,30,55.16208406709163,12
+12_9,NL Solver initial state,60,55.16208406709163,12
+12_10,NL Solver initial state,5,47.12607690949415,12
+12_10,NL Solver initial state,30,47.12607690949415,12
+12_10,NL Solver initial state,60,47.12607690949415,12
+15_0,NL Solver initial state,5,45.591571354700086,15
+15_0,NL Solver initial state,30,45.591571354700086,15
+15_0,NL Solver initial state,60,45.591571354700086,15
+15_1,NL Solver initial state,5,44.79745636443903,15
+15_1,NL Solver initial state,30,46.32526197055608,15
+15_1,NL Solver initial state,60,46.32526197055608,15
+15_2,NL Solver initial state,5,44.4673047818372,15
+15_2,NL Solver initial state,30,44.46730478183723,15
+15_2,NL Solver initial state,60,44.4673047818372,15
+15_3,NL Solver initial state,5,45.05533037116522,15
+15_3,NL Solver initial state,30,45.05533037116522,15
+15_3,NL Solver initial state,60,45.05533037116522,15
+15_4,NL Solver initial state,5,41.24346986729364,15
+15_4,NL Solver initial state,30,41.24346986729364,15
+15_4,NL Solver initial state,60,41.24346986729364,15
+15_5,NL Solver initial state,5,43.996782962085945,15
+15_5,NL Solver initial state,30,43.996782962085945,15
+15_5,NL Solver initial state,60,43.996782962085945,15
+15_6,NL Solver initial state,5,50.52204953497842,15
+15_6,NL Solver initial state,30,50.52204953497842,15
+15_6,NL Solver initial state,60,50.52204953497842,15
+15_7,NL Solver initial state,5,44.87370589560395,15
+15_7,NL Solver initial state,30,44.87370589560395,15
+15_7,NL Solver initial state,60,44.87370589560395,15
+15_8,NL Solver initial state,5,43.69500883954023,15
+15_8,NL Solver initial state,30,43.71195850651962,15
+15_8,NL Solver initial state,60,43.69500883954023,15
+15_9,NL Solver initial state,5,41.75913335589132,15
+15_9,NL Solver initial state,30,42.12258107168376,15
+15_9,NL Solver initial state,60,42.12258107168376,15
+15_10,NL Solver initial state,5,42.1043514420268,15
+15_10,NL Solver initial state,30,42.17316141623694,15
+15_10,NL Solver initial state,60,42.17316141623694,15
+20_0,NL Solver initial state,5,30.59496987965378,20
+20_0,NL Solver initial state,30,31.622801834538908,20
+20_0,NL Solver initial state,60,31.639018281872684,20
+20_1,NL Solver initial state,5,32.42036675789675,20
+20_1,NL Solver initial state,30,33.38691036396148,20
+20_1,NL Solver initial state,60,33.38691036396148,20
+20_2,NL Solver initial state,5,34.680112534124795,20
+20_2,NL Solver initial state,30,35.44936262029064,20
+20_2,NL Solver initial state,60,35.44936262029074,20
+20_3,NL Solver initial state,5,36.18679710682776,20
+20_3,NL Solver initial state,30,36.18679710682776,20
+20_3,NL Solver initial state,60,36.18679710682776,20
+20_4,NL Solver initial state,5,35.93715047183275,20
+20_4,NL Solver initial state,30,35.93715047183275,20
+20_4,NL Solver initial state,60,35.846618678708325,20
+20_5,NL Solver initial state,5,35.02802373355586,20
+20_5,NL Solver initial state,30,35.521009680438006,20
+20_5,NL Solver initial state,60,35.380411241738685,20
+20_6,NL Solver initial state,5,32.334696300991496,20
+20_6,NL Solver initial state,30,32.334696300991496,20
+20_6,NL Solver initial state,60,32.01027803526083,20
+20_7,NL Solver initial state,5,35.601566020412506,20
+20_7,NL Solver initial state,30,36.3798966834762,20
+20_7,NL Solver initial state,60,36.3798966834762,20
+20_8,NL Solver initial state,5,31.228043193398257,20
+20_8,NL Solver initial state,30,31.22804319339833,20
+20_8,NL Solver initial state,60,31.228043193398257,20
+20_9,NL Solver initial state,5,38.18800831775208,20
+20_9,NL Solver initial state,30,38.4284567518369,20
+20_9,NL Solver initial state,60,38.93986430723113,20
+20_10,NL Solver initial state,5,36.80993575408036,20
+20_10,NL Solver initial state,30,36.80993575408036,20
+20_10,NL Solver initial state,60,36.80993575408036,20
+30_0,NL Solver initial state,5,23.81780776310708,30
+30_0,NL Solver initial state,30,24.5600675463894,30
+30_0,NL Solver initial state,60,25.180787701966608,30
+30_1,NL Solver initial state,5,23.035070141397675,30
+30_1,NL Solver initial state,30,24.890561161069737,30
+30_1,NL Solver initial state,60,24.828284485365717,30
+30_2,NL Solver initial state,5,24.95558771550627,30
+30_2,NL Solver initial state,30,24.78191283663953,30
+30_2,NL Solver initial state,60,25.25629849530219,30
+30_3,NL Solver initial state,5,25.328049838598908,30
+30_3,NL Solver initial state,30,26.55817418131617,30
+30_3,NL Solver initial state,60,26.22650065464663,30
+30_4,NL Solver initial state,5,22.33994574324355,30
+30_4,NL Solver initial state,30,24.765220656506123,30
+30_4,NL Solver initial state,60,23.743077132164217,30
+30_5,NL Solver initial state,5,23.19845378940053,30
+30_5,NL Solver initial state,30,23.259553832138963,30
+30_5,NL Solver initial state,60,24.252229757546274,30
+30_6,NL Solver initial state,5,24.302454577543923,30
+30_6,NL Solver initial state,30,24.62952635144796,30
+30_6,NL Solver initial state,60,24.764108970443427,30
+30_7,NL Solver initial state,5,24.63675625907132,30
+30_7,NL Solver initial state,30,26.283924324168265,30
+30_7,NL Solver initial state,60,25.47339240554611,30
+30_8,NL Solver initial state,5,23.164199191526325,30
+30_8,NL Solver initial state,30,22.833957993734654,30
+30_8,NL Solver initial state,60,23.68017979598118,30
+30_9,NL Solver initial state,5,23.104507569522884,30
+30_9,NL Solver initial state,30,23.93068882859741,30
+30_9,NL Solver initial state,60,23.91013353562047,30
+30_10,NL Solver initial state,5,23.59681431904031,30
+30_10,NL Solver initial state,30,25.892994752722203,30
+30_10,NL Solver initial state,60,25.31524984736781,30
+40_0,NL Solver initial state,5,16.290103183318145,40
+40_0,NL Solver initial state,30,18.69526326945184,40
+40_0,NL Solver initial state,60,18.378118845326632,40
+40_1,NL Solver initial state,5,16.67767422110526,40
+40_1,NL Solver initial state,30,18.57066194898486,40
+40_1,NL Solver initial state,60,19.047585741264665,40
+40_2,NL Solver initial state,5,17.499417241646874,40
+40_2,NL Solver initial state,30,18.85554567006139,40
+40_2,NL Solver initial state,60,19.264409354531256,40
+40_3,NL Solver initial state,5,17.20151350370706,40
+40_3,NL Solver initial state,30,19.594268424904502,40
+40_3,NL Solver initial state,60,19.74310738952612,40
+40_4,NL Solver initial state,5,17.17762078859354,40
+40_4,NL Solver initial state,30,19.521383640103576,40
+40_4,NL Solver initial state,60,19.56976382796089,40
+40_5,NL Solver initial state,5,17.436043793806835,40
+40_5,NL Solver initial state,30,20.078893393765824,40
+40_5,NL Solver initial state,60,20.344005203948317,40
+40_6,NL Solver initial state,5,17.930583597739446,40
+40_6,NL Solver initial state,30,20.28960598267268,40
+40_6,NL Solver initial state,60,20.121227230507507,40
+40_7,NL Solver initial state,5,17.35020590461365,40
+40_7,NL Solver initial state,30,19.621467447843788,40
+40_7,NL Solver initial state,60,20.508709130259756,40
+40_8,NL Solver initial state,5,17.3855802790369,40
+40_8,NL Solver initial state,30,19.781455558750157,40
+40_8,NL Solver initial state,60,19.30360001180444,40
+40_9,NL Solver initial state,5,16.890931915022716,40
+40_9,NL Solver initial state,30,19.012319016410547,40
+40_9,NL Solver initial state,60,19.411040423385664,40
+40_10,NL Solver initial state,5,17.372950929757643,40
+40_10,NL Solver initial state,30,19.6021475614293,40
+40_10,NL Solver initial state,60,20.28010967614266,40
+50_0,NL Solver initial state,5,12.265934332827907,50
+50_0,NL Solver initial state,30,14.866549167823456,50
+50_0,NL Solver initial state,60,15.731534218235176,50
+50_1,NL Solver initial state,5,12.498702093282857,50
+50_1,NL Solver initial state,30,15.366744715573684,50
+50_1,NL Solver initial state,60,15.56093079786208,50
+50_2,NL Solver initial state,5,11.718258147544477,50
+50_2,NL Solver initial state,30,14.500225547256983,50
+50_2,NL Solver initial state,60,15.144064229426938,50
+50_3,NL Solver initial state,5,12.09406065565393,50
+50_3,NL Solver initial state,30,14.33843992657808,50
+50_3,NL Solver initial state,60,15.354707730115525,50
+50_4,NL Solver initial state,5,12.470102304746922,50
+50_4,NL Solver initial state,30,14.74976219595597,50
+50_4,NL Solver initial state,60,15.784182961775702,50
+50_5,NL Solver initial state,5,12.90947846115666,50
+50_5,NL Solver initial state,30,15.698527011136886,50
+50_5,NL Solver initial state,60,16.14492862219672,50
+50_6,NL Solver initial state,5,11.8509110836744,50
+50_6,NL Solver initial state,30,14.09355476822139,50
+50_6,NL Solver initial state,60,14.90472520297844,50
+50_7,NL Solver initial state,5,11.688024400563094,50
+50_7,NL Solver initial state,30,14.755267666681164,50
+50_7,NL Solver initial state,60,16.08658938696032,50
+50_8,NL Solver initial state,5,12.63499535723518,50
+50_8,NL Solver initial state,30,15.439331618819033,50
+50_8,NL Solver initial state,60,15.705310010053946,50
+50_9,NL Solver initial state,5,13.02307450555575,50
+50_9,NL Solver initial state,30,15.375428826043938,50
+50_9,NL Solver initial state,60,16.08669809444499,50
+50_10,NL Solver initial state,5,12.065156027430852,50
+50_10,NL Solver initial state,30,14.961603430862755,50
+50_10,NL Solver initial state,60,16.043630188493424,50
