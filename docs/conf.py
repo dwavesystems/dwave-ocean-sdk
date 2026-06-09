@@ -56,6 +56,7 @@ extensions = [
     'reno.sphinxext',
     'sphinx_copybutton',
     'hoverxref.extension',
+    'sphinx_sitemap',
 ]
 
 autosummary_generate = True
@@ -64,6 +65,10 @@ numfig = True
 hoverxref_roles = ['term']
 hoverxref_role_types = {'term': 'tooltip'}
 hoverxref_mathjax = True
+
+# SEO and canonical tags:
+html_baseurl = 'https://docs.dwavequantum.com/en/latest/'
+sitemap_url_scheme = "{link}"
 
 source_suffix = {'.rst': 'restructuredtext', '.md': 'restructuredtext'}
 
