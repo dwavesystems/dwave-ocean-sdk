@@ -8,23 +8,23 @@ Reference Documentation
     :hidden:
     :maxdepth: 1
 
-    api_ref_dimod/index
-    api_ref_binarycsp
-    api_ref_cloud/index
-    api_ref_gate/index
-    api_ref_hybrid/index
-    api_ref_inspector/index
-    api_ref_dnx/index
-    api_ref_optimization/index
-    api_ref_preprocessing/index
-    api_ref_samplers/index
-    api_ref_system/index
-    api_ref_minorminer/source/index
-    api_ref_penaltymodel/index
+    dimod |dimod_version| <api_ref_dimod/index>
+    dwavebinarycsp (deprecated) <api_ref_binarycsp>
+    dwave-cloud-client |cloud_version| <api_ref_cloud/index>
+    dwave-gate |gate_version| <api_ref_gate/index>
+    dwave-hybrid |hybrid_version| <api_ref_hybrid/index>
+    dwave-inspector |inspector_version| <api_ref_inspector/index>
+    dwave-networkx |dnx_version| <api_ref_dnx/index>
+    dwave-optimization |optimization_version| <api_ref_optimization/index>
+    dwave-preprocessing |preprocessing_version| <api_ref_preprocessing/index>
+    dwave-samplers |samplers_version| <api_ref_samplers/index>
+    dwave-system |system_version| <api_ref_system/index>
+    minorminer |minorminer_version| <api_ref_minorminer/source/index>
+    penaltymodel (deprecated) <api_ref_penaltymodel/index>
 
 .. packages-start-marker
 
-.. dropdown::  :ref:`dimod <index_dimod>`: Quadratic models (BQM, CQM).
+.. dropdown::  :ref:`dimod <index_dimod>` |dimod_version|: Quadratic models (BQM, CQM).
 
     Shared API for binary quadratic :term:`samplers <sampler>`. Provides a
     binary quadratic model (:term:`BQM`) class, which contains :term:`Ising` and
@@ -36,22 +36,23 @@ Reference Documentation
 
     :bdg-link-primary:`code <https://github.com/dwavesystems/dimod>`
 
-.. dropdown:: :ref:`dwave-cloud-client <index_cloud>`: API client to the
-    Leap service's solvers.
+.. dropdown:: :ref:`dwave-cloud-client <index_cloud>` |cloud_version|: API
+    client to the Leap service's solvers.
 
     Minimal implementation of the REST interface used to communicate with
     :term:`SAPI` servers.
 
     :bdg-link-primary:`code <https://github.com/dwavesystems/dwave-cloud-client>`
 
-.. dropdown:: :ref:`dwave-gate <index_gate>`: Package for quantum circuits.
+.. dropdown:: :ref:`dwave-gate <index_gate>` |gate_version|: Package for quantum
+    circuits.
 
     A software package for constructing, modifying and running quantum circuits.
 
     :bdg-link-primary:`code <https://github.com/dwavesystems/dwave-gate>`
 
-.. dropdown:: :ref:`dwave-hybrid <index_hybrid>`: Framework for building hybrid
-    solvers.
+.. dropdown:: :ref:`dwave-hybrid <index_hybrid>` |hybrid_version|: Framework for
+    building hybrid solvers.
 
     A general, minimal Python framework for building :term:`hybrid` asynchronous
     decomposition samplers for quadratic unconstrained binary optimization
@@ -59,8 +60,8 @@ Reference Documentation
 
     :bdg-link-primary:`code <https://github.com/dwavesystems/dwave-hybrid>`
 
-.. dropdown:: :ref:`dwave-inspector <index_inspector>`: Visualizer for problems
-    submitted to quantum computers.
+.. dropdown:: :ref:`dwave-inspector <index_inspector>` |inspector_version|:
+    Visualizer for problems submitted to quantum computers.
 
     A tool for visualizing problems submitted to, and answers received from, a
     |dwave_short| structured solver such as an :term:`Advantage` quantum
@@ -68,7 +69,7 @@ Reference Documentation
 
     :bdg-link-primary:`code <https://github.com/dwavesystems/dwave-inspector>`
 
-.. dropdown:: :ref:`dwave-networkx <index_dnx>`: NetworkX extension.
+.. dropdown:: :ref:`dwave-networkx <index_dnx>` |dnx_version|: NetworkX extension.
 
     Extension of :std:doc:`NetworkX <networkx:index>`---a Python language
     package for exploration and analysis of networks and network
@@ -81,14 +82,15 @@ Reference Documentation
 
     :bdg-link-primary:`code <https://github.com/dwavesystems/dwave-networkx>`
 
-.. dropdown:: :ref:`dwave-ocean-sdk <ocean_source_code>`: Ocean software
-    development kit.
+.. dropdown:: :ref:`dwave-ocean-sdk <ocean_source_code>` |version|: Ocean
+    software development kit.
 
     Installer for D-Wave's Ocean Tools.
 
     :bdg-link-primary:`code <https://github.com/dwavesystems/dwave-ocean-sdk>`
 
-.. dropdown:: :ref:`dwave-optimization <index_optimization>`: Nonlinear models.
+.. dropdown:: :ref:`dwave-optimization <index_optimization>` |optimization_version|:
+    Nonlinear models.
 
     API for :ref:`nonlinear models <concept_models_nonlinear>`. The package
     includes:
@@ -99,15 +101,15 @@ Reference Documentation
 
     :bdg-link-primary:`code <https://github.com/dwavesystems/dwave-optimization>`
 
-.. dropdown:: :ref:`dwave-preprocessing <index_preprocessing>`: Preprocessing
-    tools for quadratic models.
+.. dropdown:: :ref:`dwave-preprocessing <index_preprocessing>` |preprocessing_version|:
+    Preprocessing tools for quadratic models.
 
     Library containing common preprocessing tools for quadratic models.
 
     :bdg-link-primary:`code <https://github.com/dwavesystems/dwave-preprocessing>`
 
-.. dropdown:: :ref:`dwave-samplers <index_samplers>`: Classical algorithms for solving binary
-    quadratic models.
+.. dropdown:: :ref:`dwave-samplers <index_samplers>` |samplers_version|: Classical algorithms
+    for solving binary quadratic models.
 
     A library that implements the following classical algorithms as
     :term:`samplers <sampler>` for solving binary quadratic models
@@ -126,8 +128,8 @@ Reference Documentation
 
     :bdg-link-primary:`code <https://github.com/dwavesystems/dwave-samplers>`
 
-.. dropdown:: :ref:`dwave-system <index_system>`: D-Wave samplers and
-    composites.
+.. dropdown:: :ref:`dwave-system <index_system>` |system_version|: D-Wave
+    samplers and composites.
 
     Basic API for easily incorporating the |dwave_short| quantum computer as a
     :term:`sampler` in the Ocean :ref:`software stack <ocean_stack>`.
@@ -141,7 +143,8 @@ Reference Documentation
 
     :bdg-link-primary:`code <https://github.com/dwavesystems/dwave-system>`
 
-.. dropdown:: :ref:`minorminer <index_minorminer>`: Minor-embeds graphs.
+.. dropdown:: :ref:`minorminer <index_minorminer>` |minorminer_version|:
+    Minor-embeds graphs.
 
     A tool for finding graph :term:`minor-embedding`, developed to embed
     :term:`Ising` problems onto :term:`quantum annealing` (QA) quantum
@@ -153,8 +156,8 @@ Reference Documentation
 
     :bdg-link-primary:`code <https://github.com/dwavesystems/minorminer>`
 
-.. dropdown:: :ref:`penaltymodel <index_penaltymodel>`: Maps constraints to binary
-    quadratic models.
+.. dropdown:: :ref:`penaltymodel <index_penaltymodel>` (deprecated): Maps
+    constraints to binary quadratic models.
 
     An approach to solve a constraint satisfaction problem (:term:`CSP`) using
     an :term:`Ising` model or a :term:`QUBO`, is to map each individual
