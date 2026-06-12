@@ -301,6 +301,9 @@ def substitute_versions(app, docname, source):
     from dwave.system import __version__ as system_version
     source[0] = source[0].replace("|system_version|", system_version)
 
+    from dwaveoceansdk import __version__ as sdk_version
+    source[0] = source[0].replace("|sdk_version|", sdk_version)
+
     from minorminer import __version__ as minorminer_version
     source[0] = source[0].replace("|minorminer_version|", minorminer_version)
 
