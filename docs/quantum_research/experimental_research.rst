@@ -716,7 +716,7 @@ qubit's state by quenching the detector qubit.
     anneal_schedules[:, :, 0] = anneal_schedules[line_source][:, 0]
 
     anneal_schedules[line_target] = [
-        [0.0, 0.0],[1.0, 0.0], [20.0, 0.0], [21.0, target_c],[22.0, target_c],
+        [0.0, 0.0],[1.0, 0.0], [5.0, 0.0], [6.0, target_c],[22.0, target_c],
         [22.0 + min_time_step, target_c],[23.0, target_c], [24.0, 1.0]]
 
     anneal_schedules[line_detector] = [
