@@ -82,7 +82,7 @@ Reference Documentation
 
     :bdg-link-primary:`code <https://github.com/dwavesystems/dwave-networkx>`
 
-.. dropdown:: :ref:`dwave-ocean-sdk <ocean_source_code>` |sdk_version|: Ocean
+.. dropdown:: :ref:`dwave-ocean-sdk <ocean_source_code>` |version|: Ocean
     software development kit.
 
     Installer for D-Wave's Ocean Tools.
