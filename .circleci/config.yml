@@ -43,6 +43,9 @@ jobs:
       name: ocean/macos
       xcode: "26.2.0"   # latest as of Jan 2026
 
+    environment:
+      HOMEBREW_NO_ASK: "1"
+
     steps:
       - checkout
 
