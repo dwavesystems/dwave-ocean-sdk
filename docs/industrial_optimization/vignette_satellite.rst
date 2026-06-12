@@ -239,3 +239,10 @@ Nonlinear Model: Full Formulation
     model.minimize(lp.fun)
 
     cntx = model.lock()
+
+
+Data
+====
+
+Solver runtimes and energies are available in CSV format
+:download:`here <../downloadables/vignette_satellite.csv>`.
