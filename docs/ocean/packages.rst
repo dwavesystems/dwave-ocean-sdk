@@ -8,19 +8,19 @@ Reference Documentation
     :hidden:
     :maxdepth: 1
 
-    api_ref_dimod/index
-    api_ref_binarycsp
-    api_ref_cloud/index
-    api_ref_gate/index
-    api_ref_hybrid/index
-    api_ref_inspector/index
-    api_ref_dnx/index
-    api_ref_optimization/index
-    api_ref_preprocessing/index
-    api_ref_samplers/index
-    api_ref_system/index
-    api_ref_minorminer/source/index
-    api_ref_penaltymodel/index
+    dimod |dimod_version| <api_ref_dimod/index>
+    dwavebinarycsp (deprecated) <api_ref_binarycsp>
+    dwave-cloud-client |cloud_version| <api_ref_cloud/index>
+    dwave-gate |gate_version| <api_ref_gate/index>
+    dwave-hybrid |hybrid_version| <api_ref_hybrid/index>
+    dwave-inspector |inspector_version| <api_ref_inspector/index>
+    dwave-networkx |dnx_version| <api_ref_dnx/index>
+    dwave-optimization |optimization_version| <api_ref_optimization/index>
+    dwave-preprocessing |preprocessing_version| <api_ref_preprocessing/index>
+    dwave-samplers |samplers_version| <api_ref_samplers/index>
+    dwave-system |system_version| <api_ref_system/index>
+    minorminer |minorminer_version| <api_ref_minorminer/source/index>
+    penaltymodel (deprecated) <api_ref_penaltymodel/index>
 
 .. packages-start-marker
 
