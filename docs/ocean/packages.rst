@@ -15,7 +15,7 @@ Reference Documentation
     dwave-graphs — |graphs_version| <api_ref_graphs/index>
     dwave-hybrid — |hybrid_version| <api_ref_hybrid/index>
     dwave-inspector — |inspector_version| <api_ref_inspector/index>
-    dwave-networkx — |dnx_version| <api_ref_dnx/index>
+    dwave-networkx — deprecated <api_ref_dnx/index>
     dwave-optimization — |optimization_version| <api_ref_optimization/index>
     dwave-preprocessing — |preprocessing_version| <api_ref_preprocessing/index>
     dwave-samplers — |samplers_version| <api_ref_samplers/index>
@@ -78,7 +78,7 @@ Reference Documentation
 
     :bdg-link-primary:`code <https://github.com/dwavesystems/dwave-inspector>`
 
-.. dropdown:: :ref:`dwave-networkx <index_dnx>` (|dnx_version|): NetworkX extension.
+.. dropdown:: :ref:`dwave-networkx <index_dnx>` (deprecated): NetworkX extension.
 
     Extension of :std:doc:`NetworkX <networkx:index>`---a Python language
     package for exploration and analysis of networks and network
