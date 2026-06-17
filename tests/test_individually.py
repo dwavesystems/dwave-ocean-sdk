@@ -26,13 +26,13 @@ except Exception:
 
 class TestSmokeIndividually(unittest.TestCase):
     """Use each package individually. Mostly we use the simple scripts from the READMEs."""
-    def test_dnx(self):
+    def test_dwave_graphs(self):
         import dimod
-        import dwave_networkx as dnx
+        import dwave.graphs
 
-        G = dnx.chimera_graph(1)
+        G = dwave.graphs.chimera_graph(1)
 
-        cut = dnx.maximum_cut(G, dimod.ExactSolver())
+        cut = dwave.graphs.maximum_cut(G, dimod.ExactSolver())
 
     @unittest.skipUnless(_sampler, "No credentials found")
     def test_dwave_system(self):
