@@ -15,6 +15,7 @@ For release notes for the |cloud| quantum cloud service, see the
 *   `dimod <https://github.com/dwavesystems/dimod/releases>`_
 *   `dwave-cloud-client <https://github.com/dwavesystems/dwave-cloud-client/releases>`_
 *   `dwave-gate <https://github.com/dwavesystems/dwave-gate/releases>`_
+*   `dwave-graphs <https://github.com/dwavesystems/dwave-graphs/releases>`_
 *   `dwave-hybrid <https://github.com/dwavesystems/dwave-hybrid/releases>`_
 *   `dwave-inspector <https://github.com/dwavesystems/dwave-inspector/releases>`_
 *   `dwave-networkx <https://github.com/dwavesystems/dwave-networkx/releases>`_
