@@ -581,10 +581,10 @@ structure of the Pegasus topology, a :math:`K_{4,4}` biclique with additional
 couplers connecting some horizontal and vertical qubits.
 
 >>> import minorminer
->>> import dwave_networkx as dnx
+>>> import dwave.graphs
 >>> from dimod.generators import and_gate, or_gate
 ...
->>> pegasus_k44 = dnx.pegasus_graph(2, node_list=[4, 5, 6, 7, 40, 41, 42, 43])
+>>> pegasus_k44 = dwave.graphs.pegasus_graph(2, node_list=[4, 5, 6, 7, 40, 41, 42, 43])
 ...
 >>> bqm_and1 = and_gate('in11', 'in12', 'out1')
 >>> embedding_and = minorminer.find_embedding(list(bqm_and1.quadratic.keys()), pegasus_k44)

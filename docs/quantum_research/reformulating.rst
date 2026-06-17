@@ -213,15 +213,15 @@ This example demonstrates a problem of finding the largest group of friends who
 all know each other in a social setting.  It states the problem as the graph
 problem `maximum clique <https://en.wikipedia.org/wiki/Clique_problem>`_.
 Instead of working out the mathematical mapping to a BQM yourself, you can
-use the :func:`dwave_networkx.clique_number` function.
+use the :func:`dwave.graphs.clique_number` function.
 
 >>> import networkx as nx
->>> import dwave_networkx as dnx
+>>> import dwave.graphs
 >>> import dimod
 ...
 >>> # Create an illustration graph
 >>> G = nx.caveman_graph(2, 4)
->>> dnx.algorithms.clique.clique_number(G, dimod.ExactSolver())
+>>> dwave.graphs.algorithms.clique.clique_number(G, dimod.ExactSolver())
 4
 
 Example: Constraints
@@ -386,7 +386,7 @@ and only positive coupling strengths :math:`J_{i,j}` (represented by penalties
 :math:`M_{i,j} > 1`).
 
 You can formulate such problems as BQMs yourself but Ocean software's
-:ref:`dwave_networkx <index_dnx>` package provides functions for these graph
+:ref:`dwave-graphs <index_graphs>` package provides functions for these graph
 problems and more.
 
 Example: Formulation with Boolean Logic
@@ -1737,7 +1737,7 @@ shown in :numref:`Figure %s <Problem_MapColoring>`.
 
 **This example is intended to demonstrate the use of the reformulations**
 **techniques of this chapter.** In practice, you could simply use the
-:func:`~dwave_networkx.algorithms.coloring.min_vertex_color` function to solve
+:func:`~dwave.graphs.algorithms.coloring.min_vertex_coloring` function to solve
 the problem. The
 :ref:`Large Map Coloring <opt_example_kerberos_map>`,
 :ref:`Map Coloring: Hybrid DQM Sampler <opt_example_dqm_map>`, and
