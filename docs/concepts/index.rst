@@ -499,6 +499,12 @@ Concepts and Terminology
 
         *   :ref:`index_preprocessing`
 
+    QCDL
+        Quantum computing description language, an embedded domain-specific
+        language (`DSL <https://en.wikipedia.org/wiki/Domain-specific_language>`_)
+        that uses Python as the host language to write instructions for a
+        gate-model :term:`QPU`.
+
     QMI
         Quantum machine instruction.
 
