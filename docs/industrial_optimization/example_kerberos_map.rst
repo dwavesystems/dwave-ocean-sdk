@@ -86,12 +86,12 @@ edges.
 Solve the Problem by Sampling
 =============================
 
-Ocean's :ref:`dwave_networkx <index_dnx>` can return a
+Ocean's :ref:`dimod <index_dimod>` can return a
 `minimum vertex coloring <https://en.wikipedia.org/wiki/Graph_coloring>`_ for a
 graph, which assigns a color to the vertices of a graph in a way that no
 adjacent vertices have the same color, using the minimum number of colors. Given
 a graph representing a map and a :term:`sampler`, the
-:func:`~dwave_networkx.algorithms.coloring.min_vertex_coloring` function tries
+:func:`~dwave.graphs.algorithms.coloring.min_vertex_coloring` function tries
 to solve the map-coloring problem.
 
 The :ref:`dwave-hybrid <index_hybrid>` package's
@@ -107,9 +107,9 @@ iterations with no improvement that terminates sampling. (See the
 :ref:`opt_example_dwavehybrid_workflow` example for more details on
 configuring the classical and quantum workflows.)
 
->>> import dwave_networkx as dnx
+>>> import dwave.graphs
 >>> from hybrid.reference.kerberos import KerberosSampler
->>> coloring = dnx.min_vertex_coloring(G, sampler=KerberosSampler(), chromatic_ub=4, max_iter=10, convergence=3)   # doctest: +SKIP
+>>> coloring = dwave.graphs.min_vertex_coloring(G, sampler=KerberosSampler(), chromatic_ub=4, max_iter=10, convergence=3)   # doctest: +SKIP
 >>> set(coloring.values())       # doctest: +SKIP
 {0, 1, 2, 3}
 
@@ -120,7 +120,7 @@ Plot the solution, if valid.
 >>> import matplotlib.pyplot as plt       # doctest: +SKIP
 >>> node_colors = [coloring.get(node) for node in G.nodes()]    # doctest: +SKIP
 # Adjust the next line if using a different map
->>> if dnx.is_vertex_coloring(G, coloring):  # doctest: +SKIP
+>>> if dwave.graphs.is_vertex_coloring(G, coloring):  # doctest: +SKIP
 ...    nx.draw(G, pos=nx.shell_layout(G, nlist = [list(G.nodes)[x:x+10] for x in range(0, 50, 10)] + [[list(G.nodes)[50]]]), with_labels=True, node_color=node_colors, node_size=400, cmap=plt.cm.rainbow)
 >>> plt.show()    # doctest: +SKIP
 

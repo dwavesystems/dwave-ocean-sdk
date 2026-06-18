@@ -78,14 +78,14 @@ assignment of variable values.
 >>> from dimod.reference.samplers import ExactSolver
 >>> sampler = ExactSolver()
 
-The next code lines use Ocean's :ref:`dwave_networkx <index_dnx>` to produce a
+The next code lines use Ocean's :ref:`dwave-graphs <index_graphs>` to produce a
 BQM for our :code:`s5` graph and solve it on our selected sampler. In other
 examples the BQM is explicitly created but the Ocean tool used here abstracts the
 BQM: given the problem graph it returns a solution to a BQM it creates
 internally.
 
->>> import dwave_networkx as dnx
->>> print(dnx.min_vertex_cover(s5, sampler))
+>>> import dwave.graphs
+>>> print(dwave.graphs.min_vertex_cover(s5, sampler))
 [0]
 
 Solving on a Quantum Computer
@@ -105,7 +105,7 @@ mapped to the QPU's numerically indexed qubits.
 
 >>> from dwave.system import DWaveSampler, EmbeddingComposite
 >>> sampler = EmbeddingComposite(DWaveSampler())
->>> print(dnx.min_vertex_cover(s5, sampler))
+>>> print(dwave.graphs.min_vertex_cover(s5, sampler))
 [0]
 
 Additional Problem Graphs
@@ -125,13 +125,13 @@ The code snippet below creates a new graph and solves on a |dwave_short| quantum
 computer.
 
 >>> w5 = nx.wheel_graph(5)
->>> print(dnx.min_vertex_cover(w5, sampler))   # doctest: +SKIP
+>>> print(dwave.graphs.min_vertex_cover(w5, sampler))   # doctest: +SKIP
 [0, 1, 3]
 
 Note that the solution found for this problem is not unique; for example,
 [0, 2, 4] is also a valid solution.
 
->>> print(dnx.min_vertex_cover(w5, sampler))     # doctest: +SKIP
+>>> print(dwave.graphs.min_vertex_cover(w5, sampler))     # doctest: +SKIP
 [0, 2, 4]
 
 The figure below shows a ten-node (circular-ladder) graph.
@@ -149,9 +149,9 @@ The code snippet below replaces the problem graph and submits twice to the
 solutions.
 
 >>> c5 = nx.circular_ladder_graph(5)
->>> print(dnx.min_vertex_cover(c5, sampler))   # doctest: +SKIP
+>>> print(dwave.graphs.min_vertex_cover(c5, sampler))   # doctest: +SKIP
 [0, 2, 3, 6, 8, 9]
->>> print(dnx.min_vertex_cover(c5, sampler))   # doctest: +SKIP
+>>> print(dwave.graphs.min_vertex_cover(c5, sampler))   # doctest: +SKIP
 [1, 3, 4, 5, 7, 9]
 
 Summary

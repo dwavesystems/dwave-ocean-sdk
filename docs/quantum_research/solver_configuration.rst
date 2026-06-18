@@ -499,13 +499,13 @@ significantly different values from the majority.)
 >>> import dimod
 >>> import networkx as nx
 >>> from dwave.system import DWaveSampler
->>> import dwave_networkx as dnx
+>>> import dwave.graphs
 >>> from dwave.preprocessing import FixVariablesComposite
 ...
 >>> # Create a native problem with one outsized bias
->>> coords = dnx.pegasus_coordinates(16)
+>>> coords = dwave.graphs.pegasus_coordinates(16)
 >>> qpu = DWaveSampler(solver={'topology__type': 'pegasus'})
->>> p16_working = dnx.pegasus_graph(16, node_list=qpu.nodelist, edge_list=qpu.edgelist)
+>>> p16_working = dwave.graphs.pegasus_graph(16, node_list=qpu.nodelist, edge_list=qpu.edgelist)
 >>> p12k44_nodes = [coords.nice_to_linear((t, y, x, u, k)) for (t, y, x, u, k) in list(coords.iter_linear_to_nice(p16_working.nodes)) if x in [2, 3] and y in [2, 3]]
 >>> p12k44 = p16_working.subgraph(p12k44_nodes)
 >>> bqm = dimod.generators.randint(p12k44, "SPIN")
@@ -623,7 +623,7 @@ executions.) First, the problem is embedded onto a QPU such that each problem
 qubit is represented by a single qubit\ [#]_ on the QPU.
 
 >>> import numpy as np
->>> import dwave_networkx as dnx
+>>> import dwave.graphs
 >>> from dwave.system import DWaveSampler, FixedEmbeddingComposite
 >>> from minorminer import find_embedding
 ...
@@ -705,7 +705,7 @@ Print the percentage of ground states for a reverse anneal (of almost 100
     ...
     >>> # Find an embedding with a single QPU qubit representing each problem qubit
     >>> qpu_pegasus = DWaveSampler(solver={'topology__type': 'pegasus'})
-    >>> coords = dnx.pegasus_coordinates(16)
+    >>> coords = dwave.graphs.pegasus_coordinates(16)
     >>> try:            # doctest: +SKIP
     ...     for x, y, t in itertools.product(range(15), range(16), range(3)):
     ...         nodes = {s: [coords.nice_to_linear((t, y, x + s//8, 1 if s%8//4 else 0 , s%4))]
@@ -870,7 +870,7 @@ a more visually intuitive embedding such as shown in
 
 >>> import itertools
 >>> import numpy as np
->>> import dwave_networkx as dnx
+>>> import dwave.graphs
 >>> from dwave.system import DWaveSampler, FixedEmbeddingComposite
 >>> from minorminer import find_embedding
 ...
@@ -884,7 +884,7 @@ a more visually intuitive embedding such as shown in
 ...
 >>> # Find an embedding with a single QPU qubit representing each problem qubit
 >>> qpu_pegasus = DWaveSampler(solver={'topology__type': 'pegasus'})
->>> coords = dnx.pegasus_coordinates(16)
+>>> coords = dwave.graphs.pegasus_coordinates(16)
 >>> try:        # doctest: +SKIP
 ...     for x, y, t in itertools.product(range(15), range(16), range(3)):
 ...         nodes = {s: [coords.nice_to_linear((t, y, x + s//8, 1 if s%8//4 else 0 , s%4))]

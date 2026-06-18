@@ -131,6 +131,7 @@ from dwave.embedding import *
 
 import networkx as nx
 import dwave_networkx as dnx
+import dwave.graphs
 
 import dimod
 
@@ -279,6 +280,9 @@ def substitute_versions(app, docname, source):
     from dwave.gate import __version__ as gate_version
     source[0] = source[0].replace("|gate_version|", gate_version)
 
+    from dwave.graphs import __version__ as graphs_version
+    source[0] = source[0].replace("|graphs_version|", graphs_version)
+
     from hybrid import __version__ as hybrid_version
     source[0] = source[0].replace("|hybrid_version|", hybrid_version)
 
@@ -326,6 +330,7 @@ intersphinx_mapping = {
 github_map = {'cloud': 'dwave-cloud-client',
               'dimod':  'dimod',
               'gate': 'dwave-gate',
+              'graphs': 'dwave-graphs',
               'dwave_networkx': 'dwave_networkx',
               'greedy': 'dwave-greedy',
               'hybrid': 'dwave-hybrid',

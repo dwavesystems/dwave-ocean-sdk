@@ -88,6 +88,11 @@ dwave-gate
 
 .. include:: ../dwave-gate/LICENSE
 
+dwave-graphs
+------------
+
+.. include:: ../dwave-graphs/LICENSE
+
 dwave-hybrid
 ------------
 

@@ -679,7 +679,7 @@ between 30, the first of the 5640 fabric qubits, and 5729, the last of those
 
 .. [#]
     You can see the qubit indexing scheme of such an |dwave_5kq| QPU
-    with Ocean software's :func:`dwave_networkx.pegasus_graph` function,
+    with Ocean software's :func:`dwave.graphs.pegasus_graph` function,
     which enables you to generate Pegasus graphs.
 
 Example

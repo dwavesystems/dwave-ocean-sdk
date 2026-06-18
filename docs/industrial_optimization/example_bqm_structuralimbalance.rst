@@ -77,8 +77,8 @@ hostile relationships.
 Solve the Problem by Sampling
 =============================
 
-As mentioned above, this example uses Ocean's :ref:`dwave_networkx <index_dnx>`
-function, :func:`~dwave_networkx.algorithms.social.structural_imbalance`, to
+As mentioned above, this example uses Ocean's :ref:`dwave-graphs <index_graphs>`
+function, :func:`~dwave.graphs.algorithms.social.structural_imbalance`, to
 create the appropriate :term:`BQM` to represent the problem graph and return a
 solution. It requires just the selection of a :term:`sampler`.
 
@@ -96,8 +96,8 @@ incorporate Leap's hybrid solvers into your application:
 Finally, the returned set of frustrated edges and a bicoloring are counted and
 printed.
 
->>> import dwave_networkx as dnx
->>> imbalance, bicoloring = dnx.structural_imbalance(G, sampler)    # doctest: +SKIP
+>>> import dwave.graphs
+>>> imbalance, bicoloring = dwave.graphs.structural_imbalance(G, sampler)    # doctest: +SKIP
 >>> set1 = int(sum(list(bicoloring.values())))        # doctest: +SKIP
 >>> print("One set has {} nodes; the other has {} nodes.".format(set1, problem_node_count-set1))  # doctest: +SKIP
 >>> print("The network has {} frustrated relationships.".format(len(list(imbalance.keys()))))    # doctest: +SKIP

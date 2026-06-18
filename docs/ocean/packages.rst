@@ -12,9 +12,10 @@ Reference Documentation
     dwavebinarycsp — deprecated <api_ref_binarycsp>
     dwave-cloud-client — |cloud_version| <api_ref_cloud/index>
     dwave-gate — |gate_version| <api_ref_gate/index>
+    dwave-graphs — |graphs_version| <api_ref_graphs/index>
     dwave-hybrid — |hybrid_version| <api_ref_hybrid/index>
     dwave-inspector — |inspector_version| <api_ref_inspector/index>
-    dwave-networkx — |dnx_version| <api_ref_dnx/index>
+    dwave-networkx — deprecated <api_ref_dnx/index>
     dwave-optimization — |optimization_version| <api_ref_optimization/index>
     dwave-preprocessing — |preprocessing_version| <api_ref_preprocessing/index>
     dwave-samplers — |samplers_version| <api_ref_samplers/index>
@@ -51,6 +52,14 @@ Reference Documentation
 
     :bdg-link-primary:`code <https://github.com/dwavesystems/dwave-gate>`
 
+.. dropdown:: :ref:`dwave-graphs <index_graphs>` (|graphs_version|): Package for
+    QPU graphs.
+
+    A package providing graphs and algorithms for working with D-Wave quantum
+    computers.
+
+    :bdg-link-primary:`code <https://github.com/dwavesystems/dwave-gate>`
+
 .. dropdown:: :ref:`dwave-hybrid <index_hybrid>` (|hybrid_version|): Framework for
     building hybrid solvers.
 
@@ -69,7 +78,7 @@ Reference Documentation
 
     :bdg-link-primary:`code <https://github.com/dwavesystems/dwave-inspector>`
 
-.. dropdown:: :ref:`dwave-networkx <index_dnx>` (|dnx_version|): NetworkX extension.
+.. dropdown:: :ref:`dwave-networkx <index_dnx>` (deprecated): NetworkX extension.
 
     Extension of :std:doc:`NetworkX <networkx:index>`---a Python language
     package for exploration and analysis of networks and network

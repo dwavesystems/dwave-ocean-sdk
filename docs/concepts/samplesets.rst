@@ -27,7 +27,7 @@ configuration of variable values. Such samplers are called
 :term:`solvers <solver>`.
 
 Some :ref:`Ocean <index_ocean_sdk>` software functions might return a single
-best solution; for example, some :ref:`dwave-networkx <index_dnx>` tool graph
+best solution; for example, some :ref:`dwave-graphs <index_graphs>` tool graph
 algorithms return only the lowest-energy sample.
 
 The :ref:`dimod <index_dimod>` package provides a :class:`~dimod.SampleSet`

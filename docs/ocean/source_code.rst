@@ -18,6 +18,7 @@ Ocean packages
 *   `dimod <https://github.com/dwavesystems/dimod>`_
 *   `dwave-cloud-client <https://github.com/dwavesystems/dwave-cloud-client>`_
 *   `dwave-gate <https://github.com/dwavesystems/dwave-gate>`_
+*   `dwave-graphs <https://github.com/dwavesystems/dwave-graphs>`_
 *   `dwave-hybrid <https://github.com/dwavesystems/dwave-hybrid>`_
 *   `dwave-inspector <https://github.com/dwavesystems/dwave-inspector>`_
 *   `dwave-networkx <https://github.com/dwavesystems/dwave-networkx>`_
