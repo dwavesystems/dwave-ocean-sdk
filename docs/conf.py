@@ -317,12 +317,14 @@ def setup(app):
 
 # -- Intersphinx ----------------------------------------------------------
 intersphinx_mapping = {
-    'python': ('https://docs.python.org/3/', None),
     'numpy': ('https://numpy.org/doc/stable/', None),
     'networkx': ('https://networkx.org/documentation/stable/', None),
-    'urllib3': ('https://urllib3.readthedocs.io/en/stable/', None),
-    'requests': ('https://requests.readthedocs.io/en/stable/', None),
     'ocean_rns': ('https://docs.dwavequantum.com/projects/leap_sapi/en/latest/', None),
+    'python': ('https://docs.python.org/3/', None),
+    'requests': ('https://requests.readthedocs.io/en/stable/', None),
+    'scipy': ('https://docs.scipy.org/doc/scipy', None),
+    'sklearn': ('https://scikit-learn.org/stable/', None),
+    'urllib3': ('https://urllib3.readthedocs.io/en/stable/', None),
     }
 
 
