@@ -21,7 +21,7 @@ Ocean packages
 *   `dwave-graphs <https://github.com/dwavesystems/dwave-graphs>`_
 *   `dwave-hybrid <https://github.com/dwavesystems/dwave-hybrid>`_
 *   `dwave-inspector <https://github.com/dwavesystems/dwave-inspector>`_
-*   `dwave-networkx (deprecated) <https://github.com/dwavesystems/dwave-networkx>`_
+*   `dwave-networkx (deprecated) <https://github.com/dwavesystems/dwave-graphs/tree/legacy/dwave-networkx>`_
 *   `dwave-optimization <https://github.com/dwavesystems/dwave-optimization>`_
 *   `dwave-preprocessing <https://github.com/dwavesystems/dwave-preprocessing>`_
 *   `dwave-samplers <https://github.com/dwavesystems/dwave-samplers>`_
