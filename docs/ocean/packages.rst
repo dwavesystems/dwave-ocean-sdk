@@ -15,7 +15,7 @@ Reference Documentation
     dwave-graphs — |graphs_version| <api_ref_graphs/index>
     dwave-hybrid — |hybrid_version| <api_ref_hybrid/index>
     dwave-inspector — |inspector_version| <api_ref_inspector/index>
-    dwave-networkx — deprecated <api_ref_dnx/index>
+    dwave-networkx — deprecated <api_ref_dnx>
     dwave-optimization — |optimization_version| <api_ref_optimization/index>
     dwave-preprocessing — |preprocessing_version| <api_ref_preprocessing/index>
     dwave-samplers — |samplers_version| <api_ref_samplers/index>
@@ -80,16 +80,7 @@ Reference Documentation
 
 .. dropdown:: :ref:`dwave-networkx <index_dnx>` (deprecated): NetworkX extension.
 
-    Extension of :std:doc:`NetworkX <networkx:index>`---a Python language
-    package for exploration and analysis of networks and network
-    algorithms---for users of |dwave_short| quantum computers.
-
-    This package provides tools for working with :term:`Pegasus` and
-    :term:`Zephyr` graphs and implementations of graph-theory algorithms on
-    |dwave_short| quantum computers and other binary quadratic model
-    (:term:`BQM`) :term:`samplers <sampler>`.
-
-    :bdg-link-primary:`code <https://github.com/dwavesystems/dwave-networkx>`
+    See the :ref:`dwave-graphs <index_graphs>` documentation for details.
 
 .. dropdown:: :ref:`dwave-ocean-sdk <ocean_source_code>` (|version|): Ocean
     software development kit.
