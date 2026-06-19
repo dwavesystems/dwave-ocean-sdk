@@ -249,13 +249,12 @@ Example
 -------
 
 This example embeds a BQM representing a 30-node
-:ref:`signed-social network <dnx_social>` problem and then looks at the effects
-of different chain-strength settings.
+:mod:`signed-social network <dwave.graphs.algorithms.social>` problem and then
+looks at the effects of different chain-strength settings.
 
 >>> import networkx as nx
 >>> import random
 >>> import numpy as np
->>> import dwave_networkx as dnx
 >>> import dimod
 >>> from dwave.system import DWaveSampler, LazyFixedEmbeddingComposite
 >>> import dwave.inspector
@@ -263,9 +262,8 @@ of different chain-strength settings.
 >>> # Create a problem
 >>> G = nx.generators.complete_graph(30)
 >>> G.add_edges_from([(u, v, {'sign': 2*random.randint(0, 1) - 1}) for u, v in G.edges])
->>> h, J = dnx.algorithms.social.structural_imbalance_ising(G)
->>> bqm = dimod.BQM.from_ising(h, J)
->>> # Sample on a D-Wave system
+>>> bqm = dimod.generators.structural_imbalance(G)
+>>> # Sample on a quantum computer
 >>> num_samples = 1000
 >>> sampler = LazyFixedEmbeddingComposite(DWaveSampler())
 >>> sampleset = sampler.sample(bqm, num_reads=num_samples)      # doctest: +SKIP

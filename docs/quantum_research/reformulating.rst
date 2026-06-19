@@ -1080,27 +1080,24 @@ which have :math:`X_2=2`, or between :math:`y_1 = (3,1)` and
     constraints :math:`C_1(X_1,X_2)`, :math:`C_2(X_2,X_3)` having scopes
     :math:`\{X_1, X_2\}` and :math:`\{X_2, X_3\}` respectively.
 
-You can use the :ref:`dwave_networkx <index_dnx>` package to create a QUBO from
+You can use the :ref:`dimod <index_dimod>` package to create a :term:`BQM` from
 the maximum independent set of the conflict graph:
 
->>> import dwave_networkx as dnx
 >>> import networkx as nx
 >>> import dimod
 ...
 >>> G = nx.Graph()
->>> G.add_nodes_from({"y1 = (1,2)", "y1 = (3,1)", "y1 = (3,4)", "y2 = (1,4)",
-...                   "y2 = (2,1)"})
 >>> G.add_edges_from({("y1 = (1,2)", "y1 = (3,1)"), ("y1 = (1,2)", "y1 = (3,4)"),
 ...                   ("y1 = (1,2)", "y2 = (1,4)"), ("y1 = (3,1)", "y1 = (3,4)"),
 ...                   ("y1 = (1,2)", "y1 = (3,4)"), ("y1 = (3,1)", "y2 = (2,1)"),
 ...                   ("y1 = (3,4)", "y2 = (1,4)"), ("y1 = (3,4)", "y2 = (2,1)"),
 ...                   ("y2 = (1,4)", "y2 = (2,1)")})
->>> Q = dnx.algorithms.independent_set.maximum_weighted_independent_set_qubo(G)
+>>> bqm = dimod.generators.maximum_weight_independent_set(G.edges)
 
-Solutions to the QUBO meet the constraints (:math:`y_1=(1,2), y_2=(2,1)` and
+Solutions to the BQM meet the constraints (:math:`y_1=(1,2), y_2=(2,1)` and
 :math:`y_1=(3,1), y_2=(1,4)`):
 
->>> print(dimod.ExactSolver().sample_qubo(Q).lowest())          # doctest: +SKIP
+>>> print(dimod.ExactSolver().sample(bqm).lowest())     # doctest: +SKIP
   y1 = (1,2) y1 = (3,1) y1 = (3,4) y2 = (1,4) y2 = (2,1) energy num_oc.
 0          1          0          0          0          1   -2.0       1
 1          0          1          0          1          0   -2.0       1
@@ -1142,11 +1139,10 @@ The QUBO representation of weighted MIS for a graph :math:`G=(V,E)` is simply
 :math:`\min_\vc{x} \bigl\{ \sum_v w_v x_v + M\sum_{(v,v')\in E} x_v x_{v'} \bigr\}`
 where :math:`w_v` is the weight of vertex :math:`v`.
 
-The :ref:`dwave_networkx <index_dnx>` package lets you set a ``weight``
+The :ref:`dimod <index_dimod>` package lets you set a ``weight``
 attribute in the example of :ref:`qpu_reformulating_constraints_conflictgraph`,
 as shown here:
 
->>> import dwave_networkx as dnx
 >>> import networkx as nx
 >>> import dimod
 ...
@@ -1158,16 +1154,15 @@ as shown here:
 ...                   ("y1 = (1,2)", "y1 = (3,4)"), ("y1 = (3,1)", "y2 = (2,1)"),
 ...                   ("y1 = (3,4)", "y2 = (1,4)"), ("y1 = (3,4)", "y2 = (2,1)"),
 ...                   ("y2 = (1,4)", "y2 = (2,1)")})
->>> Q = dnx.algorithms.independent_set.maximum_weighted_independent_set_qubo(G,
-...                                         weight="weight")
+>>> bqm = dimod.generators.maximum_weight_independent_set(G.edges, G.nodes("weight"))
 
-Best solutions to the QUBO still meet both constraints (first two rows with
+Best solutions to the :term:`BQM` still meet both constraints (first two rows with
 energy :math:`-1.333333`), but notice the difference in energies for solutions
 that meet just the first constraint (rows three to five with energy
 :math:`-1.0`) versus solutions that meet just the second constraint (last two
 rows with energy :math:`-0.333333`):
 
->>> print(dimod.ExactSolver().sample_qubo(Q).lowest(atol=1.1))  # doctest: +SKIP
+>>> print(dimod.ExactSolver().sample(bqm).lowest(atol=1.1))  # doctest: +SKIP
    y1 = (1,2) y1 = (3,1) y1 = (3,4) y2 = (1,4) y2 = (2,1)    energy num_oc.
 12          0          1          0          1          0 -1.333333       1
 30          1          0          0          0          1 -1.333333       1
@@ -1261,18 +1256,17 @@ states where one and only one of the two nodes are selected:
 1, 1               0
 ================   =======
 
-You can use the :ref:`dwave_networkx <index_dnx>` package for the MIS QUBO. The
+You can use the :ref:`dimod <index_dimod>` package for the MIS QUBO. The
 code below combines the MIS and penalty QUBOs, weighting the constraint at 1.5
 so the penalty for breaking this (hard) constraint is a bit higher than flipping
 a variable.
 
->>> import dwave_networkx as dnx
 >>> import dimod
+>>> from dwave.graphs.topologies import chimera_graph
 ...
 >>> # Create a BQM for the MIS
->>> G = dnx.chimera_graph(1, 1, 4)
->>> Q_mis = dnx.algorithms.independent_set.maximum_weighted_independent_set_qubo(G)
->>> bqm = dimod.BQM.from_qubo(Q_mis)
+>>> G = chimera_graph(1, 1, 4)
+>>> bqm = dimod.generators.maximum_weight_independent_set(G.edges)
 >>> # Create a BQM for the constraint
 >>> Q_constraint = {(0, 0): -1, (1, 1): -1, (0, 1): 2}
 >>> bqm_constraint = dimod.BQM.from_qubo(Q_constraint)
@@ -1280,7 +1274,7 @@ a variable.
 >>> # Create a combined BQM
 >>> bqm.update(bqm_constraint)
 >>> # Print the best solutions
->>> print(dimod.ExactSolver().sample(bqm).lowest(atol=0.8))
+>>> print(dimod.ExactSolver().sample(bqm).lowest(atol=0.8))    # doctest: +SKIP
    0  1  2  3  4  5  6  7 energy num_oc.
 1  1  0  1  1  0  0  0  0   -4.5       1
 3  0  1  1  1  0  0  0  0   -4.5       1
@@ -1289,7 +1283,7 @@ a variable.
 ['BINARY', 4 rows, 4 samples, 8 variables]
 
 .. graphic code
-    >>> dnx.draw_chimera(G, with_labels=True,
+    >>> draw_chimera(G, with_labels=True,
         node_color=['r', 'y', 'y', 'y', 'y', 'r', 'r', 'r'],
         node_size=[500, 500, 500, 500, 500, 500, 500, 500])
 
@@ -1420,18 +1414,17 @@ minimized BQM (the minimum penalty of :math:`\mathbf{P_{a=0}}` or
     ==============  ========================  =========================  =========================
 
 As in the previous section, you can use the
-:ref:`dwave_networkx <index_dnx>` package for the MIS QUBO. The code below
+:ref:`dimod <index_dimod>` package for the MIS QUBO. The code below
 combines the MIS and penalty QUBOs, weighting the constraint at 1.5 so the
 penalty for breaking these (hard) constraints is a bit higher than flipping a
 variable.
 
->>> import dwave_networkx as dnx
 >>> import dimod
+>>> from dwave.graphs.topologies import chimera_graph
 ...
 >>> # Create a BQM for the MIS
->>> G = dnx.chimera_graph(1, 1, 4)
->>> Q_mis = dnx.algorithms.independent_set.maximum_weighted_independent_set_qubo(G)
->>> bqm = dimod.BQM.from_qubo(Q_mis)
+>>> G = chimera_graph(1, 1, 4)
+>>> bqm = dimod.generators.maximum_weight_independent_set(G.edges)
 >>> # Create BQMs for the constraints
 >>> Q_constraint1 = {(0, 0): -1, (1, 1): -1, ('a0', 'a0'): -1,
 ...                  (0, 1): 2, (0, 'a0'): 2, (1, 'a0'): 2}
@@ -1445,7 +1438,7 @@ variable.
 >>> bqm.update(bqm_constraint1)
 >>> bqm.update(bqm_constraint2)
 >>> # Print the best solutions
->>> print(dimod.ExactSolver().sample(bqm).lowest(atol=0.8))
+>>> print(dimod.ExactSolver().sample(bqm).lowest(atol=0.8))   # doctest: +SKIP
    0  4  5  6  7  1  2  3 a0 a1 energy num_oc.
 0  0  0  1  1  1  0  0  0  1  0   -6.0       1
 2  0  1  0  1  1  0  0  0  1  0   -6.0       1
@@ -1595,14 +1588,13 @@ breaking this (hard) constraint is a bit higher than flipping a variable, and
 setting :math:`z` to a negative value substantially lower than other linear
 biases.
 
->>> import dwave_networkx as dnx
 >>> import dimod
+>>> from dwave.graphs.topologies import chimera_graph
 ...
 >>> from dimod.generators import xor_gate
 >>> # Create a BQM for the MIS
->>> G = dnx.chimera_graph(1, 1, 4)
->>> Q_mis = dnx.algorithms.independent_set.maximum_weighted_independent_set_qubo(G)
->>> bqm = dimod.BQM.from_qubo(Q_mis)
+>>> G = chimera_graph(1, 1, 4)
+>>> bqm = dimod.generators.maximum_weight_independent_set(G.edges)
 >>> # Create a BQM for the constraint
 >>> bqm_xor = xor_gate(0, 1, 'z', 'aux')
 >>> bqm_xor.scale(1.5)
@@ -1613,7 +1605,7 @@ biases.
 >>> bqm.update(bqm_xor)
 >>> bqm.update(bqm_fix)
 >>> # Print the best solutions
->>> print(dimod.ExactSolver().sample(bqm).lowest(atol=0.8))   # doctest: +SKIP
+>>> print(dimod.ExactSolver().sample(bqm).lowest(atol=0.4))     # doctest: +SKIP
    0  4  5  6  7  1  2  3  z aux0 aux1 energy num_oc.
 0  1  0  0  0  0  0  1  1  1    0    0   -6.0       1
 1  0  0  0  0  0  1  1  1  1    0    1   -6.0       1

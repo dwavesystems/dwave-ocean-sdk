@@ -78,7 +78,7 @@ Reference Documentation
 
     :bdg-link-primary:`code <https://github.com/dwavesystems/dwave-inspector>`
 
-.. dropdown:: :ref:`dwave-networkx <index_dnx>` (deprecated): NetworkX extension.
+.. dropdown:: :ref:`dwave-networkx <index_graphs>` (deprecated): NetworkX extension.
 
     See the :ref:`dwave-graphs <index_graphs>` documentation for details.
 
