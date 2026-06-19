@@ -9,7 +9,6 @@ Reference Documentation
     :maxdepth: 1
 
     dimod — |dimod_version| <api_ref_dimod/index>
-    dwavebinarycsp — deprecated <api_ref_binarycsp>
     dwave-cloud-client — |cloud_version| <api_ref_cloud/index>
     dwave-gate — |gate_version| <api_ref_gate/index>
     dwave-graphs — |graphs_version| <api_ref_graphs/index>
@@ -21,7 +20,7 @@ Reference Documentation
     dwave-samplers — |samplers_version| <api_ref_samplers/index>
     dwave-system — |system_version| <api_ref_system/index>
     minorminer — |minorminer_version| <api_ref_minorminer/source/index>
-    penaltymodel — deprecated <api_ref_penaltymodel/index>
+    penaltymodel — deprecated <api_ref_penaltymodel>
 
 .. packages-start-marker
 
@@ -159,12 +158,9 @@ Reference Documentation
 .. dropdown:: :ref:`penaltymodel <index_penaltymodel>` (deprecated): Maps
     constraints to binary quadratic models.
 
-    An approach to solve a constraint satisfaction problem (:term:`CSP`) using
-    an :term:`Ising` model or a :term:`QUBO`, is to map each individual
-    constraint in the CSP to a "small" Ising model or QUBO.
-
-    Includes a local cache for penalty models and a factory that generates
-    penalty models using SMT solvers.
+    For solving problems with constraints, we recommend using the hybrid solvers
+    in the Leap service. You can find documentation for the hybrid solvers at
+    :ref:`opt_index_hybrid`.
 
     :bdg-link-primary:`code <https://github.com/dwavesystems/penaltymodel>`
 

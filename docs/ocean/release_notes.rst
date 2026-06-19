@@ -24,4 +24,4 @@ For release notes for the |cloud| quantum cloud service, see the
 *   `dwave-samplers <https://github.com/dwavesystems/dwave-samplers/releases>`_
 *   `dwave-system <https://github.com/dwavesystems/dwave-system/releases>`_
 *   `minorminer <https://github.com/dwavesystems/minorminer/releases>`_
-*   `penaltymodel <https://github.com/dwavesystems/penaltymodel/releases>`_
+*   `penaltymodel (deprecated) <https://github.com/dwavesystems/penaltymodel/releases>`_

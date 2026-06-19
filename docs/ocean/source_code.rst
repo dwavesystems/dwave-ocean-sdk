@@ -27,4 +27,4 @@ Ocean packages
 *   `dwave-samplers <https://github.com/dwavesystems/dwave-samplers>`_
 *   `dwave-system <https://github.com/dwavesystems/dwave-system>`_
 *   `minorminer <https://github.com/dwavesystems/minorminer>`_
-*   `penaltymodel <https://github.com/dwavesystems/penaltymodel>`_
+*   `penaltymodel (deprecated) <https://github.com/dwavesystems/penaltymodel>`_
