@@ -1157,20 +1157,20 @@ as shown here:
 >>> bqm = dimod.generators.maximum_weight_independent_set(G.edges, G.nodes("weight"))
 
 Best solutions to the :term:`BQM` still meet both constraints (first two rows with
-energy :math:`-1.333333`), but notice the difference in energies for solutions
+energy :math:`-4`), but notice the difference in energies for solutions
 that meet just the first constraint (rows three to five with energy
-:math:`-1.0`) versus solutions that meet just the second constraint (last two
-rows with energy :math:`-0.333333`):
+:math:`-3.0`) versus solutions that meet just the second constraint (last two
+rows with energy :math:`-1`):
 
->>> print(dimod.ExactSolver().sample(bqm).lowest(atol=1.1))  # doctest: +SKIP
-   y1 = (1,2) y1 = (3,1) y1 = (3,4) y2 = (1,4) y2 = (2,1)    energy num_oc.
-12          0          1          0          1          0 -1.333333       1
-30          1          0          0          0          1 -1.333333       1
-1           1          0          0          0          0      -1.0       1
-3           0          1          0          0          0      -1.0       1
-7           0          0          1          0          0      -1.0       1
-15          0          0          0          1          0 -0.333333       1
-31          0          0          0          0          1 -0.333333       1
+>>> print(dimod.ExactSolver().sample(bqm).lowest(atol=3))  # doctest: +SKIP
+  y1 = (1,2) y1 = (3,1) y1 = (3,4) y2 = (1,4) y2 = (2,1) energy num_oc.
+3          0          1          0          1          0   -4.0       1
+5          1          0          0          0          1   -4.0       1
+0          1          0          0          0          0   -3.0       1
+1          0          0          1          0          0   -3.0       1
+4          0          1          0          0          0   -3.0       1
+2          0          0          0          1          0   -1.0       1
+6          0          0          0          0          1   -1.0       1
 ['BINARY', 7 rows, 7 samples, 5 variables]
 
 Using this technique on real-world problems with many constraints and
