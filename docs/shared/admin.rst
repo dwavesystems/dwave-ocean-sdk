@@ -10,8 +10,7 @@
 
     The maximum amount of solver-access time that a member or application can
     consume for a monthly renewal period. This maximum cannot be greater than
-    the project's total amount of solver-access time, which is unlimited for
-    most seat-based projects.
+    the project's total amount of solver-access time.
 
 .. |meatball_menu| image:: ../_images/leap_kebab_menu.png
     :scale: 50 %
