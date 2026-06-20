@@ -40,9 +40,9 @@ Searching Globally
 ------------------
 
 Via the Global Search field as shown in :numref:`Figure %s <AdminGlobalSearch>`,
-you can search for projects and members across all organizations and projects.
-The text matches any part of a project, or member name (including an email
-address).
+you can search for projects and members across all projects in the current
+organization. The text matches any part of a project, or member name (including
+an email address).
 
 .. figure:: ../_images/leap_admin_global_search.png
     :name: AdminGlobalSearch
@@ -149,8 +149,8 @@ Some actions include the following:
         that differ only by diacritical mark are grouped together, they may not
         always be sorted in the same order.
 
-Terminology
------------
+Terminology and Conventions
+---------------------------
 
 *   **Application**
 
@@ -234,9 +234,6 @@ Terminology
     specific period of days.
 
     For more information, see :ref:`sat_record`.
-
-Conventions
------------
 
 For sequential steps in the user interface, variables are indicated
 in italics; for example, **Leap Admin** > *project_name*.
@@ -451,28 +448,25 @@ You may find the following field descriptions helpful.
 
 .. tabularcolumns:: |l|L|
 
-.. list-table:: **Current Usage** Section (Time-based Projects Only)
+.. list-table:: **Overview** Section
     :widths: 1 3
 
-    *   -   **Project Monthly Solver Time Usage**
-        -   Percent of solver-access time used in the project for the current
-            renewal period.
-
-.. tabularcolumns:: |l|L|
-
-.. list-table:: **Project Details** Section
-    :widths: 1 3
-
-    *   -   **Project Name**
-        -   Name of the project.
-
-    *   -   **System Project ID**
+    *   -   **Project Code**
         -   Unique identifier for a project. It is used for internal purposes,
             such as a prefix for the project's API token.
 
     *   -   **Customer Reference ID**
         -   ID that you provide and which can be used for your specific internal
             processes.
+
+.. tabularcolumns:: |l|L|
+
+.. list-table:: **Current Usage** Section (Time-based Projects Only)
+    :widths: 1 3
+
+    *   -   **MonthlyUsage**
+        -   Amount and percent of solver-access time used in the project for the
+            current renewal period.
 
 Viewing Project Seats
 ---------------------
@@ -573,7 +567,8 @@ You may find the following field descriptions helpful.
             determined by the customer contract.
 
     *   -   **Anniversary Date (UTC)**
-        -   The anniversary date is used to calculate the renewal date.
+        -   The anniversary date is used to calculate the renewal date for
+            monthly solver-access time.
 
     *   -   **Status**
         -   **Active**: The current date is between the record's start and end
@@ -773,60 +768,60 @@ To invite people to join a project or organization, click |plus_icon| >
 
 You may find the following field descriptions helpful.
 
-    .. tabularcolumns:: |l|p{9cm}|
+.. tabularcolumns:: |l|p{9cm}|
 
-    .. list-table:: Invitation Dialog Box
+.. list-table:: Invitation Dialog Box
 
-        *   -   **Organization**
-            -   (Read-only) Organization to which you are inviting people.
+    *   -   **Organization**
+        -   (Read-only) Organization to which you are inviting people.
 
-        *   -   **Project**
-            -   Project to which you are inviting people.
+    *   -   **Project**
+        -   Project to which you are inviting people.
 
-        *   -   **Seat Type**
-            -   An available seat type for the invitees. For more information,
-                see the :ref:`admin_seat_types` section.
+    *   -   **Seat Type**
+        -   An available seat type for the invitees. For more information,
+            see the :ref:`admin_seat_types` section.
 
-        *   -   **Email**
-            -   Email addresses or member names (if they already exist in the
-                Leap service) of the people you want to invite to the project.
+    *   -   **Email**
+        -   Email addresses or member names (if they already exist in the
+            Leap service) of the people you want to invite to the project.
 
-                **Tip:**
+            **Tip:**
 
-                *   You can copy and paste multiple email addresses from either
-                    a single column in an Excel spreadsheet or a semicolon-,
-                    space-, new line-, or comma-delimited list (for example, a
-                    CSV file).
+            *   You can copy and paste multiple email addresses from either
+                a single column in an Excel spreadsheet or a semicolon-,
+                space-, new line-, or comma-delimited list (for example, a
+                CSV file).
 
-            **Note:** If the desired email address is not allowed as specified
-            (individually or by pattern) in the **Allowed Email Settings**
-            section on the **Overview** page, contact |support_email|_.
+        **Note:** If the desired email address is not allowed as specified
+        (individually or by pattern) in the **Allowed Email Settings**
+        section on the **Overview** page, contact |support_email|_.
 
-    *   -   **Role**
-        -   One of the project member :ref:`roles <admin_user_roles>` to assign
-            to a person: **User**, **Project Admin**, or **Organization Admin**.
-            Only an organization administrator can assign the
-            **Organization Admin** role.
+*   -   **Role**
+    -   One of the project member :ref:`roles <admin_user_roles>` to assign
+        to a person: **User**, **Project Admin**, or **Organization Admin**.
+        Only an organization administrator can assign the
+        **Organization Admin** role.
 
-            Once people occupy seats in a project, they have the privileges
-            associated with their role as described in :ref:`admin_user_roles`;
-            for example, access to the project's solvers.
+        Once people occupy seats in a project, they have the privileges
+        associated with their role as described in :ref:`admin_user_roles`;
+        for example, access to the project's solvers.
 
-    *   -   **Set Solver Access to Unlimited** (time-based projects only)
-        -   Maximum amount of solver-access time available per month for the
-            specified invitees. You set this maximum with one of the
-            following options:
+*   -   **Set Solver Access to Unlimited** (time-based projects only)
+    -   Maximum amount of solver-access time available per month for the
+        specified invitees. You set this maximum with one of the
+        following options:
 
-                *   *Deselected*
+        *   *Deselected*
 
-                    (Default) This field is set to the amount of solver-access
-                    time in the **Project Member Default Solver Access Limit**
-                    field.
+            (Default) This field is set to the amount of solver-access
+            time in the **Project Member Default Solver Access Limit**
+            field.
 
-                *   *Selected*
+        *   *Selected*
 
-                Sets the maximum amount of solver-access time to the same as
-                that of the project's **Default Solver Access Limit** field.
+        Sets the maximum amount of solver-access time to the same as
+        that of the project's **Default Solver Access Limit** field.
 
 .. _admin_member_status_viewing:
 
