@@ -457,7 +457,7 @@ You may find the following field descriptions helpful.
 
     *   -   **Project Type**
         -   Classification of the project as determined by the customer contract;
-            for example, time-based.
+            for example, Development.
 
     *   -   **Customer Reference ID**
         -   ID that you provide and which can be used for your specific internal
