@@ -442,7 +442,7 @@ Viewing Basic Information
 -------------------------
 
 Basic information about the project, such as its status is displayed on the
-project's title banner and on the **Overview** tab.
+project's title banner.
 
 You may find the following field descriptions helpful.
 
