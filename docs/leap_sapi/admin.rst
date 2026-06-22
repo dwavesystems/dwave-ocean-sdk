@@ -442,7 +442,7 @@ Viewing Basic Information
 -------------------------
 
 Basic information about the project, such as its status is displayed on the
-title banner and on the **Overview** tab.
+project's title banner and on the **Overview** tab.
 
 You may find the following field descriptions helpful.
 
@@ -464,7 +464,7 @@ You may find the following field descriptions helpful.
 .. list-table:: **Current Usage** Section (Time-based Projects Only)
     :widths: 1 3
 
-    *   -   **MonthlyUsage**
+    *   -   **Monthly Usage**
         -   Amount and percent of solver-access time used in the project for the
             current renewal period.
 
