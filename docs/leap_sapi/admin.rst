@@ -455,6 +455,10 @@ You may find the following field descriptions helpful.
         -   Unique identifier for a project. It is used for internal purposes,
             such as a prefix for the project's API token.
 
+    *   -   **Project Type**
+        -   Classification of the project as determined by the customer contract;
+            for example, time-based.
+
     *   -   **Customer Reference ID**
         -   ID that you provide and which can be used for your specific internal
             processes.
