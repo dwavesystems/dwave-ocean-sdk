@@ -863,7 +863,7 @@ and available through the Ocean SDK.
         -
 
     *   -   Advantage2_research2
-        -   :ref:`2026-06-18 <adv2_rsrch2>`
+        -   2026-06-24
         -   First solver release
 
     *   -   **Advantage2_research1**
