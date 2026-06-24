@@ -144,8 +144,8 @@ Annealing Schedule
 ------------------
 
 Download the annealing schedule for the QPU here:
-:download:`Advantage2_system4 and Advantage2_research2 Excel spreadsheet
-<../downloadables/09-1323A-E_Advantage2_system4_research2_annealing_schedule.xlsx>`.
+:download:`Advantage2_system4 Excel spreadsheet
+<../downloadables/09-1323A-D_Advantage2_system4_annealing_schedule.xlsx>`.
 
 The standard annealing schedule for the QPU is shown in
 :numref:`Figure %s <annealing-schedule-adv2-4.1>`.
