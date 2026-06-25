@@ -117,30 +117,32 @@ your role level and below.
 
             Members that have the *User* role cannot access Leap Admin.
 
-Filtering and Sorting Data
---------------------------
+Customizing How Information Is Displayed
+----------------------------------------
 
 Leap Admin's user interface is quite intuitive; you can filter and sort data
-using similar actions on the various tabs and sections (e.g., **Projects**,
-**Problem Status**, and **Solver Access Time Schedule**) by clicking the icons
-in the table headings or above the table. Some icons are hidden until you place
-the pointer over data that you want to act on; for example, placing the pointer
-over a problem ID displays **Copy** |copy_icon|.
+as well as customize the arrangement of columns using actions on the various
+tabs and sections (e.g., **Projects**, **Problem Status**, and
+**Solver Access Time Schedule**) by clicking the icons in the table headings or
+above the table. Some icons are hidden until you place the pointer over data
+that you want to act on; for example, placing the pointer over a problem ID
+displays **Copy** |copy_icon|.
 
 Some actions include the following:
 
 *   Filtering rows by matching data in the rows
 
-*   Pinning a column to the left or right side of the table
+*   Sorting data in columns in ascending or descending order
 
 *   Setting units for the data (e.g., time in units of seconds,
     minutes, hours, or all of them)
 
-*   Sorting data in columns in ascending or descending order
+*   Reordering columns, including pinning a column to the left or right side
+    of the table
 
 *   Hiding and showing columns
 
-.. note:: 
+.. tip:: 
     
     *   Filtering and sorting is case-insensitive.
         
