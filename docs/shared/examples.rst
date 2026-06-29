@@ -64,12 +64,12 @@ The following code solves the known "minimum vertex cover"
 graph problem using an :term:`annealing` quantum computer.
 
 >>> import networkx as nx
->>> import dwave_networkx as dnx
+>>> import dwave.graphs
 >>> from dwave.system import DWaveSampler, EmbeddingComposite
 ...
 >>> s5 = nx.star_graph(4)
 >>> sampler = EmbeddingComposite(DWaveSampler())
->>> min_cover = dnx.min_vertex_cover(s5, sampler)
+>>> min_cover = dwave.graphs.min_vertex_cover(s5, sampler)
 
 .. end_qpu2
 

@@ -542,7 +542,7 @@ needed to use multicolor annealing on your selected QPU, either through the
 
     exp_feature_info = mca.get_properties(qpu)
 
-    num_anneal_lines = len(exp_feature_info)
+    num_anneal_lines = len(exp_feature_info[1])
 
 >>> print(f"QPU {qpu.solver.name} has {num_anneal_lines} annealing lines.") # doctest: +SKIP
 QPU Advantage2_research1 has 6 annealing lines.
@@ -562,7 +562,7 @@ QPU Advantage2_research1 has 6 annealing lines.
     result = computation.result()
     exp_feature_info = result['x_get_multicolor_annealing_exp_feature_info']
 
-    num_anneal_lines = len(exp_feature_info)
+    num_anneal_lines = len(exp_feature_info[1])
 
 >>> print(f"QPU {qpu.solver.name} has {num_anneal_lines} annealing lines.") # doctest: +SKIP
 QPU Advantage2_research1 has 6 annealing lines.
@@ -594,7 +594,7 @@ repository.
     qubits_of_line = {}
 
     for q in range(num_anneal_lines):
-        qubits_of_line[q] = exp_feature_info[q]['qubits']
+        qubits_of_line[q] = exp_feature_info[1][q]['qubits']
 
     line_target = 0
     line_source = 1
@@ -658,16 +658,16 @@ schedule for the selected QPU.
 .. testcode::
     :skipif: True
 
-    Q_target_max_c = exp_feature_info[line_target]['maxC']
-    Q_target_min_c = exp_feature_info[line_target]['minC']
+    Q_target_max_c = exp_feature_info[1][line_target]['maxC']
+    Q_target_min_c = exp_feature_info[1][line_target]['minC']
 
-    Q_source_max_c = exp_feature_info[line_source]['maxC']
-    Q_source_min_c = exp_feature_info[line_source]['minC']
+    Q_source_max_c = exp_feature_info[1][line_source]['maxC']
+    Q_source_min_c = exp_feature_info[1][line_source]['minC']
 
-    Q_detector_max_c = exp_feature_info[line_detector]['maxC']
-    Q_detector_min_c = exp_feature_info[line_detector]['minC']
+    Q_detector_max_c = exp_feature_info[1][line_detector]['maxC']
+    Q_detector_min_c = exp_feature_info[1][line_detector]['minC']
 
-    min_time_step = exp_feature_info[0]["minAnnealingTimeStep"]
+    min_time_step = exp_feature_info[1][0]["minAnnealingTimeStep"]
 
 >>> print(f"Minimum time step is {min_time_step} µs")           # doctest: +SKIP
 Minimum time step is 0.01 µs
@@ -716,7 +716,7 @@ qubit's state by quenching the detector qubit.
     anneal_schedules[:, :, 0] = anneal_schedules[line_source][:, 0]
 
     anneal_schedules[line_target] = [
-        [0.0, 0.0],[1.0, 0.0], [20.0, 0.0], [21.0, target_c],[22.0, target_c],
+        [0.0, 0.0],[1.0, 0.0], [5.0, 0.0], [6.0, target_c],[22.0, target_c],
         [22.0 + min_time_step, target_c],[23.0, target_c], [24.0, 1.0]]
 
     anneal_schedules[line_detector] = [
@@ -763,7 +763,7 @@ and shows a Larmor precession that corresponds to the chosen transverse energy,
         x_anneal_schedules = anneal_schedules,
         x_polarizing_schedule = polarization_schedule)
 
-    delay_sweep = np.arange(0.0, 0.02, 40*exp_feature_info[0]["scheduleDelayStep"])
+    delay_sweep = np.arange(0.0, 0.02, 40*exp_feature_info[1][0]["scheduleDelayStep"])
 
     res_plus=[]
 

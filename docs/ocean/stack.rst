@@ -59,7 +59,7 @@ the following layers of functionality:
 
     Tools that help formulate a problem as
     :ref:`supported models <concept_models>`; for example the
-    :ref:`dwave_networkx <index_dnx>` package for graph-related problems.
+    :ref:`dwave-graphs <index_graphs>` package for graph-related problems.
 *   Application
 
     Original problem in its context ("problem space"); for example, circuit
@@ -260,7 +260,7 @@ the Ocean stack.
     listed above.
 
     Ocean provides tools for formulating the BQM; for example
-    :ref:`dwave_networkx <index_dnx>` for implementing graph-theory algorithms
+    :ref:`dwave-graphs <index_graphs>` for implementing graph-theory algorithms
     of the |dwave_short| quantum computer. Many problems can be posed in a form
     of graphs---this tool handles the construction of BQMs for several standard
     graph algorithms such as maximum cut, cover, and coloring.

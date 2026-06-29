@@ -34,3 +34,6 @@
 [submodule "penaltymodel"]
     path = penaltymodel
     url = https://github.com/dwavesystems/penaltymodel
+[submodule "dwave-graphs"]
+	path = dwave-graphs
+	url = https://github.com/dwavesystems/dwave-graphs

@@ -34,7 +34,6 @@ copyright = 'D-Wave'
 
 rst_prolog = f"""
 .. |python_requires| replace:: {python_requires}
-.. |sdk_version| replace:: {version}
 """
 
 # -- General configuration ------------------------------------------------
@@ -132,6 +131,7 @@ from dwave.embedding import *
 
 import networkx as nx
 import dwave_networkx as dnx
+import dwave.graphs
 
 import dimod
 
@@ -262,7 +262,54 @@ html_sidebars = {
 }
 html_static_path = ['_static']
 
+def substitute_versions(app, docname, source):
+    # Unfortunately we cannot use rst_prolog or rst_epilog within a
+    # toctree, so we need a more blunt instrument
+
+    # We only want to do the substitutions in packages.rst, so otherwise skip.
+    # The substitution should be harmless but this speeds things up a tiny bit
+    if "packages" not in docname:
+        return
+
+    from dimod import __version__ as dimod_version
+    source[0] = source[0].replace("|dimod_version|", dimod_version)
+
+    from dwave.cloud.client import __version__ as cloud_version
+    source[0] = source[0].replace("|cloud_version|", cloud_version)
+
+    from dwave.gate import __version__ as gate_version
+    source[0] = source[0].replace("|gate_version|", gate_version)
+
+    from dwave.graphs import __version__ as graphs_version
+    source[0] = source[0].replace("|graphs_version|", graphs_version)
+
+    from hybrid import __version__ as hybrid_version
+    source[0] = source[0].replace("|hybrid_version|", hybrid_version)
+
+    from dwave.inspector import __version__ as inspector_version
+    source[0] = source[0].replace("|inspector_version|", inspector_version)
+
+    from dwave_networkx import __version__ as dnx_version
+    source[0] = source[0].replace("|dnx_version|", dnx_version)
+
+    from dwave.optimization import __version__ as optimization_version
+    source[0] = source[0].replace("|optimization_version|", optimization_version)
+
+    from dwave.preprocessing import __version__ as preprocessing_version
+    source[0] = source[0].replace("|preprocessing_version|", preprocessing_version)
+
+    from dwave.samplers import __version__ as samplers_version
+    source[0] = source[0].replace("|samplers_version|", samplers_version)
+
+    from dwave.system import __version__ as system_version
+    source[0] = source[0].replace("|system_version|", system_version)
+
+    from minorminer import __version__ as minorminer_version
+    source[0] = source[0].replace("|minorminer_version|", minorminer_version)
+
+
 def setup(app):
+   app.connect("source-read", substitute_versions)
    app.add_css_file('theme_overrides.css')
    app.add_css_file('cookie_notice.css')
    app.add_js_file('cookie_notice.js')
@@ -270,12 +317,14 @@ def setup(app):
 
 # -- Intersphinx ----------------------------------------------------------
 intersphinx_mapping = {
-    'python': ('https://docs.python.org/3/', None),
     'numpy': ('https://numpy.org/doc/stable/', None),
     'networkx': ('https://networkx.org/documentation/stable/', None),
-    'urllib3': ('https://urllib3.readthedocs.io/en/stable/', None),
-    'requests': ('https://requests.readthedocs.io/en/stable/', None),
     'ocean_rns': ('https://docs.dwavequantum.com/projects/leap_sapi/en/latest/', None),
+    'python': ('https://docs.python.org/3/', None),
+    'requests': ('https://requests.readthedocs.io/en/stable/', None),
+    'scipy': ('https://docs.scipy.org/doc/scipy', None),
+    'sklearn': ('https://scikit-learn.org/stable/', None),
+    'urllib3': ('https://urllib3.readthedocs.io/en/stable/', None),
     }
 
 
@@ -283,6 +332,7 @@ intersphinx_mapping = {
 github_map = {'cloud': 'dwave-cloud-client',
               'dimod':  'dimod',
               'gate': 'dwave-gate',
+              'graphs': 'dwave-graphs',
               'dwave_networkx': 'dwave_networkx',
               'greedy': 'dwave-greedy',
               'hybrid': 'dwave-hybrid',

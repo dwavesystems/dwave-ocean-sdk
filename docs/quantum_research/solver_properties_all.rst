@@ -679,7 +679,7 @@ between 30, the first of the 5640 fabric qubits, and 5729, the last of those
 
 .. [#]
     You can see the qubit indexing scheme of such an |dwave_5kq| QPU
-    with Ocean software's :func:`dwave_networkx.pegasus_graph` function,
+    with Ocean software's :func:`dwave.graphs.pegasus_graph` function,
     which enables you to generate Pegasus graphs.
 
 Example
@@ -854,8 +854,8 @@ and the range for the target normalized control bias :math:`c(s)` for a QPU.
 x_get_multicolor_annealing_exp_feature_info
 ===========================================
 
-Returns information about per-line anneal schedules, such as the subset of
-the QPU's qubits indexed to each line, supported minimum time steps, and ranges
+Returns information about multicolor annealing, such as the subset of the QPU's
+qubits indexed to each annealing line, supported minimum time steps, and ranges
 of normalized control bias, :math:`c(s)`, etc.
 
 .. note:: |research_property_note1|
@@ -863,10 +863,13 @@ of normalized control bias, :math:`c(s)`, etc.
     |research_property_note2|
 
 Submit a placeholder problem with this parameter set to True to return the
-information, as a Python list with a dict for each of the QPU's anneal lines,
-under the returned result's ``x_get_multicolor_annealing_exp_feature_info``
-field. (The length of the returned list is the number of anneal lines of the
-QPU.)
+information, under the returned result's
+``x_get_multicolor_annealing_exp_feature_info`` field, as a Python list
+containing a dict of values that apply across annealing lines and list of dicts,
+one for each of the QPU's annealing lines:
+``[{Shared fields}, [{Line 0 fields}, {Line 1 fields}, ...]]``.
+(The length of the returned *inner* list---i.e., the number of the dicts it
+contains---is the number of annealing lines of the QPU.)
 
 The returned information contains the following fields.
 
@@ -880,6 +883,22 @@ The returned information contains the following fields.
     *   -   Field Name
         -   Type
         -   Value
+    *   -   ``minPolarizingTimeStep``
+        -   Float
+        -   Minimum supported time step, in microseconds, for the
+            :ref:`parameter_polarizing_schedule` parameter. Values specified
+            with greater precision are rounded. This value is common to all
+            the QPU's annealing lines.
+    *   -   ``depolarizationAnneal``
+            ``ScheduleRequiredDelay``
+        -   Float
+        -   Time, in microseconds, after the
+            :ref:`parameter_polarizing_schedule` parameter changes the
+            polarization value from :math:`\pm 1` to :math:`0` for the qubits,
+            during which the :ref:`parameter_qpu_anneal_schedules` parameter
+            must not set a new value of the normalized control bias,
+            :math:`c(s)` line. This value is common to all the QPU's annealing
+            lines.
     *   -   ``annealingLine``
         -   Integer
         -   Index of the annealing line for which the other field values are
@@ -889,11 +908,6 @@ The returned information contains the following fields.
         -   Float
         -   Minimum supported time step, in microseconds, for the
             :ref:`parameter_qpu_anneal_schedules` parameter. Values specified
-            with greater precision are rounded.
-    *   -   ``minPolarizingTimeStep``
-        -   Float
-        -   Minimum supported time step, in microseconds, for the
-            :ref:`parameter_polarizing_schedule` parameter. Values specified
             with greater precision are rounded.
     *   -   ``holdOvershootFor``
         -   Float
@@ -944,16 +958,6 @@ The returned information contains the following fields.
         -   Maximum supported precision, in microseconds, of the
             :ref:`parameter_qpu_schedule_delays` parameter. Values specified
             with greater precision are rounded.
-    *   -   ``depolarizationAnneal``
-            ``ScheduleRequiredDelay``
-        -   Float
-        -   Time, in microseconds, after the
-            :ref:`parameter_polarizing_schedule` parameter changes the
-            polarization value from :math:`\pm 1` to :math:`0` for the qubits of
-            an anneal line, during which the
-            :ref:`parameter_qpu_anneal_schedules` parameter must not set a new
-            value of the normalized control bias, :math:`c(s)`, on that same
-            line.
     *   -   ``qubits``
         -   Array of integers
         -   Indices of qubits controlled by the annealing line with the index
@@ -969,7 +973,7 @@ This example prints the first 5 qubits on annealing line 0.
 
     >>> from dwave.experimental import multicolor_anneal as mca
     >>> exp_feature_info = mca.get_properties()         # doctest: +SKIP
-    >>> print(exp_feature_info[0]['qubits'][:5])        # doctest: +SKIP
+    >>> print(exp_feature_info[1][0]['qubits'][:5])        # doctest: +SKIP
     [2, 5, 6, 9, 14]
 
 2.  Directly using the :ref:`property_qpu_get_multicolor_annealing_exp_feature_info`
@@ -982,5 +986,5 @@ This example prints the first 5 qubits on annealing line 0.
     ...         {next(iter(solver.nodes)): 0}, {}, x_get_multicolor_annealing_exp_feature_info=True)
     ...     result = computation.result()
     ...     exp_feature_info = result['x_get_multicolor_annealing_exp_feature_info']
-    >>> print(exp_feature_info[0]['qubits'][:5])        # doctest: +SKIP
+    >>> print(exp_feature_info[1][0]['qubits'][:5])        # doctest: +SKIP
     [2, 5, 6, 9, 14]

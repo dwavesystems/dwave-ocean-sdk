@@ -11,7 +11,7 @@ The examples below show how to construct software samplers with the same
 The code examples below uses the following imports:
 
 >>> import dimod
->>> import dwave_networkx as dnx
+>>> import dwave.graphs
 >>> import networkx as nx
 >>> import dwave.embedding
 ...
@@ -31,10 +31,10 @@ which defines the connectivity allowed the :term:`binary quadratic model`.
 
 To create a software solver with the same connectivity as an Advantage quantum
 computer you first need a representation of the :term:`Pegasus` graph which can
-be obtained from the :ref:`dwave_networkx <index_dnx>` package using the
-:func:`~dwave_networkx.pegasus_graph` function.
+be obtained from the :ref:`dwave-graphs <index_graphs>` package using the
+:func:`~dwave.graphs.pegasus_graph` function.
 
->>> P16 = dnx.pegasus_graph(16)
+>>> P16 = dwave.graphs.pegasus_graph(16)
 
 Next, you need a software sampler and can use the
 :class:`~dwave.samplers.SimulatedAnnealingSampler` class
@@ -84,11 +84,11 @@ Creating a Zephyr Sampler
 
 Another topology of interest is the :term:`Zephyr` topology.
 
-As above, you can use the generator function :func:`dwave_networkx.zephyr_graph`
-found in :ref:`dwave_networkx <index_dnx>` and the
+As above, you can use the generator function :func:`dwave.graphs.zephyr_graph`
+found in :ref:`dwave-graphs <index_graphs>` and the
 :class:`~dwave.samplers.SimulatedAnnealingSampler` to construct a sampler.
 
->>> Z3 = dnx.zephyr_graph(3)
+>>> Z3 = dwave.graphs.zephyr_graph(3)
 >>> classical_sampler = SimulatedAnnealingSampler()
 >>> sampler = dimod.StructureComposite(classical_sampler, Z3.nodes, Z3.edges)
 

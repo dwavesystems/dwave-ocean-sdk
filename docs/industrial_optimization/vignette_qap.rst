@@ -161,3 +161,10 @@ instances with a time limit of 150 seconds.
     the only solver to beat the nonlinear solver is D-Wave's CQM solver. The
     nonlinear solver is the only solver able to obtain a feasible solution for
     the problems of size 150 and 256 for all time limits tested.
+
+
+Data
+====
+
+Solver runtimes and energies are available in CSV format
+:download:`here <../downloadables/vignette_qap.csv>`.
