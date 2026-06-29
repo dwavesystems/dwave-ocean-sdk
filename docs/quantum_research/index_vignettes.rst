@@ -10,7 +10,7 @@ Performance Benchmarks
 
     vignette_maxcut
 
-The following vignettes compare the performance of D-Wave's quantum systems
+The following vignettes compare the performance of D-Wave's quantum computers
 versus competitors on a range of problems.
 
 .. grid:: 2 2 3 3
@@ -20,4 +20,4 @@ versus competitors on a range of problems.
         :link: qpu_vignette_maxcut
         :link-type: ref
 
-        Max cut with quantum annealing versus LR-QAOA.
+        Maximum cut with quantum annealing versus LR-QAOA.

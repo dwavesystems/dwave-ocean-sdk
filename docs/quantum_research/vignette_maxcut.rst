@@ -1,21 +1,25 @@
 .. _qpu_vignette_maxcut:
 
 ====================================================
-Quantum Annealing versus LR-QAOA on Max-Cut Problems
+Max Cut: QA Vs. LR-QAOA
 ====================================================
 
-This is a response to the paper "Measuring what matters: A scalable framework for application-
-level quantum benchmarking" [Abo2026]_ by authors at IonQ.
-Part of the paper uses LR-QAOA, a variational quantum algorithm, to solve max cut problems
-on regular and fully-connected graphs on IonQ Forte. This report compares the results to those
-from quantum annealing on D-Wave's Advantage2 system.
+An IonQ paper, “Measuring what matters: A scalable framework for
+application-level quantum benchmarking” [Abo2026], uses linear-ramp quantum
+approximate optimization algorithmLR-QAOA, a variational quantum algorithm,
+to solve `maximum-cut <https://en.wikipedia.org/wiki/Maximum_cut>`_ problems on
+regular and fully-connected graphs on IonQ Forte. This vignette compares the
+results to those from quantum annealing on D-Wave's Advantage2 system.
 
 Problem Instances
 =================
 
-The problems are instances of max cut on 3- and 4-regular graphs on 24 and 36 vertices and
-fully-connected graphs on 12 and 16 vertices, with one instance per class. The graphs and
-optimal solutions are given in the `GitHub repository <https://github.com/ionq-publications/apps-benchmark/tree/main>`_.
+The problems are instances of max cut on
+`regular graphs <https://en.wikipedia.org/wiki/Regular_graph>`_ of degree 3 and
+4 (cubic and quartic graphs) on 24 and 36 vertices and fully-connected graphs on
+12 and 16 vertices, with one instance per class. The graphs and optimal
+solutions are given in the
+`IonQ GitHub repository <https://github.com/ionq-publications/apps-benchmark/tree/main>`_.
 
 The max cut problem is to partition the vertices of a graph into two sets such that the number
 of edges (or the sum of the weights of the edges) between the two sets is maximized.
@@ -29,12 +33,13 @@ between vertices :math:`i` and :math:`j`, and :math:`s_i` is a spin variable.
 Methodology
 ===========
 
-Since the problem graphs are relatively small compared to the size of D-Wave's Advantage2,
+Since the problem graphs are relatively small compared to the size of the Advantage2 QPU,
 the graphs can be embedded multiple times into a single QPU and sampled from simultaneously.
-The best solution from each read is taken to compute the approximation ratio of that sample.
-D-Wave's minorminer is used to find parallel minor embeddings of the problem graphs onto the
-Advantage2 Zephyr hardware graph topology. The number of embeddings found for each problem
-instance is given in the table below:
+The best solution from each read is taken to compute the approximation ratio (AR) of that sample.
+Ocean software's :ref:`index_minorminer` is used to find parallel minor
+embeddings of the problem graphs onto the Advantage2 QPU's
+:ref:`Zephyr <topology_intro_zephyr>` topology. The number of embeddings found
+for each problem instance is given in the table below:
 
 .. table:: Number of embeddings per problem instance
    :width: 60%
@@ -55,21 +60,25 @@ instance is given in the table below:
    | 4-regular graph with n=36 | 71                   |
    +---------------------------+----------------------+
 
-Parallel minor embeddings can be found using D-Wave's minorminer. For this study, embeddings were
-selected based on a maximum chain length of 4 and best average chain length out of 10.
+For this study, embeddings were selected based on a maximum :term:`chain length`
+of 4 and best average chain length out of 10.
 
-The problems were run with the ParallelEmbeddingComposite and ScaleComposite with extended J ranges
-on D-Wave's Advantage2_system1.
-The following code shows an example of creating binary quadratic model (BQM) for a max cut problem,
-embedding it multiple times into the QPU, sampling from the QPU, and returning the sampleset.
+The problems were run with the
+:class:`~dwave.system.composites.ParallelEmbeddingComposite` and
+:class:`~dwave.preprocessing.composites.scale.ScaleComposite` composites with
+:ref:`extended J ranges <property_qpu_extended_j_range>` on D-Wave's
+``Advantage2_system1`` QPU.
+The following code shows an example of creating a binary quadratic model
+(:term:`BQM`) for a max-cut problem, embedding it multiple times into the QPU,
+sampling from the QPU, and returning the :ref:`~dimod.SampleSet`.
 
 .. testcode::
 
     import networkx as nx
     import dimod
-    from minorminer import find_embedding
-    from dwave.system import ParallelEmbeddingComposite, DWaveSampler
     from dwave.preprocessing.composites import ScaleComposite
+    from dwave.system import DWaveSampler, ParallelEmbeddingComposite
+    from minorminer import find_embedding
 
     # create problem graph
     G = nx.random_regular_graph(2, 10)
@@ -120,7 +129,7 @@ overhead time and dividing by the number of shots, which is 5,000. This gives a 
 0.89 seconds for IonQ Forte. Since it is unclear how much overhead was removed, the time per
 sample for D-Wave's Advantage2 system is taken to be the annealing time plus the readout time.
 For max cut on the 4-regular graph with 36 nodes and 20 :math:`\mu s` annealing time, the time
-per sample is 2.37e-08s for D-Wave's Advantage2.
+per sample is 23.7 nanoseconds for the Advantage2 QPU.
 
 The approximation ratio (AR) of a solution is the energy of that solution divided by the
 energy of the optimal solution. The time-to-solution (TTS) at 99% confidence for a specified
@@ -146,7 +155,7 @@ Sample Distribution
 -------------------
 
 In the `Benchmarking Verification Report <https://cdn.prod.website-files.com/68836d4838193cb461ebc7d2/69dd6ffef477113de9cb64a0_IonQ_Benchmarking_TTS_Verification_Report.pdf>`_,
-the estimated time per shot for IonQ Forte is 0.89s. For the max cut problem on the 4-regular
+the estimated time per shot for IonQ Forte is 0.89 s. For the max cut problem on the 4-regular
 graph with 36 nodes, the percentage of samples above 90% AR is approximately 10% for IonQ Forte.
 For D-Wave's Advantage2 with 20 :math:`\mu s` annealing time and 2.37e-08s per sample, the
 percentage of samples above 90% AR is 100%. In fact, when taking the best solution found for

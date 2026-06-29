@@ -47,7 +47,7 @@ quantum processing units (QPU) directly.
         :link: qpu_index_benchmarks
         :link-type: ref
 
-        Performance benchmarks on D-Wave's quantum systems versus competitors.
+        Compare performance of D-Wave's quantum computers versus competing solvers.
 
 The :ref:`index_industrial_optimization` section shows how to optimize business
 problems using the |cloud_tm| service's quantum-classical :term:`hybrid`
