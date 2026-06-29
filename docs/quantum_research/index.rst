@@ -11,6 +11,7 @@ Quantum Research
     index_get_started
     index_about
     index_using
+    index_vignettes
 
 .. sections-start-marker
 
@@ -40,6 +41,13 @@ quantum processing units (QPU) directly.
         :link-type: ref
 
         Configuring QPU parameters and usage best-practices.
+
+    .. grid-item-card:: :ref:`qpu_index_benchmarks`
+        :img-top: /_images/vignette_icon_quantum-research.svg
+        :link: qpu_index_benchmarks
+        :link-type: ref
+
+        Performance benchmarks on D-Wave's quantum systems versus competitors.
 
 The :ref:`index_industrial_optimization` section shows how to optimize business
 problems using the |cloud_tm| service's quantum-classical :term:`hybrid`
