@@ -169,7 +169,7 @@ with chain length of 1, as shown in this example's output.
         J={(embedding[v1], embedding[v2]): -1 for v1, v2 in edges})  # FM (J = -1) coupling
 
 >>> print(embedding)                                        # doctest: +SKIP
-{0: 718, 1: 719, 2: 552, 3: 713}
+{0: 116, 1: 925, 2: 135, 3: 918}
 
 Calibration Refinement
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -214,7 +214,7 @@ contribute to its Ocean software.
 
     bqm_shim = dimod.BQM.from_ising(
         h = {q: 0 for q in embedding.values()}, # For fast annealing linear coefficients must be zero
-        J = {(embedding[v1], embedding[v2]): 0 for v1, v2 in edges}) # No coupling for shim
+        J = {(embedding[v1], embedding[v2]): -1 for v1, v2 in edges})
 
     x_target_c_updates = np.arange(0.2, 0.22, 0.001)
 
@@ -225,7 +225,7 @@ contribute to its Ocean software.
         sampling_params_updates = [{"x_target_c": x_target_c} for x_target_c in x_target_c_updates],
         symmetrize_experiments=False,
         learning_schedule=None,
-        beta_hypergradient=0.4,
+        beta_hypergradient=0.6,
         alpha=0.1*qubit_freezeout_alpha_phi())
 
 If you plot the values of the flux bias over the course of shimming, you should
@@ -234,9 +234,9 @@ see convergence, as shown in
 how the flux-bias shimming minimizes the single-qubit magnetization averaged
 over the set of target :math:`c(s)` values sampled on each iteration.
 
-.. figure:: ../_images/fast_reverse_annealing_calibration.png
+.. figure:: ../_images/fast_reverse_annealing_calibration.svg
     :name: fastReverseAnnealingCalibration
-    :scale: 75%
+    :scale: 85%
     :alt: Calibration results with the flux-bias offset converging over a number
         of iterations for the qubits in the FM ring.
 
@@ -252,7 +252,7 @@ The code below runs the experiment.
 
     from tqdm import tqdm
 
-    c_target_range = np.arange(0.2, 0.4, 0.0005)
+    c_target_range = np.arange(0.2, 0.45, 0.0005)
     num_samples = sampler_params['num_reads'] * num_qubits
     sampler_params["label"] = "Fast Reverse Anneal: Larmor Experiment"
 
@@ -272,7 +272,7 @@ The code below runs the experiment.
 Results should look similar to those shown in
 :numref:`Figure %s <fastReverseAnnealingLarmor>`.
 
-.. figure:: ../_images/fast_reverse_annealing_larmor.png
+.. figure:: ../_images/fast_reverse_annealing_larmor.svg
     :name: fastReverseAnnealingLarmor
     :scale: 75%
     :alt: Experiment results showing sinusoidal waves of alternating spin-up and
