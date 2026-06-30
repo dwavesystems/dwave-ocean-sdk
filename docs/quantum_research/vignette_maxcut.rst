@@ -70,7 +70,7 @@ The problems were run with the
 ``Advantage2_system1`` QPU.
 The following code shows an example of creating a binary quadratic model
 (:term:`BQM`) for a max-cut problem, embedding it multiple times into the QPU,
-sampling from the QPU, and returning the :ref:`~dimod.SampleSet`.
+sampling from the QPU, and returning the :class:`~dimod.SampleSet`.
 
 .. testcode::
 
@@ -101,7 +101,7 @@ sampling from the QPU, and returning the :ref:`~dimod.SampleSet`.
         if len(embedding) > 0:
             parallel_embeddings.append(embedding)
             qpu_graph.remove_nodes_from([node for val in embedding.values() for node in val])
-       else:
+        else:
            keep_embedding = False
 
     # create sampler with parallel embeddings and scale composite
@@ -176,7 +176,8 @@ across all embeddings from D-Wave's Advantage2 system.
     :width: 80%
     :alt: maxcut-histogram
 
-    Each sample from D-Wave's Advantage2 system is greater than all samples from IonQ Forte.
+    Every sample from D-Wave's Advantage2 system has a higher AR than all samples from
+    IonQ Forte.
 
 
 Approximation Ratios and Time per Sample
