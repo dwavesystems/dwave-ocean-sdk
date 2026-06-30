@@ -9,19 +9,18 @@ Reference Documentation
     :maxdepth: 1
 
     dimod — |dimod_version| <api_ref_dimod/index>
-    dwavebinarycsp — deprecated <api_ref_binarycsp>
     dwave-cloud-client — |cloud_version| <api_ref_cloud/index>
     dwave-gate — |gate_version| <api_ref_gate/index>
     dwave-graphs — |graphs_version| <api_ref_graphs/index>
     dwave-hybrid — |hybrid_version| <api_ref_hybrid/index>
     dwave-inspector — |inspector_version| <api_ref_inspector/index>
-    dwave-networkx — deprecated <api_ref_dnx/index>
+    dwave-networkx — deprecated <api_ref_dnx>
     dwave-optimization — |optimization_version| <api_ref_optimization/index>
     dwave-preprocessing — |preprocessing_version| <api_ref_preprocessing/index>
     dwave-samplers — |samplers_version| <api_ref_samplers/index>
     dwave-system — |system_version| <api_ref_system/index>
     minorminer — |minorminer_version| <api_ref_minorminer/source/index>
-    penaltymodel — deprecated <api_ref_penaltymodel/index>
+    penaltymodel — deprecated <api_ref_penaltymodel>
 
 .. packages-start-marker
 
@@ -78,18 +77,9 @@ Reference Documentation
 
     :bdg-link-primary:`code <https://github.com/dwavesystems/dwave-inspector>`
 
-.. dropdown:: :ref:`dwave-networkx <index_dnx>` (deprecated): NetworkX extension.
+.. dropdown:: :ref:`dwave-networkx <index_graphs>` (deprecated): NetworkX extension.
 
-    Extension of :std:doc:`NetworkX <networkx:index>`---a Python language
-    package for exploration and analysis of networks and network
-    algorithms---for users of |dwave_short| quantum computers.
-
-    This package provides tools for working with :term:`Pegasus` and
-    :term:`Zephyr` graphs and implementations of graph-theory algorithms on
-    |dwave_short| quantum computers and other binary quadratic model
-    (:term:`BQM`) :term:`samplers <sampler>`.
-
-    :bdg-link-primary:`code <https://github.com/dwavesystems/dwave-networkx>`
+    See the :ref:`dwave-graphs <index_graphs>` documentation for details.
 
 .. dropdown:: :ref:`dwave-ocean-sdk <ocean_source_code>` (|version|): Ocean
     software development kit.
@@ -168,12 +158,9 @@ Reference Documentation
 .. dropdown:: :ref:`penaltymodel <index_penaltymodel>` (deprecated): Maps
     constraints to binary quadratic models.
 
-    An approach to solve a constraint satisfaction problem (:term:`CSP`) using
-    an :term:`Ising` model or a :term:`QUBO`, is to map each individual
-    constraint in the CSP to a "small" Ising model or QUBO.
-
-    Includes a local cache for penalty models and a factory that generates
-    penalty models using SMT solvers.
+    For solving problems with constraints, we recommend using the hybrid solvers
+    in the Leap service. You can find documentation for the hybrid solvers at
+    :ref:`opt_index_hybrid`.
 
     :bdg-link-primary:`code <https://github.com/dwavesystems/penaltymodel>`
 
