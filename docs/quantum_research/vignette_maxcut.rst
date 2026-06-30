@@ -155,6 +155,7 @@ D-Wave's Advantage2 system demonstrates a speedup of 7 to 10 orders of magnitude
     :alt: maxcut-tts
 
     D-Wave's Advantage2 system demonstrates a speedup of 7 to 10 orders of magnitude over IonQ Forte.
+    Also shown is the result of the random samples as described in the next section.
 
 
 Sample Distribution
