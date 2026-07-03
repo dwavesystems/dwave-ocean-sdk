@@ -8,7 +8,7 @@ An IonQ paper, “Measuring what matters: A scalable framework for
 application-level quantum benchmarking” [Abo2026]_, uses linear-ramp quantum
 approximate optimization algorithm (LR-QAOA), a variational quantum algorithm,
 to solve `maximum-cut <https://en.wikipedia.org/wiki/Maximum_cut>`_ problems on
-regular and fully-connected graphs on IonQ Forte. This vignette compares the
+regular and fully-connected graphs on IonQ Forte-1. This vignette compares the
 results to those from quantum annealing on D-Wave's Advantage2 system.
 
 Problem Instances
@@ -35,7 +35,9 @@ Methodology
 
 Since the problem graphs are relatively small compared to the size of the Advantage2 QPU,
 the graphs can be embedded multiple times into a single QPU and sampled from simultaneously.
-The best solution from each read is taken to compute the approximation ratio (AR) of that sample.
+Therefore each read from the QPU is comprised of a number of samples equal to the number of
+embeddings. The best solution from each read is taken to compute the approximation ratio
+(AR) of that sample.
 Ocean software's :ref:`index_minorminer` is used to find parallel minor
 embeddings of the problem graphs onto the Advantage2 QPU's
 :ref:`Zephyr <topology_intro_zephyr>` topology. The number of embeddings found
@@ -125,10 +127,10 @@ Time-to-Solution
 ----------------
 
 The computation of time per sample used for the results below follows the conventions
-from the paper. In the `Benchmarking Verification Report <https://cdn.prod.website-files.com/68836d4838193cb461ebc7d2/69dd6ffef477113de9cb64a0_IonQ_Benchmarking_TTS_Verification_Report.pdf>`_,
-the time per shot is computed by taking the total runtime, subtracting some unspecified
+from [Abo2026]_ and the `Benchmarking Verification Report <https://cdn.prod.website-files.com/68836d4838193cb461ebc7d2/69dd6ffef477113de9cb64a0_IonQ_Benchmarking_TTS_Verification_Report.pdf>`_.
+Therefore, the time per shot is computed by taking the total runtime, subtracting some unspecified
 overhead time and dividing by the number of shots, which is 5,000. This gives a time per shot of
-0.89 seconds for IonQ Forte. Since it is unclear how much overhead was removed, the time per
+0.89 seconds for IonQ Forte-1. Since it is unclear how much overhead was removed, the time per
 sample for D-Wave's Advantage2 system is taken to be the annealing time plus the readout time.
 For max cut on the 4-regular graph with 36 nodes and 20 :math:`\mu s` annealing time, the time
 per sample is 23.7 nanoseconds for the Advantage2 QPU.
@@ -147,14 +149,14 @@ values of AR_min in the plot, this results in a TTS equal to the time per sample
 nanoseconds.
 
 The time-to-solution results are displayed in :numref:`Figure %s <vignetteMaxCutTTS>`.
-D-Wave's Advantage2 system demonstrates a speedup of 7 to 10 orders of magnitude over IonQ Forte.
+D-Wave's Advantage2 system demonstrates a speedup of 7 to 10 orders of magnitude over IonQ Forte-1.
 
 .. figure:: ../_images/vignette_maxcut_tts.svg
     :name: vignetteMaxCutTTS
     :width: 80%
     :alt: maxcut-tts
 
-    D-Wave's Advantage2 system demonstrates a speedup of 7 to 10 orders of magnitude over IonQ Forte.
+    D-Wave's Advantage2 system demonstrates a speedup of 7 to 10 orders of magnitude over IonQ Forte-1.
     Also shown is the result of the random samples as described in the next section.
 
 
@@ -162,8 +164,8 @@ Sample Distribution
 -------------------
 
 In the `Benchmarking Verification Report <https://cdn.prod.website-files.com/68836d4838193cb461ebc7d2/69dd6ffef477113de9cb64a0_IonQ_Benchmarking_TTS_Verification_Report.pdf>`_,
-the estimated time per shot for IonQ Forte is 0.89 s. For the max cut problem on the 4-regular
-graph with 36 nodes, the percentage of samples above 90% AR is approximately 10% for IonQ Forte.
+the estimated time per shot for IonQ Forte-1 is 0.89 s. For the max cut problem on the 4-regular
+graph with 36 nodes, the percentage of samples above 90% AR is approximately 10% for IonQ Forte-1.
 For the Advantage2 QPU with 20 :math:`\mu s` annealing time and 23.7 nanoseconds per sample, the
 percentage of samples above 90% AR is 100%. In fact, when taking the best solution found for
 each sample of the parallel embeddings of the problem in the QPU, all have an AR of 100%,
@@ -178,7 +180,7 @@ across all embeddings from D-Wave's Advantage2 system.
     :alt: maxcut-histogram
 
     Every sample from D-Wave's Advantage2 system has a higher AR than all samples from
-    IonQ Forte.
+    IonQ Forte-1.
 
 
 Approximation Ratios and Time per Sample
@@ -202,7 +204,7 @@ annealing time.
 
 The results show that quantum annealing on D-Wave's Advantage2 system finds a better mean
 approximation ratio for all problems and with much shorter sample times compared to LR-QAOA
-on IonQ's Forte and Aria systems. All but one of the mean AR values for D-Wave's Advantage2
+on IonQ's Forte-1 and Aria-1 systems. All but one of the mean AR values for D-Wave's Advantage2
 system are 1, corresponding to the optimal solution.
 
 .. table:: Approximation Ratios and Time per Sample
