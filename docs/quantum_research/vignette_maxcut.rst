@@ -104,7 +104,7 @@ sampling from the QPU, and returning the :class:`~dimod.SampleSet`.
             parallel_embeddings.append(embedding)
             qpu_graph.remove_nodes_from([node for val in embedding.values() for node in val])
         else:
-           keep_embedding = False
+            keep_embedding = False
 
     # create sampler with parallel embeddings and scale composite
     embedded_sampler = ParallelEmbeddingComposite(ScaleComposite(qpu_sampler), embeddings=parallel_embeddings)
@@ -133,7 +133,7 @@ overhead time and dividing by the number of shots, which is 5,000. This gives a 
 0.89 seconds for IonQ Forte-1. Since it is unclear how much overhead was removed, the time per
 sample for D-Wave's Advantage2 system is taken to be the annealing time plus the readout time.
 For max cut on the 4-regular graph with 36 nodes and 20 :math:`\mu s` annealing time, the time
-per sample is 23.7 nanoseconds for the Advantage2 QPU.
+per sample is 118 :math:`\mu s` for the Advantage2 QPU.
 
 The approximation ratio (AR) of a solution is the energy of that solution divided by the
 energy of the optimal solution. Let :math:`p_s` be the proportion of samples whose
@@ -145,18 +145,18 @@ Note that in the proposed TTS formula, a probability of success above 99% result
 :math:`N_{shots} < 1`, but a fraction of a shot is not possible. Therefore, the integer
 ceiling function is used to ensure shots are integers: :math:`N_{shots} = \lceil \ln(0.01)/\ln(1-p_s) \rceil`.
 Since more than 99% of the samples from D-Wave's Advantage2 system are at or above all
-values of AR_min in the plot, this results in a TTS equal to the time per sample, 23.7
-nanoseconds.
+values of AR_min in the plot, this results in a TTS equal to the time per sample, 118
+:math:`\mu s`.
 
 The time-to-solution results are displayed in :numref:`Figure %s <vignetteMaxCutTTS>`.
-D-Wave's Advantage2 system demonstrates a speedup of 7 to 10 orders of magnitude over IonQ Forte-1.
+D-Wave's Advantage2 system demonstrates a speedup of up to 7 orders of magnitude over IonQ Forte-1.
 
 .. figure:: ../_images/vignette_maxcut_tts.svg
     :name: vignetteMaxCutTTS
     :width: 80%
     :alt: maxcut-tts
 
-    D-Wave's Advantage2 system demonstrates a speedup of 7 to 10 orders of magnitude over IonQ Forte-1.
+    D-Wave's Advantage2 system demonstrates a speedup of up to 7 orders of magnitude over IonQ Forte-1.
     Also shown is the result of the random samples as described in the next section.
 
 
@@ -166,7 +166,7 @@ Sample Distribution
 In the `Benchmarking Verification Report <https://cdn.prod.website-files.com/68836d4838193cb461ebc7d2/69dd6ffef477113de9cb64a0_IonQ_Benchmarking_TTS_Verification_Report.pdf>`_,
 the estimated time per shot for IonQ Forte-1 is 0.89 s. For the max cut problem on the 4-regular
 graph with 36 nodes, the percentage of samples above 90% AR is approximately 10% for IonQ Forte-1.
-For the Advantage2 QPU with 20 :math:`\mu s` annealing time and 23.7 nanoseconds per sample, the
+For the Advantage2 QPU with 20 :math:`\mu s` annealing time and 118 :math:`\mu s` per sample, the
 percentage of samples above 90% AR is 100%. In fact, when taking the best solution found for
 each sample of the parallel embeddings of the problem in the QPU, all have an AR of 100%,
 corresponding to the optimal solution.
@@ -213,17 +213,17 @@ system are 1, corresponding to the optimal solution.
    +------------------+--------------------------+---------------------------+----------------------------------+-------------------------------+---------------------------------------+
    | Problem Instance | IonQ Aria-1 AR (AR_eff)* | IonQ Forte-1 AR (AR_eff)  | IonQ Forte-1 Time per Sample (s) | D-Wave Advantage2 AR (AR_eff) | D-Wave Advantage2 Time per Sample (s) |
    +==================+==========================+===========================+==================================+===============================+=======================================+
-   | 3-reg, n=24      | --                       | 0.8390 (0.6123)           | --                               | 1.0 (1.0)                     | 2.36e-08                              |
+   | 3-reg, n=24      | --                       | 0.8390 (0.6123)           | --                               | 1.0 (1.0)                     | 1.18e-04                              |
    +------------------+--------------------------+---------------------------+----------------------------------+-------------------------------+---------------------------------------+
-   | 3-reg, n=36      | --                       | 0.7841 (0.5280)           | --                               | 1.0 (1.0)                     | 2.37e-08                              |
+   | 3-reg, n=36      | --                       | 0.7841 (0.5280)           | --                               | 1.0 (1.0)                     | 1.18e-04                             |
    +------------------+--------------------------+---------------------------+----------------------------------+-------------------------------+---------------------------------------+
-   | 4-reg, n=24      | --                       | 0.8668 (0.6365)           | --                               | 1.0 (1.0)                     | 2.38e-08                              |
+   | 4-reg, n=24      | --                       | 0.8668 (0.6365)           | --                               | 1.0 (1.0)                     | 1.18e-04                              |
    +------------------+--------------------------+---------------------------+----------------------------------+-------------------------------+---------------------------------------+
-   | 4-reg, n=36      | --                       | 0.8009 (0.5197)           | 0.89                             | 1.0 (1.0)                     | 2.37e-08                              |
+   | 4-reg, n=36      | --                       | 0.8009 (0.5197)           | 0.89                             | 1.0 (1.0)                     | 1.18e-04                              |
    +------------------+--------------------------+---------------------------+----------------------------------+-------------------------------+---------------------------------------+
-   | FCW, n=12        | 0.8711 (0.3728)          | 0.8669 (0.3821)           | --                               | 1.0 (1.0)                     | 2.44e-08                              |
+   | FCW, n=12        | 0.8711 (0.3728)          | 0.8669 (0.3821)           | --                               | 1.0 (1.0)                     | 1.22e-04                              |
    +------------------+--------------------------+---------------------------+----------------------------------+-------------------------------+---------------------------------------+
-   | FCW, n=16        | --                       | 0.8459 (0.2504)           | --                               | 0.995 (0.9757)                | 2.33e-08                              |
+   | FCW, n=16        | --                       | 0.8459 (0.2504)           | --                               | 0.995 (0.9757)                | 1.15e-04                              |
    +------------------+--------------------------+---------------------------+----------------------------------+-------------------------------+---------------------------------------+
 
 
