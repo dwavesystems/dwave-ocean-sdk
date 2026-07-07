@@ -799,35 +799,35 @@ You may find the following field descriptions helpful.
                 space-, new line-, or comma-delimited list (for example, a
                 CSV file).
 
-        **Note:** If the desired email address is not allowed as specified
-        (individually or by pattern) in the **Allowed Email Settings**
-        section on the **Overview** page, contact |support_email|_.
+            **Note:** If the desired email address is not allowed as specified
+            (individually or by pattern) in the **Allowed Email Settings**
+            section on the **Overview** page, contact |support_email|_.
 
-*   -   **Role**
-    -   One of the project member :ref:`roles <admin_user_roles>` to assign
-        to a person: **User**, **Project Admin**, or **Organization Admin**.
-        Only an organization administrator can assign the
-        **Organization Admin** role.
+    *   -   **Role**
+        -   One of the project member :ref:`roles <admin_user_roles>` to assign
+            to a person: **User**, **Project Admin**, or **Organization Admin**.
+            Only an organization administrator can assign the
+            **Organization Admin** role.
 
-        Once people occupy seats in a project, they have the privileges
-        associated with their role as described in :ref:`admin_user_roles`;
-        for example, access to the project's solvers.
+            Once people occupy seats in a project, they have the privileges
+            associated with their role as described in :ref:`admin_user_roles`;
+            for example, access to the project's solvers.
 
-*   -   **Set Solver Access to Unlimited** (time-based projects only)
-    -   Maximum amount of solver-access time available per month for the
-        specified invitees. You set this maximum with one of the
-        following options:
+    *   -   **Set Solver Access to Unlimited** (time-based projects only)
+        -   Maximum amount of solver-access time available per month for the
+            specified invitees. You set this maximum with one of the
+            following options:
 
-        *   *Deselected*
+            *   *Deselected*
 
-            (Default) This field is set to the amount of solver-access
-            time in the **Project Member Default Solver Access Limit**
-            field.
+                (Default) This field is set to the amount of solver-access
+                time in the **Project Member Default Solver Access Limit**
+                field.
 
-        *   *Selected*
+            *   *Selected*
 
-        Sets the maximum amount of solver-access time to the same as
-        that of the project's **Default Solver Access Limit** field.
+            Sets the maximum amount of solver-access time to the same as
+            that of the project's **Default Solver Access Limit** field.
 
 .. _admin_member_status_viewing:
 
