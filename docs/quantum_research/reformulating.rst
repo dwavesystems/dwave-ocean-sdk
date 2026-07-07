@@ -1283,7 +1283,7 @@ a variable.
 ['BINARY', 4 rows, 4 samples, 8 variables]
 
 .. graphic code
-    >>> draw_chimera(G, with_labels=True,
+    >>> dwave.graphs.draw_chimera(G, with_labels=True,
         node_color=['r', 'y', 'y', 'y', 'y', 'r', 'r', 'r'],
         node_size=[500, 500, 500, 500, 500, 500, 500, 500])
 
@@ -1420,7 +1420,7 @@ penalty for breaking these (hard) constraints is a bit higher than flipping a
 variable.
 
 >>> import dimod
->>> from dwave.graphs.topologies import chimera_graph
+>>> from dwave.graphs import chimera_graph
 ...
 >>> # Create a BQM for the MIS
 >>> G = chimera_graph(1, 1, 4)

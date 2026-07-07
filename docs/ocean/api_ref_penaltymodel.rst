@@ -11,6 +11,6 @@ For solving problems with constraints, we recommend using the hybrid solvers in
 the Leap service. You can find documentation for the hybrid solvers at
 :ref:`opt_index_hybrid`.
 
-The ``penaltymodel`` package is
+The ``penaltymodel`` source code is
 `here <https://github.com/dwavesystems/penaltymodel>`_. It is no longer
 maintained.
