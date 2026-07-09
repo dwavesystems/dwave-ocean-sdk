@@ -4,6 +4,12 @@
 Bibliography
 ============
 
+.. [Abo2026]
+    Willie Aboumrad et al.
+    "Measuring what matters: A scalable framework for application-
+    level quantum benchmarking."
+    *arXiv*. 13 Apr 2026. https://arxiv.org/abs/2604.11781
+
 .. [Ack1985]
     Ackley, David H and Hinton, Geoffrey E and Sejnowski, Terrence J.
     "A learning algorithm for boltzmann machines."
