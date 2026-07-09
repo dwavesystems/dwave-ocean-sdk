@@ -31,7 +31,10 @@
     :class: admin-icon
 
 .. |region_icon| image:: ../_images/leap_admin_prob_stat_region.svg
-    :class: admin-icon    
+    :class: admin-icon
+
+.. |cancel_prob_icon| image:: ../_images/cancel_prob_icon.svg
+    :class: admin-icon
 
 .. |global_search| image:: ../_images/leap_admin_global_search.png
     :alt: Global search

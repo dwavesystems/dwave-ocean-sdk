@@ -41,7 +41,7 @@ Searching Globally
 
 Via the Global Search field as shown in :numref:`Figure %s <AdminGlobalSearch>`,
 you can search for projects and members across all projects in the current
-organization. The text matches any part of a project, or member name (including
+organization. The text matches any part of a project or member name (including
 an email address).
 
 .. figure:: ../_images/leap_admin_global_search.png
@@ -55,10 +55,10 @@ an email address).
 
     *   Searching is case-insensitive.
 
-    *   For project names, the Latin-1 character set and the Ä, ä, Ö, ö, ẞ, Ü, ü
-        characters are supported; however, diacritical marks are ignored.
+    *   The Latin-1 character set is supported.
 
-    *   For member names, only the Latin-1 character set is supported.
+    *   For project names, the Ä, ä, Ö, ö, ẞ, Ü, ü characters are also supported;
+        however, diacritical marks are ignored.
 
     *   The maximum number of characters is 254.
 
@@ -249,8 +249,7 @@ The goal of this topic is to invite people to a
 :ref:`seat-based project <admin_project_seat_time>`.
 
 To log in to Leap Admin, you must have received an email to join a project as a
-project administrator. A project administrator for a project is a member who has
-the *Project Admin* role in that project. If you did not receive an email
+project or organization administrator. If you did not receive an email
 invitation as expected, contact your organization administrator or
 |support_email|_.
 
@@ -282,11 +281,6 @@ Logging in to Leap Admin
         :width: 25 %
 
         Leap Admin: Login Menu
-
-.. note::
-    If you are a project administrator for multiple projects,
-    select **Profile Avatar** |profile_avatar_icon| > **Leap Admin** >
-    *project_name*.
 
 .. _admin_project_inviting_users_join:
 
@@ -329,9 +323,9 @@ institution in the Leap service. An organization contains one or more projects.
 
     *   To create an organization, contact |support_email|_.
 
-When you open an organization, the organization page is displayed as shown in
-:numref:`Figure %s <AdminOrgPage>`, where tabs organize tasks into logical groups.
-If you have more than one organization, you can select one via a dropdown list.
+An organization's page is displayed as shown in :numref:`Figure %s <AdminOrgPage>`,
+where tabs organize tasks into logical groups. If you have more than one
+organization, you can select one via a dropdown list.
 
 .. figure:: ../_images/leap_admin_org.png
     :name: AdminOrgPage
@@ -413,9 +407,8 @@ members' limits on solver-access time, and
     To create a project or change a project's allowed email list, contact
     |support_email|_.
 
-When you open a project, the project page is displayed as shown in
-:numref:`Figure %s <AdminProjectPage>`, where tabs organize tasks into logical
-groups.
+A project's page is displayed as shown in :numref:`Figure %s <AdminProjectPage>`,
+where tabs organize tasks into logical groups.
 
 .. figure:: ../_images/leap_admin_project_admin_project_page.png
     :name: AdminProjectPage
@@ -710,7 +703,7 @@ Changing the Solver-Access Time Limit for Time-based Projects
 .. note:: This feature applies to time-based projects only.
 
 By default, any one project member can use up all of a project's monthly
-solver-access time. If you want to change this default or set a different limit
+solver-access time.\ [#]_ If you want to change this default or set a different limit
 for an individual member, do the following:
 
 #.  Edit the project page and deselect the **Set Default Solver Access to Unlimited** 
@@ -1063,17 +1056,17 @@ When members are removed, their statuses change to `Inactive` for the project
 and they can no longer use the solvers in the project. However, their usage
 statistics are preserved for historical purposes.
 
-If you remove a member with the Org Admin role from that member's last project,
-then the Org Admin role is also removed from the member.
+If you remove a member with the Organization Admin role from that member's last
+project, then the Organization Admin role is also removed from the member.
 
 If you want a person to rejoin a project or return as an organization
 administrator, send an invitation as described in
 :ref:`admin_inviting_users_join`.
 
 If you are the only organization administrator in an organization and you remove
-yourself from your last project, your *Org Admin* role is removed and you will
-not be able to access the organization in Leap Admin. To reinstate access,
-contact |support_email|_.
+yourself from your last project, your *Organization Admin* role is removed and
+you will not be able to access the organization in Leap Admin. To reinstate
+access, contact |support_email|_.
 
 .. _admin_problem_status:
 
@@ -1180,7 +1173,7 @@ Cancelling Problem Submissions
 ------------------------------
 
 To cancel pending or in-progress problems, select the problems and click the
-**Cancel Problems** **X**.
+**Cancel Problems** |cancel_prob_icon|.
 
 Cancelled problems do not use any solver-access time.
 
