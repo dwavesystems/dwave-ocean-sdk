@@ -867,12 +867,8 @@ and available through the Ocean SDK.
         -   First solver release
 
     *   -   **Advantage2_research2**
-        -
-        -
-
-    *   -   Advantage2_research2
-        -   2026-07-10
-        -   708
+        -   
+        -   Graph changes are identical to those for **Advantage2_system4**.
 
     *   -   Advantage2_research2
         -   2026-06-24
