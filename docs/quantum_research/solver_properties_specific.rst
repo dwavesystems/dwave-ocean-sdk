@@ -80,10 +80,10 @@ This table lists the physical properties of the calibrated QPU.
         - :math:`\text{Z6}`
 
     *   - Number of :ref:`qubits <property_qpu_qubits>`
-        - :math:`1203`
+        - :math:`1202`
 
     *   - Number of :ref:`couplers <property_qpu_couplers>`
-        - :math:`10553`
+        - :math:`10537`
 
     *   - :ref:`Qubit temperature <qpu_errors_temperature>`
         - :math:`18 \pm 1.0\ \text{mK}`
@@ -768,6 +768,10 @@ and available through the Ocean SDK.
         -
 
     *   -   Advantage2_system4
+        -   :ref:`2026-07-10 <adv2_4_78>`
+        -   78
+
+    *   -   Advantage2_system4
         -   :ref:`2026-05-27 <rename_solver>`
         -   Name change
 
@@ -868,7 +872,8 @@ and available through the Ocean SDK.
 
     *   -   Advantage2_research2
         -   2026-06-24
-        -   First solver release
+        -   First solver release (As of this date, graph changes are identical
+            to those for **Advantage2_system4**.)
 
     *   -   **Advantage2_research1**
         -
