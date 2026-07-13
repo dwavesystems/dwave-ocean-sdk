@@ -10,28 +10,31 @@
 
     The maximum amount of solver-access time that a member or application can
     consume for a monthly renewal period. This maximum cannot be greater than
-    the project's total amount of solver-access time, which is unlimited for
-    most seat-based projects.
+    the project's total amount of solver-access time.
 
-.. |filter_single| image:: ../_images/leap_admin_filter_single.png
-    :alt: Single filter
-    :scale: 66 %
+.. |meatball_menu| image:: ../_images/leap_kebab_menu.svg
+    :class: admin-icon
 
-.. |filter_combo| image:: ../_images/leap_admin_filter_combo.png
-    :alt: Multiple filters
-    :scale: 75 %
+.. |multiselect_menu| image:: ../_images/leap_multiselect_menu.svg
+    :class: admin-icon
 
-.. |sort_col| image:: ../_images/leap_admin_sort_col.png
-    :alt: Sort column
+.. |copy_icon| image:: ../_images/leap_admin_copy_icon.svg
+    :class: admin-icon
 
-.. |filter_col| image:: ../_images/leap_admin_filter_col.png
-    :alt: Filter column
+.. |plus_icon| image:: ../_images/leap_admin_plus_invite_user.svg
+    :class: admin-icon
 
-.. |gear_col| image:: ../_images/leap_admin_gear_col.png
-    :alt: Single-selection gear icon
+.. |profile_avatar_icon| image:: ../_images/leap_profile_avatar.svg
+    :class: admin-icon
 
-.. |meatball_menu| image:: ../_images/admin_meatball_menu.png
-    :scale: 50 %
+.. |refresh_icon| image:: ../_images/leap_admin_refresh.svg
+    :class: admin-icon
+
+.. |region_icon| image:: ../_images/leap_admin_prob_stat_region.svg
+    :class: admin-icon
+
+.. |cancel_prob_icon| image:: ../_images/cancel_prob_icon.svg
+    :class: admin-icon
 
 .. |global_search| image:: ../_images/leap_admin_global_search.png
     :alt: Global search

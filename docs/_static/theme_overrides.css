@@ -427,3 +427,10 @@ details.sd-dropdown[open]>.sd-card-header {
     border-width: 0 0 1px 0;
     border-bottom-color: var(--dwave-color-dark-gray-40);
 }
+
+/* Icons in Leap Admin */
+img.admin-icon {
+    height: 1em;
+    width: 1em;
+    vertical-align: -0.125em;
+}
