@@ -18,10 +18,10 @@ For release notes for the |cloud| quantum cloud service, see the
 *   `dwave-graphs <https://github.com/dwavesystems/dwave-graphs/releases>`_
 *   `dwave-hybrid <https://github.com/dwavesystems/dwave-hybrid/releases>`_
 *   `dwave-inspector <https://github.com/dwavesystems/dwave-inspector/releases>`_
-*   `dwave-networkx <https://github.com/dwavesystems/dwave-networkx/releases>`_
+*   `dwave-networkx (deprecated) <https://github.com/dwavesystems/dwave-graphs/releases>`_
 *   `dwave-optimization <https://github.com/dwavesystems/dwave-optimization/releases>`_
 *   `dwave-preprocessing <https://github.com/dwavesystems/dwave-preprocessing/releases>`_
 *   `dwave-samplers <https://github.com/dwavesystems/dwave-samplers/releases>`_
 *   `dwave-system <https://github.com/dwavesystems/dwave-system/releases>`_
 *   `minorminer <https://github.com/dwavesystems/minorminer/releases>`_
-*   `penaltymodel <https://github.com/dwavesystems/penaltymodel/releases>`_
+*   `penaltymodel (deprecated) <https://github.com/dwavesystems/penaltymodel/releases>`_
