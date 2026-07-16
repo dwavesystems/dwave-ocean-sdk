@@ -358,33 +358,34 @@ You may find the following field descriptions helpful:
 *   **Status**: Status of the project. For a description of project
     statuses, see the :ref:`admin_proj_status_viewing` section.
 
-.. _admin_managing_organizations_status_viewing:
+..
+    .. _admin_managing_organizations_status_viewing:
 
-Viewing Organization Status
----------------------------
+    Viewing Organization Status
+    ---------------------------
 
-An organization's status is the state of the organization in the organization
-life cycle and is displayed next to the organization name on the organization's
-page. The life-cycle states are the following:
+    An organization's status is the state of the organization in the organization
+    life cycle and is displayed next to the organization name on the organization's
+    page. The life-cycle states are the following:
 
-.. tabularcolumns:: |l|L|
+    .. tabularcolumns:: |l|L|
 
-.. list-table:: Organization Status
-    :widths: 1 3
+    .. list-table:: Organization Status
+        :widths: 1 3
 
-    *   -   **New**
-        -   The organization has been created, but none of its projects have
-            started as determined by the earliest start date of any project's
-            solver-access time allocation.
+        *   -   **New**
+            -   The organization has been created, but none of its projects have
+                started as determined by the earliest start date of any project's
+                solver-access time allocation.
 
-    *   -   **Active**
-        -   At least one of the organization's projects has started as
-            determined by the earliest start date of any project's solver-access
-            time allocation.
+        *   -   **Active**
+            -   At least one of the organization's projects has started as
+                determined by the earliest start date of any project's solver-access
+                time allocation.
 
-    *   -   **Expired**
-        -   The end date of all solver-access time allocations in all the
-            organization's projects has been reached.
+        *   -   **Expired**
+            -   The end date of all solver-access time allocations in all the
+                organization's projects has been reached.
 
 .. _admin_managing_projects:
 
