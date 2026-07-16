@@ -358,7 +358,7 @@ You may find the following field descriptions helpful:
 *   **Status**: Status of the project. For a description of project
     statuses, see the :ref:`admin_proj_status_viewing` section.
 
-.. Commented out in case we make this feature available
+..
     .. _admin_managing_organizations_status_viewing:
 
     Viewing Organization Status
