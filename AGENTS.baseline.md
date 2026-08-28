@@ -27,6 +27,11 @@ fetches this file on demand (see the per-package template).
 ## Python Defaults
 
 - Use `pip` and `python -m venv` for dependency and environment commands.
+- Support all Python versions the package declares: check `requires-python`
+  in `pyproject.toml` (or `python_requires` in setup.py/setup.cfg — packages
+  vary) before writing code, and target the minimum version. Don't use
+  syntax or stdlib features newer than the floor (e.g. `match`, `X | Y`
+  unions, `tomllib`) unless the floor allows them.
 - Use `logging` instead of `print()` in library code.
 - Add type hints to public functions, including return types.
 - Never silently swallow exceptions: catch only exceptions you can
@@ -42,8 +47,8 @@ fetches this file on demand (see the per-package template).
 - Avoid speculative abstractions for single-use code.
 - Keep functions focused; prefer splitting once a function does more than
   one thing (rough guide: ~50 lines).
-- After edits, run the package's lint command (see its `## Commands`) and
-  fix what it reports.
+- After edits, run the package's lint command (see its `## Commands`), if there
+  is one, and fix what it reports.
 
 ## Commits and Pull Requests
 
@@ -58,3 +63,7 @@ fetches this file on demand (see the per-package template).
 - Be concise.
 - Call out trade-offs when multiple reasonable approaches exist.
 - Push back if a safer or smaller approach would meet the goal.
+- When you notice but deliberately don't fix something (adjacent bugs,
+  refactoring opportunities, related cleanup), say so briefly and why.
+  Don't fix it silently, and don't omit it silently. Skip this when
+  there's nothing to report.
