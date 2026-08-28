@@ -20,7 +20,8 @@ If you correct an agent twice about the same package fact, add it here.
 ## Commands
 
 <!-- Exact, copy-pasteable. Replace the examples with this package's real
-     invocations. This is the highest-value section in the file. -->
+     invocations, or remove if not used. This is the highest-value section in
+     the file. -->
 
 - Setup: `python -m venv .venv && pip install -r requirements.txt -r tests/requirements.txt`
 - Build extensions (if Cython/C++): `python setup.py build_ext --inplace`
