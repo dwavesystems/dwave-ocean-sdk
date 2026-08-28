@@ -53,7 +53,4 @@ If you correct an agent twice about the same package fact, add it here.
 ## Ocean Baseline
 
 For the full shared working-style and code-quality baseline, fetch:
-https://raw.githubusercontent.com/dwavesystems/dwave-ocean-sdk/refs/heads/master/AGENTS.baseline.md
-
-When preparing a commit or PR, also fetch and follow the contributing guide:
-https://raw.githubusercontent.com/dwavesystems/dwave-ocean-sdk/refs/heads/master/CONTRIBUTING.rst
+https://raw.githubusercontent.com/dwavesystems/dwave-ocean-sdk/refs/heads/master/.agents/AGENTS.baseline.md

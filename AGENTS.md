@@ -27,6 +27,4 @@ facilitate the docs build.
 
 ## Ocean Baseline
 
-@AGENTS.baseline.md
-
-@CONTRIBUTING.rst
+Follow the Ocean-wide baseline: @.agents/AGENTS.baseline.md
