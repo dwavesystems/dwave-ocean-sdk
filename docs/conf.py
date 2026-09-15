@@ -159,6 +159,12 @@ hss_spot_check = False          # TODO: reenable spot checks with env var
 # e.g. as 3.0 rather than np.float64(3.0).
 import numpy
 numpy.set_printoptions(legacy='1.25')
+
+# The doctest examples assume ``print_qcdl`` returns the QCDL string, which it
+# only does when IPython is not importable; pin that behavior so doctests pass
+# regardless of whether IPython is installed in the build environment.
+import dwave.gate.utils.display
+dwave.gate.utils.display.HAVE_IPYTHON = False
 """
 
 # reduce output noise
