@@ -159,6 +159,12 @@ hss_spot_check = False          # TODO: reenable spot checks with env var
 # e.g. as 3.0 rather than np.float64(3.0).
 import numpy
 numpy.set_printoptions(legacy='1.25')
+
+# The doctest examples assume ``print_qcdl`` returns the QCDL string, which it
+# only does when IPython is not importable; pin that behavior so doctests pass
+# regardless of whether IPython is installed in the build environment.
+import dwave.gate.utils.display
+dwave.gate.utils.display.HAVE_IPYTHON = False
 """
 
 # reduce output noise
@@ -348,7 +354,8 @@ github_map = {'cloud': 'dwave-cloud-client',
               'tabu': 'dwave-tabu'}
 
 reqs = map(Requirement, Distribution.from_name('dwave-ocean-sdk').requires)
-pkgs = [Distribution.from_name(req.name) for req in reqs]
+# note: we exclude extras and packages with environmental markers
+pkgs = [Distribution.from_name(req.name) for req in reqs if req.marker is None]
 versions = {pkg.name: pkg.version for pkg in pkgs}
 
 def linkcode_resolve(domain, info):
