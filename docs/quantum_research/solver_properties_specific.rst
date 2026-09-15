@@ -707,7 +707,7 @@ and available through the Ocean SDK.
 
     *   -   Advantage2_system1
         -   :ref:`2026-09-15 <adv2_1_1889>`
-        -   1889, 2951
+        -   1889, 2951; couplers 2223--3107 and 4656--4668 removed
 
     *   -   Advantage2_system1
         -   :ref:`2026-08-10 <adv2_1_coup>`
