@@ -49,6 +49,13 @@ quantum processing units (QPU) directly.
 
         Compare performance of D-Wave's quantum computers versus competing solvers.
 
+    .. grid-item-card:: :ref:`index_gate`
+        :img-top: /_images/gate_model_icon.svg
+        :link: index_gate
+        :link-type: ref
+
+        Gate-model quantum computing.
+
 The :ref:`index_industrial_optimization` section shows how to optimize business
 problems using the |cloud_tm| service's quantum-classical :term:`hybrid`
 solvers.

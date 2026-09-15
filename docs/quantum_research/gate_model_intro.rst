@@ -10,9 +10,8 @@ algorithms with
 to the use of `Boolean gates <https://en.wikipedia.org/wiki/Logic_gate>`_ in
 classical computers.
 
-:ref:`Ocean software <index_ocean_sdk>` provides the
-:ref:`dwave-gate <index_gate>` package for constructing, modifying and running
-quantum circuits on a simulator.
+The :ref:`dwave-gate <index_gate>` package lets you construct :term:`QCDL`
+gate-model quantum circuits that can run on a QPU or simulator.
 
 Further Information
 ===================
