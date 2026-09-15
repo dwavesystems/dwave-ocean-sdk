@@ -348,7 +348,8 @@ github_map = {'cloud': 'dwave-cloud-client',
               'tabu': 'dwave-tabu'}
 
 reqs = map(Requirement, Distribution.from_name('dwave-ocean-sdk').requires)
-pkgs = [Distribution.from_name(req.name) for req in reqs]
+# note: we exclude extras and packages with environmental markers
+pkgs = [Distribution.from_name(req.name) for req in reqs if req.marker is None]
 versions = {pkg.name: pkg.version for pkg in pkgs}
 
 def linkcode_resolve(domain, info):
