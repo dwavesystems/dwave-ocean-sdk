@@ -707,7 +707,7 @@ and available through the Ocean SDK.
 
     *   -   Advantage2_system1
         -   :ref:`2026-09-15 <adv2_1_1889>`
-        -   1889, 2951; removed couplers in addition to those connected to these
+        -   1889, 2951; removed two couplers as well as those connected to these
             qubits
 
     *   -   Advantage2_system1
