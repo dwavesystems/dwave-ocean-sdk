@@ -1,8 +1,8 @@
 .. _qpu_index_solver_properties:
 
-=====================
-QPU Solver Properties
-=====================
+========================
+Annealing QPU Properties
+========================
 
 .. toctree::
     :hidden:
@@ -24,11 +24,11 @@ of an individual :term:`QPU` are recorded in the
         :link: qpu_solver_properties_all
         :link-type: ref
 
-        Properties that characterize behaviors and features of all QPU solvers.
+        Properties that characterize behaviors and features of all annealing QPUs.
 
     .. grid-item-card:: :ref:`qpu_solver_properties_specific`
         :link: qpu_solver_properties_specific
         :link-type: ref
 
-        Physical properties of particular QPUs.
+        Physical properties of particular annealing QPUs.
 

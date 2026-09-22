@@ -1,7 +1,7 @@
 .. _qpu_index_get_started:
 
 ==================================
-Get Started with Quantum Computing
+Get Started with Quantum Annealing
 ==================================
 
 .. toctree::
@@ -18,8 +18,8 @@ Get Started with Quantum Computing
     basic_config
     index_examples_beginner
 
-Learn to submit problems directly to quantum processing units (:term:`QPU`) in
-the |cloud| quantum cloud service.
+Learn to submit problems directly to annealing quantum processing units
+(:term:`QPU`) in the |cloud| quantum cloud service.
 
 .. grid:: 2 2 3 3
     :gutter: 2

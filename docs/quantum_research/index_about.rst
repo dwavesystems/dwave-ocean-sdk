@@ -1,8 +1,8 @@
 .. _qpu_index_about:
 
-===========================
-QPU Hardware and Properties
-===========================
+==============
+Annealing QPUs
+==============
 
 .. toctree::
     :hidden:
@@ -15,7 +15,7 @@ QPU Hardware and Properties
     errors
     experimental_research
 
-Technical details on the QPU hardware and features.
+Technical details on the annealing QPU hardware and features.
 
 .. grid:: 2 2 3 3
     :gutter: 2
@@ -24,7 +24,7 @@ Technical details on the QPU hardware and features.
         :link: qpu_index_solver_properties
         :link-type: ref
 
-        Properties that characterize behaviors and features of QPU solvers.
+        Properties that characterize behaviors and features of annealing QPU.
 
     .. grid-item-card:: :ref:`qpu_annealing`
         :link: qpu_annealing
@@ -36,25 +36,25 @@ Technical details on the QPU hardware and features.
         :link: qpu_topologies
         :link-type: ref
 
-        Layout of the QPU.
+        Layout of the annealing QPU.
 
     .. grid-item-card:: :ref:`qpu_operation_timing`
         :link: qpu_operation_timing
         :link-type: ref
 
-        Computation process of D-Wave quantum computers.
+        Computation process of D-Wave annealing quantum computers.
 
     .. grid-item-card:: :ref:`qpu_errors`
         :link: qpu_errors
         :link-type: ref
 
-        Errors sources and correction.
+        Errors sources and correction in annealing QPUs.
 
     .. grid-item-card:: :ref:`qpu_experimental_research`
         :link: qpu_experimental_research
         :link-type: ref
 
-        Experimental features for QPU research.
+        Experimental features for annealing QPU research.
 
 Example
 =======
