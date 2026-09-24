@@ -259,7 +259,7 @@ div.sd-card-body.docutils a.reference.internal span.std {
 
 .bd-content .sd-tab-set>label,
 html[data-theme=dark] .bd-content .sd-tab-set>label {
-    color: var(--pst-color-text-muted);
+    color: var(--dwave-color-advantage-orange);
     background-color: var(--pst-color-background);
     border-radius: 0;
 }
@@ -362,7 +362,6 @@ div.sd-card.docutils {
     color: var(--dwave-color-advantage-orange) !important;
     text-decoration: none; /* Optional: removes the underline */
 }
-
 
 /* Dropdown */
 details.sd-dropdown summary.sd-card-header span.sd-summary-icon {
