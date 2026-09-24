@@ -295,7 +295,7 @@ div.sd-tab-set {
         border: 1px solid var(--pst-color-border);
         padding: 0.6rem;
     }
-    
+
     .bd-content .sd-tab-set>input:not(:checked,:focus-visible)+label:hover {
         border-color: unset;
     }
@@ -356,6 +356,13 @@ div.sd-card.docutils {
     background-color: var(--pst-color-background);
     transition: all 0.2s ease-in;
 }
+
+.custom-title-orange span,
+.custom-title-orange span:visited {
+    color: var(--dwave-color-advantage-orange) !important;
+    text-decoration: none; /* Optional: removes the underline */
+}
+
 
 /* Dropdown */
 details.sd-dropdown summary.sd-card-header span.sd-summary-icon {
