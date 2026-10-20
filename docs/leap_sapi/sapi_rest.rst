@@ -1708,7 +1708,7 @@ to get a subset of solver fields.
             Status: ONLINE    Load: 0.0
         hybrid_constrained_quadratic_model_version1
             Status: ONLINE    Load: 0.0
-        hybrid_nonlinear_program_version1
+        stride_hybrid_solver
             Status: ONLINE    Load: 0.0
         Advantage_system4.1
             Status: ONLINE    Load: 0.09
@@ -1917,7 +1917,7 @@ lists the solver names, statuses, and current usage loads.
     >>> r1 = r1.json()
     >>> for i in range(len(r1)):
     ...    print(f"{r1[i]['identity']['name']} \n\tStatus: {r1[i]['status']}    Load: {r1[i]['avg_load']}")  # doctest: +SKIP
-    hybrid_nonlinear_program_version1
+    stride_hybrid_solver 
         Status: ONLINE    Load: 0.0
     hybrid_constrained_quadratic_model_version1
         Status: ONLINE    Load: 0.0

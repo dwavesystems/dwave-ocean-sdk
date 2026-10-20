@@ -169,7 +169,7 @@ resources (solvers) of different types:
 
 *   :ref:`Hybrid solvers <opt_index_properties_parameters>` such as
     `Leap's <https://cloud.dwavesys.com/leap/>`_ service's
-    ``hybrid_nonlinear_program_version<x>`` and
+    ``stride_hybrid_solver`` and
     ``hybrid_binary_quadratic_model_version<x>`` solvers.
 *   :ref:`Classical solvers <qpu_classical_intro>` such as the
     :class:`~dimod.reference.samplers.ExactSolver` class for exact solutions to

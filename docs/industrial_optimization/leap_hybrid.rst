@@ -6,7 +6,7 @@ Using the Stride Solver
 
 This section describes the |cloud|_ service's quantum-classical :term:`hybrid`
 nonlinear :term:`solver <solver>`, also known as the |nlstride_tm| (e.g.,
-``hybrid_nonlinear_program_version1``), and provides usage information.
+``stride_hybrid_solver``), and provides usage information.
 
 .. note::
     Not all accounts have access to this type of solver.
@@ -88,7 +88,7 @@ solver.
 ...     results = sampler.sample(
 ...         model,
 ...         label='SDK Examples - CVRP')
-hybrid_nonlinear_program_version1
+stride_hybrid_solver
 
 Timing & Charges
 ----------------
