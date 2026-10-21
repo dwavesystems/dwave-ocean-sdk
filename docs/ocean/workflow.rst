@@ -167,10 +167,9 @@ services) or locally on your CPU. These compute resources are known as
 Ocean's samplers enable you to submit your problem to remote or local compute
 resources (solvers) of different types:
 
-*   :ref:`Hybrid solvers <opt_index_properties_parameters>` such as
-    `Leap's <https://cloud.dwavesys.com/leap/>`_ service's
-    ``stride_hybrid_solver`` and
-    ``hybrid_binary_quadratic_model_version<x>`` solvers.
+*   :ref:`Hybrid solvers <opt_index_properties_parameters>` such as the
+    `Leap <https://cloud.dwavesys.com/leap/>`_ service's |nlstride_short|,
+    ``stride_hybrid_solver``.
 *   :ref:`Classical solvers <qpu_classical_intro>` such as the
     :class:`~dimod.reference.samplers.ExactSolver` class for exact solutions to
     small problems
