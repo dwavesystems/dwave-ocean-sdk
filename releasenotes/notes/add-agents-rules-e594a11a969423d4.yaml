@@ -1,0 +1,12 @@
+---
+other:
+  - |
+    Added instruction files for AI coding agents. ``AGENTS.md`` provides
+    repository-level guidance for this repo (with ``CLAUDE.md`` as a
+    one-line bridge for Claude Code, which does not read ``AGENTS.md``
+    natively). ``AGENTS.baseline.md`` is the shared Ocean-wide baseline
+    that individual Ocean package repositories reference, and
+    ``AGENTS.template.md`` is the starter template for adding an
+    ``AGENTS.md`` to an Ocean package repository. These files affect only
+    AI-assisted development workflows; they have no effect on installed
+    packages.
