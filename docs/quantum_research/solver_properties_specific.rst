@@ -291,10 +291,10 @@ This table lists the physical properties of the calibrated QPU.
         - :math:`\text{Z12}`
 
     *   - Number of :ref:`qubits <property_qpu_qubits>`
-        - :math:`4575`
+        - :math:`4566`
 
     *   - Number of :ref:`couplers <property_qpu_couplers>`
-        - :math:`41474`
+        - :math:`41314`
 
     *   - :ref:`Qubit temperature <qpu_errors_temperature>`
         - :math:`20 \pm 1.0\ \text{mK}`
@@ -704,6 +704,10 @@ and available through the Ocean SDK.
     *   -   **Advantage2_system1**
         -
         -
+
+    *   -   Advantage2_system1
+        -   :ref:`2026-10-27 <adv2_1_417>`
+        -   417, 453, 1198, 1408, 1409, 2223, 4536, 4656, 4668
 
     *   -   Advantage2_system1
         -   :ref:`2026-09-15 <adv2_1_1889>`
