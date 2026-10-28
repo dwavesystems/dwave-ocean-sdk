@@ -899,6 +899,14 @@ The returned information contains the following fields.
             must not set a new value of the normalized control bias,
             :math:`c(s)` line. This value is common to all the QPU's annealing
             lines.
+    *   -   ``polarizationChangeAnneal``
+            ``ScheduleRequiredDelay``
+        -   Float
+        -   Time, in microseconds, after any change to the
+            :ref:`parameter_polarizing_schedule` parameter, during which the
+            :ref:`parameter_qpu_anneal_schedules` parameter must not set a new
+            value of the normalized control bias, :math:`c(s)` line. This value
+            is common to all the QPU's annealing lines.
     *   -   ``annealingLine``
         -   Integer
         -   Index of the annealing line for which the other field values are
