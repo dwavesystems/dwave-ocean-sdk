@@ -405,14 +405,14 @@ Current Limitations
         before setting a new value of :math:`c(s)`. (The minimum wait time,
         :math:`2\ \text{µs}`, is sufficient for the :math:`0 \rightarrow \pm 1`
         direction.)
-*   After any change to the polarization value , you must not set, for the time
-    specified by the ``polarizationChangeAnnealScheduleRequiredDelay``
-    field of the :ref:`property_qpu_get_multicolor_annealing_exp_feature_info`
-    property (typically 1 microsecond), a new value of the normalized control
-    bias, :math:`c(s)`, through the :ref:`parameter_qpu_anneal_schedules`
-    parameter. This ensures that the flux biases are applying the expected
-    offset value when the normalized control bias is changed on the polarized
-    qubits.
+*   Before or after any change to the polarization value, for the time specified
+    by the ``polarizationChangeAnnealScheduleRequiredDelay`` field of the
+    :ref:`property_qpu_get_multicolor_annealing_exp_feature_info` property
+    (typically 1 microsecond), the value of the normalized control bias,
+    :math:`c(s)`, which is set as a piecewise-linear curve through the
+    :ref:`parameter_qpu_anneal_schedules` parameter, must not change. This
+    ensures that the flux biases are applying the expected offset value when the
+    normalized control bias is changed on the polarized qubits.
 *   The range of values supported for the :ref:`parameter_qpu_schedule_delays`
     parameter, :math:`[-100, 100]` is not available in the information provided
     by the :ref:`property_qpu_get_multicolor_annealing_exp_feature_info`

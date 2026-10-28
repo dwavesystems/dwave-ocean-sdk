@@ -1406,10 +1406,11 @@ The following rules apply to each of the polarization schedules you specify:
     anneal, after your :ref:`parameter_polarizing_schedule` parameter changes
     the polarization value from :math:`-1` to :math:`0` or :math:`+1` to
     :math:`0`.
-*   Your :ref:`parameter_qpu_anneal_schedules` parameter must not change the
-    value of the normalized control bias, :math:`c(s)`, for a duration of
-    ``polarizationChangeAnnealScheduleRequiredDelay``, in microseconds, for an
-    anneal, after your :ref:`parameter_polarizing_schedule` parameter makes any
+*   Your :ref:`parameter_qpu_anneal_schedules` parameter must ensure that the
+    piecewise-linear curve it defines for the normalized control bias,
+    :math:`c(s)`, must have a constant value for a duration of
+    ``polarizationChangeAnnealScheduleRequiredDelay``, in microseconds, before
+    and after your :ref:`parameter_polarizing_schedule` parameter makes any
     change to the polarization value.
 
 By default, no flux biases are set.
