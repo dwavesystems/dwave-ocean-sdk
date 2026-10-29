@@ -7,14 +7,21 @@ Quantum Research
 .. toctree::
     :hidden:
     :maxdepth: 1
+    :caption: Annealing
 
     index_get_started
-    index_get_started_gm
     index_about
-    index_about_gm
     index_using
-    index_using_gm
     index_vignettes
+
+.. toctree::
+    :hidden:
+    :maxdepth: 1
+    :caption: Gate Model
+
+    index_get_started_gm
+    index_about_gm
+    index_using_gm
 
 .. sections-start-marker
 
