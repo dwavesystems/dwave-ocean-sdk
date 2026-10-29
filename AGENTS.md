@@ -19,7 +19,8 @@ facilitate the docs build.
 
 ## Commands
 
-- Setup: `python -m venv .venv && pip install . && pip install -r tests/requirements.txt`
+- Init: `git submodule update --init --recursive`
+- Setup: `python -m venv .venv && pip install . && pip install -r tests/requirements.txt -r docs/requirements.txt`
 - Test (all): `python -m unittest`
 - Test (single file): `python -m unittest tests.<test_file>.<test_class>.<test_case>`
 - Docs build: `make -C docs html`
