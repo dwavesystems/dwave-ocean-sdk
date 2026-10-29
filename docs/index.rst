@@ -18,6 +18,7 @@
     concepts/index
     licenses
     bibliography
+    example_map
 
 .. tab-set::
 
