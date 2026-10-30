@@ -69,6 +69,21 @@ then edit the file created under ``releasenotes/notes/``, remove the sections no
 along with your changes. Changes with no user-visible effect (tests, CI, docs, internal refactoring) generally do not
 need a release note. See reno's `user guide <https://docs.openstack.org/reno/latest/user/usage.html>`_ for details.
 
+AI-Assisted Contributions
+-------------------------
+
+You may use automated tools such as AI coding assistants while contributing to Ocean as long as they're used
+responsibly.
+
+Disclose their use in the pull request description under an "AI Generation Disclosure" section, naming the tool and
+model (and effort setting, if any), for example ``claude fable 5.1 (xhigh)``. If you used more than one tool or model,
+say which parts each was responsible for. Disclose how they were used, identifying which code or text is AI generated.
+If none were used, write "No AI tools used".
+
+Review and understand everything you submit; do not use AI to speak for you in issues, reviews, or discussion (except
+for translation or grammar editing). See Ocean's
+`AI Policy <https://docs.dwavequantum.com/en/latest/ocean/ai_policy.html>`_ for details.
+
 Coding Conventions
 ==================
 
