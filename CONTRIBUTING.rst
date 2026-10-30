@@ -13,6 +13,8 @@ Testing
 A feature or bugfix is complete only when the code has been unit-tested. Part of the pull-request process is to test
 your branch against `master`, and so the more tests you provide, the easier the pull-request process.
 
+A bugfix should come with a test that fails before the fix and passes after it.
+
 Submitting Changes
 ==================
 
@@ -22,6 +24,9 @@ feature branch, commit and push often, you can always rebase locally to edit you
 To start a discussion, initiate a pull request. The sooner you start the pull request, the better. This allows early
 discussion on your feature and saves time and effort when you are ready to merge. When you are ready to merge, notify
 the repository owner and they will merge your code in.
+
+Keep each pull request to one focused feature or fix. If the work grows beyond that, split it into separate pull
+requests.
 
 Follow the commit conventions described here:
 
@@ -107,8 +112,10 @@ Python
 Python Version
 ~~~~~~~~~~~~~~
 
-Code should be compatible with all `supported versions <https://devguide.python.org/versions/>`_
-of Python. Specifically, versions of Python that have "bugfix" or "security" status.
+Each package declares the Python versions it supports in its package metadata (``requires-python`` in
+``pyproject.toml`` or ``python_requires`` in ``setup.cfg``). Code must be compatible with every version in that range,
+which should stay within the `supported versions <https://devguide.python.org/versions/>`_ of Python (those with
+"bugfix" or "security" status).
 
 pep8
 ~~~~
