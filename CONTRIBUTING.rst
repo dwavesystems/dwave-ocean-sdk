@@ -55,6 +55,20 @@ while `master` tracks the latest `4.x` version. We try to minimize the number of
 Stable releases are tracked using tags. These tagged snapshots are deployed to PyPI after successfully passing the test
 cases during continuous integration.
 
+Release Notes
+-------------
+
+Ocean packages use `reno <https://docs.openstack.org/reno/>`_ to manage release notes. When making a contribution that
+affects users (new features, behavior changes, bug fixes, deprecations, upgrade notes), create a release note by running
+
+.. code-block:: bash
+
+    reno new your-short-descriptor-here
+
+then edit the file created under ``releasenotes/notes/``, remove the sections not relevant to your change, and commit it
+along with your changes. Changes with no user-visible effect (tests, CI, docs, internal refactoring) generally do not
+need a release note. See reno's `user guide <https://docs.openstack.org/reno/latest/user/usage.html>`_ for details.
+
 Coding Conventions
 ==================
 
