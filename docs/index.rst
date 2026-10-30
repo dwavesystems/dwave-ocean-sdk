@@ -16,9 +16,9 @@
     ocean/index
     leap_sapi/index
     concepts/index
+    example_map
     licenses
     bibliography
-    example_map
 
 .. tab-set::
 

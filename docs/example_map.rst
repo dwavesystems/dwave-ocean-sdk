@@ -4,11 +4,18 @@
 End-to-End Examples
 ===================
 
-The following pages provide examples with detailed explanations. For examples of setting parameters,
-see the code snippets in the API documentation for the relevant function.
+The following pages provide examples with detailed explanations. For examples of
+setting parameters, see the code snippets in the :ref:`API <ocean_packages>`
+documentation for the relevant function.
+
+The `dwave-examples <https://github.com/dwave-examples>`_ GitHub repo provides
+additional examples.
 
 Industrial Optimization
 =======================
+
+The :ref:`industrial-optimization documentation <index_industrial_optimization>`
+provides the following detailed examples.
 
 .. grid:: 2 2 3 3
     :gutter: 2
@@ -34,13 +41,19 @@ Industrial Optimization
         :link: opt_index_benchmarks
         :link-type: ref
 
-        See comparisons of the Stride solver to other solvers.
+        Comparisons of the Stride solver to other solvers.
 
 Quantum Research
 ================
 
+The :ref:`quantum-research documentation <index_quantum_research>`
+provides the following detailed examples.
+
 Quantum Annealing
 -----------------
+
+Usage examples for :ref:`quantum-annealing <qpu_quantum_annealing_intro>`
+solvers.
 
 .. grid:: 2 2 3 3
     :gutter: 2
@@ -50,7 +63,7 @@ Quantum Annealing
         :link: qpu_index_examples_beginner
         :link-type: ref
 
-        Learn how to use the quantum computer.
+        Beginner examples to get you started with using the quantum computer.
 
     .. grid-item-card:: :ref:`Advanced QPU Examples <qpu_index_examples_advanced>`
         :img-top: /_images/bipartite_icon.svg
@@ -64,9 +77,9 @@ Quantum Annealing
         :link: qpu_index_benchmarks
         :link-type: ref
 
-        Compare performance of D-Wave's quantum computers versus competing solvers.
+        Comparison of D-Wave's quantum computers and competing solvers.
 
 Gate Model
 ----------
 
-Coming soon.
+Under construction.
