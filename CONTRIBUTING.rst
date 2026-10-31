@@ -13,6 +13,8 @@ Testing
 A feature or bugfix is complete only when the code has been unit-tested. Part of the pull-request process is to test
 your branch against `master`, and so the more tests you provide, the easier the pull-request process.
 
+A bugfix should come with a test that fails before the fix and passes after it.
+
 Submitting Changes
 ==================
 
@@ -22,6 +24,9 @@ feature branch, commit and push often, you can always rebase locally to edit you
 To start a discussion, initiate a pull request. The sooner you start the pull request, the better. This allows early
 discussion on your feature and saves time and effort when you are ready to merge. When you are ready to merge, notify
 the repository owner and they will merge your code in.
+
+Keep each pull request to one focused feature or fix. If the work grows beyond that, split it into separate pull
+requests.
 
 Follow the commit conventions described here:
 
@@ -49,6 +54,35 @@ while `master` tracks the latest `4.x` version. We try to minimize the number of
 
 Stable releases are tracked using tags. These tagged snapshots are deployed to PyPI after successfully passing the test
 cases during continuous integration.
+
+Release Notes
+-------------
+
+Ocean packages use `reno <https://docs.openstack.org/reno/>`_ to manage release notes. When making a contribution that
+affects users (new features, behavior changes, bug fixes, deprecations, upgrade notes), create a release note by running
+
+.. code-block:: bash
+
+    reno new your-short-descriptor-here
+
+then edit the file created under ``releasenotes/notes/``, remove the sections not relevant to your change, and commit it
+along with your changes. Changes with no user-visible effect (tests, CI, docs, internal refactoring) generally do not
+need a release note. See reno's `user guide <https://docs.openstack.org/reno/latest/user/usage.html>`_ for details.
+
+AI-Assisted Contributions
+-------------------------
+
+You may use automated tools such as AI coding assistants while contributing to Ocean as long as they're used
+responsibly.
+
+Disclose their use in the pull request description under an "AI Generation Disclosure" section, naming the tool and
+model (and effort setting, if any), for example ``claude fable 5.1 (xhigh)``. If you used more than one tool or model,
+say which parts each was responsible for. Disclose how they were used, identifying which code or text is AI generated.
+If none were used, write "No AI tools used".
+
+Review and understand everything you submit; do not use AI to speak for you in issues, reviews, or discussion (except
+for translation or grammar editing). See Ocean's
+`AI Policy <https://docs.dwavequantum.com/en/latest/ocean/ai_policy.html>`_ for details.
 
 Coding Conventions
 ==================
@@ -107,8 +141,10 @@ Python
 Python Version
 ~~~~~~~~~~~~~~
 
-Code should be compatible with all `supported versions <https://devguide.python.org/versions/>`_
-of Python. Specifically, versions of Python that have "bugfix" or "security" status.
+Each package declares the Python versions it supports in its package metadata (``requires-python`` in
+``pyproject.toml`` or ``python_requires`` in ``setup.cfg``). Code must be compatible with every version in that range,
+which should stay within the `supported versions <https://devguide.python.org/versions/>`_ of Python (those with
+"bugfix" or "security" status).
 
 pep8
 ~~~~
