@@ -54,6 +54,15 @@ If your branch is long-lived, rebase off of `master` periodically.
 If you're already familiar with Git, but rebasing is still scary, try this `think like a Git guide
 <http://think-like-a-git.net/>`_.
 
+Each commit should make sense in isolation; group semantically related changes together. If you need to amend
+changes you have already committed (for example, to fix a bug you discovered), and the pull request is not yet
+under review, use an interactive rebase (``git rebase -i master``) to ``fixup``, ``squash``, or ``edit`` the
+affected commits.
+
+Once the pull request is under active review, don't rewrite its history. Address reviewer comments in new commits,
+so that reviewers can see what changed since their last pass. Rebasing onto ``master`` to resolve conflicts is the
+exception; say so in a comment when you do it.
+
 The master branch in a `dwavesystems` repository reflects the bleeding-edge developments of the project. Significant old
 versions forked from `master` are kept in version branches. For example, we might keep version branches `2.x` and `3.x`
 while `master` tracks the latest `4.x` version. We try to minimize the number of version branches kept alive/maintained.
