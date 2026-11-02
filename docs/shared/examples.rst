@@ -46,7 +46,7 @@ development and optimization of hybrid algorithms that best solve your problem.
 
 .. start_qpu1
 
-The following code solves a random problem on a quantum computer.
+The following code solves a random problem on an annealing quantum computer.
 
 >>> import dimod
 >>> import dwave.system

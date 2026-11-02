@@ -1,6 +1,6 @@
 .. start_workflow_intro
 
-The two main steps of solving problems using quantum computers are:
+The two main steps of solving problems using annealing quantum computers are:
 
 1.  **Formulate**\ [#]_ **your problem as an objective function**
 

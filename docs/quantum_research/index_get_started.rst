@@ -9,7 +9,6 @@ Get Started with Quantum Annealing
     :maxdepth: 1
 
     quantum_annealing_intro
-    gate_model_intro
     workflow
     classical_intro
     quantum_solvers_intro
@@ -30,17 +29,11 @@ Learn to submit problems directly to annealing quantum processing units
 
         What quantum annealing is and how it works.
 
-    .. grid-item-card:: :ref:`qpu_gate_model_intro`
-        :link: qpu_gate_model_intro
-        :link-type: ref
-
-        The gate-model architecture for quantum computing.
-
     .. grid-item-card:: :ref:`qpu_workflow`
         :link: qpu_workflow
         :link-type: ref
 
-        How quantum computers are used to solve problems.
+        How annealing quantum computers are used to solve problems.
 
     .. grid-item-card:: :ref:`qpu_classical_intro`
         :link: qpu_classical_intro
@@ -52,7 +45,7 @@ Learn to submit problems directly to annealing quantum processing units
         :link: qpu_quantum_solvers_intro
         :link-type: ref
 
-        Introduction to Ocean software's quantum solvers.
+        Introduction to Ocean software's quantum-annealing solvers.
 
     .. grid-item-card:: :ref:`qpu_qubo_ising`
 
@@ -62,17 +55,17 @@ Learn to submit problems directly to annealing quantum processing units
         :link: qpu_embedding_intro
         :link-type: ref
 
-        Mapping arbitrary problems to QPU topology.
+        Mapping arbitrary problems to annealing QPU topology.
 
     .. grid-item-card:: :ref:`qpu_basic_config`
 
-        Introduction to setting QPU parameters.
+        Introduction to setting annealing QPU parameters.
 
     .. grid-item-card:: :ref:`qpu_index_examples_beginner`
         :link: qpu_index_examples_beginner
         :link-type: ref
 
-        Beginner-level end-to-end examples.
+        Beginner-level end-to-end quantum-annealing examples.
 
 Example
 =======

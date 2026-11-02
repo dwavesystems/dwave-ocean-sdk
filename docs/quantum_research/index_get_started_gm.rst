@@ -8,6 +8,7 @@ Get Started with Gate Model
     :hidden:
     :maxdepth: 1
 
+    gate_model_intro
     gate_workflow
 
 Learn to submit :term:`QCDL` gate-model algorithms to quantum processing units
@@ -15,6 +16,12 @@ Learn to submit :term:`QCDL` gate-model algorithms to quantum processing units
 
 .. grid:: 2 2 3 3
     :gutter: 2
+
+    .. grid-item-card:: :ref:`qpu_gate_model_intro`
+        :link: qpu_gate_model_intro
+        :link-type: ref
+
+        The gate-model architecture for quantum computing.
 
     .. grid-item-card:: :ref:`gate_workflow`
         :link: gate_workflow
