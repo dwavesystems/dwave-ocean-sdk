@@ -5,13 +5,17 @@ Contribute
 The goal of this document is to establish a common understanding among software contributors to D-Wave's Ocean software
 projects based on the code conventions and best practices used at D-Wave.
 
+If a project (repository) has its own contributing guide, it supplements this one and takes precedence where the two
+differ.
+
 This document is intended to be a living document, and is not complete. Feedback is welcome.
 
 Testing
 =======
 
 A feature or bugfix is complete only when the code has been unit-tested. Part of the pull-request process is to test
-your branch against `master`, and so the more tests you provide, the easier the pull-request process.
+your branch against the repository's default branch (`master` or `main`, depending on the package), and so the more
+tests you provide, the easier the pull-request process.
 
 A bugfix should come with a test that fails before the fix and passes after it.
 
@@ -27,6 +31,8 @@ the repository owner and they will merge your code in.
 
 Keep each pull request to one focused feature or fix. If the work grows beyond that, split it into separate pull
 requests.
+
+Make the smallest change that solves the problem; don't touch, refactor, or reformat unrelated code.
 
 Follow the commit conventions described here:
 
