@@ -10,7 +10,7 @@ Gate-Model QPUs
 
     simulator_properties_gm
 
-Technical details on the gate-model QPU hardware and features.
+Technical details on gate-model solvers, QPU hardware, and features.
 
 .. grid:: 2 2 3 3
     :gutter: 2
@@ -25,8 +25,6 @@ Technical details on the gate-model QPU hardware and features.
 Example
 =======
 
-.. todo:: replace example
-
 .. include:: ../shared/examples.rst
-  :start-after: start_qpu2
-  :end-before: end_qpu2
+    :start-after: start_gm_sim1
+    :end-before: end_gm_sim1

@@ -4,9 +4,15 @@
 Gate-Model Simulator Parameters
 ===============================
 
-The examples in this section submit the QCDL program defined in the
-:ref:`qcdl_submitting_programs_example` section.
+This section describes the configurable parameters you can set on gate-model
+simulators. The :ref:`qcdl_simulator_properties` section gives the properties of
+these solvers, such as the ranges within which parameter values must be set.
 
+The examples in this section submit the following QCDL program:
+
+.. include:: ../shared/examples.rst
+    :start-after: start_gm_sim_bell
+    :end-before: end_gm_sim_bell
 
 .. _parameter_drsim_noise_model:
 

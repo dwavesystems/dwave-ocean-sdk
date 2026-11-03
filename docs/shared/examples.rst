@@ -116,3 +116,51 @@ and solves it using a quantum-classical hybrid solver in the Leap service.
 ...                                label="SDK Examples - Bin Packing")  # doctest: +SKIP
 
 .. end_cqm1
+
+
+
+.. start_gm_sim1
+
+The following example creates a Bell state circuit, producing a dictionary
+that is passed to a gate-model simulator in the
+`Leap <https://cloud.dwavesys.com/leap/>`_ service:
+
+.. testcode::
+
+    from dwave.gate.leap import LeapQCDLSimulator
+    from dwave.gate.qcdl import qcdl
+    from dwave.gate.qcdl.operations import cx, h, measure
+
+    @qcdl(num_qubits=2)
+    def main(q0, q1):
+        h(q0)        # Hadamard gate on q0
+        cx(q0, q1)   # CNOT with q0 as control, q1 as target
+        measure(q0)
+        measure(q1)
+
+    # Submit to a gate-model simulator
+
+    simulator = LeapQCDLSimulator()
+    future = simulator.run(qcdl_program, shots=3)
+    result = future.result().result
+
+.. end_gm_sim1
+
+
+.. start_gm_sim_bell
+
+.. testcode::
+
+    from dwave.gate.qcdl import qcdl
+    from dwave.gate.qcdl.operations import cx, h, measure
+
+    @qcdl(2)
+    def bell_program(q0, q1):
+        h(q0)
+        cx(q0, q1)
+        measure(q0)
+        measure(q1)
+
+    simulator_job_submission = bell_program()
+
+.. end_gm_sim_bell

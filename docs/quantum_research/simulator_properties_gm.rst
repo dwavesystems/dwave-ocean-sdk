@@ -4,6 +4,9 @@
 Gate-Model Simulator Properties
 ===============================
 
+For the parameters you can configure, see the :ref:`qcdl_simulator_parameters`
+section.
+
 .. _property_drsim_category:
 
 category

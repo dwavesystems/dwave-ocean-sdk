@@ -1,8 +1,8 @@
 .. _qpu_index_using_gm:
 
-=====================
-Using Gate-Model QPUs
-=====================
+========================
+Using Gate-Model Solvers
+========================
 
 .. toctree::
     :hidden:
@@ -11,7 +11,7 @@ Using Gate-Model QPUs
     simulator_parameters_gm
     gate_qcdl_submission
 
-Guidance and best practices for gate-model QPU usage.
+Guidance and best practices for using gate-model solvers.
 
 .. grid:: 2 2 3 3
     :gutter: 2
@@ -25,8 +25,8 @@ Guidance and best practices for gate-model QPU usage.
 .. grid:: 2 2 3 3
     :gutter: 2
 
-    .. grid-item-card:: :ref:`qcdl_using_solver`
-        :link: qcdl_using_solver
+    .. grid-item-card:: :ref:`qcdl_using_simulator`
+        :link: qcdl_using_simulator
         :link-type: ref
 
         Submitting QCDL programs to the gate-model simulator.
@@ -34,8 +34,6 @@ Guidance and best practices for gate-model QPU usage.
 Example
 =======
 
-.. todo: update
-
 .. include:: ../shared/examples.rst
-  :start-after: start_qpu2
-  :end-before: end_qpu2
+    :start-after: start_gm_sim1
+    :end-before: end_gm_sim1
