@@ -21,6 +21,16 @@ Technical details on gate-model solvers, QPU hardware, and features.
 
         Properties that characterize behaviors and features of the gate-model simulator.
 
+.. grid:: 2 2 3 3
+    :gutter: 2
+
+    .. grid-item-card:: :ref:`QCDL Reference <gate_api_ref>`
+        :link: gate_api_ref
+        :link-type: ref
+
+        Reference documentation for quantum circuit description language (QCDL)
+        in the Ocean SDK documentation.
+
 
 Example
 =======

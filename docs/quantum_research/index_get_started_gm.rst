@@ -29,7 +29,6 @@ Learn to submit :term:`QCDL` gate-model algorithms to quantum processing units
 
         Introduction to quantum circuit description language (QCDL).
 
-For more information, see the :ref:`QCDL Reference <index_gate>`.
 
 Example
 =======

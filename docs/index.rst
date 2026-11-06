@@ -72,8 +72,8 @@ Welcome to |dwave_short|
                     -   Solving hard commercial optimization problems using
                         :term:`hybrid` :term:`solvers <solver>`.
                 *   -   :ref:`Quantum Research <index_quantum_research>`
-                    -   Using the quantum processing unit (QPU) directly on
-                        :term:`Ising` problems and :term:`QUBO` models.
+                    -   Using D-Wave's annealing and gate-model quantum
+                        processing units (QPU) and simulators.
                 *   -   :ref:`Ocean SDK <index_ocean_sdk>`
                     -   Reference documentation for  the software development
                         kit (SDK) used with quantum computers.
@@ -83,6 +83,8 @@ Welcome to |dwave_short|
                 *   -   :ref:`Concepts <index_concepts>`
                     -   Learn the relevant terminology and the fundamental
                         concepts. **Search for terms here.**
+                *   -   **More** > :ref:`End-to-End Examples <example_map>`
+                    -   Links to usage examples with detailed explanations.
                 *   -   **More** > :ref:`Licenses <licenses>`
                     -   Licensing information for the documentation and SDK.
                 *   -   **More** > :ref:`Bibliography <bibliography>`
@@ -111,26 +113,32 @@ Welcome to |dwave_short|
         the California Institute of Technology. Still a relatively young field,
         quantum computing is complex and different approaches are being pursued
         around the world. Today, there are two leading candidate architectures
-        for quantum computers: gate model (also known as circuit model) and
-        quantum annealing.
+        for quantum computers: (1) Gate model (also known as circuit model) and
+        (2) Quantum annealing.
 
-        :ref:`Gate-model quantum computing <qpu_gate_model_intro>`
-        implements compute algorithms with quantum gates, analogously to the use
-        of Boolean gates in classical computers.
+        1.  :ref:`Gate-model quantum computing <qpu_gate_model_intro>`
+            implements compute algorithms with quantum gates, analogously to the
+            use of Boolean gates in classical computers.
 
-        With :term:`quantum annealers <quantum annealer>` you initialize the
-        system in a low-energy state and gradually introduce the parameters of a
-        problem you wish to solve. The slow change makes it likely that the
-        system ends in a low-energy state of the problem, which corresponds to
-        an optimal solution. This technique is explained in more detail in the
-        :ref:`qpu_quantum_annealing_intro` section.
+            D-Wave's gate-model technology is built on a dual-rail
+            superconducting architecture that provides built-in error detection
+            and fast, reliable performance. Feature-rich programming enables
+            error-aware algorithms and real-time quantum-classical control.
 
-        Quantum annealing is implemented in |dwave_short|'s generally available
-        quantum computers, such as the |dwave_5kq_tm| and |adv2_tm| systems, as a single
-        quantum algorithm, and this scalable approach to quantum computing has
-        enabled us to create quantum processing units (:term:`QPUs <QPU>`) with
-        more than 5000 quantum bits (:term:`qubits <qubit>`)---far beyond the
-        state of the art for gate-model quantum computing.
+        2.  With :term:`quantum annealers <quantum annealer>` you initialize the
+            system in a low-energy state and gradually introduce the parameters
+            of a problem you wish to solve. The slow change makes it likely that
+            the system ends in a low-energy state of the problem, which
+            corresponds to an optimal solution. This technique is explained in
+            more detail in the :ref:`qpu_quantum_annealing_intro` section.
+
+            Quantum annealing is implemented in |dwave_short|'s generally
+            available quantum computers, such as the |dwave_5kq_tm| and
+            |adv2_tm| systems, as a single quantum algorithm, and this scalable
+            approach to quantum computing has enabled us to create quantum
+            processing units (:term:`QPUs <QPU>`) with more than 5000 quantum
+            bits (:term:`qubits <qubit>`)---far beyond the state of the art for
+            gate-model quantum computing.
 
         |dwave_short| has been developing various generations of our "machine of
         a different kind," to use Feynman's words, since 1999. We are the
@@ -139,7 +147,7 @@ Welcome to |dwave_short|
     ..  tab-item:: Quantum Computers
         :name: tab_quantum_computers
 
-        A |dwave_short| quantum computer contains a :term:`QPU` that must be
+        A |dwave_short| quantum computers contain a :term:`QPU` that must be
         kept at a temperature near absolute zero and isolated from the
         surrounding environment in order to behave quantum mechanically. The
         system achieves these requirements as follows:
@@ -155,12 +163,12 @@ Welcome to |dwave_short|
             :name: dwave-components
             :scale: 20 %
 
-            |adv2| quantum computer.
+            |adv2| annealing quantum computer.
 
-        The |dwave_short| QPU (:numref:`Figure %s <qpu1>`) is a lattice of tiny
-        metal loops, each of which is a qubit or a coupler. Below temperatures
-        of 9.2 kelvin, these loops become superconductors and exhibit
-        quantum-mechanical effects.
+        The |dwave_short| annealing QPU (:numref:`Figure %s <qpu1>`) is a
+        lattice of tiny metal loops, each of which is a qubit or a coupler.
+        Below temperatures of 9.2 kelvin, these loops become superconductors and
+        exhibit quantum-mechanical effects.
 
         The QPU in |dwave_short|'s |adv2| system has more than 4,400 qubits
         and 40,000 couplers. To reach this scale, it uses over 1,000,000
@@ -173,13 +181,13 @@ Welcome to |dwave_short|
             :name: qpu1
             :scale: 30 %
 
-            |dwave_short| QPU.
+            |dwave_short| annealing QPU.
 
         .. note::
             |dwave_short|'s quantum computer systems are available for
-            on-premises installation. For their physical specifications,
+            on-premises installation. For the physical specifications,
             including electrical, cooling, environmental, and networking
-            requirements, download
+            requirements of the annealing quantum computer, download
             :download:`System Specifications for D-Wave Quantum Computers
             <downloadables/09-1313B-D_System_Specifications_for_D-Wave_Quantum_Computers.pdf>`.
 
