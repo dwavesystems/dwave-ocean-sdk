@@ -5,8 +5,7 @@ Postprocessing
 ==============
 
 Postprocessing optimization and sampling algorithms provide local improvements
-with minimal overhead to solutions obtained from the quantum processing unit
-(QPU).
+with minimal overhead to solutions obtained from annealing :term:`QPUs <QPU>`.
 
 Server-side postprocessing for |dwave_5kq| systems is limited to computing the
 energies of returned samples\ [#]_ but :ref:`Ocean software <index_ocean_sdk>`

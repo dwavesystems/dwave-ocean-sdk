@@ -4,8 +4,8 @@
 Experimental Research
 =====================
 
-Some QPU solvers support experimental features used for advanced research. This
-section describes the currently supported features.
+Some annealing QPU solvers support experimental features used for advanced
+research. This section describes the currently supported features.
 
 .. note::
     Not all accounts have access to such research quantum computers.

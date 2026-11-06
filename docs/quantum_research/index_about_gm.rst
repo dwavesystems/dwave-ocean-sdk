@@ -28,8 +28,8 @@ Technical details on gate-model solvers, QPU hardware, and features.
         :link: gate_api_ref
         :link-type: ref
 
-        Reference documentation for quantum circuit description language (QCDL)
-        in the Ocean SDK documentation.
+        Reference documentation for quantum circuit description language (*a
+        link to the relevant page in the Ocean SDK section*).
 
 
 Example

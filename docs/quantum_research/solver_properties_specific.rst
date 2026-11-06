@@ -6,7 +6,7 @@ Per-QPU Solver Properties and Schedules
 
 The following sections provide information for advanced users who want to better
 understand and leverage the physical implementation of |dwave_short|'s various
-quantum processing units (QPUs) available in the Leap service\ [#]_.
+annealing :term:`QPUs <QPU>` available in the Leap service\ [#]_.
 This information includes:
 
 *   Summary of a QPU's physical properties---The values provided are

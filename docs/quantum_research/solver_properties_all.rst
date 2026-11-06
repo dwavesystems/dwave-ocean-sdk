@@ -18,9 +18,9 @@ General QPU Solver Properties
     utility functions described in the
     :ref:`qpu_experimental_research_utilities` section.
 
-This section describes the properties in common to all :term:`QPU` solvers and
-shows how you can query their values through :term:`SAPI`; for properties
-specific to the hardware of a particular QPU, see the
+This section describes the properties in common to all annealing :term:`QPU`
+solvers and shows how you can query their values through :term:`SAPI`; for
+properties specific to the hardware of a particular QPU, see the
 :ref:`qpu_solver_properties_specific` section.
 
 For the parameters you can configure, see the :ref:`qpu_solver_parameters`

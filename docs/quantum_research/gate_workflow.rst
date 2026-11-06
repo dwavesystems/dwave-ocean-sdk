@@ -6,8 +6,9 @@ Introduction to QCDL
 
 The |cloud|_ quantum cloud service provides access to a simulator that enables
 you to test gate-model circuits intended to be executed on a dual-rail quantum
-processing unit (QPU). You describe your circuits using the ``dwave-gate``
-package's quantum circuit description language (QCDL), described here.
+processing unit (:term:`QPU`). You describe your circuits using the
+:ref:`index_gate` package's quantum circuit description language (QCDL),
+introduced below and described in detail :ref:`here <gate_api_ref>`.
 
 .. _QuantumCircuit: https://quantum.cloud.ibm.com/docs/en/api/qiskit/qiskit.circuit.QuantumCircuit
 

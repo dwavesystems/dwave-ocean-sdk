@@ -6,9 +6,10 @@ Using the Gate-Model Simulator
 
 The |cloud|_ quantum cloud service provides access to a simulator that enables
 you to test gate-model circuits intended to be executed on a dual-rail quantum
-processing unit (QPU). You describe your circuits using the ``dwave-gate``
-package's quantum circuit description language (QCDL), described in the
-:ref:`gate_workflow` section.
+processing unit (QPU). You describe your circuits using the :ref:`index_gate`
+package's quantum circuit description language (QCDL), introduced in the
+:ref:`gate_workflow` section and described in detail in the :ref:`gate_api_ref`
+section.
 
 .. _QuantumCircuit: https://quantum.cloud.ibm.com/docs/en/api/qiskit/qiskit.circuit.QuantumCircuit
 

@@ -11,7 +11,8 @@ Formulation
     stating_problems
     reformulating
 
-Advanced guidance on stating and reformulating your problems for quantum computers.
+Advanced guidance on stating and reformulating your problems for annealing
+quantum computers.
 
 .. grid:: 2 2 3 3
     :gutter: 2
