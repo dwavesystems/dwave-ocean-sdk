@@ -1,6 +1,7 @@
 .. start_workflow_intro
 
-The two main steps of solving problems using annealing quantum computers are:
+The two main steps of solving problems using **annealing**\ [#]_ quantum
+computers are:
 
 1.  **Formulate**\ [#]_ **your problem as an objective function**
 
@@ -28,6 +29,10 @@ The two main steps of solving problems using annealing quantum computers are:
     Solution steps: (1) a problem known in "problem space" (a circuit of Boolean
     gates, a graph, a network, etc) is formulated as a model, mathematically or
     using Ocean functionality, and (2) the model is sampled for solutions.
+
+.. [#]
+    For gate-model quantum computers, see the :ref:`qpu_index_get_started_gm`
+    section.
 
 .. [#]
     For quantum computing, as for classical, solving a problem requires that it

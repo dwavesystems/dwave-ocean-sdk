@@ -1,8 +1,8 @@
 .. _ocean_workflow:
 
-========================================
-Workflow Steps: Formulation and Sampling
-========================================
+============================
+Optimization: Workflow Steps
+============================
 
 .. |figSolutionOverview| replace:: oceanSolutionOverview
 

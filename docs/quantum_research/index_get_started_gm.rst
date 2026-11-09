@@ -10,6 +10,7 @@ Get Started with Gate Model
 
     gate_model_intro
     gate_workflow
+    workflow_gm
 
 Learn to submit :term:`QCDL` gate-model algorithms to quantum processing units
 (:term:`QPU`) in the |cloud| quantum cloud service.
@@ -29,6 +30,12 @@ Learn to submit :term:`QCDL` gate-model algorithms to quantum processing units
 
         Introduction to quantum circuit description language (QCDL).
 
+    .. grid-item-card:: :ref:`qpu_workflow_gm`
+        :link: qpu_workflow_gm
+        :link-type: ref
+
+        The two main steps of running quantum algorithms on **dual-rail**
+        quantum computers.
 
 Example
 =======

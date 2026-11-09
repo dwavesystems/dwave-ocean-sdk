@@ -11,6 +11,7 @@ Concepts
     hybrid
     models
     penalty
+    qcdl
     samplers
     samplesets
     symbolic_math
@@ -504,6 +505,11 @@ Concepts and Terminology
         language (`DSL <https://en.wikipedia.org/wiki/Domain-specific_language>`_)
         that uses Python as the host language to write instructions for a
         gate-model :term:`QPU`.
+
+        Learn more:
+
+        *   :ref:`gate_workflow`
+        *   :ref:`gate_api_ref`
 
     QCP
         Quantum critical point. The point in the anneal where :math:`A(s)`, the

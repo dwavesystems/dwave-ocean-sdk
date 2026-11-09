@@ -132,7 +132,7 @@ that is passed to a gate-model simulator in the
     from dwave.gate.qcdl.operations import cx, h, measure
 
     @qcdl(num_qubits=2)
-    def main(q0, q1):
+    def qcdl_program(q0, q1):
         h(q0)        # Hadamard gate on q0
         cx(q0, q1)   # CNOT with q0 as control, q1 as target
         measure(q0)
