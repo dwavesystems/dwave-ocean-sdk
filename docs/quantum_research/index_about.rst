@@ -24,7 +24,7 @@ Technical details on the annealing QPU hardware and features.
         :link: qpu_index_solver_properties
         :link-type: ref
 
-        Properties that characterize behaviors and features of annealing QPU.
+        Properties that characterize behaviors and features of annealing QPUs.
 
     .. grid-item-card:: :ref:`qpu_annealing`
         :link: qpu_annealing
@@ -36,13 +36,13 @@ Technical details on the annealing QPU hardware and features.
         :link: qpu_topologies
         :link-type: ref
 
-        Layout of the annealing QPU.
+        Layout and connectivity of annealing QPUs.
 
     .. grid-item-card:: :ref:`qpu_operation_timing`
         :link: qpu_operation_timing
         :link-type: ref
 
-        Computation process of D-Wave annealing quantum computers.
+        Computation process of annealing quantum computers.
 
     .. grid-item-card:: :ref:`qpu_errors`
         :link: qpu_errors

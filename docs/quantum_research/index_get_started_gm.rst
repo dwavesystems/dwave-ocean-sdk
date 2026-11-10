@@ -37,6 +37,9 @@ Learn to submit :term:`QCDL` gate-model algorithms to quantum processing units
         The two main steps of running quantum algorithms on **dual-rail**
         quantum computers.
 
+To learn about annealing quantum computing, see the :ref:`qpu_index_get_started`
+section.
+
 Example
 =======
 

@@ -67,6 +67,9 @@ Learn to submit problems directly to annealing quantum processing units
 
         Beginner-level end-to-end quantum-annealing examples.
 
+To learn about gate-model quantum computing, see the
+:ref:`qpu_index_get_started_gm` section.
+
 Example
 =======
 

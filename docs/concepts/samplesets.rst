@@ -9,7 +9,7 @@ Samplesets and Solutions
 in models such as those defined by an :term:`Ising` equation or a :term:`QUBO`
 problem---and return an iterable of samples, in order of increasing energy.
 
-When a |dwave_short| quantum computer solves a problem, it uses quantum
+When an annealing quantum computer solves a problem, it uses quantum
 phenomena such as superposition and tunneling to explore all possible solutions
 simultaneously and find a set of the best ones. At the end of the computation
 (:term:`anneal`), a single solution is sampled from a set of good solutions,

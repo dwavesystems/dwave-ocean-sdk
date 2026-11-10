@@ -4,7 +4,7 @@
 QPU Solver Parameters
 =====================
 
-This section describes the configurable parameters you can set on annealing
+This section describes the configurable parameters you can set on annealing\ [#]_
 :term:`QPU` solvers. The :ref:`qpu_index_solver_properties` section gives the
 properties of these solvers, such as the ranges within which parameter values
 must be set.
@@ -31,6 +31,10 @@ must be set.
 
 .. |realistic_fra_example| replace:: For a realistic example of fast reverse
     annealing, see the :ref:`qpu_experimental_research_fra_example` section.
+
+.. [#]
+    For parameters of gate-model solvers, see the :ref:`qpu_index_using_gm`
+    section.
 
 .. _parameter_qpu_anneal_offsets:
 

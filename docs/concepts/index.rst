@@ -90,6 +90,15 @@ Concepts and Terminology
 
         Learn more: :ref:`concept_models_bqm`
 
+    built-in error detection
+        For :term:`dual-rail` qubits, the dominant form of decoherence, erasure
+        errors, move the qubit state out of the code space. That is, the
+        :math:`\ket{0}` and :math:`\ket{1}` logical states are represented by a
+        photon in just one of the qubit's two resonators (e.g., :math:`\ket{01}`
+        and :math:`\ket{10}`). The loss or gain of a photon (i.e.,
+        :math:`\ket{00}` and :math:`\ket{11}`) are flagged as a state error for
+        the qubit.
+
     chain
     chains
         One or more nodes or qubits in a target graph that represent a single
@@ -257,6 +266,14 @@ Concepts and Terminology
 
         Learn more: :ref:`concept_models_dqm`
 
+    dual rail
+    dual-rail
+    dual-rail qubit
+        A superconducting logical subsystem that encodes quantum information as
+        a single microwave photon shared between two superconducting resonators.
+        The :math:`\ket{0}` and :math:`\ket{1}` states are represented by the
+        photon's presence in one of these two resonators (cavities).
+
     embed
     embedding
     minor embed
@@ -276,6 +293,13 @@ Concepts and Terminology
         *   :ref:`qpu_topologies` on QPU topologies
         *   :ref:`qpu_example_not`, :ref:`qpu_example_and`, and
             :ref:`qpu_example_multigate` for examples and more information
+
+    erasure error
+        The signature form of decoherence in :term:`dual-rail` qubits: photon
+        loss. Bit-flip errors, typical of most qubits, require both the loss of
+        a photon in one resonator and the gain of a photon in the second, making
+        it rare compared to erasure errors. This quality enables
+        :term:`built-in error detection`.
 
     excited state
         States of a quantum system that have higher energy than the

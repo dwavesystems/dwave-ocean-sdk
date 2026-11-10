@@ -5,7 +5,7 @@ QPU Configuration: Best Practices
 =================================
 
 When preparing your problem for submission, consider the analog nature of
-annealing quantum computers, and take measures to increase the likelihood of
+annealing\ [#]_ quantum computers, and take measures to increase the likelihood of
 finding good solutions.
 
 This chapter presents guidance on the following topics:
@@ -14,6 +14,10 @@ This chapter presents guidance on the following topics:
     :depth: 1
     :local:
     :backlinks: none
+
+.. [#]
+    For gate-model QPUs, see the :ref:`qpu_index_using_gm` section.
+
 
 .. _qpu_config_qpu_reads:
 

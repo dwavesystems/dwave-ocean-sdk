@@ -13,7 +13,7 @@ selected sampler, a process known as :term:`minor-embedding`.
 
 .. [#]
     The `Leap <https://cloud.dwavesys.com/leap/>`_ service also provides
-    :ref:`gate-model <qpu_index_get_started_gm>` quantum solvers.
+    :ref:`gate-model <qpu_index_get_started_gm>` solvers.
 
 Solver Identity and Selection
 =============================
