@@ -1,4 +1,4 @@
-# AGENTS.md — dwave-ocean-sdk
+# AGENTS.md - dwave-ocean-sdk
 
 <!-- Instructions for AI coding agents; see .agents/AGENTS.template.md for the
      per-package layout this file follows. Keep it short and factual. -->

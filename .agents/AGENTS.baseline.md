@@ -1,4 +1,4 @@
-# Ocean SDK — Shared Agent Baseline
+# Ocean SDK - Shared Agent Baseline
 
 <!--
 Canonical home: the dwave-ocean-sdk repository, next to CONTRIBUTING.rst.
@@ -40,7 +40,7 @@ per-package template in AGENTS.template.md).
 
 - Use `pip` and `python -m venv` for dependency and environment commands.
 - Support all Python versions the package declares: check `requires-python`
-  in `pyproject.toml` (or `python_requires` in setup.py/setup.cfg — packages
+  in `pyproject.toml` (or `python_requires` in setup.py/setup.cfg - packages
   vary) before writing code, and target the minimum version. Don't use
   syntax or stdlib features newer than the floor, unless the floor allows them.
 - Use `logging` instead of `print()` in library code.
@@ -49,6 +49,8 @@ per-package template in AGENTS.template.md).
   meaningfully handle, and let the rest propagate.
 - Ask before adding a runtime dependency. Ocean packages keep dependencies
   minimal; new ones affect the whole SDK's install footprint.
+- New source files start with the Apache 2.0 license header used by the package;
+  copy it from an existing module and update the year.
 
 ## Code Quality
 
@@ -56,8 +58,7 @@ per-package template in AGENTS.template.md).
   packages differ in age and conventions, so the surrounding code wins over
   personal preference.
 - Avoid speculative abstractions for single-use code.
-- Keep functions focused; prefer splitting once a function does more than
-  one thing.
+- Keep functions focused; prefer splitting once a function does more than one thing.
 - After edits, run the package's lint command (see its `## Commands`), if there
   is one, and fix what it reports.
 

@@ -1,4 +1,4 @@
-# AGENTS.md — <package name>
+# AGENTS.md - <package name>
 
 <!--
 Per-package instructions for AI coding agents (Claude Code, Codex, Cursor,
@@ -11,10 +11,10 @@ If you correct an agent twice about the same package fact, add it here.
 
 ## Project Overview
 
-<!-- 2–4 lines. What this package is and anything surprising about it.
+<!-- 2-4 lines. What this package is and anything surprising about it.
      Example (dimod-style): "Shared API for binary quadratic samplers.
      Core is C++ under dimod/include/ with Cython bindings; files under
-     dimod/*.cpp are generated — edit the .pyx sources instead." -->
+     dimod/*.cpp are generated - edit the .pyx sources instead." -->
 
 ## Commands
 
@@ -33,7 +33,7 @@ If you correct an agent twice about the same package fact, add it here.
 ## Architecture Notes
 
 <!-- Only facts an agent can't infer by reading the code, and only ones
-     you'd otherwise repeat in review. Delete if empty — don't pad. -->
+     you'd otherwise repeat in review. Delete if empty - don't pad. -->
 
 - <e.g. "Public API is what's re-exported in <pkg>/__init__.py; underscore
   modules are internal and not covered by semver.">
