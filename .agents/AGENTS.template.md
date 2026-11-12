@@ -2,8 +2,7 @@
 
 <!--
 Per-package instructions for AI coding agents (Claude Code, Codex, Cursor,
-etc.). Tool-agnostic on purpose: most tools read AGENTS.md natively;
-Claude Code reads it via the one-line CLAUDE.md stub in this repo.
+etc.). Tool-agnostic on purpose: most tools read AGENTS.md natively.
 
 Keep this file short and factual. The shared Ocean-wide baseline lives in
 the dwave-ocean-sdk repo and is fetched on demand (see "Ocean Baseline").
