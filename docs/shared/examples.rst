@@ -126,6 +126,7 @@ that is passed to a gate-model simulator in the
 `Leap <https://cloud.dwavesys.com/leap/>`_ service:
 
 .. testcode::
+    :skipif: True
 
     from dwave.gate.leap import LeapQCDLSimulator
     from dwave.gate.qcdl import qcdl
