@@ -40,14 +40,22 @@ If you correct an agent twice about the same package fact, add it here.
 
 ## Non-negotiables (always apply)
 
-<!-- Copied from the Ocean baseline so they hold even when nothing is
-     fetched. Keep this list short and in sync with CONTRIBUTING.rst. -->
+<!-- Verbatim copy of the "Non-negotiables" section of the Ocean baseline
+     (.agents/AGENTS.baseline.md in dwave-ocean-sdk), so they hold even when
+     nothing is fetched. When the baseline changes, update this copy. -->
 
-- One focused feature/fix per PR.
-- Document any public API you add or change.
+- Keep a branch to one focused feature or fix; if the task needs more, say
+  so before expanding.
+- Make the smallest change that solves the problem; don't touch, refactor,
+  or reformat unrelated code.
+- New behavior and bug fixes come with unit tests. A bug-fix test fails
+  before the fix and passes after it.
+- Document any public API you add or change with Google-style docstrings in
+  reStructuredText for Sphinx (double-backtick literals, `:class:`/`:func:`
+  roles, no Markdown), matching the module's existing convention.
 - Add a release note with `reno` for user-visible changes.
-- Make the smallest change that solves the problem; don't refactor
-  unrelated code unless asked.
+- Fill in the "AI Generation Disclosure" section of the PR description:
+  the tool and model used and how, or "No AI tools used".
 
 ## Ocean Baseline
 

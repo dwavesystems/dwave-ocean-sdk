@@ -4,15 +4,33 @@
 Canonical home: the dwave-ocean-sdk repository, next to CONTRIBUTING.rst.
 This file is the shared baseline for AI coding agents across all Ocean
 packages. Package repos do NOT copy this file; their AGENTS.md carries
-their own project facts plus the "Non-negotiables" below inline, and
-fetches this file on demand (see the per-package template).
+their own project facts plus a verbatim copy of the "Non-negotiables"
+section below, and fetches the rest of this file on demand (see the
+per-package template in AGENTS.template.md).
 -->
+
+## Non-negotiables (always apply)
+
+<!-- Canonical list: the short form of rules in CONTRIBUTING.rst, which has
+     the details. Package AGENTS.md files copy this section verbatim; update
+     them when this changes. -->
+
+- Keep a branch to one focused feature or fix; if the task needs more, say
+  so before expanding.
+- Make the smallest change that solves the problem; don't touch, refactor,
+  or reformat unrelated code.
+- New behavior and bug fixes come with unit tests. A bug-fix test fails
+  before the fix and passes after it.
+- Document any public API you add or change with Google-style docstrings in
+  reStructuredText for Sphinx (double-backtick literals, `:class:`/`:func:`
+  roles, no Markdown), matching the module's existing convention.
+- Add a release note with `reno` for user-visible changes.
+- Fill in the "AI Generation Disclosure" section of the PR description:
+  the tool and model used and how, or "No AI tools used".
 
 ## Working Style
 
 - State your assumptions and a short plan of verifiable goals before editing.
-- Make the smallest change that solves the problem; don't touch or refactor
-  unrelated code unless asked.
 - Before finishing, verify with the narrowest relevant test (see the
   package's `## Commands` section for how to run them).
 - Push back if a safer or smaller approach would meet the goal.
@@ -45,11 +63,15 @@ fetches this file on demand (see the per-package template).
 
 ## Commits and Pull Requests
 
-- When preparing a commit or PR, fetch and follow the full contributing
-  guide:
+- Don't commit, push, amend, or open/comment on issues and PRs unless
+  explicitly asked, and never run destructive git operations (force-push,
+  `reset --hard`, branch deletion) without being asked.
+- Don't add yourself as a commit co-author; disclosure belongs in the PR
+  description (see Non-negotiables).
+- When preparing a commit or PR, follow this repo's `CONTRIBUTING.rst` if it
+  has one, and the shared Ocean contributing guide:
   https://raw.githubusercontent.com/dwavesystems/dwave-ocean-sdk/refs/heads/master/CONTRIBUTING.rst
-- The non-negotiables (listed in each package's AGENTS.md) always apply,
-  even if the guide was not fetched.
+- The Non-negotiables above always apply, even if the guide was not fetched.
 
 ## Communication
 

@@ -1,13 +1,7 @@
 # AGENTS.md — dwave-ocean-sdk
 
-<!--
-Per-package instructions for AI coding agents (Claude Code, Codex, Cursor,
-etc.). Tool-agnostic on purpose: most tools read AGENTS.md natively.
-
-Keep this file short and factual. The shared Ocean-wide baseline lives in
-the dwave-ocean-sdk repo and is fetched on demand (see "Ocean Baseline").
-If you correct an agent twice about the same package fact, add it here.
--->
+<!-- Instructions for AI coding agents; see .agents/AGENTS.template.md for the
+     per-package layout this file follows. Keep it short and factual. -->
 
 ## Project Overview
 
@@ -24,6 +18,25 @@ facilitate the docs build.
 - Test (single file): `python -m unittest tests.<test_file>.<test_class>.<test_case>`
 - Docs build: `make -C docs html`
 - Release note: `reno new <slug>`
+
+## Non-negotiables (always apply)
+
+<!-- Verbatim copy of the "Non-negotiables" section of the Ocean baseline
+     (.agents/AGENTS.baseline.md in dwave-ocean-sdk), so they hold even when
+     nothing is fetched. When the baseline changes, update this copy. -->
+
+- Keep a branch to one focused feature or fix; if the task needs more, say
+  so before expanding.
+- Make the smallest change that solves the problem; don't touch, refactor,
+  or reformat unrelated code.
+- New behavior and bug fixes come with unit tests. A bug-fix test fails
+  before the fix and passes after it.
+- Document any public API you add or change with Google-style docstrings in
+  reStructuredText for Sphinx (double-backtick literals, `:class:`/`:func:`
+  roles, no Markdown), matching the module's existing convention.
+- Add a release note with `reno` for user-visible changes.
+- Fill in the "AI Generation Disclosure" section of the PR description:
+  the tool and model used and how, or "No AI tools used".
 
 ## Ocean Baseline
 
