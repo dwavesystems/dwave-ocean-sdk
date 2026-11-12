@@ -59,7 +59,8 @@ Learn Ocean software's workflow and structure.
         :link: ocean_workflow
         :link-type: ref
 
-        The two main steps of solving problems on annealing quantum computers.
+        The two main steps of solving problems on annealing quantum computers
+        and hybrid solvers.
 
     .. grid-item-card:: :ref:`ocean_workflow_gm`
         :link: ocean_workflow_gm

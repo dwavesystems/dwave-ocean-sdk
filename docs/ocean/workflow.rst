@@ -1,8 +1,8 @@
 .. _ocean_workflow:
 
-============================
-Optimization: Workflow Steps
-============================
+=====================
+Optimization Workflow
+=====================
 
 .. |figSolutionOverview| replace:: oceanSolutionOverview
 

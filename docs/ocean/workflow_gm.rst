@@ -1,8 +1,8 @@
 .. _ocean_workflow_gm:
 
-==========================
-Gate Model: Workflow Steps
-==========================
+===================
+Gate-Model Workflow
+===================
 
 You describe your gate-model circuits using the :ref:`index_gate` package's
 quantum circuit description language (QCDL), introduced in the
