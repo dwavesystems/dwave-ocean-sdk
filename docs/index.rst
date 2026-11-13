@@ -147,7 +147,7 @@ Welcome to |dwave_short|
     ..  tab-item:: Quantum Computers
         :name: tab_quantum_computers
 
-        A |dwave_short| quantum computers contain a :term:`QPU` that must be
+        |dwave_short| quantum computers contain a :term:`QPU` that must be
         kept at a temperature near absolute zero and isolated from the
         surrounding environment in order to behave quantum mechanically. The
         system achieves these requirements as follows:
