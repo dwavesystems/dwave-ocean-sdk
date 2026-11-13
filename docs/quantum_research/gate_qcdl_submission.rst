@@ -11,8 +11,6 @@ package's quantum circuit description language (QCDL), introduced in the
 :ref:`gate_workflow` section and described in detail in the :ref:`gate_api_ref`
 section.
 
-.. _QuantumCircuit: https://quantum.cloud.ibm.com/docs/en/api/qiskit/qiskit.circuit.QuantumCircuit
-
 
 .. _qcdl_simulator:
 

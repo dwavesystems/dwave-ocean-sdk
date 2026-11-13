@@ -121,7 +121,7 @@ and solves it using a quantum-classical hybrid solver in the Leap service.
 
 .. start_gm_sim1
 
-The following example creates a Bell state circuit, producing a dictionary
+The following example creates a Bell state circuit, producing a QCDL program
 that is passed to a gate-model simulator in the
 `Leap <https://cloud.dwavesys.com/leap/>`_ service:
 
