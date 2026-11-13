@@ -13,7 +13,7 @@ facilitate the docs build.
 ## Commands
 
 - Init: `git submodule update --init --recursive`
-- Setup: `python -m venv .venv && pip install . && pip install -r tests/requirements.txt -r docs/requirements.txt`
+- Setup: `python -m venv env && env/bin/pip install . -r tests/requirements.txt -r docs/requirements.txt`
 - Test (all): `python -m unittest`
 - Test (single file): `python -m unittest tests.<test_file>.<test_class>.<test_case>`
 - Docs build: `make -C docs html`
@@ -36,7 +36,7 @@ facilitate the docs build.
   roles, no Markdown), matching the module's existing convention.
 - Add a release note with `reno` for user-visible changes.
 - Fill in the "AI Generation Disclosure" section of the PR description:
-  the tool and model used and how, or "No AI tools used".
+  the tool and model used and how.
 
 ## Ocean Baseline
 

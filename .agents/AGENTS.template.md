@@ -22,7 +22,7 @@ If you correct an agent twice about the same package fact, add it here.
      invocations, or remove if not used. This is the highest-value section in
      the file. -->
 
-- Setup: `python -m venv .venv && pip install -r requirements.txt -r tests/requirements.txt`
+- Setup: `python -m venv env && env/bin/pip install -r requirements.txt -r tests/requirements.txt`
 - Build extensions (if Cython/C++): `python setup.py build_ext --inplace`
 - Test (all): `python -m pytest tests/`
 - Test (single file): `python -m pytest tests/test_<name>.py -x`
@@ -55,7 +55,7 @@ If you correct an agent twice about the same package fact, add it here.
   roles, no Markdown), matching the module's existing convention.
 - Add a release note with `reno` for user-visible changes.
 - Fill in the "AI Generation Disclosure" section of the PR description:
-  the tool and model used and how, or "No AI tools used".
+  the tool and model used and how.
 
 ## Ocean Baseline
 

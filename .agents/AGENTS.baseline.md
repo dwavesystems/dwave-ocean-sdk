@@ -26,7 +26,7 @@ per-package template in AGENTS.template.md).
   roles, no Markdown), matching the module's existing convention.
 - Add a release note with `reno` for user-visible changes.
 - Fill in the "AI Generation Disclosure" section of the PR description:
-  the tool and model used and how, or "No AI tools used".
+  the tool and model used and how.
 
 ## Working Style
 
@@ -69,8 +69,8 @@ per-package template in AGENTS.template.md).
   `reset --hard`, branch deletion) without being asked.
 - Don't add yourself as a commit co-author; disclosure belongs in the PR
   description (see Non-negotiables).
-- When preparing a commit or PR, follow this repo's `CONTRIBUTING.rst` if it
-  has one, and the shared Ocean contributing guide:
+- When preparing a commit or PR, follow the working repo's `CONTRIBUTING.rst`
+  if it has one, and the shared Ocean contributing guide:
   https://raw.githubusercontent.com/dwavesystems/dwave-ocean-sdk/refs/heads/master/CONTRIBUTING.rst
 - The Non-negotiables above always apply, even if the guide was not fetched.
 
