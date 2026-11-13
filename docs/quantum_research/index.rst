@@ -7,6 +7,17 @@ Quantum Research
 .. toctree::
     :hidden:
     :maxdepth: 1
+    :caption: Gate Model
+
+    index_get_started_gm
+    index_about_gm
+    index_using_gm
+
+
+.. toctree::
+    :hidden:
+    :maxdepth: 1
+    :caption: Annealing
 
     index_get_started
     index_about
@@ -16,7 +27,39 @@ Quantum Research
 .. sections-start-marker
 
 The :ref:`index_quantum_research` section shows how to use |dwave_short_tm|
-quantum processing units (QPU) directly.
+quantum processing units (QPU) directly, on both **annealing** and
+**gate-model** quantum systems.
+
+.. rubric::  Gate Model
+
+.. grid:: 2 2 3 3
+    :gutter: 2
+
+    .. grid-item-card:: :ref:`qpu_index_get_started_gm`
+        :img-top: /_images/rocket_icon.svg
+        :link: qpu_index_get_started_gm
+        :link-type: ref
+        :class-title: custom-title-orange
+
+        Learn about |dwave_short| **gate-model** quantum computers.
+
+    .. grid-item-card:: :ref:`qpu_index_about_gm`
+        :img-top: /_images/gate_model_icon.svg
+        :link: qpu_index_about_gm
+        :link-type: ref
+        :class-title: custom-title-orange
+
+        Gate-model QPU architecture and properties.
+
+    .. grid-item-card:: :ref:`qpu_index_using_gm`
+        :img-top: /_images/bloch_sphere_icon.svg
+        :link: qpu_index_using_gm
+        :link-type: ref
+        :class-title: custom-title-orange
+
+        Configuring gate-model QPU parameters and usage best-practices.
+
+.. rubric::  Annealing
 
 .. grid:: 2 2 3 3
     :gutter: 2
@@ -26,35 +69,28 @@ quantum processing units (QPU) directly.
         :link: qpu_index_get_started
         :link-type: ref
 
-        Learn about |dwave_short| quantum computers.
+        Learn about |dwave_short| **annealing** quantum computers.
 
     .. grid-item-card:: :ref:`qpu_index_about`
         :img-top: /_images/hardware_icon.svg
         :link: qpu_index_about
         :link-type: ref
 
-        QPU architecture, properties, errors, timing, etc.
+        Annealing QPU architecture, properties, errors, timing, etc.
 
     .. grid-item-card:: :ref:`qpu_index_using`
         :img-top: /_images/bipartite_icon.svg
         :link: qpu_index_using
         :link-type: ref
 
-        Configuring QPU parameters and usage best-practices.
+        Configuring annealing QPU parameters and usage best-practices.
 
     .. grid-item-card:: :ref:`qpu_index_benchmarks`
         :img-top: /_images/vignette_icon_quantum-research.svg
         :link: qpu_index_benchmarks
         :link-type: ref
 
-        Compare performance of D-Wave's quantum computers versus competing solvers.
-
-    .. grid-item-card:: :ref:`index_gate`
-        :img-top: /_images/gate_model_icon.svg
-        :link: index_gate
-        :link-type: ref
-
-        Gate-model quantum computing.
+        Compare D-Wave's quantum computers to competing solvers.
 
 The :ref:`index_industrial_optimization` section shows how to optimize business
 problems using the |cloud_tm| service's quantum-classical :term:`hybrid`

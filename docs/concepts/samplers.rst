@@ -9,14 +9,15 @@ Samplers and Solvers
 :ref:`quantum <qpu_quantum_solvers_intro>`,
 :ref:`classical <qpu_classical_intro>`, and quantum-classical
 :ref:`hybrid <opt_index_properties_parameters>` samplers that run either
-remotely (for example, in the |cloud|_ service) or locally on your CPU. These
-compute resources are known as solvers.
+remotely (for example, in the |cloud|_ service) or locally on your CPU. Compute
+resources such as these, as well as gate-model quantum computers and simulators,
+are known as *solvers*.
 
 .. note:: Some classical samplers actually brute-force solve small problems
     rather than sample, and these are also referred to as “solvers”.
 
-QPU and Classical Samplers
-==========================
+Annealing-QPU and Classical Samplers
+====================================
 
 A BQM sampler samples from low-energy states in models such as those defined by
 an :term:`Ising` equation or a Quadratic Unconstrained Binary Optimization

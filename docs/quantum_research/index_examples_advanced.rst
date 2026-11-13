@@ -4,7 +4,9 @@
 QPU Usage Examples
 ==================
 
-For beginner examples, see the :ref:`qpu_index_examples_beginner` section. 
+Usage examples for using annealing quantum computers. For beginner examples, see
+the :ref:`qpu_index_examples_beginner` section. For gate-model quantum
+computers, see the :ref:`qpu_index_get_started_gm` section.
 
 ..  toctree::
     :maxdepth: 1

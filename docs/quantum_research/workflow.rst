@@ -5,7 +5,7 @@ Basic Workflow: Formulation and Sampling
 ========================================
 
 This section provides a high-level description of how you solve problems using
-quantum computers directly. For solving problems with :term:`hybrid`
+annealing quantum computers directly. For solving problems with :term:`hybrid`
 :term:`solver`\ s, see the :ref:`opt_workflow` section.
 
 .. include:: ../shared/workflow.rst

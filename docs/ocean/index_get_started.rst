@@ -13,11 +13,12 @@ Get Started with Ocean Software
     sapi_access_basic
     sapi_access_advanced
     workflow
+    workflow_gm
     stack
 
 New to Ocean\ |TM| software? This section describes how to install the Ocean SDK
 and gives an overview of using it to solve hard problems on |dwave_short_tm|
-quantum computers.
+annealing and gate-model quantum computers.
 
 .. _ocean_initial_setup:
 
@@ -58,10 +59,17 @@ Learn Ocean software's workflow and structure.
         :link: ocean_workflow
         :link-type: ref
 
-        The two main steps of solving problems on quantum computers.
+        The two main steps of solving problems on annealing quantum computers
+        and hybrid solvers.
+
+    .. grid-item-card:: :ref:`ocean_workflow_gm`
+        :link: ocean_workflow_gm
+        :link-type: ref
+
+        Running gate-model algorithms on dual-rail quantum computers.
 
     .. grid-item-card:: :ref:`ocean_stack`
         :link: ocean_stack
         :link-type: ref
 
-        Ocean software stack graphic and description.
+        Ocean software quantum-annealing stack: Graphic and description.

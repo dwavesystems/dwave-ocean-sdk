@@ -1,8 +1,8 @@
 .. _qpu_topologies:
 
-==========
-Topologies
-==========
+========================
+Annealing QPU Topologies
+========================
 
 The topology (or layout) of the |dwave_short| quantum processing unit (QPU) is
 critical to formulating an objective function in a format that a |dwave_short|

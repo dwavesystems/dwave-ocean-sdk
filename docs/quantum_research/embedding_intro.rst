@@ -6,12 +6,13 @@ Minor Embedding
 
 To solve an arbitrarily structured
 :ref:`binary quadratic model <concept_models_bqm>` (BQM) directly on a
-|dwave_short| quantum computer requires mapping, called *minor embedding*, to
-the :ref:`topology <qpu_topologies>` of the system's quantum processing unit
-(QPU). This preprocessing can be done by a :term:`composed sampler` consisting
-of the :class:`~dwave.system.samplers.DWaveSampler()` and a composite that
-performs minor-embedding. (This step is handled automatically by :term:`hybrid`
-samplers such as :class:`~dwave.system.samplers.LeapHybridSampler`.)
+|dwave_short| annealing quantum computer requires mapping, called
+*minor embedding*, to the :ref:`topology <qpu_topologies>` of the system's
+quantum processing unit (QPU). This preprocessing can be done by a
+:term:`composed sampler` consisting of the
+:class:`~dwave.system.samplers.DWaveSampler()` and a composite that performs
+minor-embedding. (This step is handled automatically by :term:`hybrid` samplers
+such as :class:`~dwave.system.samplers.LeapHybridSampler`.)
 
 For example, a simple two-variable BQM,
 

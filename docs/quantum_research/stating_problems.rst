@@ -5,7 +5,7 @@ Stating the Problem
 ===================
 
 Once properly stated, a problem can be formulated as an objective function to be
-solved on a |dwave_short| solver.
+solved on an annealing quantum computer.
 
 |dwave_short| provides several resources containing many reference examples:
 

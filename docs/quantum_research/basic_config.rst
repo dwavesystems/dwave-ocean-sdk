@@ -5,11 +5,14 @@ Basic QPU Configuration
 =======================
 
 Setting appropriate parameters can be both hard and crucial to finding good
-solutions. The :ref:`qpu_solver_parameters` section describes the parameters you
-can configure on the QPU and the :ref:`qpu_solver_configuration` section
-provides guidance on best practices.
+solutions on annealing quantum computers\ [#]_. The :ref:`qpu_solver_parameters`
+section describes the parameters you can configure on the QPU and the
+:ref:`qpu_solver_configuration` section provides guidance on best practices.
 
 This section shows some minimal configuration parameters to get you started.
+
+.. [#]
+    For gate-model configuration, see the :ref:`qpu_index_using_gm` section.
 
 .. _qpu_basic_config_num_reads:
 

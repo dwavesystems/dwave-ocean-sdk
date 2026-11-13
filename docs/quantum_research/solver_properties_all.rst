@@ -18,13 +18,17 @@ General QPU Solver Properties
     utility functions described in the
     :ref:`qpu_experimental_research_utilities` section.
 
-This section describes the properties in common to all :term:`QPU` solvers and
-shows how you can query their values through :term:`SAPI`; for properties
-specific to the hardware of a particular QPU, see the
-:ref:`qpu_solver_properties_specific` section.
+This section describes the properties in common to all annealing\ [#]_
+:term:`QPU` solvers and shows how you can query their values through
+:term:`SAPI`; for properties specific to the hardware of a particular QPU, see
+the :ref:`qpu_solver_properties_specific` section.
 
 For the parameters you can configure, see the :ref:`qpu_solver_parameters`
 section.
+
+.. [#]
+    For properties of gate-model solvers, see the :ref:`qpu_index_about_gm`
+    section.
 
 .. _property_qpu_anneal_offset_ranges:
 
