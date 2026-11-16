@@ -8,6 +8,7 @@ Leap Service
     :hidden:
     :maxdepth: 1
 
+    ocean_leap_access
     dev_env
     admin
     sapi_rest
@@ -20,6 +21,13 @@ The |cloud_tm| quantum cloud service provides real-time cloud access to
 
 .. grid:: 2 2 3 3
     :gutter: 2
+
+    .. grid-item-card:: :ref:`ocean_leap_access`
+        :img-top: /_images/cli_icon.svg
+        :link: ocean_leap_access
+        :link-type: ref
+
+        Authorize and configure Ocean SDK access to Leap services.
 
     .. grid-item-card:: :ref:`leap_dev_env`
         :img-top: /_images/ide_icon.svg
