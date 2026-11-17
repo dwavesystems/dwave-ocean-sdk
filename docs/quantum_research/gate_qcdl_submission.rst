@@ -17,9 +17,7 @@ section.
 About the Simulator
 ===================
 
-the |cloud|_ service provides a Monte Carlo simulator of QCDL programs. This is
-built on top of Qiskit's
-`AerStatevector <https://qiskit.github.io/qiskit-aer/stubs/qiskit_aer.quantum_info.AerStatevector.html>`_.
+the |cloud|_ service provides a Monte Carlo simulator of QCDL programs.
 
 This simulator closely models the classical and quantum operation of the QPU
 with varying approximations. It instantiates a "state" representing both
@@ -33,13 +31,6 @@ number of shots; however, its operation is
     Accuracy bears a simulation cost and error handling increases circuit
     complexity. It is advisable to start circuit development against the ideal
     simulator and then introduce error modeling.
-
-    .. for future consideration
-        in a controlled way. For example, start by simulating full-precision
-        registers before simulating reduced-precision registers; start with
-        ideal quantum operations before introducing erasures.
-
-        Amos: Update the above paragraph as new features become available
 
 The simulator in the |cloud|_ service supports two modes of simulations. The
 following table compares these two simulation modes.
