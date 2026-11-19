@@ -6,7 +6,7 @@ CQM Solver Properties
 
 This section describes the properties of quantum-classical hybrid
 :ref:`constrained quadratic model <concept_models_cqm>` solvers such as the Leap
-service's ``hybrid_constrained_quadratic_model_version1``. For the parameters
+service's ``hybrid_constrained_quadratic_model``. For the parameters
 you can configure, see the :ref:`opt_solver_cqm_parameters` section.
 
 .. _property_cqm_category:

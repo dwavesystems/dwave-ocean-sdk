@@ -35,7 +35,7 @@ In addition to the hybrid nonlinear solver, also known as the |nlstride_short|,
 described in the :ref:`opt_leap_hybrid` section, the following hybrid solvers
 are also currently supported:
 
-*   Hybrid CQM solver (e.g., ``hybrid_constrained_quadratic_model_version1``)
+*   Hybrid CQM solver (e.g., ``hybrid_constrained_quadratic_model``)
 
     .. include:: ../shared/models.rst
         :start-after: start_models_cqm
@@ -44,7 +44,7 @@ are also currently supported:
     These solvers accept arbitrarily structured problems formulated as CQMs,
     with any constraints represented natively.
 
-*   Hybrid BQM solver (e.g., ``hybrid_binary_quadratic_model_version2``)
+*   Hybrid BQM solver (e.g., ``hybrid_binary_quadratic_model``)
 
     .. include:: ../shared/models.rst
         :start-after: start_models_bqm
@@ -54,7 +54,7 @@ are also currently supported:
     formulated as BQMs, with any constraints typically represented through
     :ref:`penalty models <concept_penalty>`.
 
-*   Hybrid DQM solver (e.g., ``hybrid_discrete_quadratic_model_version1``)
+*   Hybrid DQM solver (e.g., ``hybrid_discrete_quadratic_model``)
 
     .. include:: ../shared/models.rst
         :start-after: start_models_dqm

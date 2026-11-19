@@ -193,7 +193,7 @@ The example code below submits a :term:`BQM` representing a Boolean AND gate
 In this case, the :ref:`dwave-system <index_system>` package's
 :class:`~dwave.system.samplers.LeapHybridSampler` class is the Ocean sampler and
 the remote compute resource selected might be Leap hybrid solver
-``hybrid_binary_quadratic_model_version<x>``.
+``hybrid_binary_quadratic_model``.
 
 >>> from dimod.generators import and_gate
 >>> from dwave.system import LeapHybridSampler

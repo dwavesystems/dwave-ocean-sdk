@@ -7,7 +7,7 @@ CQM Solver Parameters
 
 This section describes the parameters of quantum-classical hybrid
 :ref:`constrained quadratic model <concept_models_cqm>` solvers such as the Leap
-service's ``hybrid_constrained_quadratic_model_version1``. For the properties
+service's ``hybrid_constrained_quadratic_model``. For the properties
 that inform and restrict your use of the solver, see the
 :ref:`opt_solver_cqm_properties` section.
 
