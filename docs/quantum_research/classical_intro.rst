@@ -4,7 +4,8 @@
 Classical Solvers
 =================
 
-:ref:`Ocean software <index_ocean_sdk>` provides a variety of classical solvers.
+:ref:`Ocean software <index_ocean_sdk>` provides a variety of classical solvers
+for optimization problems.\ [#]_
 You might use a classical solver while developing your code or on a small
 version of your problem to verify your code. Some are designed to help with code
 development and debugging by deterministically solving small problems, others
@@ -24,6 +25,10 @@ a QPU solver or a hybrid solver.
 
 Classical solvers may be :ref:`determinstic <qpu_classical_deterministic>`
 or :ref:`heuristic <qpu_classical_heuristic>`.
+
+.. [#]
+    The `Leap <https://cloud.dwavesys.com/leap/>`_ service also provides
+    solvers that are :ref:`gate-model simulators <qpu_index_get_started_gm>`.
 
 .. _qpu_classical_deterministic:
 

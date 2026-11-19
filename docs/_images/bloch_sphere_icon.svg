@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 159.384 159.384">
+  <circle cx="79.692" cy="79.692" r="77.192" fill="none" stroke="#2a7de1" stroke-miterlimit="10" stroke-width="5"/>
+  <g>
+    <path d="M79.692,156.884v-5" fill="none" stroke="#2a7de1" stroke-linecap="round" stroke-linejoin="round" stroke-width="5"/>
+    <path d="M79.692,139.453c0-41.913,0-83.826,0-125.738" fill="none" stroke="#2a7de1" stroke-dasharray="9.562 12.43" stroke-linecap="round" stroke-linejoin="round" stroke-width="5"/>
+    <path d="M79.692,7.5V2.5" fill="none" stroke="#2a7de1" stroke-linecap="round" stroke-linejoin="round" stroke-width="5"/>
+  </g>
+  <ellipse cx="79.692" cy="79.692" rx="77.056" ry="32.758" fill="none" stroke="#2a7de1" stroke-dasharray="9.76 12.688" stroke-linecap="round" stroke-miterlimit="10" stroke-width="5"/>
+  <path d="M79.692,79.692c16.345-16.345,32.69-32.69,49.035-49.035" fill="none" stroke="#f37820" stroke-linecap="round" stroke-linejoin="round" stroke-width="7"/>
+  <path d="M116.573,30.657h12.154" fill="none" stroke="#f37820" stroke-linecap="round" stroke-linejoin="round" stroke-width="7"/>
+  <path d="M128.727,43.217c0-4.051,0-8.103,0-12.154" fill="none" stroke="#f37820" stroke-linecap="round" stroke-linejoin="round" stroke-width="7"/>
+  <circle cx="79.692" cy="79.692" r="7.329" fill="#f37820"/>
+</svg>

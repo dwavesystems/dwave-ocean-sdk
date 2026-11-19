@@ -1,8 +1,8 @@
 .. _qpu_index_using:
 
-=============
-Using the QPU
-=============
+====================
+Using Annealing QPUs
+====================
 
 .. toctree::
     :hidden:
@@ -16,7 +16,7 @@ Using the QPU
     postprocessing
     index_examples_advanced
 
-Guidance and best practices for QPU usage.
+Guidance and best practices for annealing QPU usage.
 
 .. grid:: 2 2 3 3
     :gutter: 2
@@ -25,7 +25,7 @@ Guidance and best practices for QPU usage.
         :link: qpu_index_formulation
         :link-type: ref
 
-        Formulating problems for the quantum computer.
+        Formulating problems for annealing quantum computers.
 
     .. grid-item-card:: :ref:`qpu_decomposing`
         :link: qpu_decomposing
@@ -43,13 +43,13 @@ Guidance and best practices for QPU usage.
         :link: qpu_solver_parameters
         :link-type: ref
 
-        Parameters of the QPU solver.
+        Parameters of annealing QPUs.
 
     .. grid-item-card:: :ref:`qpu_solver_configuration`
         :link: qpu_solver_configuration
         :link-type: ref
 
-        Ways to improve solutions on QPU solvers.
+        Ways to improve solutions on annealing QPUs.
 
     .. grid-item-card:: :ref:`qpu_postprocessing`
         :link: qpu_postprocessing
@@ -61,7 +61,7 @@ Guidance and best practices for QPU usage.
         :link: qpu_index_examples_advanced
         :link-type: ref
 
-        Errors sources and correction.
+        Errors sources and correction on annealing QPUs.
 
 Example
 =======

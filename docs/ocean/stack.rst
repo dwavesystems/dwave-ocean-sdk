@@ -4,19 +4,21 @@
 Ocean Software Stack
 ====================
 
-.. todo:: this page needs a refresh for hybrid solvers
+.. todo:: this page needs a refresh for the Stride solver
 
 The :ref:`Ocean <index_ocean_sdk>` software stack provides a chain of tools that
 implements the steps needed to solve your problem on a CPU, a |dwave_short|
-quantum computer, or a quantum-classical :term:`hybrid` :term:`solver`. As
-described in the :ref:`ocean_workflow` section, these steps include formulating
-the problem in a way the solver understands (as a
-:ref:`supported model <concept_models>`) and solving the formulated problem by
-submitting it to a |dwave_short| quantum computer, a
-:ref:`classical sampler <qpu_classical_intro>`, or a hybrid solver.
+quantum computer, or a quantum-classical :term:`hybrid` :term:`solver`.
 
-It's helpful to visualize the tool chain as layers of abstraction, each of which
-handles one part of the solution procedure.
+For gate-model solvers, :ref:`index_gate` package provides the relevant tools.
+
+For annealing-\ :term:`QPU` and hybrid solvers, as described in the
+:ref:`ocean_workflow` section, these steps include formulating the problem in a
+way the solver understands (as a :ref:`supported model <concept_models>`) and
+solving the formulated problem by submitting it to an annealing quantum
+computer, a :ref:`classical sampler <qpu_classical_intro>`, or a hybrid solver.
+The following subsections help you visualize the tool chain as layers of
+abstraction, each of which handles one part of the solution procedure.
 
 Abstraction Layers
 ==================
