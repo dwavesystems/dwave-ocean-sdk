@@ -181,7 +181,7 @@ and submit the CQM to the selected\ [#]_ solver.
     :attr:`~dwave.cloud.solver.BaseSolver.name` property; for example,
 
     >>> sampler.solver.name                          # doctest: +SKIP
-    'hybrid_constrained_quadratic_model'
+    'hybrid_constrained_quadratic_model_version1'
 
     and use :ref:`feature-based solver selection <index_cloud>` to select a
     particular solver.

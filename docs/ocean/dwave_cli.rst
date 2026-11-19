@@ -230,8 +230,8 @@ resources are currently available to your account.
 
     $ dwave solvers  --list --all
     DW_2000Q_6
-    hybrid_binary_quadratic_model
-    hybrid_discrete_quadratic_model
+    hybrid_binary_quadratic_model_version2
+    hybrid_discrete_quadratic_model_version1
     Advantage_system4.1
 
 .. cli_example_solvers_end

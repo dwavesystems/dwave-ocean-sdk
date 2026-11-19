@@ -867,7 +867,7 @@ sampler,see the :ref:`sapi_rest_full_examples` section.
 
         This example uses the identifier ``problem_data_id`` returned from the
         :ref:`sapi_rest_get_multi_id` example and sets the requested solver to
-        ``hybrid_binary_quadratic_model``, a solver available to the
+        ``hybrid_binary_quadratic_model_version2``, a solver available to the
         user account that executed this example. To get a ``2xx`` response, run
         the examples that :ref:`initiate <sapi_rest_get_multi_id>`,
         :ref:`upload <sapi_rest_upload_multi_parts>`, and
@@ -878,7 +878,7 @@ sampler,see the :ref:`sapi_rest_full_examples` section.
 
             >>> session.headers['Accept'] = 'application/vnd.dwave.sapi.problems+json; version=3'
             >>> r = session.post(f"{SAPI_HOME}/problems",
-            ...                   json=[{"solver": {"name": "hybrid_binary_quadratic_model"},
+            ...                   json=[{"solver": {"name": "hybrid_binary_quadratic_model_version2"},
             ...                          "label": "REST Submission to hybrid BQM solver",
             ...                          "data": {"format": "ref", "data": problem_data_id},
             ...                          "type": "bqm",
@@ -889,7 +889,7 @@ sampler,see the :ref:`sapi_rest_full_examples` section.
         This example sets the identifier, ``problem_data_id``, of the problem
         data being uploaded to the value returned from the
         :ref:`sapi_rest_get_multi_id` example and sets the requested solver to
-        ``hybrid_binary_quadratic_model``, a solver available to the
+        ``hybrid_binary_quadratic_model_version2``, a solver available to the
         user account that executed this example. To get a ``2xx`` response, run
         the examples that :ref:`initiate <sapi_rest_get_multi_id>`,
         :ref:`upload <sapi_rest_upload_multi_parts>`, and
@@ -902,7 +902,7 @@ sampler,see the :ref:`sapi_rest_full_examples` section.
             $ accept="Accept: application/vnd.dwave.sapi.problems+json; version=3"
             $ curl -H "$auth" -H "$accept" $SAPI_HOME/problems -X POST \
             -d '[{"type":"bqm", "label": "REST Submission to hybrid BQM solver", \
-            "solver":{"name": "hybrid_binary_quadratic_model"}, \
+            "solver":{"name": "hybrid_binary_quadratic_model_version2"}, \
             "data":{"format": "ref", "data": "'"$problem_data_id"'"}, \
             "params":{"time_limit":5}}]'
 
@@ -921,7 +921,7 @@ sampler,see the :ref:`sapi_rest_full_examples` section.
     >>> r.json()   # doctest: +SKIP
     [{'status': 'IN_PROGRESS',
       'id': 'a239c000-10de-4663-b562-af8029c0c470',
-      'solver': {'name': 'hybrid_binary_quadratic_model'},
+      'solver': {'name': 'hybrid_binary_quadratic_model_version2'},
       'type': 'bqm',
       'submitted_on': '2022-09-01T16:48:36.052206Z',
       'label': 'REST Submission to hybrid BQM solver'}]
@@ -1031,7 +1031,7 @@ single query.
     >>> r.json()   # doctest: +SKIP
     [{'status': 'CANCELLED',
       'id': '74d9344c-0160-47bc-b7b1-e245b2ffd955',
-      'solver': {'name': 'hybrid_binary_quadratic_model'},
+      'solver': {'name': 'hybrid_binary_quadratic_model_version2'},
       'type': 'bqm',
       'submitted_on': '2022-09-01T18:20:02.594833Z',
       'label': 'REST Submission to hybrid BQM solver',
@@ -1125,7 +1125,7 @@ The request should contain no body.
     >>> r.json()   # doctest: +SKIP
     {'status': 'CANCELLED',
      'id': 'd92d5b66-330b-4bfd-b26f-a6220b4d2710',
-     'solver': {'name': 'hybrid_binary_quadratic_model'},
+     'solver': {'name': 'hybrid_binary_quadratic_model_version2'},
      'type': 'bqm',
      'submitted_on': '2022-09-01T20:09:55.377688Z',
      'label': 'REST Submission to hybrid BQM solver',
@@ -1196,7 +1196,7 @@ with an ampersand ("&").
         status          Problem state: COMPLETED, IN_PROGRESS, PENDING, FAILED,
                         CANCELLED.
         solver          Solver name as a string (e.g.,
-                        ``hybrid_binary_quadratic_model``).
+                        ``hybrid_binary_quadratic_model_version2``).
         =============== ===========================
 
 .. tab-set::
@@ -1323,7 +1323,7 @@ not completed processing.
     >>> r.json()   # doctest: +SKIP
     {'status': 'COMPLETED',
      'id': '74d9344c-0160-47bc-b7b1-e245b2ffd955',
-     'solver': {'name': 'hybrid_binary_quadratic_model'},
+     'solver': {'name': 'hybrid_binary_quadratic_model_version2'},
      'type': 'bqm',
      'submitted_on': '2022-08-31T14:27:47.822848Z',
      'label': 'hybrid BQM solver REST Submission python 2',
@@ -1414,7 +1414,7 @@ The request should contain no body.
       'data': '8863e118-2cea-447c-b5f3-b874bce05ba9'},
      'params': {'time_limit': 5},
      'metadata': {'submitted_by': 'ABC-1234567...345678',
-      'solver': {'name': 'hybrid_binary_quadratic_model'},
+      'solver': {'name': 'hybrid_binary_quadratic_model_version2p'},
       'type': 'bqm',
       'submitted_on': '2025-09-29T18:04:12.237828Z',
       'solved_on': '2025-09-29T18:05:07.122193Z',
@@ -1702,11 +1702,11 @@ to get a subset of solver fields.
         >>> r = r.json()
         >>> for i in range(len(r)):
         ...    print(f"{r[i]['identity']['name']} \n\tStatus: {r[i]['status']}    Load: {r[i]['avg_load']}")  # doctest: +SKIP
-        hybrid_binary_quadratic_model
+        hybrid_binary_quadratic_model_version2
             Status: ONLINE    Load: 0.0
-        hybrid_discrete_quadratic_model
+        hybrid_discrete_quadratic_model_version1
             Status: ONLINE    Load: 0.0
-        hybrid_constrained_quadratic_model
+        hybrid_constrained_quadratic_model_version1
             Status: ONLINE    Load: 0.0
         stride_hybrid_solver
             Status: ONLINE    Load: 0.0
@@ -1919,11 +1919,11 @@ lists the solver names, statuses, and current usage loads.
     ...    print(f"{r1[i]['identity']['name']} \n\tStatus: {r1[i]['status']}    Load: {r1[i]['avg_load']}")  # doctest: +SKIP
     stride_hybrid_solver 
         Status: ONLINE    Load: 0.0
-    hybrid_constrained_quadratic_model
+    hybrid_constrained_quadratic_model_version1
         Status: ONLINE    Load: 0.0
-    hybrid_binary_quadratic_model
+    hybrid_binary_quadratic_model_version2
         Status: ONLINE    Load: 0.0
-    hybrid_discrete_quadratic_model
+    hybrid_discrete_quadratic_model_version1
         Status: ONLINE    Load: 0.0
     Advantage2_system1.6
         Status: ONLINE    Load: 0.58
@@ -2193,7 +2193,7 @@ section above.
     ...    r1[i]['properties']['category'] == "hybrid" and "binary" in r1[i]['identity']['name']]
     >>> bqm_solver = hybrid_bqm_solvers[0]
     >>> print(bqm_solver)                           # doctest: +SKIP
-    {'name': 'hybrid_binary_quadratic_model'}
+    {'name': 'hybrid_binary_quadratic_model_version2'}
 
 Submit Your SAPI Request
 ~~~~~~~~~~~~~~~~~~~~~~~~

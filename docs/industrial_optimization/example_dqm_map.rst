@@ -44,7 +44,7 @@ Solution Steps
 
 In this example, a DQM is created to formulate the problem and submitted to the
 `Leap <https://cloud.dwavesys.com/leap/>`_ hybrid DQM solver,
-``hybrid_discrete_quadratic_model_version<x>``.
+``hybrid_discrete_quadratic_model``.
 
 Formulate the Problem
 =====================
@@ -151,5 +151,5 @@ The graphic below shows the result of one such run.
     :align: center
     :scale: 70 %
 
-    One solution ``hybrid_discrete_quadratic_model`` found for the USA
+    One solution ``hybrid_discrete_quadratic_model_version1`` found for the USA
     map-coloring problem.
