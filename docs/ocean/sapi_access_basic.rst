@@ -155,9 +155,9 @@ environment from either Ocean's default values or your configuration.
         >>> from dwave.cloud import Client
         >>> with Client.from_config() as client:         # doctest: +SKIP
         ...    print(client.get_solvers(hybrid=True))
-        [BQMSolver(id='hybrid_binary_quadratic_model_version2'),
-        DQMSolver(id='hybrid_discrete_quadratic_model_version1'),
-        CQMSolver(id='hybrid_constrained_quadratic_model_version1')]
+        [BQMSolver(id='hybrid_binary_quadratic_model'),
+        DQMSolver(id='hybrid_discrete_quadratic_model'),
+        CQMSolver(id='hybrid_constrained_quadratic_model')]
 
         .. note:: For non-Ocean clients, you can retrieve a list of supported
             remote solvers by sending an :code:`HTTP GET` request to the

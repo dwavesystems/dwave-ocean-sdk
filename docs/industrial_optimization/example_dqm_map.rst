@@ -151,5 +151,5 @@ The graphic below shows the result of one such run.
     :align: center
     :scale: 70 %
 
-    One solution ``hybrid_discrete_quadratic_model_version1`` found for the USA
+    One solution ``hybrid_discrete_quadratic_model`` found for the USA
     map-coloring problem.
