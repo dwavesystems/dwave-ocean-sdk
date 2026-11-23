@@ -15,7 +15,7 @@ The Ocean SDK
 `releases 6.6 <https://github.com/dwavesystems/dwave-ocean-sdk/releases/tag/6.6.0>`_
 and higher enable authentication using the secure
 `OAuth 2.0 <https://oauth.net/2/>`_ industry standard. The procedure described
-in the :ref:`ocean_leap_authorization` section simplifies the retrieval and
+in the :ref:`leap_ocean_authorization` section simplifies the retrieval and
 storage of your Solver API (:term:`SAPI`) token for use in submitting problems
 to :term:`solvers <solver>` in the Leap service from the third-party IDE of your
 choice.

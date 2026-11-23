@@ -1,5 +1,6 @@
 .. _leap_access:
 .. _ocean_sapi_access_basic:
+.. the ocean_sapi_access_basic has a couple of xrefs in dwave-system
 
 ====================
 Access Leap Services
@@ -14,7 +15,7 @@ service.\ [#]_
 .. [#] SAPI is used similarly for on-premises systems. Differences for such
     systems are noted below.
 
-.. _ocean_leap_authorization:
+.. _leap_ocean_authorization:
 
 Authorizing the Ocean SDK
 =========================
@@ -197,11 +198,11 @@ standard is recommended.
     If you cloned a |dwave_short| example, you can now run it.
 
 Alternatively, you can copy the API token manually from the dashboard in the
-Leap service. The :ref:`sapi_access_interacting` and
+Leap service. The :ref:`leap_access_tokens` and
 :ref:`leap_configuring_dev_env` sections show how to find tokens for your
 projects and how to use them.
 
-.. _sapi_access_interacting:
+.. _leap_access_tokens:
 
 API Tokens
 ----------
@@ -263,7 +264,7 @@ environment.
                 or edit the file manually.
             -   You can override this configuration by setting an
                 environment variable or explicitly in your code.
-        *   -   :ref:`Environment variables <sapi_access_env_vars>`
+        *   -   :ref:`Environment variables <leap_access_env_vars>`
             -   Configure :code:`DWAVE_API_TOKEN`. For example,
                 :code:`export DWAVE_API_TOKEN=ABC-1234 ... 789` in
                 a Unix shell.
@@ -313,7 +314,7 @@ example, a :term:`hybrid` :term:`solver` or quantum computer.
                 solvers accessible to the current API token; switch to
                 another project's API token if needed.
             -   Solvers may be local to a region; see the
-                :ref:`sapi_intro_multiregion` section to query solvers
+                :ref:`leap_access_multiregion` section to query solvers
                 outside your default region.
 
     Example: using :ref:`dwave CLI <ocean_dwave_cli>` to see the available
@@ -360,7 +361,7 @@ example, a :term:`hybrid` :term:`solver` or quantum computer.
                 or edit the file manually.
             -   You can override this configuration by setting a solver in
                 an environment variable or explicitly in your code.
-        *   -   :ref:`Environment variables <sapi_access_env_vars>`
+        *   -   :ref:`Environment variables <leap_access_env_vars>`
             -   Configure :code:`DWAVE_API_SOLVER`. For example,
                 :code:`export DWAVE_API_SOLVER='{"num_qubits__gt": 2000}'`
                 in a Unix shell.
@@ -375,7 +376,7 @@ example, a :term:`hybrid` :term:`solver` or quantum computer.
 The :ref:`leap_configuring_dev_env` section shows how to configure your
 environment to select your preferred solvers.
 
-.. _sapi_intro_multiregion:
+.. _leap_access_multiregion:
 
 Geographical Regions
 --------------------
@@ -424,7 +425,7 @@ quantum cloud resources at URL
         :code:`https://cloud.dwavesys.com/metadata/v1/regions` endpoint.
 
     For information about using solvers in alternative geographical regions,
-    see the :ref:`sapi_intro_multiregion` section below.
+    see the :ref:`leap_access_multiregion` section below.
 
 .. dropdown::  Viewing a Region's Solvers
 
@@ -495,7 +496,7 @@ environment variables. The
 documentation provides more examples.
 
 
-.. _sapi_access_env_vars:
+.. _leap_access_env_vars:
 
 Environment Variables
 ---------------------
@@ -511,11 +512,9 @@ For details on supported environment variables and prioritizing between these
 and values set explicitly or through a configuration file, see the
 :mod:`dwave.cloud.config` module.
 
-.. _sapi_access_cloud_config:
-
+.. _leap_config_files:
 .. _ocean_sapi_access_advanced:
-
-.. _sapi_access_config_files:
+.. the ocean_sapi_access_advanced xref is in a couple of places in cloud client
 
 Configuration Files
 -------------------
@@ -559,17 +558,17 @@ Configuration Files
         :end-before: cli_example_config_end
 
     .. [#] You can use the :code:`--auto-token` option if you have authorized
-        Leap access as described in :ref:`ocean_leap_authorization`.
+        Leap access as described in :ref:`leap_ocean_authorization`.
 
     2.  If needed, enter SAPI information (e.g. your API token) found as described
-        in the :ref:`sapi_access_interacting` section above. To get started,
+        in the :ref:`leap_access_tokens` section. To get started,
         create a minimum configuration by accepting the command's defaults (pressing
         Enter) for all prompts\ [#]_. You can in the future update the file if
         needed.
 
     .. [#] Users of on-premises systems should also enter the SAPI endpoint. Users
         interested in using solvers hosted outside their default region can also
-        configure the SAPI endpoint (see the :ref:`sapi_intro_multiregion` section
+        configure the SAPI endpoint (see the :ref:`leap_access_multiregion` section
         for the recommended way of configuring such access).
 
     Alternatively, you can create and edit a

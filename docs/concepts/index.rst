@@ -644,7 +644,7 @@ Concepts and Terminology
 
         Learn more:
 
-        *   :ref:`ocean_sapi_access_basic`
+        *   :ref:`leap_access`
         *   :ref:`ocean_sapi_access_advanced`
 
     SAT

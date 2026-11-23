@@ -143,7 +143,7 @@ Ocean SDK Access
 
 You can authorize Ocean software to access your account in the Leap service and
 store your API token in your development environment; see the
-:ref:`ocean_leap_authorization` section for details.
+:ref:`leap_ocean_authorization` section for details.
 
 (For information on configuring Ocean software to access preferred solvers or
 use one of multiple API tokens, see the :ref:`ocean_index_get_started` page.)
