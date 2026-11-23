@@ -33,9 +33,8 @@ The following steps set up your development environment for Ocean:
     work in an updated Ocean environment through the
     `Ocean Docker file <https://hub.docker.com/r/dwavesys/ocean-dev>`_.
 
-For information about authorizing Ocean to access Leap services and configuring
-solver access, see the :ref:`ocean_leap_access` section in the
-:ref:`index_leap_sapi` documentation.
+2.  Authorize and configure the Ocean SDK to access Leap services. See the
+    :ref:`leap_access` section.
 
 Ocean SDK's Programming Model
 =============================
