@@ -1,6 +1,7 @@
+.. the ocean_sapi_access_basic has a couple of xrefs in dwave-system
+
 .. _leap_access:
 .. _ocean_sapi_access_basic:
-.. the ocean_sapi_access_basic has a couple of xrefs in dwave-system
 
 ====================
 Access Leap Services
@@ -12,6 +13,12 @@ The |cloud_tm| Solver API (:term:`SAPI`) provides access to the
 solvers---hosted in the `Leap <https://cloud.dwavesys.com/leap/>`_ quantum cloud
 service.\ [#]_
 
+Typically you store your preferences for Ocean software's selecting of solvers
+(e.g., which QPU, hosted in which :ref:`region <leap_access_multiregion>`, using
+the :ref:`API token <leap_access_tokens>` for which project) in one or more
+:ref:`configuration files <leap_config_files>`, and optionally
+:ref:`environment variables <leap_access_env_vars>`.
+
 .. [#] SAPI is used similarly for on-premises systems. Differences for such
     systems are noted below.
 
@@ -20,36 +27,37 @@ service.\ [#]_
 Authorizing the Ocean SDK
 =========================
 
-Authorization allows
-you to store your Solver API (:term:`SAPI`) token in your development
-environment for convenient access to Leap :term:`solvers <solver>`.
-
 Authentication using the secure `OAuth 2.0 <https://oauth.net/2/>`_ industry
-standard is recommended.
+standard is recommended. It enables the Ocean SDK in your development
+environment to access your Leap service account for convenient access to solvers
+and the :term:`SAPI` tokens needed to use them.
 
 .. dropdown:: OAuth Authorization Procedure
 
     Ocean's SDK
     `releases 6.6 <https://github.com/dwavesystems/dwave-ocean-sdk/releases/tag/6.6.0>`_
-    and higher enable Leap\ |tm| authentication using the secure
+    and higher enable Leap authentication using the secure
     `OAuth 2.0 <https://oauth.net/2/>`_ industry standard.
 
-    The following procedure authorizes the Ocean software access to your account in
-    the Leap service and enables storing your SAPI token in your development
-    environment. Ocean software authorization to access the Leap service persists
-    across subsequent development sessions for this development environment.
+    The following procedure authorizes the Ocean software access to your account
+    in the Leap service and enables storing your SAPI token in your development
+    environment. Ocean software authorization to access the Leap service
+    persists across subsequent development sessions for this development
+    environment.
 
     This procedure uses the :ref:`Ocean software CLI <ocean_dwave_cli>`
     ``dwave setup`` command, which also handles optional Ocean packages and the
-    configuration file for you; the :ref:`CLI <cli_example_auth_leap>` page also
-    describes alternative commands (e.g., ``dwave auth``) for more granular control.
+    :ref:`configuration files <leap_config_files>` for you; the
+    :ref:`CLI <cli_example_auth_leap>` page also describes alternative commands
+    (e.g., ``dwave auth``) for more granular control.
 
     #.  For any new developer environment (for example, a Python
         `virtual environment <https://docs.python.org/3/library/venv.html>`_
-        or a `GitHub Codespaces <https://docs.github.com/codespaces>`_ *codespace*),
-        run one of the following commands from your terminal. If your account has
-        more than one project, the :ref:`tab_authorize_multiple_leap_projects` tab
-        below shows how to select one.
+        or a `GitHub Codespaces <https://docs.github.com/codespaces>`_
+        *codespace*), run one of the following commands from your terminal. If
+        your account has more than one project, the
+        :ref:`tab_authorize_multiple_leap_projects` tab below shows how to
+        select one.
 
         .. tab-set::
 
@@ -81,8 +89,8 @@ standard is recommended.
                 You can log in to your |cloud|_ account, set the preferred
                 project to be the active project (by selecting
                 *your_user_name* > **Projects** > *project*) and then use the
-                procedure described in the :ref:`tab_authorize_single_leap_project`
-                tab.
+                procedure described in the
+                :ref:`tab_authorize_single_leap_project` tab.
 
                 Alternatively, you can use the ``--project`` option to select a
                 project as shown here (the example code below selects a project
@@ -107,10 +115,10 @@ standard is recommended.
                     dwave setup --oob --project PROJ3
 
                 You can always switch your environment to use the API token of
-                another project later. For example, if you ran the procedure of the
-                :ref:`tab_authorize_single_leap_project` tab with the ``PROJ2``
-                project set to active in Leap, you can at any time switch to the
-                ``PROJ3`` project with the
+                another project later. For example, if you ran the procedure of
+                the :ref:`tab_authorize_single_leap_project` tab with the
+                ``PROJ2`` project set to active in Leap, you can at any time
+                switch to the ``PROJ3`` project with the
                 ``dwave config create --auto-token --project PROJ3`` command.
 
                 .. [#]
@@ -131,8 +139,8 @@ standard is recommended.
 
             Login screen in the Leap service.
 
-    #.  When you are logged into the Leap service, you are asked to grant the Ocean
-        software permission to fetch an authorization code.
+    #.  When you are logged into the Leap service, you are asked to grant the
+        Ocean software permission to fetch an authorization code.
 
         :numref:`Figure %s <LeapIdeAuthLogin>` shows the authorization request.
 
@@ -146,13 +154,13 @@ standard is recommended.
 
         Click the ``Authorize`` button.
 
-        For the OAuth *redirect* flow, the authorization code is now stored in your
-        development environment; for the OAuth *out-of-band* flow, your browser
-        displays the authorization code.
+        For the OAuth *redirect* flow, the authorization code is now stored in
+        your development environment; for the OAuth *out-of-band* flow, your
+        browser displays the authorization code.
 
-    #.  For the OAuth *out-of-band* flow only, copy the authorization code to your
-        terminal's "``Authorization code:``" prompt, similar to the representative
-        shell lines shown below::
+    #.  For the OAuth *out-of-band* flow only, copy the authorization code to
+        your terminal's "``Authorization code:``" prompt, similar to the
+        representative shell lines shown below::
 
             $ dwave setup --oob
             Optionally install non-open-source packages and configure your environment.
@@ -234,7 +242,8 @@ environment.
             -   Use the :ref:`dwave CLI <ocean_dwave_cli>` tool.
             -   For users that belong to multiple projects, you can specify
                 the relevant project.
-            -   Requires that you authorize Leap access as described above.
+            -   Requires that you authorize Leap access as described in the
+                :ref:`leap_ocean_authorization` subsection.
 
     Example: using :ref:`dwave CLI <ocean_dwave_cli>` to see your SAPI token
     (the output shown below is illustrative only).
@@ -246,7 +255,9 @@ environment.
 
 .. dropdown:: Using Your API Token
 
-    Typically, you configure your work environment so Ocean tools can
+    Typically, you create a configuration file and/or set environment variables
+    in your work environment, as described in the
+    :ref:`leap_configuring_dev_env` subsection, so that Ocean tools can
     automatically submit your API token when interacting with SAPI. Because
     tokens provide authentication, user names and passwords are not required
     in your code. The :ref:`table_token_config` table shows various options
@@ -259,7 +270,7 @@ environment.
         *   -   Where
             -   How
             -   Usage Notes
-        *   -   :ref:`Configuration file <index_cloud>`
+        *   -   :ref:`Configuration file <leap_config_files>`
             -   Configure using the :ref:`dwave CLI <ocean_dwave_cli>` tool
                 or edit the file manually.
             -   You can override this configuration by setting an
@@ -277,8 +288,6 @@ environment.
 
     .. note:: For non-Ocean clients, you set your token in the HTTP header;
         see the :ref:`leap_sapi_rest` section for information.
-
-The :ref:`leap_configuring_dev_env` section shows how use these tokens.
 
 .. _leap_selecting_solvers:
 
@@ -317,6 +326,10 @@ example, a :term:`hybrid` :term:`solver` or quantum computer.
                 :ref:`leap_access_multiregion` section to query solvers
                 outside your default region.
 
+    The following examples require that you create a configuration file and/or
+    set environment variables in your work environment, as described in the
+    :ref:`leap_configuring_dev_env` subsection.
+
     Example: using :ref:`dwave CLI <ocean_dwave_cli>` to see the available
     solvers, their parameters, and properties (the output shown below is
     illustrative only).
@@ -331,9 +344,10 @@ example, a :term:`hybrid` :term:`solver` or quantum computer.
     >>> from dwave.cloud import Client
     >>> with Client.from_config() as client:         # doctest: +SKIP
     ...    print(client.get_solvers(hybrid=True))
-    [BQMSolver(id='hybrid_binary_quadratic_model_version2'),
-    DQMSolver(id='hybrid_discrete_quadratic_model_version1'),
-    CQMSolver(id='hybrid_constrained_quadratic_model_version1')]
+    [NLSolver(name='stride_hybrid_solver'),
+    BQMSolver(name='hybrid_binary_quadratic_model'),
+    DQMSolver(name='hybrid_discrete_quadratic_model'),
+    CQMSolver(name='hybrid_constrained_quadratic_model')]
 
     .. note:: For non-Ocean clients, you can retrieve a list of supported
         remote solvers by sending an :code:`HTTP GET` request to the
@@ -356,7 +370,7 @@ example, a :term:`hybrid` :term:`solver` or quantum computer.
         *   -   Where
             -   How
             -   Usage Notes
-        *   -   :ref:`Configuration file <index_cloud>`
+        *   -   :ref:`Configuration file <leap_config_files>`
             -   Configure using the :ref:`dwave CLI <ocean_dwave_cli>` tool
                 or edit the file manually.
             -   You can override this configuration by setting a solver in
@@ -370,7 +384,7 @@ example, a :term:`hybrid` :term:`solver` or quantum computer.
         *   -   Explicit parameter
             -   You can set your solver selection directly in your code; for
                 example,
-                :code:`sampler = DWaveSampler(solver=dict(topology__type='pegasus'))`
+                :code:`sampler = DWaveSampler(solver=dict(topology__type='zephyr'))`
             -
 
 The :ref:`leap_configuring_dev_env` section shows how to configure your
@@ -403,19 +417,20 @@ quantum cloud resources at URL
             -   Solvers available to your account are grouped by region.
         *   -   :ref:`dwave-cloud-client <index_cloud>`
             -   Use the :ref:`Interactive CLI <ocean_dwave_cli>` or
-                :meth:`~dwave.cloud.client.Client.get_regions`
+                :func:`~dwave.cloud.regions.get_regions`
             -
 
     Example: using :ref:`dwave-cloud-client <index_cloud>` to query
     supported regions.
 
-        >>> from dwave.cloud import Client
-        >>> with Client.from_config() as client:          # doctest: +SKIP
-        ...    regions = client.get_regions()
-        ...    for code, info in regions.items():
-        ...        print(f"{info['name']} ({code}): {info['endpoint']}")
-        North America (na-west-1): https://na-west-1.cloud.dwavesys.com/sapi/v2/
-        Europe (eu-central-1): https://eu-central-1.cloud.dwavesys.com/sapi/v2/
+    >>> from dwave.cloud.regions import get_regions
+    >>>
+    >>> regions = get_regions()          # doctest: +SKIP
+    >>> for region in regions:
+    ...    print(f"{region.name}: {region.code}")
+    North America (West): na-west-1
+    Europe: eu-central-1
+    North America (East): na-east-1
 
     .. note:: Users of on-premises systems should request the SAPI endpoint
         from the system administrator.
@@ -424,9 +439,6 @@ quantum cloud resources at URL
         regions by sending an :code:`HTTP GET` request to the
         :code:`https://cloud.dwavesys.com/metadata/v1/regions` endpoint.
 
-    For information about using solvers in alternative geographical regions,
-    see the :ref:`leap_access_multiregion` section below.
-
 .. dropdown::  Viewing a Region's Solvers
 
     You can use :ref:`interactive CLI <ocean_dwave_cli>` to query solvers in a
@@ -434,8 +446,9 @@ quantum cloud resources at URL
 
     .. code-block:: bash
 
-        $ dwave solvers --list --region eu-central-1
-        Advantage_system5.1
+        $ dwave solvers --list --region na-east-1
+        Advantage2_system4
+        Advantage2_research2
 
 The :ref:`leap_configuring_dev_env` section shows how to set up a configuration
 file and/or environment variables that enable you to easily select your
@@ -486,8 +499,8 @@ preferred solvers.
 
 .. _leap_configuring_dev_env:
 
-Configuring your Development Environment
-========================================
+Configuring your Work Space
+===========================
 
 Typically, you use a configuration file to store tokens and select solvers.
 You can always set or override your configurations in your code or with
@@ -512,12 +525,21 @@ For details on supported environment variables and prioritizing between these
 and values set explicitly or through a configuration file, see the
 :mod:`dwave.cloud.config` module.
 
+.. the ocean_sapi_access_advanced xref is in a couple of places in cloud client
+
 .. _leap_config_files:
 .. _ocean_sapi_access_advanced:
-.. the ocean_sapi_access_advanced xref is in a couple of places in cloud client
 
 Configuration Files
 -------------------
+
+Configuration files conform to a standard Windows INI-style format: profiles are
+defined by sections such as, `[profile-a]` and `[profile-b]`.
+
+*   Default values for undefined profile keys are taken from the `[defaults]`
+    section if that exists.
+*   If you do not specify a profile, the first profile is read, adding to (and
+    possibly overwriting) keys of the `[defaults]` section if that exists.
 
 .. _sapi_access_config_create:
 
@@ -557,22 +579,22 @@ Configuration Files
         :start-after: cli_example_config_start
         :end-before: cli_example_config_end
 
-    .. [#] You can use the :code:`--auto-token` option if you have authorized
-        Leap access as described in :ref:`leap_ocean_authorization`.
-
     2.  If needed, enter SAPI information (e.g. your API token) found as described
         in the :ref:`leap_access_tokens` section. To get started,
         create a minimum configuration by accepting the command's defaults (pressing
         Enter) for all prompts\ [#]_. You can in the future update the file if
         needed.
 
+    Alternatively, you can create and edit a
+    :ref:`dwave-cloud-client configuration file <index_cloud>` manually.
+
+    .. [#] You can use the :code:`--auto-token` option if you have authorized
+        Leap access as described in :ref:`leap_ocean_authorization`.
+
     .. [#] Users of on-premises systems should also enter the SAPI endpoint. Users
         interested in using solvers hosted outside their default region can also
         configure the SAPI endpoint (see the :ref:`leap_access_multiregion` section
         for the recommended way of configuring such access).
-
-    Alternatively, you can create and edit a
-    :ref:`dwave-cloud-client configuration file <index_cloud>` manually.
 
 .. _sapi_access_config_verify:
 
@@ -648,10 +670,7 @@ Configuration Files
 
     A single Cloud Client configuration file can contain multiple profiles, each
     defining a separate combination of communication parameters such as the URL to
-    the remote resource, authentication token, solver, etc. Configuration files
-    conform to a standard Windows INI-style format: profiles are defined by sections
-    such as, `[profile-a]` and `[profile-b]`. Default values for undefined profile
-    keys are taken from the `[defaults]` section.
+    the remote resource, authentication token, solver, etc.
 
     For example, if the configuration file, `~/.config/dwave/dwave.conf`, selected
     through auto-detection as the default configuration, contains the following
