@@ -5,8 +5,8 @@ Decomposing Large Problems
 ==========================
 
 This section briefly presents methods of decomposing a large problem into a
-part requiring no more than the number of qubits available on the QPU and,
-optionally for hybrid approaches, parts suited to conventional compute
+part requiring no more than the number of qubits available on an annealing QPU
+and, optionally for hybrid approaches, parts suited to conventional compute
 platforms. Detailed information is available in the literature and referenced
 papers to guide actual implementation.
 

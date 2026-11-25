@@ -5,7 +5,7 @@ Working With Different Topologies
 =================================
 
 The examples below show how to construct software samplers with the same
-:term:`structure <topology>` as the :term:`QPU`, and how to work with
+:term:`structure <topology>` as an annealing :term:`QPU`, and how to work with
 :term:`embeddings <embedding>` for different topologies.
 
 The code examples below uses the following imports:

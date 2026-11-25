@@ -5,11 +5,15 @@ Quantum Solvers
 ===============
 
 Ocean's :ref:`dwave-system <index_system>` package enables you to use a
-|dwave_short| quantum computer as a :term:`sampler`. In addition to
-:class:`~dwave.system.samplers.DWaveSampler`, the package provides an
+|dwave_short| annealing quantum computer as a :term:`sampler`.\ [#]_ In addition
+to :class:`~dwave.system.samplers.DWaveSampler`, the package provides an
 :class:`~dwave.system.composites.EmbeddingComposite` :term:`composite` that maps
 unstructured problems to the :ref:`graph structure <qpu_topologies>` of the
 selected sampler, a process known as :term:`minor-embedding`.
+
+.. [#]
+    The `Leap <https://cloud.dwavesys.com/leap/>`_ service also provides
+    :ref:`gate-model <qpu_index_get_started_gm>` solvers.
 
 Solver Identity and Selection
 =============================
@@ -22,9 +26,9 @@ to a QPU solver selected by default or explicitly. The
 by Ocean software's :class:`~dwave.system.samplers.DWaveSampler` class. For
 research, however, you may prefer to explicitly select a QPU solver.
 
-QPU solvers are uniquely referenced by an identity dictionary.\ [#]_ This
-identity includes a name (e.g., ``Advantage2_system1.6``) and a graph identifier
-that tracks any changes to the solver's
+Annealing QPU solvers are uniquely referenced by an identity dictionary.\ [#]_
+This identity includes a name (e.g., ``Advantage2_system1.6``) and a graph
+identifier that tracks any changes to the solver's
 :ref:`working graph <topologies_working_graph>`. Ocean software enables solver
 selection by identity (name alone or with a particular graph ID), topology type,
 qubit count, and other characteristics, as described in the

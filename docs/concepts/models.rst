@@ -4,9 +4,14 @@
 Models
 ======
 
-To express your problem as an objective function and submit to a |dwave_short|
+To express your problem as an objective function\ [#]_ and submit to a |dwave_short|
 sampler for solution, you formulate a model.
 
+.. [#]
+    Alternatively, you can express your problem as a quantum algorithm, written
+    as a :term:`QCDL` program, and submit that to a gate-model solver. This
+    section is about models used by annealing quantum computers and the hybrid
+    solvers that use them.
 
 .. _concept_models_nonlinear:
 

@@ -4,7 +4,7 @@
 Minor-Embedding: Best Practices
 ===============================
 
-The |dwave_short| QPU minimizes the energy of an Ising spin configuration
+Annealing QPUs minimize the energy of an Ising spin configuration
 whose pairwise interactions lie on the edges of a QPU
 :ref:`working graph <topologies_working_graph>`, such as the :term:`Zephyr`
 graph of an |adv2| system. To solve an Ising spin problem with arbitrary

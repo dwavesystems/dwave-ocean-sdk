@@ -6,7 +6,7 @@ Per-QPU Solver Properties and Schedules
 
 The following sections provide information for advanced users who want to better
 understand and leverage the physical implementation of |dwave_short|'s various
-quantum processing units (QPUs) available in the Leap service\ [#]_.
+annealing\ [#]_ :term:`QPUs <QPU>` available in the Leap service\ [#]_.
 This information includes:
 
 *   Summary of a QPU's physical properties---The values provided are
@@ -39,6 +39,10 @@ This information includes:
         {6.62607004 \times 10^{-34} \times 10^9}
 
         &= 1.5092 \times 10^{24} A(s)_{\text{[Joules]}}
+
+.. [#]
+    For properties of gate-model solvers, see the :ref:`qpu_index_about_gm`
+    section.
 
 .. [#]
         Depending on your customer contract, customer plan, and

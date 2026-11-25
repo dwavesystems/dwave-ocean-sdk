@@ -4,7 +4,8 @@
 Errors and Error Correction
 ===========================
 
-This section presents the following topics.
+This section discusses errors and error correction for annealing quantum
+computers.
 
 *   :ref:`qpu_errors_ice` describes *integrated control errors* (ICE) as a
     source of errors.

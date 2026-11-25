@@ -4,16 +4,16 @@
 QUBOs and Ising Models
 ======================
 
-The :ref:`qpu_quantum_annealing_intro` section explains how the |dwave_short|
-QPU uses quantum annealing to find the minimum of an energy landscape defined by
+The :ref:`qpu_quantum_annealing_intro` section explains how an annealing quantum
+computers finds the minimum of an energy landscape defined by
 the biases and couplings applied to its qubits in the form of a problem
 Hamiltonian. As described in the :ref:`qpu_workflow` section, to solve a problem
 by sampling, you formulate an :term:`objective function` such that when
 the :term:`solver` finds its minimum, it is finding solutions to your problem.
 
 This section describes the objective functions (the problem Hamiltonians) for
-the |dwave_short| quantum computer. The linear and quadratic coefficients of
-these models map to values of the qubits and couplers of the QPU.
+annealing quantum computers. The linear and quadratic coefficients of these
+models map to values of the qubits and couplers of the QPU.
 
 Finally, the :ref:`qpu_qubo_ising_example` subsection gives a simple example and
 the :ref:`qpu_qubo_ising_transformations` subsection shows how to convert

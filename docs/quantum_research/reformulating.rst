@@ -8,7 +8,7 @@ Reformulating a Problem
     so we don't have all the >80 char violations
 
 As noted in the :ref:`qpu_workflow` section, the **first** step of solving
-your problem is to state it; for example:
+your problem on an annealing quantum computer is to state it; for example:
 
 *   How do I assign a color to each region of a map such that any two regions
     sharing a border have different colors? (This is the well-known
@@ -37,8 +37,8 @@ of the objective function represent good solutions to the problem.
     quantum-classical :ref:`hybrid solvers <index_hybrid>` available in the Leap
     service can accept problems formulated at a higher level of abstraction; for
     example,
-    :ref:`discrete quadratic models (DQM) <concept_models_dqm>`, where variables
-    can have more than two possible cases.
+    :ref:`nonlinear models <concept_models_nonlinear>`, where variables can be
+    permutations.
 
 This chapter presents some
 :ref:`general guidance <qpu_reformulating_general_guidance>`, the following

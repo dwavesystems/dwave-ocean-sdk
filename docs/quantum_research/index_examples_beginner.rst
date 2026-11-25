@@ -4,6 +4,9 @@
 Basic QPU Examples
 ==================
 
+Beginner examples for using annealing quantum computers. For gate-model quantum
+computers, see the :ref:`qpu_index_get_started_gm` section.
+
 ..  toctree::
     :maxdepth: 1
     :hidden:
