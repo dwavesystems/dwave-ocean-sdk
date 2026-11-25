@@ -1867,7 +1867,7 @@ The examples in this chapter use Python with the following packages:
 Set Up the Session
 ------------------
 
-The :ref:`ocean_sapi_access_basic` section explains how you can find your base
+The :ref:`leap_access` section explains how you can find your base
 URL and API token. Start by setting up the base URL and authentication token
 used for all SAPI requests.
 

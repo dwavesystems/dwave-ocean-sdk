@@ -42,7 +42,7 @@ working graph for reference.
 Example: Simple QPU Usage
 =========================
 
-.. note:: The :ref:`ocean_sapi_access_basic` steps you through configuring
+.. note:: The :ref:`leap_access` steps you through configuring
     access to |dwave_short| quantum computers.
 
 For a :ref:`binary quadratic model <concept_models_bqm>` (BQM) representing a

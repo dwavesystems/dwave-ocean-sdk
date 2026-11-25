@@ -72,7 +72,7 @@ Example
 Useful Links
 ============
 
-*   :ref:`ocean_sapi_access_basic` on accessing :term:`QPU`
+*   :ref:`leap_access` on accessing :term:`QPU`
     :term:`solvers <solver>` in the `Leap <https://cloud.dwavesys.com/leap/>`_
     service.
 *   :ref:`qpu_qpu_usage_charges` on how the Leap service charges your

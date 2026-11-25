@@ -91,7 +91,7 @@ For a full and easy development experience it is recommended that before you
 start writing code, you complete the setup of your environment with these last
 steps:
 
-*   :ref:`ocean_leap_authorization`
+*   :ref:`leap_ocean_authorization`
 
     Optionally authorize Ocean to access your Leap account to facilitate
     token management.
@@ -101,7 +101,7 @@ steps:
     Adds non-open-source tools such as the
     :ref:`problem inspector <index_inspector>`.
 
-*   :ref:`ocean_sapi_access_basic`
+*   :ref:`leap_access`
 
     Sets defaults used for accessing |dwave_short| compute resources.
 
@@ -115,7 +115,7 @@ interactive prompts and placeholder replies for a full setup.
 .. tip:: New users can accept the :code:`dwave setup` command's defaults (press
     Enter) for all prompts except the authentication token, which is displayed
     on the `Leap <https://cloud.dwavesys.com/leap/>`_ dashboard for your
-    account. The :ref:`ocean_sapi_access_basic` section explains how you can
+    account. The :ref:`leap_access` section explains how you can
     update your work environment's configuration at any time.
 
 .. include:: dwave_cli.rst
@@ -153,6 +153,6 @@ install.
 
 Most Ocean tools solve problems on a :term:`solver`, which is a compute resource
 such as a |dwave_short| quantum computer or CPU, and might require that you
-configure a default solver. The :ref:`ocean_sapi_access_basic` describes the
+configure a default solver. The :ref:`leap_access` describes the
 next step of setting up your environment, how to configure your system to access
 |dwave_short| or other remote solvers.

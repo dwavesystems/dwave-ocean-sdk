@@ -9,9 +9,6 @@ Get Started with Ocean Software
     :hidden:
 
     install
-    leap_authorization
-    sapi_access_basic
-    sapi_access_advanced
     workflow
     stack
 
@@ -36,15 +33,8 @@ The following steps set up your development environment for Ocean:
     work in an updated Ocean environment through the
     `Ocean Docker file <https://hub.docker.com/r/dwavesys/ocean-dev>`_.
 
-2.  :ref:`ocean_leap_authorization`
-
-    Optionally authorize Ocean software to access your Leap\ |TM| service
-    account to facilitate token management.
-
-3.  :ref:`ocean_sapi_access_basic`
-
-    Enable the running of problems in the Leap service, using quantum-classical
-    :term:`hybrid` solvers and quantum computers.
+2.  Authorize and configure the Ocean SDK to access Leap services. See the
+    :ref:`leap_access` section.
 
 Ocean SDK's Programming Model
 =============================
