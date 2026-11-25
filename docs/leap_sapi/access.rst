@@ -7,16 +7,25 @@
 Access Leap Services
 ====================
 
+.. |config_file_env_var_solver_selection| replace:: The
+    :ref:`leap_configuring_dev_env` section shows how to set up the
+    :ref:`configuration files <leap_config_files>` and/or
+    :ref:`environment variables <leap_access_env_vars>` that enable your solver
+    selection.
+
 The |cloud_tm| Solver API (:term:`SAPI`) provides access to the
 :term:`solvers <solver>`---compute resources for solving problems, such as
 |dwave_short| quantum computers and quantum-classical :term:`hybrid`
 solvers---hosted in the `Leap <https://cloud.dwavesys.com/leap/>`_ quantum cloud
 service.\ [#]_
 
-Typically you store your preferences for Ocean software's selecting of solvers
-(e.g., which QPU, hosted in which :ref:`region <leap_access_multiregion>`, using
-the :ref:`API token <leap_access_tokens>` for which project) in one or more
-:ref:`configuration files <leap_config_files>`, and optionally
+This section describes how to authorize the Ocean software in your development
+environment to access the Leap service, use your account's SAPI tokens to
+authenticate your client sessions with its solvers, and configure your
+environment to select solvers (e.g., which solver, from which geographical
+:ref:`region <leap_access_multiregion>`, and using which project's
+:ref:`SAPI token <leap_access_tokens>`) with
+:ref:`configuration files <leap_config_files>` and/or
 :ref:`environment variables <leap_access_env_vars>`.
 
 .. [#] SAPI is used similarly for on-premises systems. Differences for such
@@ -30,7 +39,8 @@ Authorizing the Ocean SDK
 Authentication using the secure `OAuth 2.0 <https://oauth.net/2/>`_ industry
 standard is recommended. It enables the Ocean SDK in your development
 environment to access your Leap service account for convenient access to solvers
-and the :term:`SAPI` tokens needed to use them.
+and the SAPI tokens used to authenticate your client sessions with these
+solvers.
 
 .. dropdown:: OAuth Authorization Procedure
 
@@ -114,7 +124,7 @@ and the :term:`SAPI` tokens needed to use them.
 
                     dwave setup --oob --project PROJ3
 
-                You can always switch your environment to use the API token of
+                You can always switch your environment to use the SAPI token of
                 another project later. For example, if you ran the procedure of
                 the :ref:`tab_authorize_single_leap_project` tab with the
                 ``PROJ2`` project set to active in Leap, you can at any time
@@ -205,21 +215,19 @@ and the :term:`SAPI` tokens needed to use them.
 
     If you cloned a |dwave_short| example, you can now run it.
 
-Alternatively, you can copy the API token manually from the dashboard in the
-Leap service. The :ref:`leap_access_tokens` and
-:ref:`leap_configuring_dev_env` sections show how to find tokens for your
-projects and how to use them.
+Alternatively, you can copy the SAPI token manually from the dashboard in the
+Leap service.
 
 .. _leap_access_tokens:
 
-API Tokens
-----------
+SAPI Tokens
+-----------
 
 An authentication token is used to authenticate the client session when you
 connect to the `Leap <https://cloud.dwavesys.com/leap/>`_ service remote
 environment.
 
-.. dropdown:: Finding Your API Token
+.. dropdown:: Finding Your SAPI Token
 
     The :ref:`table_token_viewing` table shows various options to view
     your SAPI token.
@@ -258,12 +266,12 @@ environment.
     Typically, you create a configuration file and/or set environment variables
     in your work environment, as described in the
     :ref:`leap_configuring_dev_env` subsection, so that Ocean tools can
-    automatically submit your API token when interacting with SAPI. Because
+    automatically submit your SAPI token when interacting with SAPI. Because
     tokens provide authentication, user names and passwords are not required
     in your code. The :ref:`table_token_config` table shows various options
-    of configuring and directly using your API token.
+    of configuring and directly using your SAPI token.
 
-    .. list-table:: Using Your API Token
+    .. list-table:: Using Your SAPI Token
         :name: table_token_config
         :header-rows: 1
 
@@ -281,9 +289,9 @@ environment.
                 a Unix shell.
             -   You can override this configuration explicitly in your code.
         *   -   Explicit parameters
-            -   You can set your API token directly in your code; for
+            -   You can set your SAPI token directly in your code; for
                 example,
-                :code:`sampler = LeapHybridCQMSampler(token="ABC-1234 ... 789")`
+                :code:`sampler = StrideHybridSolver(token="ABC-1234 ... 789")`
             -   Not recommended outside of testing (for security reasons).
 
     .. note:: For non-Ocean clients, you set your token in the HTTP header;
@@ -320,8 +328,8 @@ example, a :term:`hybrid` :term:`solver` or quantum computer.
             -   Use the :ref:`dwave CLI <ocean_dwave_cli>` tool or Ocean's
                 :meth:`~dwave.cloud.client.Client.get_solvers` method.
             -   For users that belong to multiple projects, queries return
-                solvers accessible to the current API token; switch to
-                another project's API token if needed.
+                solvers accessible to the current SAPI token; switch to
+                another project's SAPI token if needed.
             -   Solvers may be local to a region; see the
                 :ref:`leap_access_multiregion` section to query solvers
                 outside your default region.
@@ -356,9 +364,9 @@ example, a :term:`hybrid` :term:`solver` or quantum computer.
 
 .. dropdown:: Selecting a Solver
 
-    By default Ocean selects solvers based on a set of preferred features;
-    for example, by default a problem submitted to a quantum computer with
-    the :class:`~dwave.system.samplers.DWaveSampler` class sampler might
+    By default Ocean software selects solvers based on a set of preferred
+    features; for example, by default a problem submitted to a quantum computer
+    with the :class:`~dwave.system.samplers.DWaveSampler` class sampler might
     prefer the less busy of two available QPUs. The
     :ref:`table_solvers_selecting` table shows various options to configure
     solver selection.
@@ -387,8 +395,7 @@ example, a :term:`hybrid` :term:`solver` or quantum computer.
                 :code:`sampler = DWaveSampler(solver=dict(topology__type='zephyr'))`
             -
 
-The :ref:`leap_configuring_dev_env` section shows how to configure your
-environment to select your preferred solvers.
+|config_file_env_var_solver_selection|
 
 .. _leap_access_multiregion:
 
@@ -450,39 +457,41 @@ quantum cloud resources at URL
         Advantage2_system4
         Advantage2_research2
 
-The :ref:`leap_configuring_dev_env` section shows how to set up a configuration
-file and/or environment variables that enable you to easily select your
-preferred solvers.
+|config_file_env_var_solver_selection|
 
 .. dropdown:: Selecting a Solver from a Particular Region
 
+    You can set a preferred geographical region in a few ways.
+
     *   Select a default region in your
-        :ref:`dwave-cloud-client configuration file <index_cloud>`. You can run the
-        :ref:`dwave config <cli_example_config>` CLI command with the :code:`--full`
-        option or edit an existing configuration file to set a preferred region.
+        :ref:`configuration file <leap_config_files>`. You can run the
+        :ref:`dwave config <cli_example_config>` CLI command with the
+        :code:`--full` option or edit an existing configuration file to set a
+        preferred region.
     *   Set the appropriate environment variable (for example,
         :code:`export DWAVE_API_REGION=eu-central-1` in a Unix shell) for your
         current terminal or working session to select solvers from a preferred
         region.
-    *   Explicitly select the region in your code. For example, the :code:`region`
-        parameter in the code line
-        :code:`sampler = DWaveSampler(region="na-west-1")` selects a |dwave_short|
-        quantum computer located in North America.
+    *   Explicitly select the region in your code. For example, the
+        :code:`region` parameter in the code line
+        :code:`sampler = DWaveSampler(region="na-west-1")` selects a
+        |dwave_short| quantum computer located in North America.
 
-    .. note:: Keep in mind the relative priorities of configurations set at various
-        levels (in the above bullets, the configuration file, environment variables,
-        and explicit parameters in your code), as described in the
-        :ref:`dwave-cloud-client <index_cloud>` reference documentation. For
-        example, while the setting of both an endpoint and region on the same level
-        (either two lines in the configuration file or two environment variables or
-        two explicit parameters) results in selection based on the endpoint, setting
-        a region explicitly overrides an endpoint configured using an environment
-        variable or in the configuration file.
+    .. note:: Keep in mind the relative priorities of configurations set at
+        various levels (in the above bullets, the configuration file,
+        environment variables, and explicit parameters in your code), as
+        described in the :ref:`dwave-cloud-client <index_cloud>` reference
+        documentation. For example, while the setting of both an endpoint and
+        region on the same level (either two lines in the configuration file or
+        two environment variables or two explicit parameters) results in
+        selection based on the endpoint, setting a region explicitly overrides
+        an endpoint configured using an environment variable or in the
+        configuration file.
 
 .. dropdown::  Using Configuration-File Profiles for Multiple Regions
 
-    You can set up your configuration file with profiles for multiple regions, as
-    shown below.
+    You can set up your configuration file with profiles for multiple regions,
+    as shown below.
 
     .. code-block:: bash
 
@@ -504,26 +513,7 @@ Configuring your Work Space
 
 Typically, you use a configuration file to store tokens and select solvers.
 You can always set or override your configurations in your code or with
-environment variables. The
-:ref:`dwave-cloud-client configuration file <index_cloud>` reference
-documentation provides more examples.
-
-
-.. _leap_access_env_vars:
-
-Environment Variables
----------------------
-
-In addition to files, you can set configuration information through environment
-variables; for example:
-
-*   ``DWAVE_CONFIG_FILE`` may select the configuration file path.
-*   ``DWAVE_PROFILE`` may select the name of a profile (section).
-*   ``DWAVE_API_TOKEN`` may select the API token.
-
-For details on supported environment variables and prioritizing between these
-and values set explicitly or through a configuration file, see the
-:mod:`dwave.cloud.config` module.
+:ref:`environment variables <leap_access_env_vars>`.
 
 .. the ocean_sapi_access_advanced xref is in a couple of places in cloud client
 
@@ -533,13 +523,14 @@ and values set explicitly or through a configuration file, see the
 Configuration Files
 -------------------
 
-Configuration files conform to a standard Windows INI-style format: profiles are
-defined by sections such as, `[profile-a]` and `[profile-b]`.
+Configuration files conform to a standard
+`Windows INI-style <https://en.wikipedia.org/wiki/INI_file>`_ format: profiles
+are defined by sections such as, ``[profile-a]`` and ``[profile-b]``.
 
-*   Default values for undefined profile keys are taken from the `[defaults]`
+*   Default values for undefined profile keys are taken from the ``[defaults]``
     section if that exists.
 *   If you do not specify a profile, the first profile is read, adding to (and
-    possibly overwriting) keys of the `[defaults]` section if that exists.
+    possibly overwriting) keys of the ``[defaults]`` section if that exists.
 
 .. _sapi_access_config_create:
 
@@ -550,8 +541,8 @@ defined by sections such as, `[profile-a]` and `[profile-b]`.
     :ref:`dwave-ocean-sdk <ocean_source_code>` installation.
 
     If you did not already do so with the :ref:`dwave setup <cli_example_setup>`
-    command during installation, or want to make changes at a later time, you can
-    use the :ref:`dwave config <cli_example_config>` command.
+    command during installation, or want to make changes at a later time, you
+    can use the :ref:`dwave config <cli_example_config>` command.
 
     .. code-block:: bash
 
@@ -568,74 +559,79 @@ defined by sections such as, `[profile-a]` and `[profile-b]`.
         inspect  Inspect existing configuration/profile.
         ls       List configuration files detected (and/or examined paths).
 
-    Creating a configuration file using the :ref:`dwave config <cli_example_config>`
-    is done as follows (the :ref:`dwave setup <cli_example_setup>` command runs
-    these same configuration steps):
+    Creating a configuration file using the
+    :ref:`dwave config <cli_example_config>` command is done as follows (the
+    :ref:`dwave setup <cli_example_setup>` command runs these same configuration
+    steps):
 
-    1.  In your Python environment, run the :code:`dwave config create` command\ [#]_
-        (the output shown below includes the interactive prompts and placeholder replies).
+    1.  In your Python environment, run the :code:`dwave config create`
+        command\ [#]_ (the output shown below includes the interactive prompts
+        and placeholder replies).
 
     .. include:: ../ocean/dwave_cli.rst
         :start-after: cli_example_config_start
         :end-before: cli_example_config_end
 
-    2.  If needed, enter SAPI information (e.g. your API token) found as described
-        in the :ref:`leap_access_tokens` section. To get started,
-        create a minimum configuration by accepting the command's defaults (pressing
-        Enter) for all prompts\ [#]_. You can in the future update the file if
-        needed.
+    2.  If needed, enter SAPI information (e.g. your SAPI token) found as
+        described in the :ref:`leap_access_tokens` section. To get started,
+        create a minimum configuration by accepting the command's defaults
+        (pressing Enter) for all prompts\ [#]_. You can in the future update the
+        file if needed.
 
-    Alternatively, you can create and edit a
-    :ref:`dwave-cloud-client configuration file <index_cloud>` manually.
+    Alternatively, you can create and edit a configuration file manually (see
+    the reference documentation for the :ref:`dwave-cloud-client <index_cloud>`
+    package).
 
     .. [#] You can use the :code:`--auto-token` option if you have authorized
         Leap access as described in :ref:`leap_ocean_authorization`.
 
-    .. [#] Users of on-premises systems should also enter the SAPI endpoint. Users
-        interested in using solvers hosted outside their default region can also
-        configure the SAPI endpoint (see the :ref:`leap_access_multiregion` section
-        for the recommended way of configuring such access).
+    .. [#] Users of on-premises systems should also enter the SAPI endpoint.
+        Users interested in using solvers hosted outside their default region
+        can also configure the SAPI endpoint (see the
+        :ref:`leap_access_multiregion` section for the recommended way of
+        configuring such access).
 
 .. _sapi_access_config_verify:
 
 .. dropdown::   Verify Your Configuration
 
     You can test that your solver access is configured correctly with the
-    :ref:`interactive CLI <ocean_dwave_cli>`.
+    :ref:`interactive CLI <ocean_dwave_cli>`. The output shown below is
+    illustrative only.
 
     1.  In your environment, run the :ref:`dwave ping <cli_example_ping>`
-        command (the output shown below is illustrative only).
+        command.
 
     .. include:: ../ocean/dwave_cli.rst
         :start-after: cli_example_ping_start
         :end-before: cli_example_ping_end
 
-    2.  **Optionally**, run the :code:`dwave sample --random-problem` command to
-        submit a random problem to a remote solver (the output shown below is
-        illustrative only).
+    2.  **Optionally**, run the
+        :code:`dwave sample --random-problem --client qpu` command to submit a
+        random problem to a remote solver. The truncated output shown below is
+        illustrative only.
 
     .. code-block:: bash
 
-        $ dwave sample --random-problem
-        Using endpoint: https://my.dwavesys.url/
-        Using solver: My_DWAVE_2000Q
-        Using qubit biases: {0: -1.0345257941434953, 1: -0.5795618633919246, 2: 0.9721956399428491, 3: 1....
-        Using qubit couplings: {(1634, 1638): 0.721736584181423, (587, 590): 0.9611623181258304, (642, 64...
-        Number of samples: 1
-        Samples: [[1, 1, -1, -1, -1, -1, 1, -1, -1, 1, -1, 1, 1, 1, -1, -1, -1, -1, -1, -1, -1, 1, 1, -1,...
+        $ dwave sample --random-problem --client qpu
+        Using endpoint: https://cloud.dwavesys.com/sapi/
+        Using region: na-west-1
+        Using solver: Advantage_system6
+        ...
         Occurrences: [1]
-        Energies: [-2882.197791239335]
+        Energies: [-14243.244540499865]
+        ...
 
 .. dropdown:: Locating Your Configuration Files
 
-    If a Cloud Client configuration file is not explicitly specified when
-    instantiating a client or solver, auto-detection searches for candidate files in
-    a number of standard directories, depending on your local system's operating
-    system. You can see the standard locations with the
+    If a configuration file is not explicitly specified when instantiating a
+    client or solver, auto-detection searches for candidate files in a number of
+    standard directories, depending on your local system's operating system. You
+    can see the standard locations with the
     :func:`~dwave.cloud.config.get_configfile_paths` method.
 
-    For example, on a Unix system, depending on its flavor, these might include (in
-    order)::
+    For example, on a Unix system, depending on its flavor, these might include
+    (in order)::
 
         /usr/share/dwave/dwave.conf
         /usr/local/share/dwave/dwave.conf
@@ -650,14 +646,14 @@ defined by sections such as, `[profile-a]` and `[profile-b]`.
 
         ~/Library/Application Support/dwave/dwave.conf
 
-    (For details on the |dwave_short| API for determining platform-independent paths
-    to user data and configuration folders see the homebase_ package.)
+    (For details on the |dwave_short| API for determining platform-independent
+    paths to user data and configuration folders see the homebase_ package.)
 
     .. _homebase: https://github.com/dwavesystems/homebase
 
     You can check the directories searched by the
-    :func:`~dwave.cloud.config.get_configfile_paths` method from a console using the
-    :ref:`interactive CLI utility <ocean_dwave_cli>`; for example::
+    :func:`~dwave.cloud.config.get_configfile_paths` method from a console using
+    the :ref:`interactive CLI utility <ocean_dwave_cli>`; for example::
 
         $ dwave config ls -m
         /etc/xdg/xdg-ubuntu/dwave/dwave.conf
@@ -668,13 +664,13 @@ defined by sections such as, `[profile-a]` and `[profile-b]`.
 
 .. dropdown::   Configure Multiple Profiles
 
-    A single Cloud Client configuration file can contain multiple profiles, each
-    defining a separate combination of communication parameters such as the URL to
-    the remote resource, authentication token, solver, etc.
+    A single configuration file can contain multiple profiles, each defining a
+    separate combination of communication parameters such as the URL to the
+    remote resource, SAPI token, solver, etc.
 
-    For example, if the configuration file, `~/.config/dwave/dwave.conf`, selected
-    through auto-detection as the default configuration, contains the following
-    profiles,\ ::
+    For example, if the configuration file, ``~/.config/dwave/dwave.conf``,
+    selected through auto-detection as the default configuration, contains the
+    following profiles,\ ::
 
         [defaults]
         token = ABC-123456789123456789123456789
@@ -702,3 +698,21 @@ defined by sections such as, `[profile-a]` and `[profile-b]`.
         >>> client_qpu = Client.from_config()   # doctest: +SKIP
         >>> client_hybrid = Client.from_config(profile='hybrid')   # doctest: +SKIP
 
+The reference documentation for the :ref:`dwave-cloud-client <index_cloud>`
+package provides more examples.
+
+.. _leap_access_env_vars:
+
+Environment Variables
+---------------------
+
+In addition to files, you can set configuration information through environment
+variables; for example:
+
+*   ``DWAVE_CONFIG_FILE`` may select the configuration file path.
+*   ``DWAVE_PROFILE`` may select the name of a profile (section).
+*   ``DWAVE_API_TOKEN`` may select the SAPI token.
+
+For details on supported environment variables and prioritizing between these
+and values set explicitly or through a configuration file, see the
+:mod:`dwave.cloud.config` module.
