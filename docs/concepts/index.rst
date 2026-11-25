@@ -91,13 +91,7 @@ Concepts and Terminology
         Learn more: :ref:`concept_models_bqm`
 
     built-in error detection
-        For :term:`dual-rail` qubits, the dominant form of decoherence, erasure
-        errors, move the qubit state out of the code space. That is, the
-        :math:`\ket{0}` and :math:`\ket{1}` logical states are represented by a
-        photon in just one of the qubit's two resonators (e.g., :math:`\ket{01}`
-        and :math:`\ket{10}`). The loss or gain of a photon (i.e.,
-        :math:`\ket{00}` and :math:`\ket{11}`) are flagged as a state error for
-        the qubit.
+        See :term:`error detection`.
 
     chain
     chains
@@ -300,6 +294,15 @@ Concepts and Terminology
         a photon in one resonator and the gain of a photon in the second, making
         it rare compared to erasure errors. This quality enables
         :term:`built-in error detection`.
+
+    error detection
+        For :term:`dual-rail` qubits, the dominant form of decoherence, erasure
+        errors, move the qubit state out of the code space. That is, the
+        :math:`\ket{0}` and :math:`\ket{1}` logical states are represented by a
+        photon in just one of the qubit's two resonators (e.g., :math:`\ket{01}`
+        and :math:`\ket{10}`). The loss or gain of a photon (i.e.,
+        :math:`\ket{00}` and :math:`\ket{11}`) are flagged as a state error for
+        the qubit.
 
     excited state
         States of a quantum system that have higher energy than the
