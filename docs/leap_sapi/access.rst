@@ -432,8 +432,8 @@ quantum cloud resources at URL
 
     >>> from dwave.cloud.regions import get_regions
     >>>
-    >>> regions = get_regions()          # doctest: +SKIP
-    >>> for region in regions:
+    >>> regions = get_regions() # doctest: +SKIP
+    >>> for region in regions:  # doctest: +SKIP
     ...    print(f"{region.name}: {region.code}")
     North America (West): na-west-1
     Europe: eu-central-1
