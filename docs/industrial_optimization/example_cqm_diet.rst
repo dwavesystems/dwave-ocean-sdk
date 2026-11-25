@@ -175,11 +175,11 @@ every available food.
     >>> 2*quantities[0]
     QuadraticModel({'rice': 2.0}, {}, 0.0, {'rice': 'REAL'}, dtype='float64')
 
-    multiplying two such "variables" creates a quadratic bias,
+    multiplying two such integer-valued "variables" creates a quadratic bias,
 
-    >>> quantities[0] * quantities[1]          # doctest: +SKIP
-    QuadraticModel({'rice': 0.0, 'tofu': 0.0}, {('tofu', 'rice'): 1.0}, 0.0,
-    ...            {'rice': 'REAL', 'tofu': 'REAL'}, dtype='float64')
+    >>> quantities[2] * quantities[5]          # doctest: +SKIP
+    QuadraticModel({'banana': 0.0, 'avocado': 0.0}, {('avocado', 'banana'): 1.0}, 0.0,
+    ...            {'banana': 'INTEGER', 'avocado': 'INTEGER'}, dtype='float64')
 
     but multiplying three such quadratic models requires a non-quadratic term
     and so :code:`quantities[0] * quantities[1] * quantities[2]` cannot generate
