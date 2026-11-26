@@ -158,7 +158,6 @@ that in the solutions will be assigned values for the selected quantities of
 every available food.
 
 >>> import dimod
-...
 >>> quantities = [dimod.Real(f"{food}") if foods[food]["Units"] == "continuous"
 ...                                     else dimod.Integer(f"{food}")
 ...                                     for food in foods.keys()]
